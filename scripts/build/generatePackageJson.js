@@ -1,0 +1,34 @@
+const { promises: fs } = require('fs')
+const R = require('ramda')
+
+const distPackageExtraProps = {
+  bugs: {
+    url: 'https://github.com/MTES-MCT/monitor-ui/issues'
+  },
+  exports: './index.js',
+  funding: 'https://github.com/MTES-MCT/monitor-ui?sponsor=1',
+  homepage: 'https://mtes-mct.github.io/monitor-ui/',
+  name: '@mtes-mct/monitor-ui',
+  publishConfig: {
+    access: 'public'
+  },
+  repository: {
+    type: 'git',
+    url: 'git+https://github.com/MTES-MCT/monitor-ui.git'
+  },
+  sideEffects: false,
+  type: 'module',
+  types: './index.d.ts'
+}
+
+;(async () => {
+  const rootPackageJson = await fs.readFile('./package.json', 'utf-8')
+  const rootPackage = JSON.parse(rootPackageJson)
+  const distPackage = R.pipe(
+    R.omit(['devDependencies', 'main', 'prettier', 'private', 'release', 'scripts', 'workspaces']),
+    R.mergeLeft(distPackageExtraProps)
+  )(rootPackage)
+  const distPackageJson = JSON.stringify(distPackage, null, 2)
+
+  await fs.writeFile('./dist/package.json', distPackageJson, 'utf-8')
+})()

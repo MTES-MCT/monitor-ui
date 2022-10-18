@@ -1,0 +1,70 @@
+name: Check
+
+on: push
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version: 18
+      - name: Install
+        run: yarn
+      - name: Lint
+        run: yarn test:lint
+
+  type:
+    name: Type
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version: 18
+      - name: Install
+        run: yarn
+      - name: Type
+        run: yarn test:type
+
+  test_unit:
+    name: Unit Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version: 18
+      - name: Install
+        run: yarn
+      - name: Test
+        run: yarn test:unit --coverage
+      - name: Upload coverage
+        run: yarn codecov
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version: 18
+      - name: Install
+        run: yarn
+      - name: Build
+        run: yarn build
