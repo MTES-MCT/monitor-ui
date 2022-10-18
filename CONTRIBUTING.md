@@ -19,7 +19,11 @@ corepack enable
 ```sh
 yarn
 ```
-3. [Setup your IDE](https://yarnpkg.com/getting-started/editor-sdks).
+3. Install Git hooks:  
+```sh
+yarn setup
+```
+4. [Setup your IDE](https://yarnpkg.com/getting-started/editor-sdks).
 
 ### Maintenance
 

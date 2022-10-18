@@ -17,7 +17,7 @@
     "build:dev": "rm -Rf ./dist && rollup -c",
     "build:package": "node ./scripts/build/generatePackageJson.js",
     "dev": "start-storybook -p 6006",
-    "prepare": "husky install",
+    "setup": "husky install",
     "test": "yarn test:lint && yarn test:type",
     "test:lint": "eslint --ext js,jsx,ts,tsx .",
     "test:type": "tsc",

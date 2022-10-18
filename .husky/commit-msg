@@ -3,4 +3,4 @@
 
 [ -n "$CI" ] && exit 0
 
-npm exec commitlint --edit "$1"
+yarn commitlint --edit "$1"
