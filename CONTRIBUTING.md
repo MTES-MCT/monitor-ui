@@ -2,6 +2,8 @@
 
 - [Development](#development)
   - [First Setup](#first-setup)
+  - [Conventions](#conventions)
+  - [Release](#release)
   - [Maintenance](#maintenance)
 - [Notes](#notes)
 
@@ -24,6 +26,23 @@ yarn
 yarn setup
 ```
 4. [Setup your IDE](https://yarnpkg.com/getting-started/editor-sdks).
+
+### Conventions
+
+Please respect [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/) messages as defined by Angular in [their contributing documentation](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#commit).
+
+### Release
+
+The release process is automated, including versionning and release notes generation,
+using [semantic-release](https://github.com/semantic-release/semantic-release).
+
+1. Go to [Github Actions Release Workflow](https://github.com/MTES-MCT/monitor-ui/actions/workflows/release.yml) 
+2. Click on "Run workflow" > "Run workflow" ("Branch: main" should be selected by default).
+3. 
+
+```sh
+npx browserslist@latest --update-db
+```
 
 ### Maintenance
 
