@@ -6,11 +6,12 @@ const distPackageExtraProps = {
     url: 'https://github.com/MTES-MCT/monitor-ui/issues'
   },
   exports: './index.js',
-  funding: 'https://github.com/MTES-MCT/monitor-ui?sponsor=1',
   homepage: 'https://mtes-mct.github.io/monitor-ui/',
   name: '@mtes-mct/monitor-ui',
   publishConfig: {
-    access: 'public'
+    access: 'public',
+    registry: 'https://npm.pkg.github.com',
+    tag: 'latest'
   },
   repository: {
     type: 'git',

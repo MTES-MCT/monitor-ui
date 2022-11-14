@@ -42,12 +42,17 @@
     "@ivangabriele/commitlint-config": "1.0.6",
     "@ivangabriele/eslint-config-typescript-react": "4.3.0",
     "@ivangabriele/prettier-config": "3.1.0",
-    "@ivangabriele/semantic-release-config-dist": "2.1.0",
     "@jest/globals": "29.2.0",
     "@rollup/plugin-commonjs": "23.0.0",
     "@rollup/plugin-node-resolve": "15.0.0",
     "@rollup/plugin-replace": "5.0.0",
     "@rollup/plugin-typescript": "8.5.0",
+    "@semantic-release/changelog": "6.0.1",
+    "@semantic-release/commit-analyzer": "9.0.2",
+    "@semantic-release/exec": "6.0.3",
+    "@semantic-release/github": "8.0.6",
+    "@semantic-release/npm": "9.0.1",
+    "@semantic-release/release-notes-generator": "10.0.3",
     "@storybook/addon-actions": "6.5.12",
     "@storybook/addon-essentials": "6.5.12",
     "@storybook/addon-links": "6.5.12",
@@ -83,7 +88,6 @@
     "eslint-plugin-sort-destructure-keys": "1.4.0",
     "eslint-plugin-sort-keys-fix": "1.1.2",
     "eslint-plugin-typescript-sort-keys": "2.1.0",
-    "esm-path": "1.0.1",
     "gh-pages": "4.0.0",
     "husky": "8.0.1",
     "jest": "29.2.0",
@@ -94,12 +98,12 @@
     "prettier": "2.7.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-feather": "2.0.10",
     "react-is": "18.2.0",
     "rollup": "2.79.1",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "rollup-plugin-postcss": "4.0.2",
     "rollup-plugin-sizes": "1.0.4",
+    "semantic-release": "19.0.5",
     "styled-components": "5.3.6",
     "typescript": "4.8.4",
     "webpack": "5.74.0"
@@ -117,8 +121,5 @@
       "bash -c 'npm run test:type:partial'"
     ]
   },
-  "packageManager": "yarn@3.2.4",
-  "release": {
-    "extends": "@ivangabriele/semantic-release-config-dist"
-  }
+  "packageManager": "yarn@3.2.4"
 }
