@@ -30,7 +30,7 @@ module.exports = {
     // > Note: As documented above, the prefix is trimmed before format is validated,
     // > therefore PascalCase must be used to allow variables such as isEnabled using the prefix is.
     '@typescript-eslint/naming-convention': [
-      'warn',
+      'error',
       {
         selector: 'variable',
         format: ['camelCase', 'PascalCase', 'UPPER_CASE']
@@ -91,6 +91,9 @@ module.exports = {
 
     'import/no-extraneous-dependencies': ['error', { peerDependencies: true }],
 
+    'no-null/no-null': 'error',
+
+    'react/jsx-no-useless-fragment': 'off',
     'react/jsx-props-no-spreading': 'off',
     // See https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/default_props/#you-may-not-need-defaultprops
     'react/require-default-props': 'off',
