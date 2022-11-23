@@ -12,6 +12,7 @@ import type { Promisable } from 'type-fest'
 
 export type DateInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'onNext'> & {
   defaultValue?: DateTuple
+  isEndDate?: boolean
   isForcedFocused: boolean
   isStartDate?: boolean
   /** Called each time the date input is changed to a new valid value. */
@@ -19,7 +20,17 @@ export type DateInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
   onClick: () => Promisable<void>
 }
 function DateInputWithRef(
-  { defaultValue, isForcedFocused, isStartDate = false, onBack, onChange, onClick, onNext, onPrevious }: DateInputProps,
+  {
+    defaultValue,
+    isEndDate = false,
+    isForcedFocused,
+    isStartDate = false,
+    onBack,
+    onChange,
+    onClick,
+    onNext,
+    onPrevious
+  }: DateInputProps,
   ref: ForwardedRef<DateOrTimeInputRef>
 ) {
   const boxSpanRef = useRef() as MutableRefObject<HTMLSpanElement>
@@ -99,7 +110,8 @@ function DateInputWithRef(
 
   return (
     <Box ref={boxSpanRef} hasError={hasFormatError || hasValidationError} isFocused={isForcedFocused || isFocused}>
-      {isStartDate ? 'Du ' : 'Au '}
+      {isStartDate && 'Du '}
+      {isEndDate && 'Au '}
       <NumberInput
         ref={dayInputRef}
         data-cy={`date-range-picker-${isStartDate ? 'start' : 'end'}-day`}
