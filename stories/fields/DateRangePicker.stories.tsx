@@ -1,45 +1,33 @@
-import React from 'react'
-import styled from 'styled-components'
+import { useState } from 'react'
 
 import { DateRangePicker } from '../../src'
+import { Output } from '../_components/Output'
 
 import type { DateRangePickerProps } from '../../src'
-
-const Box = styled.div`
-  max-width: 30rem;
-`
+import type { DateRange } from '../../src/types'
 
 export default {
   title: 'Fields/DateRangePicker',
   component: DateRangePicker,
 
-  // argTypes: {
-  //   size: {
-  //     options: SUI.SIZES,
-  //     control: { type: 'inline-radio' }
-  //   }
-  // },
+  argTypes: {},
 
   args: {
-    disabled: false,
-    error: '',
-    helper: '',
-    isAsync: false,
-    isMulti: false,
-    label: '',
-    options: [
-      { value: '36', label: 'XS' },
-      { value: '38', label: 'S' },
-      { value: '40', label: 'M' },
-      { value: '42', label: 'L' },
-      { value: '44', label: 'XL' }
-    ],
-    placeholder: 'Pick your size'
+    isHistorical: false,
+    isLabelHidden: false,
+    label: 'DateRangePicker Label',
+    withTime: true
   }
 }
 
-export const _DateRangePicker = (props: DateRangePickerProps) => (
-  <Box>
-    <DateRangePicker {...props} />
-  </Box>
-)
+export const _DateRangePicker = (props: DateRangePickerProps) => {
+  const [outputValue, setOutputValue] = useState<DateRange>()
+
+  return (
+    <>
+      <DateRangePicker {...props} onChange={setOutputValue} />
+
+      <Output value={outputValue} />
+    </>
+  )
+}
