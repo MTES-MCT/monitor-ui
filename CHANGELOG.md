@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.2.0...v1.3.0) (2022-11-24)
+
+
+### Features
+
+* **assets:** add rsuite-override stylesheet ([#19](https://github.com/MTES-MCT/monitor-ui/issues/19)) ([0619f51](https://github.com/MTES-MCT/monitor-ui/commit/0619f51989a33656c4434f15a7533269a2b9c40b))
+
 # [1.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.1.1...v1.2.0) (2022-11-24)
 
 
