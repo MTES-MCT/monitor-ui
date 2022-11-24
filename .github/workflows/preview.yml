@@ -1,0 +1,40 @@
+name: Preview
+
+on: pull_request
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    outputs:
+      # https://www.chromatic.com/docs/github-actions#outputs
+      storybookUrl: ${{ steps.publish.outputs.storybookUrl }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Setup
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version: 18
+      - name: Install
+        run: yarn
+      - name: Publish
+        id: publish
+        uses: chromaui/action@v1
+        with:
+          buildScriptName: preview
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
+
+  update_pull_request:
+    runs-on: ubuntu-latest
+    needs: publish
+    steps:
+      - name: Update Pull Request Preview URL
+        uses: ivangabriele/find-and-replace-pull-request-body@v1.0.3
+        with:
+          githubToken: ${{ secrets.GH_PAT }}
+          find: "_Waiting for deployment..._<!-- AUTOFILLED_PREVIEW_URL -->"
+          replace: ${{ needs.publish.outputs.storybookUrl }}

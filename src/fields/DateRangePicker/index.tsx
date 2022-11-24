@@ -307,6 +307,7 @@ export function DateRangePicker({
           <DateInput
             ref={endDateInputRef}
             defaultValue={selectedEndDateTupleRef.current}
+            isEndDate
             isForcedFocused={isRangeCalendarPickerOpenRef.current}
             onBack={handleEndDateInputPrevious}
             onChange={nextDateTuple => handleDateInputFilled(DateRangePosition.END, nextDateTuple)}
