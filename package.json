@@ -8,8 +8,6 @@
     "node": "18",
     "npm": "8"
   },
-  "browser": "./src/index.ts",
-  "main": "./src/index.ts",
   "scripts": {
     "build": "rm -Rf ./dist && rollup -c && yarn build:copy && yarn build:package && yarn build:clean",
     "build:clean": "rm -Rf ./dist/node_modules",
