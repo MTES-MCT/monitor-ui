@@ -24,9 +24,9 @@ jobs:
       - name: Release
         run: yarn semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           # TODO Check if both are really needed.
-          NPM_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           NODE_AUTH_TOKEN: ${{ secrets.GH_PAT }}
       - name: Get version
         id: get_version
