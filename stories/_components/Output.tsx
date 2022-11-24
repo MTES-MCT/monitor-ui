@@ -6,11 +6,7 @@ export type OutputProps = {
 }
 export function Output({ value }: OutputProps) {
   // eslint-disable-next-line no-null/no-null
-  const valueAsString = useMemo(() => JSON.stringify(value, null, 2), [value])
-
-  if (value === undefined) {
-    return <></>
-  }
+  const valueAsString = useMemo(() => (value === undefined ? 'undefined' : JSON.stringify(value, null, 2)), [value])
 
   return (
     <>

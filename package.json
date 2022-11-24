@@ -19,6 +19,7 @@
     "dev": "start-storybook -p 6006",
     "preview": "yarn build-storybook",
     "setup": "husky install",
+    "setup:vscode": "yarn dlx @yarnpkg/sdks vscode",
     "test": "yarn test:lint && yarn test:type",
     "test:lint": "yarn eslint --ext js,jsx,ts,tsx .",
     "test:type": "yarn tsc",
