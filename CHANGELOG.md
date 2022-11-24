@@ -1,3 +1,16 @@
+# [1.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.1.1...v1.2.0) (2022-11-24)
+
+
+### Bug Fixes
+
+* **build:** fix dist npm exports path ([#17](https://github.com/MTES-MCT/monitor-ui/issues/17)) ([aad4c07](https://github.com/MTES-MCT/monitor-ui/commit/aad4c07b160ec38fcad68fbfcb8055c971c0f5ed))
+
+
+### Features
+
+* **formiks:** add FormikDatePicker ([#16](https://github.com/MTES-MCT/monitor-ui/issues/16)) ([a4db006](https://github.com/MTES-MCT/monitor-ui/commit/a4db006c1f72a39fd7ea8dc2722399783c44826b))
+* **formiks:** add FormikDateRangePicker ([#15](https://github.com/MTES-MCT/monitor-ui/issues/15)) ([e40e53d](https://github.com/MTES-MCT/monitor-ui/commit/e40e53d7c15e54244bde801fd42d57c9e7033947))
+
 ## [1.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v1.1.0...v1.1.1) (2022-11-24)
 
 
