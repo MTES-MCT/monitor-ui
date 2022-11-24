@@ -5,6 +5,7 @@
     "declaration": true,
     "declarationDir": "./dist",
     "forceConsistentCasingInFileNames": true,
+    "importsNotUsedAsValues": "error",
     "isolatedModules": true,
     "jsx": "react-jsx",
     "lib": ["DOM", "DOM.Iterable", "ES2021"],
