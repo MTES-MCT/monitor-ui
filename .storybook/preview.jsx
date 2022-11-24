@@ -1,13 +1,21 @@
-import { ThemeProvider } from 'styled-components'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 import { THEME } from '../src/theme'
 
 import 'rsuite/dist/rsuite.min.css'
 import '../src/assets/rsuite-override.css'
 
+const GlobalStyle = createGlobalStyle`
+  p {
+    margin-bottom: 1rem;
+  }
+`
+
 export const decorators = [
   Story => (
     <ThemeProvider theme={THEME}>
+      <GlobalStyle />
+
       <Story />
     </ThemeProvider>
   )

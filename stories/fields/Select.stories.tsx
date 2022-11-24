@@ -22,13 +22,13 @@ export default {
 }
 
 export const _Select = (props: SelectProps) => {
-  const [outputValue, setOutputValue] = useState<string | string[] | undefined>('')
+  const [outputValue, setOutputValue] = useState<string | string[] | undefined>('∅')
 
   return (
     <>
       <Select {...props} onChange={setOutputValue} />
 
-      {outputValue !== '' && <Output value={outputValue} />}
+      {outputValue !== '∅' && <Output value={outputValue} />}
     </>
   )
 }
