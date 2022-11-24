@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v1.1.0...v1.1.1) (2022-11-24)
+
+
+### Bug Fixes
+
+* **semantic-release:** publish to NPM ([#12](https://github.com/MTES-MCT/monitor-ui/issues/12)) ([2c42952](https://github.com/MTES-MCT/monitor-ui/commit/2c42952dcc8bbc3983aee55f784e0ca082760d0f))
+
 # [1.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.0.0...v1.1.0) (2022-11-24)
 
 
