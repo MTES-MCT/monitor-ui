@@ -5,7 +5,7 @@ import typescript from '@rollup/plugin-typescript'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 
 module.exports = {
-  external: ['date-fns', 'dayjs', 'ramda', 'rsuite', 'tslib', 'type-fest'],
+  external: ['date-fns', 'dayjs', 'formik', 'ramda', 'rsuite', 'styled-components', 'tslib', 'type-fest'],
 
   input: './src/index.ts',
 
@@ -30,12 +30,5 @@ module.exports = {
     typescript({
       tsconfig: './tsconfig.dist.json'
     })
-    // Hack to make styled-component compatible with Next.js inability to fully support ESM:
-    // replace({
-    //   '= styled(': '= (styled.default || styled)(',
-    //   '= styled.': '= (styled.default || styled).',
-    //   delimiters: ['', ''],
-    //   preventAssignment: false
-    // })
   ]
 }
