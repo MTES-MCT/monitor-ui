@@ -10,7 +10,6 @@ const distPackageExtraProps = {
   name: '@mtes-mct/monitor-ui',
   publishConfig: {
     access: 'public',
-    registry: 'https://npm.pkg.github.com',
     tag: 'latest'
   },
   repository: {
