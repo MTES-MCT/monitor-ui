@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components'
 import { THEME } from '../src/theme'
 
 import 'rsuite/dist/rsuite.min.css'
+import '../src/assets/rsuite-override.css'
 
 export const decorators = [
   Story => (
