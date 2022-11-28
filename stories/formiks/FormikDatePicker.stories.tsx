@@ -7,19 +7,21 @@ import { noop } from '../_utils/noop'
 
 import type { FormikDatePickerProps } from '../../src'
 
+const args: FormikDatePickerProps = {
+  isHistorical: false,
+  isLabelHidden: false,
+  label: 'A Date',
+  name: 'myDate',
+  withTime: false
+}
+
 export default {
   title: 'Formiks/FormikDatePicker',
   component: FormikDatePicker,
 
   argTypes: {},
 
-  args: {
-    isHistorical: false,
-    isLabelHidden: false,
-    label: 'FormikDatePicker Label',
-    name: 'myDate',
-    withTime: false
-  }
+  args
 }
 
 export const _FormikDatePicker = (props: FormikDatePickerProps) => {

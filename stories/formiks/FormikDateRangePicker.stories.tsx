@@ -8,19 +8,21 @@ import { noop } from '../_utils/noop'
 import type { FormikDateRangePickerProps } from '../../src'
 import type { DateRange } from '../../src/types'
 
+const args: FormikDateRangePickerProps = {
+  isHistorical: false,
+  isLabelHidden: false,
+  label: 'A Date Range',
+  name: 'myDateRange',
+  withTime: false
+}
+
 export default {
   title: 'Formiks/FormikDateRangePicker',
   component: FormikDateRangePicker,
 
   argTypes: {},
 
-  args: {
-    isHistorical: false,
-    isLabelHidden: false,
-    label: 'FormikDateRangePicker Label',
-    name: 'myDateRange',
-    withTime: false
-  }
+  args
 }
 
 export const _FormikDateRangePicker = (props: FormikDateRangePickerProps) => {

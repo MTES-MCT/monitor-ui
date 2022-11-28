@@ -7,21 +7,24 @@ import { noop } from '../_utils/noop'
 
 import type { FormikSelectProps } from '../../src'
 
+const args: FormikSelectProps = {
+  isMulti: false,
+  placeholder: 'Pick an option',
+  name: 'mySelect',
+  options: [
+    { label: 'First Option', value: 'FIRST_OPTION' },
+    { label: 'Second Option', value: 'SECOND_OPTION' },
+    { label: 'Third Option', value: 'THIRD_OPTION' }
+  ]
+}
+
 export default {
   title: 'Formiks/FormikSelect',
   component: FormikSelect,
 
   argTypes: {},
 
-  args: {
-    isMulti: false,
-    name: 'mySelect',
-    options: [
-      { label: 'First Option', value: 'FIRST_OPTION' },
-      { label: 'Second Option', value: 'SECOND_OPTION' },
-      { label: 'Third Option', value: 'THIRD_OPTION' }
-    ]
-  }
+  args
 }
 
 export const _FormikSelect = (props: FormikSelectProps) => {

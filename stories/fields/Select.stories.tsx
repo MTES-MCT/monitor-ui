@@ -5,20 +5,25 @@ import { Output } from '../_components/Output'
 
 import type { SelectProps } from '../../src'
 
+const args: SelectProps = {
+  defaultValue: 'FIRST_OPTION',
+  isMulti: false,
+  placeholder: 'Pick an option',
+  name: 'mySelect',
+  options: [
+    { label: 'First Option', value: 'FIRST_OPTION' },
+    { label: 'Second Option', value: 'SECOND_OPTION' },
+    { label: 'Third Option', value: 'THIRD_OPTION' }
+  ]
+}
+
 export default {
   title: 'Fields/Select',
   component: Select,
 
   argTypes: {},
 
-  args: {
-    isMulti: false,
-    options: [
-      { label: 'First Option', value: 'FIRST_OPTION' },
-      { label: 'Second Option', value: 'SECOND_OPTION' },
-      { label: 'Third Option', value: 'THIRD_OPTION' }
-    ]
-  }
+  args
 }
 
 export const _Select = (props: SelectProps) => {
