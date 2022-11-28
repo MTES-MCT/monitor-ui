@@ -5,9 +5,7 @@ import { Checkbox } from '../fields/Checkbox'
 
 import type { CheckboxProps } from '../fields/Checkbox'
 
-export type FormikCheckboxProps = Omit<CheckboxProps, 'checked' | 'defaultChecked' | 'onChange'> & {
-  name: string
-}
+export type FormikCheckboxProps = Omit<CheckboxProps, 'checked' | 'defaultChecked' | 'onChange'>
 export function FormikCheckbox({ name, ...originalProps }: FormikCheckboxProps) {
   const [field, , helpers] = useField(name)
 
