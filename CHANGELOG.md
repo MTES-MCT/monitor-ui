@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.3.0...v1.4.0) (2022-11-28)
+
+
+### Features
+
+* **fields:** add Checkbox ([#21](https://github.com/MTES-MCT/monitor-ui/issues/21)) ([37a1746](https://github.com/MTES-MCT/monitor-ui/commit/37a1746676da210f437453cfa3812bd537b33661))
+* **formiks:** add FormikCheckbox ([#22](https://github.com/MTES-MCT/monitor-ui/issues/22)) ([f018046](https://github.com/MTES-MCT/monitor-ui/commit/f01804690b045b0d2e7356eb5c6c1cac6c0a5dbe))
+
 # [1.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.2.0...v1.3.0) (2022-11-24)
 
 
