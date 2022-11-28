@@ -5,9 +5,7 @@ import { Select } from '../fields/Select'
 
 import type { SelectProps } from '../fields/Select'
 
-export type FormikSelectProps = Omit<SelectProps, 'defaultValue' | 'onChange'> & {
-  name: string
-}
+export type FormikSelectProps = Omit<SelectProps, 'defaultValue' | 'onChange'>
 export function FormikSelect({ name, ...originalProps }: FormikSelectProps) {
   const [, , helpers] = useField(name)
   // We don't include `setValues` in `useCallback()` and `useEffect()` dependencies
