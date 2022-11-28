@@ -5,7 +5,7 @@ import typescript from '@rollup/plugin-typescript'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 
 module.exports = {
-  external: ['date-fns', 'dayjs', 'formik', 'ramda', 'rsuite', 'styled-components', 'tslib', 'type-fest'],
+  external: [],
 
   input: './src/index.ts',
 
