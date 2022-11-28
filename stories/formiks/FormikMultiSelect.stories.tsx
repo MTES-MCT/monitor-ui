@@ -1,15 +1,15 @@
 import { Formik } from 'formik'
 import { useState } from 'react'
 
-import { FormikEffect, FormikSelect } from '../../src'
+import { FormikEffect, FormikMultiSelect } from '../../src'
 import { Output } from '../_components/Output'
 import { noop } from '../_utils/noop'
 
-import type { FormikSelectProps } from '../../src'
+import type { FormikMultiSelectProps } from '../../src'
 
-const args: FormikSelectProps = {
-  placeholder: 'Pick an option',
-  name: 'mySelect',
+const args: FormikMultiSelectProps = {
+  placeholder: 'Pick some options',
+  name: 'myMultiSelect',
   options: [
     { label: 'First Option', value: 'FIRST_OPTION' },
     { label: 'Second Option', value: 'SECOND_OPTION' },
@@ -19,18 +19,18 @@ const args: FormikSelectProps = {
 }
 
 export default {
-  title: 'Formiks/FormikSelect',
-  component: FormikSelect,
+  title: 'Formiks/FormikMultiSelect',
+  component: FormikMultiSelect,
 
   argTypes: {},
 
   args
 }
 
-export const _FormikSelect = (props: FormikSelectProps) => {
+export const _FormikMultiSelect = (props: FormikMultiSelectProps) => {
   const [outputValue, setOutputValue] = useState<
     | {
-        mySelect?: string
+        mySelect?: string[]
       }
     | '∅'
   >('∅')
@@ -41,7 +41,7 @@ export const _FormikSelect = (props: FormikSelectProps) => {
         <>
           <FormikEffect onChange={setOutputValue} />
 
-          <FormikSelect {...props} />
+          <FormikMultiSelect {...props} />
         </>
       </Formik>
 
