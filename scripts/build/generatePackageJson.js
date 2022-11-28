@@ -1,5 +1,5 @@
 const { promises: fs } = require('fs')
-const R = require('ramda')
+const { mergeLeft, omit, pipe } = require('ramda')
 
 const distPackageExtraProps = {
   bugs: {
@@ -24,9 +24,9 @@ const distPackageExtraProps = {
 ;(async () => {
   const rootPackageJson = await fs.readFile('./package.json', 'utf-8')
   const rootPackage = JSON.parse(rootPackageJson)
-  const distPackage = R.pipe(
-    R.omit(['devDependencies', 'main', 'prettier', 'private', 'release', 'scripts', 'workspaces']),
-    R.mergeLeft(distPackageExtraProps)
+  const distPackage = pipe(
+    omit(['devDependencies', 'main', 'prettier', 'private', 'release', 'scripts', 'workspaces']),
+    mergeLeft(distPackageExtraProps)
   )(rootPackage)
   const distPackageJson = JSON.stringify(distPackage, null, 2)
 

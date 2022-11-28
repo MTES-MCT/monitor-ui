@@ -2179,7 +2179,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:7.19.4, @babel/runtime@npm:^7.16.0, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.8.7":
+"@babel/runtime@npm:7.19.4":
   version: 7.19.4
   resolution: "@babel/runtime@npm:7.19.4"
   dependencies:
@@ -2194,6 +2194,15 @@ __metadata:
   dependencies:
     regenerator-runtime: ^0.13.4
   checksum: ab8ac887096d76185ddbf291d28fb976cd32473696dc497ad4905b784acbd5aa462533ad83a5c5104e10ead28c2e0e119840ee28ed8eff90dcdde9d57f916eda
+  languageName: node
+  linkType: hard
+
+"@babel/runtime@npm:^7.16.0, @babel/runtime@npm:^7.19.4, @babel/runtime@npm:^7.20.1":
+  version: 7.20.5
+  resolution: "@babel/runtime@npm:7.20.5"
+  dependencies:
+    regenerator-runtime: ^0.13.11
+  checksum: 9c4a1d07a4df8a5e3e208d4d7c349cd311af4e95ed345b4541b7f0bb5e226e2b748fa04f36b2f7be1f9bb08f5310c632f4702add9c64a200c39636cfe551c9ad
   languageName: node
   linkType: hard
 
@@ -3326,9 +3335,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mtes-mct/monitor-ui@workspace:.":
+"@mtes-mct/monitor-ui__root@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@mtes-mct/monitor-ui@workspace:."
+  resolution: "@mtes-mct/monitor-ui__root@workspace:."
   dependencies:
     "@babel/core": 7.19.3
     "@babel/preset-react": 7.18.6
@@ -3405,7 +3414,7 @@ __metadata:
     rollup-plugin-peer-deps-external: 2.2.4
     rollup-plugin-postcss: 4.0.2
     rollup-plugin-sizes: 1.0.4
-    rsuite: 5.19.1
+    rsuite: 5.23.0
     semantic-release: 19.0.5
     styled-components: 5.3.6
     tslib: 2.4.0
@@ -3416,6 +3425,7 @@ __metadata:
     formik: ^2.0.0
     react: ^18.0.0
     react-dom: ^18.0.0
+    rsuite: ^5.0.0
     styled-components: ^5.0.0
   languageName: unknown
   linkType: soft
@@ -5671,9 +5681,9 @@ __metadata:
   linkType: hard
 
 "@types/chai@npm:^4.3.3":
-  version: 4.3.3
-  resolution: "@types/chai@npm:4.3.3"
-  checksum: 20cd094753e137cfc35939cae7f0ed78ecda7861e5c94704efab6979b9121a63807e9b631bdcf3a2792d6c6dba44050b13387262f9e63ebb040741c01c345f0a
+  version: 4.3.4
+  resolution: "@types/chai@npm:4.3.4"
+  checksum: 571184967beb03bf64c4392a13a7d44e72da9af5a1e83077ff81c39cf59c0fda2a5c78d2005084601cf8f3d11726608574d8b5b4a0e3e9736792807afd926cd0
   languageName: node
   linkType: hard
 
@@ -5878,9 +5888,9 @@ __metadata:
   linkType: hard
 
 "@types/lodash@npm:^4.14.184":
-  version: 4.14.186
-  resolution: "@types/lodash@npm:4.14.186"
-  checksum: ee0c1368a8100bb6efb88335107473a41928fc307ff1ef4ff1278868ccddba9c04c68c36d1ffe3a0392ef4a956e1955f7de3203ec09df4f1655dd1b88485c549
+  version: 4.14.190
+  resolution: "@types/lodash@npm:4.14.190"
+  checksum: 353a55a1222a57224ead8bd3379fabb2e3e3f6685f599c48b1b66f099d8e9e015e6c6352c6e2275954004c3bb510377804c63117233c6f187700b6ab78adfa02
   languageName: node
   linkType: hard
 
@@ -6017,13 +6027,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-virtualized@npm:^9.21.11":
-  version: 9.21.21
-  resolution: "@types/react-virtualized@npm:9.21.21"
+"@types/react-window@npm:^1.8.5":
+  version: 1.8.5
+  resolution: "@types/react-window@npm:1.8.5"
   dependencies:
-    "@types/prop-types": "*"
-    "@types/react": ^17
-  checksum: 7f360746ae926c93ba07d830a33940ab1598f6966263594896d0dc746d704f9c0e0d1692cf543e925bcca7b007d70d3cc53379a9b1810f60c2d43ee5cfdb591e
+    "@types/react": "*"
+  checksum: 5f519e1402300d11b6e6595223feb6499f3227e38da166cbc565773cd7f71862abcf855b7835d391b5119fcfacdfba79d73a965b45f60a293fc1ff25986319ed
   languageName: node
   linkType: hard
 
@@ -6046,17 +6055,6 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: 36c1a7c9d507e81e2e629c1ad3db51d7b84d8b010c2d5008da411874286c6a5ccc711ae1d4c470efc0bdc77153cc8804a40e927e929e5164c669ca41b84b846d
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:^17":
-  version: 17.0.50
-  resolution: "@types/react@npm:17.0.50"
-  dependencies:
-    "@types/prop-types": "*"
-    "@types/scheduler": "*"
-    csstype: ^3.0.2
-  checksum: b5629dff7c2f3e9fcba95a19b2b3bfd78d7cacc33ba5fc26413dba653d34afcac3b93ddabe563e8062382688a1eac7db68e93739bb8e712d27637a03aaafbbb8
   languageName: node
   linkType: hard
 
@@ -8913,13 +8911,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:^1.0.4":
-  version: 1.2.1
-  resolution: "clsx@npm:1.2.1"
-  checksum: 30befca8019b2eb7dbad38cff6266cf543091dae2825c856a62a8ccf2c3ab9c2907c4d12b288b73101196767f66812365400a227581484a05f968b0307cfaf12
-  languageName: node
-  linkType: hard
-
 "cmd-shim@npm:^5.0.0":
   version: 5.0.0
   resolution: "cmd-shim@npm:5.0.0"
@@ -9808,7 +9799,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns@npm:2.29.3, date-fns@npm:^2.29.2":
+"date-fns@npm:2.29.3, date-fns@npm:^2.29.3":
   version: 2.29.3
   resolution: "date-fns@npm:2.29.3"
   checksum: e01cf5b62af04e05dfff921bb9c9933310ed0e1ae9a81eb8653452e64dc841acf7f6e01e1a5ae5644d0337e9a7f936175fd2cb6819dc122fdd9c5e86c56be484
@@ -10232,22 +10223,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dom-helpers@npm:^5.1.3":
-  version: 5.2.1
-  resolution: "dom-helpers@npm:5.2.1"
-  dependencies:
-    "@babel/runtime": ^7.8.7
-    csstype: ^3.0.2
-  checksum: 863ba9e086f7093df3376b43e74ce4422571d404fc9828bf2c56140963d5edf0e56160f9b2f3bb61b282c07f8fc8134f023c98fd684bddcb12daf7b0f14d951c
-  languageName: node
-  linkType: hard
-
 "dom-lib@npm:^3.1.3":
-  version: 3.1.3
-  resolution: "dom-lib@npm:3.1.3"
+  version: 3.1.5
+  resolution: "dom-lib@npm:3.1.5"
   dependencies:
-    "@babel/runtime": ^7.16.0
-  checksum: 4993050ab72e964601d53bad8bcbea015473e86bc18fd3fd9852117bccfbf65b3c0c77fb7bd8a9bac845cc268ffd187aa69c9c746630b2cdc096f49d25e3e8c7
+    "@babel/runtime": ^7.19.4
+  checksum: a008836987522a6b16a20e6f654cd1c72db07cfb66ed05115556ee6678b0c07ac6013670fe6f3ab474daf6e90f2935ced82c827cf0fe6d87064cd2f53d66d9c4
   languageName: node
   linkType: hard
 
@@ -15805,6 +15786,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"memoize-one@npm:>=3.1.1 <6":
+  version: 5.2.1
+  resolution: "memoize-one@npm:5.2.1"
+  checksum: a3cba7b824ebcf24cdfcd234aa7f86f3ad6394b8d9be4c96ff756dafb8b51c7f71320785fbc2304f1af48a0467cbbd2a409efc9333025700ed523f254cb52e3d
+  languageName: node
+  linkType: hard
+
 "memoizerific@npm:^1.11.3":
   version: 1.11.3
   resolution: "memoizerific@npm:1.11.3"
@@ -18959,13 +18947,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-lifecycles-compat@npm:^3.0.4":
-  version: 3.0.4
-  resolution: "react-lifecycles-compat@npm:3.0.4"
-  checksum: a904b0fc0a8eeb15a148c9feb7bc17cec7ef96e71188280061fc340043fd6d8ee3ff233381f0e8f95c1cf926210b2c4a31f38182c8f35ac55057e453d6df204f
-  languageName: node
-  linkType: hard
-
 "react-refresh@npm:^0.11.0":
   version: 0.11.0
   resolution: "react-refresh@npm:0.11.0"
@@ -18973,20 +18954,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-virtualized@npm:^9.22.3":
-  version: 9.22.3
-  resolution: "react-virtualized@npm:9.22.3"
+"react-window@npm:^1.8.8":
+  version: 1.8.8
+  resolution: "react-window@npm:1.8.8"
   dependencies:
-    "@babel/runtime": ^7.7.2
-    clsx: ^1.0.4
-    dom-helpers: ^5.1.3
-    loose-envify: ^1.4.0
-    prop-types: ^15.7.2
-    react-lifecycles-compat: ^3.0.4
+    "@babel/runtime": ^7.0.0
+    memoize-one: ">=3.1.1 <6"
   peerDependencies:
-    react: ^15.3.0 || ^16.0.0-alpha
-    react-dom: ^15.3.0 || ^16.0.0-alpha
-  checksum: 5e3b566592293bc0057bc6be4f6ee29c58c8931421d2882a3ef45ca9b24c6f3ea78bbc5a182c2916af6520845e5a90f569b3a63c9b5e89428720913e6d6239cc
+    react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: a19f43b9015fb84e16db983617dac618a8b298881d2ca96ffc2fb00534afd958ee57a00fd0017733b56f8c34dd84e5be59337877aed3c66329ed3b84e8d018ba
   languageName: node
   linkType: hard
 
@@ -19181,6 +19158,13 @@ __metadata:
   version: 1.4.2
   resolution: "regenerate@npm:1.4.2"
   checksum: 3317a09b2f802da8db09aa276e469b57a6c0dd818347e05b8862959c6193408242f150db5de83c12c3fa99091ad95fb42a6db2c3329bfaa12a0ea4cbbeb30cb0
+  languageName: node
+  linkType: hard
+
+"regenerator-runtime@npm:^0.13.11":
+  version: 0.13.11
+  resolution: "regenerator-runtime@npm:0.13.11"
+  checksum: 27481628d22a1c4e3ff551096a683b424242a216fee44685467307f14d58020af1e19660bf2e26064de946bad7eff28950eae9f8209d55723e2d9351e632bbb4
   languageName: node
   linkType: hard
 
@@ -19808,9 +19792,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rsuite-table@npm:^5.7.2":
-  version: 5.7.2
-  resolution: "rsuite-table@npm:5.7.2"
+"rsuite-table@npm:^5.8.1":
+  version: 5.8.1
+  resolution: "rsuite-table@npm:5.8.1"
   dependencies:
     "@babel/runtime": ^7.12.5
     "@juggle/resize-observer": ^3.3.1
@@ -19823,33 +19807,33 @@ __metadata:
     prop-types: ^15.7.2
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: b4bdabcaacacaffe62b0ffc5123c88c0eb7c260502320aa0ae5dd1ee79b69811fa50fcff0a8d1bf4c834ad61b3c10c46b22c8da6f32737953f09aa39a5d3eb1a
+  checksum: 54aaf9bf986f8312f44518d629b5c680540f4090ae2e16a0feca9e8bd464f5771ef0be86964d26da887a2d751315cacb79ca8eae085fc692fcba8b3824bf1d42
   languageName: node
   linkType: hard
 
-"rsuite@npm:5.19.1":
-  version: 5.19.1
-  resolution: "rsuite@npm:5.19.1"
+"rsuite@npm:5.23.0":
+  version: 5.23.0
+  resolution: "rsuite@npm:5.23.0"
   dependencies:
-    "@babel/runtime": ^7.18.9
+    "@babel/runtime": ^7.20.1
     "@juggle/resize-observer": ^3.4.0
     "@rsuite/icons": ^1.0.2
     "@types/chai": ^4.3.3
     "@types/lodash": ^4.14.184
     "@types/prop-types": ^15.7.5
-    "@types/react-virtualized": ^9.21.11
+    "@types/react-window": ^1.8.5
     classnames: ^2.3.1
-    date-fns: ^2.29.2
+    date-fns: ^2.29.3
     dom-lib: ^3.1.3
     lodash: ^4.17.11
     prop-types: ^15.8.1
-    react-virtualized: ^9.22.3
-    rsuite-table: ^5.7.2
+    react-window: ^1.8.8
+    rsuite-table: ^5.8.1
     schema-typed: ^2.0.3
   peerDependencies:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: 2a46b0289e31adfac88857a891320aa325c3bc3c44c75dd76eb0217db52c55ebc1481f5dc04056abf311c163deb1e223940b8f5e66c59b8dca22ca08444359dd
+  checksum: a93126ddc5fa69ae4299687478243563ef9d5fcf9cf7a54d52738984a4410f83db68d27189e8277d600155779be5b4edf5971bcc9d5a8b424c94e7257c050053
   languageName: node
   linkType: hard
 

@@ -11,12 +11,14 @@
 
 ```sh
 npm i -E @mtes-mct/monitor-ui
+npx install-peerdeps @mtes-mct/monitor-ui
 ```
 
 or
 
 ```sh
 yarn add -E @mtes-mct/monitor-ui
+npx install-peerdeps @mtes-mct/monitor-ui
 ```
 
 ## Documentation
