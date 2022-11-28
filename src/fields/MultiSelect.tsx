@@ -42,7 +42,6 @@ export function MultiSelect({
 
 const StyledTagPicker = styled(TagPicker)`
   cursor: pointer;
-  width: 9.25rem;
 
   > .rs-picker-toggle {
     cursor: inherit;

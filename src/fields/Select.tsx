@@ -50,6 +50,4 @@ export function Select({
   )
 }
 
-const StyledSelectPicker = styled(SelectPicker)`
-  display: inline-flex;
-`
+const StyledSelectPicker = styled(SelectPicker)``
