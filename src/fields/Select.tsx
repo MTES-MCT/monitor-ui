@@ -1,28 +1,18 @@
 import { useCallback, useMemo } from 'react'
-import { SelectPicker, TagPicker } from 'rsuite'
+import { SelectPicker } from 'rsuite'
 import styled from 'styled-components'
 
 import type { Option } from '../types'
-import type { SelectPickerProps as RsuiteSelectPickerProps, TagPickerProps } from 'rsuite'
+import type { SelectPickerProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
-type SelectCommonProps = {
+export type SelectProps = Omit<SelectPickerProps<any>, 'as' | 'data' | 'defaultValue' | 'onChange' | 'value'> & {
+  defaultValue?: string
   name: string
+  onChange?: (nextValue: string | undefined) => Promisable<void>
   options: Option[]
 }
-export type MultiSelectProps = Omit<TagPickerProps, 'as' | 'data' | 'onChange' | 'value'> &
-  SelectCommonProps & {
-    isMulti: true
-    onChange?: (values: string[] | undefined) => Promisable<void>
-  }
-export type SingleSelectProps = Omit<RsuiteSelectPickerProps<any>, 'as' | 'data' | 'onChange' | 'value'> &
-  SelectCommonProps & {
-    isMulti?: false
-    onChange?: (value: string | undefined) => Promisable<void>
-  }
-export type SelectProps = MultiSelectProps | SingleSelectProps
 export function Select({
-  isMulti = false,
   onChange,
   options,
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -35,22 +25,17 @@ export function Select({
   )
 
   const handleChange = useCallback(
-    (valueOrValues: string | string[] | null) => {
+    (nextValue: string | null) => {
       if (!onChange) {
         return
       }
 
-      const normalizedValueOrValues =
-        !valueOrValues || (Array.isArray(valueOrValues) && !valueOrValues.length) ? undefined : valueOrValues
+      const normalizedNextValue = nextValue ?? undefined
 
-      ;(onChange as (valueOrValues: string | string[] | undefined) => Promisable<void>)(normalizedValueOrValues)
+      onChange(normalizedNextValue)
     },
     [onChange]
   )
-
-  if (isMulti) {
-    return <StyledTagPicker data={options} onChange={handleChange} searchable={searchable} {...originalProps} />
-  }
 
   return (
     <StyledSelectPicker
@@ -67,14 +52,4 @@ export function Select({
 
 const StyledSelectPicker = styled(SelectPicker)`
   display: inline-flex;
-  width: 9.25rem;
-`
-
-const StyledTagPicker = styled(TagPicker)`
-  cursor: pointer;
-  width: 9.25rem;
-
-  > .rs-picker-toggle {
-    cursor: inherit;
-  }
 `

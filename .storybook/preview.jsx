@@ -4,6 +4,7 @@ import { THEME } from '../src/theme'
 
 import 'rsuite/dist/rsuite.min.css'
 import '../src/assets/rsuite-override.css'
+import { StrictMode } from 'react'
 
 const GlobalStyle = createGlobalStyle`
   p {
@@ -13,11 +14,13 @@ const GlobalStyle = createGlobalStyle`
 
 export const decorators = [
   Story => (
-    <ThemeProvider theme={THEME}>
-      <GlobalStyle />
+    <StrictMode>
+      <ThemeProvider theme={THEME}>
+        <GlobalStyle />
 
-      <Story />
-    </ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    </StrictMode>
   )
 ]
 

@@ -14,8 +14,8 @@ export function FormikSelect({ name, ...originalProps }: FormikSelectProps) {
   // both because it is useless and it will trigger infinite hook calls
   const { setValue } = helpers
 
-  const handleChange = useCallback((valueOrValues: string | string[] | undefined) => {
-    setValue(valueOrValues)
+  const handleChange = useCallback((nextValue: string | undefined) => {
+    setValue(nextValue)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

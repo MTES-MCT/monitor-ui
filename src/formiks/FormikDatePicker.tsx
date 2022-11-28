@@ -12,7 +12,7 @@ export function FormikDatePicker({ name, ...originalProps }: FormikDatePickerPro
   const [, , helpers] = useField(name)
   const { setValue } = helpers
 
-  // We don't include `setValues` in  `useEffect()` dependencies
+  // We don't include `setValues` in `useEffect()` dependencies
   // both because it is useless and it will trigger infinite hook calls
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => () => setValue(undefined), [])
