@@ -33,7 +33,7 @@ export type DatePickerProps = {
    *
    * @param nextUtcDateRange - A utcized date to be used as is to interact with the API.
    */
-  onChange: (nextUtcDate: Date) => Promisable<void>
+  onChange?: (nextUtcDate: Date) => Promisable<void>
   withTime?: boolean
 }
 export function DatePicker({
@@ -66,7 +66,7 @@ export function DatePicker({
   )
 
   const submit = useCallback(() => {
-    if (!selectedDateRef.current) {
+    if (!onChange || !selectedDateRef.current) {
       return
     }
 

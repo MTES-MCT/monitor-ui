@@ -34,7 +34,7 @@ export type DateRangePickerProps = {
    *
    * @param nextUtcDateRange - A utcized date to be used as is to interact with the API.
    */
-  onChange: (nextUtcDateRange: DateRange) => Promisable<void>
+  onChange?: (nextUtcDateRange: DateRange) => Promisable<void>
   withTime?: boolean
 }
 export function DateRangePicker({
@@ -79,7 +79,7 @@ export function DateRangePicker({
   )
 
   const submit = useCallback(() => {
-    if (!selectedStartDateRef.current || !selectedEndDateRef.current) {
+    if (!onChange || !selectedStartDateRef.current || !selectedEndDateRef.current) {
       return
     }
 

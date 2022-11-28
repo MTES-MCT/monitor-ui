@@ -5,18 +5,20 @@ import { Output } from '../_components/Output'
 
 import type { DatePickerProps } from '../../src'
 
+const args: DatePickerProps = {
+  isHistorical: false,
+  isLabelHidden: false,
+  label: 'A Date',
+  withTime: true
+}
+
 export default {
   title: 'Fields/DatePicker',
   component: DatePicker,
 
   argTypes: {},
 
-  args: {
-    isHistorical: false,
-    isLabelHidden: false,
-    label: 'DatePicker Label',
-    withTime: true
-  }
+  args
 }
 
 export const _DatePicker = (props: DatePickerProps) => {

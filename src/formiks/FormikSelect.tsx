@@ -5,7 +5,7 @@ import { Select } from '../fields/Select'
 
 import type { SelectProps } from '../fields/Select'
 
-export type FormikSelectProps = Omit<SelectProps, 'name' | 'onChange'> & {
+export type FormikSelectProps = Omit<SelectProps, 'defaultValue' | 'onChange'> & {
   name: string
 }
 export function FormikSelect({ name, ...originalProps }: FormikSelectProps) {
