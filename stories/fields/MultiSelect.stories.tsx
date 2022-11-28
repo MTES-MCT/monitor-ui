@@ -1,14 +1,14 @@
 import { useState } from 'react'
 
-import { Select } from '../../src'
+import { MultiSelect } from '../../src'
 import { Output } from '../_components/Output'
 
-import type { SelectProps } from '../../src'
+import type { MultiSelectProps } from '../../src'
 
-const args: SelectProps = {
+const args: MultiSelectProps = {
   defaultValue: undefined,
   placeholder: 'Pick some options',
-  name: 'mySelect',
+  name: 'myMultiSelect',
   options: [
     { label: 'First Option', value: 'FIRST_OPTION' },
     { label: 'Second Option', value: 'SECOND_OPTION' },
@@ -18,12 +18,12 @@ const args: SelectProps = {
 }
 
 export default {
-  title: 'Fields/Select',
-  component: Select,
+  title: 'Fields/MultiSelect',
+  component: MultiSelect,
 
   argTypes: {
     defaultValue: {
-      control: 'inline-radio',
+      control: 'inline-check',
       options: ['FIRST_OPTION', 'SECOND_OPTION', 'THIRD_OPTION', 'A_VERY_VERY_LONG_OPTION']
     },
     isMulti: {
@@ -34,12 +34,12 @@ export default {
   args
 }
 
-export function _Select(props: SelectProps) {
-  const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
+export function _MultiSelect(props: MultiSelectProps) {
+  const [outputValue, setOutputValue] = useState<string[] | undefined | '∅'>('∅')
 
   return (
     <>
-      <Select {...props} onChange={setOutputValue} />
+      <MultiSelect {...props} onChange={setOutputValue} />
 
       {outputValue !== '∅' && <Output value={outputValue} />}
     </>
