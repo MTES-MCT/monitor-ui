@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/MTES-MCT/monitor-ui/compare/v1.7.0...v1.7.1) (2022-11-29)
+
+
+### Bug Fixes
+
+* **fields:** make optional labels mandatory ([#42](https://github.com/MTES-MCT/monitor-ui/issues/42)) ([629c98a](https://github.com/MTES-MCT/monitor-ui/commit/629c98aee5df1717eb1435d79ec015623803bd58))
+
 # [1.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.6.0...v1.7.0) (2022-11-29)
 
 
