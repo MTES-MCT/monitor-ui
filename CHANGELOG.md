@@ -1,3 +1,15 @@
+# [1.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.4.0...v1.5.0) (2022-11-29)
+
+
+### Features
+
+* **fields:** add MultiSelect ([#26](https://github.com/MTES-MCT/monitor-ui/issues/26)) ([e1123b1](https://github.com/MTES-MCT/monitor-ui/commit/e1123b1e09dd55135b6806fdbe7615eab5f65704))
+* **fields:** add Textarea ([#30](https://github.com/MTES-MCT/monitor-ui/issues/30)) ([0cd9b13](https://github.com/MTES-MCT/monitor-ui/commit/0cd9b132b0607b109dbec4ec54e7184e71b8f9d9))
+* **fields:** add TextInput ([#28](https://github.com/MTES-MCT/monitor-ui/issues/28)) ([cdd610f](https://github.com/MTES-MCT/monitor-ui/commit/cdd610f679bfb967f2f6403f9c4c397bfafb0948))
+* **formiks:** add FormikMultiSelect ([#27](https://github.com/MTES-MCT/monitor-ui/issues/27)) ([414c4da](https://github.com/MTES-MCT/monitor-ui/commit/414c4dad1a6a639ae4b1f7cbf61f851d778f08b7))
+* **formiks:** add FormikTextarea ([#31](https://github.com/MTES-MCT/monitor-ui/issues/31)) ([59aa260](https://github.com/MTES-MCT/monitor-ui/commit/59aa260cc8efeec29d795d73261bc77263b67ab4))
+* **formiks:** add FormikTextInput ([#29](https://github.com/MTES-MCT/monitor-ui/issues/29)) ([8feddd3](https://github.com/MTES-MCT/monitor-ui/commit/8feddd39d05484a2c2469e019baacf5b60a10000))
+
 # [1.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.3.0...v1.4.0) (2022-11-28)
 
 
