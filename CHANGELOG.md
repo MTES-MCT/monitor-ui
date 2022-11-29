@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.6.0...v1.7.0) (2022-11-29)
+
+
+### Features
+
+* **fields:** add missing labels ([#40](https://github.com/MTES-MCT/monitor-ui/issues/40)) ([95f7215](https://github.com/MTES-MCT/monitor-ui/commit/95f7215f28dc389981874eae73445b645c959787))
+
 # [1.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.5.1...v1.6.0) (2022-11-29)
 
 
