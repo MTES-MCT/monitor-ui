@@ -9,6 +9,7 @@ import type { FormikMultiSelectProps } from '../../src'
 
 const args: FormikMultiSelectProps = {
   fixedWidth: 10,
+  label: 'A multiple select',
   name: 'myMultiSelect',
   options: [
     { label: 'First Option', value: 'FIRST_OPTION' },

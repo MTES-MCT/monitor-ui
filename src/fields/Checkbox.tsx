@@ -5,7 +5,7 @@ import type { CheckboxProps as RsuiteCheckboxProps } from 'rsuite'
 import type { ValueType } from 'rsuite/esm/Checkbox'
 import type { Promisable } from 'type-fest'
 
-export type CheckboxProps = Omit<RsuiteCheckboxProps, 'checked' | 'onChange'> & {
+export type CheckboxProps = Omit<RsuiteCheckboxProps, 'checked' | 'id' | 'onChange'> & {
   label: string
   name: string
   onChange?: (isCheched: boolean) => Promisable<void>
@@ -28,7 +28,7 @@ export function Checkbox({ label, onChange, ...originalProps }: CheckboxProps) {
   )
 
   return (
-    <RsuiteCheckbox key={key} onChange={handleChange} {...originalProps}>
+    <RsuiteCheckbox key={key} id={originalProps.name} onChange={handleChange} {...originalProps}>
       {label}
     </RsuiteCheckbox>
   )

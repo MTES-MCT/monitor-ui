@@ -8,7 +8,8 @@ import { noop } from '../_utils/noop'
 import type { FormikTextareaProps } from '../../src'
 
 const args: FormikTextareaProps = {
-  name: 'myTextarea'
+  name: 'myTextarea',
+  label: 'A textarea'
 }
 
 export default {

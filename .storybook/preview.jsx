@@ -10,6 +10,10 @@ const GlobalStyle = createGlobalStyle`
   p {
     margin-bottom: 1rem;
   }
+
+  #root {
+    width: 40rem;
+  }
 `
 
 export const decorators = [

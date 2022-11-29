@@ -7,7 +7,8 @@ import type { TextareaProps } from '../../src'
 
 const args: TextareaProps = {
   defaultValue: undefined,
-  name: 'myTextarea'
+  name: 'myTextarea',
+  label: 'A textarea'
 }
 
 export default {
