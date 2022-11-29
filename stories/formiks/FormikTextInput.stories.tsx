@@ -8,7 +8,8 @@ import { noop } from '../_utils/noop'
 import type { FormikTextInputProps } from '../../src'
 
 const args: FormikTextInputProps = {
-  name: 'myTextInput'
+  name: 'myTextInput',
+  label: 'A text input'
 }
 
 export default {

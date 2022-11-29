@@ -8,6 +8,7 @@ import { noop } from '../_utils/noop'
 import type { FormikSelectProps } from '../../src'
 
 const args: FormikSelectProps = {
+  label: 'A select',
   placeholder: 'Pick an option',
   name: 'mySelect',
   options: [

@@ -7,6 +7,7 @@ import type { SelectProps } from '../../src'
 
 const args: SelectProps = {
   defaultValue: undefined,
+  label: 'A select',
   placeholder: 'Pick an option',
   name: 'mySelect',
   options: [

@@ -2,20 +2,27 @@ import { useCallback, useMemo } from 'react'
 import { TagPicker } from 'rsuite'
 import styled from 'styled-components'
 
+import { Field } from '../elements/Field'
+import { Label } from '../elements/Label'
+
 import type { Option } from '../types'
 import type { TagPickerProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
-export type MultiSelectProps = Omit<TagPickerProps, 'as' | 'data' | 'defaultValue' | 'onChange' | 'value'> & {
+export type MultiSelectProps = Omit<TagPickerProps, 'as' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'value'> & {
   defaultValue?: string[]
   /** Width in REM */
   fixedWidth?: number
+  isLabelHidden?: boolean
+  label: string
   name: string
   onChange?: (nextValue: string[] | undefined) => Promisable<void>
   options: Option[]
 }
 export function MultiSelect({
   fixedWidth = 5,
+  isLabelHidden = false,
+  label,
   onChange,
   options,
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -41,14 +48,21 @@ export function MultiSelect({
   )
 
   return (
-    <StyledTagPicker
-      key={key}
-      data={options}
-      fixedWidth={fixedWidth}
-      onChange={handleChange}
-      searchable={searchable}
-      {...originalProps}
-    />
+    <Field>
+      <Label htmlFor={originalProps.name} isHidden={isLabelHidden}>
+        {label}
+      </Label>
+
+      <StyledTagPicker
+        key={key}
+        data={options}
+        fixedWidth={fixedWidth}
+        id={originalProps.name}
+        onChange={handleChange}
+        searchable={searchable}
+        {...originalProps}
+      />
+    </Field>
   )
 }
 
