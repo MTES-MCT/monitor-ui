@@ -3419,7 +3419,7 @@ __metadata:
     semantic-release: 19.0.5
     styled-components: 5.3.6
     tslib: 2.4.0
-    type-fest: 3.1.0
+    type-fest: 3.3.0
     typescript: 4.8.4
     webpack: 5.74.0
   peerDependencies:
@@ -22111,10 +22111,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:3.1.0":
-  version: 3.1.0
-  resolution: "type-fest@npm:3.1.0"
-  checksum: 22a0402afafab05edb7b45456d6ebfdcfc616f84a98266857e89bd656a14b5007e86d1a50b12746624b6aafb17dad3f437065df8adfa1b04bb970894db1fe940
+"type-fest@npm:3.3.0":
+  version: 3.3.0
+  resolution: "type-fest@npm:3.3.0"
+  checksum: 6f260466dd1847048bca4481412f39c32fbb69abbe6daf1ead67e682529adfe8ab8f150a9937eddd065fa544eaf92c15e35ebad0f45f46feadcfbd3a87ae5a2d
   languageName: node
   linkType: hard
 
