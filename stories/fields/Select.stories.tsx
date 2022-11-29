@@ -25,9 +25,6 @@ export default {
     defaultValue: {
       control: 'inline-radio',
       options: ['FIRST_OPTION', 'SECOND_OPTION', 'THIRD_OPTION', 'A_VERY_VERY_LONG_OPTION']
-    },
-    isMulti: {
-      control: 'boolean'
     }
   },
 
