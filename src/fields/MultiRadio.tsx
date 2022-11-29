@@ -11,12 +11,21 @@ import type { Promisable } from 'type-fest'
 export type MultiRadioProps = {
   defaultValue?: string
   isInline?: boolean
-  label?: string
+  isLabelHidden?: boolean
+  label: string
   name: string
   onChange?: (nextValue: string | undefined) => Promisable<void>
   options: Option[]
 }
-export function MultiRadio({ defaultValue, isInline = false, label, name, onChange, options }: MultiRadioProps) {
+export function MultiRadio({
+  defaultValue,
+  isInline = false,
+  isLabelHidden = false,
+  label,
+  name,
+  onChange,
+  options
+}: MultiRadioProps) {
   const [checkedOptionValue, setCheckedOptionValue] = useState<string | undefined>(undefined)
 
   const key = useMemo(() => `${name}-${String(checkedOptionValue)}}`, [checkedOptionValue, name])
@@ -44,7 +53,7 @@ export function MultiRadio({ defaultValue, isInline = false, label, name, onChan
 
   return (
     <Fieldset key={key}>
-      {label && <Legend>{label}</Legend>}
+      <Legend isHidden={isLabelHidden}>{label}</Legend>
 
       <ChecboxesBox isInline={isInline}>
         {options.map(option => (
