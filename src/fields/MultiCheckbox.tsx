@@ -12,7 +12,8 @@ import type { Promisable } from 'type-fest'
 export type MultiCheckboxProps = {
   defaultValue?: string[]
   isInline?: boolean
-  label?: string
+  isLabelHidden?: boolean
+  label: string
   name: string
   onChange?: (nextValue: string[] | undefined) => Promisable<void>
   options: Option[]
@@ -20,6 +21,7 @@ export type MultiCheckboxProps = {
 export function MultiCheckbox({
   defaultValue = [],
   isInline = false,
+  isLabelHidden = false,
   label,
   name,
   onChange,
@@ -48,7 +50,7 @@ export function MultiCheckbox({
 
   return (
     <Fieldset key={key}>
-      {label && <Legend>{label}</Legend>}
+      <Legend isHidden={isLabelHidden}>{label}</Legend>
 
       <ChecboxesBox isInline={isInline}>
         {options.map((option, index) => (
