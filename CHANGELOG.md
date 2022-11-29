@@ -1,3 +1,11 @@
+# [1.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.5.1...v1.6.0) (2022-11-29)
+
+
+### Features
+
+* **fields:** add MultiCheckbox ([#37](https://github.com/MTES-MCT/monitor-ui/issues/37)) ([405ce01](https://github.com/MTES-MCT/monitor-ui/commit/405ce013e2eeac7d6143c1fab4f6d241133042e5))
+* **fields:** add MultiRadio ([#38](https://github.com/MTES-MCT/monitor-ui/issues/38)) ([de205f9](https://github.com/MTES-MCT/monitor-ui/commit/de205f9431a527bd5baf6dd85ac92d0126546c07))
+
 ## [1.5.1](https://github.com/MTES-MCT/monitor-ui/compare/v1.5.0...v1.5.1) (2022-11-29)
 
 
