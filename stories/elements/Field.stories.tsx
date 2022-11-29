@@ -14,5 +14,5 @@ export default {
 }
 
 export const _Field = (props: FieldProps) => (
-  <Field {...props}>This is a field for form inputs but it's basically a div.</Field>
+  <Field {...props}>This is a field for form inputs but it’s basically a div.</Field>
 )

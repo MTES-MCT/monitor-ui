@@ -2,6 +2,7 @@ export * as MUI from './constants'
 export { THEME } from './theme'
 
 export { Field } from './elements/Field'
+export { Fieldset } from './elements/Fieldset'
 export { Label } from './elements/Label'
 
 export { Checkbox } from './fields/Checkbox'
@@ -27,6 +28,7 @@ export { ThemeProvider } from './ThemeProvider'
 export type { PartialTheme, Theme } from './theme'
 
 export type { FieldProps } from './elements/Field'
+export type { FieldsetProps } from './elements/Fieldset'
 export type { LabelProps } from './elements/Label'
 
 export type { CheckboxProps } from './fields/Checkbox'
