@@ -15,6 +15,7 @@ export { FormikDateRangePicker } from './formiks/FormikDateRangePicker'
 export { FormikEffect } from './formiks/FormikEffect'
 export { FormikMultiSelect } from './formiks/FormikMultiSelect'
 export { FormikSelect } from './formiks/FormikSelect'
+export { FormikTextarea } from './formiks/FormikTextarea'
 export { FormikTextInput } from './formiks/FormikTextInput'
 
 export { ThemeProvider } from './ThemeProvider'
@@ -35,4 +36,5 @@ export type { FormikDateRangePickerProps } from './formiks/FormikDateRangePicker
 export type { FormikEffectProps } from './formiks/FormikEffect'
 export type { FormikMultiSelectProps } from './formiks/FormikMultiSelect'
 export type { FormikSelectProps } from './formiks/FormikSelect'
+export type { FormikTextareaProps } from './formiks/FormikTextarea'
 export type { FormikTextInputProps } from './formiks/FormikTextInput'
