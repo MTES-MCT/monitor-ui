@@ -67,8 +67,10 @@ export function MultiCheckbox({
 const ChecboxesBox = styled.div<{
   isInline: boolean
 }>`
+  color: ${p => p.theme.color.gunMetal};
   display: flex;
   flex-direction: ${p => (p.isInline ? 'row' : 'column')};
+  font-weight: 500;
 
   > .rs-checkbox {
     > .rs-checkbox-checker {
