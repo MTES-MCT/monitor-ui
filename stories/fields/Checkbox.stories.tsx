@@ -5,17 +5,19 @@ import { Output } from '../_components/Output'
 
 import type { CheckboxProps } from '../../src'
 
+const args: CheckboxProps = {
+  defaultChecked: false,
+  label: 'Check me',
+  name: 'myCheckbox'
+}
+
 export default {
   title: 'Fields/Checkbox',
   component: Checkbox,
 
   argTypes: {},
 
-  args: {
-    defaultChecked: false,
-    label: 'Check me',
-    name: 'myCheckbox'
-  } as CheckboxProps
+  args
 }
 
 export const _Checkbox = (props: CheckboxProps) => {
