@@ -15,15 +15,7 @@ module.exports = {
     ecmaVersion: 2022,
     project: path.join(__dirname, 'tsconfig.json')
   },
-  ignorePatterns: [
-    '/config/',
-    '/dist/',
-    '/scripts/',
-    '/storybook-static/',
-    '.eslintrc.js',
-    'postcss.config.js',
-    'rollup.config.js'
-  ],
+  ignorePatterns: ['/config/', '/dist/', '/scripts/', '/storybook-static/', '.eslintrc.js', 'rollup.config.js'],
   rules: {
     // We must add PascalCase in formats because ESLint trim the prefix before evaluating the case
     // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/naming-convention.md#format-options
