@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import styled from 'styled-components'
 
+import { Fieldset } from '../../elements/Fieldset'
+import { Legend } from '../../elements/Legend'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
 import { getLocalizedDayjs } from '../../utils/getLocalizedDayjs'
 import { getUtcizedDayjs } from '../../utils/getUtcizedDayjs'
@@ -343,12 +345,6 @@ export function DateRangePicker({
   )
 }
 
-const Fieldset = styled.fieldset`
-  border: 0;
-  margin: 0;
-  padding: 0;
-`
-
 const Box = styled.div`
   * {
     font-weight: 500;
@@ -358,16 +354,6 @@ const Box = styled.div`
   color: ${p => p.theme.color.gunMetal};
   font-size: 13px;
   position: relative;
-`
-
-const Legend = styled.legend<{
-  isHidden: boolean
-}>`
-  color: ${p => p.theme.color.slateGray};
-  display: ${p => (p.isHidden ? 'none' : 'table')};
-  font-weight: inherit;
-  margin-bottom: 0.5rem;
-  padding: 0;
 `
 
 const Field = styled.span<{
