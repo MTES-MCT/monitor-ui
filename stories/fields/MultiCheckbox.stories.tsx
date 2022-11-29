@@ -1,14 +1,15 @@
 import { useState } from 'react'
 
-import { Select } from '../../src'
+import { MultiCheckbox } from '../../src'
 import { Output } from '../_components/Output'
 
-import type { SelectProps } from '../../src'
+import type { MultiCheckboxProps } from '../../src'
 
-const args: SelectProps = {
+const args: MultiCheckboxProps = {
   defaultValue: undefined,
-  placeholder: 'Pick an option',
-  name: 'mySelect',
+  isInline: false,
+  label: 'Pick some options',
+  name: 'myMultiCheckbox',
   options: [
     { label: 'First Option', value: 'FIRST_OPTION' },
     { label: 'Second Option', value: 'SECOND_OPTION' },
@@ -18,12 +19,12 @@ const args: SelectProps = {
 }
 
 export default {
-  title: 'Fields/Select',
-  component: Select,
+  title: 'Fields/MultiCheckbox',
+  component: MultiCheckbox,
 
   argTypes: {
     defaultValue: {
-      control: 'inline-radio',
+      control: 'inline-check',
       options: ['FIRST_OPTION', 'SECOND_OPTION', 'THIRD_OPTION', 'A_VERY_VERY_LONG_OPTION']
     }
   },
@@ -31,12 +32,12 @@ export default {
   args
 }
 
-export function _Select(props: SelectProps) {
-  const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
+export function _MultiCheckbox(props: MultiCheckboxProps) {
+  const [outputValue, setOutputValue] = useState<string[] | undefined | '∅'>('∅')
 
   return (
     <>
-      <Select {...props} onChange={setOutputValue} />
+      <MultiCheckbox {...props} onChange={setOutputValue} />
 
       {outputValue !== '∅' && <Output value={outputValue} />}
     </>
