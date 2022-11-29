@@ -1,5 +1,5 @@
 import { Formik } from 'formik'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import { FormikEffect, FormikDatePicker } from '../../src'
 import { Output } from '../_components/Output'
@@ -32,9 +32,11 @@ export const _FormikDatePicker = (props: FormikDatePickerProps) => {
     | '∅'
   >('∅')
 
+  const key = useMemo(() => props.name, [props.name])
+
   return (
     <>
-      <Formik initialValues={{}} onSubmit={noop}>
+      <Formik key={key} initialValues={{}} onSubmit={noop}>
         <>
           <FormikEffect onChange={setOutputValue} />
 

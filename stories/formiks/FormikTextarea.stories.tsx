@@ -1,29 +1,29 @@
 import { Formik } from 'formik'
 import { useMemo, useState } from 'react'
 
-import { FormikEffect, FormikTextInput } from '../../src'
+import { FormikEffect, FormikTextarea } from '../../src'
 import { Output } from '../_components/Output'
 import { noop } from '../_utils/noop'
 
-import type { FormikTextInputProps } from '../../src'
+import type { FormikTextareaProps } from '../../src'
 
-const args: FormikTextInputProps = {
-  name: 'myTextInput'
+const args: FormikTextareaProps = {
+  name: 'myTextarea'
 }
 
 export default {
-  title: 'Formiks/FormikTextInput',
-  component: FormikTextInput,
+  title: 'Formiks/FormikTextarea',
+  component: FormikTextarea,
 
   argTypes: {},
 
   args
 }
 
-export const _FormikTextInput = (props: FormikTextInputProps) => {
+export const _FormikTextarea = (props: FormikTextareaProps) => {
   const [outputValue, setOutputValue] = useState<
     | {
-        myTextInput?: string
+        myTextarea?: string
       }
     | '∅'
   >('∅')
@@ -36,7 +36,7 @@ export const _FormikTextInput = (props: FormikTextInputProps) => {
         <>
           <FormikEffect onChange={setOutputValue} />
 
-          <FormikTextInput {...props} />
+          <FormikTextarea {...props} />
         </>
       </Formik>
 

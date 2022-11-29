@@ -1,5 +1,5 @@
 import { Formik } from 'formik'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import { FormikEffect, FormikCheckbox } from '../../src'
 import { Output } from '../_components/Output'
@@ -29,9 +29,11 @@ export const _FormikCheckbox = (props: FormikCheckboxProps) => {
     | '∅'
   >('∅')
 
+  const key = useMemo(() => props.name, [props.name])
+
   return (
     <>
-      <Formik initialValues={{}} onSubmit={noop}>
+      <Formik key={key} initialValues={{}} onSubmit={noop}>
         <>
           <FormikEffect onChange={setOutputValue} />
 
