@@ -8,14 +8,15 @@ import { noop } from '../_utils/noop'
 import type { FormikMultiSelectProps } from '../../src'
 
 const args: FormikMultiSelectProps = {
-  placeholder: 'Pick some options',
+  fixedWidth: 10,
   name: 'myMultiSelect',
   options: [
     { label: 'First Option', value: 'FIRST_OPTION' },
     { label: 'Second Option', value: 'SECOND_OPTION' },
     { label: 'Third Option', value: 'THIRD_OPTION' },
     { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
-  ]
+  ],
+  placeholder: 'Pick some options'
 }
 
 export default {

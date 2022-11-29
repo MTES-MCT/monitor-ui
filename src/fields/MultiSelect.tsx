@@ -8,11 +8,14 @@ import type { Promisable } from 'type-fest'
 
 export type MultiSelectProps = Omit<TagPickerProps, 'as' | 'data' | 'defaultValue' | 'onChange' | 'value'> & {
   defaultValue?: string[]
+  /** Width in REM */
+  fixedWidth?: number
   name: string
   onChange?: (nextValue: string[] | undefined) => Promisable<void>
   options: Option[]
 }
 export function MultiSelect({
+  fixedWidth = 5,
   onChange,
   options,
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -37,11 +40,25 @@ export function MultiSelect({
     [onChange]
   )
 
-  return <StyledTagPicker key={key} data={options} onChange={handleChange} searchable={searchable} {...originalProps} />
+  return (
+    <StyledTagPicker
+      key={key}
+      data={options}
+      fixedWidth={fixedWidth}
+      onChange={handleChange}
+      searchable={searchable}
+      {...originalProps}
+    />
+  )
 }
 
-const StyledTagPicker = styled(TagPicker)`
+// TODO A width seems to be mandatory in rsuite which is a very dirty behavior.
+// We should hack that.
+const StyledTagPicker = styled(TagPicker)<{
+  fixedWidth: number
+}>`
   cursor: pointer;
+  width: ${p => p.fixedWidth}rem;
 
   > .rs-picker-toggle {
     cursor: inherit;

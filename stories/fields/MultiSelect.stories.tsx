@@ -7,14 +7,15 @@ import type { MultiSelectProps } from '../../src'
 
 const args: MultiSelectProps = {
   defaultValue: undefined,
-  placeholder: 'Pick some options',
+  fixedWidth: 10,
   name: 'myMultiSelect',
   options: [
     { label: 'First Option', value: 'FIRST_OPTION' },
     { label: 'Second Option', value: 'SECOND_OPTION' },
     { label: 'Third Option', value: 'THIRD_OPTION' },
     { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
-  ]
+  ],
+  placeholder: 'Pick some options'
 }
 
 export default {
@@ -25,9 +26,6 @@ export default {
     defaultValue: {
       control: 'inline-check',
       options: ['FIRST_OPTION', 'SECOND_OPTION', 'THIRD_OPTION', 'A_VERY_VERY_LONG_OPTION']
-    },
-    isMulti: {
-      control: 'boolean'
     }
   },
 
