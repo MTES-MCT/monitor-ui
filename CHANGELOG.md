@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/MTES-MCT/monitor-ui/compare/v1.5.0...v1.5.1) (2022-11-29)
+
+
+### Bug Fixes
+
+* **fields:** add fixedWidth prop to MultiSelect ([#33](https://github.com/MTES-MCT/monitor-ui/issues/33)) ([bea7a83](https://github.com/MTES-MCT/monitor-ui/commit/bea7a83f60d49e945686dba69ad4dcb13275bf5f))
+
 # [1.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.4.0...v1.5.0) (2022-11-29)
 
 
