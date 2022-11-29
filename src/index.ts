@@ -1,9 +1,12 @@
 export * as MUI from './constants'
 export { THEME } from './theme'
 
+export { Label } from './elements/Label'
+
 export { Checkbox } from './fields/Checkbox'
 export { DateRangePicker } from './fields/DateRangePicker'
 export { DatePicker } from './fields/DatePicker'
+// export { MultiCheckbox } from './fields/MultiCheckbox'
 export { MultiSelect } from './fields/MultiSelect'
 export { Select } from './fields/Select'
 export { Textarea } from './fields/Textarea'
@@ -22,9 +25,12 @@ export { ThemeProvider } from './ThemeProvider'
 
 export type { PartialTheme, Theme } from './theme'
 
+export type { LabelProps } from './elements/Label'
+
 export type { CheckboxProps } from './fields/Checkbox'
 export type { DateRangePickerProps } from './fields/DateRangePicker'
 export type { DatePickerProps } from './fields/DatePicker'
+// export type { MultiCheckboxProps } from './fields/MultiCheckbox'
 export type { MultiSelectProps } from './fields/MultiSelect'
 export type { SelectProps } from './fields/Select'
 export type { TextareaProps } from './fields/Textarea'
