@@ -1,3 +1,11 @@
+## [1.7.3](https://github.com/MTES-MCT/monitor-ui/compare/v1.7.2...v1.7.3) (2022-11-30)
+
+
+### Bug Fixes
+
+* **build:** disable rollup modules preservation ([#77](https://github.com/MTES-MCT/monitor-ui/issues/77)) ([d4e36ec](https://github.com/MTES-MCT/monitor-ui/commit/d4e36ece43e108f2b69f7d54ea247db3558217ee))
+* **fields:** add missing keys in multi fields ([#76](https://github.com/MTES-MCT/monitor-ui/issues/76)) ([aa40638](https://github.com/MTES-MCT/monitor-ui/commit/aa40638d0a16c648c9f55684634bdbbde7fd2651))
+
 ## [1.7.2](https://github.com/MTES-MCT/monitor-ui/compare/v1.7.1...v1.7.2) (2022-11-29)
 
 ## [1.7.1](https://github.com/MTES-MCT/monitor-ui/compare/v1.7.0...v1.7.1) (2022-11-29)
