@@ -56,8 +56,10 @@ export function MultiRadio({
       <Legend isHidden={isLabelHidden}>{label}</Legend>
 
       <ChecboxesBox isInline={isInline}>
-        {options.map(option => (
+        {options.map((option, index) => (
           <Radio
+            // eslint-disable-next-line react/no-array-index-key
+            key={`${name}-${index}`}
             defaultChecked={option.value === checkedOptionValue}
             name={name}
             onChange={(_: any, isChecked: boolean) => handleChange(option.value, isChecked)}
