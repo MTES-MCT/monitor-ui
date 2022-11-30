@@ -19,16 +19,14 @@
     "strict": true,
     "target": "ES2022"
   },
-  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", ".storybook/*.tsx"],
   "exclude": [
     ".eslintrc.js",
-    ".storybook/*",
     "config/*",
     "dist/*",
     "node_modules/*",
     "scripts/*",
     "storybook-static/*",
-    "postcss.config.js",
     "rollup.config.js"
   ],
   "ts-node": {

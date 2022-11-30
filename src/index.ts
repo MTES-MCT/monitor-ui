@@ -1,5 +1,6 @@
-export * as MUI from './constants'
 export { THEME } from './theme'
+
+export * as Icon from './icons'
 
 export { Field } from './elements/Field'
 export { Fieldset } from './elements/Fieldset'
@@ -28,6 +29,8 @@ export { FormikTextarea } from './formiks/FormikTextarea'
 export { FormikTextInput } from './formiks/FormikTextInput'
 
 export { ThemeProvider } from './ThemeProvider'
+
+export type { DateRange, IconProps, Option } from './types'
 
 export type { PartialTheme, Theme } from './theme'
 
