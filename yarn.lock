@@ -3448,7 +3448,7 @@ __metadata:
     "@ivangabriele/eslint-config-typescript-react": 4.3.0
     "@ivangabriele/prettier-config": 3.1.0
     "@jest/globals": 29.2.0
-    "@rollup/plugin-commonjs": 23.0.0
+    "@rollup/plugin-commonjs": 23.0.3
     "@rollup/plugin-node-resolve": 15.0.0
     "@rollup/plugin-replace": 5.0.1
     "@rollup/plugin-typescript": 10.0.1
@@ -3991,11 +3991,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:23.0.0":
-  version: 23.0.0
-  resolution: "@rollup/plugin-commonjs@npm:23.0.0"
+"@rollup/plugin-commonjs@npm:23.0.3":
+  version: 23.0.3
+  resolution: "@rollup/plugin-commonjs@npm:23.0.3"
   dependencies:
-    "@rollup/pluginutils": ^4.2.1
+    "@rollup/pluginutils": ^5.0.1
     commondir: ^1.0.1
     estree-walker: ^2.0.2
     glob: ^8.0.3
@@ -4006,7 +4006,7 @@ __metadata:
   peerDependenciesMeta:
     rollup:
       optional: true
-  checksum: a8b23ae4c6dc67d13149908444a5eab1375d63b5e5a22f48acd024cd67568cf90524700df76f078e4238e9ffab27ccd29b620625e55cbc50b3780c8f7159b5eb
+  checksum: 925289c1694e871065d741ce210621df894febc267b9ca574dfe24e00a48b436f3eaa6a6f6d00312a78c9b51cc0cad7abf13b97fc455395576007c681d7ec58d
   languageName: node
   linkType: hard
 
