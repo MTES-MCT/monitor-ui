@@ -82,8 +82,8 @@ const ChecboxesBox = styled.div<{
 
   > .rs-radio {
     > .rs-radio-checker {
-      padding-left: 28px;
-      padding-top: 2px;
+      min-height: 0;
+      padding: 2px 0 0 28px;
 
       .rs-radio-wrapper {
         left: 2px;
@@ -91,6 +91,14 @@ const ChecboxesBox = styled.div<{
       }
     }
   }
+
+  ${p =>
+    !p.isInline &&
+    css`
+      > .rs-radio:not(:first-child) {
+        margin-top: 6px;
+      }
+    `}
 
   ${p =>
     p.isInline &&

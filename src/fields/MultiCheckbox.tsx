@@ -74,19 +74,14 @@ const ChecboxesBox = styled.div<{
   color: ${p => p.theme.color.gunMetal};
   display: flex;
   flex-direction: ${p => (p.isInline ? 'row' : 'column')};
-  font-weight: 500;
 
-  > .rs-checkbox {
-    > .rs-checkbox-checker {
-      padding-left: 28px;
-      padding-top: 2px;
-
-      .rs-checkbox-wrapper {
-        left: 2px;
-        top: 0 !important;
+  ${p =>
+    !p.isInline &&
+    css`
+      > .rs-checkbox:not(:first-child) {
+        margin-top: 0.5rem;
       }
-    }
-  }
+    `}
 
   ${p =>
     p.isInline &&
