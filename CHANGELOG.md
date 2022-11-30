@@ -1,3 +1,11 @@
+# [1.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.7.4...v1.8.0) (2022-11-30)
+
+
+### Features
+
+* **icons:** add size prop ([#84](https://github.com/MTES-MCT/monitor-ui/issues/84)) ([5eec53c](https://github.com/MTES-MCT/monitor-ui/commit/5eec53c5afbbb44ef82fea9b36cf0da598e2188c))
+* **icons:** integrate normalized icons as React components ([#83](https://github.com/MTES-MCT/monitor-ui/issues/83)) ([5606ba4](https://github.com/MTES-MCT/monitor-ui/commit/5606ba4cd7dad570039f3246a94b3dee6501e177))
+
 ## [1.7.4](https://github.com/MTES-MCT/monitor-ui/compare/v1.7.3...v1.7.4) (2022-11-30)
 
 ## [1.7.3](https://github.com/MTES-MCT/monitor-ui/compare/v1.7.2...v1.7.3) (2022-11-30)
