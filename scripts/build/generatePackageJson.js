@@ -5,7 +5,7 @@ const distPackageExtraProps = {
   bugs: {
     url: 'https://github.com/MTES-MCT/monitor-ui/issues'
   },
-  exports: './src/index.js',
+  exports: './index.js',
   homepage: 'https://mtes-mct.github.io/monitor-ui/',
   name: '@mtes-mct/monitor-ui',
   publishConfig: {

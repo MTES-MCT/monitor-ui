@@ -13,7 +13,7 @@ module.exports = {
     {
       dir: './dist',
       format: 'es',
-      preserveModules: true,
+      preserveModules: false,
       sourcemap: true
     }
   ],
