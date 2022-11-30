@@ -2,9 +2,9 @@ import { IconBox } from '../elements/IconBox'
 
 import type { IconProps } from '../types'
 
-export function More({ color, ...nativeProps }: IconProps) {
+export function More({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox color={color}>
+    <IconBox color={color} size={size}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <g id="More" transform="translate(240 -41)">
           <g data-name="Groupe 4169" id="Groupe_4169">

@@ -5,7 +5,8 @@ import { Icon, THEME } from '../src'
 import type { IconProps } from '../src'
 
 const args: IconProps = {
-  color: undefined
+  color: THEME.color.charcoal,
+  size: 2
 }
 
 export default {
@@ -363,7 +364,6 @@ const Cell = styled.div`
 `
 
 const IconBox = styled.div`
-  /* background-color: green; */
   align-items: center;
   display: flex;
   height: 3rem;

@@ -2,9 +2,9 @@ import { IconBox } from '../elements/IconBox'
 
 import type { IconProps } from '../types'
 
-export function FocusZones({ color, ...nativeProps }: IconProps) {
+export function FocusZones({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox color={color}>
+    <IconBox color={color} size={size}>
       <svg height="20" id="Focus_zones" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <g data-name="Groupe 4194" id="Groupe_4194">
           <path
