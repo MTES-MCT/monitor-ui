@@ -50,7 +50,12 @@
         "prepareCmd": "npm version --no-git-tag-version ${nextRelease.version} && yarn"
       }
     ],
-    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/release-notes-generator",
+      {
+        "preset": "angular"
+      }
+    ],
     "@semantic-release/changelog",
     [
       "@semantic-release/npm",
