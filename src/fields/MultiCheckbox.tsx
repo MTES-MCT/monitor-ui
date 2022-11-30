@@ -55,6 +55,8 @@ export function MultiCheckbox({
       <ChecboxesBox isInline={isInline}>
         {options.map((option, index) => (
           <Checkbox
+            // eslint-disable-next-line react/no-array-index-key
+            key={`${name}-${index}`}
             defaultChecked={defaultValue.includes(option.value)}
             label={option.label}
             name={`${name}${index}`}
