@@ -2,9 +2,9 @@ import { IconBox } from '../elements/IconBox'
 
 import type { IconProps } from '../types'
 
-export function Check({ color, ...nativeProps }: IconProps) {
+export function Check({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox color={color}>
+    <IconBox color={color} size={size}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <g id="Check" transform="translate(40 -82)">
           <g data-name="Tracé 1379" fill="none" id="Tracé_1379" strokeMiterlimit="10">

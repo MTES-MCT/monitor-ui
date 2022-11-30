@@ -2,9 +2,9 @@ import { IconBox } from '../elements/IconBox'
 
 import type { IconProps } from '../types'
 
-export function DoubleChevron({ color, ...nativeProps }: IconProps) {
+export function DoubleChevron({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox color={color}>
+    <IconBox color={color} size={size}>
       <svg height="20" id="Double_chevron" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <g data-name="Groupe 4162" id="Groupe_4162">
           <g data-name="Tracé 1381" fill="none" id="Tracé_1381" strokeMiterlimit="10">

@@ -2,9 +2,9 @@ import { IconBox } from '../elements/IconBox'
 
 import type { IconProps } from '../types'
 
-export function Control({ color, ...nativeProps }: IconProps) {
+export function Control({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox color={color}>
+    <IconBox color={color} size={size}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <defs>
           <clipPath id="clip">

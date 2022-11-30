@@ -2,9 +2,9 @@ import { IconBox } from '../elements/IconBox'
 
 import type { IconProps } from '../types'
 
-export function Observation({ color, ...nativeProps }: IconProps) {
+export function Observation({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox color={color}>
+    <IconBox color={color} size={size}>
       <svg height="20" id="Observation" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <rect data-name="Rectangle 6173" fill="none" height="20" id="Rectangle_6173" width="20" />
         <g data-name="Tracé 1427" fill="currentColor" id="Tracé_1427" strokeMiterlimit="10">

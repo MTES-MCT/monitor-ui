@@ -2,12 +2,14 @@ import styled from 'styled-components'
 
 export type IconBoxProps = {
   color?: string
+  /** In REM */
+  size?: number
 }
 export const IconBox = styled.div<IconBoxProps>`
   color: ${p => p.color ?? 'inherit'};
 
-  /* > svg {
-    color: ${p => p.color ?? 'inherit'};
-    fill: ${p => p.color ?? 'inherit'};
-  } */
+  > svg {
+    height: ${p => p.size ?? 1}rem;
+    width: ${p => p.size ?? 1}rem;
+  }
 `

@@ -2,9 +2,9 @@ import { IconBox } from '../elements/IconBox'
 
 import type { IconProps } from '../types'
 
-export function Infringement({ color, ...nativeProps }: IconProps) {
+export function Infringement({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox color={color}>
+    <IconBox color={color} size={size}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <g id="Infringement" transform="translate(40 -41)">
           <path
