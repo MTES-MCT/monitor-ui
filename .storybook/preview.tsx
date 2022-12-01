@@ -1,17 +1,18 @@
 import { StrictMode } from 'react'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
-import { THEME } from '../src/theme'
+import { GlobalStyle, THEME } from '../src'
 
 import type { ComponentStory } from '@storybook/react'
 // import type { ComponentAnnotations } from '@storybook/csf'
 
 import 'rsuite/dist/rsuite.min.css'
-import '../src/assets/rsuite-override.css'
+import '../src/assets/stylesheets/rsuite-override.css'
 
+const UntypedGlobalStyle = GlobalStyle as any
 const UntypedThemeProvider = ThemeProvider as any
 
-const GlobalStyle: any = createGlobalStyle<{
+const CustomGlobalStyle: any = createGlobalStyle<{
   isFullWidth: boolean | undefined
 }>`
   p {
@@ -30,7 +31,8 @@ export const decorators = [
     return (
       <StrictMode>
         <UntypedThemeProvider theme={THEME}>
-          <GlobalStyle isFullWidth={isFullWidth} />
+          <UntypedGlobalStyle />
+          <CustomGlobalStyle isFullWidth={isFullWidth} />
 
           <Story />
         </UntypedThemeProvider>

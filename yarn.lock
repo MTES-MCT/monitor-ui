@@ -3344,6 +3344,7 @@ __metadata:
     "@rollup/plugin-node-resolve": 15.0.0
     "@rollup/plugin-replace": 5.0.1
     "@rollup/plugin-typescript": 10.0.1
+    "@rollup/plugin-url": 8.0.1
     "@semantic-release/changelog": 6.0.2
     "@semantic-release/commit-analyzer": 9.0.2
     "@semantic-release/exec": 6.0.3
@@ -3405,6 +3406,7 @@ __metadata:
     react-dom: 18.2.0
     react-is: 18.2.0
     rollup: 2.79.1
+    rollup-plugin-bundle-size: 1.0.3
     rollup-plugin-peer-deps-external: 2.2.4
     rollup-plugin-postcss: 4.0.2
     rollup-plugin-sizes: 1.0.4
@@ -3997,6 +3999,22 @@ __metadata:
     tslib:
       optional: true
   checksum: d3e85674b5ff56c4376bbd79fd2baced3e988b7110d60b1f818eb344721f5605eaa3b56a1668631d210399db7188a7cc4790bb423ad9e56144d015fd1591ccc3
+  languageName: node
+  linkType: hard
+
+"@rollup/plugin-url@npm:8.0.1":
+  version: 8.0.1
+  resolution: "@rollup/plugin-url@npm:8.0.1"
+  dependencies:
+    "@rollup/pluginutils": ^5.0.1
+    make-dir: ^3.1.0
+    mime: ^3.0.0
+  peerDependencies:
+    rollup: ^1.20.0||^2.0.0||^3.0.0
+  peerDependenciesMeta:
+    rollup:
+      optional: true
+  checksum: 25a16622feeec63d958117f7ab65b3a4f72bab4ab86a4c7d5447ec646e88b5ac47186e344a2fdf179e1c12b5a9e76b8edbf568f5f76f7c25e0168ddd6374501e
   languageName: node
   linkType: hard
 
@@ -20518,7 +20536,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-bundle-size@npm:^1.0.3":
+"rollup-plugin-bundle-size@npm:1.0.3, rollup-plugin-bundle-size@npm:^1.0.3":
   version: 1.0.3
   resolution: "rollup-plugin-bundle-size@npm:1.0.3"
   dependencies:
