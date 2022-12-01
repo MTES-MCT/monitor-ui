@@ -1,3 +1,10 @@
+## [1.9.2](https://github.com/MTES-MCT/monitor-ui/compare/v1.9.1...v1.9.2) (2022-12-01)
+
+
+### Bug Fixes
+
+* **build:** set include fonts as inline data ([#90](https://github.com/MTES-MCT/monitor-ui/issues/90)) ([4872817](https://github.com/MTES-MCT/monitor-ui/commit/48728173b37f7842309b4141e8337f5263c64a35))
+
 ## [1.9.1](https://github.com/MTES-MCT/monitor-ui/compare/v1.9.0...v1.9.1) (2022-12-01)
 
 
