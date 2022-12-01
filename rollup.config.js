@@ -21,10 +21,8 @@ module.exports = {
   plugins: [
     peerDepsExternal(),
     url({
-      destDir: './dist/assets/fonts',
-      fileName: './assets/fonts/[hash][extname]',
       include: ['**/*.woff2'],
-      limit: 0
+      limit: Infinity
     }),
     nodeResolve({
       extensions: ['css', '.js', 'json', '.jsx', '.ts', '.tson', '.tsx'],
