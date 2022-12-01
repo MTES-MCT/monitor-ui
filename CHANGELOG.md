@@ -1,3 +1,11 @@
+# [1.10.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.9.2...v1.10.0) (2022-12-01)
+
+
+### Features
+
+* **components:** add Dropdown ([#93](https://github.com/MTES-MCT/monitor-ui/issues/93)) ([1d5ec1b](https://github.com/MTES-MCT/monitor-ui/commit/1d5ec1b06b0f9ed06b44518de60cd69f0286e8fb))
+* **elements:** add IconButton ([#92](https://github.com/MTES-MCT/monitor-ui/issues/92)) ([5ea52c3](https://github.com/MTES-MCT/monitor-ui/commit/5ea52c3bc2c20226641e46b114a6bea617caeb45))
+
 ## [1.9.2](https://github.com/MTES-MCT/monitor-ui/compare/v1.9.1...v1.9.2) (2022-12-01)
 
 
