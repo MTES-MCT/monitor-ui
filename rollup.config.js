@@ -22,6 +22,7 @@ module.exports = {
     peerDepsExternal(),
     url({
       destDir: './dist/assets/fonts',
+      fileName: './assets/fonts/[hash][extname]',
       include: ['**/*.woff2'],
       limit: 0
     }),
