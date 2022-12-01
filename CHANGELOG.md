@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.8.0...v1.9.0) (2022-12-01)
+
+
+### Features
+
+* **elements:** add Button ([#86](https://github.com/MTES-MCT/monitor-ui/issues/86)) ([00b2e10](https://github.com/MTES-MCT/monitor-ui/commit/00b2e1070516959a3c6a13bcea350c7b4f05d309))
+
 # [1.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.7.4...v1.8.0) (2022-11-30)
 
 
