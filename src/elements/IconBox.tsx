@@ -6,6 +6,7 @@ export type IconBoxProps = {
   size?: number
 }
 export const IconBox = styled.div<IconBoxProps>`
+  display: inline-block;
   color: ${p => p.color ?? 'inherit'};
 
   > svg {

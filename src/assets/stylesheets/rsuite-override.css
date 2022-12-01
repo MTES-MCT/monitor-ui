@@ -394,48 +394,6 @@ label:hover .rs-checkbox-wrapper .rs-checkbox-inner:before {
   margin-bottom: 32px;
 }
 
-/* dropdown */
-
-.rs-dropdown-menu {
-  border-radius: 0;
-  padding: 0;
-}
-
-.rs-dropdown-item {
-  padding-top: 0px;
-  padding-bottom: 0px;
-  line-height: 38px;
-}
-
-.rs-dropdown .rs-btn {
-  padding-left: 32px;
-}
-
-.rs-dropdown .rs-btn > .rs-dropdown-toggle-icon {
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  margin: 0;
-}
-
-.rs-dropdown .rs-btn.rs-btn-sm > .rs-dropdown-toggle-icon {
-  width: 24px;
-  height: 24px;
-  padding: 3px;
-}
-
-.rs-dropdown-item:not(:last-child) {
-  border-bottom: 1px solid var(--lightGray);
-}
-
-svg.rs-dropdown-item-menu-icon {
-  vertical-align: middle;
-  margin-right: 10px;
-}
-
 /* Tags */
 
 .rs-tag-default {

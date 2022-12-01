@@ -1,6 +1,13 @@
+export { Accent, Size } from './contants'
 export { GlobalStyle } from './GlobalStyle'
 export { THEME } from './theme'
 export { ThemeProvider } from './ThemeProvider'
+
+/* -----------------------------------------------------------------------------
+  Components
+*/
+
+export { Dropdown } from './components/Dropdown'
 
 export { Button } from './elements/Button'
 export { Field } from './elements/Field'
@@ -32,11 +39,14 @@ export { FormikTextInput } from './formiks/FormikTextInput'
 
 export * as Icon from './icons'
 
-export { Accent, Size } from './contants'
-
-export type { DateRange, IconProps, Option } from './types'
+/* -----------------------------------------------------------------------------
+  Type Definitions
+*/
 
 export type { PartialTheme, Theme } from './theme'
+export type { DateRange, IconProps, Option } from './types'
+
+export type { DropdownProps, DropdownItemProps } from './components/Dropdown'
 
 export type { ButtonProps } from './elements/Button'
 export type { FieldProps } from './elements/Field'
