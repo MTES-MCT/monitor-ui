@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/MTES-MCT/monitor-ui/compare/v1.9.0...v1.9.1) (2022-12-01)
+
+
+### Bug Fixes
+
+* **build:** set right font paths ([#88](https://github.com/MTES-MCT/monitor-ui/issues/88)) ([172250a](https://github.com/MTES-MCT/monitor-ui/commit/172250a58c990c3c19c5d0162bb4de1f6ab17194))
+
 # [1.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.8.0...v1.9.0) (2022-12-01)
 
 
