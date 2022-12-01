@@ -1,7 +1,8 @@
+export { GlobalStyle } from './GlobalStyle'
 export { THEME } from './theme'
+export { ThemeProvider } from './ThemeProvider'
 
-export * as Icon from './icons'
-
+export { Button } from './elements/Button'
 export { Field } from './elements/Field'
 export { Fieldset } from './elements/Fieldset'
 export { Label } from './elements/Label'
@@ -28,12 +29,15 @@ export { FormikSelect } from './formiks/FormikSelect'
 export { FormikTextarea } from './formiks/FormikTextarea'
 export { FormikTextInput } from './formiks/FormikTextInput'
 
-export { ThemeProvider } from './ThemeProvider'
+export * as Icon from './icons'
+
+export { Accent, Size } from './contants'
 
 export type { DateRange, IconProps, Option } from './types'
 
 export type { PartialTheme, Theme } from './theme'
 
+export type { ButtonProps } from './elements/Button'
 export type { FieldProps } from './elements/Field'
 export type { FieldsetProps } from './elements/Fieldset'
 export type { LabelProps } from './elements/Label'
