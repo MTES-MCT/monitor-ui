@@ -38,6 +38,7 @@ export function Button({
   )
   const commonProps = useMemo(
     () => ({
+      as: StyledButton,
       children: commonChildren,
       isFullWidth,
       size,
@@ -69,7 +70,6 @@ const PADDING: Record<Size, string> = {
   [Size.NORMAL]: '6px 12px',
   [Size.SMALL]: '5px 8px 4px'
 }
-
 const StyledButton = styled.button<{
   isFullWidth: boolean
   size: Size
@@ -88,7 +88,7 @@ const StyledButton = styled.button<{
   }
 `
 
-const PrimaryButton = styled(StyledButton)`
+export const PrimaryButton = styled.button`
   background-color: ${p => p.theme.color.charcoal};
   border: 1px solid ${p => p.theme.color.charcoal};
   color: ${p => p.theme.color.gainsboro};
@@ -115,7 +115,7 @@ const PrimaryButton = styled(StyledButton)`
   }
 `
 
-const SecondaryButton = styled(StyledButton)`
+export const SecondaryButton = styled.button`
   background-color: ${p => p.theme.color.white};
   border: 1px solid ${p => p.theme.color.charcoal};
   color: ${p => p.theme.color.charcoal};
@@ -142,7 +142,7 @@ const SecondaryButton = styled(StyledButton)`
   }
 `
 
-const TertiaryButton = styled(StyledButton)`
+export const TertiaryButton = styled.button`
   background-color: ${p => p.theme.color.white};
   border: 1px solid ${p => p.theme.color.white};
   color: ${p => p.theme.color.gainsboro};
