@@ -1,3 +1,10 @@
+## [1.10.2](https://github.com/MTES-MCT/monitor-ui/compare/v1.10.1...v1.10.2) (2022-12-06)
+
+
+### Bug Fixes
+
+* **formiks:** add missing default value handling ([#104](https://github.com/MTES-MCT/monitor-ui/issues/104)) ([8225e5f](https://github.com/MTES-MCT/monitor-ui/commit/8225e5f37f0dfc6072630ccb6b127d0fddcb6182))
+
 ## [1.10.1](https://github.com/MTES-MCT/monitor-ui/compare/v1.10.0...v1.10.1) (2022-12-06)
 
 # [1.10.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.9.2...v1.10.0) (2022-12-01)
