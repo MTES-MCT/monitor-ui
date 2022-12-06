@@ -145,7 +145,7 @@ export const SecondaryButton = styled.button`
 export const TertiaryButton = styled.button`
   background-color: ${p => p.theme.color.white};
   border: 1px solid ${p => p.theme.color.white};
-  color: ${p => p.theme.color.gainsboro};
+  color: ${p => p.theme.color.charcoal};
 
   :hover,
   &._hover {
