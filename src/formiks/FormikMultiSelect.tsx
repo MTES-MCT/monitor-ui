@@ -1,5 +1,5 @@
 import { useField } from 'formik'
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 
 import { MultiSelect } from '../fields/MultiSelect'
 
@@ -7,19 +7,21 @@ import type { MultiSelectProps } from '../fields/MultiSelect'
 
 export type FormikMultiSelectProps = Omit<MultiSelectProps, 'defaultValue' | 'onChange'>
 export function FormikMultiSelect({ name, ...originalProps }: FormikMultiSelectProps) {
-  const [, , helpers] = useField(name)
-  // We don't include `setValues` in `useCallback()` and `useEffect()` dependencies
-  // both because it is useless and it will trigger infinite hook calls
-  const { setValue } = helpers
-
-  const handleChange = useCallback((nextValue: string[] | undefined) => {
-    setValue(nextValue)
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const [field, , helpers] = useField(name)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => () => setValue(undefined), [])
+  const defaultValue = useMemo(() => field.value, [])
 
-  return <MultiSelect name={name} onChange={handleChange} {...originalProps} />
+  const handleChange = useCallback(
+    (nextValue: string[] | undefined) => {
+      helpers.setValue(nextValue)
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  )
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => () => helpers.setValue(undefined), [])
+
+  return <MultiSelect defaultValue={defaultValue} name={name} onChange={handleChange} {...originalProps} />
 }
