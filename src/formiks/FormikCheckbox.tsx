@@ -9,19 +9,19 @@ export type FormikCheckboxProps = Omit<CheckboxProps, 'checked' | 'defaultChecke
 export function FormikCheckbox({ name, ...originalProps }: FormikCheckboxProps) {
   const [field, , helpers] = useField(name)
 
-  const value = useMemo(() => field.value, [field.value])
-  // We don't include `setValues` in `useCallback()` and `useEffect()` dependencies
-  // both because it is useless and it will trigger infinite hook calls
-  const setValue = useMemo(() => helpers.setValue, [helpers.setValue])
+  // eslint-disable-next-line react-hooks/exhaustive-deps, @typescript-eslint/naming-convention
+  const defaultChecked = useMemo(() => Boolean(field.value), [])
 
-  const handleChange = useCallback((isChecked: boolean) => {
-    setValue(isChecked)
-
+  const handleChange = useCallback(
+    (isChecked: boolean) => {
+      helpers.setValue(isChecked)
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    []
+  )
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => () => setValue(undefined), [])
+  useEffect(() => () => helpers.setValue(undefined), [])
 
-  return <Checkbox defaultChecked={value} name={name} onChange={handleChange} {...originalProps} />
+  return <Checkbox defaultChecked={defaultChecked} name={name} onChange={handleChange} {...originalProps} />
 }
