@@ -2,7 +2,10 @@ import { Fieldset } from '../../src'
 
 import type { FieldsetProps } from '../../src'
 
-const args: FieldsetProps = {}
+const args: FieldsetProps = {
+  isLight: false,
+  isMulti: false
+}
 
 export default {
   title: 'Elements/Fieldset',

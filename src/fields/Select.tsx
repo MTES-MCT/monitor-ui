@@ -12,6 +12,7 @@ import type { Promisable } from 'type-fest'
 export type SelectProps = Omit<SelectPickerProps<any>, 'as' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'value'> & {
   defaultValue?: string
   isLabelHidden?: boolean
+  isLight?: boolean
   label: string
   name: string
   onChange?: (nextValue: string | undefined) => Promisable<void>
@@ -19,6 +20,7 @@ export type SelectProps = Omit<SelectPickerProps<any>, 'as' | 'data' | 'defaultV
 }
 export function Select({
   isLabelHidden = false,
+  isLight = false,
   label,
   onChange,
   options,
@@ -54,6 +56,7 @@ export function Select({
         key={key}
         data={options}
         id={originalProps.name}
+        isLight={isLight}
         // The `unknown` type from Rsuite library is wrong. It should be inferred from `data` prop type.
         // `onChange: ((value: unknown, event: React.SyntheticEvent<Element, Event>) => void) | undefined`
         onChange={handleChange as any}
@@ -64,4 +67,11 @@ export function Select({
   )
 }
 
-const StyledSelectPicker = styled(SelectPicker)``
+const StyledSelectPicker = styled(SelectPicker)<{
+  isLight: boolean
+}>`
+  > .rs-picker-toggle {
+    background-color: ${p => (p.isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
+    border: 0;
+  }
+`

@@ -14,6 +14,7 @@ export type MultiSelectProps = Omit<TagPickerProps, 'as' | 'data' | 'defaultValu
   /** Width in REM */
   fixedWidth?: number
   isLabelHidden?: boolean
+  isLight?: boolean
   label: string
   name: string
   onChange?: (nextValue: string[] | undefined) => Promisable<void>
@@ -22,6 +23,7 @@ export type MultiSelectProps = Omit<TagPickerProps, 'as' | 'data' | 'defaultValu
 export function MultiSelect({
   fixedWidth = 5,
   isLabelHidden = false,
+  isLight = false,
   label,
   onChange,
   options,
@@ -58,6 +60,7 @@ export function MultiSelect({
         data={options}
         fixedWidth={fixedWidth}
         id={originalProps.name}
+        isLight={isLight}
         onChange={handleChange}
         searchable={searchable}
         {...originalProps}
@@ -70,11 +73,14 @@ export function MultiSelect({
 // We should hack that.
 const StyledTagPicker = styled(TagPicker)<{
   fixedWidth: number
+  isLight: boolean
 }>`
+  border: 0;
   cursor: pointer;
   width: ${p => p.fixedWidth}rem;
 
   > .rs-picker-toggle {
+    background-color: ${p => (p.isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
     cursor: inherit;
   }
 `

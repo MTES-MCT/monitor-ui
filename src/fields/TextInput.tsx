@@ -11,6 +11,7 @@ import type { Promisable } from 'type-fest'
 export type TextInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'onChange' | 'value'> & {
   defaultValue?: string
   isLabelHidden?: boolean
+  isLight?: boolean
   label: string
   name: string
   onChange?: (nextValue: string | undefined) => Promisable<void>
@@ -45,7 +46,11 @@ export function TextInput({ isLabelHidden = false, label, onChange, ...originalP
   )
 }
 
-export const StyledInput = styled(Input)`
-  background-color: ${p => p.theme.color.gainsboro};
+export const StyledInput = styled(Input)<{
+  isLight: boolean
+}>`
+  background-color: ${p => (p.isLight ? p.theme.color.white : p.theme.color.gainsboro)};
+  border: 0;
+  font-size: 13px;
   width: 100%;
 `

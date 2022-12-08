@@ -7,6 +7,8 @@ import type { TextInputProps } from '../../src'
 
 const args: TextInputProps = {
   defaultValue: undefined,
+  isLabelHidden: false,
+  isLight: false,
   name: 'myTextInput',
   label: 'A text input'
 }
