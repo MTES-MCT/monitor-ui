@@ -4,7 +4,7 @@ import type { IconProps } from '../types'
 
 export function SelectZone({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox color={color} size={size}>
+    <IconBox $size={size} color={color}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <g id="Select_zone" transform="translate(80 -41)">
           <g data-name="Groupe 4179" id="Groupe_4179">

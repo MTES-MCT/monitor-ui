@@ -4,7 +4,7 @@ import type { IconProps } from '../types'
 
 export function Search({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox color={color} size={size}>
+    <IconBox $size={size} color={color}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <g id="Search" transform="translate(200 -41)">
           <g data-name="Tracé 1368" fill="none" id="Tracé_1368" strokeMiterlimit="10">

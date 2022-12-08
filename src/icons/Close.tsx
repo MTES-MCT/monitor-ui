@@ -4,7 +4,7 @@ import type { IconProps } from '../types'
 
 export function Close({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox color={color} size={size}>
+    <IconBox $size={size} color={color}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <g id="Close" transform="translate(160 -82)">
           <g data-name="Tracé 1377" fill="none" id="Tracé_1377" strokeMiterlimit="10">

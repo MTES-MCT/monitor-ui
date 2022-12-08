@@ -4,7 +4,7 @@ import type { IconProps } from '../types'
 
 export function Favorite({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox color={color} size={size}>
+    <IconBox $size={size} color={color}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <g id="Favorite" transform="translate(-300 -208)">
           <path

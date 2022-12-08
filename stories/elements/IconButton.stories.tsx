@@ -1,4 +1,6 @@
-import { Accent, IconButton, Icon, Size } from '../../src'
+import { Fragment } from 'react'
+
+import { Accent, IconButton, Icon, Size, THEME } from '../../src'
 import { Showcase } from '../_components/Showcase'
 
 import type { IconButtonProps } from '../../src'
@@ -18,6 +20,9 @@ export default {
       control: 'inline-radio',
       options: Accent
     },
+    color: {
+      control: { type: 'color', presetColors: [THEME.color.charcoal, THEME.color.goldenPoppy, THEME.color.maximumRed] }
+    },
     size: {
       control: 'inline-radio',
       options: Size
@@ -34,6 +39,14 @@ export const _IconButton = (props: IconButtonProps) => (
     <Showcase>
       <Showcase.Subtitle>PRIMARY</Showcase.Subtitle>
 
+      <ShowcaseReference />
+    </Showcase>
+  </>
+)
+
+function ShowcaseReference() {
+  return (
+    <>
       <Showcase.Table>
         <thead>
           <tr>
@@ -220,6 +233,6 @@ export const _IconButton = (props: IconButtonProps) => (
           </tr>
         </tbody>
       </Showcase.Table>
-    </Showcase>
-  </>
-)
+    </>
+  )
+}
