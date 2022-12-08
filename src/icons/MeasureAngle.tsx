@@ -4,7 +4,7 @@ import type { IconProps } from '../types'
 
 export function MeasureAngle({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox color={color} size={size}>
+    <IconBox $size={size} color={color}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <g id="Measure_angle" transform="translate(200 -82)">
           <g data-name="Groupe 4191" id="Groupe_4191">

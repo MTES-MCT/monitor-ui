@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 export type IconBoxProps = {
-  color?: string
   /** In REM */
-  size?: number
+  $size?: number
+  color?: string
 }
 export const IconBox = styled.div<IconBoxProps>`
   display: inline-block;
@@ -11,7 +11,7 @@ export const IconBox = styled.div<IconBoxProps>`
 
   > svg {
     display: block;
-    height: ${p => p.size ?? 1}rem;
-    width: ${p => p.size ?? 1}rem;
+    height: ${p => p.$size ?? 1}rem;
+    width: ${p => p.$size ?? 1}rem;
   }
 `

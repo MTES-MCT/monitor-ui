@@ -15,7 +15,7 @@ export default {
 
   argTypes: {
     color: {
-      control: { type: 'color', presetColors: [THEME.color.charcoal, THEME.color.goldenPoppy, THEME.color.chineseRed] }
+      control: { type: 'color', presetColors: [THEME.color.charcoal, THEME.color.goldenPoppy, THEME.color.maximumRed] }
     }
   },
 

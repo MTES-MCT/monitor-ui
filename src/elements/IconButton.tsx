@@ -16,16 +16,18 @@ const ICON_SIZE: Record<Size, number> = {
 export type IconButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> & {
   Icon: FunctionComponent<IconProps>
   accent?: Accent
+  color?: string
   size?: Size
 }
 export function IconButton({
   accent = Accent.PRIMARY,
+  color,
   Icon,
   size = Size.NORMAL,
   type = 'button',
   ...nativeProps
 }: IconButtonProps) {
-  const children = useMemo(() => <Icon size={ICON_SIZE[size]} />, [Icon, size])
+  const children = useMemo(() => <Icon color={color} size={ICON_SIZE[size]} />, [color, Icon, size])
   const commonProps = useMemo(
     () => ({
       children,

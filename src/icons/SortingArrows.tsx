@@ -4,7 +4,7 @@ import type { IconProps } from '../types'
 
 export function SortingArrows({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox color={color} size={size}>
+    <IconBox $size={size} color={color}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <g id="Sorting_arrows" transform="translate(-40)">
           <g data-name="Groupe 4164" id="Groupe_4164">
