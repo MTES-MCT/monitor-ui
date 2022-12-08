@@ -8,6 +8,8 @@ import type { MultiSelectProps } from '../../src'
 const args: MultiSelectProps = {
   defaultValue: undefined,
   fixedWidth: 10,
+  isLabelHidden: false,
+  isLight: false,
   label: 'A multiple select',
   name: 'myMultiSelect',
   options: [

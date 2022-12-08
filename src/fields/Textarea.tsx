@@ -14,11 +14,19 @@ export type TextareaProps = Omit<
 > & {
   defaultValue?: string
   isLabelHidden?: boolean
+  isLight?: boolean
   label: string
   name: string
   onChange?: (nextValue: string | undefined) => Promisable<void>
 }
-export function Textarea({ isLabelHidden = false, label, onChange, rows = 3, ...originalProps }: TextareaProps) {
+export function Textarea({
+  isLabelHidden = false,
+  isLight = false,
+  label,
+  onChange,
+  rows = 3,
+  ...originalProps
+}: TextareaProps) {
   const inputRef = useRef() as MutableRefObject<HTMLTextAreaElement>
 
   const key = useMemo(
@@ -48,6 +56,7 @@ export function Textarea({ isLabelHidden = false, label, onChange, rows = 3, ...
         ref={inputRef}
         as="textarea"
         id={originalProps.name}
+        isLight={isLight}
         onChange={handleChange}
         rows={rows}
         {...originalProps}
@@ -56,8 +65,12 @@ export function Textarea({ isLabelHidden = false, label, onChange, rows = 3, ...
   )
 }
 
-export const StyledInput = styled(Input)`
-  background-color: ${p => p.theme.color.gainsboro};
+export const StyledInput = styled(Input)<{
+  isLight: boolean
+}>`
+  background-color: ${p => (p.isLight ? p.theme.color.white : p.theme.color.gainsboro)};
   border: 0;
+  font-size: 13px;
+  padding: 7px 11px;
   width: 100%;
 `
