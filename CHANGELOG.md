@@ -1,3 +1,16 @@
+# [1.11.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.10.2...v1.11.0) (2022-12-08)
+
+
+### Bug Fixes
+
+* **elements:** make tertiary IconButton background transparent ([#107](https://github.com/MTES-MCT/monitor-ui/issues/107)) ([1986423](https://github.com/MTES-MCT/monitor-ui/commit/19864235d5a3ba17c466210df8ab654e70e30344))
+
+
+### Features
+
+* **elements:** add color prop to IconButton ([#108](https://github.com/MTES-MCT/monitor-ui/issues/108)) ([2b1eede](https://github.com/MTES-MCT/monitor-ui/commit/2b1eedee72eaa23a7ce93ae73e172a225557c2fe))
+* **fields:** add isLight prop in MultiSelect, Select, Textarea, TextInput ([#106](https://github.com/MTES-MCT/monitor-ui/issues/106)) ([9484cb6](https://github.com/MTES-MCT/monitor-ui/commit/9484cb6581ae6c1a297e030a7ac0e9c142470f98))
+
 ## [1.10.2](https://github.com/MTES-MCT/monitor-ui/compare/v1.10.1...v1.10.2) (2022-12-06)
 
 
