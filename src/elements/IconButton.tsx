@@ -64,28 +64,28 @@ const StyledButton = styled.button<{
 `
 
 const TertiaryButton = styled.button`
-  background-color: ${p => p.theme.color.white};
-  border: 1px solid ${p => p.theme.color.white};
+  background-color: transparent;
+  border: 1px solid transparent;
   color: ${p => p.theme.color.charcoal};
 
   :hover,
   &._hover {
-    background-color: ${p => p.theme.color.white};
-    border: 1px solid ${p => p.theme.color.white};
+    background-color: transparent;
+    border: 1px solid transparent;
     color: ${p => p.theme.color.blueYonder['100']};
   }
 
   :active,
   &._active {
-    background-color: ${p => p.theme.color.white};
-    border: 1px solid ${p => p.theme.color.white};
+    background-color: transparent;
+    border: 1px solid transparent;
     color: ${p => p.theme.color.blueGray['100']};
   }
 
   :disabled,
   &._disabled {
-    background-color: ${p => p.theme.color.white};
-    border: 1px solid ${p => p.theme.color.white};
+    background-color: transparent;
+    border: 1px solid transparent;
     color: ${p => p.theme.color.lightGray};
   }
 `
