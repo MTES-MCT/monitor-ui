@@ -1,0 +1,10 @@
+<svg id="Unlock" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <path id="Tracé_1470" data-name="Tracé 1470" d="M0,0H20V20H0Z" fill="none"/>
+  <g id="Groupe_4311" data-name="Groupe 4311">
+    <path id="Tracé_1473" data-name="Tracé 1473" d="M0,0H20V20H0Z" fill="none"/>
+    <g id="Groupe_4311-2" data-name="Groupe 4311">
+      <circle id="Ellipse_774" data-name="Ellipse 774" cx="1.5" cy="1.5" r="1.5" transform="translate(8.5 11.5)" fill="#707785"/>
+      <path id="Tracé_1474" data-name="Tracé 1474" d="M14.471,7V5.456a4.471,4.471,0,0,0-8.942,0H7.765a2.235,2.235,0,1,1,4.47,0V7H3V19H17V7ZM15,17H5V9H15Z" fill="#707785"/>
+    </g>
+  </g>
+</svg>

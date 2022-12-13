@@ -1,0 +1,8 @@
+<svg id="Map_layers" data-name="Map layers" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <rect id="Rectangle_6180" data-name="Rectangle 6180" width="20" height="20" fill="none"/>
+  <g id="Groupe_4214" data-name="Groupe 4214">
+    <path id="Tracé_1445" data-name="Tracé 1445" d="M10,2.332,16.113,6,10,9.668,3.887,6,10,2.332M10,0,0,6l10,6L20,6,10,0Z" fill="#707785"/>
+    <path id="Tracé_1446" data-name="Tracé 1446" d="M1.913,8.815,0,10l10,6,10-6L18.056,8.834,10,13.668Z" fill="#707785"/>
+    <path id="Tracé_1447" data-name="Tracé 1447" d="M1.913,12.815,0,14l10,6,10-6-1.944-1.166L10,17.668Z" fill="#707785"/>
+  </g>
+</svg>

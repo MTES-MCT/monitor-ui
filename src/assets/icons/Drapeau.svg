@@ -1,0 +1,7 @@
+<svg id="Drapeau" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <rect id="Rectangle_6296" data-name="Rectangle 6296" width="6" height="12" transform="translate(1 4)" fill="#000091"/>
+  <rect id="Rectangle_6297" data-name="Rectangle 6297" width="6" height="12" transform="translate(13 4)" fill="#e1000f"/>
+  <rect id="Rectangle_6298" data-name="Rectangle 6298" width="6" height="12" transform="translate(7 4)" fill="#fff"/>
+  <rect id="Rectangle_6299" data-name="Rectangle 6299" width="20" height="20" fill="none"/>
+  <path id="Tracé_1463" data-name="Tracé 1463" d="M19,4V16H1V4H19m1-1H0V17H20V3Z" fill="#e5e5eb"/>
+</svg>
