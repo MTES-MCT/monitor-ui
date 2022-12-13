@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.11.0...v1.12.0) (2022-12-13)
+
+
+### Features
+
+* **icons:** update ([#117](https://github.com/MTES-MCT/monitor-ui/issues/117)) ([a242cc9](https://github.com/MTES-MCT/monitor-ui/commit/a242cc9a80b2eb5335cc1c466a28398df85ebed7))
+
 # [1.11.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.10.2...v1.11.0) (2022-12-08)
 
 
