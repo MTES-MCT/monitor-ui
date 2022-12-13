@@ -5,6 +5,8 @@
   - [Conventions](#conventions)
   - [Release](#release)
   - [Maintenance](#maintenance)
+    - [Updating icons](#updating-icons)
+    - [Updating caniuse browserlist](#updating-caniuse-browserlist)
 - [Notes](#notes)
 
 ## Development
@@ -13,32 +15,39 @@
 
 You need [Node.js v18](https://nodejs.org/en/).
 
-1. Install Yarn Berry:  
+1. Install Yarn Berry:
+
 ```sh
 corepack enable
 ```
-2. Install dependencies:  
+
+2. Install dependencies:
+
 ```sh
 yarn
 ```
-3. Install Git hooks:  
+
+3. Install Git hooks:
+
 ```sh
 yarn setup
 ```
+
 4. [Setup your IDE](https://yarnpkg.com/getting-started/editor-sdks).
 
 ### Conventions
 
-Please respect [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/) messages as defined by Angular in [their contributing documentation](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#commit).
+Please respect [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/) messages as defined by Angular in
+[their contributing documentation](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#commit).
 
 ### Release
 
-The release process is automated, including versionning and release notes generation,
-using [semantic-release](https://github.com/semantic-release/semantic-release).
+The release process is automated, including versionning and release notes generation, using
+[semantic-release](https://github.com/semantic-release/semantic-release).
 
-1. Go to [Github Actions Release Workflow](https://github.com/MTES-MCT/monitor-ui/actions/workflows/release.yml) 
+1. Go to [Github Actions Release Workflow](https://github.com/MTES-MCT/monitor-ui/actions/workflows/release.yml)
 2. Click on "Run workflow" > "Run workflow" ("Branch: main" should be selected by default).
-3. 
+3.
 
 ```sh
 npx browserslist@latest --update-db
@@ -46,7 +55,21 @@ npx browserslist@latest --update-db
 
 ### Maintenance
 
-We [should regularly update `browserlist` database](https://github.com/browserslist/browserslist#browsers-data-updating):
+#### Updating icons
+
+1. Copy the new SVG icons in `src/assets/icons` folder
+2. Run
+
+```sh
+yarn icons
+```
+
+to generate React components from the SVG icons.
+
+#### Updating caniuse browserlist
+
+We
+[should regularly update `browserlist` database](https://github.com/browserslist/browserslist#browsers-data-updating):
 
 ```sh
 npx browserslist@latest --update-db
