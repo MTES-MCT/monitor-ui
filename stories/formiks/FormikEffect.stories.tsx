@@ -1,9 +1,16 @@
 import { Field, Formik } from 'formik'
 import { useState } from 'react'
 
+import { Output } from '../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { noop } from '../../.storybook/utils/noop'
 import { FormikEffect } from '../../src'
-import { Output } from '../_components/Output'
-import { noop } from '../_utils/noop'
+
+import type { FormikEffectProps } from '../../src'
+
+const args: FormikEffectProps = {
+  onChange: noop
+}
 
 export default {
   title: 'Formiks/FormikEffect',
@@ -11,7 +18,9 @@ export default {
 
   argTypes: {},
 
-  args: {}
+  args,
+
+  decorators: [generateStoryDecorator()]
 }
 
 export function _FormikEffect() {

@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
+import { Output } from '../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { TextInput } from '../../src'
-import { Output } from '../_components/Output'
 
 import type { TextInputProps } from '../../src'
 
@@ -26,7 +27,13 @@ export default {
     }
   },
 
-  args
+  args,
+
+  decorators: [
+    generateStoryDecorator({
+      hasDarkMode: true
+    })
+  ]
 }
 
 export function _TextInput(props: TextInputProps) {

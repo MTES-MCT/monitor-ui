@@ -1,3 +1,4 @@
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { Field } from '../../src'
 
 import type { FieldProps } from '../../src'
@@ -10,7 +11,9 @@ export default {
 
   argTypes: {},
 
-  args
+  args,
+
+  decorators: [generateStoryDecorator()]
 }
 
 export function _Field(props: FieldProps) {

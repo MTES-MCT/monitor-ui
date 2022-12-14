@@ -1,13 +1,17 @@
 import { Formik } from 'formik'
 import { useMemo, useState } from 'react'
 
+import { Output } from '../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { noop } from '../../.storybook/utils/noop'
 import { FormikEffect, FormikMultiCheckbox } from '../../src'
-import { Output } from '../_components/Output'
-import { noop } from '../_utils/noop'
 
 import type { FormikMultiCheckboxProps } from '../../src'
 
 const args: FormikMultiCheckboxProps = {
+  isInline: false,
+  isLabelHidden: false,
+  isLight: false,
   name: 'myMultiCheckbox',
   options: [
     { label: 'First Option', value: 'FIRST_OPTION' },
@@ -24,7 +28,13 @@ export default {
 
   argTypes: {},
 
-  args
+  args,
+
+  decorators: [
+    generateStoryDecorator({
+      hasDarkMode: true
+    })
+  ]
 }
 
 export function _FormikMultiCheckbox(props: FormikMultiCheckboxProps) {

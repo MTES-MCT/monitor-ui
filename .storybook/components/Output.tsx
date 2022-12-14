@@ -23,8 +23,8 @@ const Title = styled.h3`
 `
 
 const Value = styled.pre`
-  background-color: ${p => p.theme.color.gunMetal};
-  color: ${p => p.theme.color.white};
+  background-color: #1e1e1e;
+  color: #ffffff;
   margin: 0;
   padding: 8px;
 `

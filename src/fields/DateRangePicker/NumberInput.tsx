@@ -134,6 +134,7 @@ function NumberInputWithRef(
     <StyledNumberInput
       key={String(defaultValue)}
       ref={inputRef}
+      $size={size}
       defaultValue={defaultValue}
       maxLength={size}
       onClick={handleClick}
@@ -142,7 +143,6 @@ function NumberInputWithRef(
       onKeyDown={handleKeyDown}
       pattern="\d*"
       placeholder={placeholder}
-      size={size}
       type="text"
       {...nativeProps}
     />
@@ -152,7 +152,7 @@ function NumberInputWithRef(
 export const NumberInput = forwardRef(NumberInputWithRef)
 
 const StyledNumberInput = styled.input<{
-  size: number
+  $size: number
 }>`
   background-color: transparent;
   border: 0;
@@ -161,7 +161,7 @@ const StyledNumberInput = styled.input<{
   padding: 0;
   text-align: center;
   /* 1 digit = 8px */
-  width: ${p => p.size * 0.5}rem;
+  width: ${p => p.$size * 0.5}rem;
 
   ::placeholder {
     color: ${p => p.theme.color.slateGray};

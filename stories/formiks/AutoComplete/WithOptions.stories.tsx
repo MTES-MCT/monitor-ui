@@ -1,13 +1,16 @@
 import { Formik } from 'formik'
 import { useMemo, useState } from 'react'
 
+import { Output } from '../../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
+import { noop } from '../../../.storybook/utils/noop'
 import { FormikEffect, FormikAutoComplete } from '../../../src'
-import { Output } from '../../_components/Output'
-import { noop } from '../../_utils/noop'
 
 import type { FormikAutoCompleteProps } from '../../../src'
 
 const args: FormikAutoCompleteProps = {
+  isLabelHidden: false,
+  isLight: false,
   label: 'An autocompletable select',
   name: 'autoComplete',
   options: [
@@ -25,7 +28,13 @@ export default {
 
   argTypes: {},
 
-  args
+  args,
+
+  decorators: [
+    generateStoryDecorator({
+      hasDarkMode: true
+    })
+  ]
 }
 
 export const WithOptions = (props: FormikAutoCompleteProps) => {

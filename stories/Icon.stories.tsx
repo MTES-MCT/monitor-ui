@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { generateStoryDecorator } from '../.storybook/components/StoryDecorator'
 import { Icon, THEME } from '../src'
 
 import type { IconProps } from '../src'
@@ -22,7 +23,9 @@ export default {
     }
   },
 
-  args
+  args,
+
+  decorators: [generateStoryDecorator()]
 }
 
 export function _Icon(props: IconProps) {
@@ -432,7 +435,10 @@ const IconBox = styled.div`
 
 const Code = styled.code`
   align-items: center;
+  background-color: transparent;
+  color: #1e1e1e;
   flex-grow: 1;
+  font-size: 16px;
   line-height: 48px;
   padding-left: 16px;
 `

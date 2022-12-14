@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 
+import { Output } from '../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { Dropdown, Icon } from '../../src'
-import { Output } from '../_components/Output'
 
 import type { DropdownProps } from '../../src'
 
@@ -16,7 +17,9 @@ export default {
 
   argTypes: {},
 
-  args
+  args,
+
+  decorators: [generateStoryDecorator()]
 }
 
 export function _Dropdown(props: DropdownProps) {

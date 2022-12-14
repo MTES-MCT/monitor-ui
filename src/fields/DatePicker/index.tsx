@@ -22,6 +22,7 @@ export type DatePickerProps = {
   /** Only allow past dates until today. */
   isHistorical?: boolean
   isLabelHidden?: boolean
+  isLight?: boolean
   label: string
   /**
    * Range of minutes used to generate the time picker list.
@@ -42,6 +43,7 @@ export function DatePicker({
   defaultValue,
   isHistorical = false,
   isLabelHidden = false,
+  isLight = false,
   label,
   minutesRange = 15,
   onChange,
@@ -195,6 +197,7 @@ export function DatePicker({
             ref={dateInputRef}
             defaultValue={selectedDateTupleRef.current}
             isForcedFocused={isCalendarPickerOpenRef.current}
+            isLight={isLight}
             onChange={handleDateInputFilled}
             onClick={openCalendarPicker}
             onNext={handleDateInputNext}
@@ -202,10 +205,11 @@ export function DatePicker({
         </Field>
 
         {withTime && (
-          <Field isTimeField>
+          <Field $isTimeField>
             <TimeInput
               ref={timeInputRef}
               defaultValue={selectedTimeTupleRef.current}
+              isLight={isLight}
               minutesRange={minutesRange}
               onBack={() => dateInputRef.current.focus(true)}
               onChange={handleTimeInputFilled}
@@ -239,15 +243,8 @@ const Box = styled.div`
 `
 
 const Field = styled.span<{
-  isEndDateField?: boolean
-  isTimeField?: boolean
+  $isTimeField?: boolean
 }>`
   font-size: inherit;
-  margin-left: ${p => {
-    if (p.isEndDateField) {
-      return '10px'
-    }
-
-    return p.isTimeField ? '2px' : 0
-  }};
+  margin-left: ${p => (p.$isTimeField ? '2px' : 0)};
 `

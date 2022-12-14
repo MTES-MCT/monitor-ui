@@ -1,9 +1,10 @@
 import { Formik } from 'formik'
 import { useMemo, useState } from 'react'
 
+import { Output } from '../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { noop } from '../../.storybook/utils/noop'
 import { FormikEffect, FormikDateRangePicker } from '../../src'
-import { Output } from '../_components/Output'
-import { noop } from '../_utils/noop'
 
 import type { FormikDateRangePickerProps } from '../../src'
 import type { DateRange } from '../../src/types'
@@ -11,6 +12,7 @@ import type { DateRange } from '../../src/types'
 const args: FormikDateRangePickerProps = {
   isHistorical: false,
   isLabelHidden: false,
+  isLight: false,
   label: 'A Date Range',
   name: 'myDateRange',
   withTime: false
@@ -22,7 +24,13 @@ export default {
 
   argTypes: {},
 
-  args
+  args,
+
+  decorators: [
+    generateStoryDecorator({
+      hasDarkMode: true
+    })
+  ]
 }
 
 export function _FormikDateRangePicker(props: FormikDateRangePickerProps) {

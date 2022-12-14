@@ -1,3 +1,4 @@
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { Label } from '../../src'
 
 import type { LabelProps } from '../../src'
@@ -13,7 +14,9 @@ export default {
 
   argTypes: {},
 
-  args
+  args,
+
+  decorators: [generateStoryDecorator()]
 }
 
 export function _Label(props: LabelProps) {

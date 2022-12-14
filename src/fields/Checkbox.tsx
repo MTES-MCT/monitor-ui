@@ -39,11 +39,11 @@ const StyledCheckbox = styled(RsuiteCheckbox)`
   > .rs-checkbox-checker {
     min-height: 0;
     padding-left: 28px;
-    padding-top: 2px;
+    padding-top: 0;
 
     .rs-checkbox-wrapper {
       left: 2px;
-      top: 0 !important;
+      top: 2px !important;
     }
   }
 `

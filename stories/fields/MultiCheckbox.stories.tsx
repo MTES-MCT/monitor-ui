@@ -1,13 +1,16 @@
 import { useState } from 'react'
 
+import { Output } from '../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { MultiCheckbox } from '../../src'
-import { Output } from '../_components/Output'
 
 import type { MultiCheckboxProps } from '../../src'
 
 const args: MultiCheckboxProps = {
   defaultValue: undefined,
   isInline: false,
+  isLabelHidden: false,
+  isLight: false,
   label: 'Pick some options',
   name: 'myMultiCheckbox',
   options: [
@@ -29,7 +32,13 @@ export default {
     }
   },
 
-  args
+  args,
+
+  decorators: [
+    generateStoryDecorator({
+      hasDarkMode: true
+    })
+  ]
 }
 
 export function _MultiCheckbox(props: MultiCheckboxProps) {

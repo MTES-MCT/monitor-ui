@@ -3,7 +3,6 @@ import { Radio } from 'rsuite'
 import styled, { css } from 'styled-components'
 
 import { Fieldset } from '../elements/Fieldset'
-import { Legend } from '../elements/Legend'
 
 import type { Option } from '../types'
 import type { Promisable } from 'type-fest'
@@ -12,6 +11,7 @@ export type MultiRadioProps = {
   defaultValue?: string
   isInline?: boolean
   isLabelHidden?: boolean
+  isLight?: boolean
   label: string
   name: string
   onChange?: (nextValue: string | undefined) => Promisable<void>
@@ -21,6 +21,7 @@ export function MultiRadio({
   defaultValue,
   isInline = false,
   isLabelHidden = false,
+  isLight = false,
   label,
   name,
   onChange,
@@ -52,9 +53,7 @@ export function MultiRadio({
   }, [defaultValue])
 
   return (
-    <Fieldset key={key}>
-      <Legend isHidden={isLabelHidden}>{label}</Legend>
-
+    <Fieldset key={key} isHidden={isLabelHidden} isLight={isLight} legend={label}>
       <ChecboxesBox $isInline={isInline}>
         {options.map((option, index) => (
           <Radio
@@ -83,7 +82,7 @@ const ChecboxesBox = styled.div<{
   > .rs-radio {
     > .rs-radio-checker {
       min-height: 0;
-      padding: 2px 0 0 28px;
+      padding: 0 0 0 28px;
 
       .rs-radio-wrapper {
         left: 2px;

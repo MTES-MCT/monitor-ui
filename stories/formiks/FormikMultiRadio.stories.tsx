@@ -1,13 +1,17 @@
 import { Formik } from 'formik'
 import { useMemo, useState } from 'react'
 
+import { Output } from '../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { noop } from '../../.storybook/utils/noop'
 import { FormikEffect, FormikMultiRadio } from '../../src'
-import { Output } from '../_components/Output'
-import { noop } from '../_utils/noop'
 
 import type { FormikMultiRadioProps } from '../../src'
 
 const args: FormikMultiRadioProps = {
+  isInline: false,
+  isLabelHidden: false,
+  isLight: false,
   label: 'Pick an option',
   name: 'myMultiRadio',
   options: [
@@ -24,7 +28,13 @@ export default {
 
   argTypes: {},
 
-  args
+  args,
+
+  decorators: [
+    generateStoryDecorator({
+      hasDarkMode: true
+    })
+  ]
 }
 
 export function _FormikMultiRadio(props: FormikMultiRadioProps) {

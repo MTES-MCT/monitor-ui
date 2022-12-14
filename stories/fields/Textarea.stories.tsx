@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
+import { Output } from '../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { Textarea } from '../../src'
-import { Output } from '../_components/Output'
 
 import type { TextareaProps } from '../../src'
 
@@ -26,7 +27,13 @@ export default {
     }
   },
 
-  args
+  args,
+
+  decorators: [
+    generateStoryDecorator({
+      hasDarkMode: true
+    })
+  ]
 }
 
 export function _Textarea(props: TextareaProps) {
