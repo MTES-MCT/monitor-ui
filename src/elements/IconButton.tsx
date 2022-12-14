@@ -17,17 +17,23 @@ export type IconButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'chi
   Icon: FunctionComponent<IconProps>
   accent?: Accent
   color?: string
+  /** In REM, override `size` prop default values */
+  iconSize?: number
   size?: Size
 }
 export function IconButton({
   accent = Accent.PRIMARY,
   color,
   Icon,
+  iconSize,
   size = Size.NORMAL,
   type = 'button',
   ...nativeProps
 }: IconButtonProps) {
-  const children = useMemo(() => <Icon color={color} size={ICON_SIZE[size]} />, [color, Icon, size])
+  const children = useMemo(
+    () => <Icon color={color} size={iconSize || ICON_SIZE[size]} />,
+    [color, Icon, iconSize, size]
+  )
   const commonProps = useMemo(
     () => ({
       children,
