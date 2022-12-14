@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.14.0...v2.0.0) (2022-12-14)
+
+
+* feat(fields)!: convert MultiSelect fixedWidth prop from rem to px (#132) ([6ab4d7f](https://github.com/MTES-MCT/monitor-ui/commit/6ab4d7fb4cf253964ba7074ab0e845c182a39928)), closes [#132](https://github.com/MTES-MCT/monitor-ui/issues/132)
+* feat(elements)!: convert Icon size prop from rem to px (#131) ([30d3639](https://github.com/MTES-MCT/monitor-ui/commit/30d363933c0cd733874ed9999646a332a7b3c2f3)), closes [#131](https://github.com/MTES-MCT/monitor-ui/issues/131)
+
+
+### BREAKING CHANGES
+
+* Both MultiSelect and FormikMultiSelect `fixedWidth` prop are now in px instead of rem.
+* Both Icon and ButtonIcon `size` prop is now in px instead of rem.
+
 # [1.14.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.13.0...v1.14.0) (2022-12-14)
 
 
