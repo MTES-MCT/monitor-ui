@@ -19,7 +19,7 @@ const args: AutoCompleteProps = {
 }
 
 export default {
-  title: 'Elements/AutoComplete',
+  title: 'Fields/AutoComplete',
   component: AutoComplete,
 
   argTypes: {},
