@@ -123,6 +123,8 @@ module.exports = {
 
         'import/no-default-export': 'off',
 
+        'react/function-component-definition': 'off',
+
         'sort-keys-fix/sort-keys-fix': 'off'
       }
     }
