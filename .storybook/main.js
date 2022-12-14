@@ -1,7 +1,7 @@
 /* eslint-env node */
 
 module.exports = {
-  addons: ['@storybook/addon-essentials'],
+  addons: ['@storybook/addon-essentials', 'storybook-addon-performance', '@storybook/addon-a11y'],
   stories: ['../stories/**/*.stories.mdx', '../stories/**/*.stories.@(js|jsx|ts|tsx)'],
   core: {
     builder: 'webpack5'
