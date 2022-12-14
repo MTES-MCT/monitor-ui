@@ -12,9 +12,12 @@ const args: AutoCompleteProps = {
   label: 'An autocompletable select',
   name: 'autoComplete',
   options: [
-    { label: 'Nemo', value: 'NEMO' },
-    { label: 'Doris', value: 'DORIS' }
-  ]
+    { label: 'First Option', value: 'FIRST_OPTION' },
+    { label: 'Second Option', value: 'SECOND_OPTION' },
+    { label: 'Third Option', value: 'THIRD_OPTION' },
+    { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
+  ],
+  placeholder: 'Type "first"'
 }
 
 export default {

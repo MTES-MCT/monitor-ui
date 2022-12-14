@@ -21,7 +21,7 @@ export default {
   args
 }
 
-export const _DatePicker = (props: DatePickerProps) => {
+export function _DatePicker(props: DatePickerProps) {
   const [outputValue, setOutputValue] = useState<Date>()
 
   return (

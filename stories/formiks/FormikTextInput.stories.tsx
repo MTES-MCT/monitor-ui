@@ -21,7 +21,7 @@ export default {
   args
 }
 
-export const _FormikTextInput = (props: FormikTextInputProps) => {
+export function _FormikTextInput(props: FormikTextInputProps) {
   const [outputValue, setOutputValue] = useState<
     | {
         myTextInput?: string

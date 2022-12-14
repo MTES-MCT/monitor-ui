@@ -27,7 +27,7 @@ export default {
   args
 }
 
-export const _FormikMultiCheckbox = (props: FormikMultiCheckboxProps) => {
+export function _FormikMultiCheckbox(props: FormikMultiCheckboxProps) {
   const [outputValue, setOutputValue] = useState<
     | {
         myMultiCheckbox?: string[]

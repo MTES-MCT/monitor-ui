@@ -16,8 +16,10 @@ export default {
   args
 }
 
-export const _Fieldset = (props: FieldsetProps) => (
-  <Fieldset {...props}>
-    This is am HTML {'<fieldset>'} for form inputs. It should contain a {'<Legend>'} element.
-  </Fieldset>
-)
+export function _Fieldset(props: FieldsetProps) {
+  return (
+    <Fieldset {...props}>
+      This is am HTML {'<fieldset>'} for form inputs. It should contain a {'<Legend>'} element.
+    </Fieldset>
+  )
+}

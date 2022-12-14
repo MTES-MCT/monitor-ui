@@ -38,8 +38,10 @@ export default {
   }
 }
 
-export const _Tag = (props: TagProps) => (
-  <>
-    <Tag {...props} />
-  </>
-)
+export function _Tag(props: TagProps) {
+  return (
+    <>
+      <Tag {...props} />
+    </>
+  )
+}

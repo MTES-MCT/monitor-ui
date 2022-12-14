@@ -22,7 +22,7 @@ export default {
   args
 }
 
-export const _DateRangePicker = (props: DateRangePickerProps) => {
+export function _DateRangePicker(props: DateRangePickerProps) {
   const [outputValue, setOutputValue] = useState<DateRange>()
 
   return (

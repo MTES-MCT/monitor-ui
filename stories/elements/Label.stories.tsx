@@ -16,4 +16,6 @@ export default {
   args
 }
 
-export const _Label = (props: LabelProps) => <Label {...props} />
+export function _Label(props: LabelProps) {
+  return <Label {...props} />
+}

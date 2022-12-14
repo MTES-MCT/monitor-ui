@@ -13,6 +13,6 @@ export default {
   args
 }
 
-export const _Field = (props: FieldProps) => (
-  <Field {...props}>This is a field for form inputs but it’s basically a div.</Field>
-)
+export function _Field(props: FieldProps) {
+  return <Field {...props}>This is a field for form inputs but it’s basically a div.</Field>
+}

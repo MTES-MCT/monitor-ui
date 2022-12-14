@@ -16,4 +16,6 @@ export default {
   args
 }
 
-export const _Legend = (props: LegendProps) => <Legend {...props} />
+export function _Legend(props: LegendProps) {
+  return <Legend {...props} />
+}

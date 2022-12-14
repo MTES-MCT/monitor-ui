@@ -27,7 +27,7 @@ export default {
   args
 }
 
-export const _FormikMultiRadio = (props: FormikMultiRadioProps) => {
+export function _FormikMultiRadio(props: FormikMultiRadioProps) {
   const [outputValue, setOutputValue] = useState<
     | {
         mySelect?: string

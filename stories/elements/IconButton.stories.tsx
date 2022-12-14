@@ -32,17 +32,19 @@ export default {
   args
 }
 
-export const _IconButton = (props: IconButtonProps) => (
-  <>
-    <IconButton {...props} />
+export function _IconButton(props: IconButtonProps) {
+  return (
+    <>
+      <IconButton {...props} />
 
-    <Showcase>
-      <Showcase.Subtitle>PRIMARY</Showcase.Subtitle>
+      <Showcase>
+        <Showcase.Subtitle>PRIMARY</Showcase.Subtitle>
 
-      <ShowcaseReference />
-    </Showcase>
-  </>
-)
+        <ShowcaseReference />
+      </Showcase>
+    </>
+  )
+}
 
 function ShowcaseReference() {
   return (
