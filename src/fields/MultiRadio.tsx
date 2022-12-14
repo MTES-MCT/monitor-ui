@@ -104,7 +104,7 @@ const ChecboxesBox = styled.div<{
     p.$isInline &&
     css`
       > .rs-radio:not(:first-child) {
-        margin-left: 0.75rem;
+        margin-left: 12px;
       }
     `}
 `

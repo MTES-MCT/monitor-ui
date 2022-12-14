@@ -10,7 +10,7 @@ export const Table = styled.table`
     > th {
       color: ${p => p.theme.color.gunMetal};
       font-weight: 500;
-      padding: 0 1.75rem 0 1.75rem;
+      padding: 0 28px 0 28px;
       text-align: left;
     }
   }
@@ -19,11 +19,11 @@ export const Table = styled.table`
       border-right: solid 1px ${p => p.theme.color.lightGray};
       color: ${p => p.theme.color.slateGray};
       font-weight: 400;
-      padding: 0.75rem 1.75rem 0 0;
+      padding: 12px 28px 0 0;
       text-align: left;
     }
     > td {
-      padding: 0.75rem 1.75rem 0 1.75rem;
+      padding: 12px 28px 0 28px;
     }
   }
 `

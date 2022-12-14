@@ -100,20 +100,20 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   left: -1px;
-  max-height: 10rem;
+  max-height: 160px;
   overflow: auto;
   position: absolute;
   /* Non-WebKit Firefox Compatibility */
   scrollbar-color: ${p => p.theme.color.lightGray};
   scrollbar-width: thin;
-  top: 2.25rem;
+  top: 36px;
   z-index: 9999;
 
   ::-webkit-scrollbar {
     -webkit-appearance: none;
   }
   ::-webkit-scrollbar:vertical {
-    width: 0.33rem;
+    width: 5px;
   }
   ::-webkit-scrollbar-thumb {
     border: 0;

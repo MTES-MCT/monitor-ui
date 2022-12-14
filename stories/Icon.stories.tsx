@@ -408,28 +408,28 @@ const Box = styled.div`
 
 const Cell = styled.div`
   display: flex;
-  height: 3rem;
-  max-width: 15rem;
-  min-width: 15rem;
+  height: 48px;
+  max-width: 240px;
+  min-width: 240px;
 `
 
 const IconBox = styled.div`
   align-items: center;
   display: flex;
-  height: 3rem;
+  height: 48px;
   justify-content: center;
-  width: 3rem;
+  width: 48px;
 
   > svg {
     box-shadow: 0 0 1px gray;
-    height: 2rem;
-    width: 2rem;
+    height: 32px;
+    width: 32px;
   }
 `
 
 const Code = styled.code`
   align-items: center;
   flex-grow: 1;
-  line-height: 3rem;
-  padding-left: 1rem;
+  line-height: 48px;
+  padding-left: 16px;
 `

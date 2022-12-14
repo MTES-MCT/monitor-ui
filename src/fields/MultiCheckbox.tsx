@@ -79,7 +79,7 @@ const ChecboxesBox = styled.div<{
     !p.$isInline &&
     css`
       > .rs-checkbox:not(:first-child) {
-        margin-top: 0.5rem;
+        margin-top: 8px;
       }
     `}
 
@@ -87,7 +87,7 @@ const ChecboxesBox = styled.div<{
     p.$isInline &&
     css`
       > .rs-checkbox:not(:first-child) {
-        margin-left: 0.75rem;
+        margin-left: 12px;
       }
     `}
 `

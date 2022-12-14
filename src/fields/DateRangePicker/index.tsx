@@ -363,9 +363,9 @@ const Field = styled.span<{
   font-size: inherit;
   margin-left: ${p => {
     if (p.isEndDateField) {
-      return '0.625rem'
+      return '10px'
     }
 
-    return p.isTimeField ? '0.125rem' : 0
+    return p.isTimeField ? '2px' : 0
   }};
 `
