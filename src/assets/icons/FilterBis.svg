@@ -1,0 +1,10 @@
+<svg id="Filter_2" data-name="Filter 2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <g id="Filter_2-2" data-name="Filter 2">
+    <rect id="Rectangle_6279" data-name="Rectangle 6279" width="20" height="20" fill="none"/>
+  </g>
+  <g id="Groupe_4294" data-name="Groupe 4294">
+    <path id="Tracé_1459" data-name="Tracé 1459" d="M18,3.5H8.789a2.5,2.5,0,0,0-4.578,0H2v2H4.211a2.5,2.5,0,0,0,4.578,0H18ZM6.5,5.5a1,1,0,1,1,1-1A1,1,0,0,1,6.5,5.5Z" fill="#707785"/>
+    <path id="Tracé_1460" data-name="Tracé 1460" d="M18,9H15.789a2.5,2.5,0,0,0-4.578,0H2v2h9.211a2.5,2.5,0,0,0,4.578,0H18Zm-4.5,2a1,1,0,1,1,1-1A1,1,0,0,1,13.5,11Z" fill="#707785"/>
+    <path id="Tracé_1461" data-name="Tracé 1461" d="M18,14.5H8.789a2.5,2.5,0,0,0-4.578,0H2v2H4.211a2.5,2.5,0,0,0,4.578,0H18Zm-11.5,2a1,1,0,1,1,1-1A1,1,0,0,1,6.5,16.5Z" fill="#707785"/>
+  </g>
+</svg>

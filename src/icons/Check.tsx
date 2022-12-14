@@ -6,8 +6,8 @@ export function Check({ color, size, ...nativeProps }: IconProps) {
   return (
     <IconBox $size={size} color={color}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
-        <g id="Check" transform="translate(40 -82)">
-          <g data-name="Tracé 1379" fill="none" id="Tracé_1379" strokeMiterlimit="10">
+        <g transform="translate(40 -82)">
+          <g fill="none" strokeMiterlimit="10">
             <path
               d="M-23.99,86.7l-7.778,7.778-4.243-4.243-1.414,1.414,4.243,4.243,1.414,1.414,9.192-9.192Z"
               stroke="none"
@@ -18,14 +18,7 @@ export function Check({ color, size, ...nativeProps }: IconProps) {
               stroke="none"
             />
           </g>
-          <rect
-            data-name="Rectangle 6133"
-            fill="none"
-            height="20"
-            id="Rectangle_6133"
-            transform="translate(-40 82)"
-            width="20"
-          />
+          <rect fill="none" height="20" transform="translate(-40 82)" width="20" />
         </g>
       </svg>
     </IconBox>

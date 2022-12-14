@@ -6,15 +6,13 @@ export function ShowErsMessages({ color, size, ...nativeProps }: IconProps) {
   return (
     <IconBox $size={size} color={color}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
-        <g id="Show_ERS_messages" transform="translate(-40 -41)">
-          <g data-name="Groupe 4186" id="Groupe_4186">
+        <g transform="translate(-40 -41)">
+          <g>
             <path
               d="M50,42.667a5,5,0,0,0-5,5,4.926,4.926,0,0,0,.047.647c.013.113.031.225.051.337l.01.047C45.8,52.493,50,56,50,56s4.2-3.507,4.892-7.3l.01-.047c.02-.112.038-.224.051-.337A4.926,4.926,0,0,0,55,47.667,5,5,0,0,0,50,42.667Zm0,7.5a2.5,2.5,0,1,1,2.5-2.5A2.5,2.5,0,0,1,50,50.167Z"
-              data-name="Tracé 1411"
               fill="currentColor"
-              id="Tracé_1411"
             />
-            <g data-name="Tracé 1412" fill="#fff" id="Tracé_1412" strokeMiterlimit="10">
+            <g fill="#fff" strokeMiterlimit="10">
               <path
                 d="M 50 57.97749710083008 C 49.69147872924805 57.97749710083008 49.38210678100586 57.94551086425781 49.07577133178711 57.88271331787109 C 49.38035202026367 57.93568420410156 49.6889762878418 57.96249771118164 50 57.96249771118164 C 50.3110237121582 57.96249771118164 50.61964797973633 57.93568420410156 50.92422866821289 57.88271331787109 C 50.61789321899414 57.94551086425781 50.30852127075195 57.97749710083008 50 57.97749710083008 Z"
                 stroke="none"
@@ -26,14 +24,7 @@ export function ShowErsMessages({ color, size, ...nativeProps }: IconProps) {
               />
             </g>
           </g>
-          <rect
-            data-name="Rectangle 6161"
-            fill="none"
-            height="20"
-            id="Rectangle_6161"
-            transform="translate(40 41)"
-            width="20"
-          />
+          <rect fill="none" height="20" transform="translate(40 41)" width="20" />
         </g>
       </svg>
     </IconBox>

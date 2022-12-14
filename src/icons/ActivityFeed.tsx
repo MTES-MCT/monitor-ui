@@ -6,12 +6,10 @@ export function ActivityFeed({ color, size, ...nativeProps }: IconProps) {
   return (
     <IconBox $size={size} color={color}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
-        <g id="Activity_feed" transform="translate(40 -41)">
-          <g data-name="Groupe 4181" id="Groupe_4181">
+        <g transform="translate(40 -41)">
+          <g>
             <g
-              data-name="Rectangle 6156"
               fill="none"
-              id="Rectangle_6156"
               stroke="currentColor"
               strokeMiterlimit="10"
               strokeWidth="2"
@@ -21,9 +19,7 @@ export function ActivityFeed({ color, size, ...nativeProps }: IconProps) {
               <rect fill="none" height="9" x="1" y="1" />
             </g>
             <g
-              data-name="Rectangle 6157"
               fill="none"
-              id="Rectangle_6157"
               stroke="currentColor"
               strokeMiterlimit="10"
               strokeWidth="2"
@@ -33,9 +29,7 @@ export function ActivityFeed({ color, size, ...nativeProps }: IconProps) {
               <rect fill="none" height="6" x="1" y="1" />
             </g>
             <g
-              data-name="Rectangle 6158"
               fill="none"
-              id="Rectangle_6158"
               stroke="currentColor"
               strokeMiterlimit="10"
               strokeWidth="2"
@@ -44,7 +38,7 @@ export function ActivityFeed({ color, size, ...nativeProps }: IconProps) {
               <rect height="10" stroke="none" width="2" />
               <rect fill="none" height="8" x="1" y="1" />
             </g>
-            <g data-name="Tracé 1406" fill="none" id="Tracé_1406" strokeMiterlimit="10">
+            <g fill="none" strokeMiterlimit="10">
               <path
                 d="M-34,51a1.994,1.994,0,0,0-1-1.723V46.723A1.994,1.994,0,0,0-34,45a2,2,0,0,0-2-2,2,2,0,0,0-2,2,1.994,1.994,0,0,0,1,1.723v2.554A1.994,1.994,0,0,0-38,51a1.994,1.994,0,0,0,1,1.723v2.554A1.994,1.994,0,0,0-38,57a2,2,0,0,0,2,2,2,2,0,0,0,2-2,1.994,1.994,0,0,0-1-1.723V52.723A1.994,1.994,0,0,0-34,51Z"
                 stroke="none"
@@ -56,14 +50,7 @@ export function ActivityFeed({ color, size, ...nativeProps }: IconProps) {
               />
             </g>
           </g>
-          <rect
-            data-name="Rectangle 6159"
-            fill="none"
-            height="20"
-            id="Rectangle_6159"
-            transform="translate(-40 41)"
-            width="20"
-          />
+          <rect fill="none" height="20" transform="translate(-40 41)" width="20" />
         </g>
       </svg>
     </IconBox>
