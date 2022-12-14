@@ -21,7 +21,7 @@ export default {
   args
 }
 
-export const _FormikTextarea = (props: FormikTextareaProps) => {
+export function _FormikTextarea(props: FormikTextareaProps) {
   const [outputValue, setOutputValue] = useState<
     | {
         myTextarea?: string

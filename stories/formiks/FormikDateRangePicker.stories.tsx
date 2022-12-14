@@ -25,7 +25,7 @@ export default {
   args
 }
 
-export const _FormikDateRangePicker = (props: FormikDateRangePickerProps) => {
+export function _FormikDateRangePicker(props: FormikDateRangePickerProps) {
   const [outputValue, setOutputValue] = useState<
     | {
         myDateRange?: DateRange

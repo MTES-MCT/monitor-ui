@@ -10,14 +10,14 @@ const args: SelectProps = {
   isLabelHidden: false,
   isLight: false,
   label: 'A select',
-  placeholder: 'Pick an option',
   name: 'mySelect',
   options: [
     { label: 'First Option', value: 'FIRST_OPTION' },
     { label: 'Second Option', value: 'SECOND_OPTION' },
     { label: 'Third Option', value: 'THIRD_OPTION' },
     { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
-  ]
+  ],
+  placeholder: 'Pick an option'
 }
 
 export default {

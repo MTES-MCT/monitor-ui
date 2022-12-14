@@ -1,34 +1,34 @@
 import { Formik } from 'formik'
 import { useMemo, useState } from 'react'
 
-import { FormikEffect, FormikSelect } from '../../src'
-import { Output } from '../_components/Output'
-import { noop } from '../_utils/noop'
+import { FormikEffect, FormikAutoComplete } from '../../../src'
+import { Output } from '../../_components/Output'
+import { noop } from '../../_utils/noop'
 
-import type { FormikSelectProps } from '../../src'
+import type { FormikAutoCompleteProps } from '../../../src'
 
-const args: FormikSelectProps = {
-  label: 'A select',
-  name: 'mySelect',
+const args: FormikAutoCompleteProps = {
+  label: 'An autocompletable select',
+  name: 'autoComplete',
   options: [
     { label: 'First Option', value: 'FIRST_OPTION' },
     { label: 'Second Option', value: 'SECOND_OPTION' },
     { label: 'Third Option', value: 'THIRD_OPTION' },
     { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
   ],
-  placeholder: 'Pick an option'
+  placeholder: 'Type "first"'
 }
 
 export default {
-  title: 'Formiks/FormikSelect',
-  component: FormikSelect,
+  title: 'Formiks/FormikAutoComplete',
+  component: FormikAutoComplete,
 
   argTypes: {},
 
   args
 }
 
-export function _FormikSelect(props: FormikSelectProps) {
+export const WithOptions = (props: FormikAutoCompleteProps) => {
   const [outputValue, setOutputValue] = useState<
     | {
         mySelect?: string
@@ -44,7 +44,7 @@ export function _FormikSelect(props: FormikSelectProps) {
         <>
           <FormikEffect onChange={setOutputValue} />
 
-          <FormikSelect {...props} />
+          <FormikAutoComplete {...props} />
         </>
       </Formik>
 

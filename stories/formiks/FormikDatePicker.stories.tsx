@@ -24,7 +24,7 @@ export default {
   args
 }
 
-export const _FormikDatePicker = (props: FormikDatePickerProps) => {
+export function _FormikDatePicker(props: FormikDatePickerProps) {
   const [outputValue, setOutputValue] = useState<
     | {
         myDate?: Date

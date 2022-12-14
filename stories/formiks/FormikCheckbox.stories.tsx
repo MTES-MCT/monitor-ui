@@ -21,7 +21,7 @@ export default {
   args
 }
 
-export const _FormikCheckbox = (props: FormikCheckboxProps) => {
+export function _FormikCheckbox(props: FormikCheckboxProps) {
   const [outputValue, setOutputValue] = useState<
     | {
         myCheckbox?: boolean

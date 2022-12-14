@@ -14,7 +14,7 @@ export default {
   args: {}
 }
 
-export const _FormikEffect = () => {
+export function _FormikEffect() {
   const [outputValue, setOutputValue] = useState<
     | {
         aFormikField?: string

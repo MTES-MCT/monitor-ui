@@ -10,6 +10,7 @@ const args: AutoCompleteProps = {
   isLight: false,
   label: 'An autocompletable select',
   name: 'autoComplete',
+  placeholder: 'Type "brew"',
   queryMap: ({ id, name }) => ({
     label: name,
     value: id

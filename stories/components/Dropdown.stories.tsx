@@ -19,7 +19,7 @@ export default {
   args
 }
 
-export const _Dropdown = (props: DropdownProps) => {
+export function _Dropdown(props: DropdownProps) {
   const [outputValue, setOutputValue] = useState<boolean | '∅'>('∅')
 
   return (

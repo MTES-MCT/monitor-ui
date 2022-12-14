@@ -29,7 +29,7 @@ export default {
   args
 }
 
-export const _FormikMultiSelect = (props: FormikMultiSelectProps) => {
+export function _FormikMultiSelect(props: FormikMultiSelectProps) {
   const [outputValue, setOutputValue] = useState<
     | {
         myMultiSelect?: string[]

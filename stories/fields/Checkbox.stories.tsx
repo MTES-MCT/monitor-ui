@@ -20,7 +20,7 @@ export default {
   args
 }
 
-export const _Checkbox = (props: CheckboxProps) => {
+export function _Checkbox(props: CheckboxProps) {
   const [outputValue, setOutputValue] = useState<boolean | '∅'>('∅')
 
   return (
