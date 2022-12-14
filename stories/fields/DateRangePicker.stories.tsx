@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
+import { Output } from '../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { DateRangePicker } from '../../src'
-import { Output } from '../_components/Output'
 
 import type { DateRangePickerProps } from '../../src'
 import type { DateRange } from '../../src/types'
@@ -9,6 +10,7 @@ import type { DateRange } from '../../src/types'
 const args: DateRangePickerProps = {
   isHistorical: false,
   isLabelHidden: false,
+  isLight: false,
   label: 'A Date Range',
   withTime: true
 }
@@ -19,7 +21,13 @@ export default {
 
   argTypes: {},
 
-  args
+  args,
+
+  decorators: [
+    generateStoryDecorator({
+      hasDarkMode: true
+    })
+  ]
 }
 
 export function _DateRangePicker(props: DateRangePickerProps) {

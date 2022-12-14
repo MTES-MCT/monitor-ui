@@ -1,13 +1,15 @@
 import { useState } from 'react'
 
+import { Output } from '../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { DatePicker } from '../../src'
-import { Output } from '../_components/Output'
 
 import type { DatePickerProps } from '../../src'
 
 const args: DatePickerProps = {
   isHistorical: false,
   isLabelHidden: false,
+  isLight: false,
   label: 'A Date',
   withTime: true
 }
@@ -18,7 +20,13 @@ export default {
 
   argTypes: {},
 
-  args
+  args,
+
+  decorators: [
+    generateStoryDecorator({
+      hasDarkMode: true
+    })
+  ]
 }
 
 export function _DatePicker(props: DatePickerProps) {

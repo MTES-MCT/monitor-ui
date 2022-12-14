@@ -14,6 +14,7 @@ export type DateInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
   defaultValue?: DateTuple
   isEndDate?: boolean
   isForcedFocused: boolean
+  isLight: boolean
   isStartDate?: boolean
   /** Called each time the date input is changed to a new valid value. */
   onChange: (nextDateTuple: DateTuple) => Promisable<void>
@@ -24,6 +25,7 @@ function DateInputWithRef(
     defaultValue,
     isEndDate = false,
     isForcedFocused,
+    isLight,
     isStartDate = false,
     onBack,
     onChange,
@@ -109,7 +111,12 @@ function DateInputWithRef(
   }, [onChange])
 
   return (
-    <Box ref={boxSpanRef} hasError={hasFormatError || hasValidationError} isFocused={isForcedFocused || isFocused}>
+    <Box
+      ref={boxSpanRef}
+      $hasError={hasFormatError || hasValidationError}
+      $isFocused={isForcedFocused || isFocused}
+      $isLight={isLight}
+    >
       {isStartDate && 'Du '}
       {isEndDate && 'Au '}
       <NumberInput
@@ -169,13 +176,14 @@ function DateInputWithRef(
 export const DateInput = forwardRef(DateInputWithRef)
 
 const Box = styled.span<{
-  hasError: boolean
-  isFocused: boolean
+  $hasError: boolean
+  $isFocused: boolean
+  $isLight: boolean
 }>`
-  background-color: ${p => p.theme.color.gainsboro};
+  background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
   box-shadow: ${p =>
-    p.hasError || p.isFocused
-      ? `inset 0px 0px 0px 1px ${p.hasError ? p.theme.color.maximumRed : p.theme.color.blueGray[100]}`
+    p.$hasError || p.$isFocused
+      ? `inset 0px 0px 0px 1px ${p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray[100]}`
       : 'none'};
   color: ${p => p.theme.color.slateGray};
   display: inline-block;

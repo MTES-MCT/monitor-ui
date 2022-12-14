@@ -12,6 +12,7 @@ import type { Promisable } from 'type-fest'
 
 export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'onNext'> & {
   defaultValue?: TimeTuple
+  isLight: boolean
   isStartDate?: boolean
   minutesRange?: number
   /** Called each time the time input is changed to a new valid value. */
@@ -23,6 +24,7 @@ export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
 function TimeInputWithRef(
   {
     defaultValue,
+    isLight,
     isStartDate = false,
     minutesRange = 15,
     onBack,
@@ -158,7 +160,7 @@ function TimeInputWithRef(
   }, [closeRangedTimePicker, onChange])
 
   return (
-    <Box ref={boxSpanRef} hasError={hasFormatError || hasValidationError} isFocused={isFocused}>
+    <Box ref={boxSpanRef} $hasError={hasFormatError || hasValidationError} $isFocused={isFocused} $isLight={isLight}>
       <>
         <NumberInput
           ref={hourInputRef}
@@ -210,13 +212,14 @@ function TimeInputWithRef(
 export const TimeInput = forwardRef(TimeInputWithRef)
 
 const Box = styled.span<{
-  hasError: boolean
-  isFocused: boolean
+  $hasError: boolean
+  $isFocused: boolean
+  $isLight: boolean
 }>`
-  background-color: ${p => p.theme.color.gainsboro};
+  background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
   box-shadow: ${p =>
-    p.hasError || p.isFocused
-      ? `inset 0px 0px 0px 1px ${p.hasError ? p.theme.color.maximumRed : p.theme.color.blueGray[100]}`
+    p.$hasError || p.$isFocused
+      ? `inset 0px 0px 0px 1px ${p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray[100]}`
       : 'none'};
   color: ${p => p.theme.color.slateGray};
   display: inline-block;

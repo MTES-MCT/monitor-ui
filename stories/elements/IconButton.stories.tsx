@@ -1,8 +1,8 @@
 import { values } from 'ramda'
-import { Fragment } from 'react'
 
+import { Showcase } from '../../.storybook/components/Showcase'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { Accent, IconButton, Icon, Size, THEME } from '../../src'
-import { Showcase } from '../_components/Showcase'
 
 import type { IconButtonProps } from '../../src'
 
@@ -37,7 +37,9 @@ export default {
     }
   },
 
-  args
+  args,
+
+  decorators: [generateStoryDecorator()]
 }
 
 export function _IconButton(props: IconButtonProps) {

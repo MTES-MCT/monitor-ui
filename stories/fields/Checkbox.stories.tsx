@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
+import { Output } from '../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { Checkbox } from '../../src'
-import { Output } from '../_components/Output'
 
 import type { CheckboxProps } from '../../src'
 
@@ -17,7 +18,9 @@ export default {
 
   argTypes: {},
 
-  args
+  args,
+
+  decorators: [generateStoryDecorator()]
 }
 
 export function _Checkbox(props: CheckboxProps) {

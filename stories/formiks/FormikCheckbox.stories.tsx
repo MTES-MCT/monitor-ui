@@ -1,9 +1,10 @@
 import { Formik } from 'formik'
 import { useMemo, useState } from 'react'
 
+import { Output } from '../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { noop } from '../../.storybook/utils/noop'
 import { FormikEffect, FormikCheckbox } from '../../src'
-import { Output } from '../_components/Output'
-import { noop } from '../_utils/noop'
 
 import type { FormikCheckboxProps } from '../../src'
 
@@ -18,7 +19,9 @@ export default {
 
   argTypes: {},
 
-  args
+  args,
+
+  decorators: [generateStoryDecorator()]
 }
 
 export function _FormikCheckbox(props: FormikCheckboxProps) {

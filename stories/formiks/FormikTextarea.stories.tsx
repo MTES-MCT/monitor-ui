@@ -1,13 +1,16 @@
 import { Formik } from 'formik'
 import { useMemo, useState } from 'react'
 
+import { Output } from '../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { noop } from '../../.storybook/utils/noop'
 import { FormikEffect, FormikTextarea } from '../../src'
-import { Output } from '../_components/Output'
-import { noop } from '../_utils/noop'
 
 import type { FormikTextareaProps } from '../../src'
 
 const args: FormikTextareaProps = {
+  isLabelHidden: false,
+  isLight: false,
   name: 'myTextarea',
   label: 'A textarea'
 }
@@ -18,7 +21,13 @@ export default {
 
   argTypes: {},
 
-  args
+  args,
+
+  decorators: [
+    generateStoryDecorator({
+      hasDarkMode: true
+    })
+  ]
 }
 
 export function _FormikTextarea(props: FormikTextareaProps) {

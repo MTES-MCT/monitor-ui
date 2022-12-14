@@ -3,7 +3,6 @@ import { useCallback, useMemo, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
 import { Fieldset } from '../elements/Fieldset'
-import { Legend } from '../elements/Legend'
 import { Checkbox } from './Checkbox'
 
 import type { Option } from '../types'
@@ -13,6 +12,7 @@ export type MultiCheckboxProps = {
   defaultValue?: string[]
   isInline?: boolean
   isLabelHidden?: boolean
+  isLight?: boolean
   label: string
   name: string
   onChange?: (nextValue: string[] | undefined) => Promisable<void>
@@ -22,6 +22,7 @@ export function MultiCheckbox({
   defaultValue = [],
   isInline = false,
   isLabelHidden = false,
+  isLight = false,
   label,
   name,
   onChange,
@@ -49,9 +50,7 @@ export function MultiCheckbox({
   )
 
   return (
-    <Fieldset key={key}>
-      <Legend isHidden={isLabelHidden}>{label}</Legend>
-
+    <Fieldset key={key} isHidden={isLabelHidden} isLight={isLight} legend={label}>
       <ChecboxesBox $isInline={isInline}>
         {options.map((option, index) => (
           <Checkbox

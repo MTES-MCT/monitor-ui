@@ -1,15 +1,17 @@
 import { Formik } from 'formik'
 import { useMemo, useState } from 'react'
 
+import { Output } from '../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { noop } from '../../.storybook/utils/noop'
 import { FormikEffect, FormikDatePicker } from '../../src'
-import { Output } from '../_components/Output'
-import { noop } from '../_utils/noop'
 
 import type { FormikDatePickerProps } from '../../src'
 
 const args: FormikDatePickerProps = {
   isHistorical: false,
   isLabelHidden: false,
+  isLight: false,
   label: 'A Date',
   name: 'myDate',
   withTime: false
@@ -21,7 +23,13 @@ export default {
 
   argTypes: {},
 
-  args
+  args,
+
+  decorators: [
+    generateStoryDecorator({
+      hasDarkMode: true
+    })
+  ]
 }
 
 export function _FormikDatePicker(props: FormikDatePickerProps) {

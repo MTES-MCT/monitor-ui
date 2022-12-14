@@ -1,10 +1,13 @@
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { Fieldset } from '../../src'
 
 import type { FieldsetProps } from '../../src'
 
 const args: FieldsetProps = {
+  hasBorder: false,
+  isHidden: false,
   isLight: false,
-  isMulti: false
+  legend: 'A fieldset legend'
 }
 
 export default {
@@ -13,13 +16,25 @@ export default {
 
   argTypes: {},
 
-  args
+  args,
+
+  decorators: [
+    generateStoryDecorator({
+      hasDarkMode: true
+    })
+  ]
 }
 
 export function _Fieldset(props: FieldsetProps) {
   return (
     <Fieldset {...props}>
-      This is am HTML {'<fieldset>'} for form inputs. It should contain a {'<Legend>'} element.
+      <p>
+        This is am HTML <code>{'<fieldset />'}</code> for form inputs. It should contain multiple fields (inputs).
+      </p>
+      <p>
+        If the <code>legend</code> prop is not set, this field should contain a <code>{'<Legend />'}</code>.<br />
+        This <code>{'<Legend />'}</code> will then appear inside the box rather than outside it.
+      </p>
     </Fieldset>
   )
 }

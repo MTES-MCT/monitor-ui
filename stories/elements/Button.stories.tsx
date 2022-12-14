@@ -1,5 +1,6 @@
+import { Showcase } from '../../.storybook/components/Showcase'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { Accent, Button, Icon, Size } from '../../src'
-import { Showcase } from '../_components/Showcase'
 
 import type { ButtonProps } from '../../src'
 
@@ -26,7 +27,9 @@ export default {
     }
   },
 
-  args
+  args,
+
+  decorators: [generateStoryDecorator()]
 }
 
 export function _Button(props: ButtonProps) {

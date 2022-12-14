@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
+import { Output } from '../../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
 import { AutoComplete } from '../../../src'
-import { Output } from '../../_components/Output'
 
 import type { AutoCompleteProps } from '../../../src'
 
@@ -30,7 +31,13 @@ export default {
     }
   },
 
-  args
+  args,
+
+  decorators: [
+    generateStoryDecorator({
+      hasDarkMode: true
+    })
+  ]
 }
 
 export function WithOptions(props: AutoCompleteProps) {

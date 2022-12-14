@@ -23,6 +23,7 @@ export type DateRangePickerProps = {
   /** Only allow past dates until today. */
   isHistorical?: boolean
   isLabelHidden?: boolean
+  isLight?: boolean
   label: string
   /**
    * Range of minutes used to generate the time picker list.
@@ -43,6 +44,7 @@ export function DateRangePicker({
   defaultValue,
   isHistorical = false,
   isLabelHidden = false,
+  isLight = false,
   label,
   minutesRange = 15,
   onChange,
@@ -282,6 +284,7 @@ export function DateRangePicker({
             ref={startDateInputRef}
             defaultValue={selectedStartDateTupleRef.current}
             isForcedFocused={isRangeCalendarPickerOpenRef.current}
+            isLight={isLight}
             isStartDate
             onChange={nextDateTuple => handleDateInputFilled(DateRangePosition.START, nextDateTuple)}
             onClick={openRangeCalendarPicker}
@@ -294,6 +297,7 @@ export function DateRangePicker({
             <TimeInput
               ref={startTimeInputRef}
               defaultValue={selectedStartTimeTupleRef.current}
+              isLight={isLight}
               isStartDate
               minutesRange={minutesRange}
               onBack={() => startDateInputRef.current.focus(true)}
@@ -311,6 +315,7 @@ export function DateRangePicker({
             defaultValue={selectedEndDateTupleRef.current}
             isEndDate
             isForcedFocused={isRangeCalendarPickerOpenRef.current}
+            isLight={isLight}
             onBack={handleEndDateInputPrevious}
             onChange={nextDateTuple => handleDateInputFilled(DateRangePosition.END, nextDateTuple)}
             onClick={openRangeCalendarPicker}
@@ -324,6 +329,7 @@ export function DateRangePicker({
             <TimeInput
               ref={endTimeInputRef}
               defaultValue={selectedEndTimeTupleRef.current}
+              isLight={isLight}
               minutesRange={minutesRange}
               onBack={() => endDateInputRef.current.focus(true)}
               onChange={nextTimeTuple => handleTimeInputFilled(DateRangePosition.END, nextTimeTuple)}

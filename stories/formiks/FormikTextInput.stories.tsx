@@ -1,13 +1,16 @@
 import { Formik } from 'formik'
 import { useMemo, useState } from 'react'
 
+import { Output } from '../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { noop } from '../../.storybook/utils/noop'
 import { FormikEffect, FormikTextInput } from '../../src'
-import { Output } from '../_components/Output'
-import { noop } from '../_utils/noop'
 
 import type { FormikTextInputProps } from '../../src'
 
 const args: FormikTextInputProps = {
+  isLabelHidden: false,
+  isLight: false,
   name: 'myTextInput',
   label: 'A text input'
 }
@@ -18,7 +21,13 @@ export default {
 
   argTypes: {},
 
-  args
+  args,
+
+  decorators: [
+    generateStoryDecorator({
+      hasDarkMode: true
+    })
+  ]
 }
 
 export function _FormikTextInput(props: FormikTextInputProps) {

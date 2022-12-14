@@ -1,13 +1,16 @@
 import { Formik } from 'formik'
 import { useMemo, useState } from 'react'
 
+import { Output } from '../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { noop } from '../../.storybook/utils/noop'
 import { FormikEffect, FormikSelect } from '../../src'
-import { Output } from '../_components/Output'
-import { noop } from '../_utils/noop'
 
 import type { FormikSelectProps } from '../../src'
 
 const args: FormikSelectProps = {
+  isLabelHidden: false,
+  isLight: false,
   label: 'A select',
   name: 'mySelect',
   options: [
@@ -25,7 +28,13 @@ export default {
 
   argTypes: {},
 
-  args
+  args,
+
+  decorators: [
+    generateStoryDecorator({
+      hasDarkMode: true
+    })
+  ]
 }
 
 export function _FormikSelect(props: FormikSelectProps) {

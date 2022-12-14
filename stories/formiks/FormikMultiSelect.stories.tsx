@@ -1,14 +1,17 @@
 import { Formik } from 'formik'
 import { useMemo, useState } from 'react'
 
+import { Output } from '../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { noop } from '../../.storybook/utils/noop'
 import { FormikEffect, FormikMultiSelect } from '../../src'
-import { Output } from '../_components/Output'
-import { noop } from '../_utils/noop'
 
 import type { FormikMultiSelectProps } from '../../src'
 
 const args: FormikMultiSelectProps = {
   fixedWidth: 160,
+  isLabelHidden: false,
+  isLight: false,
   label: 'A multiple select',
   name: 'myMultiSelect',
   options: [
@@ -26,7 +29,13 @@ export default {
 
   argTypes: {},
 
-  args
+  args,
+
+  decorators: [
+    generateStoryDecorator({
+      hasDarkMode: true
+    })
+  ]
 }
 
 export function _FormikMultiSelect(props: FormikMultiSelectProps) {

@@ -1,5 +1,6 @@
 import { values } from 'ramda'
 
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { Accent, Tag } from '../../src'
 import { TagBullet } from '../../src/elements/Tag/constants'
 
@@ -31,11 +32,11 @@ export default {
 
   args,
 
-  parameters: {
-    design: {
-      url: 'https://xd.adobe.com/view/b6d4c472-3fbe-4dec-9f14-38fe03872a3e-e387/screen/96f2fdee-dca5-4d84-8214-db82ae9c5a22/'
-    }
-  }
+  decorators: [
+    generateStoryDecorator({
+      hasDarkMode: true
+    })
+  ]
 }
 
 export function _Tag(props: TagProps) {
