@@ -8,7 +8,8 @@ async function generateIcon({ count, index, svgIconPath, template }) {
   console.log(`Generating icons: [${index + 1}/${count}] Converting ${iconName}.svg to ${iconName}.tsx…`)
 
   const svgIconSource = await fs.readFile(svgIconPath, 'utf-8')
-  const svgIconSourceWithoutExtraneousProps = svgIconSource.replace(/ (xlink|xmlns)[^ ]+"/g, '')
+  const svgIconWithCurrentColor = svgIconSource.replace(/#707785/g, 'currentColor')
+  const svgIconSourceWithoutExtraneousProps = svgIconWithCurrentColor.replace(/ (xlink|xmlns)[^ ]+"/g, '')
   const svgIconSourceWithProps = svgIconSourceWithoutExtraneousProps.replace(/>/, ` {...nativeProps}>`)
   const tsxIconSource = template
     .replace(/\/\*ICON_NAME\*\//g, iconName)
