@@ -180,7 +180,7 @@ const Box = styled.span<{
   color: ${p => p.theme.color.slateGray};
   display: inline-block;
   font-size: inherit;
-  padding: 0.3125rem 0.5rem 0.4375rem;
+  padding: 5px 8px 7px;
   user-select: none;
 
   :hover {

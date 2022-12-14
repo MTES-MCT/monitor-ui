@@ -102,7 +102,7 @@ const Box = styled.div`
   .rs-picker-daterange-menu {
     border: solid 1px ${p => p.theme.color.lightGray};
     border-radius: 0;
-    margin-top: 0.25rem;
+    margin-top: 4px;
 
     .rs-picker-daterange-header,
     .rs-calendar-header-time-toolbar,
@@ -120,7 +120,7 @@ const Box = styled.div`
 
       .rs-calendar-header {
         border-bottom: solid 1px ${p => p.theme.color.lightGray};
-        padding: 0.5rem;
+        padding: 8px;
 
         .rs-calendar-header-month-toolbar {
           align-items: center;
@@ -144,10 +144,10 @@ const Box = styled.div`
       }
 
       .rs-calendar-view {
-        padding: 0.75rem 0.5rem 0;
+        padding: 12px 8px 0;
 
         .rs-calendar-table-cell {
-          padding: 0 0 0.25rem 0;
+          padding: 0 0 4px 0;
           width: 33px;
 
           &.rs-calendar-table-cell-in-range:before {

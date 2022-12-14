@@ -160,7 +160,7 @@ const StyledNumberInput = styled.input<{
   outline: none;
   padding: 0;
   text-align: center;
-  /* 1 digit = 0.5rem */
+  /* 1 digit = 8px */
   width: ${p => p.size * 0.5}rem;
 
   ::placeholder {

@@ -18,13 +18,13 @@ function RawShowcase(nativeProps: RawShowcaseProps) {
 }
 
 const Line = styled.hr`
-  margin: 1.25rem 0 0;
+  margin: 20px 0 0;
 `
 
 const Box = styled.div`
   > h2:not(:first-child),
   > h3:not(:first-child) {
-    margin-top: 2rem;
+    margin-top: 32px;
   }
 `
 

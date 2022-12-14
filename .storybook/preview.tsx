@@ -16,11 +16,11 @@ const CustomGlobalStyle: any = createGlobalStyle<{
   isFullWidth: boolean | undefined
 }>`
   p {
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
   }
 
   #root {
-    width: ${p => (p.isFullWidth ? '100%' : '40rem')};
+    width: ${p => (p.isFullWidth ? '100%' : '640px')};
   }
 `
 

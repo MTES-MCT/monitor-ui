@@ -53,6 +53,6 @@ export function _Dropdown(props: DropdownProps) {
 
 const Box = styled.div`
   > div:nth-child(2) {
-    margin-left: 5rem;
+    margin-left: 80px;
   }
 `

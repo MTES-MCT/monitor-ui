@@ -19,12 +19,12 @@ export function Output({ value }: OutputProps) {
 const Title = styled.h3`
   font-size: 100%;
   line-height: 1.42;
-  margin: 1rem 0 0.5rem 0;
+  margin: 16px 0 8px 0;
 `
 
 const Value = styled.pre`
   background-color: ${p => p.theme.color.gunMetal};
   color: ${p => p.theme.color.white};
   margin: 0;
-  padding: 0.5rem;
+  padding: 8px;
 `

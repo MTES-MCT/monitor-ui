@@ -52,7 +52,7 @@ const StyledDropdown = styled(RsuiteDropdown)<{
 
     /* SVG Icon Components are wrapped within a <div /> */
     > div {
-      margin-right: 0.5rem;
+      margin-right: 8px;
     }
 
     > svg {

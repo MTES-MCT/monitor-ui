@@ -20,5 +20,5 @@ const StyledField = styled(Field)<{
 
   border: 0;
   margin: 0;
-  padding: ${p => (p.isMulti ? '1rem' : 0)};
+  padding: ${p => (p.isMulti ? '16px' : 0)};
 `

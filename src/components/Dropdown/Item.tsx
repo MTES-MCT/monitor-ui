@@ -24,7 +24,7 @@ const StyledDropdownItem = styled(RsuiteDropdown.Item)<{
   display: flex;
   font-size: 13px;
   line-height: 1;
-  padding: 0.75rem;
+  padding: 12px;
   padding: ${p => (p.$hasIcon ? '9px' : '12.5px')} 12px;
 
   &:not(:last-child) {
