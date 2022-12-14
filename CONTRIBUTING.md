@@ -4,6 +4,8 @@
   - [First Setup](#first-setup)
   - [Conventions](#conventions)
   - [Release](#release)
+    - [Versionning](#versionning)
+      - [Breaking changes](#breaking-changes)
   - [Maintenance](#maintenance)
     - [Updating icons](#updating-icons)
     - [Updating caniuse browserlist](#updating-caniuse-browserlist)
@@ -47,11 +49,30 @@ The release process is automated, including versionning and release notes genera
 
 1. Go to [Github Actions Release Workflow](https://github.com/MTES-MCT/monitor-ui/actions/workflows/release.yml)
 2. Click on "Run workflow" > "Run workflow" ("Branch: main" should be selected by default).
-3.
+3. ⚠️ This will generate a version pull request with a title looking like `ci(release): X.Y.Z`.  
+   You **MUST** merge this pull request before merging new pull requests.  
+   _Why? Because this PR include both the release notes and the new version from which later versions will be
+   calculated._
+
+#### Versionning
+
+In short, 'feat(...):' will generated minor versions and 'fix(...):' will generate patch versions.
+
+##### Breaking changes
+
+If you have to release a BREAKING CHANGE, you should look at the
+[official documentation](https://www.conventionalcommits.org/en/v1.0.0/#commit-message-with-description-and-breaking-change-footer)
+and you may look at this [pull request](https://github.com/MTES-MCT/monitor-ui/pull/131) as an example.
+
+In the case of a BREAKING CHANGE, it's **strongly advised** to add an exclamation point at the end of the scope (or type
+if there is no scope) in the commit message, i.e.:
 
 ```sh
-npx browserslist@latest --update-db
+git commit -m "feat(fields)!: this prop has been removed"
+git commit -m "feat!: all theses component props are now strings instead of numbers"
 ```
+
+And **don't forget** the `BREAKING CHANGE: ...` in the commit message body.
 
 ### Maintenance
 
