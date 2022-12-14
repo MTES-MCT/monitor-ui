@@ -7,17 +7,17 @@ import { PrimaryButton, SecondaryButton } from './Button'
 import type { IconProps } from '../types'
 import type { ButtonHTMLAttributes, FunctionComponent } from 'react'
 
-const ICON_SIZE: Record<Size, number> = {
-  [Size.LARGE]: 1.625,
-  [Size.NORMAL]: 1.25,
-  [Size.SMALL]: 0.875
+const ICON_SIZE_IN_PX: Record<Size, number> = {
+  [Size.LARGE]: 26,
+  [Size.NORMAL]: 20,
+  [Size.SMALL]: 14
 }
 
 export type IconButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> & {
   Icon: FunctionComponent<IconProps>
   accent?: Accent
   color?: string
-  /** In REM, override `size` prop default values */
+  /** In pixels, override `size` prop default values */
   iconSize?: number
   size?: Size
 }
@@ -31,7 +31,7 @@ export function IconButton({
   ...nativeProps
 }: IconButtonProps) {
   const children = useMemo(
-    () => <Icon color={color} size={iconSize || ICON_SIZE[size]} />,
+    () => <Icon color={color} size={iconSize || ICON_SIZE_IN_PX[size]} />,
     [color, Icon, iconSize, size]
   )
   const commonProps = useMemo(

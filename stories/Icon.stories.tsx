@@ -6,7 +6,7 @@ import type { IconProps } from '../src'
 
 const args: IconProps = {
   color: THEME.color.charcoal,
-  size: 2
+  size: 32
 }
 
 export default {
@@ -15,7 +15,10 @@ export default {
 
   argTypes: {
     color: {
-      control: { type: 'color', presetColors: [THEME.color.charcoal, THEME.color.goldenPoppy, THEME.color.maximumRed] }
+      control: {
+        type: 'color',
+        presetColors: [THEME.color.charcoal, THEME.color.goldenPoppy, THEME.color.maximumRed]
+      }
     }
   },
 

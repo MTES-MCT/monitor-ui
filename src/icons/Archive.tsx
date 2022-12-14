@@ -4,7 +4,7 @@ import type { IconProps } from '../types'
 
 export function Archive({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox $size={size} color={color}>
+    <IconBox $color={color} $size={size}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <g transform="translate(-120)">
           <path d="M138,2H122V8h1V18h14V8h1ZM124,4h12V6H124Zm11,12H125V8h10Z" fill="currentColor" />

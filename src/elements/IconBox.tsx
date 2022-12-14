@@ -1,17 +1,20 @@
 import styled from 'styled-components'
 
 export type IconBoxProps = {
-  /** In REM */
+  $color?: string
+  /** In pixels */
   $size?: number
-  color?: string
 }
+/**
+ * Internal component used to wrap SVG icon components
+ */
 export const IconBox = styled.div<IconBoxProps>`
   display: inline-block;
-  color: ${p => p.color ?? 'inherit'};
+  color: ${p => p.$color ?? 'inherit'};
 
   > svg {
     display: block;
-    height: ${p => p.$size ?? 1}rem;
-    width: ${p => p.$size ?? 1}rem;
+    height: ${p => p.$size ?? 16}px;
+    width: ${p => p.$size ?? 16}px;
   }
 `
