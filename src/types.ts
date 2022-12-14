@@ -10,7 +10,7 @@ export type DeepPartial<T> = T extends object
 
 export type IconProps = SVGProps<SVGSVGElement> & {
   color?: string
-  /** In REM */
+  /** In pixels */
   size?: number
 }
 

@@ -4,7 +4,7 @@ import type { IconProps } from '../types'
 
 export function Landmark({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox $size={size} color={color}>
+    <IconBox $color={color} $size={size}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <g transform="translate(120 -82)">
           <rect fill="currentColor" height="15" transform="translate(-114 99) rotate(180)" width="2" />

@@ -4,7 +4,7 @@ import type { IconProps } from '../types'
 
 export function Note({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox $size={size} color={color}>
+    <IconBox $color={color} $size={size}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <path d="M2,2V18H12l6-6V2ZM4,16V4H16v6H10v6Zm8-.828V12h3.172Z" fill="currentColor" />
         <rect fill="none" height="20" width="20" />

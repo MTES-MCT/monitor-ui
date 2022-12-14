@@ -4,7 +4,7 @@ import type { IconProps } from '../types'
 
 export function SelectCircle({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox $size={size} color={color}>
+    <IconBox $color={color} $size={size}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <path d="M0,0H20V20H0Z" fill="none" />
         <path

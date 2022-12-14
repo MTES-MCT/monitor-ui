@@ -4,7 +4,7 @@ import type { IconProps } from '../types'
 
 export function PinpointHide({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox $size={size} color={color}>
+    <IconBox $color={color} $size={size}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <g transform="translate(-8.128 -10.447)">
           <rect fill="none" height="20" transform="translate(8.128 10.447)" width="20" />

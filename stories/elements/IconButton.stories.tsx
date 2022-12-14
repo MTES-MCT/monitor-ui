@@ -1,3 +1,4 @@
+import { values } from 'ramda'
 import { Fragment } from 'react'
 
 import { Accent, IconButton, Icon, Size, THEME } from '../../src'
@@ -7,6 +8,7 @@ import type { IconButtonProps } from '../../src'
 
 const args: IconButtonProps = {
   accent: Accent.PRIMARY,
+  iconSize: undefined,
   Icon: Icon.Close,
   size: Size.NORMAL
 }
@@ -18,14 +20,20 @@ export default {
   argTypes: {
     accent: {
       control: 'inline-radio',
-      options: Accent
+      options: values(Accent)
     },
     color: {
-      control: { type: 'color', presetColors: [THEME.color.charcoal, THEME.color.goldenPoppy, THEME.color.maximumRed] }
+      control: {
+        type: 'color',
+        presetColors: [THEME.color.charcoal, THEME.color.goldenPoppy, THEME.color.maximumRed]
+      }
+    },
+    iconSize: {
+      control: 'number'
     },
     size: {
       control: 'inline-radio',
-      options: Size
+      options: values(Size)
     }
   },
 

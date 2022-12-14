@@ -4,7 +4,7 @@ import type { IconProps } from '../types'
 
 export function Drapeau({ color, size, ...nativeProps }: IconProps) {
   return (
-    <IconBox $size={size} color={color}>
+    <IconBox $color={color} $size={size}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <rect fill="#000091" height="12" transform="translate(1 4)" width="6" />
         <rect fill="#e1000f" height="12" transform="translate(13 4)" width="6" />
