@@ -9,7 +9,10 @@ async function generateIcon({ count, index, svgIconPath, template }) {
 
   const svgIconSource = await fs.readFile(svgIconPath, 'utf-8')
   const svgIconWithCurrentColor = svgIconSource.replace(/#707785/g, 'currentColor')
-  const svgIconSourceWithoutExtraneousProps = svgIconWithCurrentColor.replace(/ (xlink|xmlns)[^ ]+"/g, '')
+  const svgIconSourceWithoutExtraneousProps = svgIconWithCurrentColor
+    .replace(/ (xlink|xmlns)[^ ]+"/g, '')
+    .replace(/ data-name="[^"]*"/g, '')
+    .replace(/ id="[^"]*"/g, '')
   const svgIconSourceWithProps = svgIconSourceWithoutExtraneousProps.replace(/>/, ` {...nativeProps}>`)
   const tsxIconSource = template
     .replace(/\/\*ICON_NAME\*\//g, iconName)
