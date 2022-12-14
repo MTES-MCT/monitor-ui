@@ -52,7 +52,7 @@ export function MultiCheckbox({
     <Fieldset key={key}>
       <Legend isHidden={isLabelHidden}>{label}</Legend>
 
-      <ChecboxesBox isInline={isInline}>
+      <ChecboxesBox $isInline={isInline}>
         {options.map((option, index) => (
           <Checkbox
             // eslint-disable-next-line react/no-array-index-key
@@ -69,14 +69,14 @@ export function MultiCheckbox({
 }
 
 const ChecboxesBox = styled.div<{
-  isInline: boolean
+  $isInline: boolean
 }>`
   color: ${p => p.theme.color.gunMetal};
   display: flex;
-  flex-direction: ${p => (p.isInline ? 'row' : 'column')};
+  flex-direction: ${p => (p.$isInline ? 'row' : 'column')};
 
   ${p =>
-    !p.isInline &&
+    !p.$isInline &&
     css`
       > .rs-checkbox:not(:first-child) {
         margin-top: 0.5rem;
@@ -84,7 +84,7 @@ const ChecboxesBox = styled.div<{
     `}
 
   ${p =>
-    p.isInline &&
+    p.$isInline &&
     css`
       > .rs-checkbox:not(:first-child) {
         margin-left: 0.75rem;

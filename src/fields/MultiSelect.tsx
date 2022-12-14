@@ -57,10 +57,10 @@ export function MultiSelect({
 
       <StyledTagPicker
         key={key}
+        $fixedWidth={fixedWidth}
+        $isLight={isLight}
         data={options}
-        fixedWidth={fixedWidth}
         id={originalProps.name}
-        isLight={isLight}
         onChange={handleChange}
         searchable={searchable}
         {...originalProps}
@@ -72,15 +72,15 @@ export function MultiSelect({
 // TODO A width seems to be mandatory in rsuite which is a very dirty behavior.
 // We should hack that.
 const StyledTagPicker = styled(TagPicker)<{
-  fixedWidth: number
-  isLight: boolean
+  $fixedWidth: number
+  $isLight: boolean
 }>`
   border: 0;
   cursor: pointer;
-  width: ${p => p.fixedWidth}rem;
+  width: ${p => p.$fixedWidth}rem;
 
   > .rs-picker-toggle {
-    background-color: ${p => (p.isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
+    background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
     cursor: inherit;
   }
 `

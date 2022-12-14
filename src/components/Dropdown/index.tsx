@@ -16,12 +16,12 @@ function RawDropdown({ Icon, ...originalProps }: DropdownProps) {
   const icon = useMemo(() => (Icon ? <Icon size={1.25} /> : undefined), [Icon])
   const hasIcon = useMemo(() => Boolean(Icon), [Icon])
 
-  return <StyledDropdown hasIcon={hasIcon} icon={icon} {...originalProps} />
+  return <StyledDropdown $hasIcon={hasIcon} icon={icon} {...originalProps} />
 }
 
 // TODO We need to split into multiple styled components as done in `<Button />`.
 const StyledDropdown = styled(RsuiteDropdown)<{
-  hasIcon: boolean
+  $hasIcon: boolean
 }>`
   .rs-btn {
     align-items: center;
@@ -30,7 +30,7 @@ const StyledDropdown = styled(RsuiteDropdown)<{
     color: ${p => p.theme.color.gainsboro};
     display: flex;
     font-size: 13px;
-    padding: ${p => (p.hasIcon ? '5px' : '6px')} 12px;
+    padding: ${p => (p.$hasIcon ? '5px' : '6px')} 12px;
 
     :hover {
       background-color: ${p => p.theme.color.blueYonder['100']};
