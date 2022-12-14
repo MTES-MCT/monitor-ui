@@ -11,7 +11,7 @@ import type { Promisable } from 'type-fest'
 
 export type MultiSelectProps = Omit<TagPickerProps, 'as' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'value'> & {
   defaultValue?: string[]
-  /** Width in REM */
+  /** Width in pixels */
   fixedWidth?: number
   isLabelHidden?: boolean
   isLight?: boolean
@@ -77,7 +77,7 @@ const StyledTagPicker = styled(TagPicker)<{
 }>`
   border: 0;
   cursor: pointer;
-  width: ${p => p.$fixedWidth}rem;
+  width: ${p => p.$fixedWidth}px;
 
   > .rs-picker-toggle {
     background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;

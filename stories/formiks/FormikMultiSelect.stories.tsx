@@ -8,7 +8,7 @@ import { noop } from '../_utils/noop'
 import type { FormikMultiSelectProps } from '../../src'
 
 const args: FormikMultiSelectProps = {
-  fixedWidth: 10,
+  fixedWidth: 160,
   label: 'A multiple select',
   name: 'myMultiSelect',
   options: [
