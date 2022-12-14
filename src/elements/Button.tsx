@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import styled from 'styled-components'
 
-import { Accent, Size } from '../contants'
+import { Accent, Size } from '../constants'
 
 import type { IconProps } from '../types'
 import type { ButtonHTMLAttributes, FunctionComponent } from 'react'
