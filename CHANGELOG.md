@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/MTES-MCT/monitor-ui/compare/v1.12.0...v1.12.1) (2022-12-14)
+
+
+### Bug Fixes
+
+* **icons:** use currentColor in new icons ([#119](https://github.com/MTES-MCT/monitor-ui/issues/119)) ([3937553](https://github.com/MTES-MCT/monitor-ui/commit/39375532354d24489ab3aeb024ebe5b2cb61772a))
+
 # [1.12.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.11.0...v1.12.0) (2022-12-13)
 
 
