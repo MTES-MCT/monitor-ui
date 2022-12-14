@@ -1,3 +1,18 @@
+# [1.14.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.13.0...v1.14.0) (2022-12-14)
+
+
+### Bug Fixes
+
+* **fields:** prefix styled custom props with $ ([#127](https://github.com/MTES-MCT/monitor-ui/issues/127)) ([05d03ba](https://github.com/MTES-MCT/monitor-ui/commit/05d03ba933cf6c3d684b5cb1456a8115c9df5af1))
+
+
+### Features
+
+* **elements:** add iconSize prop to IconButton ([#123](https://github.com/MTES-MCT/monitor-ui/issues/123)) ([e6b03ce](https://github.com/MTES-MCT/monitor-ui/commit/e6b03ce389e0f35e0ab3f485d34ec682d7474e0b))
+* **fields:** add AutoComplete ([#125](https://github.com/MTES-MCT/monitor-ui/issues/125)) ([8fb5cef](https://github.com/MTES-MCT/monitor-ui/commit/8fb5cef36ce0d1446ceee7019a27da016736205c))
+* **formiks:** add FormikAutoComplete ([#126](https://github.com/MTES-MCT/monitor-ui/issues/126)) ([644cc2b](https://github.com/MTES-MCT/monitor-ui/commit/644cc2be5aa21c9177ff344e65912834095595d0))
+* **icons:** update ([#124](https://github.com/MTES-MCT/monitor-ui/issues/124)) ([81f3287](https://github.com/MTES-MCT/monitor-ui/commit/81f32875b3d5b7f491b038370d5e868e71e73f6a))
+
 # [1.13.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.12.1...v1.13.0) (2022-12-14)
 
 
