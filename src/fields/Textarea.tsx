@@ -65,7 +65,7 @@ export function Textarea({
   )
 }
 
-export const StyledInput = styled(Input)<{
+const StyledInput = styled(Input)<{
   isLight: boolean
 }>`
   background-color: ${p => (p.isLight ? p.theme.color.white : p.theme.color.gainsboro)};
