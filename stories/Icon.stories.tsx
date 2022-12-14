@@ -38,6 +38,12 @@ export const _Icon = (props: IconProps) => (
     </Cell>
     <Cell>
       <IconBox>
+        <Icon.Anchor {...props} />
+      </IconBox>
+      <Code>Anchor</Code>
+    </Cell>
+    <Cell>
+      <IconBox>
         <Icon.Archive {...props} />
       </IconBox>
       <Code>Archive</Code>
@@ -53,6 +59,12 @@ export const _Icon = (props: IconProps) => (
         <Icon.Calendar {...props} />
       </IconBox>
       <Code>Calendar</Code>
+    </Cell>
+    <Cell>
+      <IconBox>
+        <Icon.Check {...props} />
+      </IconBox>
+      <Code>Check</Code>
     </Cell>
     <Cell>
       <IconBox>
@@ -110,6 +122,12 @@ export const _Icon = (props: IconProps) => (
     </Cell>
     <Cell>
       <IconBox>
+        <Icon.Drapeau {...props} />
+      </IconBox>
+      <Code>Drapeau</Code>
+    </Cell>
+    <Cell>
+      <IconBox>
         <Icon.Duplicate {...props} />
       </IconBox>
       <Code>Duplicate</Code>
@@ -119,6 +137,12 @@ export const _Icon = (props: IconProps) => (
         <Icon.Edit {...props} />
       </IconBox>
       <Code>Edit</Code>
+    </Cell>
+    <Cell>
+      <IconBox>
+        <Icon.EditBis {...props} />
+      </IconBox>
+      <Code>EditBis</Code>
     </Cell>
     <Cell>
       <IconBox>
@@ -206,6 +230,12 @@ export const _Icon = (props: IconProps) => (
     </Cell>
     <Cell>
       <IconBox>
+        <Icon.MapLayers {...props} />
+      </IconBox>
+      <Code>MapLayers</Code>
+    </Cell>
+    <Cell>
+      <IconBox>
         <Icon.MeasureAngle {...props} />
       </IconBox>
       <Code>MeasureAngle</Code>
@@ -239,6 +269,12 @@ export const _Icon = (props: IconProps) => (
         <Icon.More {...props} />
       </IconBox>
       <Code>More</Code>
+    </Cell>
+    <Cell>
+      <IconBox>
+        <Icon.Note {...props} />
+      </IconBox>
+      <Code>Note</Code>
     </Cell>
     <Cell>
       <IconBox>
@@ -335,6 +371,12 @@ export const _Icon = (props: IconProps) => (
         <Icon.Tag {...props} />
       </IconBox>
       <Code>Tag</Code>
+    </Cell>
+    <Cell>
+      <IconBox>
+        <Icon.Unlock {...props} />
+      </IconBox>
+      <Code>Unlock</Code>
     </Cell>
     <Cell>
       <IconBox>

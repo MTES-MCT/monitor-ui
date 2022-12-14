@@ -11,19 +11,19 @@ export function MapLayers({ color, size, ...nativeProps }: IconProps) {
           <path
             d="M10,2.332,16.113,6,10,9.668,3.887,6,10,2.332M10,0,0,6l10,6L20,6,10,0Z"
             data-name="Tracé 1445"
-            fill="#707785"
+            fill="currentColor"
             id="Tracé_1445"
           />
           <path
             d="M1.913,8.815,0,10l10,6,10-6L18.056,8.834,10,13.668Z"
             data-name="Tracé 1446"
-            fill="#707785"
+            fill="currentColor"
             id="Tracé_1446"
           />
           <path
             d="M1.913,12.815,0,14l10,6,10-6-1.944-1.166L10,17.668Z"
             data-name="Tracé 1447"
-            fill="#707785"
+            fill="currentColor"
             id="Tracé_1447"
           />
         </g>

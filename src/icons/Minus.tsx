@@ -8,7 +8,7 @@ export function Minus({ color, size, ...nativeProps }: IconProps) {
       <svg height="20" id="Minus" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <rect
           data-name="Rectangle 6131"
-          fill="#707785"
+          fill="currentColor"
           height="14"
           id="Rectangle_6131"
           transform="translate(3 11) rotate(-90)"

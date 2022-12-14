@@ -14,7 +14,7 @@ export function Unlock({ color, size, ...nativeProps }: IconProps) {
               cx="1.5"
               cy="1.5"
               data-name="Ellipse 774"
-              fill="#707785"
+              fill="currentColor"
               id="Ellipse_774"
               r="1.5"
               transform="translate(8.5 11.5)"
@@ -22,7 +22,7 @@ export function Unlock({ color, size, ...nativeProps }: IconProps) {
             <path
               d="M14.471,7V5.456a4.471,4.471,0,0,0-8.942,0H7.765a2.235,2.235,0,1,1,4.47,0V7H3V19H17V7ZM15,17H5V9H15Z"
               data-name="Tracé 1474"
-              fill="#707785"
+              fill="currentColor"
               id="Tracé_1474"
             />
           </g>
