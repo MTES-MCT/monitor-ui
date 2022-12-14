@@ -78,6 +78,7 @@ const GlobalStyleToHideBodyDialog: any = createGlobalStyle`
 const Box = styled.div`
   height: 0;
   position: relative;
+  top: 0;
   user-select: none;
 
   .rs-picker-toggle {

@@ -54,9 +54,9 @@ export function Textarea({
       <StyledInput
         key={key}
         ref={inputRef}
+        $isLight={isLight}
         as="textarea"
         id={originalProps.name}
-        isLight={isLight}
         onChange={handleChange}
         rows={rows}
         {...originalProps}
@@ -66,9 +66,9 @@ export function Textarea({
 }
 
 const StyledInput = styled(Input)<{
-  isLight: boolean
+  $isLight: boolean
 }>`
-  background-color: ${p => (p.isLight ? p.theme.color.white : p.theme.color.gainsboro)};
+  background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
   border: 0;
   font-size: 13px;
   padding: 7px 11px;

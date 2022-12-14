@@ -13,19 +13,19 @@ export function Item({ Icon, ...originalProps }: DropdownItemProps) {
   const icon = useMemo(() => (Icon ? <Icon size={1.25} /> : undefined), [Icon])
   const hasIcon = useMemo(() => Boolean(Icon), [Icon])
 
-  return <StyledDropdownItem hasIcon={hasIcon} icon={icon} {...originalProps} />
+  return <StyledDropdownItem $hasIcon={hasIcon} icon={icon} {...originalProps} />
 }
 
 // TODO We need to split that into multiple styled components as done in `<Button />`.
 const StyledDropdownItem = styled(RsuiteDropdown.Item)<{
-  hasIcon: boolean
+  $hasIcon: boolean
 }>`
   align-items: center;
   display: flex;
   font-size: 13px;
   line-height: 1;
   padding: 0.75rem;
-  padding: ${p => (p.hasIcon ? '9px' : '12.5px')} 12px;
+  padding: ${p => (p.$hasIcon ? '9px' : '12.5px')} 12px;
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--lightGray);

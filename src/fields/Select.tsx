@@ -54,9 +54,9 @@ export function Select({
 
       <StyledSelectPicker
         key={key}
+        $isLight={isLight}
         data={options}
         id={originalProps.name}
-        isLight={isLight}
         // The `unknown` type from Rsuite library is wrong. It should be inferred from `data` prop type.
         // `onChange: ((value: unknown, event: React.SyntheticEvent<Element, Event>) => void) | undefined`
         onChange={handleChange as any}
@@ -68,10 +68,10 @@ export function Select({
 }
 
 const StyledSelectPicker = styled(SelectPicker)<{
-  isLight: boolean
+  $isLight: boolean
 }>`
   > .rs-picker-toggle {
-    background-color: ${p => (p.isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
+    background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
     border: 0;
   }
 `
