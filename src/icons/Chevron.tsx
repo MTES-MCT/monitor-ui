@@ -6,8 +6,8 @@ export function Chevron({ color, size, ...nativeProps }: IconProps) {
   return (
     <IconBox $size={size} color={color}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
-        <g id="Chevron" transform="translate(0 -82)">
-          <g data-name="Tracé 1380" fill="none" id="Tracé_1380" strokeMiterlimit="10">
+        <g transform="translate(0 -82)">
+          <g fill="none" strokeMiterlimit="10">
             <path
               d="M16.585,87.293,10,93.878,3.415,87.293,2,88.707l6.585,6.585L10,96.707l1.415-1.415L18,88.707Z"
               stroke="none"
@@ -18,14 +18,7 @@ export function Chevron({ color, size, ...nativeProps }: IconProps) {
               stroke="none"
             />
           </g>
-          <rect
-            data-name="Rectangle 6134"
-            fill="none"
-            height="20"
-            id="Rectangle_6134"
-            transform="translate(0 82)"
-            width="20"
-          />
+          <rect fill="none" height="20" transform="translate(0 82)" width="20" />
         </g>
       </svg>
     </IconBox>

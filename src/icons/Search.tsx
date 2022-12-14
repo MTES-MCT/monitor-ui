@@ -6,8 +6,8 @@ export function Search({ color, size, ...nativeProps }: IconProps) {
   return (
     <IconBox $size={size} color={color}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
-        <g id="Search" transform="translate(200 -41)">
-          <g data-name="Tracé 1368" fill="none" id="Tracé_1368" strokeMiterlimit="10">
+        <g transform="translate(200 -41)">
+          <g fill="none" strokeMiterlimit="10">
             <path
               d="M-181.262,58.262l-5.111-5.111A6.958,6.958,0,0,0-185,49a7,7,0,0,0-7-7,7,7,0,0,0-7,7,7,7,0,0,0,7,7,6.958,6.958,0,0,0,4.151-1.373l5.111,5.111ZM-197,49a5.006,5.006,0,0,1,5-5,5.006,5.006,0,0,1,5,5,5.006,5.006,0,0,1-5,5A5.006,5.006,0,0,1-197,49Z"
               stroke="none"
@@ -18,14 +18,7 @@ export function Search({ color, size, ...nativeProps }: IconProps) {
               stroke="none"
             />
           </g>
-          <rect
-            data-name="Rectangle 6106"
-            fill="none"
-            height="20"
-            id="Rectangle_6106"
-            transform="translate(-200 41)"
-            width="20"
-          />
+          <rect fill="none" height="20" transform="translate(-200 41)" width="20" />
         </g>
       </svg>
     </IconBox>

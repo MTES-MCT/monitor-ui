@@ -6,9 +6,9 @@ export function Attention({ color, size, ...nativeProps }: IconProps) {
   return (
     <IconBox $size={size} color={color}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
-        <g id="Attention" transform="translate(200 -82)">
-          <g data-name="Groupe 4155" id="Groupe_4155">
-            <g data-name="Tracé 1376" fill="none" id="Tracé_1376" strokeMiterlimit="10">
+        <g transform="translate(200 -82)">
+          <g>
+            <g fill="none" strokeMiterlimit="10">
               <path
                 d="M-190,83a9,9,0,0,0-9,9,9,9,0,0,0,9,9,9,9,0,0,0,9-9A9,9,0,0,0-190,83Zm0,16a7,7,0,0,1-7-7,7,7,0,0,1,7-7,7,7,0,0,1,7,7A7,7,0,0,1-190,99Z"
                 stroke="none"
@@ -20,9 +20,7 @@ export function Attention({ color, size, ...nativeProps }: IconProps) {
               />
             </g>
             <g
-              data-name="Rectangle 6126"
               fill="none"
-              id="Rectangle_6126"
               stroke="currentColor"
               strokeMiterlimit="10"
               strokeWidth="2"
@@ -32,9 +30,7 @@ export function Attention({ color, size, ...nativeProps }: IconProps) {
               <rect fill="none" height="3" x="1" y="1" />
             </g>
             <g
-              data-name="Rectangle 6127"
               fill="none"
-              id="Rectangle_6127"
               stroke="currentColor"
               strokeMiterlimit="10"
               strokeWidth="2"
@@ -44,14 +40,7 @@ export function Attention({ color, size, ...nativeProps }: IconProps) {
               <rect fill="none" x="1" y="1" />
             </g>
           </g>
-          <rect
-            data-name="Rectangle 6128"
-            fill="none"
-            height="20"
-            id="Rectangle_6128"
-            transform="translate(-200 82)"
-            width="20"
-          />
+          <rect fill="none" height="20" transform="translate(-200 82)" width="20" />
         </g>
       </svg>
     </IconBox>

@@ -6,8 +6,8 @@ export function Close({ color, size, ...nativeProps }: IconProps) {
   return (
     <IconBox $size={size} color={color}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
-        <g id="Close" transform="translate(160 -82)">
-          <g data-name="Tracé 1377" fill="none" id="Tracé_1377" strokeMiterlimit="10">
+        <g transform="translate(160 -82)">
+          <g fill="none" strokeMiterlimit="10">
             <path
               d="M-142,85.415-143.415,84-150,90.585-156.585,84-158,85.415-151.415,92-158,98.585l1.415,1.415L-150,93.415l6.585,6.585L-142,98.585-148.585,92Z"
               stroke="none"
@@ -18,14 +18,7 @@ export function Close({ color, size, ...nativeProps }: IconProps) {
               stroke="none"
             />
           </g>
-          <rect
-            data-name="Rectangle 6129"
-            fill="none"
-            height="20"
-            id="Rectangle_6129"
-            transform="translate(-160 82)"
-            width="20"
-          />
+          <rect fill="none" height="20" transform="translate(-160 82)" width="20" />
         </g>
       </svg>
     </IconBox>

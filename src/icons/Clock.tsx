@@ -6,9 +6,9 @@ export function Clock({ color, size, ...nativeProps }: IconProps) {
   return (
     <IconBox $size={size} color={color}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
-        <g id="Clock" transform="translate(240 -41)">
-          <g data-name="Groupe 4139" id="Groupe_4139">
-            <g data-name="Tracé 1366" fill="none" id="Tracé_1366" strokeMiterlimit="10">
+        <g transform="translate(240 -41)">
+          <g>
+            <g fill="none" strokeMiterlimit="10">
               <path
                 d="M-230,42a9,9,0,0,0-9,9,9,9,0,0,0,9,9,9,9,0,0,0,9-9A9,9,0,0,0-230,42Zm0,16a7,7,0,0,1-7-7,7,7,0,0,1,7-7,7,7,0,0,1,7,7A7,7,0,0,1-230,58Z"
                 stroke="none"
@@ -19,7 +19,7 @@ export function Clock({ color, size, ...nativeProps }: IconProps) {
                 stroke="none"
               />
             </g>
-            <g data-name="Tracé 1367" fill="none" id="Tracé_1367" strokeMiterlimit="10">
+            <g fill="none" strokeMiterlimit="10">
               <path d="M-229,50V46h-2v6h6V50Z" stroke="none" />
               <path
                 d="M -225 52 L -231 52 L -231 46 L -229 46 L -229 50 L -225 50 L -225 52 Z"
@@ -28,14 +28,7 @@ export function Clock({ color, size, ...nativeProps }: IconProps) {
               />
             </g>
           </g>
-          <rect
-            data-name="Rectangle 6105"
-            fill="none"
-            height="20"
-            id="Rectangle_6105"
-            transform="translate(-240 41)"
-            width="20"
-          />
+          <rect fill="none" height="20" transform="translate(-240 41)" width="20" />
         </g>
       </svg>
     </IconBox>

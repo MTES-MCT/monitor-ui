@@ -21,6 +21,7 @@ import { EditBis } from './EditBis'
 import { Favorite } from './Favorite'
 import { FilledArrow } from './FilledArrow'
 import { Filter } from './Filter'
+import { FilterBis } from './FilterBis'
 import { Fishery } from './Fishery'
 import { FishingEngine } from './FishingEngine'
 import { FleetSegment } from './FleetSegment'
@@ -86,6 +87,7 @@ export {
   Favorite,
   FilledArrow,
   Filter,
+  FilterBis,
   Fishery,
   FishingEngine,
   FleetSegment,

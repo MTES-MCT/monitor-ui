@@ -6,9 +6,9 @@ export function Info({ color, size, ...nativeProps }: IconProps) {
   return (
     <IconBox $size={size} color={color}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
-        <g id="Info" transform="translate(240 -82)">
-          <g data-name="Groupe 4153" id="Groupe_4153">
-            <g data-name="Tracé 1375" fill="none" id="Tracé_1375" strokeMiterlimit="10">
+        <g transform="translate(240 -82)">
+          <g>
+            <g fill="none" strokeMiterlimit="10">
               <path
                 d="M-230,83a9,9,0,0,0-9,9,9,9,0,0,0,9,9,9,9,0,0,0,9-9A9,9,0,0,0-230,83Zm0,16a7,7,0,0,1-7-7,7,7,0,0,1,7-7,7,7,0,0,1,7,7A7,7,0,0,1-230,99Z"
                 stroke="none"
@@ -19,39 +19,16 @@ export function Info({ color, size, ...nativeProps }: IconProps) {
                 stroke="none"
               />
             </g>
-            <g
-              data-name="Rectangle 6123"
-              fill="none"
-              id="Rectangle_6123"
-              stroke="currentColor"
-              strokeMiterlimit="10"
-              strokeWidth="2"
-              transform="translate(-231 91)"
-            >
+            <g fill="none" stroke="currentColor" strokeMiterlimit="10" strokeWidth="2" transform="translate(-231 91)">
               <rect height="5" stroke="none" width="2" />
               <rect fill="none" height="3" x="1" y="1" />
             </g>
-            <g
-              data-name="Rectangle 6124"
-              fill="none"
-              id="Rectangle_6124"
-              stroke="currentColor"
-              strokeMiterlimit="10"
-              strokeWidth="2"
-              transform="translate(-231 88)"
-            >
+            <g fill="none" stroke="currentColor" strokeMiterlimit="10" strokeWidth="2" transform="translate(-231 88)">
               <rect height="2" stroke="none" width="2" />
               <rect fill="none" x="1" y="1" />
             </g>
           </g>
-          <rect
-            data-name="Rectangle 6125"
-            fill="none"
-            height="20"
-            id="Rectangle_6125"
-            transform="translate(-240 82)"
-            width="20"
-          />
+          <rect fill="none" height="20" transform="translate(-240 82)" width="20" />
         </g>
       </svg>
     </IconBox>

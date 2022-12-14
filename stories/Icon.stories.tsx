@@ -164,6 +164,12 @@ export const _Icon = (props: IconProps) => (
     </Cell>
     <Cell>
       <IconBox>
+        <Icon.FilterBis {...props} />
+      </IconBox>
+      <Code>FilterBis</Code>
+    </Cell>
+    <Cell>
+      <IconBox>
         <Icon.Fishery {...props} />
       </IconBox>
       <Code>Fishery</Code>
