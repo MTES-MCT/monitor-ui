@@ -1,5 +1,5 @@
 import { useField } from 'formik'
-import { useCallback, useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 
 import { Checkbox } from '../fields/Checkbox'
 
@@ -12,16 +12,5 @@ export function FormikCheckbox({ name, ...originalProps }: FormikCheckboxProps) 
   // eslint-disable-next-line react-hooks/exhaustive-deps, @typescript-eslint/naming-convention
   const defaultChecked = useMemo(() => Boolean(field.value), [])
 
-  const handleChange = useCallback(
-    (isChecked: boolean) => {
-      helpers.setValue(isChecked)
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => () => helpers.setValue(undefined), [])
-
-  return <Checkbox defaultChecked={defaultChecked} name={name} onChange={handleChange} {...originalProps} />
+  return <Checkbox defaultChecked={defaultChecked} name={name} onChange={helpers.setValue} {...originalProps} />
 }

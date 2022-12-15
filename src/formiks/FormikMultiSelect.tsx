@@ -1,5 +1,5 @@
 import { useField } from 'formik'
-import { useCallback, useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 
 import { MultiSelect } from '../fields/MultiSelect'
 
@@ -12,16 +12,5 @@ export function FormikMultiSelect({ name, ...originalProps }: FormikMultiSelectP
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])
 
-  const handleChange = useCallback(
-    (nextValue: string[] | undefined) => {
-      helpers.setValue(nextValue)
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => () => helpers.setValue(undefined), [])
-
-  return <MultiSelect defaultValue={defaultValue} name={name} onChange={handleChange} {...originalProps} />
+  return <MultiSelect defaultValue={defaultValue} name={name} onChange={helpers.setValue} {...originalProps} />
 }
