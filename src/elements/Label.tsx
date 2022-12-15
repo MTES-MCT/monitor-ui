@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import type { LabelHTMLAttributes } from 'react'
 
 export type LabelProps = LabelHTMLAttributes<HTMLLabelElement> & {
-  isHidden: boolean
+  isHidden?: boolean
 }
 export const Label = styled.label<{
   isHidden?: boolean
