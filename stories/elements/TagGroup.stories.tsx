@@ -3,7 +3,9 @@ import { Accent, Tag, TagGroup } from '../../src'
 
 import type { TagGroupProps } from '../../src'
 
-const args: TagGroupProps = {}
+const args: TagGroupProps = {
+  isMultiline: false
+}
 
 export default {
   title: 'Elements/TagGroup',
