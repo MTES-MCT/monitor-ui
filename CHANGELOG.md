@@ -1,3 +1,11 @@
+# [2.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.0.0...v2.1.0) (2022-12-15)
+
+
+### Features
+
+* **elements:** add isLight & hasBorder props to Fieldset ([#134](https://github.com/MTES-MCT/monitor-ui/issues/134)) ([761ea73](https://github.com/MTES-MCT/monitor-ui/commit/761ea733f1441c32986b64f2ad6be4541073a485))
+* **fields:** add MultiZoneEditor ([#135](https://github.com/MTES-MCT/monitor-ui/issues/135)) ([8a3d653](https://github.com/MTES-MCT/monitor-ui/commit/8a3d6537484f8a0b85289f6903e5567cdef0673b))
+
 # [2.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v1.14.0...v2.0.0) (2022-12-14)
 
 
