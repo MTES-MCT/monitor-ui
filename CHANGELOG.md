@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.2.0...v2.2.1) (2022-12-15)
+
+
+### Bug Fixes
+
+* **elements:** use gap instead of margin in TagGroup ([#142](https://github.com/MTES-MCT/monitor-ui/issues/142)) ([b6d73ea](https://github.com/MTES-MCT/monitor-ui/commit/b6d73eaa1daaf4f7c112dd9e5b6542265a2fbb1c))
+
 # [2.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.1.1...v2.2.0) (2022-12-15)
 
 
