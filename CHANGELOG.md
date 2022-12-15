@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.1.0...v2.1.1) (2022-12-15)
+
+
+### Bug Fixes
+
+* **formiks:** remove set undefined on destruction ([#137](https://github.com/MTES-MCT/monitor-ui/issues/137)) ([fd375ae](https://github.com/MTES-MCT/monitor-ui/commit/fd375aec5047ba3aad31237bec4863f56fb1043f))
+
 # [2.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.0.0...v2.1.0) (2022-12-15)
 
 
