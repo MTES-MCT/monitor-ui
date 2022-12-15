@@ -1,5 +1,5 @@
 import { useField } from 'formik'
-import { useCallback, useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 
 import { Select } from '../fields/Select'
 
@@ -12,16 +12,5 @@ export function FormikSelect({ name, ...originalProps }: FormikSelectProps) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])
 
-  const handleChange = useCallback(
-    (nextValue: string | undefined) => {
-      helpers.setValue(nextValue)
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => () => helpers.setValue(undefined), [])
-
-  return <Select defaultValue={defaultValue} name={name} onChange={handleChange} {...originalProps} />
+  return <Select defaultValue={defaultValue} name={name} onChange={helpers.setValue} {...originalProps} />
 }
