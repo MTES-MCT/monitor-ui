@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.1.1...v2.2.0) (2022-12-15)
+
+
+### Features
+
+* **elements:** add TagGroup ([#139](https://github.com/MTES-MCT/monitor-ui/issues/139)) ([f12aadb](https://github.com/MTES-MCT/monitor-ui/commit/f12aadb9bdbc684116e19f7c867483d6dc69955a))
+
 ## [2.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.1.0...v2.1.1) (2022-12-15)
 
 
