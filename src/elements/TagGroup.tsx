@@ -4,9 +4,8 @@ import type { HTMLAttributes } from 'react'
 
 export type TagGroupProps = HTMLAttributes<HTMLDivElement>
 export const TagGroup = styled.div`
+  align-items: center;
   display: flex;
-
-  > span:not(:first-child) {
-    margin-left: 8px;
-  }
+  flex-wrap: wrap;
+  gap: 8px;
 `
