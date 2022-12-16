@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.2.1...v2.3.0) (2022-12-16)
+
+
+### Features
+
+* **fields:** add NumberInput ([#144](https://github.com/MTES-MCT/monitor-ui/issues/144)) ([649cc6c](https://github.com/MTES-MCT/monitor-ui/commit/649cc6cf0c7c1d416c7b6a774472df30d436bf00))
+
 ## [2.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.2.0...v2.2.1) (2022-12-15)
 
 
