@@ -8,33 +8,35 @@ import { Label } from '../elements/Label'
 import type { InputProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
-export type TextInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'onChange' | 'type' | 'value'> & {
-  defaultValue?: string
+export type NumberInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'onChange' | 'type' | 'value'> & {
+  defaultValue?: number
   isLabelHidden?: boolean
   isLight?: boolean
   label: string
   name: string
-  onChange?: (nextValue: string | undefined) => Promisable<void>
+  onChange?: (nextValue: number | undefined) => Promisable<void>
 }
-export function TextInput({
+export function NumberInput({
   isLabelHidden = false,
   isLight = false,
   label,
   onChange,
   ...originalProps
-}: TextInputProps) {
+}: NumberInputProps) {
   const key = useMemo(
     () => `${originalProps.name}-${JSON.stringify(originalProps.defaultValue)}`,
     [originalProps.defaultValue, originalProps.name]
   )
 
   const handleChange = useCallback(
-    (nextValue: string | null) => {
+    (nextValue: string) => {
       if (!onChange) {
         return
       }
 
-      const normalizedNextValue = nextValue && nextValue.trim().length ? nextValue : undefined
+      const normalizedNextValueAsString = nextValue && nextValue.length ? nextValue : undefined
+      const nextValueAsNumber = Number(normalizedNextValueAsString)
+      const normalizedNextValue = !Number.isNaN(nextValueAsNumber) ? nextValueAsNumber : undefined
 
       onChange(normalizedNextValue)
     },
@@ -52,7 +54,7 @@ export function TextInput({
         $isLight={isLight}
         id={originalProps.name}
         onChange={handleChange}
-        type="text"
+        type="number"
         {...originalProps}
       />
     </Field>
