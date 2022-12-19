@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.3.0...v2.3.1) (2022-12-19)
+
+
+### Bug Fixes
+
+* **fields:** restore DatePicker calendar as body modal ([#146](https://github.com/MTES-MCT/monitor-ui/issues/146)) ([b5f300f](https://github.com/MTES-MCT/monitor-ui/commit/b5f300f40ab3078b4b676b0663603f088492a0aa))
+
 # [2.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.2.1...v2.3.0) (2022-12-16)
 
 
