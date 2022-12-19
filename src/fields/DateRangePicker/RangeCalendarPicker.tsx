@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { DateRangePicker as RsuiteDateRangePicker } from 'rsuite'
 import styled from 'styled-components'
 
+import { useForceUpdate } from '../../hooks/useForceUpdate'
 import { capitalizeFirstLetter } from '../../utils/capitalizeFirstLetter'
 import { dayjs } from '../../utils/dayjs'
 import { getUtcDayjs } from '../../utils/getUtcDayjs'
@@ -13,20 +14,19 @@ import { getDateTupleFromDate } from './utils'
 
 import type { DateRange } from '../../types'
 import type { DateTupleRange } from './types'
-import type { MutableRefObject } from 'react'
 import type { Promisable } from 'type-fest'
 
 type RangeCalendarPickerProps = {
   defaultValue?: DateRange
   isHistorical?: boolean
+  isOpen: boolean
   onChange: (nextDateTupleRange: DateTupleRange) => Promisable<void>
 }
-export function RangeCalendarPicker({ defaultValue, isHistorical, onChange }: RangeCalendarPickerProps) {
-  const boxRef = useRef() as MutableRefObject<HTMLDivElement>
+export function RangeCalendarPicker({ defaultValue, isHistorical, isOpen, onChange }: RangeCalendarPickerProps) {
+  const boxRef = useRef<HTMLDivElement>()
   const selectedFirstDate = useRef<Date>()
-  const calendarRef = useRef<any>()
 
-  const [isFirstLoad, setIsFirstLoad] = useState(true)
+  const { forceUpdate } = useForceUpdate()
 
   const controlledValue = useMemo(
     () => (defaultValue ? (sortDates(defaultValue) as DateRange) : undefined),
@@ -62,20 +62,19 @@ export function RangeCalendarPicker({ defaultValue, isHistorical, onChange }: Ra
   useEffect(() => {
     // We wait for the <Box /> to render so that `boxRef` is defined
     // and can be used as a container for <RsuiteDateRangePicker />
-    setIsFirstLoad(false)
-  }, [])
+    forceUpdate()
+  }, [forceUpdate])
 
   return (
-    <Box ref={boxRef} onClick={stopMouseEventPropagation}>
-      {!isFirstLoad && (
+    <Box ref={boxRef as any} onClick={stopMouseEventPropagation}>
+      {boxRef.current && (
         <RsuiteDateRangePicker
-          ref={calendarRef}
           container={boxRef.current}
           disabledDate={disabledDate}
           format="yyyy-MM-dd"
           locale={RSUITE_CALENDAR_LOCALE}
           onSelect={handleSelect}
-          open
+          open={isOpen}
           ranges={[]}
           renderTitle={renderTitle}
           // `defaultValue` seems to be immediatly cancelled so we come down to using a controlled `value`
@@ -91,12 +90,26 @@ const Box = styled.div`
   position: relative;
   user-select: none;
 
-  .rs-picker-toggle {
-    display: none;
+  /*
+    This is a hack to hide .rs-picker-daterange > .rs-picker-toggle which must exist in DOM
+    since it's used as a ref by Rsuite to calculate .rs-picker-daterange-menu position
+  */
+  .rs-picker-daterange {
+    font-size: 0;
+    position: absolute;
+
+    .rs-picker-toggle {
+      border: 0 !important;
+      padding: 0;
+
+      * {
+        display: none;
+      }
+    }
   }
 
   .rs-picker-daterange-panel {
-    height: 290px;
+    height: 274px;
   }
 
   .rs-picker-daterange-menu {
@@ -111,7 +124,9 @@ const Box = styled.div`
     }
 
     .rs-calendar {
+      font-size: 13px;
       height: auto !important;
+      line-height: 1.4px;
       padding: 0;
 
       :first-child {

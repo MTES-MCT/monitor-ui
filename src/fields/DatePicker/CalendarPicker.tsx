@@ -1,21 +1,29 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { DatePicker as RsuiteDatePicker } from 'rsuite'
-import styled, { createGlobalStyle } from 'styled-components'
+import styled from 'styled-components'
 
+import { useForceUpdate } from '../../hooks/useForceUpdate'
 import { getUtcDayjs } from '../../utils/getUtcDayjs'
 import { getUtcizedDayjs } from '../../utils/getUtcizedDayjs'
+import { stopMouseEventPropagation } from '../../utils/stopMouseEventPropagation'
 import { RSUITE_CALENDAR_LOCALE } from '../DateRangePicker/constants'
 import { getDateTupleFromDate } from '../DateRangePicker/utils'
 
 import type { DateTuple } from '../DateRangePicker/types'
+import type { MutableRefObject } from 'react'
 import type { Promisable } from 'type-fest'
 
 type CalendarPickerProps = {
   defaultValue?: Date
   isHistorical?: boolean
+  isOpen: boolean
   onChange: (nextDateTuple: DateTuple) => Promisable<void>
 }
-export function CalendarPicker({ defaultValue, isHistorical, onChange }: CalendarPickerProps) {
+export function CalendarPicker({ defaultValue, isHistorical, isOpen, onChange }: CalendarPickerProps) {
+  const boxRef = useRef() as MutableRefObject<HTMLDivElement | undefined>
+
+  const { forceUpdate } = useForceUpdate()
+
   const utcTodayAsDayjs = useMemo(() => getUtcDayjs().endOf('day'), [])
   const disabledDate = useMemo(
     () => (date?: Date) => date && isHistorical ? getUtcizedDayjs(date).isAfter(utcTodayAsDayjs) : false,
@@ -31,31 +39,60 @@ export function CalendarPicker({ defaultValue, isHistorical, onChange }: Calenda
     [onChange]
   )
 
-  return (
-    <>
-      <RsuiteCalendarPickerModalGlobalStyle />
+  useEffect(() => {
+    // We wait for the <Box /> to render so that `boxRef` is defined
+    // and can be used as a container for <RsuiteDatePicker />
+    forceUpdate()
+  }, [forceUpdate])
 
-      <Box>
+  return (
+    <Box ref={boxRef as any} onClick={stopMouseEventPropagation}>
+      {boxRef.current && (
         <RsuiteDatePicker
-          className="AAAAAAAAA"
-          classPrefix="mui-picker-"
+          container={boxRef.current}
           disabledDate={disabledDate}
           format="yyyy-MM-dd"
           locale={RSUITE_CALENDAR_LOCALE}
           oneTap
           onSelect={handleSelect}
-          open
-          ranges={[]}
+          open={isOpen}
           // `defaultValue` seems to be immediatly cancelled so we come down to using a controlled `value`
+          ranges={[]}
           value={defaultValue}
         />
-      </Box>
-    </>
+      )}
+    </Box>
   )
 }
 
-export const RsuiteCalendarPickerModalGlobalStyle: any = createGlobalStyle`
-  .rs-mui-picker-date-menu {
+export const Box = styled.div`
+  height: 0;
+  position: relative;
+  user-select: none;
+
+  /*
+    This is a hack to hide .rs-picker-date > .rs-picker-toggle which must exist in DOM
+    since it's used as a ref by Rsuite to calculate .rs-picker-date-menu position
+  */
+  .rs-picker-date {
+    font-size: 0;
+    position: absolute;
+
+    .rs-picker-toggle {
+      border: 0 !important;
+      padding: 0;
+
+      * {
+        display: none;
+      }
+    }
+  }
+
+  .rs-picker-date-panel {
+    height: 274px;
+  }
+
+  .rs-picker-date-menu {
     border: solid 1px ${p => p.theme.color.lightGray};
     border-radius: 0;
     margin-top: 4px;
@@ -67,12 +104,10 @@ export const RsuiteCalendarPickerModalGlobalStyle: any = createGlobalStyle`
     }
 
     .rs-calendar {
+      font-size: 13px;
       height: auto !important;
+      line-height: 1.4px;
       padding: 0;
-
-      :first-child {
-        border-right: solid 1px ${p => p.theme.color.lightGray};
-      }
 
       .rs-calendar-header {
         border-bottom: solid 1px ${p => p.theme.color.lightGray};
@@ -140,20 +175,5 @@ export const RsuiteCalendarPickerModalGlobalStyle: any = createGlobalStyle`
         }
       }
     }
-  }
-`
-
-export const Box = styled.div`
-  /* height: 0;
-  position: relative;
-  top: 0; */
-  user-select: none;
-
-  .rs-picker-toggle {
-    display: none;
-  }
-
-  .rs-picker-date-panel {
-    height: 290px;
   }
 `
