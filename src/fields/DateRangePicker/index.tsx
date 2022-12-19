@@ -342,13 +342,12 @@ export function DateRangePicker({
         )}
       </Box>
 
-      {isRangeCalendarPickerOpenRef.current && (
-        <RangeCalendarPicker
-          defaultValue={rangeCalendarPickerDefaultValue}
-          isHistorical={isHistorical}
-          onChange={handleRangeCalendarPickerChange}
-        />
-      )}
+      <RangeCalendarPicker
+        defaultValue={rangeCalendarPickerDefaultValue}
+        isHistorical={isHistorical}
+        isOpen={isRangeCalendarPickerOpenRef.current}
+        onChange={handleRangeCalendarPickerChange}
+      />
     </Fieldset>
   )
 }

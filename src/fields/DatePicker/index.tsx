@@ -50,6 +50,7 @@ export function DatePicker({
   withTime = false,
   ...nativeProps
 }: DatePickerProps) {
+  const boxRef = useRef() as MutableRefObject<HTMLDivElement>
   const dateInputRef = useRef() as MutableRefObject<DateOrTimeInputRef>
   const timeInputRef = useRef() as MutableRefObject<DateOrTimeInputRef>
 
@@ -196,7 +197,7 @@ export function DatePicker({
     <Fieldset {...nativeProps}>
       <Legend isHidden={isLabelHidden}>{label}</Legend>
 
-      <Box>
+      <Box ref={boxRef}>
         <Field>
           <DateInput
             ref={dateInputRef}
@@ -225,13 +226,12 @@ export function DatePicker({
         )}
       </Box>
 
-      {isCalendarPickerOpenRef.current && (
-        <CalendarPicker
-          defaultValue={rangeCalendarPickerDefaultValue}
-          isHistorical={isHistorical}
-          onChange={handleCalendarPickerChange}
-        />
-      )}
+      <CalendarPicker
+        defaultValue={rangeCalendarPickerDefaultValue}
+        isHistorical={isHistorical}
+        isOpen={isCalendarPickerOpenRef.current}
+        onChange={handleCalendarPickerChange}
+      />
     </Fieldset>
   )
 }
