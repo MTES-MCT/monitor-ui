@@ -23,6 +23,7 @@ module.exports = {
     '/.storybook/main.js',
     '/config/',
     '/dist/',
+    '/example/',
     '/scripts/',
     '/storybook-static/',
     '.eslintrc.js',

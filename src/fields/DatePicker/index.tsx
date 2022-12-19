@@ -14,10 +14,10 @@ import { getDateFromDateAndTimeTuple, getDateTupleFromDate, getTimeTupleFromDate
 import { CalendarPicker } from './CalendarPicker'
 
 import type { DateOrTimeInputRef, DateTuple, TimeTuple } from '../DateRangePicker/types'
-import type { MutableRefObject } from 'react'
+import type { HTMLAttributes, MutableRefObject } from 'react'
 import type { Promisable } from 'type-fest'
 
-export type DatePickerProps = {
+export type DatePickerProps = Omit<HTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange'> & {
   defaultValue?: Date
   /** Only allow past dates until today. */
   isHistorical?: boolean
@@ -47,7 +47,8 @@ export function DatePicker({
   label,
   minutesRange = 15,
   onChange,
-  withTime = false
+  withTime = false,
+  ...nativeProps
 }: DatePickerProps) {
   const dateInputRef = useRef() as MutableRefObject<DateOrTimeInputRef>
   const timeInputRef = useRef() as MutableRefObject<DateOrTimeInputRef>
@@ -150,6 +151,10 @@ export function DatePicker({
       forceUpdate()
 
       submit()
+
+      if (withTime && !selectedTimeTupleRef.current) {
+        timeInputRef.current.focus()
+      }
     },
     [closeCalendarPicker, forceUpdate, submit, withTime]
   )
@@ -188,7 +193,7 @@ export function DatePicker({
   }, [handleClickOutside])
 
   return (
-    <Fieldset className="DateRangePicker">
+    <Fieldset {...nativeProps}>
       <Legend isHidden={isLabelHidden}>{label}</Legend>
 
       <Box>

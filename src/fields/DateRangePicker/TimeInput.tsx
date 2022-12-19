@@ -12,6 +12,7 @@ import type { Promisable } from 'type-fest'
 
 export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'onNext'> & {
   defaultValue?: TimeTuple
+  isEndDate?: boolean
   isLight: boolean
   isStartDate?: boolean
   minutesRange?: number
@@ -24,6 +25,7 @@ export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
 function TimeInputWithRef(
   {
     defaultValue,
+    isEndDate = false,
     isLight,
     isStartDate = false,
     minutesRange = 15,
@@ -164,7 +166,7 @@ function TimeInputWithRef(
       <>
         <NumberInput
           ref={hourInputRef}
-          data-cy={`date-range-picker-${isStartDate ? 'start' : 'end'}-hour`}
+          aria-label={`Heure${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
           defaultValue={controlledDefaultValue && controlledDefaultValue[0]}
           max={23}
           min={0}
@@ -182,7 +184,7 @@ function TimeInputWithRef(
         :
         <NumberInput
           ref={minuteInputRef}
-          data-cy={`date-range-picker-${isStartDate ? 'start' : 'end'}-minute`}
+          aria-label={`Minute${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
           defaultValue={controlledDefaultValue && controlledDefaultValue[1]}
           max={59}
           min={0}
