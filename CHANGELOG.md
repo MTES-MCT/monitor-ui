@@ -1,3 +1,10 @@
+## [2.3.2](https://github.com/MTES-MCT/monitor-ui/compare/v2.3.1...v2.3.2) (2022-12-19)
+
+
+### Bug Fixes
+
+* **types:** update type definitions path ([#152](https://github.com/MTES-MCT/monitor-ui/issues/152)) ([e6d95fb](https://github.com/MTES-MCT/monitor-ui/commit/e6d95fb91630c72f96ee78ed005a1109a6ad1a76))
+
 ## [2.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.3.0...v2.3.1) (2022-12-19)
 
 
