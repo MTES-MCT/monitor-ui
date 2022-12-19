@@ -24,6 +24,7 @@
     ".eslintrc.js",
     "config/*",
     "dist/*",
+    "example/*",
     "node_modules/*",
     "scripts/*",
     "storybook-static/*",

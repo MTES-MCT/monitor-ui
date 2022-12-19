@@ -4,6 +4,7 @@
   "exclude": [
     ".storybook/*",
     "dist/*",
+    "example/*",
     "node_modules/*",
     "scripts/*",
     "storybook-static/*",

@@ -1,15 +1,13 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useMemo } from 'react'
 import { DatePicker as RsuiteDatePicker } from 'rsuite'
 import styled, { createGlobalStyle } from 'styled-components'
 
 import { getUtcDayjs } from '../../utils/getUtcDayjs'
 import { getUtcizedDayjs } from '../../utils/getUtcizedDayjs'
-import { stopMouseEventPropagation } from '../../utils/stopMouseEventPropagation'
 import { RSUITE_CALENDAR_LOCALE } from '../DateRangePicker/constants'
 import { getDateTupleFromDate } from '../DateRangePicker/utils'
 
 import type { DateTuple } from '../DateRangePicker/types'
-import type { MutableRefObject } from 'react'
 import type { Promisable } from 'type-fest'
 
 type CalendarPickerProps = {
@@ -18,11 +16,6 @@ type CalendarPickerProps = {
   onChange: (nextDateTuple: DateTuple) => Promisable<void>
 }
 export function CalendarPicker({ defaultValue, isHistorical, onChange }: CalendarPickerProps) {
-  const boxRef = useRef() as MutableRefObject<HTMLDivElement>
-  const calendarRef = useRef<any>()
-
-  const [isFirstLoad, setIsFirstLoad] = useState(true)
-
   const utcTodayAsDayjs = useMemo(() => getUtcDayjs().endOf('day'), [])
   const disabledDate = useMemo(
     () => (date?: Date) => date && isHistorical ? getUtcizedDayjs(date).isAfter(utcTodayAsDayjs) : false,
@@ -38,58 +31,31 @@ export function CalendarPicker({ defaultValue, isHistorical, onChange }: Calenda
     [onChange]
   )
 
-  useEffect(() => {
-    // We wait for the <Box /> to render so that `boxRef` is defined
-    // and can be used as a container for <RsuiteDateRangePicker />
-    setIsFirstLoad(false)
-  }, [])
-
   return (
     <>
-      <GlobalStyleToHideBodyDialog />
+      <RsuiteCalendarPickerModalGlobalStyle />
 
-      <Box ref={boxRef} onClick={stopMouseEventPropagation}>
-        {!isFirstLoad && (
-          <RsuiteDatePicker
-            ref={calendarRef}
-            container={boxRef.current}
-            disabledDate={disabledDate}
-            format="yyyy-MM-dd"
-            locale={RSUITE_CALENDAR_LOCALE}
-            oneTap
-            onSelect={handleSelect}
-            open
-            ranges={[]}
-            // `defaultValue` seems to be immediatly cancelled so we come down to using a controlled `value`
-            value={defaultValue}
-          />
-        )}
+      <Box>
+        <RsuiteDatePicker
+          className="AAAAAAAAA"
+          classPrefix="mui-picker-"
+          disabledDate={disabledDate}
+          format="yyyy-MM-dd"
+          locale={RSUITE_CALENDAR_LOCALE}
+          oneTap
+          onSelect={handleSelect}
+          open
+          ranges={[]}
+          // `defaultValue` seems to be immediatly cancelled so we come down to using a controlled `value`
+          value={defaultValue}
+        />
       </Box>
     </>
   )
 }
 
-const GlobalStyleToHideBodyDialog: any = createGlobalStyle`
-  body > div[role="dialog"].rs-picker-date-menu {
-    display: none;
-  }
-`
-
-const Box = styled.div`
-  height: 0;
-  position: relative;
-  top: 0;
-  user-select: none;
-
-  .rs-picker-toggle {
-    display: none;
-  }
-
-  .rs-picker-date-panel {
-    height: 290px;
-  }
-
-  .rs-picker-date-menu {
+export const RsuiteCalendarPickerModalGlobalStyle: any = createGlobalStyle`
+  .rs-mui-picker-date-menu {
     border: solid 1px ${p => p.theme.color.lightGray};
     border-radius: 0;
     margin-top: 4px;
@@ -174,5 +140,20 @@ const Box = styled.div`
         }
       }
     }
+  }
+`
+
+export const Box = styled.div`
+  /* height: 0;
+  position: relative;
+  top: 0; */
+  user-select: none;
+
+  .rs-picker-toggle {
+    display: none;
+  }
+
+  .rs-picker-date-panel {
+    height: 290px;
   }
 `

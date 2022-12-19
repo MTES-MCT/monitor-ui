@@ -121,7 +121,7 @@ function DateInputWithRef(
       {isEndDate && 'Au '}
       <NumberInput
         ref={dayInputRef}
-        data-cy={`date-range-picker-${isStartDate ? 'start' : 'end'}-day`}
+        aria-label={`Jour${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
         defaultValue={defaultValue && formatNumberAsDoubleDigit(defaultValue[2])}
         max={31}
         min={1}
@@ -138,7 +138,7 @@ function DateInputWithRef(
       /
       <NumberInput
         ref={monthInputRef}
-        data-cy={`date-range-picker-${isStartDate ? 'start' : 'end'}-month`}
+        aria-label={`Mois${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
         defaultValue={defaultValue && formatNumberAsDoubleDigit(defaultValue[1])}
         max={12}
         min={1}
@@ -155,7 +155,7 @@ function DateInputWithRef(
       /
       <NumberInput
         ref={yearInputRef}
-        data-cy={`date-range-picker-${isStartDate ? 'start' : 'end'}-year`}
+        aria-label={`Année${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
         defaultValue={defaultValue && defaultValue[0]}
         max={currentUtcYear}
         min={2020}
