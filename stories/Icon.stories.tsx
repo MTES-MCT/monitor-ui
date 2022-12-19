@@ -387,6 +387,12 @@ export function _Icon(props: IconProps) {
       </Cell>
       <Cell>
         <IconBox>
+          <Icon.Target {...props} />
+        </IconBox>
+        <Code>Target</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
           <Icon.Unlock {...props} />
         </IconBox>
         <Code>Unlock</Code>
@@ -402,6 +408,12 @@ export function _Icon(props: IconProps) {
           <Icon.ViewOnMap {...props} />
         </IconBox>
         <Code>ViewOnMap</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
+          <Icon.Vms {...props} />
+        </IconBox>
+        <Code>Vms</Code>
       </Cell>
     </Box>
   )

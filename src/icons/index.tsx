@@ -59,9 +59,11 @@ import { ShowXml } from './ShowXml'
 import { SortingArrows } from './SortingArrows'
 import { Summary } from './Summary'
 import { Tag } from './Tag'
+import { Target } from './Target'
 import { Unlock } from './Unlock'
 import { Vessel } from './Vessel'
 import { ViewOnMap } from './ViewOnMap'
+import { Vms } from './Vms'
 
 export {
   ActivityFeed,
@@ -125,7 +127,9 @@ export {
   SortingArrows,
   Summary,
   Tag,
+  Target,
   Unlock,
   Vessel,
-  ViewOnMap
+  ViewOnMap,
+  Vms
 }
