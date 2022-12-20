@@ -2,6 +2,7 @@
 
 - [Development](#development)
   - [First Setup](#first-setup)
+  - [Run](#run)
   - [Conventions](#conventions)
   - [Release](#release)
     - [Versionning](#versionning)
@@ -35,7 +36,13 @@ yarn
 yarn setup
 ```
 
-4. [Setup your IDE](https://yarnpkg.com/getting-started/editor-sdks).
+### Run
+
+```sh
+yarn start
+```
+
+1. [Setup your IDE](https://yarnpkg.com/getting-started/editor-sdks).
 
 ### Conventions
 

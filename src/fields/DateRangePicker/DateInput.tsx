@@ -1,8 +1,7 @@
-import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react'
+import { forwardRef, useCallback, useImperativeHandle, useRef, useState } from 'react'
 import styled from 'styled-components'
 
 import { Calendar } from '../../icons'
-import { getUtcizedDayjs } from '../../utils/getUtcizedDayjs'
 import { NumberInput } from './NumberInput'
 import { formatNumberAsDoubleDigit } from './utils'
 
@@ -19,7 +18,7 @@ export type DateInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
   isLight: boolean
   isStartDate?: boolean
   /** Called each time the date input is changed to a new valid value. */
-  onChange: (nextDateTuple: DateTuple) => Promisable<void>
+  onChange: (nextDateTuple: DateTuple, isFilled: boolean) => Promisable<void>
   onClick: () => Promisable<void>
 }
 function DateInputWithRef(
@@ -58,8 +57,6 @@ function DateInputWithRef(
     }
   }))
 
-  const currentUtcYear = useMemo(() => getUtcizedDayjs().year(), [])
-
   const handleBlur = useCallback(() => {
     setIsFocused(false)
   }, [])
@@ -74,6 +71,8 @@ function DateInputWithRef(
 
   const submit = useCallback(() => {
     setHasValidationError(false)
+
+    const isFilled = window.document.activeElement === yearInputRef.current
 
     switch (window.document.activeElement) {
       case dayInputRef.current:
@@ -110,7 +109,7 @@ function DateInputWithRef(
       formatNumberAsDoubleDigit(dayInputRef.current.value)
     ]
 
-    onChange(nextDateTuple)
+    onChange(nextDateTuple, isFilled)
   }, [onChange])
 
   return (
@@ -161,7 +160,7 @@ function DateInputWithRef(
           ref={yearInputRef}
           aria-label={`Année${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
           defaultValue={defaultValue && defaultValue[0]}
-          max={currentUtcYear}
+          max={2030}
           min={2020}
           onBack={() => monthInputRef.current.focus()}
           onBlur={handleBlur}

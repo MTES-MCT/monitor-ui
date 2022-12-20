@@ -144,8 +144,8 @@ export function DateRangePicker({
     endDateInputRef.current.focus()
   }, [withTime])
 
-  const handleDateInputFilled = useCallback(
-    (position: DateRangePosition, nextDateTuple: DateTuple) => {
+  const handleDateInputChange = useCallback(
+    (position: DateRangePosition, nextDateTuple: DateTuple, isFilled: boolean) => {
       if (position === DateRangePosition.START) {
         selectedStartDateTupleRef.current = nextDateTuple
 
@@ -160,7 +160,9 @@ export function DateRangePicker({
           submit()
         }
 
-        handleStartDateInputNext()
+        if (isFilled) {
+          handleStartDateInputNext()
+        }
       } else {
         selectedEndDateTupleRef.current = nextDateTuple
 
@@ -175,7 +177,9 @@ export function DateRangePicker({
           submit()
         }
 
-        handleEndDateInputNext()
+        if (isFilled) {
+          handleEndDateInputNext()
+        }
       }
     },
     [handleEndDateInputNext, handleStartDateInputNext, submit, withTime]
@@ -290,7 +294,9 @@ export function DateRangePicker({
             isForcedFocused={isRangeCalendarPickerOpenRef.current}
             isLight={isLight}
             isStartDate
-            onChange={nextDateTuple => handleDateInputFilled(DateRangePosition.START, nextDateTuple)}
+            onChange={(nextDateTuple, isFilled) =>
+              handleDateInputChange(DateRangePosition.START, nextDateTuple, isFilled)
+            }
             onClick={openRangeCalendarPicker}
             onNext={handleStartDateInputNext}
           />
@@ -323,7 +329,9 @@ export function DateRangePicker({
             isForcedFocused={isRangeCalendarPickerOpenRef.current}
             isLight={isLight}
             onBack={handleEndDateInputPrevious}
-            onChange={nextDateTuple => handleDateInputFilled(DateRangePosition.END, nextDateTuple)}
+            onChange={(nextDateTuple, isFilled) =>
+              handleDateInputChange(DateRangePosition.END, nextDateTuple, isFilled)
+            }
             onClick={openRangeCalendarPicker}
             onNext={handleEndDateInputNext}
             onPrevious={handleEndDateInputPrevious}
