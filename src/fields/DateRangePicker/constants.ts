@@ -1,5 +1,3 @@
-import fr from 'date-fns/locale/fr'
-
 import type { DateRangePickerLocale } from 'rsuite'
 
 export const HOURS_AS_OPTIONS = new Array(24).fill(undefined).map((_, index) => ({
@@ -8,10 +6,8 @@ export const HOURS_AS_OPTIONS = new Array(24).fill(undefined).map((_, index) => 
 }))
 
 export const RSUITE_CALENDAR_LOCALE: DateRangePickerLocale = {
-  // TODO Why this doesn't work?
-  dateLocale: fr,
   formattedDayPattern: 'dd/MM/yyyy',
-  formattedMonthPattern: 'MM/yyyy',
+  formattedMonthPattern: 'MMMM yyyy',
   friday: 'V',
   hours: 'Heures',
   minutes: 'Minutes',

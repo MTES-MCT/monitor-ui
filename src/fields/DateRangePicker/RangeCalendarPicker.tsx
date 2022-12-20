@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react'
-import { DateRangePicker as RsuiteDateRangePicker } from 'rsuite'
+import { CustomProvider as RsuiteCustomProvider, DateRangePicker as RsuiteDateRangePicker } from 'rsuite'
+import rsuiteFrFr from 'rsuite/locales/fr_FR'
 import styled from 'styled-components'
 
 import { useForceUpdate } from '../../hooks/useForceUpdate'
-import { capitalizeFirstLetter } from '../../utils/capitalizeFirstLetter'
-import { dayjs } from '../../utils/dayjs'
 import { getUtcDayjs } from '../../utils/getUtcDayjs'
 import { getUtcizedDayjs } from '../../utils/getUtcizedDayjs'
 import { sortDates } from '../../utils/sortDates'
@@ -57,8 +56,6 @@ export function RangeCalendarPicker({ defaultValue, isHistorical, isOpen, onChan
     [onChange]
   )
 
-  const renderTitle = useCallback((date: Date) => capitalizeFirstLetter(dayjs(date).format('MMMM YYYY')), [])
-
   useEffect(() => {
     // We wait for the <Box /> to render so that `boxRef` is defined
     // and can be used as a container for <RsuiteDateRangePicker />
@@ -66,22 +63,23 @@ export function RangeCalendarPicker({ defaultValue, isHistorical, isOpen, onChan
   }, [forceUpdate])
 
   return (
-    <Box ref={boxRef as any} onClick={stopMouseEventPropagation}>
-      {boxRef.current && (
-        <RsuiteDateRangePicker
-          container={boxRef.current}
-          disabledDate={disabledDate}
-          format="yyyy-MM-dd"
-          locale={RSUITE_CALENDAR_LOCALE}
-          onSelect={handleSelect}
-          open={isOpen}
-          ranges={[]}
-          renderTitle={renderTitle}
-          // `defaultValue` seems to be immediatly cancelled so we come down to using a controlled `value`
-          value={controlledValue}
-        />
-      )}
-    </Box>
+    <RsuiteCustomProvider locale={rsuiteFrFr}>
+      <Box ref={boxRef as any} onClick={stopMouseEventPropagation}>
+        {boxRef.current && (
+          <RsuiteDateRangePicker
+            container={boxRef.current}
+            disabledDate={disabledDate}
+            format="yyyy-MM-dd"
+            locale={RSUITE_CALENDAR_LOCALE}
+            onSelect={handleSelect}
+            open={isOpen}
+            ranges={[]}
+            // `defaultValue` seems to be immediatly cancelled so we come down to using a controlled `value`
+            value={controlledValue}
+          />
+        )}
+      </Box>
+    </RsuiteCustomProvider>
   )
 }
 
