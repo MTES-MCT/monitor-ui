@@ -1,8 +1,8 @@
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import styled from 'styled-components'
 
-import { Icon } from '../..'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
+import { Clock } from '../../icons'
 import { NumberInput } from './NumberInput'
 import { RangedTimePicker } from './RangedTimePicker'
 
@@ -204,7 +204,7 @@ function TimeInputWithRef(
           />
         </div>
 
-        {!isCompact && <Icon.Clock />}
+        {!isCompact && <Clock />}
       </InputGroup>
 
       {isRangedTimePickerOpenRef.current && (
