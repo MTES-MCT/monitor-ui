@@ -110,8 +110,8 @@ export function DatePicker({
     timeInputRef.current.focus()
   }, [withTime])
 
-  const handleDateInputFilled = useCallback(
-    (nextDateTuple: DateTuple) => {
+  const handleDateInputChange = useCallback(
+    (nextDateTuple: DateTuple, isFilled: boolean) => {
       selectedDateTupleRef.current = nextDateTuple
 
       // If there is no time input or a time has already been selected,
@@ -125,7 +125,9 @@ export function DatePicker({
         submit()
       }
 
-      handleDateInputNext()
+      if (isFilled) {
+        handleDateInputNext()
+      }
     },
     [handleDateInputNext, submit, withTime]
   )
@@ -207,7 +209,7 @@ export function DatePicker({
             isCompact={isCompact}
             isForcedFocused={isCalendarPickerOpenRef.current}
             isLight={isLight}
-            onChange={handleDateInputFilled}
+            onChange={handleDateInputChange}
             onClick={openCalendarPicker}
             onNext={handleDateInputNext}
           />
