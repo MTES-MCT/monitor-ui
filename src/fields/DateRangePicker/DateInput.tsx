@@ -1,7 +1,7 @@
 import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 
-import { Icon } from '../..'
+import { Calendar } from '../../icons'
 import { getUtcizedDayjs } from '../../utils/getUtcizedDayjs'
 import { NumberInput } from './NumberInput'
 import { formatNumberAsDoubleDigit } from './utils'
@@ -175,7 +175,7 @@ function DateInputWithRef(
         />
       </div>
 
-      {!isCompact && <Icon.Calendar />}
+      {!isCompact && <Calendar />}
     </Box>
   )
 }
