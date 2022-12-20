@@ -8,6 +8,7 @@ import type { DateRangePickerProps } from '../../src'
 import type { DateRange } from '../../src/types'
 
 const args: DateRangePickerProps = {
+  isCompact: false,
   isHistorical: false,
   isLabelHidden: false,
   isLight: false,

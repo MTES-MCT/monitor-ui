@@ -156,6 +156,7 @@ const StyledNumberInput = styled.input<{
 }>`
   background-color: transparent;
   border: 0;
+  color: ${p => p.theme.color.gunMetal};
   font-size: inherit;
   outline: none;
   padding: 0;
@@ -164,6 +165,6 @@ const StyledNumberInput = styled.input<{
   width: ${p => p.$size * 0.5}rem;
 
   ::placeholder {
-    color: ${p => p.theme.color.slateGray};
+    color: ${p => p.theme.color.blueGray[100]};
   }
 `

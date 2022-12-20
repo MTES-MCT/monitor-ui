@@ -20,6 +20,7 @@ import type { Promisable } from 'type-fest'
 
 export type DateRangePickerProps = Omit<HTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange'> & {
   defaultValue?: DateRange
+  isCompact?: boolean
   /** Only allow past dates until today. */
   isHistorical?: boolean
   isLabelHidden?: boolean
@@ -42,6 +43,7 @@ export type DateRangePickerProps = Omit<HTMLAttributes<HTMLFieldSetElement>, 'de
 }
 export function DateRangePicker({
   defaultValue,
+  isCompact = false,
   isHistorical = false,
   isLabelHidden = false,
   isLight = false,
@@ -105,7 +107,7 @@ export function DateRangePicker({
     (event: globalThis.MouseEvent) => {
       const target = event.target as Node | null
 
-      if (startDateInputRef.current.boxSpan.contains(target) || endDateInputRef.current.boxSpan.contains(target)) {
+      if (startDateInputRef.current.box.contains(target) || endDateInputRef.current.box.contains(target)) {
         return
       }
 
@@ -284,6 +286,7 @@ export function DateRangePicker({
           <DateInput
             ref={startDateInputRef}
             defaultValue={selectedStartDateTupleRef.current}
+            isCompact={isCompact}
             isForcedFocused={isRangeCalendarPickerOpenRef.current}
             isLight={isLight}
             isStartDate
@@ -298,6 +301,7 @@ export function DateRangePicker({
             <TimeInput
               ref={startTimeInputRef}
               defaultValue={selectedStartTimeTupleRef.current}
+              isCompact={isCompact}
               isLight={isLight}
               isStartDate
               minutesRange={minutesRange}
@@ -314,6 +318,7 @@ export function DateRangePicker({
           <DateInput
             ref={endDateInputRef}
             defaultValue={selectedEndDateTupleRef.current}
+            isCompact={isCompact}
             isEndDate
             isForcedFocused={isRangeCalendarPickerOpenRef.current}
             isLight={isLight}
@@ -330,6 +335,7 @@ export function DateRangePicker({
             <TimeInput
               ref={endTimeInputRef}
               defaultValue={selectedEndTimeTupleRef.current}
+              isCompact={isCompact}
               isEndDate
               isLight={isLight}
               minutesRange={minutesRange}

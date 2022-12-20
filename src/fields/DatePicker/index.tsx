@@ -19,6 +19,7 @@ import type { Promisable } from 'type-fest'
 
 export type DatePickerProps = Omit<HTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange'> & {
   defaultValue?: Date
+  isCompact?: boolean
   /** Only allow past dates until today. */
   isHistorical?: boolean
   isLabelHidden?: boolean
@@ -41,6 +42,7 @@ export type DatePickerProps = Omit<HTMLAttributes<HTMLFieldSetElement>, 'default
 }
 export function DatePicker({
   defaultValue,
+  isCompact = false,
   isHistorical = false,
   isLabelHidden = false,
   isLight = false,
@@ -91,7 +93,7 @@ export function DatePicker({
     (event: globalThis.MouseEvent) => {
       const target = event.target as Node | null
 
-      if (dateInputRef.current.boxSpan.contains(target)) {
+      if (dateInputRef.current.box.contains(target)) {
         return
       }
 
@@ -202,6 +204,7 @@ export function DatePicker({
           <DateInput
             ref={dateInputRef}
             defaultValue={selectedDateTupleRef.current}
+            isCompact={isCompact}
             isForcedFocused={isCalendarPickerOpenRef.current}
             isLight={isLight}
             onChange={handleDateInputFilled}
@@ -215,6 +218,7 @@ export function DatePicker({
             <TimeInput
               ref={timeInputRef}
               defaultValue={selectedTimeTupleRef.current}
+              isCompact={isCompact}
               isLight={isLight}
               minutesRange={minutesRange}
               onBack={() => dateInputRef.current.focus(true)}

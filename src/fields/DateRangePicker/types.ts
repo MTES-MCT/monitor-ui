@@ -1,5 +1,5 @@
 export type DateOrTimeInputRef = {
-  boxSpan: HTMLSpanElement
+  box: HTMLDivElement
   /**
    * Focus the first input in the group.
    *

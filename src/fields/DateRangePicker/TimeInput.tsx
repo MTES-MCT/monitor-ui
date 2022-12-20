@@ -1,6 +1,7 @@
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import styled from 'styled-components'
 
+import { Icon } from '../..'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
 import { NumberInput } from './NumberInput'
 import { RangedTimePicker } from './RangedTimePicker'
@@ -12,6 +13,7 @@ import type { Promisable } from 'type-fest'
 
 export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'onNext'> & {
   defaultValue?: TimeTuple
+  isCompact: boolean
   isEndDate?: boolean
   isLight: boolean
   isStartDate?: boolean
@@ -25,6 +27,7 @@ export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
 function TimeInputWithRef(
   {
     defaultValue,
+    isCompact,
     isEndDate = false,
     isLight,
     isStartDate = false,
@@ -37,7 +40,7 @@ function TimeInputWithRef(
   }: TimeInputProps,
   ref: ForwardedRef<DateOrTimeInputRef>
 ) {
-  const boxSpanRef = useRef() as MutableRefObject<HTMLSpanElement>
+  const boxRef = useRef() as MutableRefObject<HTMLDivElement>
   const hourInputRef = useRef() as MutableRefObject<HTMLInputElement>
   const minuteInputRef = useRef() as MutableRefObject<HTMLInputElement>
 
@@ -47,7 +50,7 @@ function TimeInputWithRef(
   const [isFocused, setIsFocused] = useState(false)
 
   useImperativeHandle<DateOrTimeInputRef, DateOrTimeInputRef>(ref, () => ({
-    boxSpan: boxSpanRef.current,
+    box: boxRef.current,
     focus: (isInLastInputOfTheGroup = false) => {
       if (isInLastInputOfTheGroup) {
         minuteInputRef.current.focus()
@@ -162,43 +165,47 @@ function TimeInputWithRef(
   }, [closeRangedTimePicker, onChange])
 
   return (
-    <Box ref={boxSpanRef} $hasError={hasFormatError || hasValidationError} $isFocused={isFocused} $isLight={isLight}>
-      <>
-        <NumberInput
-          ref={hourInputRef}
-          aria-label={`Heure${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
-          defaultValue={controlledDefaultValue && controlledDefaultValue[0]}
-          max={23}
-          min={0}
-          onBack={handleBack}
-          onBlur={handleBlur}
-          onClick={openRangedTimePicker}
-          onFilled={submit}
-          onFocus={handleFocus}
-          onFormatError={handleFormatError}
-          onInput={handleHourInput}
-          onNext={() => minuteInputRef.current.focus()}
-          onPrevious={onPrevious}
-          size={2}
-        />
-        :
-        <NumberInput
-          ref={minuteInputRef}
-          aria-label={`Minute${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
-          defaultValue={controlledDefaultValue && controlledDefaultValue[1]}
-          max={59}
-          min={0}
-          onBack={() => hourInputRef.current.focus()}
-          onBlur={handleBlur}
-          onClick={openRangedTimePicker}
-          onFilled={submit}
-          onFocus={handleFocus}
-          onFormatError={handleFormatError}
-          onNext={onNext}
-          onPrevious={() => hourInputRef.current.focus()}
-          size={2}
-        />
-      </>
+    <Box ref={boxRef} $hasError={hasFormatError || hasValidationError} $isFocused={isFocused} $isLight={isLight}>
+      <InputGroup>
+        <div>
+          <NumberInput
+            ref={hourInputRef}
+            aria-label={`Heure${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
+            defaultValue={controlledDefaultValue && controlledDefaultValue[0]}
+            max={23}
+            min={0}
+            onBack={handleBack}
+            onBlur={handleBlur}
+            onClick={openRangedTimePicker}
+            onFilled={submit}
+            onFocus={handleFocus}
+            onFormatError={handleFormatError}
+            onInput={handleHourInput}
+            onNext={() => minuteInputRef.current.focus()}
+            onPrevious={onPrevious}
+            size={2}
+          />
+          :
+          <NumberInput
+            ref={minuteInputRef}
+            aria-label={`Minute${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
+            defaultValue={controlledDefaultValue && controlledDefaultValue[1]}
+            max={59}
+            min={0}
+            onBack={() => hourInputRef.current.focus()}
+            onBlur={handleBlur}
+            onClick={openRangedTimePicker}
+            onFilled={submit}
+            onFocus={handleFocus}
+            onFormatError={handleFormatError}
+            onNext={onNext}
+            onPrevious={() => hourInputRef.current.focus()}
+            size={2}
+          />
+        </div>
+
+        {!isCompact && <Icon.Clock />}
+      </InputGroup>
 
       {isRangedTimePickerOpenRef.current && (
         <RangedTimePicker
@@ -213,7 +220,7 @@ function TimeInputWithRef(
 
 export const TimeInput = forwardRef(TimeInputWithRef)
 
-const Box = styled.span<{
+const Box = styled.div<{
   $hasError: boolean
   $isFocused: boolean
   $isLight: boolean
@@ -223,7 +230,7 @@ const Box = styled.span<{
     p.$hasError || p.$isFocused
       ? `inset 0px 0px 0px 1px ${p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray[100]}`
       : 'none'};
-  color: ${p => p.theme.color.slateGray};
+  color: ${p => p.theme.color.blueGray[100]};
   display: inline-block;
   font-size: inherit;
   padding: 5px 8px 7px;
@@ -232,5 +239,15 @@ const Box = styled.span<{
 
   :hover {
     box-shadow: ${p => `inset 0px 0px 0px 1px ${p.theme.color.blueYonder[100]}`};
+  }
+`
+
+const InputGroup = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  > div:nth-child(2) {
+    margin: 1px 0 0 32px;
   }
 `
