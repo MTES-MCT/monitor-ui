@@ -1,6 +1,7 @@
 import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 
+import { Icon } from '../..'
 import { getUtcizedDayjs } from '../../utils/getUtcizedDayjs'
 import { NumberInput } from './NumberInput'
 import { formatNumberAsDoubleDigit } from './utils'
@@ -12,6 +13,7 @@ import type { Promisable } from 'type-fest'
 
 export type DateInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'onNext'> & {
   defaultValue?: DateTuple
+  isCompact: boolean
   isEndDate?: boolean
   isForcedFocused: boolean
   isLight: boolean
@@ -23,6 +25,7 @@ export type DateInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
 function DateInputWithRef(
   {
     defaultValue,
+    isCompact,
     isEndDate = false,
     isForcedFocused,
     isLight,
@@ -35,7 +38,7 @@ function DateInputWithRef(
   }: DateInputProps,
   ref: ForwardedRef<DateOrTimeInputRef>
 ) {
-  const boxSpanRef = useRef() as MutableRefObject<HTMLSpanElement>
+  const boxRef = useRef() as MutableRefObject<HTMLDivElement>
   const dayInputRef = useRef() as MutableRefObject<HTMLInputElement>
   const monthInputRef = useRef() as MutableRefObject<HTMLInputElement>
   const yearInputRef = useRef() as MutableRefObject<HTMLInputElement>
@@ -45,7 +48,7 @@ function DateInputWithRef(
   const [isFocused, setIsFocused] = useState(false)
 
   useImperativeHandle<DateOrTimeInputRef, DateOrTimeInputRef>(ref, () => ({
-    boxSpan: boxSpanRef.current,
+    box: boxRef.current,
     focus: (isInLastInputOfTheGroup = false) => {
       if (isInLastInputOfTheGroup) {
         yearInputRef.current.focus()
@@ -112,86 +115,101 @@ function DateInputWithRef(
 
   return (
     <Box
-      ref={boxSpanRef}
+      ref={boxRef}
       $hasError={hasFormatError || hasValidationError}
       $isFocused={isForcedFocused || isFocused}
       $isLight={isLight}
     >
-      {isStartDate && 'Du '}
-      {isEndDate && 'Au '}
-      <NumberInput
-        ref={dayInputRef}
-        aria-label={`Jour${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
-        defaultValue={defaultValue && formatNumberAsDoubleDigit(defaultValue[2])}
-        max={31}
-        min={1}
-        onBack={onBack}
-        onBlur={handleBlur}
-        onClick={onClick}
-        onFilled={submit}
-        onFocus={handleFocus}
-        onFormatError={handleFormatError}
-        onNext={() => monthInputRef.current.focus()}
-        onPrevious={onPrevious}
-        size={2}
-      />
-      /
-      <NumberInput
-        ref={monthInputRef}
-        aria-label={`Mois${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
-        defaultValue={defaultValue && formatNumberAsDoubleDigit(defaultValue[1])}
-        max={12}
-        min={1}
-        onBack={() => dayInputRef.current.focus()}
-        onBlur={handleBlur}
-        onClick={onClick}
-        onFilled={submit}
-        onFocus={handleFocus}
-        onFormatError={handleFormatError}
-        onNext={() => yearInputRef.current.focus()}
-        onPrevious={() => dayInputRef.current.focus()}
-        size={2}
-      />
-      /
-      <NumberInput
-        ref={yearInputRef}
-        aria-label={`Année${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
-        defaultValue={defaultValue && defaultValue[0]}
-        max={currentUtcYear}
-        min={2020}
-        onBack={() => monthInputRef.current.focus()}
-        onBlur={handleBlur}
-        onClick={onClick}
-        onFilled={submit}
-        onFocus={handleFocus}
-        onFormatError={handleFormatError}
-        onNext={onNext}
-        onPrevious={() => monthInputRef.current.focus()}
-        size={4}
-      />
+      <div>
+        {isStartDate && <span>Du </span>}
+        {isEndDate && <span>Au </span>}
+        <NumberInput
+          ref={dayInputRef}
+          aria-label={`Jour${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
+          defaultValue={defaultValue && formatNumberAsDoubleDigit(defaultValue[2])}
+          max={31}
+          min={1}
+          onBack={onBack}
+          onBlur={handleBlur}
+          onClick={onClick}
+          onFilled={submit}
+          onFocus={handleFocus}
+          onFormatError={handleFormatError}
+          onNext={() => monthInputRef.current.focus()}
+          onPrevious={onPrevious}
+          size={2}
+        />
+        /
+        <NumberInput
+          ref={monthInputRef}
+          aria-label={`Mois${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
+          defaultValue={defaultValue && formatNumberAsDoubleDigit(defaultValue[1])}
+          max={12}
+          min={1}
+          onBack={() => dayInputRef.current.focus()}
+          onBlur={handleBlur}
+          onClick={onClick}
+          onFilled={submit}
+          onFocus={handleFocus}
+          onFormatError={handleFormatError}
+          onNext={() => yearInputRef.current.focus()}
+          onPrevious={() => dayInputRef.current.focus()}
+          size={2}
+        />
+        /
+        <NumberInput
+          ref={yearInputRef}
+          aria-label={`Année${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
+          defaultValue={defaultValue && defaultValue[0]}
+          max={currentUtcYear}
+          min={2020}
+          onBack={() => monthInputRef.current.focus()}
+          onBlur={handleBlur}
+          onClick={onClick}
+          onFilled={submit}
+          onFocus={handleFocus}
+          onFormatError={handleFormatError}
+          onNext={onNext}
+          onPrevious={() => monthInputRef.current.focus()}
+          size={4}
+        />
+      </div>
+
+      {!isCompact && <Icon.Calendar />}
     </Box>
   )
 }
 
 export const DateInput = forwardRef(DateInputWithRef)
 
-const Box = styled.span<{
+const Box = styled.div<{
   $hasError: boolean
   $isFocused: boolean
   $isLight: boolean
 }>`
+  align-items: center;
   background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
   box-shadow: ${p =>
     p.$hasError || p.$isFocused
       ? `inset 0px 0px 0px 1px ${p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray[100]}`
       : 'none'};
-  color: ${p => p.theme.color.slateGray};
-  display: inline-block;
+  color: ${p => p.theme.color.blueGray[100]};
+  display: inline-flex;
   font-size: inherit;
+  justify-content: space-between;
   padding: 5px 8px 7px;
   user-select: none;
 
   :hover {
     box-shadow: ${p => `inset 0px 0px 0px 1px ${p.theme.color.blueYonder[100]}`};
+  }
+
+  > div:first-child {
+    > span {
+      color: ${p => p.theme.color.slateGray};
+    }
+  }
+  > div:nth-child(2) {
+    margin: 1px 0 0 32px;
   }
 `
