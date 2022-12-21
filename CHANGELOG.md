@@ -1,3 +1,21 @@
+# [2.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.3.2...v2.4.0) (2022-12-21)
+
+
+### Bug Fixes
+
+* **build:** externalize Rsuite localization ([10a581d](https://github.com/MTES-MCT/monitor-ui/commit/10a581d2947c6d2a80234b0d43d203b808d5933e))
+* **fields:** focus next date part input when already filled in DatePicker & DateRangePicker ([38219de](https://github.com/MTES-MCT/monitor-ui/commit/38219de79c0cd4d6aefce125452c662428419765))
+* **fields:** improve DatePicker UX & UI ([a57f977](https://github.com/MTES-MCT/monitor-ui/commit/a57f977fcf9fa999e80b6ba7e256766b35cd10c4))
+* **fields:** normalize calendar header title in DatePicker & DateRangePicker ([611f811](https://github.com/MTES-MCT/monitor-ui/commit/611f8118f8f596b2c8972a06928d6bbc98d2062c))
+* **fields:** normalize colors between states in DatePicker & DateRangePicker ([9cebad3](https://github.com/MTES-MCT/monitor-ui/commit/9cebad36c053202f12fee0f0c2c78809c272b7ee))
+* **fields:** normalize sizes in DatePicker & DateRangePicker ([b76c78e](https://github.com/MTES-MCT/monitor-ui/commit/b76c78e515c58ed421e5ca8cb5e6b5b7ac391092))
+* **fields:** remove dependency cycle in DateRangePicker ([226941a](https://github.com/MTES-MCT/monitor-ui/commit/226941a8299f2f8a7918f5546e65868705cc0528))
+
+
+### Features
+
+* **icons:** add Target and Vms ([#154](https://github.com/MTES-MCT/monitor-ui/issues/154)) ([af70cfc](https://github.com/MTES-MCT/monitor-ui/commit/af70cfc85d56f9c7be689e305470b1a6ef4c1e86))
+
 ## [2.3.2](https://github.com/MTES-MCT/monitor-ui/compare/v2.3.1...v2.3.2) (2022-12-19)
 
 
