@@ -8,10 +8,12 @@ import type { TextInputProps } from '../../src'
 
 const args: TextInputProps = {
   defaultValue: undefined,
+  disabled: false,
   isLabelHidden: false,
   isLight: false,
+  label: 'A text input',
   name: 'myTextInput',
-  label: 'A text input'
+  placeholder: 'A text input placeholder'
 }
 
 export default {

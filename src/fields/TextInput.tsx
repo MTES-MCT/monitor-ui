@@ -66,4 +66,8 @@ const StyledInput = styled(Input)<{
   border: 0;
   font-size: 13px;
   width: 100%;
+
+  ::placeholder {
+    color: ${p => (p.$isLight ? p.theme.color.slateGray : p.theme.color.slateGray)};
+  }
 `

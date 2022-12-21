@@ -8,10 +8,12 @@ import type { TextareaProps } from '../../src'
 
 const args: TextareaProps = {
   defaultValue: undefined,
+  disabled: false,
   isLabelHidden: false,
   isLight: false,
+  label: 'A textarea',
   name: 'myTextarea',
-  label: 'A textarea'
+  placeholder: 'A textarea placeholder'
 }
 
 export default {

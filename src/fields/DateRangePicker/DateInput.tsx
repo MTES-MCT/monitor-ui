@@ -12,6 +12,8 @@ import type { Promisable } from 'type-fest'
 
 export type DateInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'onNext'> & {
   defaultValue?: DateTuple
+  // TODO Check why TS thinks there is no `disabled` prop in `NumberInputProps`.
+  disabled: boolean
   isCompact: boolean
   isEndDate?: boolean
   isForcedFocused: boolean
@@ -24,6 +26,8 @@ export type DateInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
 function DateInputWithRef(
   {
     defaultValue,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    disabled = false,
     isCompact,
     isEndDate = false,
     isForcedFocused,
@@ -116,6 +120,7 @@ function DateInputWithRef(
     <Box
       ref={boxRef}
       $hasError={hasFormatError || hasValidationError}
+      $isDisabled={disabled}
       $isFocused={isForcedFocused || isFocused}
       $isLight={isLight}
     >
@@ -126,6 +131,8 @@ function DateInputWithRef(
           ref={dayInputRef}
           aria-label={`Jour${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
           defaultValue={defaultValue && formatNumberAsDoubleDigit(defaultValue[2])}
+          disabled={disabled}
+          isLight={isLight}
           max={31}
           min={1}
           onBack={onBack}
@@ -143,6 +150,8 @@ function DateInputWithRef(
           ref={monthInputRef}
           aria-label={`Mois${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
           defaultValue={defaultValue && formatNumberAsDoubleDigit(defaultValue[1])}
+          disabled={disabled}
+          isLight={isLight}
           max={12}
           min={1}
           onBack={() => dayInputRef.current.focus()}
@@ -160,6 +169,8 @@ function DateInputWithRef(
           ref={yearInputRef}
           aria-label={`Année${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
           defaultValue={defaultValue && defaultValue[0]}
+          disabled={disabled}
+          isLight={isLight}
           max={2030}
           min={2020}
           onBack={() => monthInputRef.current.focus()}
@@ -183,6 +194,7 @@ export const DateInput = forwardRef(DateInputWithRef)
 
 const Box = styled.div<{
   $hasError: boolean
+  $isDisabled: boolean
   $isFocused: boolean
   $isLight: boolean
 }>`
@@ -192,7 +204,7 @@ const Box = styled.div<{
     p.$hasError || p.$isFocused
       ? `inset 0px 0px 0px 1px ${p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray[100]}`
       : 'none'};
-  color: ${p => p.theme.color.blueGray[100]};
+  color: ${p => (p.$isFocused ? p.theme.color.blueGray[100] : p.theme.color.slateGray)};
   display: inline-flex;
   font-size: inherit;
   justify-content: space-between;
@@ -200,14 +212,18 @@ const Box = styled.div<{
   user-select: none;
 
   :hover {
-    box-shadow: ${p => `inset 0px 0px 0px 1px ${p.theme.color.blueYonder[100]}`};
+    box-shadow: ${p =>
+      `inset 0px 0px 0px 1px ${
+        // eslint-disable-next-line no-nested-ternary
+        p.$isDisabled
+          ? p.theme.color.cultured
+          : p.$isFocused
+          ? p.theme.color.blueGray[100]
+          : p.theme.color.blueYonder[100]
+      }`};
+    color: ${p => (p.$isFocused ? p.theme.color.blueGray[100] : p.theme.color.blueYonder[100])};
   }
 
-  > div:first-child {
-    > span {
-      color: ${p => p.theme.color.slateGray};
-    }
-  }
   > div:nth-child(2) {
     margin: 1px 0 0 32px;
   }

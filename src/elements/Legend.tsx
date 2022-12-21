@@ -5,10 +5,11 @@ import { Label } from './Label'
 import type { HTMLAttributes } from 'react'
 
 export type LegendProps = HTMLAttributes<HTMLLegendElement> & {
+  isDisabled?: boolean
   isHidden?: boolean
 }
-export function Legend({ isHidden = false, ...nativeProps }: LegendProps) {
-  return <StyledLabel as="legend" isHidden={isHidden} {...nativeProps} />
+export function Legend({ isDisabled = false, isHidden = false, ...nativeProps }: LegendProps) {
+  return <StyledLabel as="legend" isDisabled={isDisabled} isHidden={isHidden} {...nativeProps} />
 }
 
 const StyledLabel = styled(Label)`

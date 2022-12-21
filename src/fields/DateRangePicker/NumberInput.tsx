@@ -8,6 +8,7 @@ export type NumberInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
   'maxLength' | 'onInput' | 'pattern' | 'type'
 > & {
+  isLight: boolean
   max: number
   min: number
   /** Called when the use press backspace key while the input is empty. */
@@ -25,6 +26,7 @@ export type NumberInputProps = Omit<
 function NumberInputWithRef(
   {
     defaultValue,
+    isLight,
     max,
     min,
     onBack,
@@ -134,6 +136,7 @@ function NumberInputWithRef(
     <StyledNumberInput
       key={String(defaultValue)}
       ref={inputRef}
+      $isLight={isLight}
       $size={size}
       defaultValue={defaultValue}
       maxLength={size}
@@ -152,6 +155,7 @@ function NumberInputWithRef(
 export const NumberInput = forwardRef(NumberInputWithRef)
 
 const StyledNumberInput = styled.input<{
+  $isLight: boolean
   $size: number
 }>`
   background-color: transparent;
@@ -165,6 +169,6 @@ const StyledNumberInput = styled.input<{
   width: ${p => p.$size * 0.5}rem;
 
   ::placeholder {
-    color: ${p => p.theme.color.blueGray[100]};
+    color: ${p => (p.$isLight ? p.theme.color.slateGray : p.theme.color.slateGray)};
   }
 `

@@ -7,6 +7,7 @@ import { DatePicker } from '../../src'
 import type { DatePickerProps } from '../../src'
 
 const args: DatePickerProps = {
+  disabled: false,
   isCompact: false,
   isHistorical: false,
   isLabelHidden: false,
