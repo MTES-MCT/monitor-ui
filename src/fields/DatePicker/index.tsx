@@ -19,6 +19,7 @@ import type { Promisable } from 'type-fest'
 
 export type DatePickerProps = Omit<HTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange'> & {
   defaultValue?: Date
+  disabled?: boolean
   isCompact?: boolean
   /** Only allow past dates until today. */
   isHistorical?: boolean
@@ -42,6 +43,8 @@ export type DatePickerProps = Omit<HTMLAttributes<HTMLFieldSetElement>, 'default
 }
 export function DatePicker({
   defaultValue,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  disabled = false,
   isCompact = false,
   isHistorical = false,
   isLabelHidden = false,
@@ -198,14 +201,17 @@ export function DatePicker({
   }, [handleClickOutside])
 
   return (
-    <Fieldset {...nativeProps}>
-      <Legend isHidden={isLabelHidden}>{label}</Legend>
+    <Fieldset disabled={disabled} {...nativeProps}>
+      <Legend isDisabled={disabled} isHidden={isLabelHidden}>
+        {label}
+      </Legend>
 
       <Box ref={boxRef}>
         <Field>
           <DateInput
             ref={dateInputRef}
             defaultValue={selectedDateTupleRef.current}
+            disabled={disabled}
             isCompact={isCompact}
             isForcedFocused={isCalendarPickerOpenRef.current}
             isLight={isLight}
@@ -220,6 +226,7 @@ export function DatePicker({
             <TimeInput
               ref={timeInputRef}
               defaultValue={selectedTimeTupleRef.current}
+              disabled={disabled}
               isCompact={isCompact}
               isLight={isLight}
               minutesRange={minutesRange}

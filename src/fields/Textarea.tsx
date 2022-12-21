@@ -73,4 +73,8 @@ const StyledInput = styled(Input)<{
   font-size: 13px;
   padding: 7px 11px;
   width: 100%;
+
+  ::placeholder {
+    color: ${p => (p.$isLight ? p.theme.color.slateGray : p.theme.color.slateGray)};
+  }
 `

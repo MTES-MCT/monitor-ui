@@ -13,6 +13,8 @@ import type { Promisable } from 'type-fest'
 
 export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'onNext'> & {
   defaultValue?: TimeTuple
+  // TODO Check why TS thinks there is no `disabled` prop in `NumberInputProps`.
+  disabled: boolean
   isCompact: boolean
   isEndDate?: boolean
   isLight: boolean
@@ -27,6 +29,8 @@ export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
 function TimeInputWithRef(
   {
     defaultValue,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    disabled = false,
     isCompact,
     isEndDate = false,
     isLight,
@@ -165,13 +169,21 @@ function TimeInputWithRef(
   }, [closeRangedTimePicker, onChange])
 
   return (
-    <Box ref={boxRef} $hasError={hasFormatError || hasValidationError} $isFocused={isFocused} $isLight={isLight}>
+    <Box
+      ref={boxRef}
+      $hasError={hasFormatError || hasValidationError}
+      $isDisabled={disabled}
+      $isFocused={isFocused}
+      $isLight={isLight}
+    >
       <InputGroup>
         <div>
           <NumberInput
             ref={hourInputRef}
             aria-label={`Heure${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
             defaultValue={controlledDefaultValue && controlledDefaultValue[0]}
+            disabled={disabled}
+            isLight={isLight}
             max={23}
             min={0}
             onBack={handleBack}
@@ -190,6 +202,8 @@ function TimeInputWithRef(
             ref={minuteInputRef}
             aria-label={`Minute${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
             defaultValue={controlledDefaultValue && controlledDefaultValue[1]}
+            disabled={disabled}
+            isLight={isLight}
             max={59}
             min={0}
             onBack={() => hourInputRef.current.focus()}
@@ -222,6 +236,7 @@ export const TimeInput = forwardRef(TimeInputWithRef)
 
 const Box = styled.div<{
   $hasError: boolean
+  $isDisabled: boolean
   $isFocused: boolean
   $isLight: boolean
 }>`
@@ -230,7 +245,7 @@ const Box = styled.div<{
     p.$hasError || p.$isFocused
       ? `inset 0px 0px 0px 1px ${p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray[100]}`
       : 'none'};
-  color: ${p => p.theme.color.blueGray[100]};
+  color: ${p => (p.$isFocused ? p.theme.color.blueGray[100] : p.theme.color.slateGray)};
   display: inline-block;
   font-size: inherit;
   padding: 5px 8px 7px;
@@ -238,7 +253,16 @@ const Box = styled.div<{
   user-select: none;
 
   :hover {
-    box-shadow: ${p => `inset 0px 0px 0px 1px ${p.theme.color.blueYonder[100]}`};
+    box-shadow: ${p =>
+      `inset 0px 0px 0px 1px ${
+        // eslint-disable-next-line no-nested-ternary
+        p.$isDisabled
+          ? p.theme.color.cultured
+          : p.$isFocused
+          ? p.theme.color.blueGray[100]
+          : p.theme.color.blueYonder[100]
+      }`};
+    color: ${p => (p.$isFocused ? p.theme.color.blueGray[100] : p.theme.color.blueYonder[100])};
   }
 `
 

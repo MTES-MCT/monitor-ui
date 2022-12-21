@@ -1,7 +1,7 @@
 // TODO We should make this component both form- & a11y-compliant with a `name` and proper (aria-)labels.
 
 import { useCallback, useEffect, useMemo, useRef } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { Fieldset } from '../../elements/Fieldset'
 import { Legend } from '../../elements/Legend'
@@ -20,6 +20,7 @@ import type { Promisable } from 'type-fest'
 
 export type DateRangePickerProps = Omit<HTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange'> & {
   defaultValue?: DateRange
+  disabled?: boolean
   isCompact?: boolean
   /** Only allow past dates until today. */
   isHistorical?: boolean
@@ -43,6 +44,8 @@ export type DateRangePickerProps = Omit<HTMLAttributes<HTMLFieldSetElement>, 'de
 }
 export function DateRangePicker({
   defaultValue,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  disabled = false,
   isCompact = false,
   isHistorical = false,
   isLabelHidden = false,
@@ -283,13 +286,16 @@ export function DateRangePicker({
 
   return (
     <Fieldset {...nativeProps}>
-      <Legend isHidden={isLabelHidden}>{label}</Legend>
+      <Legend isDisabled={disabled} isHidden={isLabelHidden}>
+        {label}
+      </Legend>
 
-      <Box>
+      <Box isDisabled={disabled}>
         <Field>
           <DateInput
             ref={startDateInputRef}
             defaultValue={selectedStartDateTupleRef.current}
+            disabled={disabled}
             isCompact={isCompact}
             isForcedFocused={isRangeCalendarPickerOpenRef.current}
             isLight={isLight}
@@ -307,6 +313,7 @@ export function DateRangePicker({
             <TimeInput
               ref={startTimeInputRef}
               defaultValue={selectedStartTimeTupleRef.current}
+              disabled={disabled}
               isCompact={isCompact}
               isLight={isLight}
               isStartDate
@@ -324,6 +331,7 @@ export function DateRangePicker({
           <DateInput
             ref={endDateInputRef}
             defaultValue={selectedEndDateTupleRef.current}
+            disabled={disabled}
             isCompact={isCompact}
             isEndDate
             isForcedFocused={isRangeCalendarPickerOpenRef.current}
@@ -343,6 +351,7 @@ export function DateRangePicker({
             <TimeInput
               ref={endTimeInputRef}
               defaultValue={selectedEndTimeTupleRef.current}
+              disabled={disabled}
               isCompact={isCompact}
               isEndDate
               isLight={isLight}
@@ -366,7 +375,9 @@ export function DateRangePicker({
   )
 }
 
-const Box = styled.div`
+const Box = styled.div<{
+  isDisabled: boolean
+}>`
   * {
     font-weight: 500;
     line-height: 1;
@@ -375,6 +386,16 @@ const Box = styled.div`
   color: ${p => p.theme.color.gunMetal};
   font-size: 13px;
   position: relative;
+
+  ${p =>
+    p.isDisabled &&
+    css`
+      * {
+        background-color: ${p.theme.color.cultured} !important;
+        color: ${p.theme.color.lightGray} !important;
+        cursor: not-allowed;
+      }
+    `}
 `
 
 const Field = styled.span<{
