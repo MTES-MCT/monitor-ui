@@ -14,5 +14,5 @@ export const Label = styled.label<{
   display: ${p => (p.isHidden ? 'none' : 'table')};
   font-size: 13px;
   line-height: 1.4;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 `

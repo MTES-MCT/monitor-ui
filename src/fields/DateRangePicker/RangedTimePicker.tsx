@@ -13,13 +13,28 @@ type RangedTimePickerProps = {
   onChange: (nextTimeTuple: TimeTuple) => Promisable<void>
 }
 export function RangedTimePicker({ filter, minutesRange, onChange }: RangedTimePickerProps) {
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState(0)
+
   const rangedTimeOptions = useMemo(() => getRangedTimeOptions(minutesRange), [minutesRange])
   const filteredRangedTimeOptions = useMemo(
     () => rangedTimeOptions.filter(({ label }) => filter.test(label)),
     [filter, rangedTimeOptions]
   )
 
-  const [selectedOptionIndex, setSelectedOptionIndex] = useState(0)
+  const spannedLabels = useMemo(
+    () =>
+      filteredRangedTimeOptions.map(({ label }) => {
+        const [hours, minutes] = label.split(':')
+
+        return (
+          <>
+            {' '}
+            <span>{hours}</span>:<span>{minutes}</span>
+          </>
+        )
+      }),
+    [filteredRangedTimeOptions]
+  )
 
   const handleBoxKeyDown = useCallback(
     (event: globalThis.KeyboardEvent) => {
@@ -88,7 +103,7 @@ export function RangedTimePicker({ filter, minutesRange, onChange }: RangedTimeP
           role="option"
           tabIndex={-1}
         >
-          {label}
+          {spannedLabels[index]}
         </Option>
       ))}
     </Box>
@@ -96,17 +111,19 @@ export function RangedTimePicker({ filter, minutesRange, onChange }: RangedTimeP
 }
 
 const Box = styled.div`
-  background-color: ${p => p.theme.color.gainsboro};
+  background-color: ${p => p.theme.color.white};
+  box-shadow: inset 0px 0px 0px 1px ${p => p.theme.color.lightGray};
   display: flex;
   flex-direction: column;
-  left: -1px;
+  left: 0;
   max-height: 160px;
   overflow: auto;
   position: absolute;
   /* Non-WebKit Firefox Compatibility */
   scrollbar-color: ${p => p.theme.color.lightGray};
   scrollbar-width: thin;
-  top: 36px;
+  top: 32px;
+  width: 100%;
   z-index: 9999;
 
   ::-webkit-scrollbar {
@@ -128,12 +145,18 @@ const Option = styled.div<{
   isSelected: boolean
 }>`
   background-color: ${p => (p.isSelected ? p.theme.color.blueGray[100] : 'transparent')};
+  color: ${p => (p.isSelected ? p.theme.color.white : p.theme.color.gunMetal)};
   cursor: pointer;
   line-height: 1;
-  padding: 5px 9px 7px 8px;
-  text-align: center;
+  padding: 5px 0 7px 6.5px;
 
   :hover {
     background-color: ${p => (p.isSelected ? p.theme.color.blueGray[100] : p.theme.color.blueYonder[25])};
+  }
+
+  > span {
+    display: inline-flex;
+    justify-content: center;
+    width: 16px;
   }
 `

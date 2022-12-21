@@ -166,7 +166,7 @@ const StyledNumberInput = styled.input<{
   padding: 0;
   text-align: center;
   /* 1 digit = 8px */
-  width: ${p => p.$size * 0.5}rem;
+  width: ${p => p.$size * 8}px;
 
   ::placeholder {
     color: ${p => (p.$isLight ? p.theme.color.slateGray : p.theme.color.slateGray)};

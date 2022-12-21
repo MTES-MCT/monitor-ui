@@ -172,6 +172,7 @@ function TimeInputWithRef(
     <Box
       ref={boxRef}
       $hasError={hasFormatError || hasValidationError}
+      $isCompact={isCompact}
       $isDisabled={disabled}
       $isFocused={isFocused}
       $isLight={isLight}
@@ -236,6 +237,7 @@ export const TimeInput = forwardRef(TimeInputWithRef)
 
 const Box = styled.div<{
   $hasError: boolean
+  $isCompact: boolean
   $isDisabled: boolean
   $isFocused: boolean
   $isLight: boolean
@@ -248,7 +250,7 @@ const Box = styled.div<{
   color: ${p => (p.$isFocused ? p.theme.color.blueGray[100] : p.theme.color.slateGray)};
   display: inline-block;
   font-size: inherit;
-  padding: 5px 8px 7px;
+  padding: ${p => (p.$isCompact ? '4.5px 8px 7px' : '3px 8px 5px')};
   position: relative;
   user-select: none;
 
@@ -272,6 +274,6 @@ const InputGroup = styled.div`
   justify-content: space-between;
 
   > div:nth-child(2) {
-    margin: 1px 0 0 32px;
+    margin: 2px 0 0 16px;
   }
 `

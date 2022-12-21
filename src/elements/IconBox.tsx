@@ -14,7 +14,7 @@ export const IconBox = styled.div<IconBoxProps>`
 
   > svg {
     display: block;
-    height: ${p => p.$size ?? 16}px;
-    width: ${p => p.$size ?? 16}px;
+    height: ${p => p.$size ?? 20}px;
+    width: ${p => p.$size ?? 20}px;
   }
 `
