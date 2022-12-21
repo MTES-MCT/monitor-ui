@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react'
-import { CustomProvider as RsuiteCustomProvider, DatePicker as RsuiteDatePicker } from 'rsuite'
-import rsuiteFrFr from 'rsuite/locales/fr_FR'
+import { DatePicker as RsuiteDatePicker } from 'rsuite'
 import styled from 'styled-components'
 
 import { useForceUpdate } from '../../hooks/useForceUpdate'
@@ -47,24 +46,22 @@ export function CalendarPicker({ defaultValue, isHistorical, isOpen, onChange }:
   }, [forceUpdate])
 
   return (
-    <RsuiteCustomProvider locale={rsuiteFrFr}>
-      <Box ref={boxRef as any} onClick={stopMouseEventPropagation}>
-        {boxRef.current && (
-          <RsuiteDatePicker
-            container={boxRef.current}
-            disabledDate={disabledDate}
-            format="yyyy-MM-dd"
-            locale={RSUITE_CALENDAR_LOCALE}
-            oneTap
-            onSelect={handleSelect}
-            open={isOpen}
-            // `defaultValue` seems to be immediatly cancelled so we come down to using a controlled `value`
-            ranges={[]}
-            value={defaultValue}
-          />
-        )}
-      </Box>
-    </RsuiteCustomProvider>
+    <Box ref={boxRef as any} onClick={stopMouseEventPropagation}>
+      {boxRef.current && (
+        <RsuiteDatePicker
+          container={boxRef.current}
+          disabledDate={disabledDate}
+          format="yyyy-MM-dd"
+          locale={RSUITE_CALENDAR_LOCALE}
+          oneTap
+          onSelect={handleSelect}
+          open={isOpen}
+          // `defaultValue` seems to be immediatly cancelled so we come down to using a controlled `value`
+          ranges={[]}
+          value={defaultValue}
+        />
+      )}
+    </Box>
   )
 }
 

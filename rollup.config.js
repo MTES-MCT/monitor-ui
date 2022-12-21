@@ -5,7 +5,7 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import url from '@rollup/plugin-url'
 
 module.exports = {
-  external: [],
+  external: ['rsuite/locales/fr_FR'],
 
   input: './src/index.ts',
 
