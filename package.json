@@ -25,7 +25,6 @@
     "setup:vscode": "yarn dlx @yarnpkg/sdks vscode",
     "test": "yarn test:lint && yarn test:type",
     "test:e2e": "playwright test -c ./config/playwright.config.ts",
-    "test:e2e:setup": "sh ./scripts/e2e/setup.sh",
     "test:lint": "yarn eslint --ext js,jsx,ts,tsx .",
     "test:type": "yarn tsc",
     "test:unit": "jest --config=./config/jest.config.js",

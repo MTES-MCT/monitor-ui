@@ -1,4 +1,6 @@
 import { StrictMode } from 'react'
+import { CustomProvider as RsuiteCustomProvider } from 'rsuite'
+import rsuiteFrFr from 'rsuite/locales/fr_FR'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 import { GlobalStyle, THEME } from '../../src'
@@ -46,7 +48,9 @@ export function GlobalDecorator(Story: ComponentStory<any>) {
         <UntypedGlobalStyle />
         <CustomGlobalStyle />
 
-        <Story />
+        <RsuiteCustomProvider locale={rsuiteFrFr}>
+          <Story />
+        </RsuiteCustomProvider>
       </UntypedThemeProvider>
     </StrictMode>
   )

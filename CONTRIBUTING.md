@@ -2,7 +2,8 @@
 
 - [Development](#development)
   - [First Setup](#first-setup)
-  - [Run](#run)
+  - [Run locally](#run-locally)
+  - [Run E2E tests](#run-e2e-tests)
   - [Conventions](#conventions)
   - [Release](#release)
     - [Versionning](#versionning)
@@ -36,13 +37,18 @@ yarn
 yarn setup
 ```
 
-### Run
+### Run locally
 
 ```sh
-yarn start
+yarn start # or `yarn dev` if you don't want to auto-open the browser
 ```
 
-1. [Setup your IDE](https://yarnpkg.com/getting-started/editor-sdks).
+### Run E2E tests
+
+```sh
+make serve-e2e
+yarn test:e2e # in another tab/terminal
+```
 
 ### Conventions
 
