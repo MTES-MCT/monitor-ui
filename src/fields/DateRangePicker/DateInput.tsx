@@ -120,6 +120,7 @@ function DateInputWithRef(
     <Box
       ref={boxRef}
       $hasError={hasFormatError || hasValidationError}
+      $isCompact={isCompact}
       $isDisabled={disabled}
       $isFocused={isForcedFocused || isFocused}
       $isLight={isLight}
@@ -194,6 +195,7 @@ export const DateInput = forwardRef(DateInputWithRef)
 
 const Box = styled.div<{
   $hasError: boolean
+  $isCompact: boolean
   $isDisabled: boolean
   $isFocused: boolean
   $isLight: boolean
@@ -208,7 +210,7 @@ const Box = styled.div<{
   display: inline-flex;
   font-size: inherit;
   justify-content: space-between;
-  padding: 5px 8px 7px;
+  padding: ${p => (p.$isCompact ? '4.5px 8px 7px' : '3px 8px 5px')};
   user-select: none;
 
   :hover {
@@ -225,6 +227,6 @@ const Box = styled.div<{
   }
 
   > div:nth-child(2) {
-    margin: 1px 0 0 32px;
+    margin: 2px 0 0 16px;
   }
 `

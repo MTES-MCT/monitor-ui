@@ -15,7 +15,7 @@ const CustomGlobalStyle: any = createGlobalStyle`
   body.sb-show-main.sb-main-padded {
     height: 100%;
     padding: 0;
-    width: 100%;
+    width: 640px;
   }
 
   code {

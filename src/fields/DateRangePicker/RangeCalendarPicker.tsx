@@ -104,9 +104,9 @@ const Box = styled.div`
   }
 
   .rs-picker-daterange-menu {
-    border: solid 1px ${p => p.theme.color.lightGray};
+    box-shadow: inset 0px 0px 0px 1px ${p => p.theme.color.lightGray};
     border-radius: 0;
-    margin-top: 4px;
+    margin-top: 2px;
 
     .rs-picker-daterange-header,
     .rs-calendar-header-time-toolbar,
@@ -208,19 +208,32 @@ const Box = styled.div`
           border: 0;
           margin-top: 3px;
 
+          .rs-calendar-month-dropdown-year {
+            color: ${p => p.theme.color.slateGray};
+
+            &.rs-calendar-month-dropdown-year-active {
+              color: ${p => p.theme.color.blueYonder[100]};
+            }
+          }
+
           .rs-calendar-month-dropdown-cell {
-            .rs-calendar-month-dropdown-cell-content {
+            > .rs-calendar-month-dropdown-cell-content {
               border-radius: 0 !important;
+              color: ${p => p.theme.color.gunMetal};
               display: inline-flex;
               height: 33px;
               justify-content: center;
               line-height: 1;
-              padding: 7px 0 0;
+              padding: 8px 0 0;
               width: 33px;
             }
-            &:hover .rs-calendar-month-dropdown-cell-content {
+            &:hover > .rs-calendar-month-dropdown-cell-content {
               background-color: ${p => p.theme.color.blueYonder[25]};
               color: ${p => p.theme.color.blueYonder[100]};
+            }
+            &.rs-calendar-month-dropdown-cell-active > .rs-calendar-month-dropdown-cell-content {
+              background-color: ${p => p.theme.color.blueGray[100]};
+              color: ${p => p.theme.color.white};
             }
           }
         }
