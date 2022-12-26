@@ -99,7 +99,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["lodash.throttle", "npm:4.1.1"],\
             ["microbundle", "npm:0.15.1"],\
             ["postcss", "npm:8.4.19"],\
-            ["prettier", "npm:2.8.0"],\
+            ["prettier", "npm:2.8.1"],\
             ["prop-types", "npm:15.8.1"],\
             ["ramda", "npm:0.28.0"],\
             ["react", "npm:18.2.0"],\
@@ -5717,7 +5717,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-sort-destructure-keys", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:1.4.0"],\
             ["eslint-plugin-sort-keys-fix", "npm:1.1.2"],\
             ["eslint-plugin-typescript-sort-keys", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:2.1.0"],\
-            ["prettier", "npm:2.8.0"],\
+            ["prettier", "npm:2.8.1"],\
             ["typescript", "patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=d73830"]\
           ],\
           "packagePeers": [\
@@ -5776,7 +5776,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@ivangabriele/prettier-config", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:3.1.0"],\
             ["@types/prettier", null],\
-            ["prettier", "npm:2.8.0"]\
+            ["prettier", "npm:2.8.1"]\
           ],\
           "packagePeers": [\
             "@types/prettier",\
@@ -6438,7 +6438,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["lodash.throttle", "npm:4.1.1"],\
             ["microbundle", "npm:0.15.1"],\
             ["postcss", "npm:8.4.19"],\
-            ["prettier", "npm:2.8.0"],\
+            ["prettier", "npm:2.8.1"],\
             ["prop-types", "npm:15.8.1"],\
             ["ramda", "npm:0.28.0"],\
             ["react", "npm:18.2.0"],\
@@ -17879,7 +17879,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/prettier", null],\
             ["eslint", "npm:8.30.0"],\
             ["eslint-config-prettier", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:8.5.0"],\
-            ["prettier", "npm:2.8.0"],\
+            ["prettier", "npm:2.8.1"],\
             ["prettier-linter-helpers", "npm:1.0.0"]\
           ],\
           "packagePeers": [\
@@ -27510,10 +27510,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["npm:2.8.0", {\
-          "packageLocation": "./.yarn/cache/prettier-npm-2.8.0-746e3df53e-72004ce0cc.zip/node_modules/prettier/",\
+        ["npm:2.8.1", {\
+          "packageLocation": "./.yarn/cache/prettier-npm-2.8.1-be60b51821-4f21a0f126.zip/node_modules/prettier/",\
           "packageDependencies": [\
-            ["prettier", "npm:2.8.0"]\
+            ["prettier", "npm:2.8.1"]\
           ],\
           "linkType": "HARD"\
         }]\
