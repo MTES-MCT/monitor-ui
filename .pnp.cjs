@@ -59,7 +59,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jabber", "npm:1.2.0"],\
             ["@types/jest", "npm:29.2.3"],\
             ["@types/lodash.throttle", "npm:4.1.7"],\
-            ["@types/node", "npm:18.11.9"],\
+            ["@types/node", "npm:18.11.18"],\
             ["@types/ramda", "npm:0.28.20"],\
             ["@types/react", "npm:18.0.21"],\
             ["@types/sha1", "npm:1.1.3"],\
@@ -6398,7 +6398,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jabber", "npm:1.2.0"],\
             ["@types/jest", "npm:29.2.3"],\
             ["@types/lodash.throttle", "npm:4.1.7"],\
-            ["@types/node", "npm:18.11.9"],\
+            ["@types/node", "npm:18.11.18"],\
             ["@types/ramda", "npm:0.28.20"],\
             ["@types/react", "npm:18.0.21"],\
             ["@types/sha1", "npm:1.1.3"],\
@@ -11199,10 +11199,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["npm:18.11.9", {\
-          "packageLocation": "./.yarn/cache/@types-node-npm-18.11.9-d21dd6ec05-cc0aae109e.zip/node_modules/@types/node/",\
+        ["npm:18.11.18", {\
+          "packageLocation": "./.yarn/cache/@types-node-npm-18.11.18-d61e8a4a20-03f17f9480.zip/node_modules/@types/node/",\
           "packageDependencies": [\
-            ["@types/node", "npm:18.11.9"]\
+            ["@types/node", "npm:18.11.18"]\
           ],\
           "linkType": "HARD"\
         }]\
