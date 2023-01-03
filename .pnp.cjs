@@ -206,7 +206,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["convert-source-map", "npm:1.8.0"],\
             ["debug", "virtual:dc0e9498d700f80ca3b0d172d2c879b3b5c09eb83d3efd647256b1daa54c605273cda90b8697936295a53fe89b5505efe928551dbf95d9b7e6c2bba5a81cb59c#npm:4.3.2"],\
             ["gensync", "npm:1.0.0-beta.2"],\
-            ["json5", "npm:2.2.0"],\
+            ["json5", "npm:2.2.1"],\
             ["lodash", "npm:4.17.21"],\
             ["resolve", "patch:resolve@npm%3A1.20.0#~builtin<compat/resolve>::version=1.20.0&hash=c3c19d"],\
             ["semver", "npm:5.7.1"],\
@@ -230,7 +230,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["convert-source-map", "npm:1.8.0"],\
             ["debug", "virtual:dc0e9498d700f80ca3b0d172d2c879b3b5c09eb83d3efd647256b1daa54c605273cda90b8697936295a53fe89b5505efe928551dbf95d9b7e6c2bba5a81cb59c#npm:4.3.2"],\
             ["gensync", "npm:1.0.0-beta.2"],\
-            ["json5", "npm:2.2.0"],\
+            ["json5", "npm:2.2.1"],\
             ["semver", "npm:6.3.0"],\
             ["source-map", "npm:0.5.7"]\
           ],\
@@ -9137,7 +9137,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["glob", "npm:7.2.0"],\
             ["handlebars", "npm:4.7.7"],\
             ["interpret", "npm:2.2.0"],\
-            ["json5", "npm:2.2.0"],\
+            ["json5", "npm:2.2.1"],\
             ["lazy-universal-dotenv", "npm:3.0.1"],\
             ["picomatch", "npm:2.3.0"],\
             ["pkg-dir", "npm:5.0.0"],\
@@ -9208,7 +9208,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["glob", "npm:7.2.0"],\
             ["handlebars", "npm:4.7.7"],\
             ["interpret", "npm:2.2.0"],\
-            ["json5", "npm:2.2.0"],\
+            ["json5", "npm:2.2.1"],\
             ["lazy-universal-dotenv", "npm:3.0.1"],\
             ["picomatch", "npm:2.3.0"],\
             ["pkg-dir", "npm:5.0.0"],\
@@ -9279,7 +9279,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["glob", "npm:7.2.0"],\
             ["handlebars", "npm:4.7.7"],\
             ["interpret", "npm:2.2.0"],\
-            ["json5", "npm:2.2.0"],\
+            ["json5", "npm:2.2.1"],\
             ["lazy-universal-dotenv", "npm:3.0.1"],\
             ["picomatch", "npm:2.3.0"],\
             ["pkg-dir", "npm:5.0.0"],\
@@ -9350,7 +9350,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["glob", "npm:7.2.0"],\
             ["handlebars", "npm:4.7.7"],\
             ["interpret", "npm:2.2.0"],\
-            ["json5", "npm:2.2.0"],\
+            ["json5", "npm:2.2.1"],\
             ["lazy-universal-dotenv", "npm:3.0.1"],\
             ["picomatch", "npm:2.3.0"],\
             ["pkg-dir", "npm:5.0.0"],\
@@ -10558,7 +10558,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@surma/rollup-plugin-off-main-thread", "npm:2.2.3"],\
             ["ejs", "npm:3.1.8"],\
-            ["json5", "npm:2.2.0"],\
+            ["json5", "npm:2.2.1"],\
             ["magic-string", "npm:0.25.7"],\
             ["string.prototype.matchall", "npm:4.0.6"]\
           ],\
@@ -22566,18 +22566,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["json5", [\
-        ["npm:1.0.1", {\
-          "packageLocation": "./.yarn/cache/json5-npm-1.0.1-647fc8794b-e76ea23dbb.zip/node_modules/json5/",\
+        ["npm:1.0.2", {\
+          "packageLocation": "./.yarn/cache/json5-npm-1.0.2-9607f93e30-866458a8c5.zip/node_modules/json5/",\
           "packageDependencies": [\
-            ["json5", "npm:1.0.1"],\
-            ["minimist", "npm:1.2.7"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
-        ["npm:2.2.0", {\
-          "packageLocation": "./.yarn/cache/json5-npm-2.2.0-da49dc7cb5-e88fc5274b.zip/node_modules/json5/",\
-          "packageDependencies": [\
-            ["json5", "npm:2.2.0"],\
+            ["json5", "npm:1.0.2"],\
             ["minimist", "npm:1.2.7"]\
           ],\
           "linkType": "HARD"\
@@ -23091,7 +23083,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["loader-utils", "npm:1.4.2"],\
             ["big.js", "npm:5.2.2"],\
             ["emojis-list", "npm:3.0.0"],\
-            ["json5", "npm:1.0.1"]\
+            ["json5", "npm:1.0.2"]\
           ],\
           "linkType": "HARD"\
         }],\
@@ -23101,7 +23093,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["loader-utils", "npm:2.0.2"],\
             ["big.js", "npm:5.2.2"],\
             ["emojis-list", "npm:3.0.0"],\
-            ["json5", "npm:2.2.0"]\
+            ["json5", "npm:2.2.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -31678,7 +31670,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["tsconfig-paths", "npm:3.14.1"],\
             ["@types/json5", "npm:0.0.29"],\
-            ["json5", "npm:1.0.1"],\
+            ["json5", "npm:1.0.2"],\
             ["minimist", "npm:1.2.7"],\
             ["strip-bom", "npm:3.0.0"]\
           ],\
