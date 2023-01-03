@@ -115,7 +115,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["storybook-addon-performance", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:0.16.1"],\
             ["styled-components", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.3.6"],\
             ["tslib", "npm:2.4.0"],\
-            ["type-fest", "npm:3.3.0"],\
+            ["type-fest", "npm:3.5.0"],\
             ["typescript", "patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=d73830"],\
             ["webpack", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.75.0"]\
           ],\
@@ -6454,7 +6454,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["storybook-addon-performance", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:0.16.1"],\
             ["styled-components", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.3.6"],\
             ["tslib", "npm:2.4.0"],\
-            ["type-fest", "npm:3.3.0"],\
+            ["type-fest", "npm:3.5.0"],\
             ["typescript", "patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=d73830"],\
             ["webpack", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.75.0"]\
           ],\
@@ -31838,10 +31838,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["npm:3.3.0", {\
-          "packageLocation": "./.yarn/cache/type-fest-npm-3.3.0-ea45be3411-6f260466dd.zip/node_modules/type-fest/",\
+        ["npm:3.5.0", {\
+          "packageLocation": "./.yarn/cache/type-fest-npm-3.5.0-29f6d13fda-9b82958ded.zip/node_modules/type-fest/",\
           "packageDependencies": [\
-            ["type-fest", "npm:3.3.0"]\
+            ["type-fest", "npm:3.5.0"]\
           ],\
           "linkType": "HARD"\
         }]\
