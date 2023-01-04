@@ -1,3 +1,10 @@
+## [2.4.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.4.0...v2.4.1) (2023-01-04)
+
+
+### Bug Fixes
+
+* **build:** remove useless npm engine version ([16a4b43](https://github.com/MTES-MCT/monitor-ui/commit/16a4b4335c9a6dfeb8dfed4d6598d3ba8fd05b3e))
+
 # [2.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.3.2...v2.4.0) (2022-12-21)
 
 
