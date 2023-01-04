@@ -5,8 +5,7 @@
   "license": "AGPL-3.0",
   "private": true,
   "engines": {
-    "node": "18",
-    "npm": "8"
+    "node": ">=18"
   },
   "scripts": {
     "build": "rm -Rf ./dist && rollup -c && yarn build:copy && yarn build:package && yarn build:clean",
