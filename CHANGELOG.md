@@ -1,3 +1,10 @@
+## [2.5.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.5.0...v2.5.1) (2023-01-06)
+
+
+### Bug Fixes
+
+* **fields:** force width for DateRangePicker calendar container ([2c3bab7](https://github.com/MTES-MCT/monitor-ui/commit/2c3bab7a1f6ab5a70ad2e679045eef8822f310d5))
+
 # [2.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.4.1...v2.5.0) (2023-01-06)
 
 
