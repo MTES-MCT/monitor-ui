@@ -107,6 +107,7 @@ const Box = styled.div`
     box-shadow: inset 0px 0px 0px 1px ${p => p.theme.color.lightGray};
     border-radius: 0;
     margin-top: 2px;
+    width: 495px;
 
     .rs-picker-daterange-header,
     .rs-calendar-header-time-toolbar,
