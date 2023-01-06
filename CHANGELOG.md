@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.4.1...v2.5.0) (2023-01-06)
+
+
+### Features
+
+* add OnlyFontGlobalStyle for legacy integration ([16fb494](https://github.com/MTES-MCT/monitor-ui/commit/16fb4941ed0a6420f56ed85333bd2231317b9972))
+
 ## [2.4.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.4.0...v2.4.1) (2023-01-04)
 
 
