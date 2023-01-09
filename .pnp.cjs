@@ -109,7 +109,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rollup-plugin-bundle-size", "npm:1.0.3"],\
             ["rollup-plugin-peer-deps-external", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:2.2.4"],\
             ["rollup-plugin-postcss", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:4.0.2"],\
-            ["rollup-plugin-sizes", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:1.0.4"],\
+            ["rollup-plugin-sizes", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:1.0.5"],\
             ["rsuite", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.23.0"],\
             ["semantic-release", "npm:19.0.5"],\
             ["storybook-addon-performance", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:0.16.1"],\
@@ -6448,7 +6448,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rollup-plugin-bundle-size", "npm:1.0.3"],\
             ["rollup-plugin-peer-deps-external", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:2.2.4"],\
             ["rollup-plugin-postcss", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:4.0.2"],\
-            ["rollup-plugin-sizes", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:1.0.4"],\
+            ["rollup-plugin-sizes", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:1.0.5"],\
             ["rsuite", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.23.0"],\
             ["semantic-release", "npm:19.0.5"],\
             ["storybook-addon-performance", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:0.16.1"],\
@@ -18707,6 +18707,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["filesize", "npm:6.4.0"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:9.0.11", {\
+          "packageLocation": "./.yarn/cache/filesize-npm-9.0.11-3b5a24c45b-7e8a9f9a40.zip/node_modules/filesize/",\
+          "packageDependencies": [\
+            ["filesize", "npm:9.0.11"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["fill-range", [\
@@ -29080,19 +29087,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["rollup-plugin-sizes", [\
-        ["npm:1.0.4", {\
-          "packageLocation": "./.yarn/cache/rollup-plugin-sizes-npm-1.0.4-f85410f9be-8672d72a33.zip/node_modules/rollup-plugin-sizes/",\
+        ["npm:1.0.5", {\
+          "packageLocation": "./.yarn/cache/rollup-plugin-sizes-npm-1.0.5-ee797cffc4-38e8e194af.zip/node_modules/rollup-plugin-sizes/",\
           "packageDependencies": [\
-            ["rollup-plugin-sizes", "npm:1.0.4"]\
+            ["rollup-plugin-sizes", "npm:1.0.5"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:1.0.4", {\
-          "packageLocation": "./.yarn/__virtual__/rollup-plugin-sizes-virtual-dee5fbf01f/0/cache/rollup-plugin-sizes-npm-1.0.4-f85410f9be-8672d72a33.zip/node_modules/rollup-plugin-sizes/",\
+        ["virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:1.0.5", {\
+          "packageLocation": "./.yarn/__virtual__/rollup-plugin-sizes-virtual-3f5cc2ae58/0/cache/rollup-plugin-sizes-npm-1.0.5-ee797cffc4-38e8e194af.zip/node_modules/rollup-plugin-sizes/",\
           "packageDependencies": [\
-            ["rollup-plugin-sizes", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:1.0.4"],\
+            ["rollup-plugin-sizes", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:1.0.5"],\
             ["@types/rollup", null],\
-            ["filesize", "npm:6.4.0"],\
+            ["filesize", "npm:9.0.11"],\
             ["module-details-from-path", "npm:1.0.3"],\
             ["rollup", "npm:2.79.1"]\
           ],\

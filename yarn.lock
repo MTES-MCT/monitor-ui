@@ -3368,7 +3368,7 @@ __metadata:
     rollup-plugin-bundle-size: 1.0.3
     rollup-plugin-peer-deps-external: 2.2.4
     rollup-plugin-postcss: 4.0.2
-    rollup-plugin-sizes: 1.0.4
+    rollup-plugin-sizes: 1.0.5
     rsuite: 5.23.0
     semantic-release: 19.0.5
     storybook-addon-performance: 0.16.1
@@ -12625,10 +12625,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"filesize@npm:^6.0.1, filesize@npm:^6.1.0":
+"filesize@npm:^6.1.0":
   version: 6.4.0
   resolution: "filesize@npm:6.4.0"
   checksum: 83619b0a656225e84ba9a73271b80091629c0e88c2936c1ebd36fff96fb0e2fbae0273c2caccd522c02bc1a32ad9eba869c28c6b2c36e06187d25fd298c3dfe8
+  languageName: node
+  linkType: hard
+
+"filesize@npm:^9.0.0":
+  version: 9.0.11
+  resolution: "filesize@npm:9.0.11"
+  checksum: 7e8a9f9a4089e3ee29de64c241b50db8db4008351ace959873cb950bac0c2e1e09f4b45f42eaed8acd589a895dde978ed199e7a9982902fa06ca0be48e5ea92d
   languageName: node
   linkType: hard
 
@@ -21062,15 +21069,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-sizes@npm:1.0.4":
-  version: 1.0.4
-  resolution: "rollup-plugin-sizes@npm:1.0.4"
+"rollup-plugin-sizes@npm:1.0.5":
+  version: 1.0.5
+  resolution: "rollup-plugin-sizes@npm:1.0.5"
   dependencies:
-    filesize: ^6.0.1
+    filesize: ^9.0.0
     module-details-from-path: ^1.0.3
   peerDependencies:
-    rollup: ^2.0.0
-  checksum: 8672d72a335a0923fe70db7c2b338249b0914d2b574a07aed6504b4cf00d536cf7faef14a6bd648cf06d742298f0e641be755dea7c0fae7593f282ef91f85ed8
+    rollup: ^2 || ^3
+  checksum: 38e8e194af849636fdcfcdb60169195c5df3932bf5241a860f14680a7850ef6819a7b6b0199f55ed021786799aee67f36d73fdcbbf55aa1696e61903a561fead
   languageName: node
   linkType: hard
 
