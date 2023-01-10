@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.5.1...v2.6.0) (2023-01-10)
+
+
+### Features
+
+* **fields:** make AutoComplete, MultiSelect & Select container ref internal ([712cfd7](https://github.com/MTES-MCT/monitor-ui/commit/712cfd7a51feb23ad131e4d37eb3cb44702beed6))
+
 ## [2.5.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.5.0...v2.5.1) (2023-01-06)
 
 
