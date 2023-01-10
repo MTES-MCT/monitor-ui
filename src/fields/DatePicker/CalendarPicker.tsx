@@ -103,7 +103,7 @@ export const Box = styled.div`
       border: 0;
       font-size: 13px;
       height: auto !important;
-      line-height: 1.4;
+      line-height: 1.3846;
       padding: 0;
 
       > .rs-calendar-header {

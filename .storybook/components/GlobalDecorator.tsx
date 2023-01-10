@@ -26,15 +26,6 @@ const CustomGlobalStyle: any = createGlobalStyle`
     vertical-align: 1px;
   }
 
-  p {
-    background-color: #eeeeee;
-    line-height: 1.75;
-    padding: 4px 8px;
-  }
-  * > p:not(:last-child) {
-    margin-bottom: 16px;
-  }
-
   #root {
     height: 100%;
     width: 100%;
