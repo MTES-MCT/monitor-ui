@@ -1,12 +1,12 @@
 import { expect } from '@jest/globals'
 
-import { cleanInputString } from '../cleanInputString'
+import { cleanString } from '../cleanString'
 
-describe('utils/cleanInputString()', () => {
+describe('utils/cleanString()', () => {
   it('should return a trimmed and single-spaced string', () => {
     const text = ' à  l’ouest '
 
-    const result = cleanInputString(text)
+    const result = cleanString(text)
 
     expect(result).toStrictEqual('à l’ouest')
   })
@@ -14,7 +14,7 @@ describe('utils/cleanInputString()', () => {
   it('should return an empty string', () => {
     const text = ''
 
-    const result = cleanInputString(text)
+    const result = cleanString(text)
 
     expect(result).toStrictEqual('')
   })

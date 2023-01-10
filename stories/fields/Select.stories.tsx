@@ -8,6 +8,7 @@ import type { SelectProps } from '../../src'
 
 const args: SelectProps = {
   defaultValue: undefined,
+  error: '',
   isLabelHidden: false,
   isLight: false,
   label: 'A select',

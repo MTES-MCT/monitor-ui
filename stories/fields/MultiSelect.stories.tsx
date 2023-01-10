@@ -7,8 +7,9 @@ import { MultiSelect } from '../../src'
 import type { MultiSelectProps } from '../../src'
 
 const args: MultiSelectProps = {
+  error: '',
   defaultValue: undefined,
-  fixedWidth: 160,
+  fixedWidth: 170,
   isLabelHidden: false,
   isLight: false,
   label: 'A multiple select',
@@ -19,7 +20,8 @@ const args: MultiSelectProps = {
     { label: 'Third Option', value: 'THIRD_OPTION' },
     { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
   ],
-  placeholder: 'Pick some options'
+  placeholder: 'Pick some options',
+  searchable: false
 }
 
 export default {

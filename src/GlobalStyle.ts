@@ -73,6 +73,6 @@ export const GlobalStyle = createGlobalStyle`
   body {
     font-family: Marianne, sans-serif;
     font-size: 16px;
-    line-height: 1.4;
+    line-height: 1.3846;
   }
 `

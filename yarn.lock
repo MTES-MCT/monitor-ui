@@ -3321,6 +3321,7 @@ __metadata:
     "@types/node": 18.11.18
     "@types/ramda": 0.28.20
     "@types/react": 18.0.26
+    "@types/react-dom": 18.0.10
     "@types/sha1": 1.1.3
     "@types/styled-components": 5.1.26
     "@typescript-eslint/eslint-plugin": 5.45.0
@@ -6710,6 +6711,15 @@ __metadata:
   dependencies:
     ts-toolbelt: ^6.15.1
   checksum: 02c1e958a09724079acd975aefd2e9ae1327097f941c661ca596e2a8e16df3bd0f0755a16ab378eeb562d8624d7614a3159de2a0129e7d8522a2d79699390818
+  languageName: node
+  linkType: hard
+
+"@types/react-dom@npm:18.0.10":
+  version: 18.0.10
+  resolution: "@types/react-dom@npm:18.0.10"
+  dependencies:
+    "@types/react": "*"
+  checksum: ff8282d5005a0b1cd95fb65bf79d3d8485e4cfe2aaf052129033a178684b940014a3f4536bc20d573f8a01cf4c6f4770c74988cef7c2b5cac3041d9f172647e3
   languageName: node
   linkType: hard
 

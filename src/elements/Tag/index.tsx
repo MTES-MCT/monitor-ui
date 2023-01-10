@@ -69,7 +69,7 @@ const Box = styled.span<{
   color: ${p => (p.$color ? p.$color : p.theme.color.gunMetal)};
   display: inline-flex;
   font-size: 13px;
-  line-height: 1.4;
+  line-height: 1.3846;
   padding: 1px 8px 3px 8px;
 
   /* Bullet components are a span */

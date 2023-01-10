@@ -1,16 +1,23 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { TagPicker } from 'rsuite'
 import styled from 'styled-components'
 
 import { Field } from '../elements/Field'
+import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
+import { useForceUpdate } from '../hooks/useForceUpdate'
+import { normalizeString } from '../utils/normalizeString'
 
 import type { Option } from '../types'
 import type { TagPickerProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
-export type MultiSelectProps = Omit<TagPickerProps, 'as' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'value'> & {
+export type MultiSelectProps = Omit<
+  TagPickerProps,
+  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'value'
+> & {
   defaultValue?: string[]
+  error?: string
   /** Width in pixels */
   fixedWidth?: number
   isLabelHidden?: boolean
@@ -21,6 +28,7 @@ export type MultiSelectProps = Omit<TagPickerProps, 'as' | 'data' | 'defaultValu
   options: Option[]
 }
 export function MultiSelect({
+  error,
   fixedWidth = 5,
   isLabelHidden = false,
   isLight = false,
@@ -31,6 +39,13 @@ export function MultiSelect({
   searchable = false,
   ...originalProps
 }: MultiSelectProps) {
+  // eslint-disable-next-line no-null/no-null
+  const boxRef = useRef<HTMLDivElement | null>(null)
+
+  const { forceUpdate } = useForceUpdate()
+
+  const controlledError = useMemo(() => normalizeString(error), [error])
+  const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useMemo(
     () => `${originalProps.name}-${JSON.stringify(originalProps.defaultValue)}`,
     [originalProps.defaultValue, originalProps.name]
@@ -49,22 +64,33 @@ export function MultiSelect({
     [onChange]
   )
 
+  useEffect(() => {
+    forceUpdate()
+  }, [forceUpdate])
+
   return (
     <Field>
-      <Label htmlFor={originalProps.name} isHidden={isLabelHidden}>
+      <Label hasError={hasError} htmlFor={originalProps.name} isHidden={isLabelHidden}>
         {label}
       </Label>
 
-      <StyledTagPicker
-        key={key}
-        $fixedWidth={fixedWidth}
-        $isLight={isLight}
-        data={options}
-        id={originalProps.name}
-        onChange={handleChange}
-        searchable={searchable}
-        {...originalProps}
-      />
+      <Box ref={boxRef}>
+        {boxRef.current && (
+          <StyledTagPicker
+            key={key}
+            $fixedWidth={fixedWidth}
+            $isLight={isLight}
+            container={boxRef.current}
+            data={options}
+            id={originalProps.name}
+            onChange={handleChange}
+            searchable={searchable}
+            {...originalProps}
+          />
+        )}
+      </Box>
+
+      {hasError && <FieldError>{controlledError}</FieldError>}
     </Field>
   )
 }
@@ -82,5 +108,54 @@ const StyledTagPicker = styled(TagPicker)<{
   > .rs-picker-toggle {
     background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
     cursor: inherit;
+  }
+`
+
+const Box = styled.div`
+  position: relative;
+
+  > .rs-picker-input {
+    > .rs-picker-toggle {
+      border: solid 1px ${p => p.theme.color.gainsboro} !important;
+      font-size: 13px;
+      line-height: 1.3846;
+      padding: 5px 40px 5px 8px !important;
+
+      :hover {
+        border: solid 1px ${p => p.theme.color.blueYonder[100]} !important;
+      }
+
+      :active,
+      :focus {
+        border: solid 1px ${p => p.theme.color.blueGray[100]} !important;
+      }
+
+      > .rs-stack {
+        > .rs-stack-item {
+          > .rs-picker-toggle-placeholder {
+            font-size: 13px;
+            line-height: 1.3846;
+          }
+
+          > svg {
+            height: 18px;
+            /* margin-top: -2px; */
+          }
+        }
+      }
+    }
+
+    > .rs-picker-tag-wrapper {
+      .rs-picker-search {
+        .rs-picker-search-input {
+          padding: 0 8px !important;
+
+          input {
+            font-size: 13px;
+            line-height: 1.3846;
+          }
+        }
+      }
+    }
   }
 `

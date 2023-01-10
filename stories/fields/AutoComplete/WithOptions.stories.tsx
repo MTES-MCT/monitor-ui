@@ -8,6 +8,7 @@ import type { AutoCompleteProps } from '../../../src'
 
 const args: AutoCompleteProps = {
   defaultValue: undefined,
+  error: '',
   isLabelHidden: false,
   isLight: false,
   label: 'An autocompletable select',
