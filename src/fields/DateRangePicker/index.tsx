@@ -1,10 +1,11 @@
 // TODO We should make this component both form- & a11y-compliant with a `name` and proper (aria-)labels.
 
-import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { useCallback, useMemo, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
 import { Fieldset } from '../../elements/Fieldset'
 import { Legend } from '../../elements/Legend'
+import { useClickOutside } from '../../hooks/useClickOutside'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
 import { getLocalizedDayjs } from '../../utils/getLocalizedDayjs'
 import { getUtcizedDayjs } from '../../utils/getUtcizedDayjs'
@@ -19,6 +20,8 @@ import type { HTMLAttributes, MutableRefObject } from 'react'
 import type { Promisable } from 'type-fest'
 
 export type DateRangePickerProps = Omit<HTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange'> & {
+  /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
+  baseContainer?: Document | HTMLDivElement | null
   defaultValue?: DateRange
   disabled?: boolean
   isCompact?: boolean
@@ -43,6 +46,7 @@ export type DateRangePickerProps = Omit<HTMLAttributes<HTMLFieldSetElement>, 'de
   withTime?: boolean
 }
 export function DateRangePicker({
+  baseContainer,
   defaultValue,
   // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,
@@ -105,19 +109,6 @@ export function DateRangePicker({
 
     forceUpdate()
   }, [forceUpdate])
-
-  const handleClickOutside = useCallback(
-    (event: globalThis.MouseEvent) => {
-      const target = event.target as Node | null
-
-      if (startDateInputRef.current.box.contains(target) || endDateInputRef.current.box.contains(target)) {
-        return
-      }
-
-      closeRangeCalendarPicker()
-    },
-    [closeRangeCalendarPicker]
-  )
 
   const handleEndDateInputNext = useCallback(() => {
     if (!withTime) {
@@ -276,13 +267,7 @@ export function DateRangePicker({
     forceUpdate()
   }, [forceUpdate])
 
-  useEffect(() => {
-    window.document.addEventListener('click', handleClickOutside)
-
-    return () => {
-      window.document.removeEventListener('click', handleClickOutside)
-    }
-  }, [handleClickOutside])
+  useClickOutside([endDateInputRef, startDateInputRef], closeRangeCalendarPicker, baseContainer)
 
   return (
     <Fieldset {...nativeProps}>

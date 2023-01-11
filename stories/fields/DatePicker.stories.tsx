@@ -1,12 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { DatePicker } from '../../src'
+import {
+  generateStoryDecorator,
+  NewWindowButtonBox,
+  NewWindowStoryBox
+} from '../../.storybook/components/StoryDecorator'
+import { Accent, Button, DatePicker, Size, useForceUpdate } from '../../src'
+import { NewWindow } from '../../src/components/NewWindow'
 
 import type { DatePickerProps } from '../../src'
 
 const args: DatePickerProps = {
+  baseContainer: undefined,
   disabled: false,
   isCompact: false,
   isHistorical: false,
@@ -19,26 +25,64 @@ const args: DatePickerProps = {
 export default {
   title: 'Fields/DatePicker',
   component: DatePicker,
+  args,
 
   argTypes: {},
 
-  args,
-
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasDarkMode: true,
+      withNewWindowButton: true
     })
   ]
 }
 
 export function _DatePicker(props: DatePickerProps) {
+  // eslint-disable-next-line no-null/no-null
+  const newWindowStoryBoxRef = useRef<HTMLDivElement>(null)
+
+  const [isNewWindowOpen, setIsNewWindowOpen] = useState(false)
+  const [isNewWindowFirstLoad, setIsNewWindowFirstLoad] = useState(true)
   const [outputValue, setOutputValue] = useState<Date>()
+
+  const { forceUpdate } = useForceUpdate()
+
+  useEffect(
+    () => {
+      if (isNewWindowOpen) {
+        if (isNewWindowFirstLoad) {
+          setIsNewWindowFirstLoad(false)
+        } else {
+          forceUpdate()
+        }
+      }
+    },
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [isNewWindowOpen, isNewWindowFirstLoad]
+  )
 
   return (
     <>
-      <DatePicker {...props} onChange={setOutputValue} />
+      <NewWindowButtonBox>
+        <Button accent={Accent.SECONDARY} onClick={() => setIsNewWindowOpen(true)} size={Size.SMALL}>
+          OPEN IN NEW WINDOW
+        </Button>
+      </NewWindowButtonBox>
+
+      {!isNewWindowOpen && <DatePicker {...props} onChange={setOutputValue} />}
 
       <Output value={outputValue} />
+
+      {isNewWindowOpen && (
+        <NewWindow isStoryBook onUnload={() => setIsNewWindowOpen(false)}>
+          <NewWindowStoryBox ref={newWindowStoryBoxRef}>
+            {newWindowStoryBoxRef.current && (
+              <DatePicker {...props} baseContainer={newWindowStoryBoxRef.current} onChange={setOutputValue} />
+            )}
+          </NewWindowStoryBox>
+        </NewWindow>
+      )}
     </>
   )
 }
