@@ -1,10 +1,11 @@
 // TODO We should make this component both form- & a11y-compliant with a `name` and proper (aria-)labels.
 
-import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { useCallback, useMemo, useRef } from 'react'
 import styled from 'styled-components'
 
 import { Fieldset } from '../../elements/Fieldset'
 import { Legend } from '../../elements/Legend'
+import { useClickOutside } from '../../hooks/useClickOutside'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
 import { getLocalizedDayjs } from '../../utils/getLocalizedDayjs'
 import { getUtcizedDayjs } from '../../utils/getUtcizedDayjs'
@@ -18,6 +19,8 @@ import type { HTMLAttributes, MutableRefObject } from 'react'
 import type { Promisable } from 'type-fest'
 
 export type DatePickerProps = Omit<HTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange'> & {
+  /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
+  baseContainer?: Document | HTMLDivElement | null
   defaultValue?: Date
   disabled?: boolean
   isCompact?: boolean
@@ -42,6 +45,7 @@ export type DatePickerProps = Omit<HTMLAttributes<HTMLFieldSetElement>, 'default
   withTime?: boolean
 }
 export function DatePicker({
+  baseContainer,
   defaultValue,
   // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,
@@ -91,19 +95,6 @@ export function DatePicker({
 
     forceUpdate()
   }, [forceUpdate])
-
-  const handleClickOutside = useCallback(
-    (event: globalThis.MouseEvent) => {
-      const target = event.target as Node | null
-
-      if (dateInputRef.current.box.contains(target)) {
-        return
-      }
-
-      closeCalendarPicker()
-    },
-    [closeCalendarPicker]
-  )
 
   const handleDateInputNext = useCallback(() => {
     if (!withTime) {
@@ -192,13 +183,7 @@ export function DatePicker({
     forceUpdate()
   }, [forceUpdate])
 
-  useEffect(() => {
-    window.document.addEventListener('click', handleClickOutside)
-
-    return () => {
-      window.document.removeEventListener('click', handleClickOutside)
-    }
-  }, [handleClickOutside])
+  useClickOutside(boxRef, closeCalendarPicker, baseContainer)
 
   return (
     <Fieldset disabled={disabled} {...nativeProps}>

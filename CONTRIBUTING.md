@@ -31,10 +31,10 @@ corepack enable
 yarn
 ```
 
-3. Install Git hooks:
+3. Install Git hooks and Plyawright browser:
 
 ```sh
-yarn setup
+yarn dev:setup
 ```
 
 ### Run locally

@@ -9,6 +9,7 @@ import { FormikEffect, FormikDatePicker } from '../../src'
 import type { FormikDatePickerProps } from '../../src'
 
 const args: FormikDatePickerProps = {
+  baseContainer: undefined,
   isHistorical: false,
   isLabelHidden: false,
   isLight: false,
@@ -20,10 +21,9 @@ const args: FormikDatePickerProps = {
 export default {
   title: 'Formiks/FormikDatePicker',
   component: FormikDatePicker,
+  args,
 
   argTypes: {},
-
-  args,
 
   decorators: [
     generateStoryDecorator({

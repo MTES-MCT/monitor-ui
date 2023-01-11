@@ -8,15 +8,17 @@ import type { Story, StoryContext } from '@storybook/react'
 
 export function generateStoryDecorator({
   fixedWidth,
-  hasDarkMode = false
+  hasDarkMode = false,
+  withNewWindowButton = false
 }: {
   fixedWidth?: number
   hasDarkMode?: boolean
+  withNewWindowButton?: boolean
 } = {}) {
   return function StoryDecorator(Story: Story, context: StoryContext) {
     const { args } = context
 
-    const [isInWindow, setIsInWindow] = useState(false)
+    const [isNewWindowOpen, setIsNewWindowOpen] = useState(false)
 
     const style = useMemo(
       () => ({
@@ -36,18 +38,20 @@ export function generateStoryDecorator({
 
     return (
       <>
-        <NewWindowButtonBox>
-          <Button accent={Accent.SECONDARY} onClick={() => setIsInWindow(true)} size={Size.SMALL}>
-            OPEN IN NEW WINDOW
-          </Button>
-        </NewWindowButtonBox>
+        {withNewWindowButton && (
+          <NewWindowButtonBox>
+            <Button accent={Accent.SECONDARY} onClick={() => setIsNewWindowOpen(true)} size={Size.SMALL}>
+              OPEN IN NEW WINDOW
+            </Button>
+          </NewWindowButtonBox>
+        )}
 
         <StoryBox style={style}>
           <Story />
         </StoryBox>
 
-        {isInWindow && (
-          <NewWindow isStoryBook onUnload={() => setIsInWindow(false)}>
+        {withNewWindowButton && isNewWindowOpen && (
+          <NewWindow isStoryBook onUnload={() => setIsNewWindowOpen(false)}>
             <NewWindowStoryBox>
               <Story />
             </NewWindowStoryBox>
@@ -64,11 +68,13 @@ const StoryBox = styled.div`
   width: 100%;
 `
 
-const NewWindowButtonBox = styled.div`
+export const NewWindowButtonBox = styled.div`
   position: fixed;
   right: 16px;
   top: 16px;
 `
-const NewWindowStoryBox = styled.div`
-  padding: 16px; ;
+export const NewWindowStoryBox = styled.div`
+  height: 100%;
+  padding: 16px;
+  width: 100%;
 `
