@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { SelectPicker } from 'rsuite'
 import styled from 'styled-components'
 
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
+import { useClickOutside } from '../hooks/useClickOutside'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { normalizeString } from '../utils/normalizeString'
 
@@ -16,6 +17,8 @@ export type SelectProps = Omit<
   SelectPickerProps<any>,
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'value'
 > & {
+  /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
+  baseContainer?: Document | HTMLDivElement | null
   defaultValue?: string
   error?: string
   isLabelHidden?: boolean
@@ -26,6 +29,7 @@ export type SelectProps = Omit<
   options: Option[]
 }
 export function Select({
+  baseContainer,
   error,
   isLabelHidden = false,
   isLight = false,
@@ -39,6 +43,8 @@ export function Select({
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
 
+  const [isOpen, setIsOpen] = useState(false)
+
   const { forceUpdate } = useForceUpdate()
 
   const controlledError = useMemo(() => normalizeString(error), [error])
@@ -47,6 +53,10 @@ export function Select({
     () => `${originalProps.name}-${JSON.stringify(originalProps.defaultValue)}`,
     [originalProps.defaultValue, originalProps.name]
   )
+
+  const close = useCallback(() => {
+    setIsOpen(false)
+  }, [])
 
   const handleChange = useCallback(
     (nextValue: string | null) => {
@@ -61,6 +71,12 @@ export function Select({
     [onChange]
   )
 
+  const open = useCallback(() => {
+    setIsOpen(true)
+  }, [])
+
+  useClickOutside(boxRef, close, baseContainer)
+
   useEffect(() => {
     forceUpdate()
   }, [forceUpdate])
@@ -71,7 +87,7 @@ export function Select({
         {label}
       </Label>
 
-      <Box ref={boxRef}>
+      <Box ref={boxRef} onClick={open}>
         {boxRef.current && (
           <StyledSelectPicker
             key={key}
@@ -82,6 +98,7 @@ export function Select({
             // The `unknown` type from Rsuite library is wrong. It should be inferred from `data` prop type.
             // `onChange: ((value: unknown, event: React.SyntheticEvent<Element, Event>) => void) | undefined`
             onChange={handleChange as any}
+            open={isOpen}
             searchable={searchable}
             {...originalProps}
           />

@@ -48,6 +48,13 @@ export { FormikTextInput } from './formiks/FormikTextInput'
 export * as Icon from './icons'
 
 /* -----------------------------------------------------------------------------
+  Hooks
+*/
+
+export { useClickOutside } from './hooks/useClickOutside'
+export { useForceUpdate } from './hooks/useForceUpdate'
+
+/* -----------------------------------------------------------------------------
   Type Definitions
 */
 

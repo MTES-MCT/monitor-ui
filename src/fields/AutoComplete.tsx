@@ -18,6 +18,8 @@ export type AutoCompleteProps = Omit<
   RsuiteAutoCompleteProps,
   'as' | 'container' | 'data' | 'id' | 'onChange' | 'onSelect' | 'value'
 > & {
+  /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
+  baseContainer?: Document | HTMLDivElement | null
   error?: string
   isLabelHidden?: boolean
   isLight?: boolean
@@ -30,6 +32,7 @@ export type AutoCompleteProps = Omit<
   queryUrl?: string
 }
 export function AutoComplete({
+  baseContainer,
   defaultValue,
   error,
   isLabelHidden,

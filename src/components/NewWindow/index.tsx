@@ -65,7 +65,7 @@ export function NewWindow({
       return
     }
 
-    console.debug(CACHE.COUNTER, 'closeWindow()')
+    // console.debug(CACHE.COUNTER, 'closeWindow()')
 
     isReleasedRef.current = true
 
@@ -85,7 +85,7 @@ export function NewWindow({
    * Create the new window when NewWindow component mount.
    */
   const createWindow = useCallback(() => {
-    console.debug(CACHE.COUNTER, 'createWindow()')
+    // console.debug(CACHE.COUNTER, 'createWindow()')
     if (!window.top) {
       return
     }
@@ -130,8 +130,6 @@ export function NewWindow({
       }
 
       copyStyles(document, windowRef.current.document)
-      // eslint-disable-next-line no-console
-      console.debug('copy styles')
     })
 
     if (typeof onOpen === 'function') {
@@ -147,7 +145,7 @@ export function NewWindow({
   useEffect(() => {
     CACHE.COUNTER += 1
 
-    console.debug(CACHE.COUNTER)
+    // console.debug(CACHE.COUNTER)
   }, [])
 
   useEffect(() => {
@@ -160,13 +158,13 @@ export function NewWindow({
         return
       }
 
-      console.debug(CACHE.COUNTER, 'unmount()')
+      // console.debug(CACHE.COUNTER, 'unmount()')
 
       windowRef.current.close()
     }
   }, [children, createWindow, isMounted, isStoryBook])
 
-  console.debug(CACHE.COUNTER, isMounted, CACHE.CONTAINER_ELEMENT)
+  // console.debug(CACHE.COUNTER, isMounted, CACHE.CONTAINER_ELEMENT)
 
   if (!isMounted || !CACHE.CONTAINER_ELEMENT) {
     return <></>
