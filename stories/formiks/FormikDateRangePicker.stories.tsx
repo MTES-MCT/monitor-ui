@@ -10,6 +10,7 @@ import type { FormikDateRangePickerProps } from '../../src'
 import type { DateRange } from '../../src/types'
 
 const args: FormikDateRangePickerProps = {
+  baseContainer: undefined,
   isHistorical: false,
   isLabelHidden: false,
   isLight: false,
@@ -21,10 +22,9 @@ const args: FormikDateRangePickerProps = {
 export default {
   title: 'Formiks/FormikDateRangePicker',
   component: FormikDateRangePicker,
+  args,
 
   argTypes: {},
-
-  args,
 
   decorators: [
     generateStoryDecorator({

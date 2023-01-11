@@ -52,6 +52,7 @@ function DateInputWithRef(
 
   useImperativeHandle<DateOrTimeInputRef, DateOrTimeInputRef>(ref, () => ({
     box: boxRef.current,
+    contains: boxRef.current.contains.bind(boxRef.current),
     focus: (isInLastInputOfTheGroup = false) => {
       if (isInLastInputOfTheGroup) {
         yearInputRef.current.focus()
