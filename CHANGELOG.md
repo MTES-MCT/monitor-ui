@@ -1,3 +1,10 @@
+# [2.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.6.0...v2.7.0) (2023-01-12)
+
+
+### Features
+
+* **fields:** add baseContainer prop to fields with global event listeners ([ebbb874](https://github.com/MTES-MCT/monitor-ui/commit/ebbb874be7352ce8830e94b7654fe27bbd00e544))
+
 # [2.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.5.1...v2.6.0) (2023-01-10)
 
 
