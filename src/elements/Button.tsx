@@ -7,9 +7,9 @@ import type { IconProps } from '../types'
 import type { ButtonHTMLAttributes, FunctionComponent } from 'react'
 
 const ICON_SIZE: Record<Size, number> = {
-  [Size.LARGE]: 1.25,
-  [Size.NORMAL]: 1.25,
-  [Size.SMALL]: 0.75
+  [Size.LARGE]: 20,
+  [Size.NORMAL]: 20,
+  [Size.SMALL]: 12
 }
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
