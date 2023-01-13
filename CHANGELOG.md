@@ -1,3 +1,10 @@
+## [2.7.2](https://github.com/MTES-MCT/monitor-ui/compare/v2.7.1...v2.7.2) (2023-01-13)
+
+
+### Bug Fixes
+
+* **elements:** set Button icon size in px instead of rem ([363ffab](https://github.com/MTES-MCT/monitor-ui/commit/363ffab6d6d2c65e997eafa7378f4ead377cb6f2))
+
 ## [2.7.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.7.0...v2.7.1) (2023-01-13)
 
 
