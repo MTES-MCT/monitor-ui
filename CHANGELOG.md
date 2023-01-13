@@ -1,3 +1,10 @@
+## [2.7.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.7.0...v2.7.1) (2023-01-13)
+
+
+### Bug Fixes
+
+* **fields:** handle detached click outside for time in DatePicker & DateRangePicker ([afa0a13](https://github.com/MTES-MCT/monitor-ui/commit/afa0a13394f650b0d26a5cf868a325cc79335dcb))
+
 # [2.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.6.0...v2.7.0) (2023-01-12)
 
 
