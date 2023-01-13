@@ -10,7 +10,7 @@ export const useClickOutside = (
   baseContainer?: Document | HTMLDivElement | null
 ) => {
   const handleClickOutside = useCallback(
-    (event: Event) => {
+    (event: MouseEvent) => {
       const eventTarget = event.target as Node | null
       const zoneRefs = Array.isArray(zoneRefOrzoneRefs) ? zoneRefOrzoneRefs : [zoneRefOrzoneRefs]
 
@@ -31,10 +31,10 @@ export const useClickOutside = (
   useEffect(() => {
     const globalContainer = baseContainer ?? window.document
 
-    globalContainer.addEventListener('click', handleClickOutside)
+    globalContainer.addEventListener('click', handleClickOutside as any)
 
     return () => {
-      globalContainer.removeEventListener('click', handleClickOutside)
+      globalContainer.removeEventListener('click', handleClickOutside as any)
     }
   }, [baseContainer, handleClickOutside])
 }

@@ -210,6 +210,7 @@ export function DatePicker({
           <Field $isTimeField>
             <TimeInput
               ref={timeInputRef}
+              baseContainer={baseContainer}
               defaultValue={selectedTimeTupleRef.current}
               disabled={disabled}
               isCompact={isCompact}

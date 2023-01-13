@@ -1,7 +1,7 @@
 ## Related Issues
 
-- Resolve MTES-MCT/monitorenv#123
-- Resolve MTES-MCT/monitorfish#123
+- MTES-MCT/monitorenv#123
+- MTES-MCT/monitorfish#123
 
 ## Preview URL
 

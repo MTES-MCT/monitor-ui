@@ -1,6 +1,7 @@
-import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import { forwardRef, useCallback, useImperativeHandle, useRef, useState } from 'react'
 import styled from 'styled-components'
 
+import { useClickOutside } from '../../hooks/useClickOutside'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
 import { Clock } from '../../icons'
 import { NumberInput } from './NumberInput'
@@ -12,6 +13,7 @@ import type { ForwardedRef, MutableRefObject } from 'react'
 import type { Promisable } from 'type-fest'
 
 export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'onNext'> & {
+  baseContainer?: Document | HTMLDivElement | null
   defaultValue?: TimeTuple
   // TODO Check why TS thinks there is no `disabled` prop in `NumberInputProps`.
   disabled: boolean
@@ -28,6 +30,7 @@ export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
 }
 function TimeInputWithRef(
   {
+    baseContainer,
     defaultValue,
     // eslint-disable-next-line @typescript-eslint/naming-convention
     disabled = false,
@@ -90,19 +93,6 @@ function TimeInputWithRef(
     setIsFocused(false)
   }, [])
 
-  const handleClickOutside = useCallback(
-    (event: globalThis.MouseEvent) => {
-      const target = event.target as Node | null
-
-      if (hourInputRef.current.contains(target) || minuteInputRef.current.contains(target)) {
-        return
-      }
-
-      closeRangedTimePicker()
-    },
-    [closeRangedTimePicker]
-  )
-
   const handleFocus = useCallback(() => {
     setIsFocused(true)
 
@@ -139,14 +129,6 @@ function TimeInputWithRef(
     forceUpdate()
   }, [forceUpdate])
 
-  useEffect(() => {
-    window.document.addEventListener('click', handleClickOutside)
-
-    return () => {
-      window.document.removeEventListener('click', handleClickOutside)
-    }
-  }, [handleClickOutside])
-
   const submit = useCallback(() => {
     setHasValidationError(false)
 
@@ -167,6 +149,8 @@ function TimeInputWithRef(
     const nextTimeTuple: TimeTuple = [hourInputRef.current.value, minuteInputRef.current.value]
     onChange(nextTimeTuple)
   }, [closeRangedTimePicker, onChange])
+
+  useClickOutside(boxRef, closeRangedTimePicker, baseContainer)
 
   return (
     <Box
