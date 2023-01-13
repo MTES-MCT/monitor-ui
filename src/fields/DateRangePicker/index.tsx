@@ -297,6 +297,7 @@ export function DateRangePicker({
           <Field isTimeField>
             <TimeInput
               ref={startTimeInputRef}
+              baseContainer={baseContainer}
               defaultValue={selectedStartTimeTupleRef.current}
               disabled={disabled}
               isCompact={isCompact}
@@ -335,6 +336,7 @@ export function DateRangePicker({
           <Field isTimeField>
             <TimeInput
               ref={endTimeInputRef}
+              baseContainer={baseContainer}
               defaultValue={selectedEndTimeTupleRef.current}
               disabled={disabled}
               isCompact={isCompact}
