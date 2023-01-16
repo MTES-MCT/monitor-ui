@@ -3344,7 +3344,7 @@ __metadata:
     rollup-plugin-peer-deps-external: 2.2.4
     rollup-plugin-postcss: 4.0.2
     rollup-plugin-sizes: 1.0.5
-    rsuite: 5.23.0
+    rsuite: 5.24.1
     semantic-release: 19.0.5
     storybook-addon-performance: 0.16.1
     styled-components: 5.3.6
@@ -21146,9 +21146,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rsuite-table@npm:^5.8.1":
-  version: 5.8.1
-  resolution: "rsuite-table@npm:5.8.1"
+"rsuite-table@npm:^5.8.2":
+  version: 5.8.2
+  resolution: "rsuite-table@npm:5.8.2"
   dependencies:
     "@babel/runtime": ^7.12.5
     "@juggle/resize-observer": ^3.3.1
@@ -21161,13 +21161,13 @@ __metadata:
     prop-types: ^15.7.2
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: 54aaf9bf986f8312f44518d629b5c680540f4090ae2e16a0feca9e8bd464f5771ef0be86964d26da887a2d751315cacb79ca8eae085fc692fcba8b3824bf1d42
+  checksum: 8f7aa094ca0af698f2e488d77cbcffd4b23ed2dd2ba39aa74f7278e771c1c572e9f8dc69597fa56d763a65bcc0c075e518bc8c24c232e54bb5863cb208654518
   languageName: node
   linkType: hard
 
-"rsuite@npm:5.23.0":
-  version: 5.23.0
-  resolution: "rsuite@npm:5.23.0"
+"rsuite@npm:5.24.1":
+  version: 5.24.1
+  resolution: "rsuite@npm:5.24.1"
   dependencies:
     "@babel/runtime": ^7.20.1
     "@juggle/resize-observer": ^3.4.0
@@ -21182,12 +21182,12 @@ __metadata:
     lodash: ^4.17.11
     prop-types: ^15.8.1
     react-window: ^1.8.8
-    rsuite-table: ^5.8.1
+    rsuite-table: ^5.8.2
     schema-typed: ^2.0.3
   peerDependencies:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: a93126ddc5fa69ae4299687478243563ef9d5fcf9cf7a54d52738984a4410f83db68d27189e8277d600155779be5b4edf5971bcc9d5a8b424c94e7257c050053
+  checksum: d8463718e989feec51f0ae0f105b5c5cf733bab1c9901fe8dc464362d7858ed1a8147ae19c2b34e2882384226cce18b4004e5692b7d6b92f35d1a3ba5ae11204
   languageName: node
   linkType: hard
 

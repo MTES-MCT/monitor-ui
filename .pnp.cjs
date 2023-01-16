@@ -111,7 +111,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rollup-plugin-peer-deps-external", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:2.2.4"],\
             ["rollup-plugin-postcss", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:4.0.2"],\
             ["rollup-plugin-sizes", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:1.0.5"],\
-            ["rsuite", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.23.0"],\
+            ["rsuite", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.24.1"],\
             ["semantic-release", "npm:19.0.5"],\
             ["storybook-addon-performance", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:0.16.1"],\
             ["styled-components", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.3.6"],\
@@ -6427,7 +6427,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rollup-plugin-peer-deps-external", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:2.2.4"],\
             ["rollup-plugin-postcss", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:4.0.2"],\
             ["rollup-plugin-sizes", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:1.0.5"],\
-            ["rsuite", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.23.0"],\
+            ["rsuite", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.24.1"],\
             ["semantic-release", "npm:19.0.5"],\
             ["storybook-addon-performance", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:0.16.1"],\
             ["styled-components", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.3.6"],\
@@ -7300,10 +7300,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:ba7dd6d988222f815043bbc1757a2fa41e2d56d5b5af0d22e1264bc5665f876ebf82a77c06498d79d270c8a2486f30d66c7bd52fb7e1e6fc50f3dd26abb89e18#npm:1.0.2", {\
-          "packageLocation": "./.yarn/__virtual__/@rsuite-icons-virtual-3c481b2897/0/cache/@rsuite-icons-npm-1.0.2-449520f7e3-b90826f888.zip/node_modules/@rsuite/icons/",\
+        ["virtual:4ac6cfd531ad2a366b62fec086745dcc3088cbc64345c1a45221a9899ee7bafce5a4829bc93bf805a6bacc7617bd0482cf6e0f4899eed132953cfdcb36a3249b#npm:1.0.2", {\
+          "packageLocation": "./.yarn/__virtual__/@rsuite-icons-virtual-ede6fa07ce/0/cache/@rsuite-icons-npm-1.0.2-449520f7e3-b90826f888.zip/node_modules/@rsuite/icons/",\
           "packageDependencies": [\
-            ["@rsuite/icons", "virtual:ba7dd6d988222f815043bbc1757a2fa41e2d56d5b5af0d22e1264bc5665f876ebf82a77c06498d79d270c8a2486f30d66c7bd52fb7e1e6fc50f3dd26abb89e18#npm:1.0.2"],\
+            ["@rsuite/icons", "virtual:4ac6cfd531ad2a366b62fec086745dcc3088cbc64345c1a45221a9899ee7bafce5a4829bc93bf805a6bacc7617bd0482cf6e0f4899eed132953cfdcb36a3249b#npm:1.0.2"],\
             ["@rsuite/icon-font", "npm:4.0.0"],\
             ["@types/react", "npm:18.0.26"],\
             ["@types/react-dom", "npm:18.0.10"],\
@@ -28255,10 +28255,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:ba7dd6d988222f815043bbc1757a2fa41e2d56d5b5af0d22e1264bc5665f876ebf82a77c06498d79d270c8a2486f30d66c7bd52fb7e1e6fc50f3dd26abb89e18#npm:1.8.8", {\
-          "packageLocation": "./.yarn/__virtual__/react-window-virtual-505a75ec7e/0/cache/react-window-npm-1.8.8-1f85a45c48-a19f43b901.zip/node_modules/react-window/",\
+        ["virtual:4ac6cfd531ad2a366b62fec086745dcc3088cbc64345c1a45221a9899ee7bafce5a4829bc93bf805a6bacc7617bd0482cf6e0f4899eed132953cfdcb36a3249b#npm:1.8.8", {\
+          "packageLocation": "./.yarn/__virtual__/react-window-virtual-9c2cd719d7/0/cache/react-window-npm-1.8.8-1f85a45c48-a19f43b901.zip/node_modules/react-window/",\
           "packageDependencies": [\
-            ["react-window", "virtual:ba7dd6d988222f815043bbc1757a2fa41e2d56d5b5af0d22e1264bc5665f876ebf82a77c06498d79d270c8a2486f30d66c7bd52fb7e1e6fc50f3dd26abb89e18#npm:1.8.8"],\
+            ["react-window", "virtual:4ac6cfd531ad2a366b62fec086745dcc3088cbc64345c1a45221a9899ee7bafce5a4829bc93bf805a6bacc7617bd0482cf6e0f4899eed132953cfdcb36a3249b#npm:1.8.8"],\
             ["@babel/runtime", "npm:7.16.3"],\
             ["@types/react", "npm:18.0.26"],\
             ["@types/react-dom", "npm:18.0.10"],\
@@ -29190,20 +29190,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["rsuite", [\
-        ["npm:5.23.0", {\
-          "packageLocation": "./.yarn/cache/rsuite-npm-5.23.0-b2d32b47b6-a93126ddc5.zip/node_modules/rsuite/",\
+        ["npm:5.24.1", {\
+          "packageLocation": "./.yarn/cache/rsuite-npm-5.24.1-df239590c7-d8463718e9.zip/node_modules/rsuite/",\
           "packageDependencies": [\
-            ["rsuite", "npm:5.23.0"]\
+            ["rsuite", "npm:5.24.1"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.23.0", {\
-          "packageLocation": "./.yarn/__virtual__/rsuite-virtual-ba7dd6d988/0/cache/rsuite-npm-5.23.0-b2d32b47b6-a93126ddc5.zip/node_modules/rsuite/",\
+        ["virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.24.1", {\
+          "packageLocation": "./.yarn/__virtual__/rsuite-virtual-4ac6cfd531/0/cache/rsuite-npm-5.24.1-df239590c7-d8463718e9.zip/node_modules/rsuite/",\
           "packageDependencies": [\
-            ["rsuite", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.23.0"],\
+            ["rsuite", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.24.1"],\
             ["@babel/runtime", "npm:7.20.5"],\
             ["@juggle/resize-observer", "npm:3.4.0"],\
-            ["@rsuite/icons", "virtual:ba7dd6d988222f815043bbc1757a2fa41e2d56d5b5af0d22e1264bc5665f876ebf82a77c06498d79d270c8a2486f30d66c7bd52fb7e1e6fc50f3dd26abb89e18#npm:1.0.2"],\
+            ["@rsuite/icons", "virtual:4ac6cfd531ad2a366b62fec086745dcc3088cbc64345c1a45221a9899ee7bafce5a4829bc93bf805a6bacc7617bd0482cf6e0f4899eed132953cfdcb36a3249b#npm:1.0.2"],\
             ["@types/chai", "npm:4.3.4"],\
             ["@types/lodash", "npm:4.14.190"],\
             ["@types/prop-types", "npm:15.7.5"],\
@@ -29217,8 +29217,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prop-types", "npm:15.8.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:18.2.0"],\
-            ["react-window", "virtual:ba7dd6d988222f815043bbc1757a2fa41e2d56d5b5af0d22e1264bc5665f876ebf82a77c06498d79d270c8a2486f30d66c7bd52fb7e1e6fc50f3dd26abb89e18#npm:1.8.8"],\
-            ["rsuite-table", "virtual:ba7dd6d988222f815043bbc1757a2fa41e2d56d5b5af0d22e1264bc5665f876ebf82a77c06498d79d270c8a2486f30d66c7bd52fb7e1e6fc50f3dd26abb89e18#npm:5.8.1"],\
+            ["react-window", "virtual:4ac6cfd531ad2a366b62fec086745dcc3088cbc64345c1a45221a9899ee7bafce5a4829bc93bf805a6bacc7617bd0482cf6e0f4899eed132953cfdcb36a3249b#npm:1.8.8"],\
+            ["rsuite-table", "virtual:4ac6cfd531ad2a366b62fec086745dcc3088cbc64345c1a45221a9899ee7bafce5a4829bc93bf805a6bacc7617bd0482cf6e0f4899eed132953cfdcb36a3249b#npm:5.8.2"],\
             ["schema-typed", "npm:2.0.3"]\
           ],\
           "packagePeers": [\
@@ -29231,20 +29231,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["rsuite-table", [\
-        ["npm:5.8.1", {\
-          "packageLocation": "./.yarn/cache/rsuite-table-npm-5.8.1-53821ad393-54aaf9bf98.zip/node_modules/rsuite-table/",\
+        ["npm:5.8.2", {\
+          "packageLocation": "./.yarn/cache/rsuite-table-npm-5.8.2-7eb5dd98fb-8f7aa094ca.zip/node_modules/rsuite-table/",\
           "packageDependencies": [\
-            ["rsuite-table", "npm:5.8.1"]\
+            ["rsuite-table", "npm:5.8.2"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:ba7dd6d988222f815043bbc1757a2fa41e2d56d5b5af0d22e1264bc5665f876ebf82a77c06498d79d270c8a2486f30d66c7bd52fb7e1e6fc50f3dd26abb89e18#npm:5.8.1", {\
-          "packageLocation": "./.yarn/__virtual__/rsuite-table-virtual-142c409358/0/cache/rsuite-table-npm-5.8.1-53821ad393-54aaf9bf98.zip/node_modules/rsuite-table/",\
+        ["virtual:4ac6cfd531ad2a366b62fec086745dcc3088cbc64345c1a45221a9899ee7bafce5a4829bc93bf805a6bacc7617bd0482cf6e0f4899eed132953cfdcb36a3249b#npm:5.8.2", {\
+          "packageLocation": "./.yarn/__virtual__/rsuite-table-virtual-8698c772cd/0/cache/rsuite-table-npm-5.8.2-7eb5dd98fb-8f7aa094ca.zip/node_modules/rsuite-table/",\
           "packageDependencies": [\
-            ["rsuite-table", "virtual:ba7dd6d988222f815043bbc1757a2fa41e2d56d5b5af0d22e1264bc5665f876ebf82a77c06498d79d270c8a2486f30d66c7bd52fb7e1e6fc50f3dd26abb89e18#npm:5.8.1"],\
+            ["rsuite-table", "virtual:4ac6cfd531ad2a366b62fec086745dcc3088cbc64345c1a45221a9899ee7bafce5a4829bc93bf805a6bacc7617bd0482cf6e0f4899eed132953cfdcb36a3249b#npm:5.8.2"],\
             ["@babel/runtime", "npm:7.16.3"],\
             ["@juggle/resize-observer", "npm:3.4.0"],\
-            ["@rsuite/icons", "virtual:ba7dd6d988222f815043bbc1757a2fa41e2d56d5b5af0d22e1264bc5665f876ebf82a77c06498d79d270c8a2486f30d66c7bd52fb7e1e6fc50f3dd26abb89e18#npm:1.0.2"],\
+            ["@rsuite/icons", "virtual:4ac6cfd531ad2a366b62fec086745dcc3088cbc64345c1a45221a9899ee7bafce5a4829bc93bf805a6bacc7617bd0482cf6e0f4899eed132953cfdcb36a3249b#npm:1.0.2"],\
             ["@types/prop-types", "npm:15.7.5"],\
             ["@types/react", "npm:18.0.26"],\
             ["@types/react-dom", "npm:18.0.10"],\

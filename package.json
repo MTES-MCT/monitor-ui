@@ -116,7 +116,7 @@
     "rollup-plugin-peer-deps-external": "2.2.4",
     "rollup-plugin-postcss": "4.0.2",
     "rollup-plugin-sizes": "1.0.5",
-    "rsuite": "5.23.0",
+    "rsuite": "5.24.1",
     "semantic-release": "19.0.5",
     "storybook-addon-performance": "0.16.1",
     "styled-components": "5.3.6",
