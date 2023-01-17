@@ -10,7 +10,7 @@ export function Output({ value }: OutputProps) {
 
   return (
     <>
-      <Title>Output</Title>
+      <Title>{`Output (type: ${typeof value === 'object' ? value.constructor.name : typeof value})`}</Title>
       <Value>{valueAsString}</Value>
     </>
   )

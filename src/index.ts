@@ -59,7 +59,7 @@ export { useForceUpdate } from './hooks/useForceUpdate'
 */
 
 export type { PartialTheme, Theme } from './theme'
-export type { DateRange, IconProps, Option } from './types'
+export type { DateAsStringRange, DateRange, IconProps, Option } from './types'
 
 export type { DropdownProps, DropdownItemProps } from './components/Dropdown'
 
@@ -74,8 +74,8 @@ export type { TagGroupProps } from './elements/TagGroup'
 
 export type { AutoCompleteProps } from './fields/AutoComplete'
 export type { CheckboxProps } from './fields/Checkbox'
-export type { DatePickerProps } from './fields/DatePicker'
-export type { DateRangePickerProps } from './fields/DateRangePicker'
+export type { DatePickerWithDateDateProps, DatePickerWithStringDateProps } from './fields/DatePicker'
+export type { DateRangePickerWithDateDateProps, DateRangePickerWithStringDateProps } from './fields/DateRangePicker'
 export type { MultiCheckboxProps } from './fields/MultiCheckbox'
 export type { MultiSelectProps } from './fields/MultiSelect'
 export type { MultiRadioProps } from './fields/MultiRadio'
@@ -87,8 +87,11 @@ export type { TextInputProps } from './fields/TextInput'
 
 export type { FormikAutoCompleteProps } from './formiks/FormikAutoComplete'
 export type { FormikCheckboxProps } from './formiks/FormikCheckbox'
-export type { FormikDatePickerProps } from './formiks/FormikDatePicker'
-export type { FormikDateRangePickerProps } from './formiks/FormikDateRangePicker'
+export type { FormikDatePickerWithDateDateProps, FormikDatePickerWithStringDateProps } from './formiks/FormikDatePicker'
+export type {
+  FormikDateRangePickerWithDateDateProps,
+  FormikDateRangePickerWithStringDateProps
+} from './formiks/FormikDateRangePicker'
 export type { FormikEffectProps } from './formiks/FormikEffect'
 export type { FormikMultiCheckboxProps } from './formiks/FormikMultiCheckbox'
 export type { FormikMultiSelectProps } from './formiks/FormikMultiSelect'
