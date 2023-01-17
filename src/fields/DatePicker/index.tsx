@@ -18,16 +18,22 @@ import type { DateOrTimeInputRef, DateTuple, TimeTuple } from '../DateRangePicke
 import type { HTMLAttributes, MutableRefObject } from 'react'
 import type { Promisable } from 'type-fest'
 
-export type DatePickerProps = Omit<HTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange'> & {
+/**
+ * This type should not be exposed in the final library. It's only exported to be reused in <FormikDatePicker />.
+ *
+ * @private
+ */
+export interface DatePickerProps extends Omit<HTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange'> {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null
-  defaultValue?: Date
+  defaultValue?: Date | string
   disabled?: boolean
   isCompact?: boolean
   /** Only allow past dates until today. */
   isHistorical?: boolean
   isLabelHidden?: boolean
   isLight?: boolean
+  isStringDate?: boolean
   label: string
   /**
    * Range of minutes used to generate the time picker list.
@@ -41,9 +47,20 @@ export type DatePickerProps = Omit<HTMLAttributes<HTMLFieldSetElement>, 'default
    *
    * @param nextUtcDateRange - A utcized date to be used as is to interact with the API.
    */
-  onChange?: (nextUtcDate: Date) => Promisable<void>
+  onChange?: ((nextUtcDate: Date) => Promisable<void>) | ((nextUtcDate: string) => Promisable<void>)
   withTime?: boolean
 }
+export interface DatePickerWithDateDateProps extends DatePickerProps {
+  isStringDate?: false
+  onChange?: (nextUtcDate: Date) => Promisable<void>
+}
+export interface DatePickerWithStringDateProps extends DatePickerProps {
+  isStringDate: true
+  onChange?: (nextUtcDate: string) => Promisable<void>
+}
+
+export function DatePicker(props: DatePickerWithDateDateProps): JSX.Element
+export function DatePicker(props: DatePickerWithStringDateProps): JSX.Element
 export function DatePicker({
   baseContainer,
   defaultValue,
@@ -53,6 +70,7 @@ export function DatePicker({
   isHistorical = false,
   isLabelHidden = false,
   isLight = false,
+  isStringDate = false,
   label,
   minutesRange = 15,
   onChange,
@@ -85,10 +103,14 @@ export function DatePicker({
       return
     }
 
-    const nextDate = getUtcizedDayjs(selectedDateRef.current).toDate()
+    const nextDateAsDayjs = getUtcizedDayjs(selectedDateRef.current)
 
-    onChange(nextDate)
-  }, [onChange])
+    if (isStringDate) {
+      ;(onChange as (nextUtcDate: string) => Promisable<void>)(nextDateAsDayjs.toISOString())
+    } else {
+      ;(onChange as (nextUtcDate: Date) => Promisable<void>)(nextDateAsDayjs.toDate())
+    }
+  }, [isStringDate, onChange])
 
   const closeCalendarPicker = useCallback(() => {
     isCalendarPickerOpenRef.current = false

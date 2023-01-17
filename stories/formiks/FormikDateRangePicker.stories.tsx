@@ -6,14 +6,15 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { noop } from '../../.storybook/utils/noop'
 import { FormikEffect, FormikDateRangePicker } from '../../src'
 
-import type { FormikDateRangePickerProps } from '../../src'
+import type { FormikDateRangePickerWithDateDateProps, FormikDateRangePickerWithStringDateProps } from '../../src'
 import type { DateRange } from '../../src/types'
 
-const args: FormikDateRangePickerProps = {
+const args: FormikDateRangePickerWithDateDateProps | FormikDateRangePickerWithStringDateProps = {
   baseContainer: undefined,
   isHistorical: false,
   isLabelHidden: false,
   isLight: false,
+  isStringDate: false,
   label: 'A Date Range',
   name: 'myDateRange',
   withTime: false
@@ -24,7 +25,13 @@ export default {
   component: FormikDateRangePicker,
   args,
 
-  argTypes: {},
+  argTypes: {
+    isStringDate: {
+      control: {
+        type: 'boolean'
+      }
+    }
+  },
 
   decorators: [
     generateStoryDecorator({
@@ -33,7 +40,7 @@ export default {
   ]
 }
 
-export function _FormikDateRangePicker(props: FormikDateRangePickerProps) {
+export function _FormikDateRangePicker(props: any) {
   const [outputValue, setOutputValue] = useState<
     | {
         myDateRange?: DateRange

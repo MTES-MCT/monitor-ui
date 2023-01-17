@@ -9,15 +9,16 @@ import {
 import { Accent, Button, DatePicker, Size, useForceUpdate } from '../../src'
 import { NewWindow } from '../../src/components/NewWindow'
 
-import type { DatePickerProps } from '../../src'
+import type { DatePickerWithDateDateProps, DatePickerWithStringDateProps } from '../../src'
 
-const args: DatePickerProps = {
+const args: DatePickerWithDateDateProps | DatePickerWithStringDateProps = {
   baseContainer: undefined,
   disabled: false,
   isCompact: false,
   isHistorical: false,
   isLabelHidden: false,
   isLight: false,
+  isStringDate: false,
   label: 'A Date',
   withTime: true
 }
@@ -27,7 +28,18 @@ export default {
   component: DatePicker,
   args,
 
-  argTypes: {},
+  argTypes: {
+    defaultValue: {
+      control: {
+        type: 'date'
+      }
+    },
+    isStringDate: {
+      control: {
+        type: 'boolean'
+      }
+    }
+  },
 
   decorators: [
     generateStoryDecorator({
@@ -37,13 +49,13 @@ export default {
   ]
 }
 
-export function _DatePicker(props: DatePickerProps) {
+export function _DatePicker(props: any) {
   // eslint-disable-next-line no-null/no-null
   const newWindowStoryBoxRef = useRef<HTMLDivElement>(null)
 
   const [isNewWindowOpen, setIsNewWindowOpen] = useState(false)
   const [isNewWindowFirstLoad, setIsNewWindowFirstLoad] = useState(true)
-  const [outputValue, setOutputValue] = useState<Date>()
+  const [outputValue, setOutputValue] = useState<Date | string>()
 
   const { forceUpdate } = useForceUpdate()
 

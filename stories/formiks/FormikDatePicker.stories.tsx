@@ -6,13 +6,14 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { noop } from '../../.storybook/utils/noop'
 import { FormikEffect, FormikDatePicker } from '../../src'
 
-import type { FormikDatePickerProps } from '../../src'
+import type { FormikDatePickerWithDateDateProps, FormikDatePickerWithStringDateProps } from '../../src'
 
-const args: FormikDatePickerProps = {
+const args: FormikDatePickerWithDateDateProps | FormikDatePickerWithStringDateProps = {
   baseContainer: undefined,
   isHistorical: false,
   isLabelHidden: false,
   isLight: false,
+  isStringDate: false,
   label: 'A Date',
   name: 'myDate',
   withTime: false
@@ -23,7 +24,13 @@ export default {
   component: FormikDatePicker,
   args,
 
-  argTypes: {},
+  argTypes: {
+    isStringDate: {
+      control: {
+        type: 'boolean'
+      }
+    }
+  },
 
   decorators: [
     generateStoryDecorator({
@@ -32,7 +39,7 @@ export default {
   ]
 }
 
-export function _FormikDatePicker(props: FormikDatePickerProps) {
+export function _FormikDatePicker(props: any) {
   const [outputValue, setOutputValue] = useState<
     | {
         myDate?: Date

@@ -1,6 +1,7 @@
 import type { SVGProps } from 'react'
 
 export type DateRange = [Date, Date]
+export type DateAsStringRange = [string, string]
 
 export type DeepPartial<T> = T extends object
   ? {

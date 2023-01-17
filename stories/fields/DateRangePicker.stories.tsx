@@ -9,16 +9,17 @@ import {
 import { Accent, Button, DateRangePicker, Size, useForceUpdate } from '../../src'
 import { NewWindow } from '../../src/components/NewWindow'
 
-import type { DateRangePickerProps } from '../../src'
-import type { DateRange } from '../../src/types'
+import type { DateRangePickerWithDateDateProps, DateRangePickerWithStringDateProps } from '../../src'
+import type { DateAsStringRange, DateRange } from '../../src/types'
 
-const args: DateRangePickerProps = {
+const args: DateRangePickerWithDateDateProps | DateRangePickerWithStringDateProps = {
   baseContainer: undefined,
   disabled: false,
   isCompact: false,
   isHistorical: false,
   isLabelHidden: false,
   isLight: false,
+  isStringDate: false,
   label: 'A Date Range',
   withTime: true
 }
@@ -28,7 +29,13 @@ export default {
   component: DateRangePicker,
   args,
 
-  argTypes: {},
+  argTypes: {
+    isStringDate: {
+      control: {
+        type: 'boolean'
+      }
+    }
+  },
 
   decorators: [
     generateStoryDecorator({
@@ -37,13 +44,13 @@ export default {
   ]
 }
 
-export function _DateRangePicker(props: DateRangePickerProps) {
+export function _DateRangePicker(props: any) {
   // eslint-disable-next-line no-null/no-null
   const newWindowStoryBoxRef = useRef<HTMLDivElement>(null)
 
   const [isNewWindowOpen, setIsNewWindowOpen] = useState(false)
   const [isNewWindowFirstLoad, setIsNewWindowFirstLoad] = useState(true)
-  const [outputValue, setOutputValue] = useState<DateRange>()
+  const [outputValue, setOutputValue] = useState<DateRange | DateAsStringRange>()
 
   const { forceUpdate } = useForceUpdate()
 

@@ -15,20 +15,26 @@ import { TimeInput } from './TimeInput'
 import { DateOrTimeInputRef, DateRangePosition, DateTuple, DateTupleRange, TimeTuple } from './types'
 import { getDateFromDateAndTimeTuple, getDateTupleFromDate, getTimeTupleFromDate } from './utils'
 
-import type { DateRange } from '../../types'
+import type { DateAsStringRange, DateRange } from '../../types'
 import type { HTMLAttributes, MutableRefObject } from 'react'
 import type { Promisable } from 'type-fest'
 
-export type DateRangePickerProps = Omit<HTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange'> & {
+/**
+ * This type should not be exposed in the final library. It's only exported to be reused in <FormikDateRangePicker />.
+ *
+ * @private
+ */
+export interface DateRangePickerProps extends Omit<HTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange'> {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null
-  defaultValue?: DateRange
+  defaultValue?: DateRange | DateAsStringRange
   disabled?: boolean
   isCompact?: boolean
   /** Only allow past dates until today. */
   isHistorical?: boolean
   isLabelHidden?: boolean
   isLight?: boolean
+  isStringDate?: boolean
   label: string
   /**
    * Range of minutes used to generate the time picker list.
@@ -42,9 +48,22 @@ export type DateRangePickerProps = Omit<HTMLAttributes<HTMLFieldSetElement>, 'de
    *
    * @param nextUtcDateRange - A utcized date to be used as is to interact with the API.
    */
-  onChange?: (nextUtcDateRange: DateRange) => Promisable<void>
+  onChange?:
+    | ((nextUtcDateRange: DateRange) => Promisable<void>)
+    | ((nextUtcDateRange: DateAsStringRange) => Promisable<void>)
   withTime?: boolean
 }
+export interface DateRangePickerWithDateDateProps extends DateRangePickerProps {
+  isStringDate?: false
+  onChange?: (nextUtcDateRange: DateRange) => Promisable<void>
+}
+export interface DateRangePickerWithStringDateProps extends DateRangePickerProps {
+  isStringDate: true
+  onChange?: (nextUtcDateRange: DateAsStringRange) => Promisable<void>
+}
+
+export function DateRangePicker(props: DateRangePickerWithDateDateProps): JSX.Element
+export function DateRangePicker(props: DateRangePickerWithStringDateProps): JSX.Element
 export function DateRangePicker({
   baseContainer,
   defaultValue,
@@ -54,6 +73,7 @@ export function DateRangePicker({
   isHistorical = false,
   isLabelHidden = false,
   isLight = false,
+  isStringDate = false,
   label,
   minutesRange = 15,
   onChange,
@@ -97,12 +117,22 @@ export function DateRangePicker({
       return
     }
 
-    const utcizedStartDate = getUtcizedDayjs(selectedStartDateRef.current).toDate()
-    const utcizedEndDate = getUtcizedDayjs(selectedEndDateRef.current).toDate()
+    if (isStringDate) {
+      const utcizedStartDateAsString = getUtcizedDayjs(selectedStartDateRef.current).toISOString()
+      const utcizedEndDateAsString = getUtcizedDayjs(selectedEndDateRef.current).toISOString()
 
-    const nextDateRange: DateRange = [utcizedStartDate, utcizedEndDate]
-    onChange(nextDateRange)
-  }, [onChange])
+      const nextDateAsStringRange: DateAsStringRange = [utcizedStartDateAsString, utcizedEndDateAsString]
+
+      ;(onChange as (nextUtcDateRange: DateAsStringRange) => Promisable<void>)(nextDateAsStringRange)
+    } else {
+      const utcizedStartDate = getUtcizedDayjs(selectedStartDateRef.current).toDate()
+      const utcizedEndDate = getUtcizedDayjs(selectedEndDateRef.current).toDate()
+
+      const nextDateRange: DateRange = [utcizedStartDate, utcizedEndDate]
+
+      ;(onChange as (nextUtcDateRange: DateRange) => Promisable<void>)(nextDateRange)
+    }
+  }, [isStringDate, onChange])
 
   const closeRangeCalendarPicker = useCallback(() => {
     isRangeCalendarPickerOpenRef.current = false
