@@ -1,3 +1,10 @@
+# [2.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.7.2...v2.8.0) (2023-01-17)
+
+
+### Features
+
+* **fields:** handle both Date & string dates in DatePicker & DateRangePicker ([6aacf70](https://github.com/MTES-MCT/monitor-ui/commit/6aacf7007bcbc789b9de643be2d192a1808b0afc))
+
 ## [2.7.2](https://github.com/MTES-MCT/monitor-ui/compare/v2.7.1...v2.7.2) (2023-01-13)
 
 
