@@ -105,6 +105,7 @@
     "lint-staged": "13.0.4",
     "lodash.throttle": "4.1.1",
     "microbundle": "0.15.1",
+    "node-talisman": "1.29.6",
     "postcss": "8.4.19",
     "prettier": "2.8.1",
     "ramda": "0.28.0",
@@ -139,5 +140,10 @@
       "bash -c 'npm run test:type'"
     ]
   },
-  "packageManager": "yarn@3.3.0"
+  "packageManager": "yarn@3.3.0",
+  "dependenciesMeta": {
+    "node-talisman@1.29.6": {
+      "unplugged": true
+    }
+  }
 }
