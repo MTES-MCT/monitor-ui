@@ -20,7 +20,7 @@ describe('utils/getLocalizedDayjs()', () => {
 
   it('should return a local date with the same hours and minutes than the UTC date provided (with a `string` date)', () => {
     const utcDateAsDayjs = dayjs('2022-01-02T03:04:05.006Z')
-    const utcDate = '2022-01-02T03:04:05.006'
+    const utcDate = '2022-01-02T03:04:05.006Z'
 
     const result = getLocalizedDayjs(utcDate)
 
