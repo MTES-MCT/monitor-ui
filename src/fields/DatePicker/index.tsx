@@ -83,27 +83,33 @@ export function DatePicker({
 
   const isCalendarPickerOpenRef = useRef(false)
 
-  const selectedDateRef = useRef<Date | undefined>(defaultValue ? getLocalizedDayjs(defaultValue).toDate() : undefined)
-  const selectedDateTupleRef = useRef<DateTuple | undefined>(getDateTupleFromDate(selectedDateRef.current))
-  const selectedTimeTupleRef = useRef<TimeTuple | undefined>(getTimeTupleFromDate(selectedDateRef.current))
+  const selectedLocalizedDateRef = useRef<Date | undefined>(
+    defaultValue ? getLocalizedDayjs(defaultValue).toDate() : undefined
+  )
+  const selectedLocalizedDateTupleRef = useRef<DateTuple | undefined>(
+    getDateTupleFromDate(selectedLocalizedDateRef.current)
+  )
+  const selectedLocalizedTimeTupleRef = useRef<TimeTuple | undefined>(
+    getTimeTupleFromDate(selectedLocalizedDateRef.current)
+  )
 
   const { forceUpdate } = useForceUpdate()
 
   const rangeCalendarPickerDefaultValue = useMemo(
     () =>
-      selectedDateTupleRef.current
-        ? getDateFromDateAndTimeTuple(selectedDateTupleRef.current, ['00', '00'])
+      selectedLocalizedDateTupleRef.current
+        ? getDateFromDateAndTimeTuple(selectedLocalizedDateTupleRef.current, ['00', '00'])
         : undefined,
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [selectedDateTupleRef.current]
+    [selectedLocalizedDateTupleRef.current]
   )
 
   const submit = useCallback(() => {
-    if (!onChange || !selectedDateRef.current) {
+    if (!onChange || !selectedLocalizedDateRef.current) {
       return
     }
 
-    const nextDateAsDayjs = getUtcizedDayjs(selectedDateRef.current)
+    const nextDateAsDayjs = getUtcizedDayjs(selectedLocalizedDateRef.current)
 
     if (isStringDate) {
       ;(onChange as (nextUtcDate: string) => Promisable<void>)(nextDateAsDayjs.toISOString())
@@ -128,15 +134,15 @@ export function DatePicker({
 
   const handleDateInputChange = useCallback(
     (nextDateTuple: DateTuple, isFilled: boolean) => {
-      selectedDateTupleRef.current = nextDateTuple
+      selectedLocalizedDateTupleRef.current = nextDateTuple
 
       // If there is no time input or a time has already been selected,
-      if (!withTime || selectedTimeTupleRef.current) {
+      if (!withTime || selectedLocalizedTimeTupleRef.current) {
         // we must update the selected date and call onChange()
-        const timeTuple = (withTime ? selectedTimeTupleRef.current : ['00', '00']) as TimeTuple
+        const timeTuple = (withTime ? selectedLocalizedTimeTupleRef.current : ['00', '00']) as TimeTuple
         const nextDate = getDateFromDateAndTimeTuple(nextDateTuple, timeTuple)
 
-        selectedDateRef.current = nextDate
+        selectedLocalizedDateRef.current = getLocalizedDayjs(nextDate).toDate()
 
         submit()
       }
@@ -155,25 +161,28 @@ export function DatePicker({
         // we have to fix the date at the beginning of the day
         const nextDate = getDateFromDateAndTimeTuple(nextDateTuple, ['00', '00'])
 
-        selectedDateRef.current = nextDate
+        selectedLocalizedDateRef.current = nextDate
       }
 
       // If this is a date picker with a time input,
       else {
         // we include the selected time if it exists, set it at the beginning of the day if not
-        const nextDate = getDateFromDateAndTimeTuple(nextDateTuple, selectedTimeTupleRef.current || ['00', '00'])
-        selectedDateRef.current = nextDate
+        const nextDate = getDateFromDateAndTimeTuple(
+          nextDateTuple,
+          selectedLocalizedTimeTupleRef.current || ['00', '00']
+        )
+        selectedLocalizedDateRef.current = nextDate
       }
 
-      selectedDateTupleRef.current = nextDateTuple
-      selectedTimeTupleRef.current = getTimeTupleFromDate(selectedDateRef.current)
+      selectedLocalizedDateTupleRef.current = nextDateTuple
+      selectedLocalizedTimeTupleRef.current = getTimeTupleFromDate(selectedLocalizedDateRef.current)
 
       closeCalendarPicker()
       forceUpdate()
 
       submit()
 
-      if (withTime && !selectedTimeTupleRef.current) {
+      if (withTime && !selectedLocalizedTimeTupleRef.current) {
         timeInputRef.current.focus()
       }
     },
@@ -183,16 +192,16 @@ export function DatePicker({
   const handleTimeInputFilled = useCallback(
     (nextTimeTuple: TimeTuple) => {
       // If a date has already been selected
-      if (selectedDateTupleRef.current) {
+      if (selectedLocalizedDateTupleRef.current) {
         // we must update the selected date accordingly and submit it
-        const nextDate = getDateFromDateAndTimeTuple(selectedDateTupleRef.current, nextTimeTuple)
+        const nextDate = getDateFromDateAndTimeTuple(selectedLocalizedDateTupleRef.current, nextTimeTuple)
 
-        selectedDateRef.current = nextDate
+        selectedLocalizedDateRef.current = nextDate
 
         submit()
       }
 
-      selectedTimeTupleRef.current = nextTimeTuple
+      selectedLocalizedTimeTupleRef.current = nextTimeTuple
 
       submit()
     },
@@ -217,7 +226,7 @@ export function DatePicker({
         <Field>
           <DateInput
             ref={dateInputRef}
-            defaultValue={selectedDateTupleRef.current}
+            defaultValue={selectedLocalizedDateTupleRef.current}
             disabled={disabled}
             isCompact={isCompact}
             isForcedFocused={isCalendarPickerOpenRef.current}
@@ -233,7 +242,7 @@ export function DatePicker({
             <TimeInput
               ref={timeInputRef}
               baseContainer={baseContainer}
-              defaultValue={selectedTimeTupleRef.current}
+              defaultValue={selectedLocalizedTimeTupleRef.current}
               disabled={disabled}
               isCompact={isCompact}
               isLight={isLight}

@@ -11,15 +11,9 @@ import type { Dayjs } from 'dayjs'
  * `2022-01-02T03:04:05.006Z` => `2022-01-02T03:04:05.006+01:00` (or `+02:00` during DST) in Europe/Paris timezone.
  */
 export function getLocalizedDayjs(utcDate: Date | string): Dayjs {
-  if (typeof utcDate === 'string') {
-    return dayjs(utcDate)
-  }
-
-  const utcDateAsDate = dayjs(utcDate).toDate()
-
   // The number of minutes returned by getTimezoneOffset() is positive if the local time zone is behind UTC,
   // and negative if the local time zone is ahead of UTC. For example, for UTC+10, -600 will be returned.
-  const timezoneOffsetInMinutes = utcDateAsDate.getTimezoneOffset()
+  const timezoneOffsetInMinutes = new Date().getTimezoneOffset()
 
   return dayjs(utcDate).add(timezoneOffsetInMinutes, 'minutes')
 }
