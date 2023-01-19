@@ -1,3 +1,10 @@
+## [2.8.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.8.0...v2.8.1) (2023-01-19)
+
+
+### Bug Fixes
+
+* **fields:** fix string date wrong default value offset in DatePicker & DateRangePicker ([18bc2aa](https://github.com/MTES-MCT/monitor-ui/commit/18bc2aa729cbe88c8e87fac294515a2fa75abbe7))
+
 # [2.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.7.2...v2.8.0) (2023-01-17)
 
 
