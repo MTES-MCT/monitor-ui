@@ -12,15 +12,15 @@ export type NumberInputProps = Omit<
   max: number
   min: number
   /** Called when the use press backspace key while the input is empty. */
-  onBack?: () => Promisable<void>
+  onBack?: (() => Promisable<void>) | undefined
   /** Called when the input value reaches the size property. */
-  onFilled?: () => Promisable<void>
+  onFilled?: (() => Promisable<void>) | undefined
   onFormatError: (hasNextFormatError: boolean) => Promisable<void>
-  onInput?: (nextValue: string) => Promisable<void>
+  onInput?: ((nextValue: string) => Promisable<void>) | undefined
   /** Called when the right arrow is pressed while the cursor is positionned at the input end. */
-  onNext?: () => Promisable<void>
+  onNext?: (() => Promisable<void>) | undefined
   /** Called when the left arrow is pressed while the cursor is positionned at the input start. */
-  onPrevious?: () => Promisable<void>
+  onPrevious?: (() => Promisable<void>) | undefined
   size: number
 }
 function NumberInputWithRef(

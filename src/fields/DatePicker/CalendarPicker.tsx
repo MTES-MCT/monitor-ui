@@ -14,8 +14,8 @@ import type { MutableRefObject } from 'react'
 import type { Promisable } from 'type-fest'
 
 type CalendarPickerProps = {
-  defaultValue?: Date
-  isHistorical?: boolean
+  defaultValue?: Date | undefined
+  isHistorical?: boolean | undefined
   isOpen: boolean
   onChange: (nextDateTuple: DateTuple) => Promisable<void>
 }
@@ -58,7 +58,8 @@ export function CalendarPicker({ defaultValue, isHistorical, isOpen, onChange }:
           open={isOpen}
           // `defaultValue` seems to be immediatly cancelled so we come down to using a controlled `value`
           ranges={[]}
-          value={defaultValue}
+          // eslint-disable-next-line no-null/no-null
+          value={defaultValue ?? null}
         />
       )}
     </Box>

@@ -1,9 +1,9 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix, typescript-sort-keys/interface */
 
-import type { DeepPartial } from './types'
+import type { PartialDeep } from 'type-fest'
 
 export type Theme = typeof THEME
-export type PartialTheme = DeepPartial<Theme>
+export type PartialTheme = PartialDeep<Theme>
 
 export const THEME = {
   // https://xd.adobe.com/view/b6d4c472-3fbe-4dec-9f14-38fe03872a3e-e387/screen/b9bdc1ba-5f07-4c4f-bd44-2d38b2c6f663/specs/

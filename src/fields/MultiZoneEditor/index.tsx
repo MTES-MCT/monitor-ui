@@ -14,16 +14,16 @@ import type { Promisable } from 'type-fest'
 
 export type MultiZoneEditorProps = {
   addButtonLabel: string
-  defaultValue?: Record<string, any>[]
+  defaultValue?: Record<string, any>[] | undefined
   initialZone: Record<string, any>
   isLabelHidden?: boolean
-  isLight?: boolean
+  isLight?: boolean | undefined
   label: string
   labelPropName: string
-  onAdd?: (nextZones: Record<string, any>[], index: number) => Promisable<void>
-  onCenter?: (zone: Record<string, any>) => Promisable<void>
-  onDelete?: (nextZones: Record<string, any>[]) => Promisable<void>
-  onEdit?: (zone: Record<string, any>, index: number) => Promisable<void>
+  onAdd?: ((nextZones: Record<string, any>[], index: number) => Promisable<void>) | undefined
+  onCenter?: ((zone: Record<string, any>) => Promisable<void>) | undefined
+  onDelete?: ((nextZones: Record<string, any>[]) => Promisable<void>) | undefined
+  onEdit?: ((zone: Record<string, any>, index: number) => Promisable<void>) | undefined
 }
 export function MultiZoneEditor({
   addButtonLabel,

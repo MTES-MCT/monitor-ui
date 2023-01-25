@@ -9,12 +9,12 @@ import type { InputProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
 export type NumberInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'onChange' | 'type' | 'value'> & {
-  defaultValue?: number
-  isLabelHidden?: boolean
-  isLight?: boolean
+  defaultValue?: number | undefined
+  isLabelHidden?: boolean | undefined
+  isLight?: boolean | undefined
   label: string
   name: string
-  onChange?: (nextValue: number | undefined) => Promisable<void>
+  onChange?: ((nextValue: number | undefined) => Promisable<void>) | undefined
 }
 export function NumberInput({
   isLabelHidden = false,

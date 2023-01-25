@@ -9,12 +9,12 @@ import type { InputProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
 export type TextInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'onChange' | 'type' | 'value'> & {
-  defaultValue?: string
-  isLabelHidden?: boolean
-  isLight?: boolean
+  defaultValue?: string | undefined
+  isLabelHidden?: boolean | undefined
+  isLight?: boolean | undefined
   label: string
   name: string
-  onChange?: (nextValue: string | undefined) => Promisable<void>
+  onChange?: ((nextValue: string | undefined) => Promisable<void>) | undefined
 }
 export function TextInput({
   isLabelHidden = false,

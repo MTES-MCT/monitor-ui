@@ -13,20 +13,20 @@ import type { ForwardedRef, MutableRefObject } from 'react'
 import type { Promisable } from 'type-fest'
 
 export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'onNext'> & {
-  baseContainer?: Document | HTMLDivElement | null
-  defaultValue?: TimeTuple
+  baseContainer?: Document | HTMLDivElement | null | undefined
+  defaultValue?: TimeTuple | undefined
   // TODO Check why TS thinks there is no `disabled` prop in `NumberInputProps`.
   disabled: boolean
   isCompact: boolean
-  isEndDate?: boolean
+  isEndDate?: boolean | undefined
   isLight: boolean
-  isStartDate?: boolean
-  minutesRange?: number
+  isStartDate?: boolean | undefined
+  minutesRange?: number | undefined
   /** Called each time the time input is changed to a new valid value. */
   onChange: (nextTimeTuple: TimeTuple) => Promisable<void>
-  onFocus?: () => Promisable<void>
-  onNext?: () => Promisable<void>
-  onPrevious?: () => Promisable<void>
+  onFocus?: (() => Promisable<void>) | undefined
+  onNext?: (() => Promisable<void>) | undefined
+  onPrevious?: (() => Promisable<void>) | undefined
 }
 function TimeInputWithRef(
   {

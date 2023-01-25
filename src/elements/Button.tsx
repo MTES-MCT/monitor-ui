@@ -13,10 +13,10 @@ const ICON_SIZE: Record<Size, number> = {
 }
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  Icon?: FunctionComponent<IconProps>
-  accent?: Accent
-  isFullWidth?: boolean
-  size?: Size
+  Icon?: FunctionComponent<IconProps> | undefined
+  accent?: Accent | undefined
+  isFullWidth?: boolean | undefined
+  size?: Size | undefined
 }
 export function Button({
   accent = Accent.PRIMARY,

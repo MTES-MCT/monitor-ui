@@ -18,14 +18,14 @@ export type SelectProps = Omit<
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'value'
 > & {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
-  baseContainer?: Document | HTMLDivElement | null
-  defaultValue?: string
-  error?: string
-  isLabelHidden?: boolean
-  isLight?: boolean
+  baseContainer?: Document | HTMLDivElement | null | undefined
+  defaultValue?: string | undefined
+  error?: string | undefined
+  isLabelHidden?: boolean | undefined
+  isLight?: boolean | undefined
   label: string
   name: string
-  onChange?: (nextValue: string | undefined) => Promisable<void>
+  onChange?: ((nextValue: string | undefined) => Promisable<void>) | undefined
   options: Option[]
 }
 export function Select({

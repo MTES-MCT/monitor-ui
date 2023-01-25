@@ -25,15 +25,15 @@ import type { Promisable } from 'type-fest'
  */
 export interface DatePickerProps extends Omit<HTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange'> {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
-  baseContainer?: Document | HTMLDivElement | null
-  defaultValue?: Date | string
-  disabled?: boolean
-  isCompact?: boolean
+  baseContainer?: Document | HTMLDivElement | null | undefined
+  defaultValue?: Date | string | undefined
+  disabled?: boolean | undefined
+  isCompact?: boolean | undefined
   /** Only allow past dates until today. */
-  isHistorical?: boolean
-  isLabelHidden?: boolean
-  isLight?: boolean
-  isStringDate?: boolean
+  isHistorical?: boolean | undefined
+  isLabelHidden?: boolean | undefined
+  isLight?: boolean | undefined
+  isStringDate?: boolean | undefined
   label: string
   /**
    * Range of minutes used to generate the time picker list.
@@ -41,22 +41,22 @@ export interface DatePickerProps extends Omit<HTMLAttributes<HTMLFieldSetElement
    * @example
    * `15` would produce a list with `..., 10:45, 11:00, 11:15, ...`.
    */
-  minutesRange?: number
+  minutesRange?: number | undefined
   /**
    * Called each time the date range picker is changed to a new valid value.
    *
    * @param nextUtcDateRange - A utcized date to be used as is to interact with the API.
    */
-  onChange?: ((nextUtcDate: Date) => Promisable<void>) | ((nextUtcDate: string) => Promisable<void>)
-  withTime?: boolean
+  onChange?: ((nextUtcDate: Date) => Promisable<void>) | ((nextUtcDate: string) => Promisable<void>) | undefined
+  withTime?: boolean | undefined
 }
 export interface DatePickerWithDateDateProps extends DatePickerProps {
-  isStringDate?: false
-  onChange?: (nextUtcDate: Date) => Promisable<void>
+  isStringDate?: false | undefined
+  onChange?: (nextUtcDate: Date) => Promisable<void> | undefined
 }
 export interface DatePickerWithStringDateProps extends DatePickerProps {
   isStringDate: true
-  onChange?: (nextUtcDate: string) => Promisable<void>
+  onChange?: (nextUtcDate: string) => Promisable<void> | undefined
 }
 
 export function DatePicker(props: DatePickerWithDateDateProps): JSX.Element

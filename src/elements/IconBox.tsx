@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 export type IconBoxProps = {
-  $color?: string
+  $color?: string | undefined
   /** In pixels */
-  $size?: number
+  $size?: number | undefined
 }
 /**
  * Internal component used to wrap SVG icon components

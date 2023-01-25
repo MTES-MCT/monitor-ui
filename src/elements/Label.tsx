@@ -3,14 +3,14 @@ import styled from 'styled-components'
 import type { LabelHTMLAttributes } from 'react'
 
 export type LabelProps = LabelHTMLAttributes<HTMLLabelElement> & {
-  hasError?: boolean
-  isDisabled?: boolean
-  isHidden?: boolean
+  hasError?: boolean | undefined
+  isDisabled?: boolean | undefined
+  isHidden?: boolean | undefined
 }
 export const Label = styled.label<{
-  hasError?: boolean
-  isDisabled?: boolean
-  isHidden?: boolean
+  hasError?: boolean | undefined
+  isDisabled?: boolean | undefined
+  isHidden?: boolean | undefined
 }>`
   color: ${p =>
     // eslint-disable-next-line no-nested-ternary

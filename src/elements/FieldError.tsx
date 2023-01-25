@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import type { HTMLAttributes } from 'react'
 
 export type FieldErrorProps = HTMLAttributes<HTMLParagraphElement> & {
-  isDisabled?: boolean
+  isDisabled?: boolean | undefined
 }
 export const FieldError = styled.p<{
-  isDisabled?: boolean
+  isDisabled?: boolean | undefined
 }>`
   color: ${p => p.theme.color.maximumRed};
   display: ${p => (p.isDisabled ? 'none' : 'block')};

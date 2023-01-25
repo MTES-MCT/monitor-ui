@@ -15,11 +15,11 @@ const ICON_SIZE_IN_PX: Record<Size, number> = {
 
 export type IconButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> & {
   Icon: FunctionComponent<IconProps>
-  accent?: Accent
-  color?: string
+  accent?: Accent | undefined
+  color?: string | undefined
   /** In pixels, override `size` prop default values */
-  iconSize?: number
-  size?: Size
+  iconSize?: number | undefined
+  size?: Size | undefined
 }
 export function IconButton({
   accent = Accent.PRIMARY,
