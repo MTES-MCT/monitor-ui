@@ -15,8 +15,8 @@ import type { DateTupleRange } from './types'
 import type { Promisable } from 'type-fest'
 
 type RangeCalendarPickerProps = {
-  defaultValue?: DateRange
-  isHistorical?: boolean
+  defaultValue?: DateRange | undefined
+  isHistorical?: boolean | undefined
   isOpen: boolean
   onChange: (nextDateTupleRange: DateTupleRange) => Promisable<void>
 }
@@ -73,7 +73,8 @@ export function RangeCalendarPicker({ defaultValue, isHistorical, isOpen, onChan
           open={isOpen}
           ranges={[]}
           // `defaultValue` seems to be immediatly cancelled so we come down to using a controlled `value`
-          value={controlledValue}
+          // eslint-disable-next-line no-null/no-null
+          value={controlledValue ?? null}
         />
       )}
     </Box>

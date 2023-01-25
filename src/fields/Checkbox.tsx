@@ -9,7 +9,7 @@ import type { Promisable } from 'type-fest'
 export type CheckboxProps = Omit<RsuiteCheckboxProps, 'as' | 'checked' | 'id' | 'onChange'> & {
   label: string
   name: string
-  onChange?: (isCheched: boolean) => Promisable<void>
+  onChange?: ((isCheched: boolean) => Promisable<void>) | undefined
 }
 export function Checkbox({ label, onChange, ...originalProps }: CheckboxProps) {
   const key = useMemo(

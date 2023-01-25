@@ -26,15 +26,15 @@ import type { Promisable } from 'type-fest'
  */
 export interface DateRangePickerProps extends Omit<HTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange'> {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
-  baseContainer?: Document | HTMLDivElement | null
-  defaultValue?: DateRange | DateAsStringRange
-  disabled?: boolean
-  isCompact?: boolean
+  baseContainer?: Document | HTMLDivElement | null | undefined
+  defaultValue?: DateRange | DateAsStringRange | undefined
+  disabled?: boolean | undefined
+  isCompact?: boolean | undefined
   /** Only allow past dates until today. */
-  isHistorical?: boolean
-  isLabelHidden?: boolean
-  isLight?: boolean
-  isStringDate?: boolean
+  isHistorical?: boolean | undefined
+  isLabelHidden?: boolean | undefined
+  isLight?: boolean | undefined
+  isStringDate?: boolean | undefined
   label: string
   /**
    * Range of minutes used to generate the time picker list.

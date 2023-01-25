@@ -3,13 +3,13 @@ import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-component
 
 import { THEME, Theme } from './theme'
 
-import type { DeepPartial } from './types'
+import type { PartialDeep } from 'type-fest'
 
 const UntypedStyledComponentsThemeProvider: any = StyledComponentsThemeProvider
 
 export type ThemeProviderProps = {
   children: any
-  theme?: DeepPartial<Theme>
+  theme?: PartialDeep<Theme> | undefined
 }
 export function ThemeProvider({ children, theme = {} }: ThemeProviderProps) {
   const finalTheme = mergeDeepRight(THEME, theme)

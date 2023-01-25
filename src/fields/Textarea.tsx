@@ -12,12 +12,12 @@ export type TextareaProps = Omit<
   TextareaHTMLAttributes<HTMLTextAreaElement>,
   'defaultValue' | 'id' | 'onChange' | 'value'
 > & {
-  defaultValue?: string
-  isLabelHidden?: boolean
-  isLight?: boolean
+  defaultValue?: string | undefined
+  isLabelHidden?: boolean | undefined
+  isLight?: boolean | undefined
   label: string
   name: string
-  onChange?: (nextValue: string | undefined) => Promisable<void>
+  onChange?: ((nextValue: string | undefined) => Promisable<void>) | undefined
 }
 export function Textarea({
   isLabelHidden = false,

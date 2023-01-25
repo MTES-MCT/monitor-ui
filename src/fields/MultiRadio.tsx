@@ -8,13 +8,13 @@ import type { Option } from '../types'
 import type { Promisable } from 'type-fest'
 
 export type MultiRadioProps = {
-  defaultValue?: string
-  isInline?: boolean
-  isLabelHidden?: boolean
-  isLight?: boolean
+  defaultValue?: string | undefined
+  isInline?: boolean | undefined
+  isLabelHidden?: boolean | undefined
+  isLight?: boolean | undefined
   label: string
   name: string
-  onChange?: (nextValue: string | undefined) => Promisable<void>
+  onChange?: ((nextValue: string | undefined) => Promisable<void>) | undefined
   options: Option[]
 }
 export function MultiRadio({

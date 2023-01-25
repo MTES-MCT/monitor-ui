@@ -17,20 +17,21 @@ import type { Promisable } from 'type-fest'
 
 export type AutoCompleteProps = Omit<
   RsuiteAutoCompleteProps,
-  'as' | 'container' | 'data' | 'id' | 'onChange' | 'open' | 'onSelect' | 'value'
+  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'open' | 'onSelect' | 'value'
 > & {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
-  baseContainer?: Document | HTMLDivElement | null
-  error?: string
-  isLabelHidden?: boolean
-  isLight?: boolean
+  baseContainer?: Document | HTMLDivElement | null | undefined
+  defaultValue?: string | undefined
+  error?: string | undefined
+  isLabelHidden?: boolean | undefined
+  isLight?: boolean | undefined
   label: string
   name: string
-  onChange?: (nextValue: string | undefined) => Promisable<void>
-  onQuery?: (nextQuery: string | undefined) => Promisable<void>
-  options?: Option[]
-  queryMap?: (record: Record<string, any>) => Option
-  queryUrl?: string
+  onChange?: ((nextValue: string | undefined) => Promisable<void>) | undefined
+  onQuery?: ((nextQuery: string | undefined) => Promisable<void>) | undefined
+  options?: Option[] | undefined
+  queryMap?: ((record: Record<string, any>) => Option) | undefined
+  queryUrl?: string | undefined
 }
 export function AutoComplete({
   baseContainer,

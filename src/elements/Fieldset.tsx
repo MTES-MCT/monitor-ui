@@ -5,10 +5,10 @@ import { Field } from './Field'
 import { Legend } from './Legend'
 
 export type FieldsetProps = FieldsetHTMLAttributes<HTMLFieldSetElement> & {
-  hasBorder?: boolean
-  isHidden?: boolean
-  isLight?: boolean
-  legend?: string
+  hasBorder?: boolean | undefined
+  isHidden?: boolean | undefined
+  isLight?: boolean | undefined
+  legend?: string | undefined
 }
 export function Fieldset({
   children,

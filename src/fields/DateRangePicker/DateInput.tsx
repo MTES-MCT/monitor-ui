@@ -11,14 +11,14 @@ import type { ForwardedRef, MutableRefObject } from 'react'
 import type { Promisable } from 'type-fest'
 
 export type DateInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'onNext'> & {
-  defaultValue?: DateTuple
+  defaultValue?: DateTuple | undefined
   // TODO Check why TS thinks there is no `disabled` prop in `NumberInputProps`.
   disabled: boolean
   isCompact: boolean
-  isEndDate?: boolean
+  isEndDate?: boolean | undefined
   isForcedFocused: boolean
   isLight: boolean
-  isStartDate?: boolean
+  isStartDate?: boolean | undefined
   /** Called each time the date input is changed to a new valid value. */
   onChange: (nextDateTuple: DateTuple, isFilled: boolean) => Promisable<void>
   onClick: () => Promisable<void>
