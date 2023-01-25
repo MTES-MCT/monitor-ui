@@ -1,3 +1,10 @@
+# [2.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.8.1...v2.9.0) (2023-01-25)
+
+
+### Features
+
+* **types:** restrict component props types to handle exact optional prop types ([296acf4](https://github.com/MTES-MCT/monitor-ui/commit/296acf48a7c701f85cbee72ceeea4071d60f0ea6))
+
 ## [2.8.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.8.0...v2.8.1) (2023-01-19)
 
 
