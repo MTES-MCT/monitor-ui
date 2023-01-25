@@ -149,6 +149,9 @@ dist
 /test-results/
 
 # Storybook
+/.rollup.cache/
+
+# Storybook
 /storybook-static/
 
 # Yarn with Zero-Installs

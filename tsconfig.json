@@ -11,7 +11,7 @@
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
     "importsNotUsedAsValues": "error",
-    "incremental": true,
+    "incremental": false,
     "isolatedModules": true,
     "jsx": "react-jsx",
     "lib": ["DOM", "DOM.Iterable", "ES2021"],
@@ -37,17 +37,8 @@
     "target": "ES2022",
     "useUnknownInCatchVariables": true
   },
-  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", ".storybook/**/*.ts", ".storybook/**/*.tsx"],
-  "exclude": [
-    ".eslintrc.js",
-    "config/*",
-    "dist/*",
-    "example/*",
-    "node_modules/*",
-    "scripts/*",
-    "storybook-static/*",
-    "rollup.config.js"
-  ],
+  "include": ["**/*.js", "**/*.jsx", "**/*.mjs", "**/*.ts", "**/*.tsx", ".storybook/**/*.ts", ".storybook/**/*.tsx"],
+  "exclude": [".eslintrc.js", "config/*", "dist/*", "example/*", "node_modules/*", "scripts/*", "storybook-static/*"],
   "ts-node": {
     "swc": true,
     "compilerOptions": {
