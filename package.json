@@ -132,6 +132,11 @@
     "rsuite": "^5.0.0",
     "styled-components": "^5.0.0"
   },
+  "dependenciesMeta": {
+    "node-talisman@1.29.6": {
+      "unplugged": true
+    }
+  },
   "//": "https://github.com/okonet/lint-staged/issues/825#issuecomment-674575655",
   "lint-staged": {
     "*.{json,md,yaml,yml}": "prettier --write",
@@ -140,10 +145,5 @@
       "bash -c 'npm run test:type'"
     ]
   },
-  "packageManager": "yarn@3.3.0",
-  "dependenciesMeta": {
-    "node-talisman@1.29.6": {
-      "unplugged": true
-    }
-  }
+  "packageManager": "yarn@3.3.0"
 }

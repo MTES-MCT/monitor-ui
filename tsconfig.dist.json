@@ -8,7 +8,7 @@
     "node_modules/*",
     "scripts/*",
     "storybook-static/*",
-    "rollup.config.js",
+    "rollup.config.mjs",
     "stories/*",
     "**/*.test.ts"
   ]
