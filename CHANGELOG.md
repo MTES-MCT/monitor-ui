@@ -1,3 +1,10 @@
+## [2.9.3](https://github.com/MTES-MCT/monitor-ui/compare/v2.9.2...v2.9.3) (2023-01-27)
+
+
+### Bug Fixes
+
+* **components:** use px instead of rem for Dropdown icon size ([c0b24ac](https://github.com/MTES-MCT/monitor-ui/commit/c0b24ac4c90f666bbdeeae533c3d6153088a80eb))
+
 ## [2.9.2](https://github.com/MTES-MCT/monitor-ui/compare/v2.9.1...v2.9.2) (2023-01-27)
 
 
