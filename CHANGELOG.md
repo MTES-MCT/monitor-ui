@@ -1,3 +1,12 @@
+## [2.9.4](https://github.com/MTES-MCT/monitor-ui/compare/v2.9.3...v2.9.4) (2023-01-27)
+
+
+### Bug Fixes
+
+* **elements:** make Fieldset width 100% of parent width ([63d10c6](https://github.com/MTES-MCT/monitor-ui/commit/63d10c60ab12ebe437ea236ea5cde12fa13fd6ff))
+* **fields:** fix MultiSelect placeholder alignment ([8c335b2](https://github.com/MTES-MCT/monitor-ui/commit/8c335b2d26208f2b7faecc9434ef1e0c201698e3))
+* **fields:** improve MultiZoneEditor alignments ([b7d5784](https://github.com/MTES-MCT/monitor-ui/commit/b7d5784edefba4bf6e294f5cdf6cf27b79c309db))
+
 ## [2.9.3](https://github.com/MTES-MCT/monitor-ui/compare/v2.9.2...v2.9.3) (2023-01-27)
 
 
