@@ -18,7 +18,7 @@ export function Output({ value }: OutputProps) {
 
 const Title = styled.h3`
   font-size: 100%;
-  line-height: 1.42;
+  line-height: 1.3846;
   margin: 16px 0 8px 0;
 `
 

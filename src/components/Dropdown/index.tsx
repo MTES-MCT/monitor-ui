@@ -13,7 +13,7 @@ export type DropdownProps = Omit<RsuiteDropdownProps, 'as' | 'icon'> & {
   Icon?: FunctionComponent<IconProps>
 }
 function RawDropdown({ Icon, ...originalProps }: DropdownProps) {
-  const icon = useMemo(() => (Icon ? <Icon size={1.25} /> : undefined), [Icon])
+  const icon = useMemo(() => (Icon ? <Icon size={20} /> : undefined), [Icon])
   const hasIcon = useMemo(() => Boolean(Icon), [Icon])
 
   return <StyledDropdown $hasIcon={hasIcon} icon={icon} {...originalProps} />
@@ -30,7 +30,7 @@ const StyledDropdown = styled(RsuiteDropdown)<{
     color: ${p => p.theme.color.gainsboro};
     display: flex;
     font-size: 13px;
-    padding: ${p => (p.$hasIcon ? '5px' : '6px')} 12px;
+    padding: ${p => (p.$hasIcon ? '4px' : '5px')} 12px ${p => (p.$hasIcon ? '5px' : '7px')};
 
     :hover {
       background-color: ${p => p.theme.color.blueYonder['100']};
@@ -52,7 +52,7 @@ const StyledDropdown = styled(RsuiteDropdown)<{
 
     /* SVG Icon Components are wrapped within a <div /> */
     > div {
-      margin-right: 8px;
+      margin: 1px 8px 0 0;
     }
 
     > svg {
