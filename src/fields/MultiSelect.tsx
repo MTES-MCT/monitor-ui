@@ -161,12 +161,11 @@ const Box = styled.div<{
         > .rs-stack-item {
           > .rs-picker-toggle-placeholder {
             font-size: 13px;
-            line-height: 1.3846;
+            line-height: 1.5385; // = 20px
           }
 
           > svg {
             height: 18px;
-            /* margin-top: -2px; */
           }
         }
       }
