@@ -23,6 +23,7 @@ type RangeCalendarPickerProps = {
 export function RangeCalendarPicker({ defaultValue, isHistorical, isOpen, onChange }: RangeCalendarPickerProps) {
   const boxRef = useRef<HTMLDivElement>()
   const selectedFirstDate = useRef<Date>()
+  const selectedSecondDate = useRef<Date>()
 
   const { forceUpdate } = useForceUpdate()
 
@@ -38,8 +39,9 @@ export function RangeCalendarPicker({ defaultValue, isHistorical, isOpen, onChan
 
   const handleSelect = useCallback(
     (nextDate: Date) => {
-      if (!selectedFirstDate.current) {
+      if (!selectedFirstDate.current || selectedSecondDate.current) {
         selectedFirstDate.current = nextDate
+        selectedSecondDate.current = undefined
 
         return
       }
@@ -49,6 +51,8 @@ export function RangeCalendarPicker({ defaultValue, isHistorical, isOpen, onChan
       const startDateTuple = getDateTupleFromDate(startDate)
       const endDateTuple = getDateTupleFromDate(endDate)
       const nextDateTupleRange = [startDateTuple, endDateTuple] as DateTupleRange
+
+      selectedSecondDate.current = nextDate
 
       onChange(nextDateTupleRange)
     },
