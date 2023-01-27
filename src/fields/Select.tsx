@@ -10,6 +10,7 @@ import { useForceUpdate } from '../hooks/useForceUpdate'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Option } from '../types'
+import type { MouseEvent } from 'react'
 import type { SelectPickerProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
@@ -71,9 +72,27 @@ export function Select({
     [close, onChange]
   )
 
-  const toggle = useCallback(() => {
-    setIsOpen(!isOpen)
-  }, [isOpen])
+  const toggle = useCallback(
+    (event: MouseEvent<HTMLElement>) => {
+      let targetElement = event.target as HTMLElement
+
+      if (targetElement.tagName === 'path') {
+        if (targetElement.parentElement) {
+          targetElement = targetElement.parentElement
+        }
+      }
+
+      if (
+        targetElement.classList.contains('rs-picker-toggle') ||
+        targetElement.classList.contains('rs-stack-item') ||
+        targetElement.classList.contains('rs-picker-toggle-caret') ||
+        targetElement.classList.contains('rs-picker-toggle-placeholder')
+      ) {
+        setIsOpen(!isOpen)
+      }
+    },
+    [isOpen]
+  )
 
   useClickOutside(boxRef, close, baseContainer)
 
