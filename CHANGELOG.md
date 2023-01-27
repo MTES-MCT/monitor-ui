@@ -1,3 +1,14 @@
+## [2.9.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.9.0...v2.9.1) (2023-01-27)
+
+
+### Bug Fixes
+
+* **fields:** fix DateRangePicker calendar selection update ([4fb68f8](https://github.com/MTES-MCT/monitor-ui/commit/4fb68f86278094e8fb8255b1f2bf9ce531bbc721))
+* **fields:** fix MultiSelect closing behavior ([1e832e6](https://github.com/MTES-MCT/monitor-ui/commit/1e832e6042cf7734f2084074672ea52220fb9fa8))
+* **fields:** fix Select not closing on selection ([c132a1f](https://github.com/MTES-MCT/monitor-ui/commit/c132a1f153a3e51eb59cf2cfd363e873604efe29))
+* **fields:** make MultiSelect width 100% of parent width ([aa38376](https://github.com/MTES-MCT/monitor-ui/commit/aa38376d0a57961bcdd385165e842b101cd037b1))
+* **fields:** make Select width 100% of parent width ([9aa3f71](https://github.com/MTES-MCT/monitor-ui/commit/9aa3f71f9e258ca66989ef24860dceb4333348b9))
+
 # [2.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.8.1...v2.9.0) (2023-01-25)
 
 
