@@ -121,8 +121,11 @@ const StyledSelectPicker = styled(SelectPicker)<{
 
 const Box = styled.div`
   position: relative;
+  width: 100%;
 
   > .rs-picker-select {
+    width: 100%;
+
     > .rs-picker-toggle {
       border: solid 1px ${p => p.theme.color.gainsboro} !important;
       font-size: 13px;
