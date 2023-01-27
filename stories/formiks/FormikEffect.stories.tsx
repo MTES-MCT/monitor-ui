@@ -3,8 +3,8 @@ import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { noop } from '../../.storybook/utils/noop'
 import { FormikEffect } from '../../src'
+import { noop } from '../../src/utils/noop'
 
 import type { FormikEffectProps } from '../../src'
 
