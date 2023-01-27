@@ -1,3 +1,10 @@
+## [2.9.2](https://github.com/MTES-MCT/monitor-ui/compare/v2.9.1...v2.9.2) (2023-01-27)
+
+
+### Bug Fixes
+
+* **fields:** set MutliSelect initial isOpen to false ([06fc475](https://github.com/MTES-MCT/monitor-ui/commit/06fc475fcd41e00e5e79a5636ba0e720899e3a1f))
+
 ## [2.9.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.9.0...v2.9.1) (2023-01-27)
 
 
