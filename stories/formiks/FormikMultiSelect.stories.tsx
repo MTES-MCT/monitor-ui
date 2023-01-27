@@ -3,8 +3,8 @@ import { useMemo, useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { noop } from '../../.storybook/utils/noop'
 import { FormikEffect, FormikMultiSelect } from '../../src'
+import { noop } from '../../src/utils/noop'
 
 import type { FormikMultiSelectProps } from '../../src'
 

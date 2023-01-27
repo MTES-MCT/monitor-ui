@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { MouseEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { TagPicker } from 'rsuite'
 import styled from 'styled-components'
 
@@ -46,9 +46,7 @@ export function MultiSelect({
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
 
-  const [isOpen, setIsOpen] = useState(false)
-
-  const { forceUpdate } = useForceUpdate()
+  const [isOpen, setIsOpen] = useState(true)
 
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
@@ -56,6 +54,8 @@ export function MultiSelect({
     () => `${originalProps.name}-${JSON.stringify(originalProps.defaultValue)}`,
     [originalProps.defaultValue, originalProps.name]
   )
+
+  const { forceUpdate } = useForceUpdate()
 
   const close = useCallback(() => {
     setIsOpen(false)
@@ -73,9 +73,27 @@ export function MultiSelect({
     },
     [onChange]
   )
-  const open = useCallback(() => {
-    setIsOpen(true)
-  }, [])
+
+  const toggle = useCallback(
+    (event: MouseEvent<HTMLElement>) => {
+      let targetElement = event.target as HTMLElement
+
+      if (targetElement.tagName === 'path') {
+        if (targetElement.parentElement) {
+          targetElement = targetElement.parentElement
+        }
+      }
+
+      if (
+        targetElement.classList.contains('rs-picker-toggle') ||
+        targetElement.classList.contains('rs-picker-tag-wrapper') ||
+        targetElement.classList.contains('rs-picker-toggle-caret')
+      ) {
+        setIsOpen(!isOpen)
+      }
+    },
+    [isOpen]
+  )
 
   useClickOutside(boxRef, close, baseContainer)
 
@@ -89,7 +107,7 @@ export function MultiSelect({
         {label}
       </Label>
 
-      <Box ref={boxRef} $isLight={isLight} onClick={open}>
+      <Box ref={boxRef} $isActive={isOpen} $isLight={isLight} onClick={toggle}>
         {boxRef.current && (
           <TagPicker
             key={key}
@@ -97,6 +115,7 @@ export function MultiSelect({
             data={options}
             id={originalProps.name}
             onChange={handleChange}
+            onClick={toggle}
             open={isOpen}
             searchable={searchable}
             {...originalProps}
@@ -110,32 +129,33 @@ export function MultiSelect({
 }
 
 const Box = styled.div<{
+  $isActive: boolean
   $isLight: boolean
 }>`
   position: relative;
   width: 100%;
 
   > .rs-picker-input {
-    border: 0;
+    border: solid 1px ${p => (p.$isActive ? p.theme.color.blueGray[100] : p.theme.color.gainsboro)} !important;
     cursor: pointer;
     width: 100%;
 
+    :hover {
+      border: solid 1px ${p => p.theme.color.blueYonder[100]} !important;
+    }
+
+    :active,
+    :focus {
+      border: solid 1px ${p => p.theme.color.blueGray[100]} !important;
+    }
+
     > .rs-picker-toggle {
       background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
-      border: solid 1px ${p => p.theme.color.gainsboro} !important;
+      border: 0;
       cursor: inherit;
       font-size: 13px;
       line-height: 1.3846;
       padding: 5px 40px 5px 8px !important;
-
-      :hover {
-        border: solid 1px ${p => p.theme.color.blueYonder[100]} !important;
-      }
-
-      :active,
-      :focus {
-        border: solid 1px ${p => p.theme.color.blueGray[100]} !important;
-      }
 
       > .rs-stack {
         > .rs-stack-item {
