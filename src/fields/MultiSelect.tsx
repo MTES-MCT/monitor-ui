@@ -1,4 +1,4 @@
-import { MouseEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { TagPicker } from 'rsuite'
 import styled from 'styled-components'
 
@@ -10,6 +10,7 @@ import { useForceUpdate } from '../hooks/useForceUpdate'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Option } from '../types'
+import type { MouseEvent } from 'react'
 import type { TagPickerProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 

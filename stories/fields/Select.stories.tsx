@@ -24,7 +24,8 @@ const args: SelectProps = {
     { label: 'Third Option', value: 'THIRD_OPTION' },
     { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
   ],
-  placeholder: 'Pick an option'
+  placeholder: 'Pick an option',
+  searchable: false
 }
 
 export default {
