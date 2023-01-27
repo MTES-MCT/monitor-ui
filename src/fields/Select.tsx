@@ -60,20 +60,20 @@ export function Select({
 
   const handleChange = useCallback(
     (nextValue: string | null) => {
-      if (!onChange) {
-        return
+      close()
+
+      if (onChange) {
+        const normalizedNextValue = nextValue ?? undefined
+
+        onChange(normalizedNextValue)
       }
-
-      const normalizedNextValue = nextValue ?? undefined
-
-      onChange(normalizedNextValue)
     },
-    [onChange]
+    [close, onChange]
   )
 
-  const open = useCallback(() => {
-    setIsOpen(true)
-  }, [])
+  const toggle = useCallback(() => {
+    setIsOpen(!isOpen)
+  }, [isOpen])
 
   useClickOutside(boxRef, close, baseContainer)
 
@@ -87,7 +87,7 @@ export function Select({
         {label}
       </Label>
 
-      <Box ref={boxRef} onClick={open}>
+      <Box ref={boxRef} onClick={toggle}>
         {boxRef.current && (
           <StyledSelectPicker
             key={key}
