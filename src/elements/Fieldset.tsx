@@ -44,6 +44,7 @@ const Box = styled.div<{
 }>`
   background-color: ${p => (p.$isLight ? p.theme.color.white : 'transparent')};
   padding: ${p => (p.$hasBorder || p.$isLight ? '16px' : 0)};
+  width: 100%;
 
   ${p =>
     p.$hasBorder &&
