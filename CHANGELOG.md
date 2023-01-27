@@ -1,3 +1,10 @@
+## [2.9.5](https://github.com/MTES-MCT/monitor-ui/compare/v2.9.4...v2.9.5) (2023-01-27)
+
+
+### Bug Fixes
+
+* **fields:** fix searchable Select toggling behavior ([f3b3eca](https://github.com/MTES-MCT/monitor-ui/commit/f3b3eca41b6f2d3d48f21f2b388cf5dc7f6d24d1))
+
 ## [2.9.4](https://github.com/MTES-MCT/monitor-ui/compare/v2.9.3...v2.9.4) (2023-01-27)
 
 
