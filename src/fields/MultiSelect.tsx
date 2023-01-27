@@ -33,7 +33,7 @@ export type MultiSelectProps = Omit<
 export function MultiSelect({
   baseContainer,
   error,
-  fixedWidth = 5,
+  fixedWidth,
   isLabelHidden = false,
   isLight = false,
   label,
@@ -89,12 +89,10 @@ export function MultiSelect({
         {label}
       </Label>
 
-      <Box ref={boxRef} onClick={open}>
+      <Box ref={boxRef} $isLight={isLight} onClick={open}>
         {boxRef.current && (
-          <StyledTagPicker
+          <TagPicker
             key={key}
-            $fixedWidth={fixedWidth}
-            $isLight={isLight}
             container={boxRef.current}
             data={options}
             id={originalProps.name}
@@ -111,28 +109,21 @@ export function MultiSelect({
   )
 }
 
-// TODO A width seems to be mandatory in rsuite which is a very dirty behavior.
-// We should hack that.
-const StyledTagPicker = styled(TagPicker)<{
-  $fixedWidth: number
+const Box = styled.div<{
   $isLight: boolean
 }>`
-  border: 0;
-  cursor: pointer;
-  width: ${p => p.$fixedWidth}px;
-
-  > .rs-picker-toggle {
-    background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
-    cursor: inherit;
-  }
-`
-
-const Box = styled.div`
   position: relative;
+  width: 100%;
 
   > .rs-picker-input {
+    border: 0;
+    cursor: pointer;
+    width: 100%;
+
     > .rs-picker-toggle {
+      background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
       border: solid 1px ${p => p.theme.color.gainsboro} !important;
+      cursor: inherit;
       font-size: 13px;
       line-height: 1.3846;
       padding: 5px 40px 5px 8px !important;
