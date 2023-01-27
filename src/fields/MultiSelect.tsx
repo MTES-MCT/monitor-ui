@@ -185,4 +185,27 @@ const Box = styled.div<{
       }
     }
   }
+
+  > .rs-picker-menu {
+    > .rs-picker-check-menu {
+      margin: 0;
+
+      > div[role='option'] {
+        > .rs-check-item {
+          > .rs-checkbox-checker {
+            > label {
+              font-size: 13px;
+              line-height: 1.3846;
+              padding: 8px 12px 8px 38px;
+
+              > .rs-checkbox-wrapper {
+                left: 12px;
+                top: 10px !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 `
