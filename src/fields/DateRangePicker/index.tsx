@@ -257,11 +257,10 @@ export function DateRangePicker({
       selectedLocalizedEndTimeTupleRef.current = getTimeTupleFromDate(selectedLocalizedEndDateRef.current)
 
       closeRangeCalendarPicker()
-      forceUpdate()
 
       submit()
     },
-    [closeRangeCalendarPicker, forceUpdate, submit, withTime]
+    [closeRangeCalendarPicker, submit, withTime]
   )
 
   const handleTimeInputFilled = useCallback(
