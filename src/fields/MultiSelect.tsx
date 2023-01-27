@@ -46,7 +46,7 @@ export function MultiSelect({
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
 
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
 
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
