@@ -106,14 +106,10 @@ export function MultiZoneEditor({
 
               {/* TODO Add `Accent.LINK` accent in @mtes-mct/monitor-ui and use it here. */}
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-              <a
-                onClick={() => centerZone(zone)}
-                style={{
-                  cursor: 'pointer'
-                }}
-              >
-                <SelectRectangle /> Centrer sur la carte
-              </a>
+              <Link onClick={() => centerZone(zone)}>
+                <SelectRectangle />
+                <span>Centrer sur la carte</span>
+              </Link>
             </ZoneWrapper>
 
             <IconButton accent={Accent.SECONDARY} Icon={Edit} onClick={() => editZone(index, zone)} />
@@ -145,7 +141,18 @@ const ZoneWrapper = styled.div`
   display: flex;
   flex-grow: 1;
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.3077; // = 17px
   justify-content: space-between;
   padding: 6px 12px 6px;
+`
+
+const Link = styled.a`
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+
+  > span {
+    line-height: 1;
+    margin: -2px 0 0 8px;
+  }
 `
