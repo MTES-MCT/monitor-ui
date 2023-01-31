@@ -55,6 +55,16 @@ export { useClickOutside } from './hooks/useClickOutside'
 export { useForceUpdate } from './hooks/useForceUpdate'
 
 /* -----------------------------------------------------------------------------
+  Utils
+*/
+
+export { dayjs } from './utils/dayjs'
+export { getLocalizedDayjs } from './utils/getLocalizedDayjs'
+export { getUtcizedDayjs } from './utils/getUtcizedDayjs'
+export { noop } from './utils/noop'
+export { stopMouseEventPropagation } from './utils/stopMouseEventPropagation'
+
+/* -----------------------------------------------------------------------------
   Type Definitions
 */
 
