@@ -1,3 +1,10 @@
+# [2.10.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.9.5...v2.10.0) (2023-01-31)
+
+
+### Features
+
+* **utils:** expose multiple utils ([0a72cbc](https://github.com/MTES-MCT/monitor-ui/commit/0a72cbc44279d02b0dfeee1251ca723c57468ff3))
+
 ## [2.9.5](https://github.com/MTES-MCT/monitor-ui/compare/v2.9.4...v2.9.5) (2023-01-27)
 
 
