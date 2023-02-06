@@ -20,6 +20,7 @@ export const THEME = {
     gainsboro: '#E5E5EB',
     cultured: '#F7F7FA',
     white: '#FFFFFF',
+    shadowBlue: '#6B839E',
 
     // Accentuation Colors
     blueYonder: {
