@@ -116,7 +116,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["semantic-release", "npm:19.0.5"],\
             ["storybook-addon-performance", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:0.16.1"],\
             ["styled-components", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.3.6"],\
-            ["tslib", "npm:2.4.1"],\
+            ["tslib", "npm:2.5.0"],\
             ["type-fest", "npm:3.5.0"],\
             ["typescript", "patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=d73830"],\
             ["webpack", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.75.0"]\
@@ -6443,7 +6443,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["semantic-release", "npm:19.0.5"],\
             ["storybook-addon-performance", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:0.16.1"],\
             ["styled-components", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.3.6"],\
-            ["tslib", "npm:2.4.1"],\
+            ["tslib", "npm:2.5.0"],\
             ["type-fest", "npm:3.5.0"],\
             ["typescript", "patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=d73830"],\
             ["webpack", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:5.75.0"]\
@@ -7199,7 +7199,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/typescript", null],\
             ["resolve", "patch:resolve@npm%3A1.22.1#~builtin<compat/resolve>::version=1.22.1&hash=c3c19d"],\
             ["rollup", "npm:3.10.1"],\
-            ["tslib", "npm:2.4.1"],\
+            ["tslib", "npm:2.5.0"],\
             ["typescript", "patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=d73830"]\
           ],\
           "packagePeers": [\
@@ -32866,6 +32866,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/tslib-npm-2.4.1-36f0ed04db-19480d6e03.zip/node_modules/tslib/",\
           "packageDependencies": [\
             ["tslib", "npm:2.4.1"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:2.5.0", {\
+          "packageLocation": "./.yarn/cache/tslib-npm-2.5.0-bb364efebd-ae3ed5f9ce.zip/node_modules/tslib/",\
+          "packageDependencies": [\
+            ["tslib", "npm:2.5.0"]\
           ],\
           "linkType": "HARD"\
         }]\
