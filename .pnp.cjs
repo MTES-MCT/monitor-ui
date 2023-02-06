@@ -31,7 +31,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/core", "npm:7.20.5"],\
             ["@babel/runtime", "npm:7.20.6"],\
             ["@commitlint/cli", "npm:17.3.0"],\
-            ["@commitlint/config-conventional", "npm:17.3.0"],\
+            ["@commitlint/config-conventional", "npm:17.4.2"],\
             ["@ivangabriele/commitlint-config", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:1.0.6"],\
             ["@ivangabriele/eslint-config-typescript-react", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:4.3.0"],\
             ["@ivangabriele/prettier-config", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:3.1.0"],\
@@ -5297,10 +5297,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@commitlint/config-conventional", [\
-        ["npm:17.3.0", {\
-          "packageLocation": "./.yarn/cache/@commitlint-config-conventional-npm-17.3.0-d8ddc41628-cf11a2b538.zip/node_modules/@commitlint/config-conventional/",\
+        ["npm:17.4.2", {\
+          "packageLocation": "./.yarn/cache/@commitlint-config-conventional-npm-17.4.2-09d6dbe2d1-517dd3b339.zip/node_modules/@commitlint/config-conventional/",\
           "packageDependencies": [\
-            ["@commitlint/config-conventional", "npm:17.3.0"],\
+            ["@commitlint/config-conventional", "npm:17.4.2"],\
             ["conventional-changelog-conventionalcommits", "npm:5.0.0"]\
           ],\
           "linkType": "HARD"\
@@ -5664,7 +5664,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@ivangabriele/commitlint-config", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:1.0.6"],\
             ["@commitlint/cli", "npm:17.3.0"],\
-            ["@commitlint/config-conventional", "npm:17.3.0"],\
+            ["@commitlint/config-conventional", "npm:17.4.2"],\
             ["@types/commitlint__cli", null],\
             ["@types/commitlint__config-conventional", null],\
             ["@types/husky", null],\
@@ -6358,7 +6358,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/core", "npm:7.20.5"],\
             ["@babel/runtime", "npm:7.20.6"],\
             ["@commitlint/cli", "npm:17.3.0"],\
-            ["@commitlint/config-conventional", "npm:17.3.0"],\
+            ["@commitlint/config-conventional", "npm:17.4.2"],\
             ["@ivangabriele/commitlint-config", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:1.0.6"],\
             ["@ivangabriele/eslint-config-typescript-react", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:4.3.0"],\
             ["@ivangabriele/prettier-config", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:3.1.0"],\
