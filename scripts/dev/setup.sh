@@ -11,6 +11,3 @@ else
     echo 'Installing Playwright dependencies with sudo...'
     sudo yarn playwright install-deps
 fi
-
-echo 'Initializing E2E tests...'
-yarn e2e:setup
