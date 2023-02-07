@@ -15,7 +15,7 @@ import type { MouseEvent } from 'react'
 import type { TagPickerProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
-export type MultiSelectProps = Omit<
+export type MultiSelectProps<OptionValue = string> = Omit<
   TagPickerProps,
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'value'
 > & {
@@ -29,8 +29,8 @@ export type MultiSelectProps = Omit<
   isLight?: boolean | undefined
   label: string
   name: string
-  onChange?: ((nextValue: string[] | undefined) => Promisable<void>) | undefined
-  options: Option[]
+  onChange?: ((nextValue: OptionValue[] | undefined) => Promisable<void>) | undefined
+  options: Option<OptionValue>[]
 }
 export function MultiSelect({
   baseContainer,
