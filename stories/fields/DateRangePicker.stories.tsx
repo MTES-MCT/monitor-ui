@@ -15,6 +15,7 @@ import type { DateAsStringRange, DateRange } from '../../src/types'
 const args: DateRangePickerWithDateDateProps | DateRangePickerWithStringDateProps = {
   baseContainer: undefined,
   disabled: false,
+  error: '',
   isCompact: false,
   isHistorical: false,
   isLabelHidden: false,

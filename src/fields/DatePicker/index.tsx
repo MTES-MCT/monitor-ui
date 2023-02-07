@@ -3,6 +3,7 @@
 import { useCallback, useMemo, useRef } from 'react'
 import styled from 'styled-components'
 
+import { FieldError } from '../../elements/FieldError'
 import { Fieldset } from '../../elements/Fieldset'
 import { Legend } from '../../elements/Legend'
 import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
@@ -10,6 +11,7 @@ import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
 import { getLocalizedDayjs } from '../../utils/getLocalizedDayjs'
 import { getUtcizedDayjs } from '../../utils/getUtcizedDayjs'
+import { normalizeString } from '../../utils/normalizeString'
 import { DateInput } from '../DateRangePicker/DateInput'
 import { TimeInput } from '../DateRangePicker/TimeInput'
 import { getDateFromDateAndTimeTuple, getDateTupleFromDate, getTimeTupleFromDate } from '../DateRangePicker/utils'
@@ -29,6 +31,7 @@ export interface DatePickerProps extends Omit<HTMLAttributes<HTMLFieldSetElement
   baseContainer?: Document | HTMLDivElement | null | undefined
   defaultValue?: Date | string | undefined
   disabled?: boolean | undefined
+  error?: string | undefined
   isCompact?: boolean | undefined
   /** Only allow past dates until today. */
   isHistorical?: boolean | undefined
@@ -67,6 +70,7 @@ export function DatePicker({
   defaultValue,
   // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,
+  error,
   isCompact = false,
   isHistorical = false,
   isLabelHidden = false,
@@ -95,6 +99,9 @@ export function DatePicker({
   )
 
   const { forceUpdate } = useForceUpdate()
+
+  const controlledError = useMemo(() => normalizeString(error), [error])
+  const hasError = useMemo(() => Boolean(controlledError), [controlledError])
 
   const rangeCalendarPickerDefaultValue = useMemo(
     () =>
@@ -258,6 +265,8 @@ export function DatePicker({
           </Field>
         )}
       </Box>
+
+      {hasError && <FieldError>{controlledError}</FieldError>}
 
       <CalendarPicker
         defaultValue={rangeCalendarPickerDefaultValue}

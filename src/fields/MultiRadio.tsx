@@ -2,8 +2,10 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Radio } from 'rsuite'
 import styled, { css } from 'styled-components'
 
+import { FieldError } from '../elements/FieldError'
 import { Fieldset } from '../elements/Fieldset'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
+import { normalizeString } from '../utils/normalizeString'
 
 import type { Option } from '../types'
 import type { Promisable } from 'type-fest'
@@ -11,6 +13,7 @@ import type { Promisable } from 'type-fest'
 export type MultiRadioProps = {
   defaultValue?: string | undefined
   disabled?: boolean | undefined
+  error?: string | undefined
   isInline?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
@@ -23,6 +26,7 @@ export function MultiRadio({
   defaultValue,
   // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,
+  error,
   isInline = false,
   isLabelHidden = false,
   isLight = false,
@@ -33,6 +37,8 @@ export function MultiRadio({
 }: MultiRadioProps) {
   const [checkedOptionValue, setCheckedOptionValue] = useState<string | undefined>(undefined)
 
+  const controlledError = useMemo(() => normalizeString(error), [error])
+  const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useMemo(() => `${name}-${String(checkedOptionValue)}}`, [checkedOptionValue, name])
 
   const handleChange = useCallback(
@@ -74,6 +80,8 @@ export function MultiRadio({
           </Radio>
         ))}
       </ChecboxesBox>
+
+      {hasError && <FieldError>{controlledError}</FieldError>}
     </Fieldset>
   )
 }

@@ -12,9 +12,9 @@ import { NewWindow } from '../../src/components/NewWindow'
 import type { MultiSelectProps } from '../../src'
 
 const args: MultiSelectProps = {
-  error: '',
   defaultValue: undefined,
   disabled: false,
+  error: '',
   fixedWidth: 170,
   isLabelHidden: false,
   isLight: false,

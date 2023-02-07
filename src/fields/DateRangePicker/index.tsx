@@ -3,6 +3,7 @@
 import { useCallback, useMemo, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
+import { FieldError } from '../../elements/FieldError'
 import { Fieldset } from '../../elements/Fieldset'
 import { Legend } from '../../elements/Legend'
 import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
@@ -10,6 +11,7 @@ import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
 import { getLocalizedDayjs } from '../../utils/getLocalizedDayjs'
 import { getUtcizedDayjs } from '../../utils/getUtcizedDayjs'
+import { normalizeString } from '../../utils/normalizeString'
 import { DateInput } from './DateInput'
 import { RangeCalendarPicker } from './RangeCalendarPicker'
 import { TimeInput } from './TimeInput'
@@ -30,6 +32,7 @@ export interface DateRangePickerProps extends Omit<HTMLAttributes<HTMLFieldSetEl
   baseContainer?: Document | HTMLDivElement | null | undefined
   defaultValue?: DateRange | DateAsStringRange | undefined
   disabled?: boolean | undefined
+  error?: string | undefined
   isCompact?: boolean | undefined
   /** Only allow past dates until today. */
   isHistorical?: boolean | undefined
@@ -70,6 +73,7 @@ export function DateRangePicker({
   defaultValue,
   // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,
+  error,
   isCompact = false,
   isHistorical = false,
   isLabelHidden = false,
@@ -108,6 +112,9 @@ export function DateRangePicker({
   )
 
   const { forceUpdate } = useForceUpdate()
+
+  const controlledError = useMemo(() => normalizeString(error), [error])
+  const hasError = useMemo(() => Boolean(controlledError), [controlledError])
 
   const rangeCalendarPickerDefaultValue = useMemo(
     () =>
@@ -391,6 +398,8 @@ export function DateRangePicker({
           </Field>
         )}
       </Box>
+
+      {hasError && <FieldError>{controlledError}</FieldError>}
 
       <RangeCalendarPicker
         defaultValue={rangeCalendarPickerDefaultValue}

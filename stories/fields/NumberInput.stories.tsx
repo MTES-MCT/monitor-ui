@@ -9,6 +9,7 @@ import type { NumberInputProps } from '../../src'
 const args: NumberInputProps = {
   defaultValue: undefined,
   disabled: false,
+  error: '',
   isLabelHidden: false,
   isLight: false,
   name: 'myNumberInput',

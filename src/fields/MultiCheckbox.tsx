@@ -2,8 +2,10 @@ import { equals, reject } from 'ramda'
 import { useCallback, useMemo, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
+import { FieldError } from '../elements/FieldError'
 import { Fieldset } from '../elements/Fieldset'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
+import { normalizeString } from '../utils/normalizeString'
 import { Checkbox } from './Checkbox'
 
 import type { Option } from '../types'
@@ -12,6 +14,7 @@ import type { Promisable } from 'type-fest'
 export type MultiCheckboxProps = {
   defaultValue?: string[] | undefined
   disabled?: boolean | undefined
+  error?: string | undefined
   isInline?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
@@ -24,6 +27,7 @@ export function MultiCheckbox({
   defaultValue = [],
   // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,
+  error,
   isInline = false,
   isLabelHidden = false,
   isLight = false,
@@ -34,6 +38,8 @@ export function MultiCheckbox({
 }: MultiCheckboxProps) {
   const checkedOptionValues = useRef<string[]>(defaultValue)
 
+  const controlledError = useMemo(() => normalizeString(error), [error])
+  const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useMemo(() => `${name}-${JSON.stringify(defaultValue)}`, [defaultValue, name])
 
   const handleChange = useCallback(
@@ -70,6 +76,8 @@ export function MultiCheckbox({
           />
         ))}
       </ChecboxesBox>
+
+      {hasError && <FieldError>{controlledError}</FieldError>}
     </Fieldset>
   )
 }

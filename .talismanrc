@@ -1,4 +1,6 @@
-threshold: low
+threshold: medium
 fileignoreconfig:
+  - filename: src/fields/Checkbox.tsx
+    checksum: cb01089f8741ddda9771018979c02982d9820ade3d81359aa64a2daabec68f23
   - filename: src/types.ts
     checksum: e5e0f0c13cb4fe6f167758f40a6ee506b833c0919a1ec8f3b703ec431159e959

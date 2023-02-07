@@ -9,6 +9,7 @@ import type { MultiZoneEditorProps } from '../../src'
 const args: MultiZoneEditorProps = {
   addButtonLabel: 'Add a zone',
   defaultValue: undefined,
+  error: '',
   initialZone: {
     name: 'Polygone dessiné'
   },

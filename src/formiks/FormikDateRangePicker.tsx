@@ -11,25 +11,28 @@ import type {
 
 const UntypedDateRangePicker: any = DateRangePicker
 
-interface FormikDateRangePickerProps extends Omit<DateRangePickerProps, 'onChange'> {
+interface FormikDateRangePickerProps extends Omit<DateRangePickerProps, 'defaultValue' | 'error' | 'onChange'> {
   name: string
 }
-export interface FormikDateRangePickerWithDateDateProps extends Omit<DateRangePickerWithDateDateProps, 'onChange'> {
+export interface FormikDateRangePickerWithDateDateProps
+  extends Omit<DateRangePickerWithDateDateProps, 'defaultValue' | 'error' | 'onChange'> {
   name: string
 }
-export interface FormikDateRangePickerWithStringDateProps extends Omit<DateRangePickerWithStringDateProps, 'onChange'> {
+export interface FormikDateRangePickerWithStringDateProps
+  extends Omit<DateRangePickerWithStringDateProps, 'defaultValue' | 'error' | 'onChange'> {
   name: string
 }
 
 export function FormikDateRangePicker(props: FormikDateRangePickerWithDateDateProps): JSX.Element
 export function FormikDateRangePicker(props: FormikDateRangePickerWithStringDateProps): JSX.Element
 export function FormikDateRangePicker({ name, ...originalProps }: FormikDateRangePickerProps) {
-  const [field, , helpers] = useField(name)
+  const [field, meta, helpers] = useField(name)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])
+  const error = useMemo(() => (meta.initialTouched ? meta.error : undefined), [meta.error, meta.initialTouched])
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = useMemo(() => helpers.setValue, [])
 
-  return <UntypedDateRangePicker defaultValue={defaultValue} onChange={handleChange} {...originalProps} />
+  return <UntypedDateRangePicker defaultValue={defaultValue} error={error} onChange={handleChange} {...originalProps} />
 }
