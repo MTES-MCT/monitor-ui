@@ -1,3 +1,10 @@
+## [2.12.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.12.0...v2.12.1) (2023-02-07)
+
+
+### Bug Fixes
+
+* **fields:** skip MultiCheckbox render on onChange prop change ([7eab714](https://github.com/MTES-MCT/monitor-ui/commit/7eab714adb8a235a8f28aa2c23ccf8912cafd99e))
+
 # [2.12.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.11.0...v2.12.0) (2023-02-07)
 
 
