@@ -1,3 +1,10 @@
+## [2.13.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.13.0...v2.13.1) (2023-02-07)
+
+
+### Bug Fixes
+
+* **fields:** add missing Option component type generic ([27ac60d](https://github.com/MTES-MCT/monitor-ui/commit/27ac60d3da117f134f8613d59f3a672d84820625))
+
 # [2.13.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.12.1...v2.13.0) (2023-02-07)
 
 
