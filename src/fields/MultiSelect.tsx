@@ -21,7 +21,7 @@ export type MultiSelectProps<OptionValue = string> = Omit<
 > & {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
-  defaultValue?: string[] | undefined
+  defaultValue?: OptionValue[] | undefined
   error?: string | undefined
   /** Width in pixels */
   fixedWidth?: number | undefined
@@ -32,7 +32,7 @@ export type MultiSelectProps<OptionValue = string> = Omit<
   onChange?: ((nextValue: OptionValue[] | undefined) => Promisable<void>) | undefined
   options: Option<OptionValue>[]
 }
-export function MultiSelect({
+export function MultiSelect<OptionValue = string>({
   baseContainer,
   error,
   fixedWidth,
@@ -44,7 +44,7 @@ export function MultiSelect({
   // eslint-disable-next-line @typescript-eslint/naming-convention
   searchable = false,
   ...originalProps
-}: MultiSelectProps) {
+}: MultiSelectProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
 
@@ -64,7 +64,7 @@ export function MultiSelect({
   }, [])
 
   const handleChange = useCallback(
-    (nextValue: string[] | null) => {
+    (nextValue: OptionValue[] | null) => {
       if (!onChange) {
         return
       }
@@ -116,7 +116,7 @@ export function MultiSelect({
           <TagPicker
             key={key}
             container={boxRef.current}
-            data={options}
+            data={options as any}
             id={originalProps.name}
             onChange={handleChange}
             onClick={toggle}
