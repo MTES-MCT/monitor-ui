@@ -9,6 +9,7 @@ export { ThemeProvider } from './ThemeProvider'
 */
 
 export { Dropdown } from './components/Dropdown'
+export { SingleTag } from './components/SingleTag'
 
 export { Button } from './elements/Button'
 export { Field } from './elements/Field'
@@ -72,6 +73,7 @@ export type { PartialTheme, Theme } from './theme'
 export type { DateAsStringRange, DateRange, IconProps, Option, Undefine } from './types'
 
 export type { DropdownProps, DropdownItemProps } from './components/Dropdown'
+export type { SingleTagProps } from './components/SingleTag'
 
 export type { ButtonProps } from './elements/Button'
 export type { FieldProps } from './elements/Field'
