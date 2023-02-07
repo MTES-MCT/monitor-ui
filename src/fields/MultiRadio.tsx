@@ -98,6 +98,7 @@ const ChecboxesBox = styled.div<{
     > .rs-radio-checker {
       min-height: 0;
       padding: 0 0 0 28px;
+      user-select: none;
 
       .rs-radio-wrapper {
         left: 2px;

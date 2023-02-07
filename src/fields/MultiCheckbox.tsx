@@ -61,13 +61,12 @@ export function MultiCheckbox({
 
   useFieldUndefineEffect(disabled, onChange)
 
-  return (
-    <Fieldset key={key} isHidden={isLabelHidden} isLight={isLight} legend={label}>
-      <ChecboxesBox $isInline={isInline}>
+  const checkboxesElement = useMemo(
+    () => (
+      <>
         {options.map((option, index) => (
           <Checkbox
-            // eslint-disable-next-line react/no-array-index-key
-            key={`${name}-${index}`}
+            key={option.value}
             defaultChecked={defaultValue.includes(option.value)}
             disabled={disabled}
             label={option.label}
@@ -75,7 +74,15 @@ export function MultiCheckbox({
             onChange={(isChecked: boolean) => handleChange(option.value, isChecked)}
           />
         ))}
-      </ChecboxesBox>
+      </>
+    ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [disabled, handleChange, name, options]
+  )
+
+  return (
+    <Fieldset key={key} isHidden={isLabelHidden} isLight={isLight} legend={label}>
+      <ChecboxesBox $isInline={isInline}>{checkboxesElement}</ChecboxesBox>
 
       {hasError && <FieldError>{controlledError}</FieldError>}
     </Fieldset>
@@ -89,19 +96,29 @@ const ChecboxesBox = styled.div<{
   display: flex;
   flex-direction: ${p => (p.$isInline ? 'row' : 'column')};
 
+  > div {
+    > .rs-checkbox {
+      user-select: none;
+    }
+  }
+
   ${p =>
     !p.$isInline &&
     css`
-      > .rs-checkbox:not(:first-child) {
-        margin-top: 8px;
+      > div:not(:first-child) {
+        > .rs-checkbox {
+          margin-top: 8px;
+        }
       }
     `}
 
   ${p =>
     p.$isInline &&
     css`
-      > .rs-checkbox:not(:first-child) {
-        margin-left: 12px;
+      > div:not(:first-child) {
+        .rs-checkbox {
+          margin-left: 12px;
+        }
       }
     `}
 `
