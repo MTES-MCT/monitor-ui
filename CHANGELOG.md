@@ -1,3 +1,11 @@
+# [2.12.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.11.0...v2.12.0) (2023-02-07)
+
+
+### Features
+
+* **fields:** add error prop ([26d7494](https://github.com/MTES-MCT/monitor-ui/commit/26d7494157528d853da4a26077f4d63012bd2bd0))
+* **fields:** set onChange value to undefined on disabled ([323ef7a](https://github.com/MTES-MCT/monitor-ui/commit/323ef7ace51acdc117187118bc2a3a8b7ac59ed6))
+
 # [2.11.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.10.0...v2.11.0) (2023-02-07)
 
 
