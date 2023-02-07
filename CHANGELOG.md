@@ -1,3 +1,10 @@
+# [2.13.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.12.1...v2.13.0) (2023-02-07)
+
+
+### Features
+
+* **fields:** make option value generic in MultiCheckbox, MultiRadio, MultiSelect & Select ([d92ae33](https://github.com/MTES-MCT/monitor-ui/commit/d92ae332495407e3dbbcdc5d17d13161002f34ef))
+
 ## [2.12.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.12.0...v2.12.1) (2023-02-07)
 
 
