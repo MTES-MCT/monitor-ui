@@ -3,8 +3,10 @@ import { Input } from 'rsuite'
 import styled from 'styled-components'
 
 import { Field } from '../elements/Field'
+import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
+import { normalizeString } from '../utils/normalizeString'
 
 import type { MutableRefObject, TextareaHTMLAttributes } from 'react'
 import type { Promisable } from 'type-fest'
@@ -14,6 +16,7 @@ export type TextareaProps = Omit<
   'defaultValue' | 'id' | 'onChange' | 'value'
 > & {
   defaultValue?: string | undefined
+  error?: string | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
   label: string
@@ -21,6 +24,7 @@ export type TextareaProps = Omit<
   onChange?: ((nextValue: string | undefined) => Promisable<void>) | undefined
 }
 export function Textarea({
+  error,
   isLabelHidden = false,
   isLight = false,
   label,
@@ -30,6 +34,8 @@ export function Textarea({
 }: TextareaProps) {
   const inputRef = useRef() as MutableRefObject<HTMLTextAreaElement>
 
+  const controlledError = useMemo(() => normalizeString(error), [error])
+  const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useMemo(
     () => `${originalProps.name}-${JSON.stringify(originalProps.defaultValue)}`,
     [originalProps.defaultValue, originalProps.name]
@@ -64,6 +70,8 @@ export function Textarea({
         rows={rows}
         {...originalProps}
       />
+
+      {hasError && <FieldError>{controlledError}</FieldError>}
     </Field>
   )
 }

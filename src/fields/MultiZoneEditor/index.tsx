@@ -1,20 +1,23 @@
 // TODO Clean, split and finalize this component.
 
 import { equals, remove } from 'ramda'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 
 import { Accent } from '../../constants'
 import { Button } from '../../elements/Button'
+import { FieldError } from '../../elements/FieldError'
 import { Fieldset } from '../../elements/Fieldset'
 import { IconButton } from '../../elements/IconButton'
 import { Delete, Edit, Plus, SelectRectangle } from '../../icons'
+import { normalizeString } from '../../utils/normalizeString'
 
 import type { Promisable } from 'type-fest'
 
 export type MultiZoneEditorProps = {
   addButtonLabel: string
   defaultValue?: Record<string, any>[] | undefined
+  error?: string | undefined
   initialZone: Record<string, any>
   isLabelHidden?: boolean
   isLight?: boolean | undefined
@@ -28,6 +31,7 @@ export type MultiZoneEditorProps = {
 export function MultiZoneEditor({
   addButtonLabel,
   defaultValue = [],
+  error,
   initialZone,
   isLabelHidden = false,
   isLight = false,
@@ -41,6 +45,9 @@ export function MultiZoneEditor({
   const prevDefaultValueRef = useRef(defaultValue)
 
   const [zones, setZones] = useState(defaultValue)
+
+  const controlledError = useMemo(() => normalizeString(error), [error])
+  const hasError = useMemo(() => Boolean(controlledError), [controlledError])
 
   const addZone = useCallback(() => {
     const nextZones = [...zones, initialZone]
@@ -122,6 +129,8 @@ export function MultiZoneEditor({
           </Row>
         ))}
       </>
+
+      {hasError && <FieldError>{controlledError}</FieldError>}
     </Fieldset>
   )
 }

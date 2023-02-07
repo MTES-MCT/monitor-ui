@@ -14,6 +14,7 @@ import type { DatePickerWithDateDateProps, DatePickerWithStringDateProps } from 
 const args: DatePickerWithDateDateProps | DatePickerWithStringDateProps = {
   baseContainer: undefined,
   disabled: false,
+  error: '',
   isCompact: false,
   isHistorical: false,
   isLabelHidden: false,

@@ -5,14 +5,15 @@ import { Textarea } from '../fields/Textarea'
 
 import type { TextareaProps } from '../fields/Textarea'
 
-export type FormikTextareaProps = Omit<TextareaProps, 'defaultValue' | 'onChange'>
+export type FormikTextareaProps = Omit<TextareaProps, 'defaultValue' | 'error' | 'onChange'>
 export function FormikTextarea({ name, ...originalProps }: FormikTextareaProps) {
-  const [field, , helpers] = useField(name)
+  const [field, meta, helpers] = useField(name)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])
+  const error = useMemo(() => (meta.initialTouched ? meta.error : undefined), [meta.error, meta.initialTouched])
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = useMemo(() => helpers.setValue, [])
 
-  return <Textarea defaultValue={defaultValue} name={name} onChange={handleChange} {...originalProps} />
+  return <Textarea defaultValue={defaultValue} error={error} name={name} onChange={handleChange} {...originalProps} />
 }

@@ -3,14 +3,17 @@ import { Input } from 'rsuite'
 import styled from 'styled-components'
 
 import { Field } from '../elements/Field'
+import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
+import { normalizeString } from '../utils/normalizeString'
 
 import type { InputProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
 export type NumberInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'onChange' | 'type' | 'value'> & {
   defaultValue?: number | undefined
+  error?: string | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
   label: string
@@ -18,12 +21,15 @@ export type NumberInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | '
   onChange?: ((nextValue: number | undefined) => Promisable<void>) | undefined
 }
 export function NumberInput({
+  error,
   isLabelHidden = false,
   isLight = false,
   label,
   onChange,
   ...originalProps
 }: NumberInputProps) {
+  const controlledError = useMemo(() => normalizeString(error), [error])
+  const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useMemo(
     () => `${originalProps.name}-${JSON.stringify(originalProps.defaultValue)}`,
     [originalProps.defaultValue, originalProps.name]
@@ -60,6 +66,8 @@ export function NumberInput({
         type="number"
         {...originalProps}
       />
+
+      {hasError && <FieldError>{controlledError}</FieldError>}
     </Field>
   )
 }

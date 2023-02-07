@@ -8,6 +8,7 @@ import type { CheckboxProps } from '../../src'
 
 const args: CheckboxProps = {
   defaultChecked: false,
+  error: '',
   disabled: false,
   label: 'Check me',
   name: 'myCheckbox'
