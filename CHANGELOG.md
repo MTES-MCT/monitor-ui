@@ -1,3 +1,10 @@
+# [2.11.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.10.0...v2.11.0) (2023-02-07)
+
+
+### Features
+
+* **formiks:** set value to undefined on destroy ([8d810ad](https://github.com/MTES-MCT/monitor-ui/commit/8d810ad5dae3990628b3a63744adcc5fb339a3ad))
+
 # [2.10.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.9.5...v2.10.0) (2023-01-31)
 
 
