@@ -5,9 +5,15 @@ import { MultiCheckbox } from '../fields/MultiCheckbox'
 
 import type { MultiCheckboxProps } from '../fields/MultiCheckbox'
 
-export type FormikMultiCheckboxProps = Omit<MultiCheckboxProps, 'defaultValue' | 'error' | 'onChange'>
-export function FormikMultiCheckbox({ name, ...originalProps }: FormikMultiCheckboxProps) {
-  const [field, meta, helpers] = useField(name)
+export type FormikMultiCheckboxProps<OptionValue = string> = Omit<
+  MultiCheckboxProps<OptionValue>,
+  'defaultValue' | 'error' | 'onChange'
+>
+export function FormikMultiCheckbox<OptionValue = string>({
+  name,
+  ...originalProps
+}: FormikMultiCheckboxProps<OptionValue>) {
+  const [field, meta, helpers] = useField<OptionValue[] | undefined>(name)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])
