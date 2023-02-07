@@ -13,3 +13,14 @@ export type Option<V = string> = {
   label: string
   value: V
 }
+
+/**
+ * Mark all the props type of an interface/type as `| undefined`
+ *
+ * @description
+ * When `exactOptionalPropertyTypes` is enabled in tsconfig.json,
+ * this is useful to create "partial" objects while keeping their props mandatory.
+ */
+export type Undefine<T> = {
+  [K in keyof T]: T[K] | undefined
+}

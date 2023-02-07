@@ -5,7 +5,8 @@ import styled from 'styled-components'
 
 import { Fieldset } from '../../elements/Fieldset'
 import { Legend } from '../../elements/Legend'
-import { useClickOutside } from '../../hooks/useClickOutside'
+import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
+import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
 import { getLocalizedDayjs } from '../../utils/getLocalizedDayjs'
 import { getUtcizedDayjs } from '../../utils/getUtcizedDayjs'
@@ -214,7 +215,9 @@ export function DatePicker({
     forceUpdate()
   }, [forceUpdate])
 
-  useClickOutside(boxRef, closeCalendarPicker, baseContainer)
+  useFieldUndefineEffect(disabled, onChange)
+
+  useClickOutsideEffect(boxRef, closeCalendarPicker, baseContainer)
 
   return (
     <Fieldset disabled={disabled} {...nativeProps}>

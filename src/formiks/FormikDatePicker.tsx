@@ -1,5 +1,5 @@
 import { useField } from 'formik'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 
 import { DatePicker } from '../fields/DatePicker'
 
@@ -24,15 +24,8 @@ export function FormikDatePicker({ name, ...originalProps }: FormikDatePickerPro
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleChange = useMemo(() => helpers.setValue, [])
 
-  useEffect(
-    () => () => {
-      helpers.setValue(undefined)
-    },
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
-
-  return <UntypedDatePicker defaultValue={defaultValue} onChange={helpers.setValue} {...originalProps} />
+  return <UntypedDatePicker defaultValue={defaultValue} onChange={handleChange} {...originalProps} />
 }

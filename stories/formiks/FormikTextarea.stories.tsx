@@ -9,6 +9,7 @@ import { noop } from '../../src/utils/noop'
 import type { FormikTextareaProps } from '../../src'
 
 const args: FormikTextareaProps = {
+  disabled: false,
   isLabelHidden: false,
   isLight: false,
   name: 'myTextarea',

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import { Field } from '../elements/Field'
 import { Label } from '../elements/Label'
+import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 
 import type { InputProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
@@ -42,6 +43,8 @@ export function NumberInput({
     },
     [onChange]
   )
+
+  useFieldUndefineEffect(originalProps.disabled, onChange)
 
   return (
     <Field>

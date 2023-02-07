@@ -1,1 +1,4 @@
 threshold: low
+fileignoreconfig:
+  - filename: src/types.ts
+    checksum: e5e0f0c13cb4fe6f167758f40a6ee506b833c0919a1ec8f3b703ec431159e959

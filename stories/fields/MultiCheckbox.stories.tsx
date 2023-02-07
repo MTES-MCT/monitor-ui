@@ -8,6 +8,7 @@ import type { MultiCheckboxProps } from '../../src'
 
 const args: MultiCheckboxProps = {
   defaultValue: undefined,
+  disabled: false,
   isInline: false,
   isLabelHidden: false,
   isLight: false,

@@ -11,6 +11,7 @@ import type { DateRange } from '../../src/types'
 
 const args: FormikDateRangePickerWithDateDateProps | FormikDateRangePickerWithStringDateProps = {
   baseContainer: undefined,
+  disabled: false,
   isHistorical: false,
   isLabelHidden: false,
   isLight: false,

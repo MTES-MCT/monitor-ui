@@ -9,6 +9,7 @@ import { noop } from '../../src/utils/noop'
 import type { FormikTextInputProps } from '../../src'
 
 const args: FormikTextInputProps = {
+  disabled: false,
   isLabelHidden: false,
   isLight: false,
   name: 'myTextInput',

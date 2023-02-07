@@ -9,6 +9,7 @@ import { noop } from '../../src/utils/noop'
 import type { FormikMultiRadioProps } from '../../src'
 
 const args: FormikMultiRadioProps = {
+  disabled: false,
   isInline: false,
   isLabelHidden: false,
   isLight: false,

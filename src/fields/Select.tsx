@@ -5,7 +5,8 @@ import styled from 'styled-components'
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
-import { useClickOutside } from '../hooks/useClickOutside'
+import { useClickOutsideEffect } from '../hooks/useClickOutsideEffect'
+import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { normalizeString } from '../utils/normalizeString'
 
@@ -94,7 +95,9 @@ export function Select({
     [isOpen]
   )
 
-  useClickOutside(boxRef, close, baseContainer)
+  useFieldUndefineEffect(originalProps.disabled, onChange)
+
+  useClickOutsideEffect(boxRef, close, baseContainer)
 
   useEffect(() => {
     forceUpdate()

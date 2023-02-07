@@ -1,5 +1,5 @@
 import { useField } from 'formik'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 
 import { AutoComplete } from '../fields/AutoComplete'
 
@@ -9,21 +9,14 @@ export type FormikAutoCompleteProps = Omit<AutoCompleteProps, 'defaultValue' | '
 export function FormikAutoComplete({ name, ...originalProps }: FormikAutoCompleteProps) {
   const [field, , helpers] = useField<string | undefined>(name)
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps, @typescript-eslint/naming-convention
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])
-
-  useEffect(
-    () => () => {
-      helpers.setValue(undefined)
-    },
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleChange = useMemo(() => helpers.setValue, [])
 
   if (!defaultValue) {
     return <AutoComplete name={name} onChange={helpers.setValue} {...originalProps} />
   }
 
-  return <AutoComplete defaultValue={defaultValue} name={name} onChange={helpers.setValue} {...originalProps} />
+  return <AutoComplete defaultValue={defaultValue} name={name} onChange={handleChange} {...originalProps} />
 }

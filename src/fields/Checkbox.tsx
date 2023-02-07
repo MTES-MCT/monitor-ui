@@ -2,6 +2,8 @@ import { useCallback, useMemo } from 'react'
 import { Checkbox as RsuiteCheckbox } from 'rsuite'
 import styled from 'styled-components'
 
+import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
+
 import type { CheckboxProps as RsuiteCheckboxProps } from 'rsuite'
 import type { ValueType } from 'rsuite/esm/Checkbox'
 import type { Promisable } from 'type-fest'
@@ -27,6 +29,8 @@ export function Checkbox({ label, onChange, ...originalProps }: CheckboxProps) {
     },
     [onChange]
   )
+
+  useFieldUndefineEffect(originalProps.disabled, onChange)
 
   return (
     <StyledCheckbox key={key} id={originalProps.name} onChange={handleChange} {...originalProps}>

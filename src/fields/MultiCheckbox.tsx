@@ -3,6 +3,7 @@ import { useCallback, useMemo, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
 import { Fieldset } from '../elements/Fieldset'
+import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { Checkbox } from './Checkbox'
 
 import type { Option } from '../types'
@@ -10,6 +11,7 @@ import type { Promisable } from 'type-fest'
 
 export type MultiCheckboxProps = {
   defaultValue?: string[] | undefined
+  disabled?: boolean | undefined
   isInline?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
@@ -20,6 +22,8 @@ export type MultiCheckboxProps = {
 }
 export function MultiCheckbox({
   defaultValue = [],
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  disabled = false,
   isInline = false,
   isLabelHidden = false,
   isLight = false,
@@ -49,6 +53,8 @@ export function MultiCheckbox({
     [onChange]
   )
 
+  useFieldUndefineEffect(disabled, onChange)
+
   return (
     <Fieldset key={key} isHidden={isLabelHidden} isLight={isLight} legend={label}>
       <ChecboxesBox $isInline={isInline}>
@@ -57,6 +63,7 @@ export function MultiCheckbox({
             // eslint-disable-next-line react/no-array-index-key
             key={`${name}-${index}`}
             defaultChecked={defaultValue.includes(option.value)}
+            disabled={disabled}
             label={option.label}
             name={`${name}${index}`}
             onChange={(isChecked: boolean) => handleChange(option.value, isChecked)}
