@@ -11,7 +11,7 @@ import type { Option } from '../types'
 import type { Promisable } from 'type-fest'
 
 export type MultiRadioProps<OptionValue = string> = {
-  defaultValue?: string | undefined
+  defaultValue?: OptionValue | undefined
   disabled?: boolean | undefined
   error?: string | undefined
   isInline?: boolean | undefined
@@ -22,7 +22,7 @@ export type MultiRadioProps<OptionValue = string> = {
   onChange?: ((nextValue: OptionValue | undefined) => Promisable<void>) | undefined
   options: Option<OptionValue>[]
 }
-export function MultiRadio({
+export function MultiRadio<OptionValue = string>({
   defaultValue,
   // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,
@@ -34,15 +34,15 @@ export function MultiRadio({
   name,
   onChange,
   options
-}: MultiRadioProps) {
-  const [checkedOptionValue, setCheckedOptionValue] = useState<string | undefined>(undefined)
+}: MultiRadioProps<OptionValue>) {
+  const [checkedOptionValue, setCheckedOptionValue] = useState<OptionValue | undefined>(undefined)
 
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useMemo(() => `${name}-${String(checkedOptionValue)}}`, [checkedOptionValue, name])
 
   const handleChange = useCallback(
-    (nextOptionValue: string, isChecked: boolean) => {
+    (nextOptionValue: OptionValue, isChecked: boolean) => {
       const nextCheckedOptionValue = isChecked ? nextOptionValue : undefined
 
       setCheckedOptionValue(nextCheckedOptionValue)

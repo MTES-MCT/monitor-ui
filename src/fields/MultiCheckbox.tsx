@@ -12,7 +12,7 @@ import type { Option } from '../types'
 import type { Promisable } from 'type-fest'
 
 export type MultiCheckboxProps<OptionValue = string> = {
-  defaultValue?: string[] | undefined
+  defaultValue?: OptionValue[] | undefined
   disabled?: boolean | undefined
   error?: string | undefined
   isInline?: boolean | undefined
@@ -23,7 +23,7 @@ export type MultiCheckboxProps<OptionValue = string> = {
   onChange?: ((nextValue: OptionValue[] | undefined) => Promisable<void>) | undefined
   options: Option<OptionValue>[]
 }
-export function MultiCheckbox({
+export function MultiCheckbox<OptionValue = string>({
   defaultValue = [],
   // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,
@@ -35,15 +35,15 @@ export function MultiCheckbox({
   name,
   onChange,
   options
-}: MultiCheckboxProps) {
-  const checkedOptionValues = useRef<string[]>(defaultValue)
+}: MultiCheckboxProps<OptionValue>) {
+  const checkedOptionValues = useRef<OptionValue[]>(defaultValue)
 
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useMemo(() => `${name}-${JSON.stringify(defaultValue)}`, [defaultValue, name])
 
   const handleChange = useCallback(
-    (nextOptionValue: string, isChecked: boolean) => {
+    (nextOptionValue: OptionValue, isChecked: boolean) => {
       const nextCheckedOptionValues = isChecked
         ? [...checkedOptionValues.current, nextOptionValue]
         : reject(equals(nextOptionValue))(checkedOptionValues.current)
@@ -66,7 +66,7 @@ export function MultiCheckbox({
       <>
         {options.map((option, index) => (
           <Checkbox
-            key={option.value}
+            key={String(option.value)}
             defaultChecked={defaultValue.includes(option.value)}
             disabled={disabled}
             label={option.label}

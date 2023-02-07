@@ -21,7 +21,7 @@ export type SelectProps<OptionValue = string> = Omit<
 > & {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
-  defaultValue?: string | undefined
+  defaultValue?: OptionValue | undefined
   error?: string | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
@@ -30,7 +30,7 @@ export type SelectProps<OptionValue = string> = Omit<
   onChange?: ((nextValue: OptionValue | undefined) => Promisable<void>) | undefined
   options: Option<OptionValue>[]
 }
-export function Select({
+export function Select<OptionValue = string>({
   baseContainer,
   error,
   isLabelHidden = false,
@@ -41,7 +41,7 @@ export function Select({
   // eslint-disable-next-line @typescript-eslint/naming-convention
   searchable = false,
   ...originalProps
-}: SelectProps) {
+}: SelectProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
 
@@ -61,7 +61,7 @@ export function Select({
   }, [])
 
   const handleChange = useCallback(
-    (nextValue: string | null) => {
+    (nextValue: OptionValue | null) => {
       close()
 
       if (onChange) {
