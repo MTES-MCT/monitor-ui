@@ -1,3 +1,10 @@
+# [2.14.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.13.2...v2.14.0) (2023-02-07)
+
+
+### Features
+
+* **components:** add SingleTag ([0379159](https://github.com/MTES-MCT/monitor-ui/commit/0379159f6eec3a8d880e0f44f447bac8b5173bf8))
+
 ## [2.13.2](https://github.com/MTES-MCT/monitor-ui/compare/v2.13.1...v2.13.2) (2023-02-07)
 
 
