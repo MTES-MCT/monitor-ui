@@ -1,5 +1,5 @@
 import { useField } from 'formik'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 
 import { Textarea } from '../fields/Textarea'
 
@@ -11,15 +11,8 @@ export function FormikTextarea({ name, ...originalProps }: FormikTextareaProps) 
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleChange = useMemo(() => helpers.setValue, [])
 
-  useEffect(
-    () => () => {
-      helpers.setValue(undefined)
-    },
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
-
-  return <Textarea defaultValue={defaultValue} name={name} onChange={helpers.setValue} {...originalProps} />
+  return <Textarea defaultValue={defaultValue} name={name} onChange={handleChange} {...originalProps} />
 }

@@ -10,6 +10,7 @@ import type { FormikDatePickerWithDateDateProps, FormikDatePickerWithStringDateP
 
 const args: FormikDatePickerWithDateDateProps | FormikDatePickerWithStringDateProps = {
   baseContainer: undefined,
+  disabled: false,
   isHistorical: false,
   isLabelHidden: false,
   isLight: false,

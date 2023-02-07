@@ -1,5 +1,5 @@
 import { useField } from 'formik'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 
 import { TextInput } from '../fields/TextInput'
 
@@ -11,15 +11,8 @@ export function FormikTextInput({ name, ...originalProps }: FormikTextInputProps
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleChange = useMemo(() => helpers.setValue, [])
 
-  useEffect(
-    () => () => {
-      helpers.setValue(undefined)
-    },
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
-
-  return <TextInput defaultValue={defaultValue} name={name} onChange={helpers.setValue} {...originalProps} />
+  return <TextInput defaultValue={defaultValue} name={name} onChange={handleChange} {...originalProps} />
 }

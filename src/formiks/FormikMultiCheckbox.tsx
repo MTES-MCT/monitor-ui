@@ -1,5 +1,5 @@
 import { useField } from 'formik'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 
 import { MultiCheckbox } from '../fields/MultiCheckbox'
 
@@ -11,15 +11,8 @@ export function FormikMultiCheckbox({ name, ...originalProps }: FormikMultiCheck
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleChange = useMemo(() => helpers.setValue, [])
 
-  useEffect(
-    () => () => {
-      helpers.setValue(undefined)
-    },
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
-
-  return <MultiCheckbox defaultValue={defaultValue} name={name} onChange={helpers.setValue} {...originalProps} />
+  return <MultiCheckbox defaultValue={defaultValue} name={name} onChange={handleChange} {...originalProps} />
 }

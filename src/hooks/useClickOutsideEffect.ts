@@ -4,7 +4,7 @@ import { useCallback, useEffect } from 'react'
 import type { MutableRefObject } from 'react'
 import type { Promisable } from 'type-fest'
 
-export const useClickOutside = (
+export const useClickOutsideEffect = (
   zoneRefOrzoneRefs: MutableRefObject<any> | MutableRefObject<any>[],
   action: () => Promisable<void>,
   baseContainer?: Document | HTMLDivElement | null

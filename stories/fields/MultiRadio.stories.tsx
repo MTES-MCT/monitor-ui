@@ -8,6 +8,7 @@ import type { MultiRadioProps } from '../../src'
 
 const args: MultiRadioProps = {
   defaultValue: undefined,
+  disabled: false,
   isInline: false,
   isLabelHidden: false,
   isLight: false,

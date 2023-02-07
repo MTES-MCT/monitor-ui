@@ -9,6 +9,7 @@ import { noop } from '../../src/utils/noop'
 import type { FormikMultiCheckboxProps } from '../../src'
 
 const args: FormikMultiCheckboxProps = {
+  disabled: false,
   isInline: false,
   isLabelHidden: false,
   isLight: false,

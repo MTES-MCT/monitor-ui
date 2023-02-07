@@ -13,6 +13,7 @@ import type { SelectProps } from '../../src'
 
 const args: SelectProps = {
   defaultValue: undefined,
+  disabled: false,
   error: '',
   isLabelHidden: false,
   isLight: false,

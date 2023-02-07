@@ -51,7 +51,7 @@ export * as Icon from './icons'
   Hooks
 */
 
-export { useClickOutside } from './hooks/useClickOutside'
+export { useClickOutsideEffect } from './hooks/useClickOutsideEffect'
 export { useForceUpdate } from './hooks/useForceUpdate'
 
 /* -----------------------------------------------------------------------------
@@ -69,7 +69,7 @@ export { stopMouseEventPropagation } from './utils/stopMouseEventPropagation'
 */
 
 export type { PartialTheme, Theme } from './theme'
-export type { DateAsStringRange, DateRange, IconProps, Option } from './types'
+export type { DateAsStringRange, DateRange, IconProps, Option, Undefine } from './types'
 
 export type { DropdownProps, DropdownItemProps } from './components/Dropdown'
 

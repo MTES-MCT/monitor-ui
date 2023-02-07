@@ -1,7 +1,7 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef, useState } from 'react'
 import styled from 'styled-components'
 
-import { useClickOutside } from '../../hooks/useClickOutside'
+import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
 import { Clock } from '../../icons'
 import { NumberInput } from './NumberInput'
@@ -150,7 +150,7 @@ function TimeInputWithRef(
     onChange(nextTimeTuple)
   }, [closeRangedTimePicker, onChange])
 
-  useClickOutside(boxRef, closeRangedTimePicker, baseContainer)
+  useClickOutsideEffect(boxRef, closeRangedTimePicker, baseContainer)
 
   return (
     <Box

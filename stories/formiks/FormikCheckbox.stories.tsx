@@ -9,6 +9,7 @@ import { noop } from '../../src/utils/noop'
 import type { FormikCheckboxProps } from '../../src'
 
 const args: FormikCheckboxProps = {
+  disabled: false,
   label: 'Check me',
   name: 'myCheckbox'
 }

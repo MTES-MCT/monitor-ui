@@ -5,7 +5,8 @@ import styled, { css } from 'styled-components'
 
 import { Fieldset } from '../../elements/Fieldset'
 import { Legend } from '../../elements/Legend'
-import { useClickOutside } from '../../hooks/useClickOutside'
+import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
+import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
 import { getLocalizedDayjs } from '../../utils/getLocalizedDayjs'
 import { getUtcizedDayjs } from '../../utils/getUtcizedDayjs'
@@ -304,7 +305,9 @@ export function DateRangePicker({
     forceUpdate()
   }, [forceUpdate])
 
-  useClickOutside([endDateInputRef, startDateInputRef], closeRangeCalendarPicker, baseContainer)
+  useFieldUndefineEffect(disabled, onChange)
+
+  useClickOutsideEffect([endDateInputRef, startDateInputRef], closeRangeCalendarPicker, baseContainer)
 
   return (
     <Fieldset {...nativeProps}>

@@ -3,12 +3,14 @@ import { Radio } from 'rsuite'
 import styled, { css } from 'styled-components'
 
 import { Fieldset } from '../elements/Fieldset'
+import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 
 import type { Option } from '../types'
 import type { Promisable } from 'type-fest'
 
 export type MultiRadioProps = {
   defaultValue?: string | undefined
+  disabled?: boolean | undefined
   isInline?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
@@ -19,6 +21,8 @@ export type MultiRadioProps = {
 }
 export function MultiRadio({
   defaultValue,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  disabled = false,
   isInline = false,
   isLabelHidden = false,
   isLight = false,
@@ -44,6 +48,8 @@ export function MultiRadio({
     [onChange]
   )
 
+  useFieldUndefineEffect(disabled, onChange)
+
   // TODO There may be a better solution.
   // A key change is not enough to force radio checked check changes
   // on `defaultValue` property update (even when appending `defaultValue` to `key`),
@@ -60,6 +66,7 @@ export function MultiRadio({
             // eslint-disable-next-line react/no-array-index-key
             key={`${name}-${index}`}
             defaultChecked={option.value === checkedOptionValue}
+            disabled={disabled}
             name={name}
             onChange={(_: any, isChecked: boolean) => handleChange(option.value, isChecked)}
           >

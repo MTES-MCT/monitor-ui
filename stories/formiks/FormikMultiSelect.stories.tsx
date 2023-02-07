@@ -9,6 +9,7 @@ import { noop } from '../../src/utils/noop'
 import type { FormikMultiSelectProps } from '../../src'
 
 const args: FormikMultiSelectProps = {
+  disabled: false,
   fixedWidth: 160,
   isLabelHidden: false,
   isLight: false,
