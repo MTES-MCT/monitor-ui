@@ -15,7 +15,7 @@ import type { MouseEvent } from 'react'
 import type { SelectPickerProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
-export type SelectProps = Omit<
+export type SelectProps<OptionValue = string> = Omit<
   SelectPickerProps<any>,
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'value'
 > & {
@@ -27,8 +27,8 @@ export type SelectProps = Omit<
   isLight?: boolean | undefined
   label: string
   name: string
-  onChange?: ((nextValue: string | undefined) => Promisable<void>) | undefined
-  options: Option[]
+  onChange?: ((nextValue: OptionValue | undefined) => Promisable<void>) | undefined
+  options: Option<OptionValue>[]
 }
 export function Select({
   baseContainer,

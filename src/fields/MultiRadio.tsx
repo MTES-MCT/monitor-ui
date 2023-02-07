@@ -10,7 +10,7 @@ import { normalizeString } from '../utils/normalizeString'
 import type { Option } from '../types'
 import type { Promisable } from 'type-fest'
 
-export type MultiRadioProps = {
+export type MultiRadioProps<OptionValue = string> = {
   defaultValue?: string | undefined
   disabled?: boolean | undefined
   error?: string | undefined
@@ -19,8 +19,8 @@ export type MultiRadioProps = {
   isLight?: boolean | undefined
   label: string
   name: string
-  onChange?: ((nextValue: string | undefined) => Promisable<void>) | undefined
-  options: Option[]
+  onChange?: ((nextValue: OptionValue | undefined) => Promisable<void>) | undefined
+  options: Option<OptionValue>[]
 }
 export function MultiRadio({
   defaultValue,
