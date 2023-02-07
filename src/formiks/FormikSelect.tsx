@@ -5,9 +5,12 @@ import { Select } from '../fields/Select'
 
 import type { SelectProps } from '../fields/Select'
 
-export type FormikSelectProps = Omit<SelectProps, 'defaultValue' | 'error' | 'onChange'>
-export function FormikSelect({ name, ...originalProps }: FormikSelectProps) {
-  const [field, meta, helpers] = useField(name)
+export type FormikSelectProps<OptionValue = string> = Omit<
+  SelectProps<OptionValue>,
+  'defaultValue' | 'error' | 'onChange'
+>
+export function FormikSelect<OptionValue = string>({ name, ...originalProps }: FormikSelectProps<OptionValue>) {
+  const [field, meta, helpers] = useField<OptionValue | undefined>(name)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])

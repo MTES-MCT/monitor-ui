@@ -5,9 +5,15 @@ import { MultiSelect } from '../fields/MultiSelect'
 
 import type { MultiSelectProps } from '../fields/MultiSelect'
 
-export type FormikMultiSelectProps = Omit<MultiSelectProps, 'defaultValue' | 'error' | 'onChange'>
-export function FormikMultiSelect({ name, ...originalProps }: FormikMultiSelectProps) {
-  const [field, meta, helpers] = useField(name)
+export type FormikMultiSelectProps<OptionValue = string> = Omit<
+  MultiSelectProps<OptionValue>,
+  'defaultValue' | 'error' | 'onChange'
+>
+export function FormikMultiSelect<OptionValue = string>({
+  name,
+  ...originalProps
+}: FormikMultiSelectProps<OptionValue>) {
+  const [field, meta, helpers] = useField<OptionValue[] | undefined>(name)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])

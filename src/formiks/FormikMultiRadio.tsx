@@ -5,9 +5,12 @@ import { MultiRadio } from '../fields/MultiRadio'
 
 import type { MultiRadioProps } from '../fields/MultiRadio'
 
-export type FormikMultiRadioProps = Omit<MultiRadioProps, 'defaultValue' | 'error' | 'onChange'>
-export function FormikMultiRadio({ name, ...originalProps }: FormikMultiRadioProps) {
-  const [field, meta, helpers] = useField(name)
+export type FormikMultiRadioProps<OptionValue = string> = Omit<
+  MultiRadioProps<OptionValue>,
+  'defaultValue' | 'error' | 'onChange'
+>
+export function FormikMultiRadio<OptionValue = string>({ name, ...originalProps }: FormikMultiRadioProps<OptionValue>) {
+  const [field, meta, helpers] = useField<OptionValue | undefined>(name)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])
