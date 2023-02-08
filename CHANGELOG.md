@@ -1,3 +1,12 @@
+## [2.14.2](https://github.com/MTES-MCT/monitor-ui/compare/v2.14.1...v2.14.2) (2023-02-08)
+
+
+### Bug Fixes
+
+* **elements:** make secondary Button background transparent ([7f1e490](https://github.com/MTES-MCT/monitor-ui/commit/7f1e4909d1a075a90de683c603dfc1b7dd586010))
+* **fields:** make MultiZoneEditor row background white when isLight ([96f7a00](https://github.com/MTES-MCT/monitor-ui/commit/96f7a00bd7eab7755de13e8202aa64367e8d7b18))
+* **formiks:** remove touched condition for errors ([91ac524](https://github.com/MTES-MCT/monitor-ui/commit/91ac524d0916390bc5308083390264d018dad980))
+
 ## [2.14.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.14.0...v2.14.1) (2023-02-08)
 
 
