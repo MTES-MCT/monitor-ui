@@ -1,3 +1,10 @@
+## [2.14.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.14.0...v2.14.1) (2023-02-08)
+
+
+### Bug Fixes
+
+* **fields:** remove value setting to undefined on destroy ([71f409b](https://github.com/MTES-MCT/monitor-ui/commit/71f409b699df131a70454204b87b0e563798cac9))
+
 # [2.14.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.13.2...v2.14.0) (2023-02-07)
 
 
