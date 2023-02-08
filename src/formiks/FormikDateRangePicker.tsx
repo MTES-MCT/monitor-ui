@@ -30,9 +30,10 @@ export function FormikDateRangePicker({ name, ...originalProps }: FormikDateRang
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])
-  const error = useMemo(() => (meta.initialTouched ? meta.error : undefined), [meta.error, meta.initialTouched])
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = useMemo(() => helpers.setValue, [])
 
-  return <UntypedDateRangePicker defaultValue={defaultValue} error={error} onChange={handleChange} {...originalProps} />
+  return (
+    <UntypedDateRangePicker defaultValue={defaultValue} error={meta.error} onChange={handleChange} {...originalProps} />
+  )
 }

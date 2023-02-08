@@ -14,9 +14,10 @@ export function FormikSelect<OptionValue = string>({ name, ...originalProps }: F
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])
-  const error = useMemo(() => (meta.initialTouched ? meta.error : undefined), [meta.error, meta.initialTouched])
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = useMemo(() => helpers.setValue, [])
 
-  return <Select defaultValue={defaultValue} error={error} name={name} onChange={handleChange} {...originalProps} />
+  return (
+    <Select defaultValue={defaultValue} error={meta.error} name={name} onChange={handleChange} {...originalProps} />
+  )
 }

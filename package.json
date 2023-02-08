@@ -24,6 +24,7 @@
     "preview": "yarn build-storybook",
     "test": "yarn test:lint && yarn test:type",
     "test:e2e": "playwright test -c ./config/playwright.config.ts",
+    "test:e2e:open": "cypress open --browser firefox --e2e",
     "test:lint": "yarn eslint --ext js,jsx,ts,tsx .",
     "test:type": "yarn tsc",
     "test:unit": "jest --config=./config/jest.config.js",
@@ -124,7 +125,8 @@
     "styled-components": "5.3.6",
     "type-fest": "3.5.0",
     "typescript": "4.9.5",
-    "webpack": "5.75.0"
+    "webpack": "5.75.0",
+    "yup": "1.0.0"
   },
   "peerDependencies": {
     "formik": "^2.0.0",
