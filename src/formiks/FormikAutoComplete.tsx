@@ -11,7 +11,6 @@ export function FormikAutoComplete({ name, ...originalProps }: FormikAutoComplet
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])
-  const error = useMemo(() => (meta.initialTouched ? meta.error : undefined), [meta.error, meta.initialTouched])
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = useMemo(() => helpers.setValue, [])
 
@@ -20,6 +19,12 @@ export function FormikAutoComplete({ name, ...originalProps }: FormikAutoComplet
   }
 
   return (
-    <AutoComplete defaultValue={defaultValue} error={error} name={name} onChange={handleChange} {...originalProps} />
+    <AutoComplete
+      defaultValue={defaultValue}
+      error={meta.error}
+      name={name}
+      onChange={handleChange}
+      {...originalProps}
+    />
   )
 }

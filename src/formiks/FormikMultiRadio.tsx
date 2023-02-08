@@ -14,9 +14,10 @@ export function FormikMultiRadio<OptionValue = string>({ name, ...originalProps 
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])
-  const error = useMemo(() => (meta.initialTouched ? meta.error : undefined), [meta.error, meta.initialTouched])
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = useMemo(() => helpers.setValue, [])
 
-  return <MultiRadio defaultValue={defaultValue} error={error} name={name} onChange={handleChange} {...originalProps} />
+  return (
+    <MultiRadio defaultValue={defaultValue} error={meta.error} name={name} onChange={handleChange} {...originalProps} />
+  )
 }

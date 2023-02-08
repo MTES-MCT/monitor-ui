@@ -9,13 +9,18 @@ export type FormikCheckboxProps = Omit<CheckboxProps, 'checked' | 'defaultChecke
 export function FormikCheckbox({ name, ...originalProps }: FormikCheckboxProps) {
   const [field, meta, helpers] = useField(name)
 
-  const error = useMemo(() => (meta.initialTouched ? meta.error : undefined), [meta.error, meta.initialTouched])
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = useMemo(() => helpers.setValue, [])
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const isDefaultChecked = useMemo(() => Boolean(field.value), [])
 
   return (
-    <Checkbox defaultChecked={isDefaultChecked} error={error} name={name} onChange={handleChange} {...originalProps} />
+    <Checkbox
+      defaultChecked={isDefaultChecked}
+      error={meta.error}
+      name={name}
+      onChange={handleChange}
+      {...originalProps}
+    />
   )
 }

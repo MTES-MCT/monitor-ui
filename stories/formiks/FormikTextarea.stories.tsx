@@ -1,5 +1,6 @@
 import { Formik } from 'formik'
 import { useMemo, useState } from 'react'
+import * as Yup from 'yup'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
@@ -7,6 +8,10 @@ import { FormikEffect, FormikTextarea } from '../../src'
 import { noop } from '../../src/utils/noop'
 
 import type { FormikTextareaProps } from '../../src'
+
+const TextareaShema = Yup.object().shape({
+  myTextarea: Yup.string().required()
+})
 
 const args: FormikTextareaProps = {
   disabled: false,
@@ -43,7 +48,7 @@ export function _FormikTextarea(props: FormikTextareaProps) {
 
   return (
     <>
-      <Formik key={key} initialValues={{}} onSubmit={noop}>
+      <Formik key={key} initialValues={{}} onSubmit={noop} validationSchema={TextareaShema}>
         <>
           <FormikEffect onChange={setOutputValue} />
 
