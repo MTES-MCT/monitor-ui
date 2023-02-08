@@ -116,7 +116,7 @@ export const PrimaryButton = styled.button`
 `
 
 export const SecondaryButton = styled.button`
-  background-color: ${p => p.theme.color.white};
+  background-color: transparent;
   border: 1px solid ${p => p.theme.color.charcoal};
   color: ${p => p.theme.color.charcoal};
 
@@ -136,7 +136,7 @@ export const SecondaryButton = styled.button`
 
   :disabled,
   &._disabled {
-    background-color: ${p => p.theme.color.white};
+    background-color: transparent;
     border: 1px solid ${p => p.theme.color.lightGray};
     color: ${p => p.theme.color.lightGray};
   }
