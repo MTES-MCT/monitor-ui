@@ -9,10 +9,6 @@ import { noop } from '../../src/utils/noop'
 
 import type { FormikTextareaProps } from '../../src'
 
-const TextareaShema = Yup.object().shape({
-  myTextarea: Yup.string().required()
-})
-
 const args: FormikTextareaProps = {
   disabled: false,
   isLabelHidden: false,
@@ -45,6 +41,13 @@ export function _FormikTextarea(props: FormikTextareaProps) {
   >('∅')
 
   const key = useMemo(() => props.name, [props.name])
+  const TextareaShema = useMemo(
+    () =>
+      Yup.object().shape({
+        [props.name]: Yup.string().required()
+      }),
+    [props.name]
+  )
 
   return (
     <>

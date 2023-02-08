@@ -13,5 +13,5 @@ export const FieldError = styled.p<{
   font-size: 13px;
   font-weight: 700;
   line-height: 1.3846;
-  margin-top: 4px;
+  margin: 4px 0 0 0;
 `
