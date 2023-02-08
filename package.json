@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.20.5",
+    "@bugsnag/cuid": "3.0.2",
     "@commitlint/cli": "17.3.0",
     "@commitlint/config-conventional": "17.4.2",
     "@ivangabriele/commitlint-config": "1.0.6",

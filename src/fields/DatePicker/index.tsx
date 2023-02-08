@@ -5,7 +5,6 @@ import styled from 'styled-components'
 
 import { FieldError } from '../../elements/FieldError'
 import { Fieldset } from '../../elements/Fieldset'
-import { Legend } from '../../elements/Legend'
 import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
 import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
@@ -197,6 +196,13 @@ export function DatePicker({
     [closeCalendarPicker, forceUpdate, submit, withTime]
   )
 
+  const handleDisable = useCallback(() => {
+    selectedLocalizedDateTupleRef.current = undefined
+    selectedLocalizedTimeTupleRef.current = undefined
+
+    forceUpdate()
+  }, [forceUpdate])
+
   const handleTimeInputFilled = useCallback(
     (nextTimeTuple: TimeTuple) => {
       // If a date has already been selected
@@ -222,16 +228,12 @@ export function DatePicker({
     forceUpdate()
   }, [forceUpdate])
 
-  useFieldUndefineEffect(disabled, onChange)
+  useFieldUndefineEffect(disabled, onChange, handleDisable)
 
   useClickOutsideEffect(boxRef, closeCalendarPicker, baseContainer)
 
   return (
-    <Fieldset disabled={disabled} {...nativeProps}>
-      <Legend isDisabled={disabled} isHidden={isLabelHidden}>
-        {label}
-      </Legend>
-
+    <Fieldset disabled={disabled} isLegendHidden={isLabelHidden} legend={label} {...nativeProps}>
       <Box ref={boxRef}>
         <Field>
           <DateInput

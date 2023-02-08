@@ -9,6 +9,7 @@ import { Button } from '../../elements/Button'
 import { FieldError } from '../../elements/FieldError'
 import { Fieldset } from '../../elements/Fieldset'
 import { IconButton } from '../../elements/IconButton'
+import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { Delete, Edit, Plus, SelectRectangle } from '../../icons'
 import { normalizeString } from '../../utils/normalizeString'
 
@@ -17,6 +18,7 @@ import type { Promisable } from 'type-fest'
 export type MultiZoneEditorProps = {
   addButtonLabel: string
   defaultValue?: Record<string, any>[] | undefined
+  disabled?: boolean | undefined
   error?: string | undefined
   initialZone: Record<string, any>
   isLabelHidden?: boolean
@@ -25,12 +27,15 @@ export type MultiZoneEditorProps = {
   labelPropName: string
   onAdd?: ((nextZones: Record<string, any>[], index: number) => Promisable<void>) | undefined
   onCenter?: ((zone: Record<string, any>) => Promisable<void>) | undefined
+  onChange?: ((nextZones: Record<string, any>[] | undefined) => Promisable<void>) | undefined
   onDelete?: ((nextZones: Record<string, any>[]) => Promisable<void>) | undefined
   onEdit?: ((zone: Record<string, any>, index: number) => Promisable<void>) | undefined
 }
 export function MultiZoneEditor({
   addButtonLabel,
   defaultValue = [],
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  disabled = false,
   error,
   initialZone,
   isLabelHidden = false,
@@ -39,6 +44,7 @@ export function MultiZoneEditor({
   labelPropName,
   onAdd,
   onCenter,
+  onChange,
   onDelete,
   onEdit
 }: MultiZoneEditorProps) {
@@ -90,6 +96,10 @@ export function MultiZoneEditor({
     [onEdit]
   )
 
+  const handleDisable = useCallback(() => {
+    setZones([])
+  }, [])
+
   useEffect(() => {
     if (equals(defaultValue, prevDefaultValueRef.current)) {
       return
@@ -98,9 +108,11 @@ export function MultiZoneEditor({
     setZones(defaultValue)
   }, [defaultValue])
 
+  useFieldUndefineEffect(disabled, onChange, handleDisable)
+
   return (
-    <Fieldset isHidden={isLabelHidden} isLight={isLight} legend={label}>
-      <Button accent={Accent.SECONDARY} Icon={Plus} isFullWidth onClick={addZone}>
+    <Fieldset disabled={disabled} isLegendHidden={isLabelHidden} isLight={isLight} legend={label}>
+      <Button accent={Accent.SECONDARY} disabled={disabled} Icon={Plus} isFullWidth onClick={addZone}>
         {addButtonLabel}
       </Button>
 

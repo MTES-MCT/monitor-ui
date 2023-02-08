@@ -4,8 +4,9 @@ import { Fieldset } from '../../src'
 import type { FieldsetProps } from '../../src'
 
 const args: FieldsetProps = {
+  disabled: false,
   hasBorder: false,
-  isHidden: false,
+  isLegendHidden: false,
   isLight: false,
   legend: 'A fieldset legend'
 }

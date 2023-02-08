@@ -5,6 +5,7 @@ import type { LegendProps } from '../../src'
 
 const args: LegendProps = {
   children: 'A form fieldset legend',
+  disabled: false,
   isHidden: false
 }
 

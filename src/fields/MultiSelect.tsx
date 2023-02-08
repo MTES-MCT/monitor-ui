@@ -8,6 +8,7 @@ import { Label } from '../elements/Label'
 import { useClickOutsideEffect } from '../hooks/useClickOutsideEffect'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
+import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Option } from '../types'
@@ -34,6 +35,7 @@ export type MultiSelectProps<OptionValue = string> = Omit<
 }
 export function MultiSelect<OptionValue = string>({
   baseContainer,
+  defaultValue,
   error,
   fixedWidth,
   isLabelHidden = false,
@@ -50,12 +52,13 @@ export function MultiSelect<OptionValue = string>({
 
   const [isOpen, setIsOpen] = useState(false)
 
+  const controlledDefaultValue = useMemo(
+    () => (!originalProps.disabled ? defaultValue : undefined),
+    [defaultValue, originalProps.disabled]
+  )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useMemo(
-    () => `${originalProps.name}-${JSON.stringify(originalProps.defaultValue)}`,
-    [originalProps.defaultValue, originalProps.name]
-  )
+  const key = useKey([controlledDefaultValue, originalProps.disabled, originalProps.name])
 
   const { forceUpdate } = useForceUpdate()
 
@@ -107,7 +110,12 @@ export function MultiSelect<OptionValue = string>({
 
   return (
     <Field>
-      <Label hasError={hasError} htmlFor={originalProps.name} isHidden={isLabelHidden}>
+      <Label
+        disabled={originalProps.disabled}
+        hasError={hasError}
+        htmlFor={originalProps.name}
+        isHidden={isLabelHidden}
+      >
         {label}
       </Label>
 
@@ -117,6 +125,7 @@ export function MultiSelect<OptionValue = string>({
             key={key}
             container={boxRef.current}
             data={options as any}
+            defaultValue={controlledDefaultValue}
             id={originalProps.name}
             onChange={handleChange}
             onClick={toggle}

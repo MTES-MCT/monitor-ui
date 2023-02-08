@@ -5,6 +5,7 @@ import type { LabelProps } from '../../src'
 
 const args: LabelProps = {
   children: 'A form input label',
+  disabled: false,
   isHidden: false
 }
 

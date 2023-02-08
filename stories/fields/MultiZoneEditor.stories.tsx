@@ -9,6 +9,7 @@ import type { MultiZoneEditorProps } from '../../src'
 const args: MultiZoneEditorProps = {
   addButtonLabel: 'Add a zone',
   defaultValue: undefined,
+  disabled: false,
   error: '',
   initialZone: {
     name: 'Polygone dessiné'
@@ -44,7 +45,7 @@ export function _MultiZoneEditor(props: MultiZoneEditorProps) {
 
   return (
     <>
-      <MultiZoneEditor {...props} onAdd={setOutputValue} onDelete={setOutputValue} />
+      <MultiZoneEditor {...props} onAdd={setOutputValue} onChange={setOutputValue} onDelete={setOutputValue} />
 
       {outputValue !== '∅' && <Output value={outputValue} />}
     </>
