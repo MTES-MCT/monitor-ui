@@ -111,7 +111,7 @@ export function MultiZoneEditor({
   useFieldUndefineEffect(disabled, onChange, handleDisable)
 
   return (
-    <Fieldset disabled={disabled} isLegendHidden={isLabelHidden} isLight={isLight} legend={label}>
+    <Fieldset disabled={disabled} isLegendHidden={isLabelHidden} legend={label}>
       <Button accent={Accent.SECONDARY} disabled={disabled} Icon={Plus} isFullWidth onClick={addZone}>
         {addButtonLabel}
       </Button>
@@ -120,7 +120,7 @@ export function MultiZoneEditor({
         {zones.map((zone, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <Row key={`zone-${index}`}>
-            <ZoneWrapper>
+            <ZoneBox $isLight={isLight}>
               {zone[labelPropName]}
 
               {/* TODO Add `Accent.LINK` accent in @mtes-mct/monitor-ui and use it here. */}
@@ -129,7 +129,7 @@ export function MultiZoneEditor({
                 <SelectRectangle />
                 <span>Centrer sur la carte</span>
               </Link>
-            </ZoneWrapper>
+            </ZoneBox>
 
             <IconButton accent={Accent.SECONDARY} Icon={Edit} onClick={() => editZone(index, zone)} />
             <IconButton
@@ -157,8 +157,10 @@ const Row = styled.div`
   }
 `
 
-const ZoneWrapper = styled.div`
-  background-color: ${p => p.theme.color.gainsboro};
+const ZoneBox = styled.div<{
+  $isLight: boolean
+}>`
+  background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
   display: flex;
   flex-grow: 1;
   font-size: 13px;
