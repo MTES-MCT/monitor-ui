@@ -1647,6 +1647,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@bugsnag/cuid@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@bugsnag/cuid@npm:3.0.2"
+  checksum: cf85d78f0107b25bcfc4396e5c2cf7eb58a28777f07b9c6e976d529417a8284bb69ec715f13917c2b6ad3803e7bb563621b0374c31e09d4c6b3156aba9939955
+  languageName: node
+  linkType: hard
+
 "@cnakazawa/watch@npm:^1.0.3":
   version: 1.0.4
   resolution: "@cnakazawa/watch@npm:1.0.4"
@@ -2470,6 +2477,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.20.5
     "@babel/runtime": 7.20.6
+    "@bugsnag/cuid": 3.0.2
     "@commitlint/cli": 17.3.0
     "@commitlint/config-conventional": 17.4.2
     "@ivangabriele/commitlint-config": 1.0.6

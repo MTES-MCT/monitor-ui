@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
+import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { CheckboxProps as RsuiteCheckboxProps } from 'rsuite'
@@ -17,13 +18,22 @@ export type CheckboxProps = Omit<RsuiteCheckboxProps, 'as' | 'checked' | 'id' | 
   name: string
   onChange?: ((isCheched: boolean) => Promisable<void>) | undefined
 }
-export function Checkbox({ error, label, onChange, ...originalProps }: CheckboxProps) {
+export function Checkbox({
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  defaultChecked,
+  error,
+  label,
+  onChange,
+  ...originalProps
+}: CheckboxProps) {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  const controlledDefaultChecked = useMemo(
+    () => (!originalProps.disabled ? defaultChecked : undefined),
+    [defaultChecked, originalProps.disabled]
+  )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useMemo(
-    () => `${originalProps.name}-${String(originalProps.defaultChecked)}`,
-    [originalProps.defaultChecked, originalProps.name]
-  )
+  const key = useKey([controlledDefaultChecked, originalProps.disabled, originalProps.name])
 
   const handleChange = useCallback(
     (_: ValueType | undefined, isChecked: boolean) => {
@@ -40,7 +50,13 @@ export function Checkbox({ error, label, onChange, ...originalProps }: CheckboxP
 
   return (
     <Field>
-      <StyledCheckbox key={key} id={originalProps.name} onChange={handleChange} {...originalProps}>
+      <StyledCheckbox
+        key={key}
+        defaultChecked={controlledDefaultChecked}
+        id={originalProps.name}
+        onChange={handleChange}
+        {...originalProps}
+      >
         {label}
       </StyledCheckbox>
 

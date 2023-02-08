@@ -1,10 +1,11 @@
-import { equals, reject } from 'ramda'
+import { equals, includes, reject } from 'ramda'
 import { useCallback, useMemo, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
 import { FieldError } from '../elements/FieldError'
 import { Fieldset } from '../elements/Fieldset'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
+import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
 import { Checkbox } from './Checkbox'
 
@@ -38,9 +39,10 @@ export function MultiCheckbox<OptionValue = string>({
 }: MultiCheckboxProps<OptionValue>) {
   const checkedOptionValues = useRef<OptionValue[]>(defaultValue)
 
+  const controlledDefaultValue = useMemo(() => (!disabled ? defaultValue : undefined), [defaultValue, disabled])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useMemo(() => `${name}-${JSON.stringify(defaultValue)}`, [defaultValue, name])
+  const key = useKey([controlledDefaultValue, disabled, name])
 
   const handleChange = useCallback(
     (nextOptionValue: OptionValue, isChecked: boolean) => {
@@ -67,7 +69,7 @@ export function MultiCheckbox<OptionValue = string>({
         {options.map((option, index) => (
           <Checkbox
             key={String(option.value)}
-            defaultChecked={defaultValue.includes(option.value)}
+            defaultChecked={includes(option.value, controlledDefaultValue || [])}
             disabled={disabled}
             label={option.label}
             name={`${name}${index}`}
@@ -81,7 +83,7 @@ export function MultiCheckbox<OptionValue = string>({
   )
 
   return (
-    <Fieldset key={key} isHidden={isLabelHidden} isLight={isLight} legend={label}>
+    <Fieldset key={key} disabled={disabled} isLegendHidden={isLabelHidden} isLight={isLight} legend={label}>
       <ChecboxesBox $isInline={isInline}>{checkboxesElement}</ChecboxesBox>
 
       {hasError && <FieldError>{controlledError}</FieldError>}

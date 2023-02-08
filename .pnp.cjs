@@ -30,6 +30,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@babel/core", "npm:7.20.5"],\
             ["@babel/runtime", "npm:7.20.6"],\
+            ["@bugsnag/cuid", "npm:3.0.2"],\
             ["@commitlint/cli", "npm:17.3.0"],\
             ["@commitlint/config-conventional", "npm:17.4.2"],\
             ["@ivangabriele/commitlint-config", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:1.0.6"],\
@@ -4458,6 +4459,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@bugsnag/cuid", [\
+        ["npm:3.0.2", {\
+          "packageLocation": "./.yarn/cache/@bugsnag-cuid-npm-3.0.2-6adb6eafd5-cf85d78f01.zip/node_modules/@bugsnag/cuid/",\
+          "packageDependencies": [\
+            ["@bugsnag/cuid", "npm:3.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@cnakazawa/watch", [\
         ["npm:1.0.4", {\
           "packageLocation": "./.yarn/cache/@cnakazawa-watch-npm-1.0.4-ee43493884-88f395ca0a.zip/node_modules/@cnakazawa/watch/",\
@@ -5476,6 +5486,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@mtes-mct/monitor-ui__root", "workspace:."],\
             ["@babel/core", "npm:7.20.5"],\
             ["@babel/runtime", "npm:7.20.6"],\
+            ["@bugsnag/cuid", "npm:3.0.2"],\
             ["@commitlint/cli", "npm:17.3.0"],\
             ["@commitlint/config-conventional", "npm:17.4.2"],\
             ["@ivangabriele/commitlint-config", "virtual:62e87d4cc314f247c4391635e987ce542c6f92f84ca7143b22520995e9f15f0e5b674c1ad5e09f723b166826037e11af10d4d3234af54e547535fdaaa9a9edc6#npm:1.0.6"],\

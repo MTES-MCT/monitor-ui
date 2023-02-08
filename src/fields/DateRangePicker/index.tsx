@@ -5,7 +5,6 @@ import styled, { css } from 'styled-components'
 
 import { FieldError } from '../../elements/FieldError'
 import { Fieldset } from '../../elements/Fieldset'
-import { Legend } from '../../elements/Legend'
 import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
 import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
@@ -152,6 +151,15 @@ export function DateRangePicker({
 
   const closeRangeCalendarPicker = useCallback(() => {
     isRangeCalendarPickerOpenRef.current = false
+
+    forceUpdate()
+  }, [forceUpdate])
+
+  const handleDisable = useCallback(() => {
+    selectedLocalizedStartDateTupleRef.current = undefined
+    selectedLocalizedStartTimeTupleRef.current = undefined
+    selectedLocalizedEndDateTupleRef.current = undefined
+    selectedLocalizedEndTimeTupleRef.current = undefined
 
     forceUpdate()
   }, [forceUpdate])
@@ -312,16 +320,12 @@ export function DateRangePicker({
     forceUpdate()
   }, [forceUpdate])
 
-  useFieldUndefineEffect(disabled, onChange)
+  useFieldUndefineEffect(disabled, onChange, handleDisable)
 
   useClickOutsideEffect([endDateInputRef, startDateInputRef], closeRangeCalendarPicker, baseContainer)
 
   return (
-    <Fieldset {...nativeProps}>
-      <Legend isDisabled={disabled} isHidden={isLabelHidden}>
-        {label}
-      </Legend>
-
+    <Fieldset disabled={disabled} isLegendHidden={isLabelHidden} legend={label} {...nativeProps}>
       <Box isDisabled={disabled}>
         <Field>
           <DateInput

@@ -5,17 +5,20 @@ import type { Promisable } from 'type-fest'
 export function useFieldUndefineEffect(
   // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled: boolean | undefined,
-  onChange: ((nextValue: any) => Promisable<void>) | undefined
+  onChange: ((nextValue: any) => Promisable<void>) | undefined,
+  onDisable?: () => Promisable<void>
 ) {
   useEffect(() => {
-    if (disabled && onChange) {
-      onChange(undefined)
+    if (!disabled) {
+      return
     }
 
-    return () => {
-      if (onChange) {
-        onChange(undefined)
-      }
+    if (onDisable) {
+      onDisable()
     }
-  }, [disabled, onChange])
+
+    if (onChange) {
+      onChange(undefined)
+    }
+  }, [disabled, onChange, onDisable])
 }

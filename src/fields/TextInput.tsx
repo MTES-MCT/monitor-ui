@@ -6,6 +6,7 @@ import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
+import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { InputProps } from 'rsuite'
@@ -21,6 +22,7 @@ export type TextInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'on
   onChange?: ((nextValue: string | undefined) => Promisable<void>) | undefined
 }
 export function TextInput({
+  defaultValue,
   error,
   isLabelHidden = false,
   isLight = false,
@@ -28,12 +30,13 @@ export function TextInput({
   onChange,
   ...originalProps
 }: TextInputProps) {
+  const controlledDefaultValue = useMemo(
+    () => (!originalProps.disabled ? defaultValue : undefined),
+    [defaultValue, originalProps.disabled]
+  )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useMemo(
-    () => `${originalProps.name}-${JSON.stringify(originalProps.defaultValue)}`,
-    [originalProps.defaultValue, originalProps.name]
-  )
+  const key = useKey([controlledDefaultValue, originalProps.disabled, originalProps.name])
 
   const handleChange = useCallback(
     (nextValue: string | null) => {
@@ -52,13 +55,14 @@ export function TextInput({
 
   return (
     <Field>
-      <Label htmlFor={originalProps.name} isHidden={isLabelHidden}>
+      <Label disabled={originalProps.disabled} htmlFor={originalProps.name} isHidden={isLabelHidden}>
         {label}
       </Label>
 
       <StyledInput
         key={key}
         $isLight={isLight}
+        defaultValue={controlledDefaultValue}
         id={originalProps.name}
         onChange={handleChange}
         type="text"

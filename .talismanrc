@@ -4,3 +4,5 @@ fileignoreconfig:
     checksum: cb01089f8741ddda9771018979c02982d9820ade3d81359aa64a2daabec68f23
   - filename: src/types.ts
     checksum: e5e0f0c13cb4fe6f167758f40a6ee506b833c0919a1ec8f3b703ec431159e959
+  - filename: yarn.lock
+    checksum: d09835beffb8d2af686c67558b266e0ded9161fc047d0963fbecef169e193ffc
