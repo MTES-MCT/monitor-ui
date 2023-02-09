@@ -124,28 +124,3 @@ We added `prop-types` in `package.json` dependencies to fix this error:
 ModuleNotFoundError: Module not found: Error:
 Can't resolve 'prop-types' in '.../monitor-ui/.yarn/__virtual__/.../@rsuite/icons/lib'
 ```
-
-<!-- ### IDE
-
-#### Visual Studio Code
-
-Recommended settings (`.vscode/settings.json`):
-
-```json
-{
-  "editor.codeActionsOnSave": {
-    "source.fixAll": true
-  },
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "editor.formatOnSave": true,
-  "eslint.codeActionsOnSave.mode": "all",
-  "eslint.format.enable": true,
-  "eslint.packageManager": "yarn",
-  "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
-}
-``` -->

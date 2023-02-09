@@ -11,7 +11,7 @@ export function Output({ value }: OutputProps) {
   return (
     <>
       <Title>{`Output (type: ${typeof value === 'object' ? value.constructor.name : typeof value})`}</Title>
-      <Value>{valueAsString}</Value>
+      <Value className="mui-output">{valueAsString}</Value>
     </>
   )
 }

@@ -143,12 +143,15 @@ dist
 ################################################################################
 # Custom
 
+# Cypress
+/cypress/
+
 # Playright
 /playwright/.cache/
 /playwright-report/
 /test-results/
 
-# Storybook
+# Rollup
 /.rollup.cache/
 
 # Storybook

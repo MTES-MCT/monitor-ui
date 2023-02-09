@@ -3,10 +3,12 @@
   "include": ["**/*.js", "**/*.jsx", "**/*.mjs", "**/*.ts", "**/*.tsx"],
   "exclude": [
     ".storybook/*",
+    "config/*",
     "dist/*",
     "e2e/*",
     "node_modules/*",
     "scripts/*",
+    "src/cypress/*",
     "storybook-static/*",
     "rollup.config.mjs",
     "stories/*",
