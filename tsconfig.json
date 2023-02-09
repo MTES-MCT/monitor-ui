@@ -38,11 +38,13 @@
     "useUnknownInCatchVariables": true
   },
   "include": ["**/*.js", "**/*.jsx", "**/*.mjs", "**/*.ts", "**/*.tsx", ".storybook/**/*.ts", ".storybook/**/*.tsx"],
-  "exclude": [".eslintrc.js", "config/*", "dist/*", "example/*", "node_modules/*", "scripts/*", "storybook-static/*"],
-  "ts-node": {
-    "swc": true,
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
-  }
+  "exclude": [
+    ".eslintrc.js",
+    "config/*",
+    "dist/*",
+    "e2e/release/sample/*",
+    "node_modules/*",
+    "scripts/*",
+    "storybook-static/*"
+  ]
 }

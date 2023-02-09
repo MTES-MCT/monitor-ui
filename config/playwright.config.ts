@@ -25,7 +25,7 @@ const config: PlaywrightTestConfig = {
   ],
   reportSlowTests: null,
   retries: 2,
-  testDir: '../e2e',
+  testDir: '../e2e/release',
   timeout: 30000,
   use: {
     bypassCSP: true,

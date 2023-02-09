@@ -1,0 +1,92 @@
+name: E2E
+
+on: push
+
+jobs:
+  # Normal E2E testing with Cypress
+  test_e2e:
+    name: E2E Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Firefox
+        uses: browser-actions/setup-firefox@latest
+        with:
+          firefox-version: 104.0.2
+      - name: Setup
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version: 18
+      - name: Install
+        run: yarn
+      - name: Build Storybook
+        run: yarn build:storybook
+      - name: Serve Storybook
+        run: |
+          yarn serve &
+          bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:6006)" != "200" ]]; do sleep 5; done'
+      - name: Test
+        run: yarn test:e2e
+
+  # Release build sanity check with Playwright
+  test_e2e_release:
+    name: Release E2E Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Cache
+        if: ${{ always() }}
+        id: cache
+        uses: actions/cache@v3
+        # https://playwright.dev/docs/ci#directories-to-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ hashFiles('yarn.lock') }}
+      - name: Setup
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version: 18
+      - name: Install
+        run: yarn
+      - name: Setup tests
+        run: |
+          yarn playwright install --with-deps firefox
+          yarn test:e2e:release:setup &
+          bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:3000)" != "200" ]]; do sleep 5; done'
+      - name: Test
+        run: yarn test:e2e:release
+      - name: Archive failed tests trace
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: |
+            ./test-results
+
+  # Storybook E2E Tests with test-storybook (Playwright under the hood)
+  # https://storybook.js.org/docs/react/writing-tests/test-runner
+  test_e2e_storybook:
+    name: Storybook E2E Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version: 18
+      - name: Install
+        run: yarn
+      - name: Build Storybook
+        run: yarn build:storybook
+      - name: Serve Storybook
+        run: |
+          yarn serve &
+          bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:6006)" != "200" ]]; do sleep 5; done'
+      - name: Test
+        run: yarn test:e2e:storybook
