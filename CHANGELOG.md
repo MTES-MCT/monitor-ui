@@ -1,3 +1,10 @@
+## [2.14.5](https://github.com/MTES-MCT/monitor-ui/compare/v2.14.4...v2.14.5) (2023-02-09)
+
+
+### Bug Fixes
+
+* **fields:** add css selector for toggle event ([2c61e67](https://github.com/MTES-MCT/monitor-ui/commit/2c61e672fc979d92b43e3912b382754bfcc40eef))
+
 ## [2.14.4](https://github.com/MTES-MCT/monitor-ui/compare/v2.14.3...v2.14.4) (2023-02-09)
 
 
