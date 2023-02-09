@@ -1,13 +1,15 @@
 import { defineConfig } from 'cypress'
-
-const IS_CI = Boolean(process.env.CI)
+import { config as webpackConfig } from './webpack.config'
 
 export default defineConfig({
-  e2e: {
-    baseUrl: `http://localhost:6006`,
-    excludeSpecPattern: 'e2e/release/',
-    specPattern: 'e2e/**/*.spec.ts',
-    supportFile: false
+  component: {
+    devServer: {
+      framework: 'react',
+      bundler: 'webpack',
+      webpackConfig
+    },
+    specPattern: 'e2e/base/**/*.spec.tsx',
+    supportFile: 'config/cypress/support/component.ts'
   },
   projectId: 'monitor-ui',
   retries: {
@@ -16,7 +18,7 @@ export default defineConfig({
   },
   screenshotOnRunFailure: true,
   scrollBehavior: false,
-  video: true,
+  video: false,
   viewportHeight: 1024,
   viewportWidth: 1280,
   waitForAnimations: true

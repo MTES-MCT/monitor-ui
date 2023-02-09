@@ -1,0 +1,5 @@
+{
+  "extends": ".",
+  "include": ["**/*.ts"],
+  "exclude": ["**/*.test.ts"]
+}

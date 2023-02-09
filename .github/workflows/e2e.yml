@@ -21,12 +21,6 @@ jobs:
           node-version: 18
       - name: Install
         run: yarn
-      - name: Build Storybook
-        run: yarn build:storybook
-      - name: Serve Storybook
-        run: |
-          yarn serve &
-          bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:6006)" != "200" ]]; do sleep 5; done'
       - name: Test
         run: yarn test:e2e
 

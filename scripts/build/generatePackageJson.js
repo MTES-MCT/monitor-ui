@@ -7,7 +7,8 @@ const distPackageExtraProps = {
   },
   exports: {
     '.': './index.js',
-    './assets/': './assets/'
+    './assets/': './assets/',
+    './cypress/': './cypress/'
   },
   homepage: 'https://mtes-mct.github.io/monitor-ui/',
   name: '@mtes-mct/monitor-ui',
@@ -28,7 +29,18 @@ const distPackageExtraProps = {
   const rootPackageJson = await fs.readFile('./package.json', 'utf-8')
   const rootPackage = JSON.parse(rootPackageJson)
   const distPackage = pipe(
-    omit(['devDependencies', 'main', 'prettier', 'private', 'release', 'scripts', 'workspaces']),
+    omit([
+      '//',
+      'devDependencies',
+      'lint-staged',
+      'main',
+      'packageManager',
+      'prettier',
+      'private',
+      'release',
+      'scripts',
+      'workspaces'
+    ]),
     mergeLeft(distPackageExtraProps)
   )(rootPackage)
   const distPackageJson = JSON.stringify(distPackage, null, 2)

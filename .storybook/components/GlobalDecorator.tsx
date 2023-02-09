@@ -34,14 +34,20 @@ const CustomGlobalStyle: any = createGlobalStyle`
 
 export function GlobalDecorator(Story: ComponentStory<any>) {
   return (
+    <GlobalDecoratorWrapper>
+      <Story />
+    </GlobalDecoratorWrapper>
+  )
+}
+
+export function GlobalDecoratorWrapper({ children }) {
+  return (
     <StrictMode>
       <UntypedThemeProvider theme={THEME}>
         <UntypedGlobalStyle />
         <CustomGlobalStyle />
 
-        <RsuiteCustomProvider locale={rsuiteFrFr}>
-          <Story />
-        </RsuiteCustomProvider>
+        <RsuiteCustomProvider locale={rsuiteFrFr}>{children}</RsuiteCustomProvider>
       </UntypedThemeProvider>
     </StrictMode>
   )
