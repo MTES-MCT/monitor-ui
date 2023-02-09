@@ -1,3 +1,10 @@
+## [2.14.4](https://github.com/MTES-MCT/monitor-ui/compare/v2.14.3...v2.14.4) (2023-02-09)
+
+
+### Bug Fixes
+
+* **formiks:** initialize FormikCheckbox form value on mount ([741505f](https://github.com/MTES-MCT/monitor-ui/commit/741505f7a6705cec2fa439284dff04de43fce962))
+
 ## [2.14.3](https://github.com/MTES-MCT/monitor-ui/compare/v2.14.2...v2.14.3) (2023-02-09)
 
 
