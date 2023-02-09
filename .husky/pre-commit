@@ -3,5 +3,4 @@
 
 [ -n "$CI" ] && exit 0
 
-yarn node-talisman --loglevel=info --githook=pre-commit
 yarn lint-staged
