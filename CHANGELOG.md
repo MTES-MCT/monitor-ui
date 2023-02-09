@@ -1,3 +1,10 @@
+## [2.14.3](https://github.com/MTES-MCT/monitor-ui/compare/v2.14.2...v2.14.3) (2023-02-09)
+
+
+### Bug Fixes
+
+* **fields:** enforce error margins ([eb69017](https://github.com/MTES-MCT/monitor-ui/commit/eb69017e720bb97a64fac46cd3d35ae18b6b60a5))
+
 ## [2.14.2](https://github.com/MTES-MCT/monitor-ui/compare/v2.14.1...v2.14.2) (2023-02-08)
 
 
