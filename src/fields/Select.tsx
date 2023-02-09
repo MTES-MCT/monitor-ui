@@ -88,6 +88,7 @@ export function Select<OptionValue = string>({
 
       if (
         targetElement.classList.contains('rs-picker-toggle') ||
+        targetElement.classList.contains('rs-picker-toggle-value') ||
         targetElement.classList.contains('rs-stack-item') ||
         targetElement.classList.contains('rs-picker-toggle-caret') ||
         targetElement.classList.contains('rs-picker-toggle-placeholder')
@@ -177,6 +178,10 @@ const Box = styled.div`
           > .rs-picker-toggle-placeholder {
             font-size: 13px;
             line-height: 1.3846;
+          }
+
+          > .rs-picker-toggle-clean.rs-btn-close {
+            top: 4px !important;
           }
 
           > svg {
