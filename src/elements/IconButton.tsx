@@ -1,11 +1,12 @@
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 
 import { Accent, Size } from '../constants'
+import { stopMouseEventPropagation } from '../utils/stopMouseEventPropagation'
 import { PrimaryButton, SecondaryButton } from './Button'
 
 import type { IconProps } from '../types'
-import type { ButtonHTMLAttributes, FunctionComponent } from 'react'
+import type { ButtonHTMLAttributes, FunctionComponent, MouseEvent } from 'react'
 
 const ICON_SIZE_IN_PX: Record<Size, number> = {
   [Size.LARGE]: 26,
@@ -26,6 +27,7 @@ export function IconButton({
   color,
   Icon,
   iconSize,
+  onClick,
   size = Size.NORMAL,
   type = 'button',
   ...nativeProps
@@ -44,15 +46,26 @@ export function IconButton({
     [children, nativeProps, size, type]
   )
 
+  const handleClick = useCallback(
+    (event: MouseEvent<HTMLButtonElement>) => {
+      stopMouseEventPropagation(event)
+
+      if (onClick) {
+        onClick(event)
+      }
+    },
+    [onClick]
+  )
+
   switch (accent) {
     case Accent.SECONDARY:
-      return <SecondaryButton as={StyledButton} {...commonProps} />
+      return <SecondaryButton as={StyledButton} onClick={handleClick} {...commonProps} />
 
     case Accent.TERTIARY:
-      return <TertiaryButton as={StyledButton} {...commonProps} />
+      return <TertiaryButton as={StyledButton} onClick={handleClick} {...commonProps} />
 
     default:
-      return <PrimaryButton as={StyledButton} {...commonProps} />
+      return <PrimaryButton as={StyledButton} onClick={handleClick} {...commonProps} />
   }
 }
 
