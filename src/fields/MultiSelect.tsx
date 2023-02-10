@@ -12,13 +12,13 @@ import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Option } from '../types'
-import type { MouseEvent } from 'react'
+import type { MouseEvent, ReactNode } from 'react'
 import type { TagPickerProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
 export type MultiSelectProps<OptionValue = string> = Omit<
   TagPickerProps,
-  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'value'
+  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'open' | 'renderMenuItem' | 'value'
 > & {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
@@ -79,6 +79,8 @@ export function MultiSelect<OptionValue = string>({
     [onChange]
   )
 
+  const renderMenuItem = useCallback((_label: ReactNode): ReactNode => <span title={String(_label)}>{_label}</span>, [])
+
   const toggle = useCallback(
     (event: MouseEvent<HTMLElement>) => {
       let targetElement = event.target as HTMLElement
@@ -130,6 +132,7 @@ export function MultiSelect<OptionValue = string>({
             onChange={handleChange}
             onClick={toggle}
             open={isOpen}
+            renderMenuItem={renderMenuItem}
             searchable={searchable}
             {...originalProps}
           />
