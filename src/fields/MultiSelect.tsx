@@ -199,6 +199,8 @@ const Box = styled.div<{
   }
 
   > .rs-picker-menu {
+    max-width: 100%;
+
     > .rs-picker-check-menu {
       margin: 0;
 
@@ -208,7 +210,10 @@ const Box = styled.div<{
             > label {
               font-size: 13px;
               line-height: 1.3846;
+              overflow: hidden;
               padding: 8px 12px 8px 38px;
+              text-overflow: ellipsis;
+              white-space: nowrap;
 
               > .rs-checkbox-wrapper {
                 left: 12px;
