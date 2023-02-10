@@ -1,3 +1,12 @@
+# [2.15.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.14.5...v2.15.0) (2023-02-10)
+
+
+### Features
+
+* **elements:** stop click event propagation in Button & IconButton ([0796b02](https://github.com/MTES-MCT/monitor-ui/commit/0796b02b12fed5fe170fb9b8ce5734f9b54b8c9b))
+* **fields:** add ellipsis for long options in MultiSelect & Select ([0c14f05](https://github.com/MTES-MCT/monitor-ui/commit/0c14f05582d9b8b5454a57908cb5a614837460dd))
+* **fields:** add title to MultiSelect & Select options label ([0d5bca5](https://github.com/MTES-MCT/monitor-ui/commit/0d5bca51b659564c4bac034290b0609b7f693233))
+
 ## [2.14.5](https://github.com/MTES-MCT/monitor-ui/compare/v2.14.4...v2.14.5) (2023-02-09)
 
 
