@@ -192,4 +192,36 @@ const Box = styled.div`
       }
     }
   }
+
+  > .rs-picker-menu {
+    max-width: 100%;
+
+    > .rs-picker-search-bar {
+      > .rs-picker-search-bar-input {
+        background-color: ${p => p.theme.color.white};
+        border: solid 1px ${p => p.theme.color.lightGray};
+        border-radius: 0;
+        font-size: 13px;
+        padding: 4px 8px 6px 8px;
+      }
+
+      > svg {
+        color: ${p => p.theme.color.lightGray};
+        top: 11px;
+      }
+    }
+
+    > .rs-picker-select-menu {
+      > div[role='option'] {
+        > .rs-picker-select-menu-item {
+          font-size: 13px;
+          line-height: 1.3846;
+          overflow: hidden;
+          padding: 6px 12px 10px 12px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
 `

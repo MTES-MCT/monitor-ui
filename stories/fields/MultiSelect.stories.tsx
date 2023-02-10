@@ -6,6 +6,7 @@ import {
   NewWindowButtonBox,
   NewWindowStoryBox
 } from '../../.storybook/components/StoryDecorator'
+import { LOREM_IPSUM } from '../../.storybook/constants'
 import { Accent, Button, MultiSelect, Size, useForceUpdate } from '../../src'
 import { NewWindow } from '../../src/components/NewWindow'
 
@@ -24,7 +25,7 @@ const args: MultiSelectProps = {
     { label: 'First Option', value: 'FIRST_OPTION' },
     { label: 'Second Option', value: 'SECOND_OPTION' },
     { label: 'Third Option', value: 'THIRD_OPTION' },
-    { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
+    { label: LOREM_IPSUM, value: 'LOREM_IPSUM' }
   ],
   placeholder: 'Pick some options',
   searchable: false
@@ -37,7 +38,7 @@ export default {
   argTypes: {
     defaultValue: {
       control: 'inline-check',
-      options: ['FIRST_OPTION', 'SECOND_OPTION', 'THIRD_OPTION', 'A_VERY_VERY_LONG_OPTION']
+      options: ['FIRST_OPTION', 'SECOND_OPTION', 'THIRD_OPTION', 'LOREM_IPSUM']
     }
   },
 
