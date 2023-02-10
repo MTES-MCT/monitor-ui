@@ -1,10 +1,11 @@
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 
 import { Accent, Size } from '../constants'
+import { stopMouseEventPropagation } from '../utils/stopMouseEventPropagation'
 
 import type { IconProps } from '../types'
-import type { ButtonHTMLAttributes, FunctionComponent } from 'react'
+import type { ButtonHTMLAttributes, FunctionComponent, MouseEvent } from 'react'
 
 const ICON_SIZE: Record<Size, number> = {
   [Size.LARGE]: 20,
@@ -23,6 +24,7 @@ export function Button({
   children,
   Icon,
   isFullWidth = false,
+  onClick,
   size = Size.NORMAL,
   type = 'button',
   ...nativeProps
@@ -36,16 +38,29 @@ export function Button({
     ),
     [children, Icon, size]
   )
+
+  const handleClick = useCallback(
+    (event: MouseEvent<HTMLButtonElement>) => {
+      stopMouseEventPropagation(event)
+
+      if (onClick) {
+        onClick(event)
+      }
+    },
+    [onClick]
+  )
+
   const commonProps = useMemo(
     () => ({
       as: StyledButton,
       children: commonChildren,
       isFullWidth,
+      onClick: handleClick,
       size,
       type,
       ...nativeProps
     }),
-    [commonChildren, isFullWidth, nativeProps, size, type]
+    [commonChildren, isFullWidth, handleClick, nativeProps, size, type]
   )
 
   switch (accent) {
