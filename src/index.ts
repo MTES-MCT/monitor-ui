@@ -55,6 +55,7 @@ export * as Icon from './icons'
 export { useClickOutsideEffect } from './hooks/useClickOutsideEffect'
 export { useKey } from './hooks/useKey'
 export { useForceUpdate } from './hooks/useForceUpdate'
+export { usePrevious } from './hooks/usePrevious'
 
 /* -----------------------------------------------------------------------------
   Utils
