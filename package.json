@@ -67,7 +67,7 @@
     "@storybook/manager-webpack5": "6.5.16",
     "@storybook/react": "6.5.16",
     "@storybook/test-runner": "0.9.4",
-    "@swc/core": "1.3.30",
+    "@swc/core": "1.3.35",
     "@swc/jest": "0.2.24",
     "@testing-library/jest-dom": "5.16.5",
     "@types/jabber": "1.2.0",
