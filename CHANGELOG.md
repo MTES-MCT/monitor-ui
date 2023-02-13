@@ -1,3 +1,11 @@
+# [2.16.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.15.0...v2.16.0) (2023-02-13)
+
+
+### Features
+
+* **hooks:** expose useKey() ([abf6b6d](https://github.com/MTES-MCT/monitor-ui/commit/abf6b6d02ef014ca104b7d3eeefcaaa75b6374f1))
+* **hooks:** expose usePrevious() ([e39c857](https://github.com/MTES-MCT/monitor-ui/commit/e39c857528fce65d8c321caa754a8d840eea4018))
+
 # [2.15.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.14.5...v2.15.0) (2023-02-10)
 
 
