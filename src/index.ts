@@ -1,8 +1,9 @@
-export { Accent, Size } from './constants'
+export { Accent, Size, OPENLAYERS_PROJECTION, WSG84_PROJECTION } from './constants'
 export { GlobalStyle } from './GlobalStyle'
 export { OnlyFontGlobalStyle } from './OnlyFontGlobalStyle'
 export { THEME } from './theme'
 export { ThemeProvider } from './ThemeProvider'
+export { CoordinatesFormat } from './fields/CoordinatesInput/constants'
 
 /* -----------------------------------------------------------------------------
   Components
@@ -29,6 +30,7 @@ export { MultiSelect } from './fields/MultiSelect'
 export { MultiRadio } from './fields/MultiRadio'
 export { MultiZoneEditor } from './fields/MultiZoneEditor'
 export { NumberInput } from './fields/NumberInput'
+export { CoordinatesInput } from './fields/CoordinatesInput'
 export { Select } from './fields/Select'
 export { Textarea } from './fields/Textarea'
 export { TextInput } from './fields/TextInput'
@@ -62,9 +64,11 @@ export { usePrevious } from './hooks/usePrevious'
 */
 
 export { dayjs } from './utils/dayjs'
+export { getCoordinates, coordinatesAreDistinct } from './utils/coordinates'
 export { getLocalizedDayjs } from './utils/getLocalizedDayjs'
 export { getUtcizedDayjs } from './utils/getUtcizedDayjs'
 export { noop } from './utils/noop'
+export { isNumeric } from './utils/isNumeric'
 export { stopMouseEventPropagation } from './utils/stopMouseEventPropagation'
 
 /* -----------------------------------------------------------------------------
@@ -95,6 +99,7 @@ export type { MultiSelectProps } from './fields/MultiSelect'
 export type { MultiRadioProps } from './fields/MultiRadio'
 export type { MultiZoneEditorProps } from './fields/MultiZoneEditor'
 export type { NumberInputProps } from './fields/NumberInput'
+export type { CoordinatesInputProps } from './fields/CoordinatesInput'
 export type { SelectProps } from './fields/Select'
 export type { TextareaProps } from './fields/Textarea'
 export type { TextInputProps } from './fields/TextInput'
