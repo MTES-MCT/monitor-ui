@@ -152,6 +152,7 @@ const Box = styled.div<{
   width: 100%;
 
   > .rs-picker-input {
+    background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
     border: solid 1px ${p => (p.$isActive ? p.theme.color.blueGray[100] : p.theme.color.gainsboro)} !important;
     cursor: pointer;
     width: 100%;
@@ -188,6 +189,9 @@ const Box = styled.div<{
     }
 
     > .rs-picker-tag-wrapper {
+      .rs-tag {
+        background-color: ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
+      }
       .rs-picker-search {
         .rs-picker-search-input {
           padding: 0 8px !important;
