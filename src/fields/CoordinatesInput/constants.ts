@@ -1,0 +1,5 @@
+export enum CoordinatesFormat {
+  DECIMAL_DEGREES = 'DD',
+  DEGREES_MINUTES_DECIMALS = 'DMD',
+  DEGREES_MINUTES_SECONDS = 'DMS'
+}
