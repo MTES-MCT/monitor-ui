@@ -1,3 +1,10 @@
+# [2.19.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.18.1...v2.19.0) (2023-02-17)
+
+
+### Features
+
+* **fieds:** Update coordinates input style ([90a72f6](https://github.com/MTES-MCT/monitor-ui/commit/90a72f6fd73f635fcc9f284112fcd69fd6467d1b))
+
 ## [2.18.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.18.0...v2.18.1) (2023-02-17)
 
 
