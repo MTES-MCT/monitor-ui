@@ -1,3 +1,10 @@
+## [2.18.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.18.0...v2.18.1) (2023-02-17)
+
+
+### Bug Fixes
+
+* **elements:** center Button horizontally ([69004ea](https://github.com/MTES-MCT/monitor-ui/commit/69004eacf73d2cab3318653f769ca01d0521ffea))
+
 # [2.18.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.17.0...v2.18.0) (2023-02-17)
 
 
