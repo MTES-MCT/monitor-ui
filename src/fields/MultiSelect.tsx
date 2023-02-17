@@ -189,7 +189,7 @@ const Box = styled.div<{
     }
 
     > .rs-picker-tag-wrapper {
-      .rs-tag {
+      > .rs-tag {
         background-color: ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
       }
       .rs-picker-search {
