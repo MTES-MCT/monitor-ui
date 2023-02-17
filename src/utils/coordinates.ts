@@ -67,8 +67,8 @@ function getDDCoordinates(transformedCoordinates: number[], isForPrint: boolean)
 
 /**
  * Get coordinates in DMD format
- * @param {number[]} transformedCoordinates - Coordinates ([longitude, latitude]) in decimal format.
- * @returns {string[]} coordinates - The [latitude, longitude] coordinates in DMD format
+ * @param transformedCoordinates - Coordinates ([longitude, latitude]) in decimal format.
+ * @returns coordinates - The [latitude, longitude] coordinates in DMD format
  */
 function getDMDCoordinates(transformedCoordinates: number[]): string[] {
   const [longitude, latitude] = transformedCoordinates
@@ -84,8 +84,8 @@ function getDMDCoordinates(transformedCoordinates: number[]): string[] {
 
 /**
  * Get coordinates in DMS format
- * @param {number[]} transformedCoordinates - Coordinates ([longitude, latitude]) in decimal format.
- * @returns {string[]} coordinates - The [latitude, longitude] coordinates in DMS format
+ * @param transformedCoordinates - Coordinates ([longitude, latitude]) in decimal format.
+ * @returns coordinates - The [latitude, longitude] coordinates in DMS format
  */
 function getDMSCoordinates(transformedCoordinates: number[]): string[] {
   const [longitude, latitude] = transformedCoordinates
@@ -167,9 +167,8 @@ function truncate(n: number): number {
 
 /**
  * Check if coordinates are the same or roughly the same (to the 0.000001 decimal degree - to avoid infinite rounding loop)
- * @param {number[]} nextCoordinates - Next coordinates ([longitude, latitude]) in decimal format.
- * @param {number[]} coordinates - Coordinates ([longitude, latitude]) in decimal format.
- * @returns {boolean}
+ * @param nextCoordinates - Next coordinates ([longitude, latitude]) in decimal format.
+ * @param coordinates - Coordinates ([longitude, latitude]) in decimal format.
  */
 export const coordinatesAreDistinct = (nextCoordinates: number[], coordinates: number[]): boolean => {
   const roundingDifference = 0.000002

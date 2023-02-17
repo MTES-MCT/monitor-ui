@@ -85,7 +85,7 @@ export function DMDCoordinatesInput({ coordinates, coordinatesFormat, onChange }
   }
 
   return (
-    <Body>
+    <Box>
       <UntypedIMaskInput
         data-cy="dmd-coordinates-input"
         lazy={false}
@@ -100,7 +100,7 @@ export function DMDCoordinatesInput({ coordinates, coordinatesFormat, onChange }
       />
       <CoordinatesType>(DMD)</CoordinatesType>
       <Error>{error}</Error>
-    </Body>
+    </Box>
   )
 }
 
@@ -113,16 +113,7 @@ const Error = styled.span`
   display: inline-block;
 `
 
-const Body = styled.div`
+const Box = styled.div`
   font-size: 13px;
   text-align: left;
-
-  input {
-    background: ${p => p.theme.color.gainsboro};
-    border: none;
-    height: 27px;
-    margin-top: 7px;
-    padding-left: 8px;
-    width: 200px;
-  }
 `

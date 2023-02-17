@@ -1,6 +1,6 @@
-import { debounce } from 'lodash.debounce'
-import { useCallback, useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
+import { useDebouncedCallback } from 'use-debounce'
 
 import { isNumeric } from '../../utils/isNumeric'
 
@@ -31,7 +31,7 @@ export function DDCoordinatesInput({ coordinates, onChange }: DDCoordinatesInput
     }
   }, [coordinates])
 
-  const handleChange = () => {
+  const handleChange = useDebouncedCallback((nextCoordinates: [number, number]) => {
     if (!latitudeInputRef.current || !longitudeInputRef.current) {
       return
     }
@@ -57,19 +57,16 @@ export function DDCoordinatesInput({ coordinates, onChange }: DDCoordinatesInput
     const latitude = Number(latitudeAsString)
     const longitude = Number(longitudeAsString)
 
-    onChange([latitude, longitude], coordinates)
-  }
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedHandleChange = useCallback(debounce(handleChange, 500), [coordinates, onChange])
+    onChange([latitude, longitude], nextCoordinates)
+  }, 500)
 
   return (
-    <Body>
+    <Box>
       <DDInput
         ref={latitudeInputRef as any}
         data-cy="coordinates-dd-input-lat"
         defaultValue={defaultValue.latitude}
-        onChange={debouncedHandleChange}
+        onChange={() => handleChange(coordinates)}
         placeholder="Latitude"
         style={{ border: latitudeError ? '1px solid red' : undefined }}
       />
@@ -77,14 +74,14 @@ export function DDCoordinatesInput({ coordinates, onChange }: DDCoordinatesInput
         ref={longitudeInputRef as any}
         data-cy="coordinates-dd-input-lon"
         defaultValue={defaultValue.longitude}
-        onChange={debouncedHandleChange}
+        onChange={() => handleChange(coordinates)}
         placeholder="Longitude"
         style={{ border: longitudeError ? '1px solid red' : undefined }}
       />
       <CoordinatesType>(DD)</CoordinatesType>
       <Error>{latitudeError}</Error>
       <Error>{longitudeError}</Error>
-    </Body>
+    </Box>
   )
 }
 
@@ -102,15 +99,7 @@ const Error = styled.span`
   display: block;
 `
 
-const Body = styled.div`
+const Box = styled.div`
   font-size: 13px;
   text-align: left;
-
-  input {
-    background: ${p => p.theme.color.gainsboro};
-    border: none;
-    height: 27px;
-    margin-top: 7px;
-    padding-left: 8px;
-  }
 `
