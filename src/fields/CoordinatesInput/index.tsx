@@ -11,9 +11,15 @@ import type { Promisable } from 'type-fest'
 export type CoordinatesInputProps = {
   coordinatesFormat: CoordinatesFormat
   defaultValue: number[]
+  isLight?: boolean | undefined
   onChange: (nextCoordinates: number[], coordinates: number[]) => Promisable<void>
 }
-export function CoordinatesInput({ coordinatesFormat, defaultValue, onChange }: CoordinatesInputProps) {
+export function CoordinatesInput({
+  coordinatesFormat,
+  defaultValue,
+  isLight = false,
+  onChange
+}: CoordinatesInputProps) {
   const getCoordinatesInput = useCallback(() => {
     switch (coordinatesFormat) {
       case CoordinatesFormat.DEGREES_MINUTES_SECONDS:
@@ -39,20 +45,21 @@ export function CoordinatesInput({ coordinatesFormat, defaultValue, onChange }: 
     }
   }, [defaultValue, onChange, coordinatesFormat])
 
-  return <Box>{getCoordinatesInput()}</Box>
+  return <Box $isLight={isLight}>{getCoordinatesInput()}</Box>
 }
 
-const Box = styled.div`
+const Box = styled.div<{
+  $isLight: boolean
+}>`
   color: ${p => p.theme.color.lightGray};
   font-size: 13px;
   text-align: left;
 
   input {
-    background: ${p => p.theme.color.gainsboro};
+    background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
     border: none;
     color: ${p => p.theme.color.gunMetal};
-    height: 27px;
-    margin-top: 7px;
-    padding-left: 8px;
+    height: 33px;
+    padding: 7px 11px;
   }
 `
