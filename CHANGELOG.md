@@ -1,3 +1,10 @@
+# [2.18.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.17.0...v2.18.0) (2023-02-17)
+
+
+### Features
+
+* **elements:** add ellipsis to long Button labels ([287a56b](https://github.com/MTES-MCT/monitor-ui/commit/287a56bd1c598da0cd25feae50c466062cafc725))
+
 # [2.17.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.16.0...v2.17.0) (2023-02-17)
 
 
