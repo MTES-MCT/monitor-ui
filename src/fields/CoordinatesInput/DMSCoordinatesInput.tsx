@@ -27,7 +27,7 @@ export function DMSCoordinatesInput({ coordinates, coordinatesFormat, onChange }
   )
 
   return (
-    <Body>
+    <Box>
       <CoordinateInput
         data-cy="dms-coordinates-input"
         ddPrecision={6}
@@ -35,7 +35,7 @@ export function DMSCoordinatesInput({ coordinates, coordinatesFormat, onChange }
         value={showedValue}
       />
       <CoordinatesType>(DMS)</CoordinatesType>
-    </Body>
+    </Box>
   )
 }
 
@@ -43,16 +43,7 @@ const CoordinatesType = styled.span`
   margin-left: 7px;
 `
 
-const Body = styled.div`
+const Box = styled.div`
   font-size: 13px;
   text-align: left;
-
-  input {
-    background: ${p => p.theme.color.gainsboro};
-    border: none;
-    height: 27px;
-    margin-top: 7px;
-    padding-left: 8px;
-    width: 200px;
-  }
 `

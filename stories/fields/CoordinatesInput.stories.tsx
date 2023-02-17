@@ -7,7 +7,7 @@ import { CoordinatesFormat, CoordinatesInput } from '../../src'
 import type { CoordinatesInputProps } from '../../src/fields/CoordinatesInput'
 
 const args: CoordinatesInputProps = {
-  coordinates: [],
+  defaultValue: [],
   coordinatesFormat: CoordinatesFormat.DEGREES_MINUTES_SECONDS,
   onChange: () => {}
 }

@@ -4,8 +4,8 @@ import { OPENLAYERS_PROJECTION, WSG84_PROJECTION } from '../../constants'
 import { CoordinatesFormat } from '../../fields/CoordinatesInput/constants'
 import { getCoordinates } from '../coordinates'
 
-describe('coordinates', () => {
-  it('getCoordinates Should get DMS coordinates for a dummy lon/lat', async () => {
+describe('getCoordinates', () => {
+  it('should get DMS coordinates for a dummy lon/lat', async () => {
     // When
     const coordinates = getCoordinates([-4.276, 46.947], WSG84_PROJECTION, CoordinatesFormat.DEGREES_MINUTES_SECONDS)
 
@@ -15,7 +15,7 @@ describe('coordinates', () => {
     expect(coordinates[1]).toEqual('004° 16′ 34″ W')
   })
 
-  it('getCoordinates Should get DMS with hemisphere S coordinates for a dummy lon/lat', async () => {
+  it('should get DMS with hemisphere S coordinates for a dummy lon/lat', async () => {
     // When
     const coordinates = getCoordinates([4.591, -33.56], WSG84_PROJECTION, CoordinatesFormat.DEGREES_MINUTES_SECONDS)
 
@@ -25,7 +25,7 @@ describe('coordinates', () => {
     expect(coordinates[1]).toEqual('004° 35′ 28″ E')
   })
 
-  it('getCoordinates Should get DMS coordinates for a 0 longitude', async () => {
+  it('should get DMS coordinates for a 0 longitude', async () => {
     // When
     const coordinates = getCoordinates([0, 49.6167], WSG84_PROJECTION, CoordinatesFormat.DEGREES_MINUTES_SECONDS)
 
@@ -35,7 +35,7 @@ describe('coordinates', () => {
     expect(coordinates[1]).toEqual('000° 00′ 00″')
   })
 
-  it('getCoordinates Should get DD coordinates for an East longitude', async () => {
+  it('should get DD coordinates for an East longitude', async () => {
     // When
     const coordinates = getCoordinates(
       [881004.7140361258, 6076231.889001969],
@@ -49,7 +49,7 @@ describe('coordinates', () => {
     expect(coordinates[1]).toEqual('007.9142°')
   })
 
-  it('getCoordinates Should get DD coordinates for a West longitude', async () => {
+  it('should get DD coordinates for a West longitude', async () => {
     // When
     const coordinates = getCoordinates(
       [-881004.7140361258, 6076231.889001969],
@@ -63,7 +63,7 @@ describe('coordinates', () => {
     expect(coordinates[1]).toEqual('-007.9142°')
   })
 
-  it('getCoordinates Should get DMS with coordinates for another dummy lon/lat', async () => {
+  it('should get DMS with coordinates for another dummy lon/lat', async () => {
     // When
     const coordinates = getCoordinates([-17.4144, -2.986], WSG84_PROJECTION, CoordinatesFormat.DEGREES_MINUTES_SECONDS)
 
@@ -73,7 +73,7 @@ describe('coordinates', () => {
     expect(coordinates[1]).toEqual('017° 24′ 52″ W')
   })
 
-  it('getCoordinates Should get DMD with coordinates for a dummy lon/lat with seconds under 100', async () => {
+  it('should get DMD with coordinates for a dummy lon/lat with seconds under 100', async () => {
     // When
     const coordinates = getCoordinates(
       [48.883917, -5.563333],
@@ -87,7 +87,7 @@ describe('coordinates', () => {
     expect(coordinates[1]).toEqual('048° 53.035′ E')
   })
 
-  it('getCoordinates Should get DMD with coordinates for another dummy lon/lat', async () => {
+  it('should get DMD with coordinates for another dummy lon/lat', async () => {
     // When
     const coordinates = getCoordinates([-17.4144, -2.986], WSG84_PROJECTION, CoordinatesFormat.DEGREES_MINUTES_DECIMALS)
 
@@ -97,7 +97,7 @@ describe('coordinates', () => {
     expect(coordinates[1]).toEqual('017° 24.864′ W')
   })
 
-  it('getCoordinates Should get DMS with coordinates for another another dummy lon/lat', async () => {
+  it('should get DMS with coordinates for another another dummy lon/lat', async () => {
     // When
     const coordinates = getCoordinates([-5.1756, 47.4658], WSG84_PROJECTION, CoordinatesFormat.DEGREES_MINUTES_SECONDS)
 
@@ -107,7 +107,7 @@ describe('coordinates', () => {
     expect(coordinates[1]).toEqual('005° 10′ 32″ W')
   })
 
-  it('getCoordinates Should get DMD with coordinates for another another dummy lon/lat', async () => {
+  it('should get DMD with coordinates for another another dummy lon/lat', async () => {
     // When
     const coordinates = getCoordinates([-5.1756, 47.4658], WSG84_PROJECTION, CoordinatesFormat.DEGREES_MINUTES_DECIMALS)
 

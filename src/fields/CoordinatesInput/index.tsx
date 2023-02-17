@@ -6,18 +6,20 @@ import { DDCoordinatesInput } from './DDCoordinatesInput'
 import { DMDCoordinatesInput } from './DMDCoordinatesInput'
 import { DMSCoordinatesInput } from './DMSCoordinatesInput'
 
+import type { Promisable } from 'type-fest'
+
 export type CoordinatesInputProps = {
-  coordinates: number[]
   coordinatesFormat: CoordinatesFormat
-  onChange: (nextCoordinates: number[], coordinates: number[]) => void
+  defaultValue: number[]
+  onChange: (nextCoordinates: number[], coordinates: number[]) => Promisable<void>
 }
-export function CoordinatesInput({ coordinates, coordinatesFormat, onChange }: CoordinatesInputProps) {
+export function CoordinatesInput({ coordinatesFormat, defaultValue, onChange }: CoordinatesInputProps) {
   const getCoordinatesInput = useCallback(() => {
     switch (coordinatesFormat) {
       case CoordinatesFormat.DEGREES_MINUTES_SECONDS:
         return (
           <DMSCoordinatesInput
-            coordinates={coordinates}
+            coordinates={defaultValue}
             coordinatesFormat={CoordinatesFormat.DEGREES_MINUTES_SECONDS}
             onChange={onChange}
           />
@@ -25,22 +27,22 @@ export function CoordinatesInput({ coordinates, coordinatesFormat, onChange }: C
       case CoordinatesFormat.DEGREES_MINUTES_DECIMALS:
         return (
           <DMDCoordinatesInput
-            coordinates={coordinates}
+            coordinates={defaultValue}
             coordinatesFormat={CoordinatesFormat.DEGREES_MINUTES_DECIMALS}
             onChange={onChange}
           />
         )
       case CoordinatesFormat.DECIMAL_DEGREES:
-        return <DDCoordinatesInput coordinates={coordinates as any} onChange={onChange} />
+        return <DDCoordinatesInput coordinates={defaultValue as [number, number]} onChange={onChange} />
       default:
         return undefined
     }
-  }, [coordinates, onChange, coordinatesFormat])
+  }, [defaultValue, onChange, coordinatesFormat])
 
-  return <Body>{getCoordinatesInput()}</Body>
+  return <Box>{getCoordinatesInput()}</Box>
 }
 
-const Body = styled.div`
+const Box = styled.div`
   color: ${p => p.theme.color.lightGray};
   font-size: 13px;
   text-align: left;
