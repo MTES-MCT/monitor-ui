@@ -93,6 +93,7 @@ const StyledButton = styled.button<{
   align-items: center;
   display: inline-flex;
   font-size: ${p => FONT_SIZE[p.size]};
+  justify-content: center;
   max-width: 100%;
   padding: ${p => PADDING[p.size]};
   width: ${p => (p.isFullWidth ? '100%' : 'auto')};
