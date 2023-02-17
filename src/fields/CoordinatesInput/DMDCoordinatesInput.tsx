@@ -106,6 +106,7 @@ export function DMDCoordinatesInput({ coordinates, coordinatesFormat, onChange }
 
 const CoordinatesType = styled.span`
   margin-left: 7px;
+  color: ${p => p.theme.color.slateGray};
 `
 
 const Error = styled.span`
