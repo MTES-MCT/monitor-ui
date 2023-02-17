@@ -1,3 +1,10 @@
+# [2.17.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.16.0...v2.17.0) (2023-02-17)
+
+
+### Features
+
+* **fields:** add coordinates input ([7912c7a](https://github.com/MTES-MCT/monitor-ui/commit/7912c7a47aa1afeb90e6bc7bbeb49bcf1b9bd17f))
+
 # [2.16.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.15.0...v2.16.0) (2023-02-13)
 
 
