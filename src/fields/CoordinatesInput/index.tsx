@@ -57,7 +57,7 @@ const Box = styled.div<{
 
   input {
     background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
-    border: none;
+    border: ${p => (p.$isLight ? `1px solid ${p.theme.color.lightGray}` : 'none')};
     color: ${p => p.theme.color.gunMetal};
     height: 33px;
     padding: 7px 11px;
