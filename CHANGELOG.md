@@ -1,3 +1,33 @@
+## [2.19.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.19.0...v2.19.1) (2023-02-20)
+
+# [2.19.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.18.1...v2.19.0) (2023-02-17)
+
+
+### Features
+
+* **fieds:** Update coordinates input style ([90a72f6](https://github.com/MTES-MCT/monitor-ui/commit/90a72f6fd73f635fcc9f284112fcd69fd6467d1b))
+
+## [2.18.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.18.0...v2.18.1) (2023-02-17)
+
+
+### Bug Fixes
+
+* **elements:** center Button horizontally ([69004ea](https://github.com/MTES-MCT/monitor-ui/commit/69004eacf73d2cab3318653f769ca01d0521ffea))
+
+# [2.18.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.17.0...v2.18.0) (2023-02-17)
+
+
+### Features
+
+* **elements:** add ellipsis to long Button labels ([287a56b](https://github.com/MTES-MCT/monitor-ui/commit/287a56bd1c598da0cd25feae50c466062cafc725))
+
+# [2.17.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.16.0...v2.17.0) (2023-02-17)
+
+
+### Features
+
+* **fields:** add coordinates input ([7912c7a](https://github.com/MTES-MCT/monitor-ui/commit/7912c7a47aa1afeb90e6bc7bbeb49bcf1b9bd17f))
+
 # [2.16.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.15.0...v2.16.0) (2023-02-13)
 
 

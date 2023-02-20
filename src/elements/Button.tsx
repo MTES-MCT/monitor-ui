@@ -13,9 +13,10 @@ const ICON_SIZE: Record<Size, number> = {
   [Size.SMALL]: 12
 }
 
-export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+export type ButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> & {
   Icon?: FunctionComponent<IconProps> | undefined
   accent?: Accent | undefined
+  children?: string | undefined
   isFullWidth?: boolean | undefined
   size?: Size | undefined
 }
@@ -33,7 +34,7 @@ export function Button({
     () => (
       <>
         {Icon && <Icon size={ICON_SIZE[size]} />}
-        {children}
+        {children && <ButtonLabel>{children}</ButtonLabel>}
       </>
     ),
     [children, Icon, size]
@@ -90,17 +91,26 @@ const StyledButton = styled.button<{
   size: Size
 }>`
   align-items: center;
-  display: flex;
+  display: inline-flex;
   font-size: ${p => FONT_SIZE[p.size]};
   justify-content: center;
+  max-width: 100%;
   padding: ${p => PADDING[p.size]};
-  white-space: nowrap;
   width: ${p => (p.isFullWidth ? '100%' : 'auto')};
 
   /* SVG Icon Components are wrapped within a <div /> */
   > div {
     margin-right: 5px;
   }
+`
+
+const ButtonLabel = styled.span`
+  line-height: 1.3846;
+  margin-top: -3px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `
 
 export const PrimaryButton = styled.button`

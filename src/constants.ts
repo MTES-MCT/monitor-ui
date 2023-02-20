@@ -9,3 +9,6 @@ export enum Size {
   NORMAL = 'NORMAL',
   SMALL = 'SMALL'
 }
+
+export const WSG84_PROJECTION = 'EPSG:4326'
+export const OPENLAYERS_PROJECTION = 'EPSG:3857'
