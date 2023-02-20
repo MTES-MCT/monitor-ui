@@ -1,3 +1,11 @@
+## [2.19.2](https://github.com/MTES-MCT/monitor-ui/compare/v2.19.1...v2.19.2) (2023-02-20)
+
+
+### Bug Fixes
+
+* **css:** use selector ([3088eb1](https://github.com/MTES-MCT/monitor-ui/commit/3088eb1a973c1ab02411aad69fe8a28b77f025c6))
+* **multiselect:** add css when using isLight ([a9a6131](https://github.com/MTES-MCT/monitor-ui/commit/a9a61314bc5aae340211aff9c528e48994fa1fb1))
+
 ## [2.19.1](https://github.com/MTES-MCT/monitor-ui/compare/v2.19.0...v2.19.1) (2023-02-20)
 
 # [2.19.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.18.1...v2.19.0) (2023-02-17)
