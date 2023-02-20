@@ -37,6 +37,7 @@ export { TextInput } from './fields/TextInput'
 
 export { FormikAutoComplete } from './formiks/FormikAutoComplete'
 export { FormikCheckbox } from './formiks/FormikCheckbox'
+export { FormikCoordinatesInput } from './formiks/FormikCoordinatesInput'
 export { FormikDatePicker } from './formiks/FormikDatePicker'
 export { FormikDateRangePicker } from './formiks/FormikDateRangePicker'
 export { FormikEffect } from './formiks/FormikEffect'
@@ -106,6 +107,7 @@ export type { TextInputProps } from './fields/TextInput'
 
 export type { FormikAutoCompleteProps } from './formiks/FormikAutoComplete'
 export type { FormikCheckboxProps } from './formiks/FormikCheckbox'
+export type { FormikCoordinatesInputProps } from './formiks/FormikCoordinatesInput'
 export type { FormikDatePickerWithDateDateProps, FormikDatePickerWithStringDateProps } from './formiks/FormikDatePicker'
 export type {
   FormikDateRangePickerWithDateDateProps,

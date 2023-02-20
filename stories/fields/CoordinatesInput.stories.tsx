@@ -7,7 +7,7 @@ import { CoordinatesFormat, CoordinatesInput } from '../../src'
 import type { CoordinatesInputProps } from '../../src/fields/CoordinatesInput'
 
 const args: CoordinatesInputProps = {
-  defaultValue: [],
+  defaultValue: undefined,
   coordinatesFormat: CoordinatesFormat.DEGREES_MINUTES_SECONDS,
   disabled: false,
   error: '',
@@ -36,7 +36,7 @@ export default {
 }
 
 export function _CoordinatesInput(props: CoordinatesInputProps) {
-  const [outputValue, setOutputValue] = useState<number[] | '∅'>('∅')
+  const [outputValue, setOutputValue] = useState<number[] | undefined | '∅'>('∅')
 
   return (
     <>
