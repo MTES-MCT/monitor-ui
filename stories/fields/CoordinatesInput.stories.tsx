@@ -9,7 +9,11 @@ import type { CoordinatesInputProps } from '../../src/fields/CoordinatesInput'
 const args: CoordinatesInputProps = {
   defaultValue: [],
   coordinatesFormat: CoordinatesFormat.DEGREES_MINUTES_SECONDS,
-  onChange: () => {}
+  disabled: false,
+  error: '',
+  isLabelHidden: false,
+  isLight: false,
+  label: 'Some coordinates'
 }
 
 export default {

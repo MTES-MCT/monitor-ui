@@ -76,7 +76,7 @@ export { stopMouseEventPropagation } from './utils/stopMouseEventPropagation'
 */
 
 export type { PartialTheme, Theme } from './theme'
-export type { DateAsStringRange, DateRange, IconProps, Option, Undefine } from './types'
+export type { Coordinates, DateAsStringRange, DateRange, IconProps, Option, Undefine } from './types'
 
 export type { DropdownProps, DropdownItemProps } from './components/Dropdown'
 export type { SingleTagProps } from './components/SingleTag'

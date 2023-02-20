@@ -8,16 +8,26 @@ import { getCoordinates } from '../../utils/coordinates'
 import { isNumeric } from '../../utils/isNumeric'
 import { CoordinatesFormat } from './constants'
 
+import type { Coordinates } from '../../types'
+
 // TODO Remove that once the fix is added and released.
 // Open issue: https://github.com/uNmAnNeR/imaskjs/issues/761
 const UntypedIMaskInput: any = IMaskInput
 
 type DMDCoordinatesInputProps = {
-  coordinates: number[]
+  coordinates: Coordinates | undefined
   coordinatesFormat: CoordinatesFormat
-  onChange: (nextCoordinates: number[], coordinates: number[]) => void
+  disabled: boolean | undefined
+  onChange: (nextCoordinates: Coordinates, coordinates: Coordinates | undefined) => void
 }
-export function DMDCoordinatesInput({ coordinates, coordinatesFormat, onChange }: DMDCoordinatesInputProps) {
+// TODO This field should return undefined when cleared (i.e.: Select all & Backspace/Delete)
+export function DMDCoordinatesInput({
+  coordinates,
+  coordinatesFormat,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  disabled = false,
+  onChange
+}: DMDCoordinatesInputProps) {
   const [error, setError] = useState('')
   const [value, setValue] = useState('')
 
@@ -88,6 +98,7 @@ export function DMDCoordinatesInput({ coordinates, coordinatesFormat, onChange }
     <Box>
       <UntypedIMaskInput
         data-cy="dmd-coordinates-input"
+        disabled={disabled}
         lazy={false}
         mask="00° 00.000′ a 000° 00.000′ a"
         // @ts-ignore
@@ -96,6 +107,7 @@ export function DMDCoordinatesInput({ coordinates, coordinatesFormat, onChange }
         placeholder="__° __.___′ _ ___° __.___′"
         radix="."
         style={{ border: error ? '1px solid red' : undefined }}
+        // TODO Use `defaultValue` here.
         value={value}
       />
       <CoordinatesType>(DMD)</CoordinatesType>

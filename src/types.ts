@@ -1,5 +1,7 @@
 import type { SVGProps } from 'react'
 
+export type Coordinates = [number, number]
+
 export type DateRange = [Date, Date]
 export type DateAsStringRange = [string, string]
 

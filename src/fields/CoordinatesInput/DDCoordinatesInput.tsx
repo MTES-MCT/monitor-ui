@@ -4,11 +4,20 @@ import { useDebouncedCallback } from 'use-debounce'
 
 import { isNumeric } from '../../utils/isNumeric'
 
+import type { Coordinates } from '../../types'
+
 type DDCoordinatesInputProps = {
-  coordinates: [number, number]
-  onChange: (nextCoordinates: [number, number], coordinates: [number, number]) => void
+  coordinates: Coordinates | undefined
+  disabled: boolean | undefined
+  onChange: (nextCoordinates: Coordinates, coordinates: Coordinates | undefined) => void
 }
-export function DDCoordinatesInput({ coordinates, onChange }: DDCoordinatesInputProps) {
+// TODO This field should return undefined when cleared (i.e.: Select all & Backspace/Delete)
+export function DDCoordinatesInput({
+  coordinates,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  disabled = false,
+  onChange
+}: DDCoordinatesInputProps) {
   const latitudeInputRef = useRef<HTMLInputElement>()
   const longitudeInputRef = useRef<HTMLInputElement>()
 
@@ -16,6 +25,10 @@ export function DDCoordinatesInput({ coordinates, onChange }: DDCoordinatesInput
   const [longitudeError, setLongitudeError] = useState('')
 
   const defaultValue = useMemo(() => {
+    if (!coordinates) {
+      return undefined
+    }
+
     const [latitude, longitude] = coordinates
 
     if (isNumeric(latitude) && isNumeric(longitude)) {
@@ -31,7 +44,7 @@ export function DDCoordinatesInput({ coordinates, onChange }: DDCoordinatesInput
     }
   }, [coordinates])
 
-  const handleChange = useDebouncedCallback((nextCoordinates: [number, number]) => {
+  const handleChange = useDebouncedCallback((nextCoordinates: [number, number] | undefined) => {
     if (!latitudeInputRef.current || !longitudeInputRef.current) {
       return
     }
@@ -65,7 +78,8 @@ export function DDCoordinatesInput({ coordinates, onChange }: DDCoordinatesInput
       <DDInput
         ref={latitudeInputRef as any}
         data-cy="coordinates-dd-input-lat"
-        defaultValue={defaultValue.latitude}
+        defaultValue={defaultValue ? defaultValue.latitude : undefined}
+        disabled={disabled}
         onChange={() => handleChange(coordinates)}
         placeholder="Latitude"
         style={{ border: latitudeError ? '1px solid red' : undefined }}
@@ -73,7 +87,8 @@ export function DDCoordinatesInput({ coordinates, onChange }: DDCoordinatesInput
       <DDInput
         ref={longitudeInputRef as any}
         data-cy="coordinates-dd-input-lon"
-        defaultValue={defaultValue.longitude}
+        defaultValue={defaultValue ? defaultValue.longitude : undefined}
+        disabled={disabled}
         onChange={() => handleChange(coordinates)}
         placeholder="Longitude"
         style={{ border: longitudeError ? '1px solid red' : undefined }}
