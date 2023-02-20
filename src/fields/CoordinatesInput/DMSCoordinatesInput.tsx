@@ -1,17 +1,26 @@
+import { isEmpty } from 'ramda'
 import { useCallback, useMemo } from 'react'
 import CoordinateInput from 'react-coordinate-input'
 import styled from 'styled-components'
 
+import type { Coordinates } from '../../types'
 import type { CoordinatesFormat } from './constants'
 
 type DMSCoordinatesInputProps = {
-  coordinates: number[]
+  coordinates: Coordinates | undefined
   coordinatesFormat: CoordinatesFormat
-  onChange: (nextCoordinates: number[], coordinates: number[]) => void
+  disabled: boolean | undefined
+  onChange: (nextCoordinates: Coordinates | undefined, coordinates: Coordinates | undefined) => void
 }
-export function DMSCoordinatesInput({ coordinates, coordinatesFormat, onChange }: DMSCoordinatesInputProps) {
+export function DMSCoordinatesInput({
+  coordinates,
+  coordinatesFormat,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  disabled = false,
+  onChange
+}: DMSCoordinatesInputProps) {
   /** Convert the coordinates to the [latitude, longitude] string format */
-  const showedValue = useMemo(() => {
+  const defaultValue = useMemo(() => {
     if (!coordinates?.length || !coordinatesFormat) {
       return ''
     }
@@ -21,7 +30,9 @@ export function DMSCoordinatesInput({ coordinates, coordinatesFormat, onChange }
 
   const update = useCallback(
     nextCoordinates => {
-      onChange(nextCoordinates, coordinates)
+      const normalizedNextCoordinates = !isEmpty(nextCoordinates) ? nextCoordinates : undefined
+
+      onChange(normalizedNextCoordinates, coordinates)
     },
     [coordinates, onChange]
   )
@@ -31,8 +42,10 @@ export function DMSCoordinatesInput({ coordinates, coordinatesFormat, onChange }
       <CoordinateInput
         data-cy="dms-coordinates-input"
         ddPrecision={6}
+        disabled={disabled}
         onChange={(_, { dd }) => update(dd)}
-        value={showedValue}
+        // TODO Use `defaultValue` here.
+        value={defaultValue}
       />
       <CoordinatesType>(DMS)</CoordinatesType>
     </Box>

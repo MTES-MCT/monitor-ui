@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import { Field } from './Field'
 import { Legend } from './Legend'
 
-export type FieldsetProps = FieldsetHTMLAttributes<HTMLFieldSetElement> & {
+export type FieldsetProps = Omit<FieldsetHTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange' | 'value'> & {
   hasBorder?: boolean | undefined
   isLegendHidden?: boolean | undefined
   isLight?: boolean | undefined
