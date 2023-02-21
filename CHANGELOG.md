@@ -1,3 +1,19 @@
+# [3.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.19.2...v3.0.0) (2023-02-21)
+
+
+* feat(fields)!: add disabled, error & label props to CoordinatesInput ([556de36](https://github.com/MTES-MCT/monitor-ui/commit/556de362cbaf0250523ea710f2d753712a13cf21))
+
+
+### Features
+
+* **formiks:** add FormikCoordinatesInput ([89d5455](https://github.com/MTES-MCT/monitor-ui/commit/89d54554ce6a6f90b608b0d8c37a089f4b934b99))
+
+
+### BREAKING CHANGES
+
+* CoordinatesInput onChange can now send undefined params
+* label is now mandatory in CoordinatesInput
+
 ## [2.19.2](https://github.com/MTES-MCT/monitor-ui/compare/v2.19.1...v2.19.2) (2023-02-20)
 
 
