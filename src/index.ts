@@ -1,9 +1,9 @@
 export { Accent, Size, OPENLAYERS_PROJECTION, WSG84_PROJECTION } from './constants'
+export { CoordinatesFormat } from './fields/CoordinatesInput/constants'
 export { GlobalStyle } from './GlobalStyle'
 export { OnlyFontGlobalStyle } from './OnlyFontGlobalStyle'
 export { THEME } from './theme'
 export { ThemeProvider } from './ThemeProvider'
-export { CoordinatesFormat } from './fields/CoordinatesInput/constants'
 
 /* -----------------------------------------------------------------------------
   Components
@@ -61,7 +61,7 @@ export { useForceUpdate } from './hooks/useForceUpdate'
 export { usePrevious } from './hooks/usePrevious'
 
 /* -----------------------------------------------------------------------------
-  Utils
+  Libs & Utils
 */
 
 export { dayjs } from './utils/dayjs'
@@ -71,6 +71,8 @@ export { getUtcizedDayjs } from './utils/getUtcizedDayjs'
 export { noop } from './utils/noop'
 export { isNumeric } from './utils/isNumeric'
 export { stopMouseEventPropagation } from './utils/stopMouseEventPropagation'
+
+export { MonitorUiError } from './libs/MonitorUiError'
 
 /* -----------------------------------------------------------------------------
   Type Definitions
