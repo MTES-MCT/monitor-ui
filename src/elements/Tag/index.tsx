@@ -2,6 +2,7 @@ import { FunctionComponent, HTMLAttributes, useMemo } from 'react'
 import styled from 'styled-components'
 
 import { Accent } from '../../constants'
+import { MonitorUiError } from '../../libs/MonitorUiError'
 import { THEME } from '../../theme'
 import { TagBullet } from './constants'
 import { Disk } from './Disk'
@@ -16,6 +17,10 @@ export type TagProps = HTMLAttributes<HTMLSpanElement> & {
   isLight?: boolean
 }
 export function Tag({ accent, bullet, children, color, Icon, isLight = false, ...nativeProps }: TagProps) {
+  if (accent === Accent.LINK) {
+    throw new MonitorUiError("You can't use `Accent.LINK` as an accent in <Tag />.", '<Tag />')
+  }
+
   const commonChildren = useMemo(() => {
     const defaultColor = color || THEME.color.gunMetal
     const bulletColor = accent

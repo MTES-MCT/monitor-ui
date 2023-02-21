@@ -1,4 +1,5 @@
 export enum Accent {
+  LINK = 'LINK',
   PRIMARY = 'PRIMARY',
   SECONDARY = 'SECONDARY',
   TERTIARY = 'TERTIARY'

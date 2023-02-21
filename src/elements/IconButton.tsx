@@ -2,6 +2,7 @@ import { useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 
 import { Accent, Size } from '../constants'
+import { MonitorUiError } from '../libs/MonitorUiError'
 import { stopMouseEventPropagation } from '../utils/stopMouseEventPropagation'
 import { PrimaryButton, SecondaryButton } from './Button'
 
@@ -32,6 +33,10 @@ export function IconButton({
   type = 'button',
   ...nativeProps
 }: IconButtonProps) {
+  if (accent === Accent.LINK) {
+    throw new MonitorUiError("You can't use `Accent.LINK` as an accent in <IconButton />.", '<IconButton />')
+  }
+
   const children = useMemo(
     () => <Icon color={color} size={iconSize || ICON_SIZE_IN_PX[size]} />,
     [color, Icon, iconSize, size]

@@ -65,6 +65,9 @@ export function Button({
   )
 
   switch (accent) {
+    case Accent.LINK:
+      return <LinkButton {...commonProps} />
+
     case Accent.SECONDARY:
       return <SecondaryButton {...commonProps} />
 
@@ -111,6 +114,47 @@ const ButtonLabel = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+`
+
+export const LinkButton = styled.button`
+  background-color: transparent;
+  border: 0;
+  color: ${p => p.theme.color.slateGray};
+  /* Because it should be able to be integrated in text block (<p />, <span />) */
+  display: inline-block;
+  padding: 0;
+  text-decoration: underline;
+
+  /* SVG Icon Components are wrapped within a <div /> */
+  > div {
+    display: inline-block;
+    vertical-align: middle;
+
+    > svg {
+      display: inline-block;
+    }
+  }
+
+  :hover,
+  &._hover {
+    background-color: transparent;
+    border: 0;
+    color: ${p => p.theme.color.slateGray};
+  }
+
+  :active,
+  &._active {
+    background-color: transparent;
+    border: 0;
+    color: ${p => p.theme.color.slateGray};
+  }
+
+  :disabled,
+  &._disabled {
+    background-color: transparent;
+    border: 0;
+    color: ${p => p.theme.color.slateGray};
+  }
 `
 
 export const PrimaryButton = styled.button`
