@@ -12,9 +12,12 @@ export class MonitorUiError extends Error {
     this.error = error
     this.scope = scope
 
-    const logMessage = `[Monitor UI] [${scope}] ${controlledMessage}.`
+    const fullScope = `[${this.constructor.name}] [${scope}]`
+    const logMessage = `${fullScope} ${controlledMessage}.`
     console.warn(logMessage)
-    console.warn('[Monitor UI] Enable the debug logs to see the error:')
-    console.debug(error)
+    if (error) {
+      console.warn(`${fullScope} Enable the debug logs to see the error:`)
+      console.debug(error)
+    }
   }
 }

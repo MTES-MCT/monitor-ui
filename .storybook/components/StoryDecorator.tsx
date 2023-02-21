@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import styled from 'styled-components'
 
-import { Accent, Button, Size, THEME } from '../../src'
+import { Accent, Button, ErrorBoundary, Size, THEME } from '../../src'
 import { NewWindow } from '../../src/components/NewWindow'
 
 import type { Story, StoryContext } from '@storybook/react'
@@ -47,7 +47,9 @@ export function generateStoryDecorator({
         )}
 
         <StoryBox style={style}>
-          <Story />
+          <ErrorBoundary isDebug isWrapper>
+            <Story />
+          </ErrorBoundary>
         </StoryBox>
 
         {withNewWindowButton && isNewWindowOpen && (

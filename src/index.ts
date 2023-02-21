@@ -10,6 +10,7 @@ export { ThemeProvider } from './ThemeProvider'
 */
 
 export { Dropdown } from './components/Dropdown'
+export { ErrorBoundary } from './components/ErrorBoundary'
 export { SingleTag } from './components/SingleTag'
 
 export { Button } from './elements/Button'
@@ -82,6 +83,7 @@ export type { PartialTheme, Theme } from './theme'
 export type { Coordinates, DateAsStringRange, DateRange, IconProps, Option, Undefine } from './types'
 
 export type { DropdownProps, DropdownItemProps } from './components/Dropdown'
+export type { ErrorBoundaryProps } from './components/ErrorBoundary'
 export type { SingleTagProps } from './components/SingleTag'
 
 export type { ButtonProps } from './elements/Button'
