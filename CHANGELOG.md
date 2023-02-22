@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v3.0.0...v3.0.1) (2023-02-22)
+
+
+### Bug Fixes
+
+* **formiks:** remove useMemo on fieldValue ([3ec8602](https://github.com/MTES-MCT/monitor-ui/commit/3ec86027dbcaf0f0faa4e92ad05d86a134e6c575))
+
 # [3.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v2.19.2...v3.0.0) (2023-02-21)
 
 
