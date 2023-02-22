@@ -16,17 +16,9 @@ export function FormikMultiSelect<OptionValue = string>({
   const [field, meta, helpers] = useField<OptionValue[] | undefined>(name)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const defaultValue = useMemo(() => field.value, [])
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = useMemo(() => helpers.setValue, [])
 
   return (
-    <MultiSelect
-      defaultValue={defaultValue}
-      error={meta.error}
-      name={name}
-      onChange={handleChange}
-      {...originalProps}
-    />
+    <MultiSelect defaultValue={field.value} error={meta.error} name={name} onChange={handleChange} {...originalProps} />
   )
 }
