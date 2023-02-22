@@ -1,10 +1,16 @@
-import { FieldsetHTMLAttributes, useMemo } from 'react'
+import { useMemo } from 'react'
 import styled, { css } from 'styled-components'
 
 import { Field } from './Field'
 import { Legend } from './Legend'
 
-export type FieldsetProps = Omit<FieldsetHTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange' | 'value'> & {
+import type { FieldsetHTMLAttributes } from 'react'
+
+export type NativeFieldsetProps = Omit<
+  FieldsetHTMLAttributes<HTMLFieldSetElement>,
+  'defaultValue' | 'onChange' | 'value'
+>
+export type FieldsetProps = NativeFieldsetProps & {
   hasBorder?: boolean | undefined
   isLegendHidden?: boolean | undefined
   isLight?: boolean | undefined
