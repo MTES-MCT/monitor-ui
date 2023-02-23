@@ -6,12 +6,12 @@ import {
   NewWindowButtonBox,
   NewWindowStoryBox
 } from '../../../.storybook/components/StoryDecorator'
-import { Accent, AutoComplete, Button, Size, useForceUpdate } from '../../../src'
+import { Accent, Search, Button, Size, useForceUpdate } from '../../../src'
 import { NewWindow } from '../../../src/components/NewWindow'
 
-import type { AutoCompleteProps } from '../../../src'
+import type { SearchProps } from '../../../src'
 
-const args: AutoCompleteProps = {
+const args: SearchProps = {
   error: '',
   isLabelHidden: false,
   isLight: false,
@@ -26,8 +26,8 @@ const args: AutoCompleteProps = {
 }
 
 export default {
-  title: 'Fields/AutoComplete',
-  component: AutoComplete,
+  title: 'Fields/Search',
+  component: Search,
 
   argTypes: {},
 
@@ -40,7 +40,7 @@ export default {
   ]
 }
 
-export function WithQuery(props: AutoCompleteProps) {
+export function WithQuery(props: SearchProps) {
   // eslint-disable-next-line no-null/no-null
   const newWindowStoryBoxRef = useRef<HTMLDivElement>(null)
 
@@ -73,7 +73,7 @@ export function WithQuery(props: AutoCompleteProps) {
         </Button>
       </NewWindowButtonBox>
 
-      {!isNewWindowOpen && <AutoComplete {...props} onChange={setOutputValue} />}
+      {!isNewWindowOpen && <Search {...props} onChange={setOutputValue} />}
 
       {outputValue !== '∅' && <Output value={outputValue} />}
 
@@ -81,7 +81,7 @@ export function WithQuery(props: AutoCompleteProps) {
         <NewWindow isStoryBook onUnload={() => setIsNewWindowOpen(false)}>
           <NewWindowStoryBox ref={newWindowStoryBoxRef}>
             {newWindowStoryBoxRef.current && (
-              <AutoComplete {...props} baseContainer={newWindowStoryBoxRef.current} onChange={setOutputValue} />
+              <Search {...props} baseContainer={newWindowStoryBoxRef.current} onChange={setOutputValue} />
             )}
           </NewWindowStoryBox>
         </NewWindow>
