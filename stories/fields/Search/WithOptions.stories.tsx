@@ -6,30 +6,31 @@ import {
   NewWindowButtonBox,
   NewWindowStoryBox
 } from '../../../.storybook/components/StoryDecorator'
-import { Accent, AutoComplete, Button, Size, useForceUpdate } from '../../../src'
+import { Accent, Search, Button, Size, useForceUpdate } from '../../../src'
 import { NewWindow } from '../../../src/components/NewWindow'
 
-import type { AutoCompleteProps } from '../../../src'
+import type { SearchProps } from '../../../src'
 
-const args: AutoCompleteProps = {
+const args: SearchProps = {
   defaultValue: undefined,
   error: '',
   isLabelHidden: false,
+  isSearchIconHidden: false,
   isLight: false,
   label: 'An autocompletable select',
   name: 'autoComplete',
+  placeholder: 'Type "first"',
   options: [
     { label: 'First Option', value: 'FIRST_OPTION' },
     { label: 'Second Option', value: 'SECOND_OPTION' },
     { label: 'Third Option', value: 'THIRD_OPTION' },
     { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
-  ],
-  placeholder: 'Type "first"'
+  ]
 }
 
 export default {
-  title: 'Fields/AutoComplete',
-  component: AutoComplete,
+  title: 'Fields/Search',
+  component: Search,
 
   argTypes: {
     defaultValue: {
@@ -46,7 +47,7 @@ export default {
   ]
 }
 
-export function WithOptions(props: AutoCompleteProps) {
+export function WithOptions(props: SearchProps) {
   // eslint-disable-next-line no-null/no-null
   const newWindowStoryBoxRef = useRef<HTMLDivElement>(null)
 
@@ -79,7 +80,19 @@ export function WithOptions(props: AutoCompleteProps) {
         </Button>
       </NewWindowButtonBox>
 
-      {!isNewWindowOpen && <AutoComplete {...props} onChange={setOutputValue} />}
+      {!isNewWindowOpen && (
+        <Search
+          {...props}
+          MenuItem={undefined}
+          onChange={setOutputValue}
+          options={[
+            { label: 'First Option', value: 'FIRST_OPTION' },
+            { label: 'Second Option', value: 'SECOND_OPTION' },
+            { label: 'Third Option', value: 'THIRD_OPTION' },
+            { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
+          ]}
+        />
+      )}
 
       {outputValue !== '∅' && <Output value={outputValue} />}
 
@@ -87,7 +100,7 @@ export function WithOptions(props: AutoCompleteProps) {
         <NewWindow isStoryBook onUnload={() => setIsNewWindowOpen(false)}>
           <NewWindowStoryBox ref={newWindowStoryBoxRef}>
             {newWindowStoryBoxRef.current && (
-              <AutoComplete {...props} baseContainer={newWindowStoryBoxRef.current} onChange={setOutputValue} />
+              <Search {...props} baseContainer={newWindowStoryBoxRef.current} onChange={setOutputValue} />
             )}
           </NewWindowStoryBox>
         </NewWindow>

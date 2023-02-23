@@ -3,12 +3,12 @@ import { useMemo, useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
-import { FormikEffect, FormikAutoComplete } from '../../../src'
+import { FormikEffect, FormikSearch } from '../../../src'
 import { noop } from '../../../src/utils/noop'
 
-import type { FormikAutoCompleteProps } from '../../../src'
+import type { FormikSearchProps } from '../../../src'
 
-const args: FormikAutoCompleteProps = {
+const args: FormikSearchProps = {
   isLabelHidden: false,
   isLight: false,
   label: 'An autocompletable select',
@@ -22,8 +22,8 @@ const args: FormikAutoCompleteProps = {
 }
 
 export default {
-  title: 'Formiks/FormikAutoComplete',
-  component: FormikAutoComplete,
+  title: 'Formiks/FormikSearch',
+  component: FormikSearch,
 
   argTypes: {},
 
@@ -36,7 +36,7 @@ export default {
   ]
 }
 
-export const WithQuery = (props: FormikAutoCompleteProps) => {
+export const WithQuery = (props: FormikSearchProps) => {
   const [outputValue, setOutputValue] = useState<
     | {
         mySelect?: string
@@ -52,7 +52,7 @@ export const WithQuery = (props: FormikAutoCompleteProps) => {
         <>
           <FormikEffect onChange={setOutputValue} />
 
-          <FormikAutoComplete {...props} />
+          <FormikSearch {...props} />
         </>
       </Formik>
 
