@@ -67,7 +67,7 @@ export function WithOptionsAndCustomMenuItem(props: SearchProps<Value>) {
 
   const [isNewWindowOpen, setIsNewWindowOpen] = useState(false)
   const [isNewWindowFirstLoad, setIsNewWindowFirstLoad] = useState(true)
-  const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
+  const [outputValue, setOutputValue] = useState<any | undefined | '∅'>('∅')
 
   const { forceUpdate } = useForceUpdate()
 
