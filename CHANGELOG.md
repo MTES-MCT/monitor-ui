@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v3.0.1...v3.1.0) (2023-02-23)
+
+
+### Features
+
+* **elements:** add bulletColor prop to Tag ([3ab795c](https://github.com/MTES-MCT/monitor-ui/commit/3ab795ca8db39faacfcfd644c85c9d2fed9195b2))
+
 ## [3.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v3.0.0...v3.0.1) (2023-02-22)
 
 
