@@ -1,12 +1,12 @@
 import { useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 
+import { CoordinatesFormat } from '../../constants'
 import { FieldError } from '../../elements/FieldError'
 import { Fieldset } from '../../elements/Fieldset'
 import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { noop } from '../../utils/noop'
 import { normalizeString } from '../../utils/normalizeString'
-import { CoordinatesFormat } from './constants'
 import { DDCoordinatesInput } from './DDCoordinatesInput'
 import { DMDCoordinatesInput } from './DMDCoordinatesInput'
 import { DMSCoordinatesInput } from './DMSCoordinatesInput'
