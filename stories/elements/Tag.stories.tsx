@@ -1,6 +1,5 @@
-import { values } from 'ramda'
-
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { getEnumValuesWithUndefined, getUndefinedPropsFromUndefinedStringProps } from '../../.storybook/utils'
 import { Accent, Tag } from '../../src'
 import { TagBullet } from '../../src/elements/Tag/constants'
 
@@ -18,15 +17,14 @@ export default {
   argTypes: {
     accent: {
       control: 'inline-radio',
-      options: values(Accent)
+      options: getEnumValuesWithUndefined(Accent)
     },
     bullet: {
       control: 'inline-radio',
-      options: values(TagBullet)
+      options: getEnumValuesWithUndefined(TagBullet)
     },
-    color: {
-      control: 'color',
-      if: { arg: 'accent', truthy: false }
+    bulletColor: {
+      control: 'color'
     }
   },
 
@@ -40,9 +38,11 @@ export default {
 }
 
 export function _Tag(props: TagProps) {
+  const normalizedProps = getUndefinedPropsFromUndefinedStringProps(props)
+
   return (
     <>
-      <Tag {...props} />
+      <Tag {...normalizedProps} />
     </>
   )
 }

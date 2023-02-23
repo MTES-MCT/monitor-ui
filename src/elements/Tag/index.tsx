@@ -9,32 +9,36 @@ import { Disk } from './Disk'
 import type { IconProps } from '../../types'
 
 export type TagProps = HTMLAttributes<HTMLSpanElement> & {
-  Icon?: FunctionComponent<IconProps>
-  accent?: Accent
-  bullet?: TagBullet
-  color?: string
-  isLight?: boolean
+  Icon?: FunctionComponent<IconProps> | undefined
+  accent?: Accent | undefined
+  bullet?: TagBullet | undefined
+  bulletColor?: string | undefined
+  isLight?: boolean | undefined
 }
-export function Tag({ accent, bullet, children, color, Icon, isLight = false, ...nativeProps }: TagProps) {
+export function Tag({ accent, bullet, bulletColor, children, color, Icon, isLight = false, ...nativeProps }: TagProps) {
   const commonChildren = useMemo(() => {
     const defaultColor = color || THEME.color.gunMetal
-    const bulletColor = accent
-      ? {
-          [Accent.PRIMARY]: THEME.color.gunMetal,
-          [Accent.SECONDARY]: THEME.color.gunMetal,
-          [Accent.TERTIARY]: THEME.color.white
-        }[accent]
-      : defaultColor
+
+    const controlledBulletColor =
+      bulletColor ||
+      (accent
+        ? {
+            [Accent.PRIMARY]: THEME.color.gunMetal,
+            [Accent.SECONDARY]: THEME.color.gunMetal,
+            [Accent.TERTIARY]: THEME.color.white
+          }[accent]
+        : defaultColor)
 
     return (
       <>
         {Icon && <Icon size={1} />}
-        {bullet === TagBullet.DISK && <Disk $color={bulletColor} />}
+        {bullet === TagBullet.DISK && <Disk $color={controlledBulletColor} />}
 
         {children}
       </>
     )
-  }, [accent, bullet, color, children, Icon])
+  }, [accent, bullet, bulletColor, color, children, Icon])
+
   const commonProps = useMemo(
     () => ({
       $isLight: isLight,
@@ -60,7 +64,7 @@ export function Tag({ accent, bullet, children, color, Icon, isLight = false, ..
 }
 
 const Box = styled.span<{
-  $color?: string
+  $color?: string | undefined
   $isLight: boolean
 }>`
   align-items: center;
