@@ -1,7 +1,6 @@
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { getEnumValuesWithUndefined, getUndefinedPropsFromUndefinedStringProps } from '../../.storybook/utils'
-import { Accent, Tag } from '../../src'
-import { TagBullet } from '../../src/elements/Tag/constants'
+import { Accent, Tag, TagBullet } from '../../src'
 
 import type { TagProps } from '../../src'
 

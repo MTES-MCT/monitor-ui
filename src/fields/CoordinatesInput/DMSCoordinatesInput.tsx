@@ -3,8 +3,8 @@ import { useCallback, useMemo } from 'react'
 import CoordinateInput from 'react-coordinate-input'
 import styled from 'styled-components'
 
+import type { CoordinatesFormat } from '../../constants'
 import type { Coordinates } from '../../types'
-import type { CoordinatesFormat } from './constants'
 
 type DMSCoordinatesInputProps = {
   coordinates: Coordinates | undefined

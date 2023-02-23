@@ -3,10 +3,9 @@ import { dmsToDecimal } from 'react-coordinate-input'
 import IMaskInput from 'react-imask/esm/input'
 import styled from 'styled-components'
 
-import { WSG84_PROJECTION } from '../../constants'
+import { CoordinatesFormat, WSG84_PROJECTION } from '../../constants'
 import { getCoordinates } from '../../utils/coordinates'
 import { isNumeric } from '../../utils/isNumeric'
-import { CoordinatesFormat } from './constants'
 
 import type { Coordinates } from '../../types'
 

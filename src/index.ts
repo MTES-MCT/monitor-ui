@@ -1,9 +1,8 @@
-export { Accent, Size, OPENLAYERS_PROJECTION, WSG84_PROJECTION } from './constants'
+export { Accent, CoordinatesFormat, Size, OPENLAYERS_PROJECTION, TagBullet, WSG84_PROJECTION } from './constants'
 export { GlobalStyle } from './GlobalStyle'
 export { OnlyFontGlobalStyle } from './OnlyFontGlobalStyle'
 export { THEME } from './theme'
 export { ThemeProvider } from './ThemeProvider'
-export { CoordinatesFormat } from './fields/CoordinatesInput/constants'
 
 /* -----------------------------------------------------------------------------
   Components
