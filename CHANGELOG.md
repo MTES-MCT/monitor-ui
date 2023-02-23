@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v3.1.0...v3.1.1) (2023-02-23)
+
+
+### Bug Fixes
+
+* **elements:** expose TagBullet enum ([25eed49](https://github.com/MTES-MCT/monitor-ui/commit/25eed49f50629299824d9d8f3002a136ded8c814))
+
 # [3.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v3.0.1...v3.1.0) (2023-02-23)
 
 
