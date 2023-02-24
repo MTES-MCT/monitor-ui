@@ -1,3 +1,16 @@
+# [3.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v3.1.1...v3.2.0) (2023-02-24)
+
+
+### Bug Fixes
+
+* **fields:** use baseContainer document for active elements in DatePicker & DateRangePicker ([753bd1b](https://github.com/MTES-MCT/monitor-ui/commit/753bd1be2b14c843bf25082e280031a0e1a78ac6))
+
+
+### Features
+
+* **cypress:** add first commands ([b685093](https://github.com/MTES-MCT/monitor-ui/commit/b685093ed178b0e409ff1ef8b1d683f254e098f3))
+* **icons:** update ([ebd4fc3](https://github.com/MTES-MCT/monitor-ui/commit/ebd4fc3a6c17a22701c62d886dec5bf10fb464cc))
+
 ## [3.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v3.1.0...v3.1.1) (2023-02-23)
 
 
