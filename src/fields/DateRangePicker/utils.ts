@@ -84,3 +84,13 @@ export function getTimeTupleFromDate(date?: Date): TimeTuple | undefined {
 
   return [formatNumberAsDoubleDigit(date.getHours()), formatNumberAsDoubleDigit(date.getMinutes())]
 }
+
+// The type is not accurate here but it's good enough to use the protoypes we need for the feature
+// (they would work with any HTML element).
+export function isHtmlElement(element: Document | HTMLDivElement | undefined): element is HTMLDivElement {
+  if (!element) {
+    return false
+  }
+
+  return Boolean((element as HTMLDivElement).tagName)
+}

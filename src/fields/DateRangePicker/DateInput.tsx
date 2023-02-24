@@ -1,9 +1,9 @@
-import { forwardRef, useCallback, useImperativeHandle, useRef, useState } from 'react'
+import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 
 import { Calendar } from '../../icons'
 import { NumberInput } from './NumberInput'
-import { formatNumberAsDoubleDigit } from './utils'
+import { formatNumberAsDoubleDigit, isHtmlElement } from './utils'
 
 import type { NumberInputProps } from './NumberInput'
 import type { DateTuple, DateOrTimeInputRef } from './types'
@@ -11,6 +11,7 @@ import type { ForwardedRef, MutableRefObject } from 'react'
 import type { Promisable } from 'type-fest'
 
 export type DateInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'onNext'> & {
+  baseContainer: Document | HTMLDivElement | undefined
   defaultValue?: DateTuple | undefined
   // TODO Check why TS thinks there is no `disabled` prop in `NumberInputProps`.
   disabled: boolean
@@ -25,6 +26,7 @@ export type DateInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
 }
 function DateInputWithRef(
   {
+    baseContainer,
     defaultValue,
     // eslint-disable-next-line @typescript-eslint/naming-convention
     disabled = false,
@@ -49,6 +51,11 @@ function DateInputWithRef(
   const [hasFormatError, setHasFormatError] = useState(false)
   const [hasValidationError, setHasValidationError] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
+
+  const baseDocument = useMemo(
+    () => (isHtmlElement(baseContainer) ? baseContainer.ownerDocument : window.document),
+    [baseContainer]
+  )
 
   useImperativeHandle<DateOrTimeInputRef, DateOrTimeInputRef>(ref, () => ({
     box: boxRef.current,
@@ -77,9 +84,9 @@ function DateInputWithRef(
   const submit = useCallback(() => {
     setHasValidationError(false)
 
-    const isFilled = window.document.activeElement === yearInputRef.current
+    const isFilled = baseDocument.activeElement === yearInputRef.current
 
-    switch (window.document.activeElement) {
+    switch (baseDocument.activeElement) {
       case dayInputRef.current:
         monthInputRef.current.focus()
         break
@@ -115,7 +122,7 @@ function DateInputWithRef(
     ]
 
     onChange(nextDateTuple, isFilled)
-  }, [onChange])
+  }, [baseDocument, onChange])
 
   return (
     <Box

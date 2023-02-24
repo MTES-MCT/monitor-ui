@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useImperativeHandle, useRef, useState } from 'react'
+import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 
 import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
@@ -6,6 +6,7 @@ import { useForceUpdate } from '../../hooks/useForceUpdate'
 import { Clock } from '../../icons'
 import { NumberInput } from './NumberInput'
 import { RangedTimePicker } from './RangedTimePicker'
+import { isHtmlElement } from './utils'
 
 import type { NumberInputProps } from './NumberInput'
 import type { DateOrTimeInputRef, TimeTuple } from './types'
@@ -13,7 +14,7 @@ import type { ForwardedRef, MutableRefObject } from 'react'
 import type { Promisable } from 'type-fest'
 
 export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'onNext'> & {
-  baseContainer?: Document | HTMLDivElement | null | undefined
+  baseContainer?: Document | HTMLDivElement | undefined
   defaultValue?: TimeTuple | undefined
   // TODO Check why TS thinks there is no `disabled` prop in `NumberInputProps`.
   disabled: boolean
@@ -55,6 +56,11 @@ function TimeInputWithRef(
   const [hasFormatError, setHasFormatError] = useState(false)
   const [hasValidationError, setHasValidationError] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
+
+  const baseDocument = useMemo(
+    () => (isHtmlElement(baseContainer) ? baseContainer.ownerDocument : window.document),
+    [baseContainer]
+  )
 
   useImperativeHandle<DateOrTimeInputRef, DateOrTimeInputRef>(ref, () => ({
     box: boxRef.current,
@@ -132,7 +138,7 @@ function TimeInputWithRef(
   const submit = useCallback(() => {
     setHasValidationError(false)
 
-    if (window.document.activeElement === hourInputRef.current) {
+    if (baseDocument.activeElement === hourInputRef.current) {
       minuteInputRef.current.focus()
     }
 
@@ -148,7 +154,7 @@ function TimeInputWithRef(
 
     const nextTimeTuple: TimeTuple = [hourInputRef.current.value, minuteInputRef.current.value]
     onChange(nextTimeTuple)
-  }, [closeRangedTimePicker, onChange])
+  }, [baseDocument, closeRangedTimePicker, onChange])
 
   useClickOutsideEffect(boxRef, closeRangedTimePicker, baseContainer)
 

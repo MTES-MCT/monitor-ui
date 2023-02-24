@@ -238,6 +238,7 @@ export function DatePicker({
         <Field>
           <DateInput
             ref={dateInputRef}
+            baseContainer={baseContainer || undefined}
             defaultValue={selectedLocalizedDateTupleRef.current}
             disabled={disabled}
             isCompact={isCompact}
@@ -253,7 +254,7 @@ export function DatePicker({
           <Field $isTimeField>
             <TimeInput
               ref={timeInputRef}
-              baseContainer={baseContainer}
+              baseContainer={baseContainer || undefined}
               defaultValue={selectedLocalizedTimeTupleRef.current}
               disabled={disabled}
               isCompact={isCompact}

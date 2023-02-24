@@ -330,6 +330,7 @@ export function DateRangePicker({
         <Field>
           <DateInput
             ref={startDateInputRef}
+            baseContainer={baseContainer || undefined}
             defaultValue={selectedLocalizedStartDateTupleRef.current}
             disabled={disabled}
             isCompact={isCompact}
@@ -348,7 +349,7 @@ export function DateRangePicker({
           <Field isTimeField>
             <TimeInput
               ref={startTimeInputRef}
-              baseContainer={baseContainer}
+              baseContainer={baseContainer || undefined}
               defaultValue={selectedLocalizedStartTimeTupleRef.current}
               disabled={disabled}
               isCompact={isCompact}
@@ -367,6 +368,7 @@ export function DateRangePicker({
         <Field isEndDateField>
           <DateInput
             ref={endDateInputRef}
+            baseContainer={baseContainer || undefined}
             defaultValue={selectedLocalizedEndDateTupleRef.current}
             disabled={disabled}
             isCompact={isCompact}
@@ -387,7 +389,7 @@ export function DateRangePicker({
           <Field isTimeField>
             <TimeInput
               ref={endTimeInputRef}
-              baseContainer={baseContainer}
+              baseContainer={baseContainer || undefined}
               defaultValue={selectedLocalizedEndTimeTupleRef.current}
               disabled={disabled}
               isCompact={isCompact}
