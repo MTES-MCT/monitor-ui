@@ -2970,6 +2970,7 @@ __metadata:
     "@types/jabber": 1.2.0
     "@types/jest": 29.4.0
     "@types/lodash.throttle": 4.1.7
+    "@types/mdx": 2.0.3
     "@types/node": 18.14.1
     "@types/ramda": 0.28.22
     "@types/react": 18.0.26
@@ -5673,6 +5674,13 @@ __metadata:
   dependencies:
     "@types/unist": "*"
   checksum: 3f587bfc0a9a2403ecadc220e61031b01734fedaf82e27eb4d5ba039c0eb54db8c85681ccc070ab4df3f7ec711b736a82b990e69caa14c74bf7ac0ccf2ac7313
+  languageName: node
+  linkType: hard
+
+"@types/mdx@npm:2.0.3":
+  version: 2.0.3
+  resolution: "@types/mdx@npm:2.0.3"
+  checksum: 41deb51c29535913af01d25f0e1414cfb5a6948d0e60e77e4aca895694de48bf0ac69c5a81fe2d9617d726cb253001ef82a65b683d5ef51987d15aa1931d086b
   languageName: node
   linkType: hard
 

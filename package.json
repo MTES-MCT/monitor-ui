@@ -74,6 +74,7 @@
     "@types/jabber": "1.2.0",
     "@types/jest": "29.4.0",
     "@types/lodash.throttle": "4.1.7",
+    "@types/mdx": "2.0.3",
     "@types/node": "18.14.1",
     "@types/ramda": "0.28.22",
     "@types/react": "18.0.26",
