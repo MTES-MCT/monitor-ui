@@ -1,3 +1,15 @@
+# [3.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v3.2.0...v3.3.0) (2023-02-27)
+
+
+### Bug Fixes
+
+* **fields:** fix crash when custom type is given ([57117d9](https://github.com/MTES-MCT/monitor-ui/commit/57117d9d06fe33020abce79260964fe82ed21405))
+
+
+### Features
+
+* **fields:** Add generic type, rename and style search input ([2fd516c](https://github.com/MTES-MCT/monitor-ui/commit/2fd516cf93cf6f9d89c3b33ef08b1ef2390a9189))
+
 # [3.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v3.1.1...v3.2.0) (2023-02-24)
 
 
