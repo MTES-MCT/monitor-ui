@@ -6,30 +6,45 @@ import {
   NewWindowButtonBox,
   NewWindowStoryBox
 } from '../../../.storybook/components/StoryDecorator'
-import { Accent, AutoComplete, Button, Size, useForceUpdate } from '../../../src'
+import { Accent, Search, Button, Size, useForceUpdate } from '../../../src'
 import { NewWindow } from '../../../src/components/NewWindow'
 
-import type { AutoCompleteProps } from '../../../src'
+import type { SearchProps } from '../../../src'
 
-const args: AutoCompleteProps = {
+type Value = {
+  subValue: string
+}
+
+function MenuItem({ item }) {
+  return (
+    <>
+      My custom menu item:
+      <br />
+      {item.subValue}
+    </>
+  )
+}
+
+const args: SearchProps<Value> = {
   defaultValue: undefined,
   error: '',
   isLabelHidden: false,
   isLight: false,
   label: 'An autocompletable select',
   name: 'autoComplete',
+  placeholder: 'Type "first"',
+  MenuItem,
   options: [
-    { label: 'First Option', value: 'FIRST_OPTION' },
-    { label: 'Second Option', value: 'SECOND_OPTION' },
-    { label: 'Third Option', value: 'THIRD_OPTION' },
-    { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
-  ],
-  placeholder: 'Type "first"'
+    { label: 'First Option', value: { subValue: 'FIRST_OPTION' } },
+    { label: 'Second Option', value: { subValue: 'SECOND_OPTION' } },
+    { label: 'Third Option', value: { subValue: 'THIRD_OPTION' } },
+    { label: 'A Very Very Long Option', value: { subValue: 'A_VERY_VERY_LONG_OPTION' } }
+  ]
 }
 
 export default {
-  title: 'Fields/AutoComplete',
-  component: AutoComplete,
+  title: 'Fields/Search',
+  component: Search,
 
   argTypes: {
     defaultValue: {
@@ -46,13 +61,13 @@ export default {
   ]
 }
 
-export function WithOptions(props: AutoCompleteProps) {
+export function WithOptionsAndCustomMenuItem(props: SearchProps<Value>) {
   // eslint-disable-next-line no-null/no-null
   const newWindowStoryBoxRef = useRef<HTMLDivElement>(null)
 
   const [isNewWindowOpen, setIsNewWindowOpen] = useState(false)
   const [isNewWindowFirstLoad, setIsNewWindowFirstLoad] = useState(true)
-  const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
+  const [outputValue, setOutputValue] = useState<any | undefined | '∅'>('∅')
 
   const { forceUpdate } = useForceUpdate()
 
@@ -79,7 +94,7 @@ export function WithOptions(props: AutoCompleteProps) {
         </Button>
       </NewWindowButtonBox>
 
-      {!isNewWindowOpen && <AutoComplete {...props} onChange={setOutputValue} />}
+      {!isNewWindowOpen && <Search<Value> {...props} onChange={setOutputValue} />}
 
       {outputValue !== '∅' && <Output value={outputValue} />}
 
@@ -87,7 +102,7 @@ export function WithOptions(props: AutoCompleteProps) {
         <NewWindow isStoryBook onUnload={() => setIsNewWindowOpen(false)}>
           <NewWindowStoryBox ref={newWindowStoryBoxRef}>
             {newWindowStoryBoxRef.current && (
-              <AutoComplete {...props} baseContainer={newWindowStoryBoxRef.current} onChange={setOutputValue} />
+              <Search<Value> {...props} baseContainer={newWindowStoryBoxRef.current} onChange={setOutputValue} />
             )}
           </NewWindowStoryBox>
         </NewWindow>
