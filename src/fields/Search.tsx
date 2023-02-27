@@ -4,8 +4,10 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AutoComplete as RsuiteAutoComplete } from 'rsuite'
 import styled from 'styled-components'
 
+import { Accent, Size } from '../constants'
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
+import { IconButton } from '../elements/IconButton'
 import { Label } from '../elements/Label'
 import { useClickOutsideEffect } from '../hooks/useClickOutsideEffect'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
@@ -188,26 +190,23 @@ export function Search<T = string>({
         )}
         {inputValue && (
           <>
-            <Close
+            <StyledCloseButton
+              accent={Accent.TERTIARY}
               color={THEME.color.slateGray}
+              Icon={Close}
+              isSearchIconHidden={isSearchIconHidden}
               onClick={clean}
-              size={14}
-              style={{
-                cursor: 'pointer',
-                height: 30,
-                margin: `5px ${isSearchIconHidden ? 5 : 0}px 5px 5px`,
-                padding: 8,
-                width: 30
-              }}
+              size={Size.SMALL}
             />
             {!isSearchIconHidden && <Separator>|</Separator>}
           </>
         )}
         {!isSearchIconHidden && (
-          <SearchIcon
+          <StyledSearchButton
+            accent={Accent.TERTIARY}
             color={THEME.color.slateGray}
-            size={20}
-            style={{ cursor: 'pointer', margin: '10px 10px 10px 8px' }}
+            Icon={SearchIcon}
+            size={Size.NORMAL}
           />
         )}
       </Box>
@@ -216,6 +215,23 @@ export function Search<T = string>({
     </Field>
   )
 }
+
+const StyledCloseButton = styled(IconButton)<{
+  isSearchIconHidden: boolean
+}>`
+  cursor: pointer;
+  height: 30px;
+  margin: 5px ${p => (p.isSearchIconHidden ? 5 : 0)}px 5px 5px;
+  padding: 8px;
+  width: 30px;
+`
+
+const StyledSearchButton = styled(IconButton)`
+  border: unset;
+  cursor: pointer;
+  margin: 10px 10px 10px 8px;
+  padding: 0px;
+`
 
 const Separator = styled.div`
   height: 40px;
