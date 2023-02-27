@@ -35,7 +35,7 @@
     "test:unit:watch": "yarn test:unit --watch"
   },
   "dependencies": {
-    "@babel/runtime": "7.20.13",
+    "@babel/runtime": "7.21.0",
     "prop-types": "15.8.1",
     "tslib": "2.5.0",
     "use-debounce": "^9.0.3"
