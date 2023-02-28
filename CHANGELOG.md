@@ -1,3 +1,10 @@
+## [3.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v3.3.0...v3.3.1) (2023-02-28)
+
+
+### Bug Fixes
+
+* **deps:** downgrade cypress version ([cd7c3bd](https://github.com/MTES-MCT/monitor-ui/commit/cd7c3bd327d8b2463995214dc3d40bd539ba0f0b))
+
 # [3.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v3.2.0...v3.3.0) (2023-02-27)
 
 
