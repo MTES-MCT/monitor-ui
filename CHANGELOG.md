@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v3.3.1...v3.4.0) (2023-02-28)
+
+
+### Features
+
+* **fields:** add throttle to search field ([0a29744](https://github.com/MTES-MCT/monitor-ui/commit/0a29744d714d74302f10a3514ab44ee260219491))
+
 ## [3.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v3.3.0...v3.3.1) (2023-02-28)
 
 
