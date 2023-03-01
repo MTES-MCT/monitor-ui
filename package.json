@@ -87,7 +87,7 @@
     "browser-assert": "1.2.1",
     "chromatic": "6.14.0",
     "codecov": "3.8.3",
-    "cypress": "12.5.1",
+    "cypress": "10.8.0",
     "date-fns": "2.29.3",
     "dayjs": "1.11.7",
     "eslint": "8.34.0",
