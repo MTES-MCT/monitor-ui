@@ -133,7 +133,7 @@
     "rollup-plugin-sizes": "1.0.5",
     "rsuite": "5.24.1",
     "semantic-release": "19.0.5",
-    "storybook-addon-performance": "0.16.1",
+    "storybook-addon-performance": "0.17.0",
     "styled-components": "5.3.6",
     "ts-loader": "9.4.2",
     "type-fest": "3.5.0",
