@@ -1,15 +1,16 @@
-import {useEffect, useRef, useState} from 'react'
+import ky from 'ky'
+import { useEffect, useRef, useState } from 'react'
 
-import {Output} from '../../../.storybook/components/Output'
+import { Output } from '../../../.storybook/components/Output'
 import {
   generateStoryDecorator,
   NewWindowButtonBox,
   NewWindowStoryBox
 } from '../../../.storybook/components/StoryDecorator'
-import type {SearchProps} from '../../../src'
-import {Accent, Button, Option, Search, Size, useForceUpdate} from '../../../src'
-import {NewWindow} from '../../../src/components/NewWindow'
-import ky from "ky";
+import { Accent, Button, Option, Search, Size, useForceUpdate } from '../../../src'
+import { NewWindow } from '../../../src/components/NewWindow'
+
+import type { SearchProps } from '../../../src'
 
 const args: SearchProps = {
   error: '',
@@ -48,10 +49,12 @@ export function WithCustomQuery(props: SearchProps) {
     const url = `https://api.openbrewerydb.org/breweries?by_name=${nextQuery}`
     const rawData: Record<string, any>[] = await ky.get(url).json()
 
-    setOptions(rawData.map(({ id, name }) => ({
-      label: name,
-      value: id
-    })))
+    setOptions(
+      rawData.map(({ id, name }) => ({
+        label: name,
+        value: id
+      }))
+    )
   }
 
   const { forceUpdate } = useForceUpdate()
@@ -79,7 +82,7 @@ export function WithCustomQuery(props: SearchProps) {
         </Button>
       </NewWindowButtonBox>
 
-      {!isNewWindowOpen && <Search {...props} options={options} onQuery={onQuery} onChange={setOutputValue} />}
+      {!isNewWindowOpen && <Search {...props} onChange={setOutputValue} onQuery={onQuery} options={options} />}
 
       {outputValue !== '∅' && <Output value={outputValue} />}
 
@@ -87,7 +90,13 @@ export function WithCustomQuery(props: SearchProps) {
         <NewWindow isStoryBook onUnload={() => setIsNewWindowOpen(false)}>
           <NewWindowStoryBox ref={newWindowStoryBoxRef}>
             {newWindowStoryBoxRef.current && (
-              <Search {...props} baseContainer={newWindowStoryBoxRef.current}  options={options} onQuery={onQuery} onChange={setOutputValue} />
+              <Search
+                {...props}
+                baseContainer={newWindowStoryBoxRef.current}
+                onChange={setOutputValue}
+                onQuery={onQuery}
+                options={options}
+              />
             )}
           </NewWindowStoryBox>
         </NewWindow>
