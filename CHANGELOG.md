@@ -1,3 +1,16 @@
+# [3.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v3.4.0...v3.5.0) (2023-03-01)
+
+
+### Bug Fixes
+
+* **deps:** fix cypress version ([399b1fe](https://github.com/MTES-MCT/monitor-ui/commit/399b1fea54ac5897b8cb33614b34845aa6f0a03b))
+* **story:** apply linter ([e7a0fa7](https://github.com/MTES-MCT/monitor-ui/commit/e7a0fa71084ed5645b5f618f35c416c45fd470c0))
+
+
+### Features
+
+* **stories:** add custom query search story ([c17d4b0](https://github.com/MTES-MCT/monitor-ui/commit/c17d4b05f1653fa4b932d62b991b1f7b8b867566))
+
 # [3.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v3.3.1...v3.4.0) (2023-02-28)
 
 
