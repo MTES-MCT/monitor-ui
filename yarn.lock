@@ -3134,7 +3134,7 @@ __metadata:
     typescript: 4.9.5
     use-debounce: ^9.0.3
     webpack: 5.75.0
-    yup: 1.0.0
+    yup: 1.0.2
   peerDependencies:
     cypress: ^10.0.0
     formik: ^2.0.0
@@ -25637,15 +25637,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yup@npm:1.0.0":
-  version: 1.0.0
-  resolution: "yup@npm:1.0.0"
+"yup@npm:1.0.2":
+  version: 1.0.2
+  resolution: "yup@npm:1.0.2"
   dependencies:
     property-expr: ^2.0.5
     tiny-case: ^1.0.3
     toposort: ^2.0.2
     type-fest: ^2.19.0
-  checksum: 5944fd677c70e0d6b5ea82bd11e992d91339c8f33efddafd52dc812514309bd17ad61b7604cfac39fed52a5f23ca65b97a0b8cb1bd7186da5ad6e731ebdce7c7
+  checksum: 1cb9c490853739aa0c576c87a81008dd3612985dd2da5ff6127b77640465fa906bb47ed30a7c97824b4a3f525010b2d7f614ebbd442b02e16433675c4d66f0b8
   languageName: node
   linkType: hard
 
