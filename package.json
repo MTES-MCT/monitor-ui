@@ -82,7 +82,7 @@
     "@types/styled-components": "5.1.26",
     "@types/webpack": "5.28.0",
     "@typescript-eslint/eslint-plugin": "5.50.0",
-    "@typescript-eslint/parser": "5.48.2",
+    "@typescript-eslint/parser": "5.54.0",
     "babel-loader": "9.1.0",
     "browser-assert": "1.2.1",
     "chromatic": "6.14.0",
