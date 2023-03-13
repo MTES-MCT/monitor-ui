@@ -1,9 +1,9 @@
 import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 
-import { Calendar } from '../../icons'
 import { NumberInput } from './NumberInput'
 import { formatNumberAsDoubleDigit, isHtmlElement } from './utils'
+import { Calendar } from '../../icons'
 
 import type { NumberInputProps } from './NumberInput'
 import type { DateTuple, DateOrTimeInputRef } from './types'

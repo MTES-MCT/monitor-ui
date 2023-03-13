@@ -2,12 +2,12 @@ import { equals, includes, reject } from 'ramda'
 import { useCallback, useMemo, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
+import { Checkbox } from './Checkbox'
 import { FieldError } from '../elements/FieldError'
 import { Fieldset } from '../elements/Fieldset'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
-import { Checkbox } from './Checkbox'
 
 import type { Option } from '../types'
 import type { Promisable } from 'type-fest'

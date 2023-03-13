@@ -1,9 +1,9 @@
 import { FunctionComponent, HTMLAttributes, useMemo } from 'react'
 import styled from 'styled-components'
 
+import { Disk } from './Disk'
 import { Accent, TagBullet } from '../../constants'
 import { THEME } from '../../theme'
-import { Disk } from './Disk'
 
 import type { IconProps } from '../../types'
 

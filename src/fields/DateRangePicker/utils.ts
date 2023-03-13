@@ -2,8 +2,8 @@
 
 import { dayjs } from '../../utils/dayjs'
 
-import type { Option } from '../../types'
 import type { DateTuple, TimeTuple } from './types'
+import type { Option } from '../../types'
 
 export function formatNumberAsDoubleDigit(numberLike: number | string): string {
   return String(numberLike).padStart(2, '0')
