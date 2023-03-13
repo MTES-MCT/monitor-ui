@@ -1,9 +1,9 @@
 import { useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 
+import { PrimaryButton, SecondaryButton } from './Button'
 import { Accent, Size } from '../constants'
 import { stopMouseEventPropagation } from '../utils/stopMouseEventPropagation'
-import { PrimaryButton, SecondaryButton } from './Button'
 
 import type { IconProps } from '../types'
 import type { ButtonHTMLAttributes, FunctionComponent, MouseEvent } from 'react'

@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 
-import { stopMouseEventPropagation } from '../../utils/stopMouseEventPropagation'
 import { getRangedTimeOptions } from './utils'
+import { stopMouseEventPropagation } from '../../utils/stopMouseEventPropagation'
 
 import type { TimeTuple } from './types'
 import type { Promisable } from 'type-fest'

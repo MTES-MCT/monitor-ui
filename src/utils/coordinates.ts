@@ -1,7 +1,7 @@
 import { transform } from 'ol/proj'
 
-import { CoordinatesFormat, WSG84_PROJECTION } from '../constants'
 import { isNumeric } from './isNumeric'
+import { CoordinatesFormat, WSG84_PROJECTION } from '../constants'
 
 enum CoordinateLatLon {
   LATITUDE = 'LATITUDE',

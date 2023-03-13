@@ -1,12 +1,12 @@
 import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 
-import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
-import { useForceUpdate } from '../../hooks/useForceUpdate'
-import { Clock } from '../../icons'
 import { NumberInput } from './NumberInput'
 import { RangedTimePicker } from './RangedTimePicker'
 import { isHtmlElement } from './utils'
+import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
+import { useForceUpdate } from '../../hooks/useForceUpdate'
+import { Clock } from '../../icons'
 
 import type { NumberInputProps } from './NumberInput'
 import type { DateOrTimeInputRef, TimeTuple } from './types'

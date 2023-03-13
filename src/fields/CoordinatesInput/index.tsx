@@ -1,15 +1,15 @@
 import { useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 
+import { DDCoordinatesInput } from './DDCoordinatesInput'
+import { DMDCoordinatesInput } from './DMDCoordinatesInput'
+import { DMSCoordinatesInput } from './DMSCoordinatesInput'
 import { CoordinatesFormat } from '../../constants'
 import { FieldError } from '../../elements/FieldError'
 import { Fieldset } from '../../elements/Fieldset'
 import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { noop } from '../../utils/noop'
 import { normalizeString } from '../../utils/normalizeString'
-import { DDCoordinatesInput } from './DDCoordinatesInput'
-import { DMDCoordinatesInput } from './DMDCoordinatesInput'
-import { DMSCoordinatesInput } from './DMSCoordinatesInput'
 
 import type { FieldsetProps } from '../../elements/Fieldset'
 import type { Coordinates } from '../../types'
