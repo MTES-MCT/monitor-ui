@@ -115,7 +115,7 @@
     "jest-environment-jsdom": "29.4.3",
     "jest-environment-node": "29.5.0",
     "ky": "0.33.0",
-    "lint-staged": "13.0.4",
+    "lint-staged": "13.2.0",
     "lodash.throttle": "4.1.1",
     "ol": "7.1.0",
     "postcss": "8.4.19",
