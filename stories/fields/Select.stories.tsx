@@ -56,7 +56,7 @@ export function _Select(props: SelectProps) {
 
   const [isNewWindowOpen, setIsNewWindowOpen] = useState(false)
   const [isNewWindowFirstLoad, setIsNewWindowFirstLoad] = useState(true)
-  const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
+  const [outputValue, setOutputValue] = useState<any>('∅')
 
   const { forceUpdate } = useForceUpdate()
 

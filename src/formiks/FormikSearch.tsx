@@ -5,8 +5,14 @@ import { Search } from '../fields/Search'
 
 import type { SearchProps } from '../fields/Search'
 
-export type FormikSearchProps = Omit<SearchProps, 'defaultValue' | 'error' | 'onChange'>
-export function FormikSearch({ name, ...originalProps }: FormikSearchProps) {
+export type FormikSearchProps<OptionValue extends number | string | Record<string, any> = string> = Omit<
+  SearchProps<OptionValue>,
+  'defaultValue' | 'error' | 'onChange'
+>
+export function FormikSearch<OptionValue extends number | string | Record<string, any> = string>({
+  name,
+  ...originalProps
+}: FormikSearchProps<OptionValue>) {
   const [field, meta, helpers] = useField(name)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps

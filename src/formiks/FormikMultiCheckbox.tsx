@@ -5,11 +5,11 @@ import { MultiCheckbox } from '../fields/MultiCheckbox'
 
 import type { MultiCheckboxProps } from '../fields/MultiCheckbox'
 
-export type FormikMultiCheckboxProps<OptionValue = string> = Omit<
+export type FormikMultiCheckboxProps<OptionValue extends number | string | Record<string, any> = string> = Omit<
   MultiCheckboxProps<OptionValue>,
   'defaultValue' | 'error' | 'onChange'
 >
-export function FormikMultiCheckbox<OptionValue = string>({
+export function FormikMultiCheckbox<OptionValue extends number | string | Record<string, any> = string>({
   name,
   ...originalProps
 }: FormikMultiCheckboxProps<OptionValue>) {
