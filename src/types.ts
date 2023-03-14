@@ -1,4 +1,8 @@
 import type { SVGProps } from 'react'
+import type { ItemDataType } from 'rsuite/esm/@types/common'
+
+// -----------------------------------------------------------------------------
+// Public types
 
 export type Coordinates = [number, number]
 
@@ -11,7 +15,10 @@ export type IconProps = SVGProps<SVGSVGElement> & {
   size?: number | undefined
 }
 
-export type Option<V = string> = {
+export type Option<V extends number | string | Record<string, any> = string> = Omit<
+  ItemDataType<string>,
+  'label' | 'value'
+> & {
   label: string
   value: V
 }
@@ -25,4 +32,18 @@ export type Option<V = string> = {
  */
 export type Undefine<T> = {
   [K in keyof T]: T[K] | undefined
+}
+
+// -----------------------------------------------------------------------------
+// Private types
+
+/**
+ * Since Rsuite restricts `value` to `string | number`, we use this proxy type,
+ * allowing us to use conventioned option values that can include objects
+ */
+export interface OptionAsRsuiteItemDataType<V extends number | string | Record<string, any>>
+  extends ItemDataType<string> {
+  label: string
+  optionValue: V
+  value: string
 }

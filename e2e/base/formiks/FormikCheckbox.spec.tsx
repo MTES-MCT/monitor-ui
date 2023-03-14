@@ -1,16 +1,16 @@
 import { composeStories } from '@storybook/testing-react'
 
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
-import * as stories from '../../../stories/formiks/FormikCheckbox.stories'
+import * as baseStories from '../../../stories/formiks/FormikCheckbox.stories'
 import { mountAndWait, outputShouldBe } from '../utils'
 
-const { _FormikCheckbox: FormikCheckboxStory } = composeStories(stories as any) as any
+const { _FormikCheckbox: BaseStory } = composeStories(baseStories as any) as any
 
-context('Test', () => {
+context('Base', () => {
   beforeEach(() => {
     mountAndWait(
       <GlobalDecoratorWrapper>
-        <FormikCheckboxStory />
+        <BaseStory />
       </GlobalDecoratorWrapper>
     )
   })

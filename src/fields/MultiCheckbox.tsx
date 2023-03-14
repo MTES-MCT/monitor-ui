@@ -12,7 +12,7 @@ import { normalizeString } from '../utils/normalizeString'
 import type { Option } from '../types'
 import type { Promisable } from 'type-fest'
 
-export type MultiCheckboxProps<OptionValue = string> = {
+export type MultiCheckboxProps<OptionValue extends number | string | Record<string, any> = string> = {
   defaultValue?: OptionValue[] | undefined
   disabled?: boolean | undefined
   error?: string | undefined
@@ -24,7 +24,7 @@ export type MultiCheckboxProps<OptionValue = string> = {
   onChange?: ((nextValue: OptionValue[] | undefined) => Promisable<void>) | undefined
   options: Option<OptionValue>[]
 }
-export function MultiCheckbox<OptionValue = string>({
+export function MultiCheckbox<OptionValue extends number | string | Record<string, any> = string>({
   defaultValue = [],
   // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,

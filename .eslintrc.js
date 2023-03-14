@@ -93,6 +93,13 @@ module.exports = {
 
     '@typescript/no-use-before-define': 'off',
 
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_'
+      }
+    ],
     '@typescript-eslint/no-use-before-define': 'off',
 
     'import/no-extraneous-dependencies': ['error', { devDependencies: true, peerDependencies: true }],

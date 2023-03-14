@@ -5,11 +5,14 @@ import { MultiRadio } from '../fields/MultiRadio'
 
 import type { MultiRadioProps } from '../fields/MultiRadio'
 
-export type FormikMultiRadioProps<OptionValue = string> = Omit<
+export type FormikMultiRadioProps<OptionValue extends number | string | Record<string, any> = string> = Omit<
   MultiRadioProps<OptionValue>,
   'defaultValue' | 'error' | 'onChange'
 >
-export function FormikMultiRadio<OptionValue = string>({ name, ...originalProps }: FormikMultiRadioProps<OptionValue>) {
+export function FormikMultiRadio<OptionValue extends number | string | Record<string, any> = string>({
+  name,
+  ...originalProps
+}: FormikMultiRadioProps<OptionValue>) {
   const [field, meta, helpers] = useField<OptionValue | undefined>(name)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps

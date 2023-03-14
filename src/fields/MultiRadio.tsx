@@ -12,7 +12,7 @@ import { normalizeString } from '../utils/normalizeString'
 import type { Option } from '../types'
 import type { Promisable } from 'type-fest'
 
-export type MultiRadioProps<OptionValue = string> = {
+export type MultiRadioProps<OptionValue extends number | string | Record<string, any> = string> = {
   defaultValue?: OptionValue | undefined
   disabled?: boolean | undefined
   error?: string | undefined
@@ -24,7 +24,7 @@ export type MultiRadioProps<OptionValue = string> = {
   onChange?: ((nextValue: OptionValue | undefined) => Promisable<void>) | undefined
   options: Option<OptionValue>[]
 }
-export function MultiRadio<OptionValue = string>({
+export function MultiRadio<OptionValue extends number | string | Record<string, any> = string>({
   defaultValue,
   // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,

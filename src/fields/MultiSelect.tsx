@@ -9,14 +9,16 @@ import { useClickOutsideEffect } from '../hooks/useClickOutsideEffect'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
+import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
 import { normalizeString } from '../utils/normalizeString'
+import { toggleInCollection } from '../utils/toggleInCollection'
 
-import type { Option } from '../types'
+import type { Option, OptionAsRsuiteItemDataType } from '../types'
 import type { MouseEvent, ReactNode } from 'react'
 import type { TagPickerProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
-export type MultiSelectProps<OptionValue = string> = Omit<
+export type MultiSelectProps<OptionValue extends number | string | Record<string, any> = string> = Omit<
   TagPickerProps,
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'open' | 'renderMenuItem' | 'value'
 > & {
@@ -31,24 +33,26 @@ export type MultiSelectProps<OptionValue = string> = Omit<
   label: string
   name: string
   onChange?: ((nextValue: OptionValue[] | undefined) => Promisable<void>) | undefined
+  optionValueKey?: keyof OptionValue | undefined
   options: Option<OptionValue>[]
 }
-export function MultiSelect<OptionValue = string>({
+export function MultiSelect<OptionValue extends number | string | Record<string, any> = string>({
   baseContainer,
   defaultValue,
   error,
-  fixedWidth,
   isLabelHidden = false,
   isLight = false,
   label,
   onChange,
   options,
+  optionValueKey,
   // eslint-disable-next-line @typescript-eslint/naming-convention
   searchable = false,
   ...originalProps
 }: MultiSelectProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
+  const selectedOptionValuesRef = useRef<OptionValue[]>(defaultValue || [])
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -57,6 +61,7 @@ export function MultiSelect<OptionValue = string>({
     [defaultValue, originalProps.disabled]
   )
   const controlledError = useMemo(() => normalizeString(error), [error])
+  const data = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([controlledDefaultValue, originalProps.disabled, originalProps.name])
 
@@ -66,20 +71,30 @@ export function MultiSelect<OptionValue = string>({
     setIsOpen(false)
   }, [])
 
-  const handleChange = useCallback(
-    (nextValue: OptionValue[] | null) => {
-      if (!onChange) {
-        return
+  const handleClean = useCallback(() => {
+    selectedOptionValuesRef.current = []
+
+    if (onChange) {
+      onChange(undefined)
+    }
+  }, [onChange])
+
+  const handleSelect = useCallback(
+    (_: string, selectedItem: OptionAsRsuiteItemDataType<OptionValue>) => {
+      const nextValues = toggleInCollection(selectedItem.optionValue, selectedOptionValuesRef.current)
+
+      selectedOptionValuesRef.current = nextValues
+
+      if (onChange) {
+        const normalizedNextValue = !nextValues.length ? undefined : nextValues
+
+        onChange(normalizedNextValue)
       }
-
-      const normalizedNextValue = !nextValue || !nextValue.length ? undefined : nextValue
-
-      onChange(normalizedNextValue)
     },
     [onChange]
   )
 
-  const renderMenuItem = useCallback((_label: ReactNode): ReactNode => <span title={String(_label)}>{_label}</span>, [])
+  const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
 
   const toggle = useCallback(
     (event: MouseEvent<HTMLElement>) => {
@@ -126,11 +141,13 @@ export function MultiSelect<OptionValue = string>({
           <TagPicker
             key={key}
             container={boxRef.current}
-            data={options as any}
+            data={data}
             defaultValue={controlledDefaultValue}
             id={originalProps.name}
-            onChange={handleChange}
+            onClean={handleClean}
             onClick={toggle}
+            // Since we customized `ItemDataType` type by adding `optionValue`, we have an optional vs required conflict
+            onSelect={handleSelect as any}
             open={isOpen}
             renderMenuItem={renderMenuItem}
             searchable={searchable}

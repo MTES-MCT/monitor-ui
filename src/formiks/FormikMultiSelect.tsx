@@ -5,11 +5,11 @@ import { MultiSelect } from '../fields/MultiSelect'
 
 import type { MultiSelectProps } from '../fields/MultiSelect'
 
-export type FormikMultiSelectProps<OptionValue = string> = Omit<
+export type FormikMultiSelectProps<OptionValue extends number | string | Record<string, any> = string> = Omit<
   MultiSelectProps<OptionValue>,
   'defaultValue' | 'error' | 'onChange'
 >
-export function FormikMultiSelect<OptionValue = string>({
+export function FormikMultiSelect<OptionValue extends number | string | Record<string, any> = string>({
   name,
   ...originalProps
 }: FormikMultiSelectProps<OptionValue>) {

@@ -9,16 +9,27 @@ import { useClickOutsideEffect } from '../hooks/useClickOutsideEffect'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
+import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
 import { normalizeString } from '../utils/normalizeString'
 
-import type { Option } from '../types'
+import type { Option, OptionAsRsuiteItemDataType } from '../types'
 import type { MouseEvent, ReactNode } from 'react'
 import type { SelectPickerProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
-export type SelectProps<OptionValue = string> = Omit<
+export type SelectProps<OptionValue extends number | string | Record<string, any> = string> = Omit<
   SelectPickerProps<any>,
-  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'open' | 'renderMenuItem' | 'value'
+  | 'as'
+  | 'container'
+  | 'data'
+  | 'defaultValue'
+  | 'id'
+  | 'onChange'
+  | 'open'
+  | 'renderMenuItem'
+  | 'renderValue'
+  | 'value'
+  | 'valueKey'
 > & {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
@@ -29,9 +40,10 @@ export type SelectProps<OptionValue = string> = Omit<
   label: string
   name: string
   onChange?: ((nextValue: OptionValue | undefined) => Promisable<void>) | undefined
+  optionValueKey?: keyof OptionValue | undefined
   options: Option<OptionValue>[]
 }
-export function Select<OptionValue = string>({
+export function Select<OptionValue extends number | string | Record<string, any> = string>({
   baseContainer,
   defaultValue,
   error,
@@ -40,6 +52,7 @@ export function Select<OptionValue = string>({
   label,
   onChange,
   options,
+  optionValueKey,
   // eslint-disable-next-line @typescript-eslint/naming-convention
   searchable = false,
   ...originalProps
@@ -56,6 +69,7 @@ export function Select<OptionValue = string>({
     [defaultValue, originalProps.disabled]
   )
   const controlledError = useMemo(() => normalizeString(error), [error])
+  const data = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([controlledDefaultValue, originalProps.disabled, originalProps.name])
 
@@ -63,20 +77,24 @@ export function Select<OptionValue = string>({
     setIsOpen(false)
   }, [])
 
-  const handleChange = useCallback(
-    (nextValue: OptionValue | null) => {
+  const handleClean = useCallback(() => {
+    if (onChange) {
+      onChange(undefined)
+    }
+  }, [onChange])
+
+  const handleSelect = useCallback(
+    (_: string, selectedItem: OptionAsRsuiteItemDataType<OptionValue>) => {
       close()
 
       if (onChange) {
-        const normalizedNextValue = nextValue ?? undefined
-
-        onChange(normalizedNextValue)
+        onChange(selectedItem.optionValue)
       }
     },
     [close, onChange]
   )
 
-  const renderMenuItem = useCallback((_label: ReactNode): ReactNode => <span title={String(_label)}>{_label}</span>, [])
+  const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
 
   const toggle = useCallback(
     (event: MouseEvent<HTMLElement>) => {
@@ -126,12 +144,12 @@ export function Select<OptionValue = string>({
             key={key}
             $isLight={isLight}
             container={boxRef.current}
-            data={options}
+            data={data}
             defaultValue={controlledDefaultValue}
             id={originalProps.name}
-            // The `unknown` type from Rsuite library is wrong. It should be inferred from `data` prop type.
-            // `onChange: ((value: unknown, event: React.SyntheticEvent<Element, Event>) => void) | undefined`
-            onChange={handleChange as any}
+            onClean={handleClean}
+            // Since we customized `ItemDataType` type by adding `optionValue`, we have an optional vs required conflict
+            onSelect={handleSelect as any}
             open={isOpen}
             renderMenuItem={renderMenuItem}
             searchable={searchable}

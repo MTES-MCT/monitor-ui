@@ -3,6 +3,7 @@ export function pickMultiSelectOptions(
   values: string[] | undefined
 ) {
   cypressMultiSelectInputElement
+
     .parent()
     .parent()
     .parent()
@@ -17,8 +18,19 @@ export function pickMultiSelectOptions(
         cy.wrap(maybeClearButton).scrollIntoView().click({ force: true })
       }
 
-      if (values) {
-        cy.wrap(rsuiteMultiSelectElement).scrollIntoView().click()
+      if (!values) {
+        return
+      }
+
+      cy.wait(250).then(() => {
+        cy.wrap(rsuiteMultiSelectElement).scrollIntoView()
+
+        const maybeCaretIconButton = rsuiteMultiSelectElement.querySelector('.rs-picker-toggle-caret')
+        if (!maybeCaretIconButton) {
+          throw new Error('This should never happen.')
+        }
+
+        cy.wrap(maybeCaretIconButton).click()
 
         cy.get('.rs-picker-picker-check-menu').then(([rsuiteMultiSelectMenu]) => {
           if (!rsuiteMultiSelectMenu) {
@@ -59,6 +71,6 @@ export function pickMultiSelectOptions(
 
           cy.wait(250)
         })
-      }
+      })
     })
 }
