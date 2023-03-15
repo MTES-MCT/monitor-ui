@@ -83,8 +83,17 @@ export function MultiCheckbox<OptionValue = string>({
   )
 
   return (
-    <Fieldset key={key} disabled={disabled} isLegendHidden={isLabelHidden} isLight={isLight} legend={label}>
-      <ChecboxesBox $isInline={isInline}>{checkboxesElement}</ChecboxesBox>
+    <Fieldset
+      key={key}
+      disabled={disabled}
+      hasError={hasError}
+      isLegendHidden={isLabelHidden}
+      isLight={isLight}
+      legend={label}
+    >
+      <ChecboxesBox $hasError={hasError} $isInline={isInline}>
+        {checkboxesElement}
+      </ChecboxesBox>
 
       {hasError && <FieldError>{controlledError}</FieldError>}
     </Fieldset>
@@ -92,6 +101,7 @@ export function MultiCheckbox<OptionValue = string>({
 }
 
 const ChecboxesBox = styled.div<{
+  $hasError: boolean
   $isInline: boolean
 }>`
   color: ${p => p.theme.color.gunMetal};
@@ -103,6 +113,13 @@ const ChecboxesBox = styled.div<{
       user-select: none;
     }
   }
+  ${p =>
+    p.$hasError &&
+    css`
+      .rs-checkbox-wrapper .rs-checkbox-inner::before {
+        border-color: ${p.theme.color.maximumRed} !important;
+      }
+    `}
 
   ${p =>
     !p.$isInline &&
