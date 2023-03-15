@@ -69,8 +69,15 @@ export function MultiRadio<OptionValue = string>({
   }, [defaultValue, disabled])
 
   return (
-    <Fieldset key={key} disabled={disabled} isLegendHidden={isLabelHidden} isLight={isLight} legend={label}>
-      <ChecboxesBox $isInline={isInline}>
+    <Fieldset
+      key={key}
+      disabled={disabled}
+      hasError={hasError}
+      isLegendHidden={isLabelHidden}
+      isLight={isLight}
+      legend={label}
+    >
+      <CheckboxesBox $isInline={isInline}>
         {options.map((option, index) => (
           <Radio
             // eslint-disable-next-line react/no-array-index-key
@@ -83,14 +90,14 @@ export function MultiRadio<OptionValue = string>({
             {option.label}
           </Radio>
         ))}
-      </ChecboxesBox>
+      </CheckboxesBox>
 
       {hasError && <FieldError>{controlledError}</FieldError>}
     </Fieldset>
   )
 }
 
-const ChecboxesBox = styled.div<{
+const CheckboxesBox = styled.div<{
   $isInline: boolean
 }>`
   color: ${p => p.theme.color.gunMetal};

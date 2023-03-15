@@ -6,6 +6,7 @@ import { Legend } from './Legend'
 
 export type FieldsetProps = Omit<FieldsetHTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange' | 'value'> & {
   hasBorder?: boolean | undefined
+  hasError?: boolean | undefined
   isLegendHidden?: boolean | undefined
   isLight?: boolean | undefined
   legend?: string | undefined
@@ -13,6 +14,7 @@ export type FieldsetProps = Omit<FieldsetHTMLAttributes<HTMLFieldSetElement>, 'd
 export function Fieldset({
   children,
   hasBorder = false,
+  hasError = false,
   isLegendHidden = false,
   isLight = false,
   legend,
@@ -23,7 +25,7 @@ export function Fieldset({
   return (
     <StyledField as="fieldset" {...nativeProps}>
       {legend && (
-        <Legend disabled={nativeProps.disabled} isHidden={isLegendHidden}>
+        <Legend disabled={nativeProps.disabled} hasError={hasError} isHidden={isLegendHidden}>
           {legend}
         </Legend>
       )}

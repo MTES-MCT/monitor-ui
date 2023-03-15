@@ -55,12 +55,18 @@ export function TextInput({
 
   return (
     <Field>
-      <Label disabled={originalProps.disabled} htmlFor={originalProps.name} isHidden={isLabelHidden}>
+      <Label
+        disabled={originalProps.disabled}
+        hasError={hasError}
+        htmlFor={originalProps.name}
+        isHidden={isLabelHidden}
+      >
         {label}
       </Label>
 
       <StyledInput
         key={key}
+        $hasError={hasError}
         $isLight={isLight}
         defaultValue={controlledDefaultValue}
         id={originalProps.name}
@@ -75,10 +81,12 @@ export function TextInput({
 }
 
 const StyledInput = styled(Input)<{
+  $hasError: boolean
   $isLight: boolean
 }>`
   background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
   border: 0;
+  outline: ${p => (p.$hasError ? `1px solid ${p.theme.color.maximumRed}` : 0)};
   font-size: 13px;
   width: 100%;
 

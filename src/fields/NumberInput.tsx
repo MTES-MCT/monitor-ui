@@ -57,12 +57,18 @@ export function NumberInput({
 
   return (
     <Field>
-      <Label disabled={originalProps.disabled} htmlFor={originalProps.name} isHidden={isLabelHidden}>
+      <Label
+        disabled={originalProps.disabled}
+        hasError={hasError}
+        htmlFor={originalProps.name}
+        isHidden={isLabelHidden}
+      >
         {label}
       </Label>
 
       <StyledInput
         key={key}
+        $hasError={hasError}
         $isLight={isLight}
         defaultValue={controlledDefaultValue}
         id={originalProps.name}
@@ -77,10 +83,16 @@ export function NumberInput({
 }
 
 const StyledInput = styled(Input)<{
+  $hasError: boolean
   $isLight: boolean
 }>`
   background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
   border: 0;
   font-size: 13px;
   width: 100%;
+  ${p => (p.$hasError ? `outline: 1px solid ${p.theme.color.maximumRed}` : '')};
+  &:focus {
+    outline-width: 1px;
+    outline-color: ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray)};
+  }
 `

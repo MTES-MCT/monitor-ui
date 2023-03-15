@@ -121,7 +121,7 @@ export function MultiSelect<OptionValue = string>({
         {label}
       </Label>
 
-      <Box ref={boxRef} $isActive={isOpen} $isLight={isLight} onClick={toggle}>
+      <Box ref={boxRef} $hasError={hasError} $isActive={isOpen} $isLight={isLight} onClick={toggle}>
         {boxRef.current && (
           <TagPicker
             key={key}
@@ -145,6 +145,7 @@ export function MultiSelect<OptionValue = string>({
 }
 
 const Box = styled.div<{
+  $hasError: boolean
   $isActive: boolean
   $isLight: boolean
 }>`
@@ -153,12 +154,22 @@ const Box = styled.div<{
 
   > .rs-picker-input {
     background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
-    border: solid 1px ${p => (p.$isActive ? p.theme.color.blueGray[100] : p.theme.color.gainsboro)} !important;
+    border: solid 1px
+      ${p => {
+        if (p.$hasError) {
+          return p.theme.color.maximumRed
+        }
+        if (p.$isActive) {
+          return p.theme.color.blueGray[100]
+        }
+
+        return p.theme.color.gainsboro
+      }} !important;
     cursor: pointer;
     width: 100%;
 
     :hover {
-      border: solid 1px ${p => p.theme.color.blueYonder[100]} !important;
+      border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueYonder[100])} !important;
     }
 
     :active,
