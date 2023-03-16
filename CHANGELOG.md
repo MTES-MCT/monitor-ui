@@ -1,3 +1,10 @@
+# [3.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v3.5.0...v3.6.0) (2023-03-16)
+
+
+### Features
+
+* **css:** css for errors ([e0b5d51](https://github.com/MTES-MCT/monitor-ui/commit/e0b5d51281214db916103311dbe70ab871299d09))
+
 # [3.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v3.4.0...v3.5.0) (2023-03-01)
 
 
