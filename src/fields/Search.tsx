@@ -1,6 +1,6 @@
 import ky from 'ky'
 import { propEq } from 'ramda'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { BaseSyntheticEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AutoComplete as RsuiteAutoComplete } from 'rsuite'
 import styled from 'styled-components'
 import { useDebouncedCallback } from 'use-debounce'
@@ -93,7 +93,7 @@ export function Search<T = string>({
   }, [])
 
   const clean = useCallback(() => {
-    setInputValue('')
+    setInputValue(undefined)
     setIsOpen(false)
   }, [])
 
@@ -108,11 +108,10 @@ export function Search<T = string>({
   )
 
   const handleChange = useCallback(
-    async (nextQuery: T) => {
-      if (!(typeof nextQuery === 'string')) {
+    async (nextQuery: T, e: BaseSyntheticEvent) => {
+      if (!(typeof nextQuery === 'string') || e.type !== 'change') {
         return
       }
-
       setInputValue(nextQuery)
       queryRef.current = normalizeString(nextQuery)
 
@@ -140,7 +139,7 @@ export function Search<T = string>({
       if (onChange) {
         onChange(nextValue)
       }
-
+      setInputValue(undefined)
       setDefaultControlledValue(nextValue)
     },
     [onChange]

@@ -24,9 +24,6 @@ export default {
   argTypes: {
     defaultValue: {
       control: 'text'
-    },
-    isMulti: {
-      control: 'boolean'
     }
   },
 
