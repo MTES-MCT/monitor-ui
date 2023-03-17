@@ -180,34 +180,59 @@ const Box = styled.div<{
     > .rs-picker-toggle {
       background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
       border: 0;
+      bottom: 0;
       cursor: inherit;
       font-size: 13px;
+      height: 30px;
       line-height: 1.3846;
-      padding: 5px 40px 5px 8px !important;
+      padding: 5px 40px 0 8px !important;
+      top: 0;
 
       > .rs-stack {
         > .rs-stack-item {
           > .rs-picker-toggle-placeholder {
             font-size: 13px;
-            line-height: 1.5385; // = 20px
+            line-height: 1;
+            vertical-align: 1px;
           }
 
-          > svg {
-            height: 18px;
+          .rs-picker-toggle-caret {
+            right: 10px;
+          }
+          .rs-picker-toggle-clean,
+          .rs-picker-toggle-caret {
+            padding: 0;
+            top: 5px;
           }
         }
       }
     }
 
     > .rs-picker-tag-wrapper {
+      min-height: 30px;
+      padding: 0 !important;
+
       > .rs-tag {
         background-color: ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
+        font-size: 11px;
+        line-height: 1.3636; // = 15px
+
+        > .rs-tag-icon-close {
+          bottom: 0;
+          padding: 3px 6px;
+
+          > svg {
+            height: 10px;
+            width: 10px;
+          }
+        }
       }
-      .rs-picker-search {
-        .rs-picker-search-input {
+
+      > .rs-picker-search {
+        > .rs-picker-search-input {
           padding: 0 8px !important;
 
-          input {
+          > input {
             font-size: 13px;
             line-height: 1.3846;
           }
