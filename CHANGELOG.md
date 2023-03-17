@@ -1,3 +1,10 @@
+## [3.7.1](https://github.com/MTES-MCT/monitor-ui/compare/v3.7.0...v3.7.1) (2023-03-17)
+
+
+### Bug Fixes
+
+* **fields:** fix multiple style issues in MultiSelect ([061215f](https://github.com/MTES-MCT/monitor-ui/commit/061215f6fdf5dbcffe227d695acced3c57176a5c))
+
 # [3.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v3.6.0...v3.7.0) (2023-03-17)
 
 
