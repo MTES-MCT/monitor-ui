@@ -1,3 +1,10 @@
+# [3.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v3.6.0...v3.7.0) (2023-03-17)
+
+
+### Features
+
+* **elements:** add classname .Field to Field ([a1dfc98](https://github.com/MTES-MCT/monitor-ui/commit/a1dfc985f87b32b2797a00f46ffef4dba4a16101))
+
 # [3.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v3.5.0...v3.6.0) (2023-03-16)
 
 
