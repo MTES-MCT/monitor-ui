@@ -95,7 +95,7 @@ module.exports = {
 
     '@typescript-eslint/no-use-before-define': 'off',
 
-    'import/no-extraneous-dependencies': ['error', { peerDependencies: true }],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true, peerDependencies: true }],
 
     'no-null/no-null': 'error',
 
