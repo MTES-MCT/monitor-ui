@@ -5,7 +5,6 @@ import styled, { css } from 'styled-components'
 import { Checkbox } from './Checkbox'
 import { FieldError } from '../elements/FieldError'
 import { Fieldset } from '../elements/Fieldset'
-import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
 
@@ -39,10 +38,9 @@ export function MultiCheckbox<OptionValue = string>({
 }: MultiCheckboxProps<OptionValue>) {
   const checkedOptionValues = useRef<OptionValue[]>(defaultValue)
 
-  const controlledDefaultValue = useMemo(() => (!disabled ? defaultValue : undefined), [defaultValue, disabled])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([controlledDefaultValue, disabled, name])
+  const key = useKey([defaultValue, disabled, name])
 
   const handleChange = useCallback(
     (nextOptionValue: OptionValue, isChecked: boolean) => {
@@ -61,15 +59,13 @@ export function MultiCheckbox<OptionValue = string>({
     [onChange]
   )
 
-  useFieldUndefineEffect(disabled, onChange)
-
   const checkboxesElement = useMemo(
     () => (
       <>
         {options.map((option, index) => (
           <Checkbox
             key={String(option.value)}
-            defaultChecked={includes(option.value, controlledDefaultValue || [])}
+            defaultChecked={includes(option.value, defaultValue || [])}
             disabled={disabled}
             label={option.label}
             name={`${name}${index}`}

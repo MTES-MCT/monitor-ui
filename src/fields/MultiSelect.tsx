@@ -6,7 +6,6 @@ import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useClickOutsideEffect } from '../hooks/useClickOutsideEffect'
-import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
@@ -52,13 +51,9 @@ export function MultiSelect<OptionValue = string>({
 
   const [isOpen, setIsOpen] = useState(false)
 
-  const controlledDefaultValue = useMemo(
-    () => (!originalProps.disabled ? defaultValue : undefined),
-    [defaultValue, originalProps.disabled]
-  )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([controlledDefaultValue, originalProps.disabled, originalProps.name])
+  const key = useKey([defaultValue, originalProps.disabled, originalProps.name])
 
   const { forceUpdate } = useForceUpdate()
 
@@ -102,8 +97,6 @@ export function MultiSelect<OptionValue = string>({
     [isOpen]
   )
 
-  useFieldUndefineEffect(originalProps.disabled, onChange)
-
   useClickOutsideEffect(boxRef, close, baseContainer)
 
   useEffect(() => {
@@ -127,7 +120,7 @@ export function MultiSelect<OptionValue = string>({
             key={key}
             container={boxRef.current}
             data={options as any}
-            defaultValue={controlledDefaultValue}
+            defaultValue={defaultValue}
             id={originalProps.name}
             onChange={handleChange}
             onClick={toggle}

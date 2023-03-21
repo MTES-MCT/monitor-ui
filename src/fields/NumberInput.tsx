@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
-import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
 
@@ -30,13 +29,9 @@ export function NumberInput({
   onChange,
   ...originalProps
 }: NumberInputProps) {
-  const controlledDefaultValue = useMemo(
-    () => (!originalProps.disabled ? defaultValue : undefined),
-    [defaultValue, originalProps.disabled]
-  )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([controlledDefaultValue, originalProps.disabled, originalProps.name])
+  const key = useKey([defaultValue, originalProps.disabled, originalProps.name])
 
   const handleChange = useCallback(
     (nextValue: string) => {
@@ -53,8 +48,6 @@ export function NumberInput({
     [onChange]
   )
 
-  useFieldUndefineEffect(originalProps.disabled, onChange)
-
   return (
     <Field>
       <Label
@@ -70,7 +63,7 @@ export function NumberInput({
         key={key}
         $hasError={hasError}
         $isLight={isLight}
-        defaultValue={controlledDefaultValue}
+        defaultValue={defaultValue}
         id={originalProps.name}
         onChange={handleChange}
         type="number"

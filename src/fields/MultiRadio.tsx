@@ -1,11 +1,10 @@
 import { equals } from 'ramda'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo } from 'react'
 import { Radio } from 'rsuite'
 import styled, { css } from 'styled-components'
 
 import { FieldError } from '../elements/FieldError'
 import { Fieldset } from '../elements/Fieldset'
-import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
 
@@ -37,17 +36,13 @@ export function MultiRadio<OptionValue = string>({
   onChange,
   options
 }: MultiRadioProps<OptionValue>) {
-  const [controlledDefaultValue, setControlledDefaultValue] = useState<OptionValue | undefined>(undefined)
-
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([controlledDefaultValue, disabled, name])
+  const key = useKey([defaultValue, disabled, name])
 
   const handleChange = useCallback(
     (nextOptionValue: OptionValue, isChecked: boolean) => {
       const nextCheckedOptionValue = isChecked ? nextOptionValue : undefined
-
-      setControlledDefaultValue(nextCheckedOptionValue)
 
       if (onChange) {
         onChange(nextCheckedOptionValue)
@@ -55,18 +50,6 @@ export function MultiRadio<OptionValue = string>({
     },
     [onChange]
   )
-
-  useFieldUndefineEffect(disabled, onChange)
-
-  // TODO There may be a better solution. Replace the map with a rendering memo?
-  // A key change is not enough to force radio checked check changes
-  // on `defaultValue` property update (even when appending `defaultValue` to `key`),
-  // we need to force a second re-render in order for the changes to be applied.
-  useEffect(() => {
-    const nextControlledDefaultValue = !disabled ? defaultValue : undefined
-
-    setControlledDefaultValue(nextControlledDefaultValue)
-  }, [defaultValue, disabled])
 
   return (
     <Fieldset
@@ -82,7 +65,7 @@ export function MultiRadio<OptionValue = string>({
           <Radio
             // eslint-disable-next-line react/no-array-index-key
             key={`${key}-${index}`}
-            defaultChecked={equals(option.value, controlledDefaultValue)}
+            defaultChecked={equals(option.value, defaultValue)}
             disabled={disabled}
             name={name}
             onChange={(_: any, isChecked: boolean) => handleChange(option.value, isChecked)}

@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
-import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
 
@@ -26,14 +25,9 @@ export function Checkbox({
   onChange,
   ...originalProps
 }: CheckboxProps) {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  const controlledDefaultChecked = useMemo(
-    () => (!originalProps.disabled ? defaultChecked : undefined),
-    [defaultChecked, originalProps.disabled]
-  )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([controlledDefaultChecked, originalProps.disabled, originalProps.name])
+  const key = useKey([defaultChecked, originalProps.disabled, originalProps.name])
 
   const handleChange = useCallback(
     (_: ValueType | undefined, isChecked: boolean) => {
@@ -46,13 +40,11 @@ export function Checkbox({
     [onChange]
   )
 
-  useFieldUndefineEffect(originalProps.disabled, onChange)
-
   return (
     <Field>
       <StyledCheckbox
         key={key}
-        defaultChecked={controlledDefaultChecked}
+        defaultChecked={defaultChecked}
         id={originalProps.name}
         onChange={handleChange}
         {...originalProps}

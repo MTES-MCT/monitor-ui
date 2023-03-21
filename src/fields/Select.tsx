@@ -6,7 +6,6 @@ import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useClickOutsideEffect } from '../hooks/useClickOutsideEffect'
-import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
@@ -51,13 +50,9 @@ export function Select<OptionValue = string>({
 
   const { forceUpdate } = useForceUpdate()
 
-  const controlledDefaultValue = useMemo(
-    () => (!originalProps.disabled ? defaultValue : undefined),
-    [defaultValue, originalProps.disabled]
-  )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([controlledDefaultValue, originalProps.disabled, originalProps.name])
+  const key = useKey([defaultValue, originalProps.disabled, originalProps.name])
 
   const close = useCallback(() => {
     setIsOpen(false)
@@ -101,8 +96,6 @@ export function Select<OptionValue = string>({
     [isOpen]
   )
 
-  useFieldUndefineEffect(originalProps.disabled, onChange)
-
   useClickOutsideEffect(boxRef, close, baseContainer)
 
   useEffect(() => {
@@ -127,7 +120,7 @@ export function Select<OptionValue = string>({
             $isLight={isLight}
             container={boxRef.current}
             data={options}
-            defaultValue={controlledDefaultValue}
+            defaultValue={defaultValue}
             id={originalProps.name}
             // The `unknown` type from Rsuite library is wrong. It should be inferred from `data` prop type.
             // `onChange: ((value: unknown, event: React.SyntheticEvent<Element, Event>) => void) | undefined`

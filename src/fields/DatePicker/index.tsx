@@ -7,7 +7,6 @@ import { CalendarPicker } from './CalendarPicker'
 import { FieldError } from '../../elements/FieldError'
 import { Fieldset } from '../../elements/Fieldset'
 import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
-import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
 import { getLocalizedDayjs } from '../../utils/getLocalizedDayjs'
 import { getUtcizedDayjs } from '../../utils/getUtcizedDayjs'
@@ -196,13 +195,6 @@ export function DatePicker({
     [closeCalendarPicker, forceUpdate, submit, withTime]
   )
 
-  const handleDisable = useCallback(() => {
-    selectedLocalizedDateTupleRef.current = undefined
-    selectedLocalizedTimeTupleRef.current = undefined
-
-    forceUpdate()
-  }, [forceUpdate])
-
   const handleTimeInputFilled = useCallback(
     (nextTimeTuple: TimeTuple) => {
       // If a date has already been selected
@@ -227,8 +219,6 @@ export function DatePicker({
 
     forceUpdate()
   }, [forceUpdate])
-
-  useFieldUndefineEffect(disabled, onChange, handleDisable)
 
   useClickOutsideEffect(boxRef, closeCalendarPicker, baseContainer)
 
