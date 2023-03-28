@@ -31,6 +31,8 @@ module.exports = {
     'rollup.config.js'
   ],
   rules: {
+    'import/no-extraneous-dependencies': ['error', { devDependencies: false }],
+
     // We must add PascalCase in formats because ESLint trim the prefix before evaluating the case
     // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/naming-convention.md#format-options
     // > Note: As documented above, the prefix is trimmed before format is validated,

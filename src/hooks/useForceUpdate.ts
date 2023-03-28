@@ -1,4 +1,4 @@
-import throttle from 'lodash.throttle'
+import { throttle } from 'lodash'
 import { useMemo, useReducer } from 'react'
 
 import type { DispatchWithoutAction } from 'react'

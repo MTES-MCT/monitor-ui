@@ -7,13 +7,13 @@ import { NumberInput } from '../../src'
 import type { NumberInputProps } from '../../src'
 
 const args: NumberInputProps = {
-  defaultValue: undefined,
   disabled: false,
   error: '',
   isLabelHidden: false,
   isLight: false,
   name: 'myNumberInput',
-  label: 'A number input'
+  label: 'A number input',
+  value: undefined
 }
 
 export default {

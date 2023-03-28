@@ -13,30 +13,32 @@ import type { InputProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
 export type TextInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'onChange' | 'type' | 'value'> & {
-  defaultValue?: string | undefined
   error?: string | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
   onChange?: ((nextValue: string | undefined) => Promisable<void>) | undefined
+  value?: string | undefined
 }
 export function TextInput({
-  defaultValue,
   error,
   isLabelHidden = false,
   isLight = false,
+  isUndefinedWhenDisabled = false,
   label,
   onChange,
+  value,
   ...originalProps
 }: TextInputProps) {
-  const controlledDefaultValue = useMemo(
-    () => (!originalProps.disabled ? defaultValue : undefined),
-    [defaultValue, originalProps.disabled]
+  const controlledValue = useMemo(
+    () => (!isUndefinedWhenDisabled || !originalProps.disabled ? value : undefined),
+    [isUndefinedWhenDisabled, originalProps.disabled, value]
   )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([controlledDefaultValue, originalProps.disabled, originalProps.name])
+  const key = useKey([controlledValue, originalProps.disabled, originalProps.name])
 
   const handleChange = useCallback(
     (nextValue: string | null) => {
@@ -51,7 +53,7 @@ export function TextInput({
     [onChange]
   )
 
-  useFieldUndefineEffect(originalProps.disabled, onChange)
+  useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
 
   return (
     <Field>
@@ -68,10 +70,10 @@ export function TextInput({
         key={key}
         $hasError={hasError}
         $isLight={isLight}
-        defaultValue={controlledDefaultValue}
         id={originalProps.name}
         onChange={handleChange}
         type="text"
+        value={controlledValue}
         {...originalProps}
       />
 

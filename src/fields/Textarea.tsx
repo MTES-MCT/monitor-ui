@@ -16,33 +16,35 @@ export type TextareaProps = Omit<
   TextareaHTMLAttributes<HTMLTextAreaElement>,
   'defaultValue' | 'id' | 'onChange' | 'value'
 > & {
-  defaultValue?: string | undefined
   error?: string | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
   onChange?: ((nextValue: string | undefined) => Promisable<void>) | undefined
+  value?: string | undefined
 }
 export function Textarea({
-  defaultValue,
   error,
   isLabelHidden = false,
   isLight = false,
+  isUndefinedWhenDisabled = false,
   label,
   onChange,
   rows = 3,
+  value,
   ...originalProps
 }: TextareaProps) {
   const inputRef = useRef() as MutableRefObject<HTMLTextAreaElement>
 
-  const controlledDefaultValue = useMemo(
-    () => (!originalProps.disabled ? defaultValue : undefined),
-    [defaultValue, originalProps.disabled]
+  const controlledValue = useMemo(
+    () => (!isUndefinedWhenDisabled || !originalProps.disabled ? value : undefined),
+    [isUndefinedWhenDisabled, originalProps.disabled, value]
   )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([controlledDefaultValue, originalProps.disabled, originalProps.name])
+  const key = useKey([controlledValue, originalProps.disabled, originalProps.name])
 
   const handleChange = useCallback(() => {
     if (!onChange) {
@@ -55,7 +57,7 @@ export function Textarea({
     onChange(normalizedNextValue)
   }, [onChange])
 
-  useFieldUndefineEffect(originalProps.disabled, onChange)
+  useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
 
   return (
     <Field>
@@ -68,10 +70,10 @@ export function Textarea({
         ref={inputRef}
         $isLight={isLight}
         as="textarea"
-        defaultValue={controlledDefaultValue}
         id={originalProps.name}
         onChange={handleChange}
         rows={rows}
+        value={controlledValue}
         {...originalProps}
       />
 

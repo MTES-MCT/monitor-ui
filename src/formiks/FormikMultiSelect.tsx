@@ -7,7 +7,7 @@ import type { MultiSelectProps } from '../fields/MultiSelect'
 
 export type FormikMultiSelectProps<OptionValue extends number | string | Record<string, any> = string> = Omit<
   MultiSelectProps<OptionValue>,
-  'defaultValue' | 'error' | 'onChange'
+  'error' | 'onChange' | 'value'
 >
 export function FormikMultiSelect<OptionValue extends number | string | Record<string, any> = string>({
   name,
@@ -15,10 +15,9 @@ export function FormikMultiSelect<OptionValue extends number | string | Record<s
 }: FormikMultiSelectProps<OptionValue>) {
   const [field, meta, helpers] = useField<OptionValue[] | undefined>(name)
 
+  // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = useMemo(() => helpers.setValue, [])
 
-  return (
-    <MultiSelect defaultValue={field.value} error={meta.error} name={name} onChange={handleChange} {...originalProps} />
-  )
+  return <MultiSelect error={meta.error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
 }

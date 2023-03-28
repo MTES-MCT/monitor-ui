@@ -33,28 +33,30 @@ export type SelectProps<OptionValue extends number | string | Record<string, any
 > & {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
-  defaultValue?: OptionValue | undefined
   error?: string | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
   onChange?: ((nextValue: OptionValue | undefined) => Promisable<void>) | undefined
   optionValueKey?: keyof OptionValue | undefined
   options: Option<OptionValue>[]
+  value?: OptionValue | undefined
 }
 export function Select<OptionValue extends number | string | Record<string, any> = string>({
   baseContainer,
-  defaultValue,
   error,
   isLabelHidden = false,
   isLight = false,
+  isUndefinedWhenDisabled = false,
   label,
   onChange,
   options,
   optionValueKey,
   // eslint-disable-next-line @typescript-eslint/naming-convention
   searchable = false,
+  value,
   ...originalProps
 }: SelectProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
@@ -64,14 +66,14 @@ export function Select<OptionValue extends number | string | Record<string, any>
 
   const { forceUpdate } = useForceUpdate()
 
-  const controlledDefaultValue = useMemo(
-    () => (!originalProps.disabled ? defaultValue : undefined),
-    [defaultValue, originalProps.disabled]
+  const controlledValue = useMemo(
+    () => (!isUndefinedWhenDisabled || !originalProps.disabled ? value : undefined),
+    [isUndefinedWhenDisabled, originalProps.disabled, value]
   )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const data = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([controlledDefaultValue, originalProps.disabled, originalProps.name])
+  const key = useKey([controlledValue, originalProps.disabled, originalProps.name])
 
   const close = useCallback(() => {
     setIsOpen(false)
@@ -119,7 +121,7 @@ export function Select<OptionValue extends number | string | Record<string, any>
     [isOpen]
   )
 
-  useFieldUndefineEffect(originalProps.disabled, onChange)
+  useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
 
   useClickOutsideEffect(boxRef, close, baseContainer)
 
@@ -145,7 +147,6 @@ export function Select<OptionValue extends number | string | Record<string, any>
             $isLight={isLight}
             container={boxRef.current}
             data={data}
-            defaultValue={controlledDefaultValue}
             id={originalProps.name}
             onClean={handleClean}
             // Since we customized `ItemDataType` type by adding `optionValue`, we have an optional vs required conflict
@@ -153,6 +154,7 @@ export function Select<OptionValue extends number | string | Record<string, any>
             open={isOpen}
             renderMenuItem={renderMenuItem}
             searchable={searchable}
+            value={controlledValue}
             {...originalProps}
           />
         )}

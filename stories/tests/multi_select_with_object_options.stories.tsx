@@ -9,7 +9,6 @@ const args: MultiSelectProps<{
   id: number
   name: string
 }> = {
-  defaultValue: undefined,
   disabled: false,
   error: '',
   isLabelHidden: false,
@@ -23,7 +22,8 @@ const args: MultiSelectProps<{
   ],
   optionValueKey: 'name',
   placeholder: 'Pick an option',
-  searchable: false
+  searchable: false,
+  value: undefined
 }
 
 export default {

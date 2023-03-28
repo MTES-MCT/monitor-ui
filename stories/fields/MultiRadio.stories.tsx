@@ -7,7 +7,6 @@ import { MultiRadio } from '../../src'
 import type { MultiRadioProps } from '../../src'
 
 const args: MultiRadioProps = {
-  defaultValue: undefined,
   disabled: false,
   error: '',
   isInline: false,
@@ -20,7 +19,8 @@ const args: MultiRadioProps = {
     { label: 'Second Option', value: 'SECOND_OPTION' },
     { label: 'Third Option', value: 'THIRD_OPTION' },
     { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
-  ]
+  ],
+  value: undefined
 }
 
 export default {

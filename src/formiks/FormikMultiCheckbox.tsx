@@ -15,18 +15,9 @@ export function FormikMultiCheckbox<OptionValue extends number | string | Record
 }: FormikMultiCheckboxProps<OptionValue>) {
   const [field, meta, helpers] = useField<OptionValue[] | undefined>(name)
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const defaultValue = useMemo(() => field.value, [])
+  // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = useMemo(() => helpers.setValue, [])
 
-  return (
-    <MultiCheckbox
-      defaultValue={defaultValue}
-      error={meta.error}
-      name={name}
-      onChange={handleChange}
-      {...originalProps}
-    />
-  )
+  return <MultiCheckbox error={meta.error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
 }
