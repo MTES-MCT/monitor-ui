@@ -13,7 +13,6 @@ import { NewWindow } from '../../src/components/NewWindow'
 import type { SelectProps } from '../../src'
 
 const args: SelectProps = {
-  defaultValue: undefined,
   disabled: false,
   error: '',
   isLabelHidden: false,
@@ -27,7 +26,8 @@ const args: SelectProps = {
     { label: LOREM_IPSUM, value: 'LOREM_IPSUM' }
   ],
   placeholder: 'Pick an option',
-  searchable: false
+  searchable: false,
+  value: undefined
 }
 
 export default {

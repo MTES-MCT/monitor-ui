@@ -13,7 +13,6 @@ import { NewWindow } from '../../src/components/NewWindow'
 import type { MultiSelectProps } from '../../src'
 
 const args: MultiSelectProps = {
-  defaultValue: undefined,
   disabled: false,
   error: '',
   fixedWidth: 170,
@@ -28,7 +27,8 @@ const args: MultiSelectProps = {
     { label: LOREM_IPSUM, value: 'LOREM_IPSUM' }
   ],
   placeholder: 'Pick some options',
-  searchable: false
+  searchable: false,
+  value: undefined
 }
 
 export default {

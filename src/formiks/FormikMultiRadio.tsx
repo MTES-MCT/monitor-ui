@@ -7,7 +7,7 @@ import type { MultiRadioProps } from '../fields/MultiRadio'
 
 export type FormikMultiRadioProps<OptionValue extends number | string | Record<string, any> = string> = Omit<
   MultiRadioProps<OptionValue>,
-  'defaultValue' | 'error' | 'onChange'
+  'error' | 'onChange' | 'value'
 >
 export function FormikMultiRadio<OptionValue extends number | string | Record<string, any> = string>({
   name,
@@ -15,12 +15,9 @@ export function FormikMultiRadio<OptionValue extends number | string | Record<st
 }: FormikMultiRadioProps<OptionValue>) {
   const [field, meta, helpers] = useField<OptionValue | undefined>(name)
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const defaultValue = useMemo(() => field.value, [])
+  // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = useMemo(() => helpers.setValue, [])
 
-  return (
-    <MultiRadio defaultValue={defaultValue} error={meta.error} name={name} onChange={handleChange} {...originalProps} />
-  )
+  return <MultiRadio error={meta.error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
 }

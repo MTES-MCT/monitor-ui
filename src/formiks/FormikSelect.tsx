@@ -7,7 +7,7 @@ import type { SelectProps } from '../fields/Select'
 
 export type FormikSelectProps<OptionValue extends number | string | Record<string, any> = string> = Omit<
   SelectProps<OptionValue>,
-  'defaultValue' | 'error' | 'onChange'
+  'error' | 'onChange' | 'value'
 >
 export function FormikSelect<OptionValue extends number | string | Record<string, any> = string>({
   name,
@@ -15,12 +15,9 @@ export function FormikSelect<OptionValue extends number | string | Record<string
 }: FormikSelectProps<OptionValue>) {
   const [field, meta, helpers] = useField<OptionValue | undefined>(name)
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const defaultValue = useMemo(() => field.value, [])
+  // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = useMemo(() => helpers.setValue, [])
 
-  return (
-    <Select defaultValue={defaultValue} error={meta.error} name={name} onChange={handleChange} {...originalProps} />
-  )
+  return <Select error={meta.error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
 }

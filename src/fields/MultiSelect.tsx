@@ -24,46 +24,48 @@ export type MultiSelectProps<OptionValue extends number | string | Record<string
 > & {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
-  defaultValue?: OptionValue[] | undefined
   error?: string | undefined
   /** Width in pixels */
   fixedWidth?: number | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
   onChange?: ((nextValue: OptionValue[] | undefined) => Promisable<void>) | undefined
   optionValueKey?: keyof OptionValue | undefined
   options: Option<OptionValue>[]
+  value?: OptionValue[] | undefined
 }
 export function MultiSelect<OptionValue extends number | string | Record<string, any> = string>({
   baseContainer,
-  defaultValue,
   error,
   isLabelHidden = false,
   isLight = false,
+  isUndefinedWhenDisabled = false,
   label,
   onChange,
   options,
   optionValueKey,
   // eslint-disable-next-line @typescript-eslint/naming-convention
   searchable = false,
+  value,
   ...originalProps
 }: MultiSelectProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
-  const selectedOptionValuesRef = useRef<OptionValue[]>(defaultValue || [])
+  const selectedOptionValuesRef = useRef<OptionValue[]>(value || [])
 
   const [isOpen, setIsOpen] = useState(false)
 
-  const controlledDefaultValue = useMemo(
-    () => (!originalProps.disabled ? defaultValue : undefined),
-    [defaultValue, originalProps.disabled]
+  const controlledValue = useMemo(
+    () => (!isUndefinedWhenDisabled || !originalProps.disabled ? value : undefined),
+    [isUndefinedWhenDisabled, originalProps.disabled, value]
   )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const data = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([controlledDefaultValue, originalProps.disabled, originalProps.name])
+  const key = useKey([controlledValue, originalProps.disabled, originalProps.name])
 
   const { forceUpdate } = useForceUpdate()
 
@@ -117,7 +119,7 @@ export function MultiSelect<OptionValue extends number | string | Record<string,
     [isOpen]
   )
 
-  useFieldUndefineEffect(originalProps.disabled, onChange)
+  useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
 
   useClickOutsideEffect(boxRef, close, baseContainer)
 
@@ -142,7 +144,6 @@ export function MultiSelect<OptionValue extends number | string | Record<string,
             key={key}
             container={boxRef.current}
             data={data}
-            defaultValue={controlledDefaultValue}
             id={originalProps.name}
             onClean={handleClean}
             onClick={toggle}
@@ -151,6 +152,7 @@ export function MultiSelect<OptionValue extends number | string | Record<string,
             open={isOpen}
             renderMenuItem={renderMenuItem}
             searchable={searchable}
+            value={controlledValue}
             {...originalProps}
           />
         )}
