@@ -1,3 +1,19 @@
+# [4.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v3.7.1...v4.0.0) (2023-03-29)
+
+
+* feat(fields)!: switch from uncontrolled to controlled values ([e308e1c](https://github.com/MTES-MCT/monitor-ui/commit/e308e1cdf68aea33805e11aba2b7278233286acf))
+
+
+### Features
+
+* **fields:** handle object options in Select & MultiSelect ([cc280c9](https://github.com/MTES-MCT/monitor-ui/commit/cc280c91c4fd374a154996f511f8f76c767b2d27))
+
+
+### BREAKING CHANGES
+
+* `defaultValue` is replaced by `value` in Checkbox,
+MultiCheckbox, MultiRadio, MultiSelect, NumberInput, Select, Textarea & TextInput
+
 ## [3.7.1](https://github.com/MTES-MCT/monitor-ui/compare/v3.7.0...v3.7.1) (2023-03-17)
 
 
