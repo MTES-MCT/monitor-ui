@@ -4,12 +4,13 @@ import { useMemo } from 'react'
 import { Select } from '../fields/Select'
 
 import type { SelectProps } from '../fields/Select'
+import type { OptionValueType } from '../types'
 
-export type FormikSelectProps<OptionValue extends number | string | Record<string, any> = string> = Omit<
+export type FormikSelectProps<OptionValue extends OptionValueType = string> = Omit<
   SelectProps<OptionValue>,
   'error' | 'onChange' | 'value'
 >
-export function FormikSelect<OptionValue extends number | string | Record<string, any> = string>({
+export function FormikSelect<OptionValue extends OptionValueType = string>({
   name,
   ...originalProps
 }: FormikSelectProps<OptionValue>) {

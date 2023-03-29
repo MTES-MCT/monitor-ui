@@ -4,12 +4,13 @@ import { useMemo } from 'react'
 import { MultiSelect } from '../fields/MultiSelect'
 
 import type { MultiSelectProps } from '../fields/MultiSelect'
+import type { OptionValueType } from '../types'
 
-export type FormikMultiSelectProps<OptionValue extends number | string | Record<string, any> = string> = Omit<
+export type FormikMultiSelectProps<OptionValue extends OptionValueType = string> = Omit<
   MultiSelectProps<OptionValue>,
   'error' | 'onChange' | 'value'
 >
-export function FormikMultiSelect<OptionValue extends number | string | Record<string, any> = string>({
+export function FormikMultiSelect<OptionValue extends OptionValueType = string>({
   name,
   ...originalProps
 }: FormikMultiSelectProps<OptionValue>) {

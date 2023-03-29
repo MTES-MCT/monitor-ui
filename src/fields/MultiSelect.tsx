@@ -13,12 +13,12 @@ import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
 import { normalizeString } from '../utils/normalizeString'
 import { toggleInCollection } from '../utils/toggleInCollection'
 
-import type { Option, OptionAsRsuiteItemDataType } from '../types'
+import type { Option, OptionAsRsuiteItemDataType, OptionValueType } from '../types'
 import type { MouseEvent, ReactNode } from 'react'
 import type { TagPickerProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
-export type MultiSelectProps<OptionValue extends number | string | Record<string, any> = string> = Omit<
+export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omit<
   TagPickerProps,
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'open' | 'renderMenuItem' | 'value'
 > & {
@@ -37,7 +37,7 @@ export type MultiSelectProps<OptionValue extends number | string | Record<string
   options: Option<OptionValue>[]
   value?: OptionValue[] | undefined
 }
-export function MultiSelect<OptionValue extends number | string | Record<string, any> = string>({
+export function MultiSelect<OptionValue extends OptionValueType = string>({
   baseContainer,
   error,
   isLabelHidden = false,

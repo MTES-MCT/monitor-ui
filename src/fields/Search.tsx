@@ -18,12 +18,12 @@ import { Close, Search as SearchIcon } from '../icons'
 import { THEME } from '../theme'
 import { normalizeString } from '../utils/normalizeString'
 
-import type { Option } from '../types'
+import type { Option, OptionValueType } from '../types'
 import type { AutoCompleteProps as RsuiteAutoCompleteProps } from 'rsuite'
 import type { ItemDataType } from 'rsuite/esm/@types/common'
 import type { Promisable } from 'type-fest'
 
-export type SearchProps<OptionValue extends number | string | Record<string, any> = string> = Omit<
+export type SearchProps<OptionValue extends OptionValueType = string> = Omit<
   RsuiteAutoCompleteProps,
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'open' | 'onSelect' | 'value'
 > & {
@@ -45,7 +45,7 @@ export type SearchProps<OptionValue extends number | string | Record<string, any
   /** Duration in milliseconds */
   throttleDuration?: number
 }
-export function Search<OptionValue extends number | string | Record<string, any> = string>({
+export function Search<OptionValue extends OptionValueType = string>({
   baseContainer,
   defaultValue,
   error,
