@@ -15,13 +15,11 @@ export type IconProps = SVGProps<SVGSVGElement> & {
   size?: number | undefined
 }
 
-export type Option<V extends number | string | Record<string, any> = string> = Omit<
-  ItemDataType<string>,
-  'label' | 'value'
-> & {
+export type Option<OptionValue extends OptionValueType = string> = Omit<ItemDataType<string>, 'label' | 'value'> & {
   label: string
-  value: V
+  value: OptionValue
 }
+export type OptionValueType = boolean | number | string | Record<string, any>
 
 /**
  * Mark all the props type of an interface/type as `| undefined`
@@ -41,9 +39,8 @@ export type Undefine<T> = {
  * Since Rsuite restricts `value` to `string | number`, we use this proxy type,
  * allowing us to use conventioned option values that can include objects
  */
-export interface OptionAsRsuiteItemDataType<V extends number | string | Record<string, any>>
-  extends ItemDataType<string> {
+export interface OptionAsRsuiteItemDataType<OptionValue extends OptionValueType = string> extends ItemDataType<string> {
   label: string
-  optionValue: V
+  optionValue: OptionValue
   value: string
 }

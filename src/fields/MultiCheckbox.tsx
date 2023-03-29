@@ -10,10 +10,10 @@ import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { usePrevious } from '../hooks/usePrevious'
 import { normalizeString } from '../utils/normalizeString'
 
-import type { Option } from '../types'
+import type { Option, OptionValueType } from '../types'
 import type { Promisable } from 'type-fest'
 
-export type MultiCheckboxProps<OptionValue extends number | string | Record<string, any> = string> = {
+export type MultiCheckboxProps<OptionValue extends OptionValueType = string> = {
   disabled?: boolean | undefined
   error?: string | undefined
   isInline?: boolean | undefined
@@ -26,7 +26,7 @@ export type MultiCheckboxProps<OptionValue extends number | string | Record<stri
   options: Option<OptionValue>[]
   value?: OptionValue[] | undefined
 }
-export function MultiCheckbox<OptionValue extends number | string | Record<string, any> = string>({
+export function MultiCheckbox<OptionValue extends OptionValueType = string>({
   value = [],
   // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,

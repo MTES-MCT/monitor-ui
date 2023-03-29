@@ -11,10 +11,10 @@ import { useKey } from '../hooks/useKey'
 import { usePrevious } from '../hooks/usePrevious'
 import { normalizeString } from '../utils/normalizeString'
 
-import type { Option } from '../types'
+import type { Option, OptionValueType } from '../types'
 import type { Promisable } from 'type-fest'
 
-export type MultiRadioProps<OptionValue extends number | string | Record<string, any> = string> = {
+export type MultiRadioProps<OptionValue extends OptionValueType = string> = {
   disabled?: boolean | undefined
   error?: string | undefined
   isInline?: boolean | undefined
@@ -27,7 +27,7 @@ export type MultiRadioProps<OptionValue extends number | string | Record<string,
   options: Option<OptionValue>[]
   value?: OptionValue | undefined
 }
-export function MultiRadio<OptionValue extends number | string | Record<string, any> = string>({
+export function MultiRadio<OptionValue extends OptionValueType = string>({
   // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,
   error,

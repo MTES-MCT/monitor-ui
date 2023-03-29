@@ -4,12 +4,13 @@ import { useMemo } from 'react'
 import { MultiRadio } from '../fields/MultiRadio'
 
 import type { MultiRadioProps } from '../fields/MultiRadio'
+import type { OptionValueType } from '../types'
 
-export type FormikMultiRadioProps<OptionValue extends number | string | Record<string, any> = string> = Omit<
+export type FormikMultiRadioProps<OptionValue extends OptionValueType = string> = Omit<
   MultiRadioProps<OptionValue>,
   'error' | 'onChange' | 'value'
 >
-export function FormikMultiRadio<OptionValue extends number | string | Record<string, any> = string>({
+export function FormikMultiRadio<OptionValue extends OptionValueType = string>({
   name,
   ...originalProps
 }: FormikMultiRadioProps<OptionValue>) {

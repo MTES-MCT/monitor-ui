@@ -5,7 +5,7 @@ import { equals, includes, reject } from 'ramda'
  *
  * This is useful with object collections and polymorphic types.
  */
-export function toggleInCollection<Item extends number | string | Record<string, any>>(
+export function toggleInCollection<Item extends boolean | number | string | Record<string, any>>(
   item: Item,
   collection: Item[]
 ): Item[] {

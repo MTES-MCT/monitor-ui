@@ -4,12 +4,13 @@ import { useMemo } from 'react'
 import { Search } from '../fields/Search'
 
 import type { SearchProps } from '../fields/Search'
+import type { OptionValueType } from '../types'
 
-export type FormikSearchProps<OptionValue extends number | string | Record<string, any> = string> = Omit<
+export type FormikSearchProps<OptionValue extends OptionValueType = string> = Omit<
   SearchProps<OptionValue>,
   'defaultValue' | 'error' | 'onChange'
 >
-export function FormikSearch<OptionValue extends number | string | Record<string, any> = string>({
+export function FormikSearch<OptionValue extends OptionValueType = string>({
   name,
   ...originalProps
 }: FormikSearchProps<OptionValue>) {

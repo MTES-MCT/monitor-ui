@@ -12,12 +12,12 @@ import { useKey } from '../hooks/useKey'
 import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
 import { normalizeString } from '../utils/normalizeString'
 
-import type { Option, OptionAsRsuiteItemDataType } from '../types'
+import type { Option, OptionAsRsuiteItemDataType, OptionValueType } from '../types'
 import type { MouseEvent, ReactNode } from 'react'
 import type { SelectPickerProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
-export type SelectProps<OptionValue extends number | string | Record<string, any> = string> = Omit<
+export type SelectProps<OptionValue extends OptionValueType = string> = Omit<
   SelectPickerProps<any>,
   | 'as'
   | 'container'
@@ -44,7 +44,7 @@ export type SelectProps<OptionValue extends number | string | Record<string, any
   options: Option<OptionValue>[]
   value?: OptionValue | undefined
 }
-export function Select<OptionValue extends number | string | Record<string, any> = string>({
+export function Select<OptionValue extends OptionValueType = string>({
   baseContainer,
   error,
   isLabelHidden = false,
