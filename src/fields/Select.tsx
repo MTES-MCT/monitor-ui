@@ -6,10 +6,12 @@ import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useClickOutsideEffect } from '../hooks/useClickOutsideEffect'
+import { useFieldControl } from '../hooks/useFieldControl'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
 import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
+import { getRsuiteValueFromOptionValue } from '../utils/getRsuiteValueFromOptionValue'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Option, OptionAsRsuiteItemDataType, OptionValueType } from '../types'
@@ -46,6 +48,7 @@ export type SelectProps<OptionValue extends OptionValueType = string> = Omit<
 }
 export function Select<OptionValue extends OptionValueType = string>({
   baseContainer,
+  disabled = false,
   error,
   isLabelHidden = false,
   isLight = false,
@@ -54,7 +57,6 @@ export function Select<OptionValue extends OptionValueType = string>({
   onChange,
   options,
   optionValueKey,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   searchable = false,
   value,
   ...originalProps
@@ -66,34 +68,34 @@ export function Select<OptionValue extends OptionValueType = string>({
 
   const { forceUpdate } = useForceUpdate()
 
-  const controlledValue = useMemo(
-    () => (!isUndefinedWhenDisabled || !originalProps.disabled ? value : undefined),
-    [isUndefinedWhenDisabled, originalProps.disabled, value]
+  const { controlledOnChange, controlledValue } = useFieldControl(value, onChange, {
+    disabled,
+    isUndefinedWhenDisabled
+  })
+  const controlledRsuiteValue = useMemo(
+    () => getRsuiteValueFromOptionValue(controlledValue, optionValueKey),
+    [controlledValue, optionValueKey]
   )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const data = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([controlledValue, originalProps.disabled, originalProps.name])
+  const key = useKey([disabled, originalProps.name, value])
 
   const close = useCallback(() => {
     setIsOpen(false)
   }, [])
 
   const handleClean = useCallback(() => {
-    if (onChange) {
-      onChange(undefined)
-    }
-  }, [onChange])
+    controlledOnChange(undefined)
+  }, [controlledOnChange])
 
   const handleSelect = useCallback(
     (_: string, selectedItem: OptionAsRsuiteItemDataType<OptionValue>) => {
       close()
 
-      if (onChange) {
-        onChange(selectedItem.optionValue)
-      }
+      controlledOnChange(selectedItem.optionValue)
     },
-    [close, onChange]
+    [close, controlledOnChange]
   )
 
   const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
@@ -121,7 +123,7 @@ export function Select<OptionValue extends OptionValueType = string>({
     [isOpen]
   )
 
-  useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
+  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
   useClickOutsideEffect(boxRef, close, baseContainer)
 
@@ -131,12 +133,7 @@ export function Select<OptionValue extends OptionValueType = string>({
 
   return (
     <Field>
-      <Label
-        disabled={originalProps.disabled}
-        hasError={hasError}
-        htmlFor={originalProps.name}
-        isHidden={isLabelHidden}
-      >
+      <Label disabled={disabled} hasError={hasError} htmlFor={originalProps.name} isHidden={isLabelHidden}>
         {label}
       </Label>
 
@@ -147,6 +144,7 @@ export function Select<OptionValue extends OptionValueType = string>({
             $isLight={isLight}
             container={boxRef.current}
             data={data}
+            disabled={disabled}
             id={originalProps.name}
             onClean={handleClean}
             // Since we customized `ItemDataType` type by adding `optionValue`, we have an optional vs required conflict
@@ -154,7 +152,7 @@ export function Select<OptionValue extends OptionValueType = string>({
             open={isOpen}
             renderMenuItem={renderMenuItem}
             searchable={searchable}
-            value={controlledValue}
+            value={controlledRsuiteValue}
             {...originalProps}
           />
         )}

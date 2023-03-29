@@ -33,7 +33,6 @@ function TimeInputWithRef(
   {
     baseContainer,
     defaultValue,
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     disabled = false,
     isCompact,
     isEndDate = false,

@@ -1,4 +1,4 @@
-import { equals } from 'ramda'
+import { isEqual } from 'lodash'
 import { useRef } from 'react'
 
 import { usePrevious } from './usePrevious'
@@ -11,7 +11,7 @@ export function useKey(deps: DependencyList) {
 
   const prevDeps = usePrevious(deps)
 
-  if (!prevDeps || equals(deps, prevDeps)) {
+  if (isEqual(deps, prevDeps)) {
     return keyRef.current
   }
 

@@ -28,7 +28,6 @@ export type MultiCheckboxProps<OptionValue extends OptionValueType = string> = {
 }
 export function MultiCheckbox<OptionValue extends OptionValueType = string>({
   value = [],
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,
   error,
   isInline = false,

@@ -34,7 +34,6 @@ export type MultiZoneEditorProps = {
 export function MultiZoneEditor({
   addButtonLabel,
   defaultValue = [],
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,
   error,
   initialZone,

@@ -31,8 +31,6 @@ module.exports = {
     'rollup.config.js'
   ],
   rules: {
-    'import/no-extraneous-dependencies': ['error', { devDependencies: false }],
-
     // We must add PascalCase in formats because ESLint trim the prefix before evaluating the case
     // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/naming-convention.md#format-options
     // > Note: As documented above, the prefix is trimmed before format is validated,
@@ -49,11 +47,7 @@ module.exports = {
       },
       {
         selector: 'typeLike',
-        format: ['PascalCase'],
-        filter: {
-          regex: '^LEGACY_',
-          match: false
-        }
+        format: ['PascalCase']
       },
       {
         selector: 'accessor',
@@ -71,13 +65,21 @@ module.exports = {
         selector: 'objectLiteralProperty',
         types: ['boolean'],
         format: ['camelCase', 'PascalCase'],
-        prefix: BOOLEAN_CAMEL_PREFIXES
+        prefix: BOOLEAN_CAMEL_PREFIXES,
+        filter: {
+          regex: '^(disabled|searchable)$',
+          match: false
+        }
       },
       {
         selector: 'parameter',
         types: ['boolean'],
         format: ['camelCase', 'PascalCase'],
-        prefix: BOOLEAN_CAMEL_PREFIXES
+        prefix: BOOLEAN_CAMEL_PREFIXES,
+        filter: {
+          regex: '^(disabled|searchable)$',
+          match: false
+        }
       },
       {
         selector: 'parameterProperty',
@@ -89,7 +91,11 @@ module.exports = {
         selector: 'variable',
         types: ['boolean'],
         format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
-        prefix: [...BOOLEAN_CAMEL_PREFIXES, ...BOOLEAN_UPPER_PREFIXES]
+        prefix: [...BOOLEAN_CAMEL_PREFIXES, ...BOOLEAN_UPPER_PREFIXES],
+        filter: {
+          regex: '^(disabled|searchable)$',
+          match: false
+        }
       }
     ],
 

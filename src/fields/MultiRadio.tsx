@@ -1,14 +1,13 @@
-import { isEqual } from 'lodash'
 import { equals } from 'ramda'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo } from 'react'
 import { Radio } from 'rsuite'
 import styled, { css } from 'styled-components'
 
 import { FieldError } from '../elements/FieldError'
 import { Fieldset } from '../elements/Fieldset'
+import { useFieldControl } from '../hooks/useFieldControl'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useKey } from '../hooks/useKey'
-import { usePrevious } from '../hooks/usePrevious'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Option, OptionValueType } from '../types'
@@ -28,7 +27,6 @@ export type MultiRadioProps<OptionValue extends OptionValueType = string> = {
   value?: OptionValue | undefined
 }
 export function MultiRadio<OptionValue extends OptionValueType = string>({
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,
   error,
   isInline = false,
@@ -41,36 +39,22 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   options,
   value
 }: MultiRadioProps<OptionValue>) {
-  // This tracks the component internal value which allows us to react to value changes after a radio toggling
-  const [internalValue, setInternalValue] = useState<OptionValue | undefined>(value)
-
-  // and compare it with an eventual external value change (via the `value` prop)
-  const previousValue = usePrevious(value)
-
-  // to decide which on is the source of "truth" in `controlledValue` (the last one to be changed is the true value)
-  const controlledValue = useMemo(() => {
-    // If the `value` has changed, `value` takes precedence,
-    // otherwise we can use our current internal value
-    const nextControlledValue = isEqual(value, previousValue) ? internalValue : value
-
-    return !isUndefinedWhenDisabled || !disabled ? nextControlledValue : undefined
-  }, [disabled, internalValue, isUndefinedWhenDisabled, previousValue, value])
+  const { controlledOnChange, controlledValue } = useFieldControl(value, onChange, {
+    disabled,
+    isUndefinedWhenDisabled
+  })
 
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([controlledValue, disabled, name])
+  const key = useKey([disabled, name, value])
 
   const handleChange = useCallback(
     (nextOptionValue: OptionValue, isChecked: boolean) => {
       const nextCheckedOptionValue = isChecked ? nextOptionValue : undefined
 
-      setInternalValue(nextCheckedOptionValue)
-
-      if (onChange) {
-        onChange(nextCheckedOptionValue)
-      }
+      controlledOnChange(nextCheckedOptionValue)
     },
-    [onChange]
+    [controlledOnChange]
   )
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)

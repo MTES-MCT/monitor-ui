@@ -70,7 +70,6 @@ export function DateRangePicker(props: DateRangePickerWithStringDateProps): JSX.
 export function DateRangePicker({
   baseContainer,
   defaultValue,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,
   error,
   isCompact = false,

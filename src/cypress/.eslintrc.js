@@ -23,6 +23,6 @@ module.exports = {
     'cypress/no-async-tests': 'error',
     'cypress/no-pause': 'error',
 
-    'import/no-extraneous-dependencies': ['error', { devDpendencies: true, peerDependencies: true }]
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true, peerDependencies: true }]
   }
 }
