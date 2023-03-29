@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.1...v4.0.2) (2023-03-29)
+
+
+### Bug Fixes
+
+* **fields:** handle value prop change in Select & MultiSelect ([db2f931](https://github.com/MTES-MCT/monitor-ui/commit/db2f931256b82dd8c1c0c7ddf1b2884154142260))
+
 ## [4.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.0...v4.0.1) (2023-03-29)
 
 
