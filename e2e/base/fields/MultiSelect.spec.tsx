@@ -2,10 +2,12 @@ import { composeStories } from '@storybook/testing-react'
 
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
 import * as baseStories from '../../../stories/fields/MultiSelect.stories'
+import * as withNumberOptionsStories from '../../../stories/tests/multi_select_with_number_options.stories'
 import * as withObjectOptionsStories from '../../../stories/tests/multi_select_with_object_options.stories'
 import { mountAndWait, outputShouldBe } from '../utils'
 
 const { _MultiSelect: BaseStory } = composeStories(baseStories as any) as any
+const { _MultiSelect: WithNumberOptionStory } = composeStories(withNumberOptionsStories as any) as any
 const { _MultiSelect: WithObjectOptionStory } = composeStories(withObjectOptionsStories as any) as any
 
 context('Base', () => {
@@ -29,6 +31,34 @@ context('Base', () => {
     cy.fill('A multiple select', ['Third Option'])
 
     outputShouldBe(['THIRD_OPTION'])
+
+    cy.fill('A multiple select', undefined)
+
+    outputShouldBe(undefined)
+  })
+})
+
+context('With number options', () => {
+  beforeEach(() => {
+    mountAndWait(
+      <GlobalDecoratorWrapper>
+        <WithNumberOptionStory />
+      </GlobalDecoratorWrapper>
+    )
+  })
+
+  it('Should fill, change and clear the select', () => {
+    cy.fill('A multiple select', ['First Option'])
+
+    outputShouldBe([0])
+
+    cy.fill('A multiple select', ['First Option', 'Second Option'])
+
+    outputShouldBe([0, 1])
+
+    cy.fill('A multiple select', ['Third Option'])
+
+    outputShouldBe([2])
 
     cy.fill('A multiple select', undefined)
 

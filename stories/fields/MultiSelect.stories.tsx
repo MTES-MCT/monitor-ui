@@ -35,7 +35,7 @@ export default {
   component: MultiSelect,
 
   argTypes: {
-    defaultValue: {
+    value: {
       control: 'inline-check',
       options: ['FIRST_OPTION', 'SECOND_OPTION', 'THIRD_OPTION', 'LOREM_IPSUM']
     }
