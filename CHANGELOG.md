@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.0...v4.0.1) (2023-03-29)
+
+
+### Bug Fixes
+
+* **fields:** add boolean to generic Option type ([c6a977a](https://github.com/MTES-MCT/monitor-ui/commit/c6a977ad84045efe56a47e77edd46c1b9305becd))
+
 # [4.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v3.7.1...v4.0.0) (2023-03-29)
 
 
