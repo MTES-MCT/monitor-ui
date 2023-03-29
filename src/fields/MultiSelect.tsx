@@ -11,10 +11,10 @@ import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
 import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
+import { getRsuiteValueFromOptionValue } from '../utils/getRsuiteValueFromOptionValue'
 import { normalizeString } from '../utils/normalizeString'
-import { toggleInCollection } from '../utils/toggleInCollection'
 
-import type { Option, OptionAsRsuiteItemDataType, OptionValueType } from '../types'
+import type { Option, OptionValueType } from '../types'
 import type { MouseEvent, ReactNode } from 'react'
 import type { TagPickerProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
@@ -53,7 +53,6 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 }: MultiSelectProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
-  const selectedOptionValuesRef = useRef<OptionValue[]>(value || [])
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -61,6 +60,13 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
     disabled,
     isUndefinedWhenDisabled
   })
+  const controlledRsuiteValue = useMemo(
+    () =>
+      (controlledValue || []).map(controlledValueItem =>
+        getRsuiteValueFromOptionValue(controlledValueItem, optionValueKey)
+      ),
+    [controlledValue, optionValueKey]
+  )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const data = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
@@ -72,23 +78,23 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
     setIsOpen(false)
   }, [])
 
-  const handleClean = useCallback(() => {
-    selectedOptionValuesRef.current = []
+  const handleChange = useCallback(
+    (nextOptionRsuiteValues: string[] | null) => {
+      const nextValue = nextOptionRsuiteValues
+        ? options
+            .filter(option =>
+              nextOptionRsuiteValues.includes(
+                optionValueKey ? (option.value as any)[optionValueKey] : String(option.value)
+              )
+            )
+            .map(option => option.value)
+        : []
 
-    controlledOnChange(undefined)
-  }, [controlledOnChange])
-
-  const handleSelect = useCallback(
-    (_: string, selectedItem: OptionAsRsuiteItemDataType<OptionValue>) => {
-      const nextValues = toggleInCollection(selectedItem.optionValue, selectedOptionValuesRef.current)
-
-      selectedOptionValuesRef.current = nextValues
-
-      const normalizedNextValue = !nextValues.length ? undefined : nextValues
+      const normalizedNextValue = !nextValue.length ? undefined : nextValue
 
       controlledOnChange(normalizedNextValue)
     },
-    [controlledOnChange]
+    [controlledOnChange, options, optionValueKey]
   )
 
   const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
@@ -136,14 +142,13 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
             data={data}
             disabled={disabled}
             id={originalProps.name}
-            onClean={handleClean}
-            onClick={toggle}
             // Since we customized `ItemDataType` type by adding `optionValue`, we have an optional vs required conflict
-            onSelect={handleSelect as any}
+            onChange={handleChange as any}
+            onClick={toggle}
             open={isOpen}
             renderMenuItem={renderMenuItem}
             searchable={searchable}
-            value={controlledValue}
+            value={controlledRsuiteValue}
             {...originalProps}
           />
         )}
