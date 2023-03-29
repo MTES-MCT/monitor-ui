@@ -12,12 +12,7 @@ type DDCoordinatesInputProps = {
   onChange: (nextCoordinates: Coordinates, coordinates: Coordinates | undefined) => void
 }
 // TODO This field should return undefined when cleared (i.e.: Select all & Backspace/Delete)
-export function DDCoordinatesInput({
-  coordinates,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  disabled = false,
-  onChange
-}: DDCoordinatesInputProps) {
+export function DDCoordinatesInput({ coordinates, disabled = false, onChange }: DDCoordinatesInputProps) {
   const latitudeInputRef = useRef<HTMLInputElement>()
   const longitudeInputRef = useRef<HTMLInputElement>()
 

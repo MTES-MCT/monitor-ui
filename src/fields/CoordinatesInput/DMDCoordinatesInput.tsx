@@ -23,7 +23,6 @@ type DMDCoordinatesInputProps = {
 export function DMDCoordinatesInput({
   coordinates,
   coordinatesFormat,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,
   onChange
 }: DMDCoordinatesInputProps) {

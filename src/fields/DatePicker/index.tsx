@@ -67,7 +67,6 @@ export function DatePicker(props: DatePickerWithStringDateProps): JSX.Element
 export function DatePicker({
   baseContainer,
   defaultValue,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,
   error,
   isCompact = false,

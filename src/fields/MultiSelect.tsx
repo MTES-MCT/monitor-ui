@@ -6,6 +6,7 @@ import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useClickOutsideEffect } from '../hooks/useClickOutsideEffect'
+import { useFieldControl } from '../hooks/useFieldControl'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
@@ -25,8 +26,6 @@ export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omi
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
   error?: string | undefined
-  /** Width in pixels */
-  fixedWidth?: number | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
@@ -39,6 +38,7 @@ export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omi
 }
 export function MultiSelect<OptionValue extends OptionValueType = string>({
   baseContainer,
+  disabled = false,
   error,
   isLabelHidden = false,
   isLight = false,
@@ -47,7 +47,6 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   onChange,
   options,
   optionValueKey,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   searchable = false,
   value,
   ...originalProps
@@ -58,14 +57,14 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 
   const [isOpen, setIsOpen] = useState(false)
 
-  const controlledValue = useMemo(
-    () => (!isUndefinedWhenDisabled || !originalProps.disabled ? value : undefined),
-    [isUndefinedWhenDisabled, originalProps.disabled, value]
-  )
+  const { controlledOnChange, controlledValue } = useFieldControl(value, onChange, {
+    disabled,
+    isUndefinedWhenDisabled
+  })
   const controlledError = useMemo(() => normalizeString(error), [error])
   const data = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([controlledValue, originalProps.disabled, originalProps.name])
+  const key = useKey([disabled, originalProps.name, value])
 
   const { forceUpdate } = useForceUpdate()
 
@@ -76,10 +75,8 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   const handleClean = useCallback(() => {
     selectedOptionValuesRef.current = []
 
-    if (onChange) {
-      onChange(undefined)
-    }
-  }, [onChange])
+    controlledOnChange(undefined)
+  }, [controlledOnChange])
 
   const handleSelect = useCallback(
     (_: string, selectedItem: OptionAsRsuiteItemDataType<OptionValue>) => {
@@ -87,13 +84,11 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 
       selectedOptionValuesRef.current = nextValues
 
-      if (onChange) {
-        const normalizedNextValue = !nextValues.length ? undefined : nextValues
+      const normalizedNextValue = !nextValues.length ? undefined : nextValues
 
-        onChange(normalizedNextValue)
-      }
+      controlledOnChange(normalizedNextValue)
     },
-    [onChange]
+    [controlledOnChange]
   )
 
   const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
@@ -119,7 +114,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
     [isOpen]
   )
 
-  useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
+  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
   useClickOutsideEffect(boxRef, close, baseContainer)
 
@@ -129,12 +124,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 
   return (
     <Field>
-      <Label
-        disabled={originalProps.disabled}
-        hasError={hasError}
-        htmlFor={originalProps.name}
-        isHidden={isLabelHidden}
-      >
+      <Label disabled={disabled} hasError={hasError} htmlFor={originalProps.name} isHidden={isLabelHidden}>
         {label}
       </Label>
 
@@ -144,6 +134,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
             key={key}
             container={boxRef.current}
             data={data}
+            disabled={disabled}
             id={originalProps.name}
             onClean={handleClean}
             onClick={toggle}

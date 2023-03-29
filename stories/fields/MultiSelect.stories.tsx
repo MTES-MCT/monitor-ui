@@ -15,7 +15,6 @@ import type { MultiSelectProps } from '../../src'
 const args: MultiSelectProps = {
   disabled: false,
   error: '',
-  fixedWidth: 170,
   isLabelHidden: false,
   isLight: false,
   label: 'A multiple select',

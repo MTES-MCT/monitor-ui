@@ -77,8 +77,8 @@ If you have to release a BREAKING CHANGE, you should look at the
 [official documentation](https://www.conventionalcommits.org/en/v1.0.0/#commit-message-with-description-and-breaking-change-footer)
 and you may look at this [pull request](https://github.com/MTES-MCT/monitor-ui/pull/131) as an example.
 
-In the case of a BREAKING CHANGE, it's **strongly advised** to add an exclamation point at the end of the scope (or type
-if there is no scope) in the commit message, i.e.:
+In the case of a BREAKING CHANGE, it's **strongly advised** to add an exclamation point before the colon in the commit
+message, i.e.:
 
 ```sh
 git commit -m "feat(fields)!: this prop has been removed"

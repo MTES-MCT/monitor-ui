@@ -9,7 +9,6 @@ export type LegendProps = HTMLAttributes<HTMLLegendElement> & {
   hasError?: boolean | undefined
   isHidden?: boolean | undefined
 }
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export function Legend({ disabled = false, hasError = false, isHidden = false, ...nativeProps }: LegendProps) {
   return <StyledLabel as="legend" disabled={disabled} hasError={hasError} isHidden={isHidden} {...nativeProps} />
 }

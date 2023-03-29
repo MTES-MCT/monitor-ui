@@ -15,7 +15,6 @@ type DMSCoordinatesInputProps = {
 export function DMSCoordinatesInput({
   coordinates,
   coordinatesFormat,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   disabled = false,
   onChange
 }: DMSCoordinatesInputProps) {

@@ -35,7 +35,7 @@ export default {
   component: Select,
 
   argTypes: {
-    defaultValue: {
+    value: {
       control: 'inline-radio',
       options: ['FIRST_OPTION', 'SECOND_OPTION', 'THIRD_OPTION', 'LOREM_IPSUM']
     }

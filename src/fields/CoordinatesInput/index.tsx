@@ -30,7 +30,6 @@ export type CoordinatesInputProps = FieldsetProps & {
 export function CoordinatesInput({
   coordinatesFormat,
   defaultValue,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   error,
   isLabelHidden = false,
   isLight = false,
