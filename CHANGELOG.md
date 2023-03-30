@@ -1,3 +1,11 @@
+## [4.0.5](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.4...v4.0.5) (2023-03-30)
+
+
+### Bug Fixes
+
+* **cypress:** force text input typing in fill command ([abdeddd](https://github.com/MTES-MCT/monitor-ui/commit/abdedddebcb12806fff7f02657ca0ed9aea337ab))
+* **cypress:** handle button selection by title in clickButton command ([d56e711](https://github.com/MTES-MCT/monitor-ui/commit/d56e711b2a08c06129e99cae1a23008f2998389a))
+
 ## [4.0.4](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.3...v4.0.4) (2023-03-30)
 
 
