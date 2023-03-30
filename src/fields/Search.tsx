@@ -171,7 +171,7 @@ export function Search<OptionValue extends OptionValueType = string>({
   }, [forceUpdate])
 
   return (
-    <Field>
+    <Field className="Field-Search">
       <Label
         disabled={originalProps.disabled}
         hasError={hasError}
