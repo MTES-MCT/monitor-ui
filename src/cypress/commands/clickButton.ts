@@ -2,6 +2,50 @@ import { findElementBytext } from '../utils/findElementBytext'
 
 const RETRIES = 5
 
+function findButton(
+  label: string,
+  preSelector: string,
+  {
+    index,
+    prevSubjectElement
+  }: {
+    index: number
+    prevSubjectElement: HTMLElement | undefined
+  }
+): HTMLElement | undefined {
+  const buttonElement = findElementBytext(`${preSelector}button`, label, {
+    index,
+    inElement: prevSubjectElement
+  })
+  if (buttonElement) {
+    return buttonElement as HTMLElement
+  }
+
+  const buttonElementByAriaLabel = prevSubjectElement
+    ? prevSubjectElement.querySelectorAll(`${preSelector}button[aria-label="${label}"]`)[index]
+    : Cypress.$(`${preSelector}button[aria-label="${label}"]`).get(index)
+  if (buttonElementByAriaLabel) {
+    return buttonElementByAriaLabel as HTMLElement
+  }
+
+  const buttonElementByTitle = prevSubjectElement
+    ? prevSubjectElement.querySelectorAll(`${preSelector}button[title="${label}"]`)[index]
+    : Cypress.$(`${preSelector}button[title="${label}"]`).get(index)
+  if (buttonElementByTitle) {
+    return buttonElementByTitle as HTMLElement
+  }
+
+  const menuItemElement = findElementBytext(`${preSelector}[role="menuitem"]`, label, {
+    index,
+    inElement: prevSubjectElement
+  })
+  if (menuItemElement) {
+    return menuItemElement as HTMLElement
+  }
+
+  return undefined
+}
+
 export function clickButton(
   prevSubjectElements: HTMLElement[] | undefined,
   label: string,
@@ -21,39 +65,13 @@ export function clickButton(
 
   const preSelector = withinSelector ? `${withinSelector} ` : ''
 
-  const iconButtonElementByAriaLabel = prevSubjectElement
-    ? Cypress.$(prevSubjectElement).find(`${preSelector}button[aria-label="${label}"]`).get(index)
-    : Cypress.$(`${preSelector}button[aria-label="${label}"]`).get(index)
-  const iconButtonElementByTitle = prevSubjectElement
-    ? Cypress.$(prevSubjectElement).find(`${preSelector}button[aria-label="${label}"]`).get(index)
-    : Cypress.$(`${preSelector}button[title="${label}"]`).get(index)
-  const textButtonElement = findElementBytext(`${preSelector}button`, label, {
+  const maybeButton = findButton(label, preSelector, {
     index,
-    inElement: prevSubjectElement
-  }) as HTMLButtonElement | null
-  const menuItemElement = findElementBytext(`${preSelector}[role="menuitem"]`, label, {
-    index,
-    inElement: prevSubjectElement
-  }) as HTMLElement | null
+    prevSubjectElement
+  })
 
-  if (iconButtonElementByAriaLabel) {
-    return cy.wrap(iconButtonElementByAriaLabel).scrollIntoView().click({ force: true }).wait(250)
-  }
-
-  if (iconButtonElementByTitle) {
-    return cy.wrap(iconButtonElementByTitle).scrollIntoView().click({ force: true }).wait(250)
-  }
-
-  if (menuItemElement) {
-    return cy
-      .wrap(menuItemElement as any)
-      .scrollIntoView()
-      .forceClick()
-      .wait(250)
-  }
-
-  if (textButtonElement) {
-    return cy.wrap(textButtonElement).scrollIntoView().forceClick().wait(250)
+  if (maybeButton) {
+    return cy.wrap(maybeButton).scrollIntoView().forceClick().wait(250)
   }
 
   if (leftRetries > 0) {

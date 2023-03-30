@@ -25,7 +25,6 @@ module.exports = {
     '/dist/',
     '/e2e/release/sample/',
     '/scripts/',
-    '/src/cypress/',
     '/storybook-static/',
     '.eslintrc.js',
     'rollup.config.js'
@@ -122,7 +121,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['./e2e/**/*.js', './e2e/**/*.ts', './e2e/**/*.tsx', './src/cypress/**/*.ts'],
+      files: ['./e2e/**/*.js', './e2e/**/*.ts', './e2e/**/*.tsx'],
       plugins: ['cypress'],
       env: {
         browser: false,
@@ -137,6 +136,17 @@ module.exports = {
         'cypress/no-force': 'error',
         'cypress/no-async-tests': 'error',
         'cypress/no-pause': 'error'
+      }
+    },
+    {
+      files: ['./src/cypress/**/*.ts'],
+      plugins: ['cypress'],
+      env: {
+        browser: false,
+        node: true
+      },
+      rules: {
+        '@typescript-eslint/naming-convention': 'off'
       }
     },
     {

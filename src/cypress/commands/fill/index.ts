@@ -1,7 +1,5 @@
 /* eslint-disable cypress/no-assigning-return-values */
 
-import { findElementBySelector } from '../../utils/findElementBySelector'
-import { waitFor } from '../../utils/waitFor'
 import { isEmpty } from 'ramda'
 
 import { checkCheckbox } from './checkCheckbox'
@@ -11,7 +9,9 @@ import { fillTextarea } from './fillTextarea'
 import { fillTextInput } from './fillTextInput'
 import { pickMultiSelectOptions } from './pickMultiSelectOptions'
 import { pickSelectOption } from './pickSelectOption'
+import { findElementBySelector } from '../../utils/findElementBySelector'
 import { findElementBytext } from '../../utils/findElementBytext'
+import { waitFor } from '../../utils/waitFor'
 
 const RETRIES = 5
 
