@@ -26,6 +26,33 @@ export function Template() {
         A button with a title
       </Button>
 
+      <table>
+        <tbody>
+          <tr data-id="0">
+            <td>
+              <Button onClick={() => setOutputValue('The first line button')}>The first line button</Button>
+            </td>
+          </tr>
+          <tr data-id="1">
+            <td>
+              <Button
+                aria-label="The second line button aria label"
+                onClick={() => setOutputValue('The second line button aria label')}
+              >
+                A second line button with an aria label
+              </Button>
+            </td>
+          </tr>
+          <tr data-id="2">
+            <td>
+              <Button onClick={() => setOutputValue('The third line button title')} title="The third line button title">
+                A third line button with a title
+              </Button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
       {outputValue !== '∅' && <Output value={outputValue} />}
     </>
   )

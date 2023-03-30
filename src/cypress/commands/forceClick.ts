@@ -5,8 +5,6 @@ export function forceClick([subject]: Cypress.Chainable<Cypress.JQueryWithSelect
     throw new Error(`Could not find subject.`)
   }
 
-  console.log(subject)
-
   try {
     return subject.click({ force: true })
   } catch (_) {
