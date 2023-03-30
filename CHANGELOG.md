@@ -1,3 +1,10 @@
+## [4.0.6](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.5...v4.0.6) (2023-03-30)
+
+
+### Bug Fixes
+
+* **cypress:** handle previous subject case in clickButton command ([5fc8b34](https://github.com/MTES-MCT/monitor-ui/commit/5fc8b34de09bf79156e348810897b55f0a1839f9))
+
 ## [4.0.5](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.4...v4.0.5) (2023-03-30)
 
 
