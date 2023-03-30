@@ -4,7 +4,7 @@ import { fill } from './commands/fill'
 import { forceClick } from './commands/forceClick'
 import { getDataCy } from './commands/getDataCy'
 
-Cypress.Commands.add('clickButton', clickButton)
+Cypress.Commands.add('clickButton', { prevSubject: 'optional' } as any, clickButton as any)
 
 Cypress.Commands.add(
   'clickLink',

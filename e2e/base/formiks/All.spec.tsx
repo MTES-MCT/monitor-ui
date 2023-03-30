@@ -4,7 +4,7 @@ import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDec
 import * as allStories from '../../../stories/tests/all_formiks.stories'
 import { mountAndWait, outputShouldBe } from '../utils'
 
-const { AllFormiks: AllStory } = composeStories(allStories as any) as any
+const { Template: AllStory } = composeStories(allStories as any) as any
 
 context('All', () => {
   beforeEach(() => {
