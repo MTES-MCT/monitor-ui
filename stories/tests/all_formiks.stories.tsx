@@ -24,7 +24,7 @@ export default {
   }
 }
 
-export function AllFormiks() {
+export function Template() {
   const [outputValue, setOutputValue] = useState<any>('∅')
 
   return (
