@@ -110,7 +110,7 @@ export function MultiZoneEditor({
   useFieldUndefineEffect(disabled, onChange, handleDisable)
 
   return (
-    <Fieldset disabled={disabled} isLegendHidden={isLabelHidden} legend={label}>
+    <Fieldset className="Field-MultiZoneEditor" disabled={disabled} isLegendHidden={isLabelHidden} legend={label}>
       <Button accent={Accent.SECONDARY} disabled={disabled} Icon={Plus} isFullWidth onClick={addZone}>
         {addButtonLabel}
       </Button>

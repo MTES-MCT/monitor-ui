@@ -324,7 +324,13 @@ export function DateRangePicker({
   useClickOutsideEffect([endDateInputRef, startDateInputRef], closeRangeCalendarPicker, baseContainer)
 
   return (
-    <Fieldset disabled={disabled} isLegendHidden={isLabelHidden} legend={label} {...nativeProps}>
+    <Fieldset
+      className="Field-DateRangePicker"
+      disabled={disabled}
+      isLegendHidden={isLabelHidden}
+      legend={label}
+      {...nativeProps}
+    >
       <Box isDisabled={disabled}>
         <Field>
           <DateInput

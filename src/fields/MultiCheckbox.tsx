@@ -77,7 +77,14 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
   return (
-    <Fieldset disabled={disabled} hasError={hasError} isLegendHidden={isLabelHidden} isLight={isLight} legend={label}>
+    <Fieldset
+      className="Field-MultiCheckbox"
+      disabled={disabled}
+      hasError={hasError}
+      isLegendHidden={isLabelHidden}
+      isLight={isLight}
+      legend={label}
+    >
       <ChecboxesBox $hasError={hasError} $isInline={isInline}>
         {options.map((option, index) => (
           <Checkbox

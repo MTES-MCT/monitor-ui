@@ -62,6 +62,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   return (
     <Fieldset
       key={key}
+      className="Field-MultiRadio"
       disabled={disabled}
       hasError={hasError}
       isLegendHidden={isLabelHidden}

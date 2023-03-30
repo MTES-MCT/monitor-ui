@@ -2,68 +2,66 @@ export function pickMultiSelectOptions(
   cypressMultiSelectInputElement: Cypress.Chainable<JQuery<HTMLElement>>,
   values: string[] | undefined
 ) {
-  cypressMultiSelectInputElement
-    .parent()
-    .parent()
-    .parent()
-    .parent()
-    .parent()
-    .then(([rsuiteMultiSelectWrapperElement]) => {
-      if (!rsuiteMultiSelectWrapperElement) {
-        throw new Error('This should never happen.')
+  cypressMultiSelectInputElement.parents('.Field-MultiSelect').then(([fieldElement]) => {
+    if (!fieldElement) {
+      throw new Error('`fieldElement` is undefined.')
+    }
+
+    cy.wrap(fieldElement).scrollIntoView()
+
+    const maybeCleanButton = fieldElement.querySelector('.rs-picker-toggle-clean')
+    if (maybeCleanButton) {
+      cy.wrap(fieldElement).find('.rs-picker-toggle-clean').forceClick().wait(250)
+    }
+
+    if (!values) {
+      return
+    }
+
+    cy.wrap(fieldElement).find('.rs-picker-toggle-caret').forceClick()
+
+    cy.get('.rs-picker-picker-check-menu').then(([multiSelectMenuElement]) => {
+      if (!multiSelectMenuElement) {
+        throw new Error('`multiSelectMenuElement` is undefined.')
       }
 
-      const maybeClearButton = rsuiteMultiSelectWrapperElement.querySelector('.rs-picker-toggle-clean')
-      if (maybeClearButton) {
-        cy.wrap(maybeClearButton).scrollIntoView().click({ force: true }).wait(250)
-      }
-
-      if (!values) {
-        return
-      }
-
-      cy.wrap(rsuiteMultiSelectWrapperElement).scrollIntoView()
-
-      cy.wrap(rsuiteMultiSelectWrapperElement).get('.rs-picker-toggle-caret').click()
-
-      cy.get('.rs-picker-picker-check-menu').then(([rsuiteMultiSelectMenu]) => {
-        if (!rsuiteMultiSelectMenu) {
-          throw new Error('This should never happen.')
+      const maybeSearchInput = multiSelectMenuElement.querySelector('.rs-picker-search-bar-input')
+      values.forEach(value => {
+        if (maybeSearchInput) {
+          cy.get('.rs-picker-picker-check-menu').find('.rs-picker-search-bar-input').type(value)
         }
 
-        const maybeSearchInput = rsuiteMultiSelectMenu.querySelector('.rs-picker-search-bar-input')
-        values.forEach(value => {
-          if (maybeSearchInput) {
-            cy.wrap(maybeSearchInput).scrollIntoView().type(value)
-          }
+        cy.get('.rs-picker-picker-check-menu')
+          .find('.rs-checkbox-checker')
+          .contains(value)
+          .scrollIntoView()
+          .forceClick()
+      })
 
-          cy.get('.rs-checkbox-checker').contains(value).scrollIntoView().click({ force: true })
-        })
+      const offsetLeft = fieldElement.offsetLeft
+        ? fieldElement.offsetLeft
+        : (() => {
+            if (!fieldElement.offsetParent) {
+              throw new Error('`fieldElement.offsetParent` is undefined.')
+            }
 
-        const offsetLeft = rsuiteMultiSelectWrapperElement.offsetLeft
-          ? rsuiteMultiSelectWrapperElement.offsetLeft
+            return (fieldElement.offsetParent as HTMLBodyElement).offsetLeft
+          })()
+      const offsetTop =
+        fieldElement.offsetTop !== 0
+          ? fieldElement.offsetTop
           : (() => {
-              if (!rsuiteMultiSelectWrapperElement.offsetParent) {
-                throw new Error('`rsuiteMultiSelectWrapperElement.offsetParent` is undefined.')
+              if (!fieldElement.offsetParent) {
+                throw new Error('`fieldElement.offsetParent` is undefined.')
               }
 
-              return (rsuiteMultiSelectWrapperElement.offsetParent as HTMLBodyElement).offsetLeft
+              return (fieldElement.offsetParent as HTMLBodyElement).offsetTop
             })()
-        const offsetTop =
-          rsuiteMultiSelectWrapperElement.offsetTop !== 0
-            ? rsuiteMultiSelectWrapperElement.offsetTop
-            : (() => {
-                if (!rsuiteMultiSelectWrapperElement.offsetParent) {
-                  throw new Error('`rsuiteMultiSelectWrapperElement.offsetParent` is undefined.')
-                }
 
-                return (rsuiteMultiSelectWrapperElement.offsetParent as HTMLBodyElement).offsetTop
-              })()
+      // TODO Investigate that (this should be -1).
+      cy.clickOutside(offsetLeft, offsetTop - 16)
 
-        // TODO Investigate that (this should be -1).
-        cy.clickOutside(offsetLeft, offsetTop - 16)
-
-        cy.wait(250)
-      })
+      cy.wait(250)
     })
+  })
 }

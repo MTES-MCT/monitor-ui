@@ -1,5 +1,6 @@
 // TODO We should make this component both form- & a11y-compliant with a `name` and proper (aria-)labels.
 
+import classNames from 'classnames'
 import { useCallback, useMemo, useRef } from 'react'
 import styled from 'styled-components'
 
@@ -66,6 +67,7 @@ export function DatePicker(props: DatePickerWithDateDateProps): JSX.Element
 export function DatePicker(props: DatePickerWithStringDateProps): JSX.Element
 export function DatePicker({
   baseContainer,
+  className,
   defaultValue,
   disabled = false,
   error,
@@ -232,7 +234,13 @@ export function DatePicker({
   useClickOutsideEffect(boxRef, closeCalendarPicker, baseContainer)
 
   return (
-    <Fieldset disabled={disabled} isLegendHidden={isLabelHidden} legend={label} {...nativeProps}>
+    <Fieldset
+      className={classNames('Field-DatePicker', className)}
+      disabled={disabled}
+      isLegendHidden={isLabelHidden}
+      legend={label}
+      {...nativeProps}
+    >
       <Box ref={boxRef}>
         <Field>
           <DateInput

@@ -44,15 +44,15 @@ export function Textarea({
   )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([controlledValue, originalProps.disabled, originalProps.name])
+  const key = useKey([originalProps.disabled, originalProps.name])
 
   const handleChange = useCallback(() => {
     if (!onChange) {
       return
     }
 
-    const nextValue = inputRef.current.value.trim()
-    const normalizedNextValue = nextValue.length ? nextValue : undefined
+    const nextValue = inputRef.current.value
+    const normalizedNextValue = nextValue.trim().length ? nextValue : undefined
 
     onChange(normalizedNextValue)
   }, [onChange])
@@ -60,7 +60,7 @@ export function Textarea({
   useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
 
   return (
-    <Field>
+    <Field className="Field-Textarea">
       <Label disabled={originalProps.disabled} htmlFor={originalProps.name} isHidden={isLabelHidden}>
         {label}
       </Label>

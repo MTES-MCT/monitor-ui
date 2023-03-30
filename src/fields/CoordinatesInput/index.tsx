@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import { useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 
@@ -28,6 +29,7 @@ export type CoordinatesInputProps = FieldsetProps & {
     | undefined
 }
 export function CoordinatesInput({
+  className,
   coordinatesFormat,
   defaultValue,
   error,
@@ -80,7 +82,13 @@ export function CoordinatesInput({
   useFieldUndefineEffect(nativeProps.disabled, onChange /* , handleDisable */)
 
   return (
-    <StyledFieldset isLegendHidden={isLabelHidden} isLight={isLight} legend={label} {...nativeProps}>
+    <StyledFieldset
+      className={classNames('Field-CoordinatesInput', className)}
+      isLegendHidden={isLabelHidden}
+      isLight={isLight}
+      legend={label}
+      {...nativeProps}
+    >
       {getCoordinatesInput()}
 
       {hasError && <FieldError>{controlledError}</FieldError>}

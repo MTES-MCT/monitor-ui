@@ -38,7 +38,7 @@ export function TextInput({
   )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([controlledValue, originalProps.disabled, originalProps.name])
+  const key = useKey([originalProps.disabled, originalProps.name])
 
   const handleChange = useCallback(
     (nextValue: string | null) => {
@@ -56,7 +56,7 @@ export function TextInput({
   useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
 
   return (
-    <Field>
+    <Field className="Field-TextInput">
       <Label
         disabled={originalProps.disabled}
         hasError={hasError}
