@@ -1,3 +1,10 @@
+## [4.0.4](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.3...v4.0.4) (2023-03-30)
+
+
+### Bug Fixes
+
+* **cypress:** improve fill command reliability ([26ad3f7](https://github.com/MTES-MCT/monitor-ui/commit/26ad3f7d8e5558181a4adaa9ad4cdb0f9b2ae9c7))
+
 ## [4.0.3](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.2...v4.0.3) (2023-03-29)
 
 
