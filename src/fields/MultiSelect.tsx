@@ -257,8 +257,6 @@ const Box = styled.div<{
   }
 
   > .rs-picker-menu {
-    max-width: 100%;
-
     > .rs-picker-check-menu {
       margin: 0;
 
