@@ -1,3 +1,10 @@
+## [4.0.7](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.6...v4.0.7) (2023-04-03)
+
+
+### Bug Fixes
+
+* **cypress:** add number to fill command type ([db11067](https://github.com/MTES-MCT/monitor-ui/commit/db11067d9a0f3523bef61b390bd38f8c9c3c6ed4))
+
 ## [4.0.6](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.5...v4.0.6) (2023-03-30)
 
 
