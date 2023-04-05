@@ -17,8 +17,8 @@ import { DateInput } from '../DateRangePicker/DateInput'
 import { TimeInput } from '../DateRangePicker/TimeInput'
 import { getDateFromDateAndTimeTuple, getDateTupleFromDate, getTimeTupleFromDate } from '../DateRangePicker/utils'
 
-import type { DateOrTimeInputRef, DateTuple, TimeTuple } from '../DateRangePicker/types'
-import type { HTMLAttributes, MutableRefObject } from 'react'
+import type { DateInputRef, DateTuple, TimeInputRef, TimeTuple } from '../DateRangePicker/types'
+import type { HTMLAttributes } from 'react'
 import type { Promisable } from 'type-fest'
 
 /**
@@ -51,16 +51,19 @@ export interface DatePickerProps extends Omit<HTMLAttributes<HTMLFieldSetElement
    *
    * @param nextUtcDateRange - A utcized date to be used as is to interact with the API.
    */
-  onChange?: ((nextUtcDate: Date) => Promisable<void>) | ((nextUtcDate: string) => Promisable<void>) | undefined
+  onChange?:
+    | ((nextUtcDate: Date | undefined) => Promisable<void>)
+    | ((nextUtcDate: string | undefined) => Promisable<void>)
+    | undefined
   withTime?: boolean | undefined
 }
 export interface DatePickerWithDateDateProps extends DatePickerProps {
   isStringDate?: false | undefined
-  onChange?: (nextUtcDate: Date) => Promisable<void> | undefined
+  onChange?: (nextUtcDate: Date | undefined) => Promisable<void> | undefined
 }
 export interface DatePickerWithStringDateProps extends DatePickerProps {
   isStringDate: true
-  onChange?: (nextUtcDate: string) => Promisable<void> | undefined
+  onChange?: (nextUtcDate: string | undefined) => Promisable<void> | undefined
 }
 
 export function DatePicker(props: DatePickerWithDateDateProps): JSX.Element
@@ -82,9 +85,11 @@ export function DatePicker({
   withTime = false,
   ...nativeProps
 }: DatePickerProps) {
-  const boxRef = useRef() as MutableRefObject<HTMLDivElement>
-  const dateInputRef = useRef() as MutableRefObject<DateOrTimeInputRef>
-  const timeInputRef = useRef() as MutableRefObject<DateOrTimeInputRef>
+  /* eslint-disable no-null/no-null */
+  const boxRef = useRef<HTMLDivElement>(null)
+  const dateInputRef = useRef<DateInputRef>(null)
+  const timeInputRef = useRef<TimeInputRef>(null)
+  /* eslint-enable no-null/no-null */
 
   const isCalendarPickerOpenRef = useRef(false)
 
@@ -133,7 +138,7 @@ export function DatePicker({
   }, [forceUpdate])
 
   const handleDateInputNext = useCallback(() => {
-    if (!withTime) {
+    if (!withTime || !timeInputRef.current) {
       return
     }
 
@@ -190,7 +195,7 @@ export function DatePicker({
 
       submit()
 
-      if (withTime && !selectedLocalizedTimeTupleRef.current) {
+      if (withTime && !selectedLocalizedTimeTupleRef.current && timeInputRef.current) {
         timeInputRef.current.focus()
       }
     },
@@ -203,6 +208,29 @@ export function DatePicker({
 
     forceUpdate()
   }, [forceUpdate])
+
+  const handleDateOrTimeInputInput = useCallback(() => {
+    if (!dateInputRef.current || !onChange) {
+      return
+    }
+
+    const [year, month, day] = dateInputRef.current.getValueAsPartialDateTuple()
+
+    if (!withTime && !year && !month && !day) {
+      onChange(undefined)
+
+      return
+    }
+
+    if (!timeInputRef.current) {
+      return
+    }
+
+    const [hour, minute] = timeInputRef.current.getValueAsPartialTimeTuple()
+    if (!year && !month && !day && !hour && !minute) {
+      onChange(undefined)
+    }
+  }, [onChange, withTime])
 
   const handleTimeInputFilled = useCallback(
     (nextTimeTuple: TimeTuple) => {
@@ -253,6 +281,7 @@ export function DatePicker({
             isLight={isLight}
             onChange={handleDateInputChange}
             onClick={openCalendarPicker}
+            onInput={handleDateOrTimeInputInput}
             onNext={handleDateInputNext}
           />
         </Field>
@@ -267,10 +296,11 @@ export function DatePicker({
               isCompact={isCompact}
               isLight={isLight}
               minutesRange={minutesRange}
-              onBack={() => dateInputRef.current.focus(true)}
+              onBack={() => dateInputRef.current?.focus(true)}
               onChange={handleTimeInputFilled}
               onFocus={closeCalendarPicker}
-              onPrevious={() => dateInputRef.current.focus(true)}
+              onInput={handleDateOrTimeInputInput}
+              onPrevious={() => dateInputRef.current?.focus(true)}
             />
           </Field>
         )}

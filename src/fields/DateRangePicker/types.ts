@@ -1,11 +1,20 @@
-export type DateOrTimeInputRef = {
-  box: HTMLDivElement
+type BaseInputRef = {
+  box: HTMLDivElement | null
   /**
    * Focus the first input in the group.
    *
    * @param inLastInputOfTheGroup - If `true`, focus the last input in the group instead of the first one
    */
   focus: (inLastInputOfTheGroup?: boolean) => void
+}
+
+export type DateInputRef = BaseInputRef &
+  Pick<HTMLElement, 'contains'> & {
+    getValueAsPartialDateTuple: () => PartialDateTuple
+  }
+
+export type TimeInputRef = BaseInputRef & {
+  getValueAsPartialTimeTuple: () => PartialTimeTuple
 }
 
 export enum DateRangePosition {
@@ -15,8 +24,10 @@ export enum DateRangePosition {
 
 /** In the shape of ["YYYY", "MM", "DD"]. */
 export type DateTuple = [string, string, string]
+export type PartialDateTuple = [string | undefined, string | undefined, string | undefined]
 
 export type DateTupleRange = [DateTuple, DateTuple]
 
 /** In the shape of ["hh", "mm"]. */
 export type TimeTuple = [string, string]
+export type PartialTimeTuple = [string | undefined, string | undefined]

@@ -1,12 +1,12 @@
 import { forwardRef, KeyboardEvent, useCallback, useImperativeHandle, useMemo, useRef } from 'react'
 import styled from 'styled-components'
 
-import type { FocusEvent, ForwardedRef, InputHTMLAttributes, MouseEvent, MutableRefObject } from 'react'
+import type { FocusEvent, ForwardedRef, InputHTMLAttributes, MouseEvent } from 'react'
 import type { Promisable } from 'type-fest'
 
 export type NumberInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  'maxLength' | 'onInput' | 'pattern' | 'type'
+  'maxLength' | 'onInput' | 'pattern' | 'type' | 'value'
 > & {
   isLight: boolean
   max: number
@@ -42,7 +42,8 @@ function NumberInputWithRef(
   }: NumberInputProps,
   ref: ForwardedRef<HTMLInputElement>
 ) {
-  const inputRef = useRef<HTMLInputElement>() as MutableRefObject<HTMLInputElement>
+  // eslint-disable-next-line no-null/no-null
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const placeholder = useMemo(() => '-'.repeat(size), [size])
 
@@ -61,6 +62,10 @@ function NumberInputWithRef(
 
   const handleFocus = useCallback(
     (event: FocusEvent<HTMLInputElement>) => {
+      if (!inputRef.current) {
+        return
+      }
+
       inputRef.current.select()
 
       if (onFocus) {
@@ -71,6 +76,10 @@ function NumberInputWithRef(
   )
 
   const handleInput = useCallback(() => {
+    if (!inputRef.current) {
+      return
+    }
+
     onFormatError(false)
 
     const { value } = inputRef.current
@@ -95,6 +104,10 @@ function NumberInputWithRef(
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent<HTMLInputElement>) => {
+      if (!inputRef.current) {
+        return
+      }
+
       if (
         onPrevious &&
         event.key === 'ArrowLeft' &&
