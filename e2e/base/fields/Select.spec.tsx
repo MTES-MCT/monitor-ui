@@ -17,7 +17,7 @@ context('Base', () => {
     )
   })
 
-  it('Should fill, change and clear the select', () => {
+  it('Should fill, change and clear the selection', () => {
     cy.fill('A select', 'First Option')
 
     outputShouldBe('FIRST_OPTION')
@@ -41,7 +41,7 @@ context('With object options', () => {
     )
   })
 
-  it('Should fill, change and clear the select', () => {
+  it('Should fill, change and clear the selection', () => {
     cy.fill('A select', 'First Option')
 
     outputShouldBe({

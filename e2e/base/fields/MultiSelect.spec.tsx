@@ -19,7 +19,7 @@ context('Base', () => {
     )
   })
 
-  it('Should fill, change and clear the select', () => {
+  it('Should fill, change and clear the selection', () => {
     cy.fill('A multiple select', ['First Option'])
 
     outputShouldBe(['FIRST_OPTION'])
@@ -47,7 +47,7 @@ context('With number options', () => {
     )
   })
 
-  it('Should fill, change and clear the select', () => {
+  it('Should fill, change and clear the selection', () => {
     cy.fill('A multiple select', ['First Option'])
 
     outputShouldBe([0])
@@ -75,7 +75,7 @@ context('With object options', () => {
     )
   })
 
-  it('Should fill, change and clear the select', () => {
+  it('Should fill, change and clear the selection', () => {
     cy.get('.rs-picker-toggle-caret').click()
     cy.get('[value="First Option Name"]').click()
 

@@ -5,6 +5,8 @@ import { isEmpty } from 'ramda'
 import { checkCheckbox } from './checkCheckbox'
 import { checkMultiCheckboxOptions } from './checkMultiCheckboxOptions'
 import { checkMultiRadioOption } from './checkMultiRadioOption'
+import { fillDatePicker } from './fillDatePicker'
+import { fillDateRangePicker } from './fillDateRangePicker'
 import { fillTextarea } from './fillTextarea'
 import { fillTextInput } from './fillTextInput'
 import { pickMultiSelectOptions } from './pickMultiSelectOptions'
@@ -17,7 +19,7 @@ const RETRIES = 5
 
 export function fill(
   label: string | undefined,
-  value: boolean | number | string | string[] | undefined,
+  value: boolean | number | string | string[] | Date | [Date, Date] | undefined,
   leftRetries: number = RETRIES
 ): void {
   // -------------------------------------------------------------------------
@@ -60,7 +62,7 @@ export function fill(
             case rsuitePickerElement.classList.contains('rs-picker-tag'):
               pickMultiSelectOptions(
                 cypressHtmlforElement,
-                Array.isArray(value) && value.length > 0 ? value : undefined
+                Array.isArray(value) && value.length > 0 ? (value as string[]) : undefined
               )
               break
 
@@ -137,11 +139,37 @@ export function fill(
         throw new Error(`Could not find parent fieldset of legend element with text "${label}".`)
       }
 
+      if (fieldsetElement.classList.contains('Field-DatePicker')) {
+        if (!(value instanceof Date) && value !== undefined) {
+          throw new Error('`value` should be of type `Date` or `undefined`.')
+        }
+
+        fillDatePicker(fieldsetElement, value)
+
+        return
+      }
+
+      if (fieldsetElement.classList.contains('Field-DateRangePicker')) {
+        if (
+          (!Array.isArray(value) || (Array.isArray(value instanceof Date) && !(value[0] instanceof Date))) &&
+          value !== undefined
+        ) {
+          throw new Error('`value` should be of type `[Date, Date]` or `undefined`.')
+        }
+
+        fillDateRangePicker(fieldsetElement, value as [Date, Date] | undefined)
+
+        return
+      }
+
       const isMultiCheckbox = Boolean(fieldsetElement.querySelector('input[type="checkbox"]'))
       const isMultiRadio = Boolean(fieldsetElement.querySelector('input[type="radio"]'))
 
       if (isMultiCheckbox) {
-        checkMultiCheckboxOptions(fieldsetElement, Array.isArray(value) && value.length > 0 ? value : undefined)
+        checkMultiCheckboxOptions(
+          fieldsetElement,
+          Array.isArray(value) && value.length > 0 ? (value as string[]) : undefined
+        )
 
         return
       }

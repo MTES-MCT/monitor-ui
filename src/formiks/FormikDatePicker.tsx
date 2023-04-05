@@ -4,6 +4,7 @@ import { useMemo } from 'react'
 import { DatePicker } from '../fields/DatePicker'
 
 import type { DatePickerProps, DatePickerWithDateDateProps, DatePickerWithStringDateProps } from '../fields/DatePicker'
+import type { DateRange } from '../types'
 
 const UntypedDatePicker: any = DatePicker
 
@@ -22,7 +23,7 @@ export interface FormikDatePickerWithStringDateProps
 export function FormikDatePicker(props: FormikDatePickerWithDateDateProps): JSX.Element
 export function FormikDatePicker(props: FormikDatePickerWithStringDateProps): JSX.Element
 export function FormikDatePicker({ name, ...originalProps }: FormikDatePickerProps) {
-  const [field, meta, helpers] = useField(name)
+  const [field, meta, helpers] = useField<DateRange | undefined>(name)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])

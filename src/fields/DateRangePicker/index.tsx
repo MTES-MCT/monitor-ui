@@ -6,7 +6,7 @@ import styled, { css } from 'styled-components'
 import { DateInput } from './DateInput'
 import { RangeCalendarPicker } from './RangeCalendarPicker'
 import { TimeInput } from './TimeInput'
-import { DateOrTimeInputRef, DateRangePosition, DateTuple, DateTupleRange, TimeTuple } from './types'
+import { DateInputRef, DateRangePosition, DateTuple, DateTupleRange, TimeInputRef, TimeTuple } from './types'
 import { getDateFromDateAndTimeTuple, getDateTupleFromDate, getTimeTupleFromDate } from './utils'
 import { FieldError } from '../../elements/FieldError'
 import { Fieldset } from '../../elements/Fieldset'
@@ -18,7 +18,7 @@ import { getUtcizedDayjs } from '../../utils/getUtcizedDayjs'
 import { normalizeString } from '../../utils/normalizeString'
 
 import type { DateAsStringRange, DateRange } from '../../types'
-import type { HTMLAttributes, MutableRefObject } from 'react'
+import type { HTMLAttributes } from 'react'
 import type { Promisable } from 'type-fest'
 
 /**
@@ -52,17 +52,17 @@ export interface DateRangePickerProps extends Omit<HTMLAttributes<HTMLFieldSetEl
    * @param nextUtcDateRange - A utcized date to be used as is to interact with the API.
    */
   onChange?:
-    | ((nextUtcDateRange: DateRange) => Promisable<void>)
-    | ((nextUtcDateRange: DateAsStringRange) => Promisable<void>)
+    | ((nextUtcDateRange: DateRange | undefined) => Promisable<void>)
+    | ((nextUtcDateRange: DateAsStringRange | undefined) => Promisable<void>)
   withTime?: boolean
 }
 export interface DateRangePickerWithDateDateProps extends DateRangePickerProps {
   isStringDate?: false
-  onChange?: (nextUtcDateRange: DateRange) => Promisable<void>
+  onChange?: (nextUtcDateRange: DateRange | undefined) => Promisable<void>
 }
 export interface DateRangePickerWithStringDateProps extends DateRangePickerProps {
   isStringDate: true
-  onChange?: (nextUtcDateRange: DateAsStringRange) => Promisable<void>
+  onChange?: (nextUtcDateRange: DateAsStringRange | undefined) => Promisable<void>
 }
 
 export function DateRangePicker(props: DateRangePickerWithDateDateProps): JSX.Element
@@ -83,10 +83,12 @@ export function DateRangePicker({
   withTime = false,
   ...nativeProps
 }: DateRangePickerProps) {
-  const startDateInputRef = useRef() as MutableRefObject<DateOrTimeInputRef>
-  const startTimeInputRef = useRef() as MutableRefObject<DateOrTimeInputRef>
-  const endDateInputRef = useRef() as MutableRefObject<DateOrTimeInputRef>
-  const endTimeInputRef = useRef() as MutableRefObject<DateOrTimeInputRef>
+  /* eslint-disable no-null/no-null */
+  const startDateInputRef = useRef<DateInputRef>(null)
+  const startTimeInputRef = useRef<TimeInputRef>(null)
+  const endDateInputRef = useRef<DateInputRef>(null)
+  const endTimeInputRef = useRef<TimeInputRef>(null)
+  /* eslint-enable no-null/no-null */
 
   const isRangeCalendarPickerOpenRef = useRef(false)
 
@@ -164,7 +166,7 @@ export function DateRangePicker({
   }, [forceUpdate])
 
   const handleEndDateInputNext = useCallback(() => {
-    if (!withTime) {
+    if (!withTime || !endTimeInputRef.current) {
       return
     }
 
@@ -172,7 +174,11 @@ export function DateRangePicker({
   }, [withTime])
 
   const handleEndDateInputPrevious = useCallback(() => {
-    if (withTime) {
+    if (!startDateInputRef.current) {
+      return
+    }
+
+    if (withTime && startTimeInputRef.current) {
       startTimeInputRef.current.focus(true)
 
       return
@@ -182,7 +188,11 @@ export function DateRangePicker({
   }, [withTime])
 
   const handleStartDateInputNext = useCallback(() => {
-    if (withTime) {
+    if (!endDateInputRef.current) {
+      return
+    }
+
+    if (withTime && startTimeInputRef.current) {
       startTimeInputRef.current.focus()
 
       return
@@ -232,6 +242,42 @@ export function DateRangePicker({
     [handleEndDateInputNext, handleStartDateInputNext, submit, withTime]
   )
 
+  const handleDateOrTimeInputInput = useCallback(() => {
+    if (!startDateInputRef.current || !endDateInputRef.current || !onChange) {
+      return
+    }
+
+    const [startYear, startMonth, startDay] = startDateInputRef.current.getValueAsPartialDateTuple()
+    const [endYear, endMonth, endDay] = endDateInputRef.current.getValueAsPartialDateTuple()
+
+    if (!withTime && !startYear && !startMonth && !startDay && !endYear && !endMonth && !endDay) {
+      onChange(undefined)
+
+      return
+    }
+
+    if (!startTimeInputRef.current || !endTimeInputRef.current) {
+      return
+    }
+
+    const [startHour, startMinute] = startTimeInputRef.current.getValueAsPartialTimeTuple()
+    const [endHour, endMinute] = endTimeInputRef.current.getValueAsPartialTimeTuple()
+    if (
+      !startYear &&
+      !startMonth &&
+      !startDay &&
+      !startHour &&
+      !startMinute &&
+      !endYear &&
+      !endMonth &&
+      !endDay &&
+      !endHour &&
+      !endMinute
+    ) {
+      onChange(undefined)
+    }
+  }, [onChange, withTime])
+
   const handleRangeCalendarPickerChange = useCallback(
     (nextDateTupleRange: DateTupleRange) => {
       const [nextStartDateTuple, nextEndDateTuple] = nextDateTupleRange
@@ -280,6 +326,10 @@ export function DateRangePicker({
 
   const handleTimeInputFilled = useCallback(
     (position: DateRangePosition, nextTimeTuple: TimeTuple) => {
+      if (!endDateInputRef.current) {
+        return
+      }
+
       if (position === DateRangePosition.START) {
         // If a start date has already been selected
         if (selectedLocalizedStartDateTupleRef.current) {
@@ -346,6 +396,7 @@ export function DateRangePicker({
               handleDateInputChange(DateRangePosition.START, nextDateTuple, isFilled)
             }
             onClick={openRangeCalendarPicker}
+            onInput={handleDateOrTimeInputInput}
             onNext={handleStartDateInputNext}
           />
         </Field>
@@ -361,11 +412,12 @@ export function DateRangePicker({
               isLight={isLight}
               isStartDate
               minutesRange={minutesRange}
-              onBack={() => startDateInputRef.current.focus(true)}
+              onBack={() => startDateInputRef.current?.focus(true)}
               onChange={nextTimeTuple => handleTimeInputFilled(DateRangePosition.START, nextTimeTuple)}
               onFocus={closeRangeCalendarPicker}
-              onNext={() => endDateInputRef.current.focus()}
-              onPrevious={() => startDateInputRef.current.focus(true)}
+              onInput={handleDateOrTimeInputInput}
+              onNext={() => endDateInputRef.current?.focus()}
+              onPrevious={() => startDateInputRef.current?.focus(true)}
             />
           </Field>
         )}
@@ -385,6 +437,7 @@ export function DateRangePicker({
               handleDateInputChange(DateRangePosition.END, nextDateTuple, isFilled)
             }
             onClick={openRangeCalendarPicker}
+            onInput={handleDateOrTimeInputInput}
             onNext={handleEndDateInputNext}
             onPrevious={handleEndDateInputPrevious}
           />
@@ -401,10 +454,11 @@ export function DateRangePicker({
               isEndDate
               isLight={isLight}
               minutesRange={minutesRange}
-              onBack={() => endDateInputRef.current.focus(true)}
+              onBack={() => endDateInputRef.current?.focus(true)}
               onChange={nextTimeTuple => handleTimeInputFilled(DateRangePosition.END, nextTimeTuple)}
               onFocus={closeRangeCalendarPicker}
-              onPrevious={() => endDateInputRef.current.focus(true)}
+              onInput={handleDateOrTimeInputInput}
+              onPrevious={() => endDateInputRef.current?.focus(true)}
             />
           </Field>
         )}

@@ -1,11 +1,13 @@
 import { any, identity, map, pipe } from 'ramda'
 import { useCallback, useEffect } from 'react'
 
-import type { MutableRefObject } from 'react'
+import type { RefObject } from 'react'
 import type { Promisable } from 'type-fest'
 
+type MinimalHtmlElement = Pick<HTMLElement, 'contains'>
+
 export const useClickOutsideEffect = (
-  zoneRefOrzoneRefs: MutableRefObject<any> | MutableRefObject<any>[],
+  zoneRefOrzoneRefs: RefObject<MinimalHtmlElement | null> | Array<RefObject<MinimalHtmlElement | null>>,
   action: () => Promisable<void>,
   baseContainer?: Document | HTMLDivElement | null
 ) => {
@@ -15,7 +17,9 @@ export const useClickOutsideEffect = (
       const zoneRefs = Array.isArray(zoneRefOrzoneRefs) ? zoneRefOrzoneRefs : [zoneRefOrzoneRefs]
 
       const isEventTargetInZones = pipe(
-        map((zoneRef: MutableRefObject<HTMLElement>) => zoneRef.current.contains(eventTarget)),
+        map((zoneRef: RefObject<MinimalHtmlElement | null>) =>
+          zoneRef.current && eventTarget ? zoneRef.current.contains(eventTarget) : false
+        ),
         any(identity)
       )(zoneRefs)
 
