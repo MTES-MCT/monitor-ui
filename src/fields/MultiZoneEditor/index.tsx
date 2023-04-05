@@ -21,6 +21,7 @@ export type MultiZoneEditorProps = {
   disabled?: boolean | undefined
   error?: string | undefined
   initialZone: Record<string, any>
+  isAddButtonDisabled?: boolean | undefined
   isLabelHidden?: boolean
   isLight?: boolean | undefined
   label: string
@@ -37,6 +38,7 @@ export function MultiZoneEditor({
   disabled = false,
   error,
   initialZone,
+  isAddButtonDisabled = false,
   isLabelHidden = false,
   isLight = false,
   label,
@@ -111,7 +113,13 @@ export function MultiZoneEditor({
 
   return (
     <Fieldset className="Field-MultiZoneEditor" disabled={disabled} isLegendHidden={isLabelHidden} legend={label}>
-      <Button accent={Accent.SECONDARY} disabled={disabled} Icon={Plus} isFullWidth onClick={addZone}>
+      <Button
+        accent={Accent.SECONDARY}
+        disabled={disabled || isAddButtonDisabled}
+        Icon={Plus}
+        isFullWidth
+        onClick={addZone}
+      >
         {addButtonLabel}
       </Button>
 
