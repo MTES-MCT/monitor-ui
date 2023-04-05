@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.7...v4.1.0) (2023-04-05)
+
+
+### Features
+
+* **fields:** Add isAddButtonDisabled to MultiZoneEditor ([3457bc5](https://github.com/MTES-MCT/monitor-ui/commit/3457bc5114de8f040b77daf78678eb8655448737))
+
 ## [4.0.7](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.6...v4.0.7) (2023-04-03)
 
 
