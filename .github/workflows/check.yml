@@ -37,6 +37,10 @@ jobs:
 
   test_unit:
     name: Unit Test
+    strategy:
+      matrix:
+        timeZone: ["Europe/Paris"]
+        dst: ["", "DST"]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -48,7 +52,11 @@ jobs:
           node-version: 18
       - name: Install
         run: yarn
+      - name: Set datetime & timezone
+        run: |
+          sudo timedatectl set-timezone '${{ matrix.timeZone }}'
+          sudo date -s '2030-${{ matrix.dst == 'DST' && '07' || '01' }}-01 00:00:00'
+      - name: Log datetime & timezone
+        run: timedatectl
       - name: Test
-        run: yarn test:unit --coverage
-      - name: Upload coverage
-        run: yarn codecov
+        run: yarn test:unit
