@@ -8,6 +8,4 @@ dayjs.extend(timezone)
 dayjs.extend(utc)
 dayjs.locale('fr')
 
-dayjs.tz.setDefault('UTC')
-
-export { dayjs }
+export { dayjs as customDayjs }

@@ -7,6 +7,26 @@ export function pickMultiSelectOptions(
       throw new Error('`fieldElement` is undefined.')
     }
 
+    const fieldElementOffsetLeft = fieldElement.offsetLeft
+      ? fieldElement.offsetLeft
+      : (() => {
+          if (!fieldElement.offsetParent) {
+            throw new Error('`fieldElement.offsetParent` is undefined.')
+          }
+
+          return (fieldElement.offsetParent as HTMLBodyElement).offsetLeft
+        })()
+    const fieldElementOffsetTop =
+      fieldElement.offsetTop !== 0
+        ? fieldElement.offsetTop
+        : (() => {
+            if (!fieldElement.offsetParent) {
+              throw new Error('`fieldElement.offsetParent` is undefined.')
+            }
+
+            return (fieldElement.offsetParent as HTMLBodyElement).offsetTop
+          })()
+
     cy.wrap(fieldElement).scrollIntoView()
 
     const maybeCleanButton = fieldElement.querySelector('.rs-picker-toggle-clean')
@@ -18,7 +38,7 @@ export function pickMultiSelectOptions(
       return
     }
 
-    cy.wrap(fieldElement).find('.rs-picker-toggle-caret').forceClick()
+    cy.wrap(fieldElement).find('.rs-picker-toggle').forceClick()
 
     cy.get('.rs-picker-picker-check-menu').then(([multiSelectMenuElement]) => {
       if (!multiSelectMenuElement) {
@@ -38,29 +58,8 @@ export function pickMultiSelectOptions(
           .forceClick()
       })
 
-      const offsetLeft = fieldElement.offsetLeft
-        ? fieldElement.offsetLeft
-        : (() => {
-            if (!fieldElement.offsetParent) {
-              throw new Error('`fieldElement.offsetParent` is undefined.')
-            }
-
-            return (fieldElement.offsetParent as HTMLBodyElement).offsetLeft
-          })()
-      const offsetTop =
-        fieldElement.offsetTop !== 0
-          ? fieldElement.offsetTop
-          : (() => {
-              if (!fieldElement.offsetParent) {
-                throw new Error('`fieldElement.offsetParent` is undefined.')
-              }
-
-              return (fieldElement.offsetParent as HTMLBodyElement).offsetTop
-            })()
-
       // TODO Investigate that (this should be -1).
-      cy.clickOutside(offsetLeft, offsetTop - 16)
-
+      cy.clickOutside(fieldElementOffsetLeft, fieldElementOffsetTop - 16)
       cy.wait(250)
     })
   })
