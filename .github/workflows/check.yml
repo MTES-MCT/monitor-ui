@@ -37,6 +37,28 @@ jobs:
 
   test_unit:
     name: Unit Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version: 18
+      - name: Install
+        run: yarn
+      - name: Set datetime & timezone
+        run: |
+          sudo timedatectl set-timezone '${{ matrix.timeZone }}'
+          sudo date -s '2030-${{ matrix.dst == 'DST' && '07' || '01' }}-01 00:00:00'
+      - name: Log datetime & timezone
+        run: timedatectl
+      - name: Test
+        run: yarn test:unit
+
+  test_unit_in_paris:
+    name: Unit Test
     strategy:
       matrix:
         timeZone: ["Europe/Paris"]
