@@ -63,7 +63,7 @@ export { usePrevious } from './hooks/usePrevious'
   Utils
 */
 
-export { dayjs } from './utils/dayjs'
+export { customDayjs } from './utils/customDayjs'
 export { getCoordinates, coordinatesAreDistinct } from './utils/coordinates'
 export { getLocalizedDayjs } from './utils/getLocalizedDayjs'
 export { getPseudoRandomString } from './utils/getPseudoRandomString'

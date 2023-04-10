@@ -48,15 +48,10 @@ jobs:
           node-version: 18
       - name: Install
         run: yarn
-      - name: Set datetime & timezone
-        run: |
-          sudo timedatectl set-timezone '${{ matrix.timeZone }}'
-          sudo date -s '2030-${{ matrix.dst == 'DST' && '07' || '01' }}-01 00:00:00'
-      - name: Log datetime & timezone
-        run: timedatectl
       - name: Test
         run: yarn test:unit
-
+      - name: Upload coverage
+        run: yarn codecov
   test_unit_in_paris:
     name: Unit Test
     strategy:
@@ -77,7 +72,7 @@ jobs:
       - name: Set datetime & timezone
         run: |
           sudo timedatectl set-timezone '${{ matrix.timeZone }}'
-          sudo date -s '2030-${{ matrix.dst == 'DST' && '07' || '01' }}-01 00:00:00'
+          sudo date -s "$(date '+%Y')-${{ matrix.dst == 'DST' && '07' || '01' }}-01 00:00:00"
       - name: Log datetime & timezone
         run: timedatectl
       - name: Test

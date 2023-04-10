@@ -10,12 +10,22 @@ declare namespace Cypress {
       }>
     ): Chainable<JQuery<HTMLButtonElement>>
     clickLink(linkText: string): Chainable<JQuery<HTMLAnchorElement>>
-    clickOutside(xPosition?: number, yPosition?: number): Chainable<JQuery<HTMLBodyElement>>
+    clickOutside(xPosition?: number, yPosition?: number): void
     fill(
       label: string,
-      value: boolean | number | string | string[] | Date | [Date, Date] | undefined
+      value:
+        | boolean
+        | number
+        | string
+        | string[]
+        | (DateTuple | DateWithTimeTuple)
+        | ([Cypress.DateTuple, Cypress.DateTuple] | [Cypress.DateWithTimeTuple, Cypress.DateWithTimeTuple])
+        | undefined
     ): Chainable<Element>
     forceClick(): Chainable<JQuery<HTMLElement>>
     getDataCy(dataCy: string): Chainable<JQuery<HTMLElement>>
   }
+
+  type DateTuple = [number, number, number]
+  type DateWithTimeTuple = [number, number, number, number, number]
 }

@@ -139,6 +139,16 @@ module.exports = {
       }
     },
     {
+      files: ['./src/**/*.test.ts', './src/**/*.test.tsx'],
+      env: {
+        browser: true,
+        node: true
+      },
+      rules: {
+        '@typescript-eslint/naming-convention': 'off'
+      }
+    },
+    {
       files: ['./src/cypress/**/*.ts'],
       plugins: ['cypress'],
       env: {

@@ -1,29 +1,52 @@
-import { composeStories } from '@storybook/testing-react'
-import dayjs from 'dayjs'
-
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
-import * as baseStories from '../../../stories/formiks/FormikDatePicker.stories'
+import Meta, { _FormikDatePicker as FormikDatePickerStory } from '../../../stories/formiks/FormikDatePicker.stories'
 import { mountAndWait, outputShouldBe } from '../utils'
-
-const { _FormikDatePicker: BaseStory } = composeStories(baseStories as any) as any
 
 context('Base', () => {
   beforeEach(() => {
     mountAndWait(
       <GlobalDecoratorWrapper>
-        <BaseStory />
+        <FormikDatePickerStory {...Meta.args} withTime={false} />
       </GlobalDecoratorWrapper>
     )
   })
 
   it('Should fill, change and clear the date', () => {
-    cy.fill('A date', dayjs('2021-12-31 04:56').toDate())
+    cy.fill('A date', [2021, 12, 31])
+
+    outputShouldBe({
+      myDate: '2021-12-31T00:00:00.000Z'
+    })
+
+    cy.fill('A date', [2024, 3, 4])
+
+    outputShouldBe({
+      myDate: '2024-03-04T00:00:00.000Z'
+    })
+
+    cy.fill('A date', undefined)
+
+    outputShouldBe({})
+  })
+})
+
+context('Base (with time)', () => {
+  beforeEach(() => {
+    mountAndWait(
+      <GlobalDecoratorWrapper>
+        <FormikDatePickerStory {...Meta.args} withTime />
+      </GlobalDecoratorWrapper>
+    )
+  })
+
+  it('Should fill, change and clear the date', () => {
+    cy.fill('A date', [2021, 12, 31, 4, 56])
 
     outputShouldBe({
       myDate: '2021-12-31T04:56:00.000Z'
     })
 
-    cy.fill('A date', dayjs('2024-03-04 23:18').toDate())
+    cy.fill('A date', [2024, 3, 4, 23, 18])
 
     outputShouldBe({
       myDate: '2024-03-04T23:18:00.000Z'

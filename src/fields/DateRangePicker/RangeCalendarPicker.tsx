@@ -3,9 +3,9 @@ import { DateRangePicker as RsuiteDateRangePicker } from 'rsuite'
 import styled from 'styled-components'
 
 import { RSUITE_CALENDAR_LOCALE } from './constants'
-import { getDateTupleFromDate } from './utils'
+import { getDateTupleFromUtcDate } from './utils'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
-import { getUtcDayjs } from '../../utils/getUtcDayjs'
+import { customDayjs } from '../../utils/customDayjs'
 import { getUtcizedDayjs } from '../../utils/getUtcizedDayjs'
 import { sortDates } from '../../utils/sortDates'
 import { stopMouseEventPropagation } from '../../utils/stopMouseEventPropagation'
@@ -15,15 +15,28 @@ import type { DateRange } from '../../types'
 import type { Promisable } from 'type-fest'
 
 type RangeCalendarPickerProps = {
+  /**
+   * @description
+   * We expect a UTC Date range here and NOT a utcized one.
+   *
+   * The order between the start and end date doesn't matter since it's sorted internally.
+   */
   defaultValue?: DateRange | undefined
   isHistorical?: boolean | undefined
   isOpen: boolean
-  onChange: (nextDateTupleRange: DateTupleRange) => Promisable<void>
+  /**
+   * @description
+   * Note that `nextUtcdDateTupleRange` is ALREADY utized from the user pick.
+   */
+  onChange: (nextUtcDateTupleRange: DateTupleRange) => Promisable<void>
 }
 export function RangeCalendarPicker({ defaultValue, isHistorical, isOpen, onChange }: RangeCalendarPickerProps) {
   const boxRef = useRef<HTMLDivElement>()
-  const selectedFirstDate = useRef<Date>()
-  const selectedSecondDate = useRef<Date>()
+  // It's called "first" and "second" because the calendar can also be picked from right to left,
+  // that's why we sort these first and second dates before calling `onChange()`
+  // in order to distinguish the start date from the end date
+  const selectedFirstUtcDate = useRef<Date>()
+  const selectedSecondUtcDate = useRef<Date>()
 
   const { forceUpdate } = useForceUpdate()
 
@@ -31,30 +44,33 @@ export function RangeCalendarPicker({ defaultValue, isHistorical, isOpen, onChan
     () => (defaultValue ? (sortDates(defaultValue) as DateRange) : undefined),
     [defaultValue]
   )
-  const utcTodayAsDayjs = useMemo(() => getUtcDayjs().endOf('day'), [])
+  const utcTodayAsDayjs = useMemo(() => customDayjs().utc().endOf('day'), [])
   const disabledDate = useMemo(
     () => (date: Date) => isHistorical ? getUtcizedDayjs(date).isAfter(utcTodayAsDayjs) : false,
     [isHistorical, utcTodayAsDayjs]
   )
 
   const handleSelect = useCallback(
-    (nextDate: Date) => {
-      if (!selectedFirstDate.current || selectedSecondDate.current) {
-        selectedFirstDate.current = nextDate
-        selectedSecondDate.current = undefined
+    (nextLocalDate: Date) => {
+      // We utcize the date picked by the user
+      const nextUtcDate = getUtcizedDayjs(nextLocalDate).toDate()
+
+      if (!selectedFirstUtcDate.current || selectedSecondUtcDate.current) {
+        selectedFirstUtcDate.current = nextUtcDate
+        selectedSecondUtcDate.current = undefined
 
         return
       }
 
-      const sortedDateRange = sortDates([selectedFirstDate.current, nextDate]) as DateRange
+      const sortedDateRange = sortDates([selectedFirstUtcDate.current, nextUtcDate]) as DateRange
       const [startDate, endDate] = sortedDateRange
-      const startDateTuple = getDateTupleFromDate(startDate)
-      const endDateTuple = getDateTupleFromDate(endDate)
-      const nextDateTupleRange = [startDateTuple, endDateTuple] as DateTupleRange
+      const startDateTuple = getDateTupleFromUtcDate(startDate)
+      const endDateTuple = getDateTupleFromUtcDate(endDate)
+      const nextUtcDateTupleRange = [startDateTuple, endDateTuple] as DateTupleRange
 
-      selectedSecondDate.current = nextDate
+      selectedSecondUtcDate.current = nextUtcDate
 
-      onChange(nextDateTupleRange)
+      onChange(nextUtcDateTupleRange)
     },
     [onChange]
   )

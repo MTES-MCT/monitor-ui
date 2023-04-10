@@ -21,7 +21,7 @@ export function pickSelectOption(
         return
       }
 
-      cy.wrap(fieldElement).find('.rs-picker-toggle-caret').click()
+      cy.wrap(fieldElement).find('.rs-picker-toggle').forceClick()
 
       cy.get('.rs-picker-select-menu').then(([selectMenuElement]) => {
         if (!selectMenuElement) {

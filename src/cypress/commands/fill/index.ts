@@ -19,7 +19,14 @@ const RETRIES = 5
 
 export function fill(
   label: string | undefined,
-  value: boolean | number | string | string[] | Date | [Date, Date] | undefined,
+  value:
+    | boolean
+    | number
+    | string
+    | string[]
+    | (Cypress.DateTuple | Cypress.DateWithTimeTuple)
+    | ([Cypress.DateTuple, Cypress.DateTuple] | [Cypress.DateWithTimeTuple, Cypress.DateWithTimeTuple])
+    | undefined,
   leftRetries: number = RETRIES
 ): void {
   // -------------------------------------------------------------------------
@@ -140,24 +147,41 @@ export function fill(
       }
 
       if (fieldsetElement.classList.contains('Field-DatePicker')) {
-        if (!(value instanceof Date) && value !== undefined) {
-          throw new Error('`value` should be of type `Date` or `undefined`.')
+        if (
+          (!Array.isArray(value) || (value.length !== 3 && value.length !== 5) || typeof value[0] !== 'number') &&
+          value !== undefined
+        ) {
+          throw new Error(
+            '`value` should be of type `[number, number, number]`, `[number, number, number, number, number]` or `undefined`.'
+          )
         }
 
-        fillDatePicker(fieldsetElement, value)
+        fillDatePicker(fieldsetElement, value as Cypress.DateTuple | Cypress.DateWithTimeTuple | undefined)
 
         return
       }
 
       if (fieldsetElement.classList.contains('Field-DateRangePicker')) {
         if (
-          (!Array.isArray(value) || (Array.isArray(value instanceof Date) && !(value[0] instanceof Date))) &&
+          (!Array.isArray(value) ||
+            value.length !== 2 ||
+            !Array.isArray(value[0]) ||
+            (value[0].length !== 3 && value[0].length !== 5) ||
+            (value[1].length !== 3 && value[1].length !== 5)) &&
           value !== undefined
         ) {
-          throw new Error('`value` should be of type `[Date, Date]` or `undefined`.')
+          throw new Error(
+            '`value` should be of type `[[number, number, number], [number, number, number]]` or ``[[number, number, number, number, number], [number, number, number, number, number]]`` or `undefined`.'
+          )
         }
 
-        fillDateRangePicker(fieldsetElement, value as [Date, Date] | undefined)
+        fillDateRangePicker(
+          fieldsetElement,
+          value as
+            | [Cypress.DateTuple, Cypress.DateTuple]
+            | [Cypress.DateWithTimeTuple, Cypress.DateWithTimeTuple]
+            | undefined
+        )
 
         return
       }

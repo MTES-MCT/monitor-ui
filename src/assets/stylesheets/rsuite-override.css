@@ -514,30 +514,6 @@ label:hover .rs-checkbox-wrapper .rs-checkbox-inner:before {
   border-color: transparent var(--slateGray) transparent transparent;
 }
 
-.rs-calendar-table-cell-is-today .rs-calendar-table-cell-content {
-  border: 1px solid var(--slateGray) !important;
-}
-
-.rs-calendar,
-.rs-calendar-header,
-.rs-calendar-table-cell-content {
-  box-sizing: border-box !important;
-}
-
-.rs-calendar-table-cell-content {
-  border-radius: 2px !important;
-}
-
-.rs-calendar-table-cell-selected .rs-calendar-table-cell-content {
-  color: #f0f0f0;
-  border-color: var(--charcoal);
-  background-color: var(--charcoal);
-}
-
-.rs-calendar-table-cell-in-range::before {
-  background-color: #e0e0e0;
-}
-
 .rs-picker-toolbar-right-btn-ok {
   padding: 5px 10px;
   font-size: 13px;

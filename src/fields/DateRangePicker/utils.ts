@@ -1,6 +1,4 @@
-// TODO Use `date-fns` instead of `dayjs`.
-
-import { dayjs } from '../../utils/dayjs'
+import { customDayjs } from '../../utils/customDayjs'
 
 import type { DateTuple, TimeTuple } from './types'
 import type { Option } from '../../types'
@@ -9,11 +7,28 @@ export function formatNumberAsDoubleDigit(numberLike: number | string): string {
   return String(numberLike).padStart(2, '0')
 }
 
-export function getDateFromDateAndTimeTuple(dateTuple: DateTuple, timeTuple: TimeTuple, isEnd: boolean = false): Date {
+/**
+ * @description
+ * This function will treat any date & time tuple in UTC, whichever the current time zone is.
+ *
+ * @example
+ * ```ts
+ * console.log(getDateFromDateAndTimeTuple(['2021', '31', '12'], ['00', '00']).toISOString())
+ * // => "2021-12-31T00:00:00.000Z"
+ * console.log(getDateFromDateAndTimeTuple(['2021', '31', '12'], ['23', '59'], true).toISOString())
+ * // => "2021-12-31T23:59:59.000Z"
+ * ```
+ */
+export function getUtcDateFromDateAndTimeTuple(
+  dateTuple: DateTuple,
+  timeTuple: TimeTuple,
+  isEnd: boolean = false
+): Date {
   const [year, month, day] = dateTuple
   const [hour, minute] = timeTuple
 
-  const rawDateAsDayjs = dayjs()
+  const rawDateAsDayjs = customDayjs()
+    .utc()
     .year(Number(year))
     .month(Number(month) - 1)
     .date(Number(day))
@@ -30,18 +45,18 @@ export function getDateFromDateAndTimeTuple(dateTuple: DateTuple, timeTuple: Tim
     : rawDateAsDayjs.startOf('minute').toDate()
 }
 
-export function getDateTupleFromDate(date: undefined): undefined
-export function getDateTupleFromDate(date: Date): DateTuple
-export function getDateTupleFromDate(date?: Date): DateTuple | undefined
-export function getDateTupleFromDate(date?: Date): DateTuple | undefined {
-  if (!date) {
+export function getDateTupleFromUtcDate(utcDate: undefined): undefined
+export function getDateTupleFromUtcDate(utcDate: Date): DateTuple
+export function getDateTupleFromUtcDate(utcDate?: Date): DateTuple | undefined
+export function getDateTupleFromUtcDate(utcDate?: Date): DateTuple | undefined {
+  if (!utcDate) {
     return undefined
   }
 
   return [
-    String(date.getFullYear()),
-    formatNumberAsDoubleDigit(date.getMonth() + 1),
-    formatNumberAsDoubleDigit(date.getDate())
+    String(utcDate.getFullYear()),
+    formatNumberAsDoubleDigit(utcDate.getMonth() + 1),
+    formatNumberAsDoubleDigit(utcDate.getDate())
   ]
 }
 
@@ -77,12 +92,12 @@ export const getRangedTimeOptions = (minutesRange: number): Option<TimeTuple>[] 
   })
 }
 
-export function getTimeTupleFromDate(date?: Date): TimeTuple | undefined {
-  if (!date) {
+export function getTimeTupleFromUtcDate(utcDate?: Date): TimeTuple | undefined {
+  if (!utcDate) {
     return undefined
   }
 
-  return [formatNumberAsDoubleDigit(date.getHours()), formatNumberAsDoubleDigit(date.getMinutes())]
+  return [formatNumberAsDoubleDigit(utcDate.getHours()), formatNumberAsDoubleDigit(utcDate.getMinutes())]
 }
 
 // The type is not accurate here but it's good enough to use the protoypes we need for the feature

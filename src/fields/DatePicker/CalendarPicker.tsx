@@ -3,38 +3,48 @@ import { DatePicker as RsuiteDatePicker } from 'rsuite'
 import styled from 'styled-components'
 
 import { useForceUpdate } from '../../hooks/useForceUpdate'
-import { getUtcDayjs } from '../../utils/getUtcDayjs'
+import { customDayjs } from '../../utils/customDayjs'
 import { getUtcizedDayjs } from '../../utils/getUtcizedDayjs'
 import { stopMouseEventPropagation } from '../../utils/stopMouseEventPropagation'
 import { RSUITE_CALENDAR_LOCALE } from '../DateRangePicker/constants'
-import { getDateTupleFromDate } from '../DateRangePicker/utils'
+import { getDateTupleFromUtcDate } from '../DateRangePicker/utils'
 
 import type { DateTuple } from '../DateRangePicker/types'
-import type { MutableRefObject } from 'react'
 import type { Promisable } from 'type-fest'
 
 type CalendarPickerProps = {
+  /**
+   * @description
+   * We expect a UTC Date here and NOT a utcized one.
+   */
   defaultValue?: Date | undefined
   isHistorical?: boolean | undefined
   isOpen: boolean
-  onChange: (nextDateTuple: DateTuple) => Promisable<void>
+  /**
+   * @description
+   * Note that `nextUtcDateTuple` is ALREADY utized from the user pick.
+   */
+  onChange: (nextUtcDateTuple: DateTuple) => Promisable<void>
 }
 export function CalendarPicker({ defaultValue, isHistorical, isOpen, onChange }: CalendarPickerProps) {
-  const boxRef = useRef() as MutableRefObject<HTMLDivElement | undefined>
+  const boxRef = useRef<HTMLDivElement>()
 
   const { forceUpdate } = useForceUpdate()
 
-  const utcTodayAsDayjs = useMemo(() => getUtcDayjs().endOf('day'), [])
+  const utcTodayAsDayjs = useMemo(() => customDayjs().utc().endOf('day'), [])
   const disabledDate = useMemo(
     () => (date?: Date) => date && isHistorical ? getUtcizedDayjs(date).isAfter(utcTodayAsDayjs) : false,
     [isHistorical, utcTodayAsDayjs]
   )
 
   const handleSelect = useCallback(
-    (nextDate: Date) => {
-      const nextDateTuple = getDateTupleFromDate(nextDate)
+    (nextLocalDate: Date) => {
+      // We utcize the date picked by the user
+      const nextUtcDate = getUtcizedDayjs(nextLocalDate).toDate()
 
-      onChange(nextDateTuple)
+      const nextUtcDateTuple = getDateTupleFromUtcDate(nextUtcDate)
+
+      onChange(nextUtcDateTuple)
     },
     [onChange]
   )
@@ -56,8 +66,8 @@ export function CalendarPicker({ defaultValue, isHistorical, isOpen, onChange }:
           oneTap
           onSelect={handleSelect}
           open={isOpen}
-          // `defaultValue` seems to be immediatly cancelled so we come down to using a controlled `value`
           ranges={[]}
+          // `defaultValue` seems to be immediatly cancelled so we come down to using a controlled `value`
           // eslint-disable-next-line no-null/no-null
           value={defaultValue ?? null}
         />
