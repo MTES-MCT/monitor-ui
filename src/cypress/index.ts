@@ -4,28 +4,32 @@ import { fill } from './commands/fill'
 import { forceClick } from './commands/forceClick'
 import { getDataCy } from './commands/getDataCy'
 
-Cypress.Commands.add('clickButton', { prevSubject: 'optional' } as any, clickButton as any)
+export const registerMonitorUiCustomCommands = () => {
+  Cypress.Commands.add('clickButton', { prevSubject: 'optional' } as any, clickButton as any)
 
-Cypress.Commands.add(
-  'clickLink',
-  (linkText: string): Cypress.Chainable<JQuery<HTMLAnchorElement>> => cy.get('a').contains(linkText).click()
-)
+  Cypress.Commands.add(
+    'clickLink',
+    (linkText: string): Cypress.Chainable<JQuery<HTMLAnchorElement>> => cy.get('a').contains(linkText).click()
+  )
 
-/**
- * @description
- * Useful to close modals.
- */
-Cypress.Commands.add('clickOutside', clickOutside)
+  /**
+   * @description
+   * Useful to close modals.
+   */
+  Cypress.Commands.add('clickOutside', clickOutside)
 
-/**
- * @example
- * ```ts
- *   cy.fill('Password', 'P422W0Rd')
- * ```
- */
-Cypress.Commands.add('fill', fill)
+  /**
+   * @example
+   * ```ts
+   *   cy.fill('Password', 'P422W0Rd')
+   * ```
+   */
+  Cypress.Commands.add('fill', fill)
 
-// Maybe because of https://github.com/cypress-io/cypress/issues/19564
-Cypress.Commands.add('forceClick', { prevSubject: true }, forceClick)
+  // Maybe because of https://github.com/cypress-io/cypress/issues/19564
+  Cypress.Commands.add('forceClick', { prevSubject: true }, forceClick)
 
-Cypress.Commands.add('getDataCy', getDataCy)
+  Cypress.Commands.add('getDataCy', getDataCy)
+}
+
+registerMonitorUiCustomCommands()
