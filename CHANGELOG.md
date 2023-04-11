@@ -1,3 +1,22 @@
+# [5.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v4.1.0...v5.0.0) (2023-04-11)
+
+
+* fix!: handle DST correctly in date-related utils & fields ([377450b](https://github.com/MTES-MCT/monitor-ui/commit/377450bca0f2c90d7cf1331da3e9f8a50042bb33))
+* fix(fields)!: make DatePicker & DateRangePicker onChange value undefined when cleared ([b8a0f09](https://github.com/MTES-MCT/monitor-ui/commit/b8a0f09aae3638bebccced2c8c3a0f39d5caa8ab))
+
+
+### Features
+
+* **fields:** add isEndDate prop to DatePicker ([418290e](https://github.com/MTES-MCT/monitor-ui/commit/418290e94f8f7eea9a282ac2d610b57761af2c8b))
+
+
+### BREAKING CHANGES
+
+* `dayjs` export is now named `customDayjs`.
+* rsuite-override.css doesn't include calendar-related CSS anymore.
+* DatePicker & DateRangePicker onChange() value can now
+be undefined.
+
 # [4.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.7...v4.1.0) (2023-04-05)
 
 
