@@ -1,3 +1,10 @@
+## [5.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v5.2.0...v5.2.1) (2023-04-11)
+
+
+### Bug Fixes
+
+* **cypress:** include registerMonitorUiCustomCommands() typings in module ([81373dc](https://github.com/MTES-MCT/monitor-ui/commit/81373dca3f7b3a62770cb858ae601e984834f4c0))
+
 # [5.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.1.1...v5.2.0) (2023-04-11)
 
 
