@@ -5,7 +5,7 @@ import { forceClick } from './commands/forceClick'
 import { getDataCy } from './commands/getDataCy'
 
 export const registerMonitorUiCustomCommands = () => {
-  Cypress.Commands.add('clickButton', { prevSubject: 'optional' } as any, clickButton as any)
+  Cypress.Commands.add('clickButton' as any, { prevSubject: 'optional' } as any, clickButton as any)
 
   Cypress.Commands.add(
     'clickLink',
