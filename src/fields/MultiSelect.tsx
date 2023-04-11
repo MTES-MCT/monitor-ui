@@ -26,6 +26,7 @@ export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omi
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
   error?: string | undefined
+  isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
@@ -40,6 +41,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   baseContainer,
   disabled = false,
   error,
+  isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
   isUndefinedWhenDisabled = false,
@@ -154,7 +156,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
         )}
       </Box>
 
-      {hasError && <FieldError>{controlledError}</FieldError>}
+      {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
     </Field>
   )
 }

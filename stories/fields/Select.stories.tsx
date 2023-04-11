@@ -15,6 +15,7 @@ import type { SelectProps } from '../../src'
 const args: SelectProps = {
   disabled: false,
   error: '',
+  isErrorMessageHidden: false,
   isLabelHidden: false,
   isLight: false,
   label: 'A select',

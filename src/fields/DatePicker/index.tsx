@@ -56,6 +56,7 @@ export interface DatePickerProps
   isCompact?: boolean | undefined
   /** Set the default time to the end (instead of start) of the day when picking/entering a date. */
   isEndDate?: boolean | undefined
+  isErrorMessageHidden?: boolean | undefined
   /** Only allow past dates until today. */
   isHistorical?: boolean | undefined
   isLabelHidden?: boolean | undefined
@@ -100,6 +101,7 @@ export function DatePicker({
   error,
   isCompact = false,
   isEndDate = false,
+  isErrorMessageHidden = false,
   isHistorical = false,
   isLabelHidden = false,
   isLight = false,
@@ -335,7 +337,7 @@ export function DatePicker({
         )}
       </Box>
 
-      {hasError && <FieldError>{controlledError}</FieldError>}
+      {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
 
       <CalendarPicker
         isHistorical={isHistorical}

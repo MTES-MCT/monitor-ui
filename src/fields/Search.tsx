@@ -32,6 +32,7 @@ export type SearchProps<OptionValue extends OptionValueType = string> = Omit<
   baseContainer?: Document | HTMLDivElement | null | undefined
   defaultValue?: OptionValue | undefined
   error?: string | undefined
+  isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
   isSearchIconHidden?: boolean | undefined
@@ -49,6 +50,7 @@ export function Search<OptionValue extends OptionValueType = string>({
   baseContainer,
   defaultValue,
   error,
+  isErrorMessageHidden = false,
   isLabelHidden,
   isLight = false,
   isSearchIconHidden = false,
@@ -223,7 +225,7 @@ export function Search<OptionValue extends OptionValueType = string>({
         )}
       </Box>
 
-      {hasError && <FieldError>{controlledError}</FieldError>}
+      {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
     </Field>
   )
 }

@@ -10,6 +10,7 @@ import type { FormikNumberInputProps } from '../../src'
 
 const args: FormikNumberInputProps = {
   disabled: false,
+  isErrorMessageHidden: false,
   isLabelHidden: false,
   isLight: false,
   name: 'myNumberInput',

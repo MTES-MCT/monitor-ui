@@ -17,6 +17,7 @@ const args: DateRangePickerWithDateDateProps | DateRangePickerWithStringDateProp
   disabled: false,
   error: '',
   isCompact: false,
+  isErrorMessageHidden: false,
   isHistorical: false,
   isLabelHidden: false,
   isLight: false,

@@ -17,6 +17,7 @@ const args: DatePickerWithDateDateProps | DatePickerWithStringDateProps = {
   error: '',
   isCompact: false,
   isEndDate: false,
+  isErrorMessageHidden: false,
   isHistorical: false,
   isLabelHidden: false,
   isLight: false,

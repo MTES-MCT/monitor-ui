@@ -17,6 +17,7 @@ export type TextareaProps = Omit<
   'defaultValue' | 'id' | 'onChange' | 'value'
 > & {
   error?: string | undefined
+  isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
@@ -27,6 +28,7 @@ export type TextareaProps = Omit<
 }
 export function Textarea({
   error,
+  isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
   isUndefinedWhenDisabled = false,
@@ -77,7 +79,7 @@ export function Textarea({
         {...originalProps}
       />
 
-      {hasError && <FieldError>{controlledError}</FieldError>}
+      {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
     </Field>
   )
 }

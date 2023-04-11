@@ -10,6 +10,7 @@ import type { FormikCheckboxProps } from '../../src'
 
 const args: FormikCheckboxProps = {
   disabled: false,
+  isErrorMessageHidden: false,
   label: 'Check me',
   name: 'myCheckbox'
 }

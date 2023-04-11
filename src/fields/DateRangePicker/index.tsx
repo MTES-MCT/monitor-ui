@@ -53,6 +53,7 @@ export interface DateRangePickerProps
   disabled?: boolean | undefined
   error?: string | undefined
   isCompact?: boolean | undefined
+  isErrorMessageHidden?: boolean | undefined
   /** Only allow past dates until today. */
   isHistorical?: boolean | undefined
   isLabelHidden?: boolean | undefined
@@ -94,6 +95,7 @@ export function DateRangePicker({
   disabled = false,
   error,
   isCompact = false,
+  isErrorMessageHidden = false,
   isHistorical = false,
   isLabelHidden = false,
   isLight = false,
@@ -475,7 +477,7 @@ export function DateRangePicker({
         )}
       </Box>
 
-      {hasError && <FieldError>{controlledError}</FieldError>}
+      {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
 
       <RangeCalendarPicker
         defaultValue={rangeCalendarPickerDefaultValue}

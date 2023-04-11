@@ -10,6 +10,7 @@ import type { FormikMultiCheckboxProps } from '../../src'
 
 const args: FormikMultiCheckboxProps = {
   disabled: false,
+  isErrorMessageHidden: false,
   isInline: false,
   isLabelHidden: false,
   isLight: false,
