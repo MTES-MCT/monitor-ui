@@ -42,7 +42,7 @@
   "devDependencies": {
     "@babel/core": "7.21.3",
     "@babel/preset-typescript": "7.21.0",
-    "@commitlint/cli": "17.3.0",
+    "@commitlint/cli": "17.5.1",
     "@commitlint/config-conventional": "17.4.2",
     "@ivangabriele/commitlint-config": "1.0.6",
     "@ivangabriele/eslint-config-typescript-base": "6.0.1",
