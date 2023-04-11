@@ -7,5 +7,4 @@ cp ./CHANGELOG.md ./dist/CHANGELOG.md
 cp ./LICENSE ./dist/LICENSE
 cp ./README.md ./dist/README.md
 
-rm -f ./dist/cypress/index.d.ts
-cp ./src/cypress/types/index.d.ts ./dist/cypress/index.d.ts
+cp ./src/cypress/global.d.ts ./dist/cypress/global.d.ts
