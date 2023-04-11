@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.0.0...v5.1.0) (2023-04-11)
+
+
+### Features
+
+* **utils:** include more plugins in customDayjs() ([4493b00](https://github.com/MTES-MCT/monitor-ui/commit/4493b00c882dd4afb3196fb39dbad22737de13cd))
+
 # [5.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v4.1.0...v5.0.0) (2023-04-11)
 
 
