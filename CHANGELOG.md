@@ -1,3 +1,72 @@
+## [5.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v5.1.0...v5.1.1) (2023-04-11)
+
+
+### Bug Fixes
+
+* **utils:** include Dayjs plugins typings in customDayjs() ([bbe5c7c](https://github.com/MTES-MCT/monitor-ui/commit/bbe5c7c7b763567750af0843fbc14ee977e96a09))
+
+# [5.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.0.0...v5.1.0) (2023-04-11)
+
+
+### Features
+
+* **utils:** include more plugins in customDayjs() ([4493b00](https://github.com/MTES-MCT/monitor-ui/commit/4493b00c882dd4afb3196fb39dbad22737de13cd))
+
+# [5.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v4.1.0...v5.0.0) (2023-04-11)
+
+
+* fix!: handle DST correctly in date-related utils & fields ([377450b](https://github.com/MTES-MCT/monitor-ui/commit/377450bca0f2c90d7cf1331da3e9f8a50042bb33))
+* fix(fields)!: make DatePicker & DateRangePicker onChange value undefined when cleared ([b8a0f09](https://github.com/MTES-MCT/monitor-ui/commit/b8a0f09aae3638bebccced2c8c3a0f39d5caa8ab))
+
+
+### Features
+
+* **fields:** add isEndDate prop to DatePicker ([418290e](https://github.com/MTES-MCT/monitor-ui/commit/418290e94f8f7eea9a282ac2d610b57761af2c8b))
+
+
+### BREAKING CHANGES
+
+* `dayjs` export is now named `customDayjs`.
+* rsuite-override.css doesn't include calendar-related CSS anymore.
+* DatePicker & DateRangePicker onChange() value can now
+be undefined.
+
+# [4.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.7...v4.1.0) (2023-04-05)
+
+
+### Features
+
+* **fields:** Add isAddButtonDisabled to MultiZoneEditor ([3457bc5](https://github.com/MTES-MCT/monitor-ui/commit/3457bc5114de8f040b77daf78678eb8655448737))
+
+## [4.0.7](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.6...v4.0.7) (2023-04-03)
+
+
+### Bug Fixes
+
+* **cypress:** add number to fill command type ([db11067](https://github.com/MTES-MCT/monitor-ui/commit/db11067d9a0f3523bef61b390bd38f8c9c3c6ed4))
+
+## [4.0.6](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.5...v4.0.6) (2023-03-30)
+
+
+### Bug Fixes
+
+* **cypress:** handle previous subject case in clickButton command ([5fc8b34](https://github.com/MTES-MCT/monitor-ui/commit/5fc8b34de09bf79156e348810897b55f0a1839f9))
+
+## [4.0.5](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.4...v4.0.5) (2023-03-30)
+
+
+### Bug Fixes
+
+* **cypress:** force text input typing in fill command ([abdeddd](https://github.com/MTES-MCT/monitor-ui/commit/abdedddebcb12806fff7f02657ca0ed9aea337ab))
+* **cypress:** handle button selection by title in clickButton command ([d56e711](https://github.com/MTES-MCT/monitor-ui/commit/d56e711b2a08c06129e99cae1a23008f2998389a))
+
+## [4.0.4](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.3...v4.0.4) (2023-03-30)
+
+
+### Bug Fixes
+
+* **cypress:** improve fill command reliability ([26ad3f7](https://github.com/MTES-MCT/monitor-ui/commit/26ad3f7d8e5558181a4adaa9ad4cdb0f9b2ae9c7))
+
 ## [4.0.3](https://github.com/MTES-MCT/monitor-ui/compare/v4.0.2...v4.0.3) (2023-03-29)
 
 

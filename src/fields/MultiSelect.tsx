@@ -129,7 +129,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   }, [forceUpdate])
 
   return (
-    <Field>
+    <Field className="Field-MultiSelect">
       <Label disabled={disabled} hasError={hasError} htmlFor={originalProps.name} isHidden={isLabelHidden}>
         {label}
       </Label>

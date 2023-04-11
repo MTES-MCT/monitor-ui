@@ -6,8 +6,8 @@ import { formatNumberAsDoubleDigit, isHtmlElement } from './utils'
 import { Calendar } from '../../icons'
 
 import type { NumberInputProps } from './NumberInput'
-import type { DateTuple, DateOrTimeInputRef } from './types'
-import type { ForwardedRef, MutableRefObject } from 'react'
+import type { DateTuple, DateInputRef } from './types'
+import type { ForwardedRef } from 'react'
 import type { Promisable } from 'type-fest'
 
 export type DateInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'onNext'> & {
@@ -19,10 +19,19 @@ export type DateInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
   isEndDate?: boolean | undefined
   isForcedFocused: boolean
   isLight: boolean
+  /**
+   * Is this date input included in the `<DateRangePicker />`?
+   *
+   * @description
+   * Impact the input labels.
+   */
+  isRange?: boolean | undefined
   isStartDate?: boolean | undefined
-  /** Called each time the date input is changed to a new valid value. */
+  /** Called each time any date input is changed to a new valid value. */
   onChange: (nextDateTuple: DateTuple, isFilled: boolean) => Promisable<void>
   onClick: () => Promisable<void>
+  /** Called each time any date input receive a keyboard-input change whether the value is valid or not. */
+  onInput: () => Promisable<void>
 }
 function DateInputWithRef(
   {
@@ -33,19 +42,23 @@ function DateInputWithRef(
     isEndDate = false,
     isForcedFocused,
     isLight,
+    isRange = false,
     isStartDate = false,
     onBack,
     onChange,
     onClick,
+    onInput,
     onNext,
     onPrevious
   }: DateInputProps,
-  ref: ForwardedRef<DateOrTimeInputRef>
+  ref: ForwardedRef<DateInputRef>
 ) {
-  const boxRef = useRef() as MutableRefObject<HTMLDivElement>
-  const dayInputRef = useRef() as MutableRefObject<HTMLInputElement>
-  const monthInputRef = useRef() as MutableRefObject<HTMLInputElement>
-  const yearInputRef = useRef() as MutableRefObject<HTMLInputElement>
+  /* eslint-disable no-null/no-null */
+  const boxRef = useRef<HTMLDivElement>(null)
+  const dayInputRef = useRef<HTMLInputElement>(null)
+  const monthInputRef = useRef<HTMLInputElement>(null)
+  const yearInputRef = useRef<HTMLInputElement>(null)
+  /* eslint-enable no-null/no-null */
 
   const [hasFormatError, setHasFormatError] = useState(false)
   const [hasValidationError, setHasValidationError] = useState(false)
@@ -56,16 +69,21 @@ function DateInputWithRef(
     [baseContainer]
   )
 
-  useImperativeHandle<DateOrTimeInputRef, DateOrTimeInputRef>(ref, () => ({
+  useImperativeHandle<DateInputRef, DateInputRef>(ref, () => ({
     box: boxRef.current,
-    contains: boxRef.current.contains.bind(boxRef.current),
+    contains: boxRef.current ? boxRef.current.contains.bind(boxRef.current) : () => false,
     focus: (isInLastInputOfTheGroup = false) => {
       if (isInLastInputOfTheGroup) {
-        yearInputRef.current.focus()
+        yearInputRef.current?.focus()
       } else {
-        dayInputRef.current.focus()
+        dayInputRef.current?.focus()
       }
-    }
+    },
+    getValueAsPartialDateTuple: () => [
+      yearInputRef.current?.value.length ? yearInputRef.current.value : undefined,
+      monthInputRef.current?.value.length ? monthInputRef.current.value : undefined,
+      dayInputRef.current?.value.length ? dayInputRef.current.value : undefined
+    ]
   }))
 
   const handleBlur = useCallback(() => {
@@ -81,6 +99,10 @@ function DateInputWithRef(
   }, [])
 
   const submit = useCallback(() => {
+    if (!yearInputRef.current || !monthInputRef.current || !dayInputRef.current) {
+      return
+    }
+
     setHasValidationError(false)
 
     const isFilled = baseDocument.activeElement === yearInputRef.current
@@ -133,11 +155,11 @@ function DateInputWithRef(
       $isLight={isLight}
     >
       <div>
-        {isStartDate && <span>Du </span>}
-        {isEndDate && <span>Au </span>}
+        {isRange && isStartDate && <span>Du </span>}
+        {isRange && isEndDate && <span>Au </span>}
         <NumberInput
           ref={dayInputRef}
-          aria-label={`Jour${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
+          aria-label={`Jour${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
           defaultValue={defaultValue && formatNumberAsDoubleDigit(defaultValue[2])}
           disabled={disabled}
           isLight={isLight}
@@ -149,46 +171,49 @@ function DateInputWithRef(
           onFilled={submit}
           onFocus={handleFocus}
           onFormatError={handleFormatError}
-          onNext={() => monthInputRef.current.focus()}
+          onInput={onInput}
+          onNext={() => monthInputRef.current?.focus()}
           onPrevious={onPrevious}
           size={2}
         />
         /
         <NumberInput
           ref={monthInputRef}
-          aria-label={`Mois${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
+          aria-label={`Mois${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
           defaultValue={defaultValue && formatNumberAsDoubleDigit(defaultValue[1])}
           disabled={disabled}
           isLight={isLight}
           max={12}
           min={1}
-          onBack={() => dayInputRef.current.focus()}
+          onBack={() => dayInputRef.current?.focus()}
           onBlur={handleBlur}
           onClick={onClick}
           onFilled={submit}
           onFocus={handleFocus}
           onFormatError={handleFormatError}
-          onNext={() => yearInputRef.current.focus()}
-          onPrevious={() => dayInputRef.current.focus()}
+          onInput={onInput}
+          onNext={() => yearInputRef.current?.focus()}
+          onPrevious={() => dayInputRef.current?.focus()}
           size={2}
         />
         /
         <NumberInput
           ref={yearInputRef}
-          aria-label={`Année${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
+          aria-label={`Année${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
           defaultValue={defaultValue && defaultValue[0]}
           disabled={disabled}
           isLight={isLight}
           max={2030}
           min={2020}
-          onBack={() => monthInputRef.current.focus()}
+          onBack={() => monthInputRef.current?.focus()}
           onBlur={handleBlur}
           onClick={onClick}
           onFilled={submit}
           onFocus={handleFocus}
           onFormatError={handleFormatError}
+          onInput={onInput}
           onNext={onNext}
-          onPrevious={() => monthInputRef.current.focus()}
+          onPrevious={() => monthInputRef.current?.focus()}
           size={4}
         />
       </div>

@@ -132,7 +132,7 @@ export function Select<OptionValue extends OptionValueType = string>({
   }, [forceUpdate])
 
   return (
-    <Field>
+    <Field className="Field-Select">
       <Label disabled={disabled} hasError={hasError} htmlFor={originalProps.name} isHidden={isLabelHidden}>
         {label}
       </Label>

@@ -1,23 +1,32 @@
 /* eslint-disable cypress/no-assigning-return-values */
 
-import { findElementBySelector } from '../../utils/findElementBySelector'
-import { waitFor } from '../../utils/waitFor'
 import { isEmpty } from 'ramda'
 
 import { checkCheckbox } from './checkCheckbox'
 import { checkMultiCheckboxOptions } from './checkMultiCheckboxOptions'
 import { checkMultiRadioOption } from './checkMultiRadioOption'
+import { fillDatePicker } from './fillDatePicker'
+import { fillDateRangePicker } from './fillDateRangePicker'
 import { fillTextarea } from './fillTextarea'
 import { fillTextInput } from './fillTextInput'
 import { pickMultiSelectOptions } from './pickMultiSelectOptions'
 import { pickSelectOption } from './pickSelectOption'
+import { findElementBySelector } from '../../utils/findElementBySelector'
 import { findElementBytext } from '../../utils/findElementBytext'
+import { waitFor } from '../../utils/waitFor'
 
 const RETRIES = 5
 
 export function fill(
   label: string | undefined,
-  value: boolean | number | string | string[] | undefined,
+  value:
+    | boolean
+    | number
+    | string
+    | string[]
+    | (Cypress.DateTuple | Cypress.DateWithTimeTuple)
+    | ([Cypress.DateTuple, Cypress.DateTuple] | [Cypress.DateWithTimeTuple, Cypress.DateWithTimeTuple])
+    | undefined,
   leftRetries: number = RETRIES
 ): void {
   // -------------------------------------------------------------------------
@@ -60,7 +69,7 @@ export function fill(
             case rsuitePickerElement.classList.contains('rs-picker-tag'):
               pickMultiSelectOptions(
                 cypressHtmlforElement,
-                Array.isArray(value) && value.length > 0 ? value : undefined
+                Array.isArray(value) && value.length > 0 ? (value as string[]) : undefined
               )
               break
 
@@ -137,11 +146,54 @@ export function fill(
         throw new Error(`Could not find parent fieldset of legend element with text "${label}".`)
       }
 
+      if (fieldsetElement.classList.contains('Field-DatePicker')) {
+        if (
+          (!Array.isArray(value) || (value.length !== 3 && value.length !== 5) || typeof value[0] !== 'number') &&
+          value !== undefined
+        ) {
+          throw new Error(
+            '`value` should be of type `[number, number, number]`, `[number, number, number, number, number]` or `undefined`.'
+          )
+        }
+
+        fillDatePicker(fieldsetElement, value as Cypress.DateTuple | Cypress.DateWithTimeTuple | undefined)
+
+        return
+      }
+
+      if (fieldsetElement.classList.contains('Field-DateRangePicker')) {
+        if (
+          (!Array.isArray(value) ||
+            value.length !== 2 ||
+            !Array.isArray(value[0]) ||
+            (value[0].length !== 3 && value[0].length !== 5) ||
+            (value[1].length !== 3 && value[1].length !== 5)) &&
+          value !== undefined
+        ) {
+          throw new Error(
+            '`value` should be of type `[[number, number, number], [number, number, number]]` or ``[[number, number, number, number, number], [number, number, number, number, number]]`` or `undefined`.'
+          )
+        }
+
+        fillDateRangePicker(
+          fieldsetElement,
+          value as
+            | [Cypress.DateTuple, Cypress.DateTuple]
+            | [Cypress.DateWithTimeTuple, Cypress.DateWithTimeTuple]
+            | undefined
+        )
+
+        return
+      }
+
       const isMultiCheckbox = Boolean(fieldsetElement.querySelector('input[type="checkbox"]'))
       const isMultiRadio = Boolean(fieldsetElement.querySelector('input[type="radio"]'))
 
       if (isMultiCheckbox) {
-        checkMultiCheckboxOptions(fieldsetElement, Array.isArray(value) && value.length > 0 ? value : undefined)
+        checkMultiCheckboxOptions(
+          fieldsetElement,
+          Array.isArray(value) && value.length > 0 ? (value as string[]) : undefined
+        )
 
         return
       }

@@ -3,41 +3,41 @@ export function pickSelectOption(
   value: string | undefined
 ) {
   cypressSelectInputElement
-    .parent()
-    .parent()
-    .parent()
-    .parent()
-    .parent()
+    .parents('.Field-Select')
     .scrollIntoView()
-    .then(([rsuiteSelectWrapperElement]) => {
-      if (!rsuiteSelectWrapperElement) {
-        throw new Error('This should never happen.')
+    .then(([fieldElement]) => {
+      if (!fieldElement) {
+        throw new Error('`fieldElement` is undefined.')
       }
 
-      const maybeClearButton = rsuiteSelectWrapperElement.querySelector('.rs-picker-toggle-clean')
-      if (maybeClearButton) {
-        cy.wrap(maybeClearButton).scrollIntoView().click({ force: true })
+      cy.wrap(fieldElement).scrollIntoView()
+
+      const maybeCleanButton = fieldElement.querySelector('.rs-picker-toggle-clean')
+      if (maybeCleanButton) {
+        cy.wrap(fieldElement).find('.rs-picker-toggle-clean').scrollIntoView().forceClick().wait(250)
       }
 
       if (!value) {
         return
       }
 
-      cy.wrap(rsuiteSelectWrapperElement).scrollIntoView().get('.rs-picker-toggle-caret').click()
+      cy.wrap(fieldElement).find('.rs-picker-toggle').forceClick()
 
-      cy.get('.rs-picker-select-menu').then(([rsuiteSelectMenu]) => {
-        if (!rsuiteSelectMenu) {
-          throw new Error('This should never happen.')
+      cy.get('.rs-picker-select-menu').then(([selectMenuElement]) => {
+        if (!selectMenuElement) {
+          throw new Error('`selectMenuElement` is undefined.')
         }
 
-        const maybeSearchInput = rsuiteSelectMenu.querySelector('.rs-picker-search-bar-input')
+        const maybeSearchInput = selectMenuElement.querySelector('.rs-picker-search-bar-input')
         if (maybeSearchInput) {
-          cy.wrap(maybeSearchInput).scrollIntoView().type(value)
+          cy.wrap(selectMenuElement).find('.rs-picker-search-bar-input').type(value)
         }
 
-        cy.get('.rs-picker-select-menu-item').contains(value).scrollIntoView().click({ force: true })
+        cy.wrap(selectMenuElement)
+          .get('.rs-picker-select-menu-item')
+          .contains(value)
+          .scrollIntoView()
+          .click({ force: true })
       })
     })
-
-  return cypressSelectInputElement
 }

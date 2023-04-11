@@ -1624,15 +1624,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:17.3.0":
-  version: 17.3.0
-  resolution: "@commitlint/cli@npm:17.3.0"
+"@commitlint/cli@npm:17.5.1":
+  version: 17.5.1
+  resolution: "@commitlint/cli@npm:17.5.1"
   dependencies:
-    "@commitlint/format": ^17.0.0
-    "@commitlint/lint": ^17.3.0
-    "@commitlint/load": ^17.3.0
-    "@commitlint/read": ^17.2.0
-    "@commitlint/types": ^17.0.0
+    "@commitlint/format": ^17.4.4
+    "@commitlint/lint": ^17.4.4
+    "@commitlint/load": ^17.5.0
+    "@commitlint/read": ^17.5.1
+    "@commitlint/types": ^17.4.4
     execa: ^5.0.0
     lodash.isfunction: ^3.0.9
     resolve-from: 5.0.0
@@ -1640,7 +1640,7 @@ __metadata:
     yargs: ^17.0.0
   bin:
     commitlint: cli.js
-  checksum: 9f544ea528198bbb8ee00c54dc68a4933c680bd6e995817b7acabe3352835ee77b7c86f522a0bb749684422d469365fdc86c134012c9b1c0af42a2e1ed3b342c
+  checksum: 2bdd26b3215796dccb16b0d7459d3b0db7f6324800aa73b97a8cdf79b77f3691d85ee88f37fa6cf20c97ac664f31dcb6ad7aef1da3c3b32d7bb12f18d49a37f2
   languageName: node
   linkType: hard
 
@@ -1684,7 +1684,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/format@npm:^17.0.0":
+"@commitlint/format@npm:^17.4.4":
   version: 17.4.4
   resolution: "@commitlint/format@npm:17.4.4"
   dependencies:
@@ -1704,7 +1704,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/lint@npm:^17.3.0":
+"@commitlint/lint@npm:^17.4.4":
   version: 17.4.4
   resolution: "@commitlint/lint@npm:17.4.4"
   dependencies:
@@ -1716,7 +1716,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/load@npm:^17.3.0":
+"@commitlint/load@npm:^17.5.0":
   version: 17.5.0
   resolution: "@commitlint/load@npm:17.5.0"
   dependencies:
@@ -1756,16 +1756,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/read@npm:^17.2.0":
-  version: 17.4.4
-  resolution: "@commitlint/read@npm:17.4.4"
+"@commitlint/read@npm:^17.5.1":
+  version: 17.5.1
+  resolution: "@commitlint/read@npm:17.5.1"
   dependencies:
     "@commitlint/top-level": ^17.4.0
     "@commitlint/types": ^17.4.4
     fs-extra: ^11.0.0
-    git-raw-commits: ^2.0.0
+    git-raw-commits: ^2.0.11
     minimist: ^1.2.6
-  checksum: 29c828ba0a756196cff6b6fb480971cc779519823c3d061c6b2debee1dfc6c17453ef8aefe6d72a2f21e7be866f501e478b77dddd77f7cd75dfdae7f4a153268
+  checksum: 62ee4f7a47b22a8571ae313bca36b418805a248f4986557f38f06317c44b6d18072889f95e7bc22bbb33a2f2b08236f74596ff28e3dbd0894249477a9df367c3
   languageName: node
   linkType: hard
 
@@ -1812,7 +1812,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/types@npm:^17.0.0, @commitlint/types@npm:^17.4.4":
+"@commitlint/types@npm:^17.4.4":
   version: 17.4.4
   resolution: "@commitlint/types@npm:17.4.4"
   dependencies:
@@ -2798,7 +2798,7 @@ __metadata:
     "@babel/core": 7.21.3
     "@babel/preset-typescript": 7.21.0
     "@babel/runtime": 7.21.0
-    "@commitlint/cli": 17.3.0
+    "@commitlint/cli": 17.5.1
     "@commitlint/config-conventional": 17.4.2
     "@ivangabriele/commitlint-config": 1.0.6
     "@ivangabriele/eslint-config-typescript-base": 6.0.1
@@ -2842,7 +2842,7 @@ __metadata:
     chromatic: 6.14.0
     classnames: 2.3.2
     codecov: 3.8.3
-    cypress: 10.8.0
+    cypress: 12.9.0
     date-fns: 2.29.3
     dayjs: 1.11.7
     eslint: 8.34.0
@@ -2887,7 +2887,7 @@ __metadata:
     rollup-plugin-peer-deps-external: 2.2.4
     rollup-plugin-postcss: 4.0.2
     rollup-plugin-sizes: 1.0.5
-    rsuite: 5.24.1
+    rsuite: 5.31.0
     semantic-release: 19.0.5
     storybook-addon-performance: 0.17.1
     styled-components: 5.3.6
@@ -2903,7 +2903,7 @@ __metadata:
     formik: ^2.0.0
     react: ^18.0.0
     react-dom: ^18.0.0
-    rsuite: ^5.0.0
+    rsuite: ^5.31.0
     styled-components: ^5.0.0
   languageName: unknown
   linkType: soft
@@ -10121,9 +10121,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:10.8.0":
-  version: 10.8.0
-  resolution: "cypress@npm:10.8.0"
+"cypress@npm:12.9.0":
+  version: 12.9.0
+  resolution: "cypress@npm:12.9.0"
   dependencies:
     "@cypress/request": ^2.88.10
     "@cypress/xvfb": ^1.2.4
@@ -10142,7 +10142,7 @@ __metadata:
     commander: ^5.1.0
     common-tags: ^1.8.0
     dayjs: ^1.10.4
-    debug: ^4.3.2
+    debug: ^4.3.4
     enquirer: ^2.3.6
     eventemitter2: 6.4.7
     execa: 4.1.0
@@ -10169,7 +10169,7 @@ __metadata:
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: c052690049980e7721e6fca563b724fde839d87d83c1478dfe26ce7d230992717c2c4028e7157bfb39ec274473e51929f49e5aab6a23c2b25cde2a439b1c3cf9
+  checksum: aad2278310fe4897b2c4e1f23e22f28992c83bcac945a6c350d077b1b2fb1805e44d5c58e19e2a9d63ca04aa3f9eabdd3c661cab0ce5dddd75c72702262ac89e
   languageName: node
   linkType: hard
 
@@ -12960,7 +12960,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"git-raw-commits@npm:^2.0.0":
+"git-raw-commits@npm:^2.0.11":
   version: 2.0.11
   resolution: "git-raw-commits@npm:2.0.11"
   dependencies:
@@ -21564,9 +21564,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rsuite-table@npm:^5.8.2":
-  version: 5.10.2
-  resolution: "rsuite-table@npm:5.10.2"
+"rsuite-table@npm:^5.10.3":
+  version: 5.10.3
+  resolution: "rsuite-table@npm:5.10.3"
   dependencies:
     "@babel/runtime": ^7.12.5
     "@juggle/resize-observer": ^3.3.1
@@ -21579,13 +21579,13 @@ __metadata:
     prop-types: ^15.7.2
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: 0ee480fe7324b517049d9a7d9fd06e349c9619b4987391d05988f1b6239007c5fdb6c41accecc9803d4023f07cad8e53f523cd18e0c45c9f1dd5dab8a6981f10
+  checksum: 6bd549110aa4b224860040ac3e07abd00c494291db6e7dde831607cb4528753cb66e44d8c8208e79030f7865eb7a2695996ddb4ac0935d1c7787b9c95c95c3b7
   languageName: node
   linkType: hard
 
-"rsuite@npm:5.24.1":
-  version: 5.24.1
-  resolution: "rsuite@npm:5.24.1"
+"rsuite@npm:5.31.0":
+  version: 5.31.0
+  resolution: "rsuite@npm:5.31.0"
   dependencies:
     "@babel/runtime": ^7.20.1
     "@juggle/resize-observer": ^3.4.0
@@ -21600,12 +21600,12 @@ __metadata:
     lodash: ^4.17.11
     prop-types: ^15.8.1
     react-window: ^1.8.8
-    rsuite-table: ^5.8.2
-    schema-typed: ^2.0.3
+    rsuite-table: ^5.10.3
+    schema-typed: ^2.1.2
   peerDependencies:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: d8463718e989feec51f0ae0f105b5c5cf733bab1c9901fe8dc464362d7858ed1a8147ae19c2b34e2882384226cce18b4004e5692b7d6b92f35d1a3ba5ae11204
+  checksum: cad7a70ad5e8ea6af76d41f476cf48dcd5c4b1a1c50cd0d4e0e7b3739dee80b3c1cc23a7b42fb02a03eb75ba62fac43c8008d31f237cd32a4d17ae3ec6ccf5a9
   languageName: node
   linkType: hard
 
@@ -21751,7 +21751,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"schema-typed@npm:^2.0.3":
+"schema-typed@npm:^2.1.2":
   version: 2.1.2
   resolution: "schema-typed@npm:2.1.2"
   checksum: 9caaba905ffa2b0fd0fe4b019753de9f347ab1877e03ae1d7cd3974dd89c83da2fc3b9e49fedfa34575357223915b733b684973aad80c37aabce6dc7f94b512a

@@ -27,5 +27,9 @@ context('Base', () => {
     outputShouldBe({
       mySelect: 'SECOND_OPTION'
     })
+
+    cy.fill('A select', undefined)
+
+    outputShouldBe({})
   })
 })

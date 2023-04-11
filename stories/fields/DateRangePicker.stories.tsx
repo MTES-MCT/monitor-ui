@@ -21,7 +21,7 @@ const args: DateRangePickerWithDateDateProps | DateRangePickerWithStringDateProp
   isLabelHidden: false,
   isLight: false,
   isStringDate: false,
-  label: 'A Date Range',
+  label: 'A date range',
   withTime: true
 }
 

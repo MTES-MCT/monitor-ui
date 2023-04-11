@@ -15,9 +15,9 @@ const args: FormikDatePickerWithDateDateProps | FormikDatePickerWithStringDatePr
   isLabelHidden: false,
   isLight: false,
   isStringDate: false,
-  label: 'A Date',
+  label: 'A date',
   name: 'myDate',
-  withTime: false
+  withTime: true
 }
 
 export default {

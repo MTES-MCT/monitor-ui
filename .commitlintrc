@@ -1,5 +1,6 @@
 {
   "extends": [
     "@commitlint/config-conventional"
-  ]
+  ],
+  "helpUrl": "https://github.com/angular/angular/blob/main/CONTRIBUTING.md#commit"
 }

@@ -5,12 +5,11 @@ import { NumberInput } from './NumberInput'
 import { RangedTimePicker } from './RangedTimePicker'
 import { isHtmlElement } from './utils'
 import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
-import { useForceUpdate } from '../../hooks/useForceUpdate'
 import { Clock } from '../../icons'
 
 import type { NumberInputProps } from './NumberInput'
-import type { DateOrTimeInputRef, TimeTuple } from './types'
-import type { ForwardedRef, MutableRefObject } from 'react'
+import type { TimeInputRef, TimeTuple } from './types'
+import type { ForwardedRef } from 'react'
 import type { Promisable } from 'type-fest'
 
 export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'onNext'> & {
@@ -23,9 +22,11 @@ export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
   isLight: boolean
   isStartDate?: boolean | undefined
   minutesRange?: number | undefined
-  /** Called each time the time input is changed to a new valid value. */
+  /** Called each time any time input is changed to a new valid value. */
   onChange: (nextTimeTuple: TimeTuple) => Promisable<void>
   onFocus?: (() => Promisable<void>) | undefined
+  /** Called each time any time input receive a keyboard-input change whether the value is valid or not. */
+  onInput: () => Promisable<void>
   onNext?: (() => Promisable<void>) | undefined
   onPrevious?: (() => Promisable<void>) | undefined
 }
@@ -42,47 +43,48 @@ function TimeInputWithRef(
     onBack,
     onChange,
     onFocus,
+    onInput,
     onNext,
     onPrevious
   }: TimeInputProps,
-  ref: ForwardedRef<DateOrTimeInputRef>
+  ref: ForwardedRef<TimeInputRef>
 ) {
-  const boxRef = useRef() as MutableRefObject<HTMLDivElement>
-  const hourInputRef = useRef() as MutableRefObject<HTMLInputElement>
-  const minuteInputRef = useRef() as MutableRefObject<HTMLInputElement>
+  /* eslint-disable no-null/no-null */
+  const boxRef = useRef<HTMLDivElement>(null)
+  const hourInputRef = useRef<HTMLInputElement>(null)
+  const minuteInputRef = useRef<HTMLInputElement>(null)
+  /* eslint-enable no-null/no-null */
 
   const [controlledDefaultValue, setControlledDefaultValue] = useState(defaultValue)
   const [hasFormatError, setHasFormatError] = useState(false)
   const [hasValidationError, setHasValidationError] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
+  const [isTimePickerOpen, setIsTimePickerOpen] = useState(false)
+  const [timePickerFilter, setTimePickerFilter] = useState<RegExp>(/.*/)
 
   const baseDocument = useMemo(
     () => (isHtmlElement(baseContainer) ? baseContainer.ownerDocument : window.document),
     [baseContainer]
   )
 
-  useImperativeHandle<DateOrTimeInputRef, DateOrTimeInputRef>(ref, () => ({
+  useImperativeHandle<TimeInputRef, TimeInputRef>(ref, () => ({
     box: boxRef.current,
     focus: (isInLastInputOfTheGroup = false) => {
       if (isInLastInputOfTheGroup) {
-        minuteInputRef.current.focus()
+        minuteInputRef.current?.focus()
       } else {
-        hourInputRef.current.focus()
+        hourInputRef.current?.focus()
       }
-    }
+    },
+    getValueAsPartialTimeTuple: () => [
+      hourInputRef.current?.value.length ? hourInputRef.current.value : undefined,
+      minuteInputRef.current?.value.length ? minuteInputRef.current.value : undefined
+    ]
   }))
 
-  const isRangedTimePickerOpenRef = useRef(false)
-
-  const [rangedTimePickerFilter, setRangedTimePickerFilter] = useState<RegExp>(/.*/)
-
-  const { forceUpdate } = useForceUpdate()
-
   const closeRangedTimePicker = useCallback(() => {
-    isRangedTimePickerOpenRef.current = false
-
-    forceUpdate()
-  }, [forceUpdate])
+    setIsTimePickerOpen(false)
+  }, [])
 
   const handleBack = useCallback(() => {
     if (!onBack) {
@@ -110,7 +112,19 @@ function TimeInputWithRef(
     setHasFormatError(hasNextFormatError)
   }, [])
 
-  const handleRangedTimePickedChange = useCallback(
+  const handleHourInput = useCallback(
+    (nextValue: string) => {
+      // eslint-disable-next-line no-nested-ternary
+      const nextRangedTimePickerFilter = nextValue.length ? new RegExp(`^${nextValue}`) : /.*/
+
+      setTimePickerFilter(nextRangedTimePickerFilter)
+
+      onInput()
+    },
+    [onInput]
+  )
+
+  const handleTimePickerChange = useCallback(
     (nextTimeTuple: TimeTuple) => {
       closeRangedTimePicker()
 
@@ -121,20 +135,15 @@ function TimeInputWithRef(
     [closeRangedTimePicker, onChange]
   )
 
-  const handleHourInput = useCallback((nextValue: string) => {
-    // eslint-disable-next-line no-nested-ternary
-    const nextRangedTimePickerFilter = nextValue.length ? new RegExp(`^${nextValue}`) : /.*/
-
-    setRangedTimePickerFilter(nextRangedTimePickerFilter)
+  const openRangedTimePicker = useCallback(() => {
+    setIsTimePickerOpen(true)
   }, [])
 
-  const openRangedTimePicker = useCallback(() => {
-    isRangedTimePickerOpenRef.current = true
-
-    forceUpdate()
-  }, [forceUpdate])
-
   const submit = useCallback(() => {
+    if (!hourInputRef.current || !minuteInputRef.current) {
+      return
+    }
+
     setHasValidationError(false)
 
     if (baseDocument.activeElement === hourInputRef.current) {
@@ -183,7 +192,7 @@ function TimeInputWithRef(
             onFocus={handleFocus}
             onFormatError={handleFormatError}
             onInput={handleHourInput}
-            onNext={() => minuteInputRef.current.focus()}
+            onNext={() => minuteInputRef.current?.focus()}
             onPrevious={onPrevious}
             size={2}
           />
@@ -196,14 +205,15 @@ function TimeInputWithRef(
             isLight={isLight}
             max={59}
             min={0}
-            onBack={() => hourInputRef.current.focus()}
+            onBack={() => hourInputRef.current?.focus()}
             onBlur={handleBlur}
             onClick={openRangedTimePicker}
             onFilled={submit}
             onFocus={handleFocus}
             onFormatError={handleFormatError}
+            onInput={onInput}
             onNext={onNext}
-            onPrevious={() => hourInputRef.current.focus()}
+            onPrevious={() => hourInputRef.current?.focus()}
             size={2}
           />
         </div>
@@ -211,12 +221,8 @@ function TimeInputWithRef(
         {!isCompact && <Clock />}
       </InputGroup>
 
-      {isRangedTimePickerOpenRef.current && (
-        <RangedTimePicker
-          filter={rangedTimePickerFilter}
-          minutesRange={minutesRange}
-          onChange={handleRangedTimePickedChange}
-        />
+      {isTimePickerOpen && (
+        <RangedTimePicker filter={timePickerFilter} minutesRange={minutesRange} onChange={handleTimePickerChange} />
       )}
     </Box>
   )

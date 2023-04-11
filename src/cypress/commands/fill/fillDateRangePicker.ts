@@ -1,46 +1,84 @@
-import dayjs from 'dayjs'
-
-// TODO Integrate that into `cy.fill()`.
-// TODO Handle `fillDatePicker()` too.
-export function fillDateRangePicker(label: string, startDate: Date, endDate: Date): void {
-  // eslint-disable-next-line cypress/no-assigning-return-values
-  const cypressLegendElement = cy.get('fieldset > div > legend').contains(label)
-  if (!cypressLegendElement) {
-    throw new Error(`Could not find label (legend) element with text "${label}".`)
+export function fillDateRangePicker(
+  fieldsetElement: HTMLElement,
+  dateOrDateWithTimeTupleRange:
+    | [Cypress.DateTuple, Cypress.DateTuple]
+    | [Cypress.DateWithTimeTuple, Cypress.DateWithTimeTuple]
+    | undefined
+): void {
+  const inputElements = fieldsetElement.querySelectorAll('input')
+  if (inputElements.length !== 7 && inputElements.length !== 11) {
+    throw new Error(`Expected to find 7 or 11 inputs within in DatePicker but found ${inputElements.length}.`)
   }
 
-  const cypressFieldsetElement = cypressLegendElement.parent().parent()
-  if (!cypressFieldsetElement) {
-    throw new Error(`Could not find fieldset wrapping label (legend) element with text "${label}".`)
+  const hasTimeInput = inputElements.length !== 7
+  const fieldsetElementOffsetLeft = fieldsetElement.offsetLeft
+    ? fieldsetElement.offsetLeft
+    : (() => {
+        if (!fieldsetElement.offsetParent) {
+          throw new Error('`fieldsetElement.offsetParent` is undefined.')
+        }
+
+        return (fieldsetElement.offsetParent as HTMLBodyElement).offsetLeft
+      })()
+  const fieldsetElementOffsetTop =
+    fieldsetElement.offsetTop !== 0
+      ? fieldsetElement.offsetTop
+      : (() => {
+          if (!fieldsetElement.offsetParent) {
+            throw new Error('`fieldsetElement.offsetParent` is undefined.')
+          }
+
+          return (fieldsetElement.offsetParent as HTMLBodyElement).offsetTop
+        })()
+
+  if (!dateOrDateWithTimeTupleRange) {
+    cy.wrap(fieldsetElement).get('[aria-label="Jour de début"]').clear()
+    cy.wrap(fieldsetElement).get('[aria-label="Mois de début"]').clear()
+    cy.wrap(fieldsetElement).get('[aria-label="Année de début"]').clear()
+
+    if (hasTimeInput) {
+      cy.wrap(fieldsetElement).get('[aria-label="Heure de début"]').clear()
+      cy.wrap(fieldsetElement).get('[aria-label="Minute de début"]').clear()
+    }
+
+    cy.wrap(fieldsetElement).get('[aria-label="Jour de fin"]').clear()
+    cy.wrap(fieldsetElement).get('[aria-label="Mois de fin"]').clear()
+    cy.wrap(fieldsetElement).get('[aria-label="Année de fin"]').clear()
+
+    if (hasTimeInput) {
+      cy.wrap(fieldsetElement).get('[aria-label="Heure de fin"]').clear()
+      cy.wrap(fieldsetElement).get('[aria-label="Minute de fin"]').clear()
+    }
+
+    cy.clickOutside(fieldsetElementOffsetLeft, fieldsetElementOffsetTop - 1)
+    cy.wait(250)
+
+    return
   }
 
-  cypressFieldsetElement.find('input').then(inputs => {
-    if (inputs.length !== 7 && inputs.length !== 11) {
-      throw new Error(
-        `Should have found 7 or 11 inputs within label (legend) element with text "${label}" but found ${inputs.length}.`
-      )
-    }
+  const [startDateOrDateWithTimeTuple, endDateOrDateWithTimeTuple] = dateOrDateWithTimeTupleRange
 
-    const startDateAsDayJs = dayjs(startDate)
-    const endDateAsDayJs = dayjs(endDate)
-    const hasTimeInput = inputs.length !== 7
+  const [startYear, startMonth, startDay, startHour, startMinute] = startDateOrDateWithTimeTuple
+  const [endYear, endMonth, endDay, endHour, endMinute] = endDateOrDateWithTimeTuple
 
-    cypressFieldsetElement.get('[aria-label="Jour de début"]').type(startDateAsDayJs.format('DD'))
-    cypressFieldsetElement.get('[aria-label="Mois de début"]').type(startDateAsDayJs.format('MM'))
-    cypressFieldsetElement.get('[aria-label="Année de début"]').type(startDateAsDayJs.format('YYYY'))
+  cy.wrap(fieldsetElement).get('[aria-label="Jour de début"]').type(String(startDay).padStart(2, '0'))
+  cy.wrap(fieldsetElement).get('[aria-label="Mois de début"]').type(String(startMonth).padStart(2, '0'))
+  cy.wrap(fieldsetElement).get('[aria-label="Année de début"]').type(String(startYear))
 
-    if (hasTimeInput) {
-      cypressFieldsetElement.get('[aria-label="Heure de début"]').type(startDateAsDayJs.format('hh'))
-      cypressFieldsetElement.get('[aria-label="Minute de début"]').type(startDateAsDayJs.format('mm'))
-    }
+  if (hasTimeInput) {
+    cy.wrap(fieldsetElement).get('[aria-label="Heure de début"]').type(String(startHour).padStart(2, '0'))
+    cy.wrap(fieldsetElement).get('[aria-label="Minute de début"]').type(String(startMinute).padStart(2, '0'))
+  }
 
-    cypressFieldsetElement.get('[aria-label="Jour de fin"]').type(endDateAsDayJs.format('DD'))
-    cypressFieldsetElement.get('[aria-label="Mois de fin"]').type(endDateAsDayJs.format('MM'))
-    cypressFieldsetElement.get('[aria-label="Année de fin"]').type(endDateAsDayJs.format('YYYY'))
+  cy.wrap(fieldsetElement).get('[aria-label="Jour de fin"]').type(String(endDay).padStart(2, '0'))
+  cy.wrap(fieldsetElement).get('[aria-label="Mois de fin"]').type(String(endMonth).padStart(2, '0'))
+  cy.wrap(fieldsetElement).get('[aria-label="Année de fin"]').type(String(endYear))
 
-    if (hasTimeInput) {
-      cypressFieldsetElement.get('[aria-label="Heure de fin"]').type(endDateAsDayJs.format('hh'))
-      cypressFieldsetElement.get('[aria-label="Minute de fin"]').type(endDateAsDayJs.format('mm'))
-    }
-  })
+  if (hasTimeInput) {
+    cy.wrap(fieldsetElement).get('[aria-label="Heure de fin"]').type(String(endHour).padStart(2, '0'))
+    cy.wrap(fieldsetElement).get('[aria-label="Minute de fin"]').type(String(endMinute).padStart(2, '0'))
+  }
+
+  cy.clickOutside(fieldsetElementOffsetLeft, fieldsetElementOffsetTop - 1)
+  cy.wait(250)
 }
