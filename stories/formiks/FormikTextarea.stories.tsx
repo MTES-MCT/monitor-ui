@@ -11,6 +11,7 @@ import type { FormikTextareaProps } from '../../src'
 
 const args: FormikTextareaProps = {
   disabled: false,
+  isErrorMessageHidden: false,
   isLabelHidden: false,
   isLight: false,
   name: 'myTextarea',

@@ -10,6 +10,7 @@ import type { FormikTextInputProps } from '../../src'
 
 const args: FormikTextInputProps = {
   disabled: false,
+  isErrorMessageHidden: false,
   isLabelHidden: false,
   isLight: false,
   name: 'myTextInput',

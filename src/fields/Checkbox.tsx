@@ -19,6 +19,7 @@ import type { Promisable } from 'type-fest'
 export type CheckboxProps = Omit<RsuiteCheckboxProps, 'as' | 'checked' | 'defaultChecked' | 'id' | 'onChange'> & {
   checked?: boolean | undefined
   error?: string | undefined
+  isErrorMessageHidden?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
@@ -27,6 +28,7 @@ export type CheckboxProps = Omit<RsuiteCheckboxProps, 'as' | 'checked' | 'defaul
 export function Checkbox({
   checked = false,
   error,
+  isErrorMessageHidden = false,
   isUndefinedWhenDisabled = false,
   label,
   onChange,
@@ -84,7 +86,7 @@ export function Checkbox({
         {label}
       </StyledCheckbox>
 
-      {hasError && <FieldError>{controlledError}</FieldError>}
+      {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
     </Field>
   )
 }

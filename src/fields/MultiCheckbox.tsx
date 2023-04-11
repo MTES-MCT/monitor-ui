@@ -16,6 +16,7 @@ import type { Promisable } from 'type-fest'
 export type MultiCheckboxProps<OptionValue extends OptionValueType = string> = {
   disabled?: boolean | undefined
   error?: string | undefined
+  isErrorMessageHidden?: boolean | undefined
   isInline?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
@@ -29,6 +30,7 @@ export type MultiCheckboxProps<OptionValue extends OptionValueType = string> = {
 export function MultiCheckbox<OptionValue extends OptionValueType = string>({
   value = [],
   disabled = false,
+  isErrorMessageHidden = false,
   error,
   isInline = false,
   isLabelHidden = false,
@@ -98,7 +100,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
         ))}
       </ChecboxesBox>
 
-      {hasError && <FieldError>{controlledError}</FieldError>}
+      {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
     </Fieldset>
   )
 }

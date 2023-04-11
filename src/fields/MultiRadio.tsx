@@ -16,6 +16,7 @@ import type { Promisable } from 'type-fest'
 export type MultiRadioProps<OptionValue extends OptionValueType = string> = {
   disabled?: boolean | undefined
   error?: string | undefined
+  isErrorMessageHidden?: boolean | undefined
   isInline?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
@@ -29,6 +30,7 @@ export type MultiRadioProps<OptionValue extends OptionValueType = string> = {
 export function MultiRadio<OptionValue extends OptionValueType = string>({
   disabled = false,
   error,
+  isErrorMessageHidden = false,
   isInline = false,
   isLabelHidden = false,
   isLight = false,
@@ -83,7 +85,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
         ))}
       </CheckboxesBox>
 
-      {hasError && <FieldError>{controlledError}</FieldError>}
+      {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
     </Fieldset>
   )
 }

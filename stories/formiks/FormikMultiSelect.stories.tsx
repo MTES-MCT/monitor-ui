@@ -10,6 +10,7 @@ import type { FormikMultiSelectProps } from '../../src'
 
 const args: FormikMultiSelectProps = {
   disabled: false,
+  isErrorMessageHidden: false,
   isLabelHidden: false,
   isLight: false,
   label: 'A multiple select',

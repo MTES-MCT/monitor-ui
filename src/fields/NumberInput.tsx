@@ -14,6 +14,7 @@ import type { Promisable } from 'type-fest'
 
 export type NumberInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'onChange' | 'type' | 'value'> & {
   error?: string | undefined
+  isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
@@ -24,6 +25,7 @@ export type NumberInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | '
 }
 export function NumberInput({
   error,
+  isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
   isUndefinedWhenDisabled = false,
@@ -79,7 +81,7 @@ export function NumberInput({
         {...originalProps}
       />
 
-      {hasError && <FieldError>{controlledError}</FieldError>}
+      {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
     </Field>
   )
 }

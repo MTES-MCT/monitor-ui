@@ -10,6 +10,7 @@ import type { FormikMultiRadioProps } from '../../src'
 
 const args: FormikMultiRadioProps = {
   disabled: false,
+  isErrorMessageHidden: false,
   isInline: false,
   isLabelHidden: false,
   isLight: false,

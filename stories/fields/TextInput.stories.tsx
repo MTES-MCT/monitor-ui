@@ -9,6 +9,7 @@ import type { TextInputProps } from '../../src'
 const args: TextInputProps = {
   disabled: false,
   error: '',
+  isErrorMessageHidden: false,
   isLabelHidden: false,
   isLight: false,
   label: 'A text input',
