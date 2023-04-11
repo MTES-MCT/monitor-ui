@@ -41,6 +41,17 @@ export function useFieldControl<T>(
     [onChange]
   )
 
+  const setInternalValue = useCallback(
+    (nextValue: T) => {
+      internalValueRef.current = nextValue
+
+      if (onChange) {
+        onChange(nextValue)
+      }
+    },
+    [onChange]
+  )
+
   // We update the `internalValue` each time the `value` prop is updated
   useEffect(() => {
     if (isEqual(value, previousValue)) {

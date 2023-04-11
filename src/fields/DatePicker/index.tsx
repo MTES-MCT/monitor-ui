@@ -23,6 +23,7 @@ import { CalendarPicker } from './CalendarPicker'
 import { FieldError } from '../../elements/FieldError'
 import { Fieldset } from '../../elements/Fieldset'
 import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
+import { useFieldControl } from '../../hooks/useFieldControl'
 import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
 import { customDayjs } from '../../utils/customDayjs'
@@ -47,10 +48,9 @@ import type { Promisable } from 'type-fest'
  * @private
  */
 export interface DatePickerProps
-  extends Omit<HTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange' | 'placeholder'> {
+  extends Omit<HTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange' | 'placeholder' | 'value'> {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
-  defaultValue?: Date | string | undefined
   disabled?: boolean | undefined
   error?: string | undefined
   isCompact?: boolean | undefined
@@ -61,6 +61,7 @@ export interface DatePickerProps
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
   isStringDate?: boolean | undefined
+  isUndefinedWhenDisabled?: boolean | undefined
   label: string
   /**
    * Range of minutes used to generate the time picker list.
@@ -78,6 +79,7 @@ export interface DatePickerProps
     | ((nextUtcDate: Date | undefined) => Promisable<void>)
     | ((nextUtcDate: string | undefined) => Promisable<void>)
     | undefined
+  value?: Date | string | undefined
   withTime?: boolean | undefined
 }
 export interface DatePickerWithDateDateProps extends DatePickerProps {
@@ -95,7 +97,6 @@ export function DatePicker(props: DatePickerWithStringDateProps): JSX.Element
 export function DatePicker({
   baseContainer,
   className,
-  defaultValue,
   disabled = false,
   error,
   isCompact = false,
@@ -104,9 +105,11 @@ export function DatePicker({
   isLabelHidden = false,
   isLight = false,
   isStringDate = false,
+  isUndefinedWhenDisabled = false,
   label,
   minutesRange = 15,
   onChange,
+  value,
   withTime = false,
   ...nativeProps
 }: DatePickerProps) {
@@ -118,13 +121,17 @@ export function DatePicker({
 
   const isCalendarPickerOpenRef = useRef(false)
 
-  const selectedUtcDateAsDayjsRef = useRef(defaultValue ? customDayjs(defaultValue) : undefined)
+  const selectedUtcDateAsDayjsRef = useRef(value ? customDayjs(value) : undefined)
   const selectedUtcDateTupleRef = useRef(getUtcDateTupleFromDayjs(selectedUtcDateAsDayjsRef.current))
   const selectedUtcTimeTupleRef = useRef(getUtcTimeTupleFromDayjs(selectedUtcDateAsDayjsRef.current))
 
   const { forceUpdate } = useForceUpdate()
 
   const controlledError = useMemo(() => normalizeString(error), [error])
+  const { controlledOnChange, controlledValue } = useFieldControl<Date | string | undefined>(value, onChange as any, {
+    disabled,
+    isUndefinedWhenDisabled
+  })
   const defaultTimeTuple: TimeTuple = useMemo(() => (isEndDate ? ['23', '59'] : ['00', '00']), [isEndDate])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
 
