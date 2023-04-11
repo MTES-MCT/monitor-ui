@@ -19,6 +19,13 @@ export type DateInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
   isEndDate?: boolean | undefined
   isForcedFocused: boolean
   isLight: boolean
+  /**
+   * Is this date input included in the `<DateRangePicker />`?
+   *
+   * @description
+   * Impact the input labels.
+   */
+  isRange?: boolean | undefined
   isStartDate?: boolean | undefined
   /** Called each time any date input is changed to a new valid value. */
   onChange: (nextDateTuple: DateTuple, isFilled: boolean) => Promisable<void>
@@ -35,6 +42,7 @@ function DateInputWithRef(
     isEndDate = false,
     isForcedFocused,
     isLight,
+    isRange = false,
     isStartDate = false,
     onBack,
     onChange,
@@ -147,11 +155,11 @@ function DateInputWithRef(
       $isLight={isLight}
     >
       <div>
-        {isStartDate && <span>Du </span>}
-        {isEndDate && <span>Au </span>}
+        {isRange && isStartDate && <span>Du </span>}
+        {isRange && isEndDate && <span>Au </span>}
         <NumberInput
           ref={dayInputRef}
-          aria-label={`Jour${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
+          aria-label={`Jour${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
           defaultValue={defaultValue && formatNumberAsDoubleDigit(defaultValue[2])}
           disabled={disabled}
           isLight={isLight}
@@ -171,7 +179,7 @@ function DateInputWithRef(
         /
         <NumberInput
           ref={monthInputRef}
-          aria-label={`Mois${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
+          aria-label={`Mois${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
           defaultValue={defaultValue && formatNumberAsDoubleDigit(defaultValue[1])}
           disabled={disabled}
           isLight={isLight}
@@ -191,7 +199,7 @@ function DateInputWithRef(
         /
         <NumberInput
           ref={yearInputRef}
-          aria-label={`Année${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
+          aria-label={`Année${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
           defaultValue={defaultValue && defaultValue[0]}
           disabled={disabled}
           isLight={isLight}

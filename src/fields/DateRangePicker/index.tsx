@@ -400,6 +400,7 @@ export function DateRangePicker({
             isCompact={isCompact}
             isForcedFocused={isRangeCalendarPickerOpenRef.current}
             isLight={isLight}
+            isRange
             isStartDate
             onChange={(nextDateTuple, isFilled) =>
               handleDateInputChange(DateRangePosition.START, nextDateTuple, isFilled)
@@ -441,6 +442,7 @@ export function DateRangePicker({
             isEndDate
             isForcedFocused={isRangeCalendarPickerOpenRef.current}
             isLight={isLight}
+            isRange
             onBack={handleEndDateInputPrevious}
             onChange={(nextDateTuple, isFilled) =>
               handleDateInputChange(DateRangePosition.END, nextDateTuple, isFilled)

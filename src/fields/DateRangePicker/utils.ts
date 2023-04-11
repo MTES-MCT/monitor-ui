@@ -2,9 +2,47 @@ import { customDayjs } from '../../utils/customDayjs'
 
 import type { DateTuple, TimeTuple } from './types'
 import type { Option } from '../../types'
+import type { Dayjs } from 'dayjs'
 
 export function formatNumberAsDoubleDigit(numberLike: number | string): string {
   return String(numberLike).padStart(2, '0')
+}
+
+/**
+ * @description
+ * This function will treat any date & time tuple in UTC, whichever the current time zone is.
+ *
+ * @example
+ * ```ts
+ * console.log(getDateFromDateAndTimeTuple(['2021', '31', '12'], ['00', '00']).toISOString())
+ * // => "2021-12-31T00:00:00.000Z"
+ * console.log(getDateFromDateAndTimeTuple(['2021', '31', '12'], ['23', '59'], true).toISOString())
+ * // => "2021-12-31T23:59:59.000Z"
+ * ```
+ */
+export function getDayjsFromUtcDateAndTimeTuple(
+  utcDateTuple: DateTuple,
+  utcTimeTuple: TimeTuple,
+  isEnd: boolean = false
+): Dayjs {
+  const [year, month, day] = utcDateTuple
+  const [hour, minute] = utcTimeTuple
+
+  const rawDateAsDayjs = customDayjs()
+    .utc()
+    .year(Number(year))
+    .month(Number(month) - 1)
+    .date(Number(day))
+    .hour(Number(hour))
+    .minute(Number(minute))
+
+  return isEnd
+    ? rawDateAsDayjs
+        .endOf('minute')
+        // TODO For some reason the API can't handle miliseconds in dates.
+        // That's why we set it to 0 (instead of 999)
+        .millisecond(0)
+    : rawDateAsDayjs.startOf('minute')
 }
 
 /**
@@ -98,6 +136,25 @@ export function getTimeTupleFromUtcDate(utcDate?: Date): TimeTuple | undefined {
   }
 
   return [formatNumberAsDoubleDigit(utcDate.getHours()), formatNumberAsDoubleDigit(utcDate.getMinutes())]
+}
+
+export function getUtcDateTupleFromDayjs(dateAsDayjs: undefined): undefined
+export function getUtcDateTupleFromDayjs(dateAsDayjs: Dayjs): DateTuple
+export function getUtcDateTupleFromDayjs(dateAsDayjs?: Dayjs): DateTuple | undefined
+export function getUtcDateTupleFromDayjs(dateAsDayjs?: Dayjs): DateTuple | undefined {
+  if (!dateAsDayjs) {
+    return undefined
+  }
+
+  return [dateAsDayjs.utc().format('YYYY'), dateAsDayjs.utc().format('MM'), dateAsDayjs.utc().format('DD')]
+}
+
+export function getUtcTimeTupleFromDayjs(dateAsDayjs?: Dayjs): TimeTuple | undefined {
+  if (!dateAsDayjs) {
+    return undefined
+  }
+
+  return [dateAsDayjs.utc().format('HH'), dateAsDayjs.utc().format('mm')]
 }
 
 // The type is not accurate here but it's good enough to use the protoypes we need for the feature

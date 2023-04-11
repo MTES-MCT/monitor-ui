@@ -16,6 +16,7 @@ const args: DatePickerWithDateDateProps | DatePickerWithStringDateProps = {
   disabled: false,
   error: '',
   isCompact: false,
+  isEndDate: false,
   isHistorical: false,
   isLabelHidden: false,
   isLight: false,
@@ -33,6 +34,11 @@ export default {
     defaultValue: {
       control: {
         type: 'date'
+      }
+    },
+    isEndDate: {
+      control: {
+        type: 'boolean'
       }
     },
     isStringDate: {
