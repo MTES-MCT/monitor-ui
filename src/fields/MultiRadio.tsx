@@ -5,8 +5,6 @@ import styled, { css } from 'styled-components'
 
 import { FieldError } from '../elements/FieldError'
 import { Fieldset } from '../elements/Fieldset'
-import { useFieldControl } from '../hooks/useFieldControl'
-import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
 
@@ -20,7 +18,6 @@ export type MultiRadioProps<OptionValue extends OptionValueType = string> = {
   isInline?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
-  isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
   onChange?: ((nextValue: OptionValue | undefined) => Promisable<void>) | undefined
@@ -34,18 +31,12 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   isInline = false,
   isLabelHidden = false,
   isLight = false,
-  isUndefinedWhenDisabled = false,
   label,
   name,
   onChange,
   options,
   value
 }: MultiRadioProps<OptionValue>) {
-  const { controlledOnChange, controlledValue } = useFieldControl(value, onChange, {
-    disabled,
-    isUndefinedWhenDisabled
-  })
-
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([disabled, name, value])
@@ -53,13 +44,12 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   const handleChange = useCallback(
     (nextOptionValue: OptionValue, isChecked: boolean) => {
       const nextCheckedOptionValue = isChecked ? nextOptionValue : undefined
-
-      controlledOnChange(nextCheckedOptionValue)
+      if (onChange) {
+        onChange(nextCheckedOptionValue)
+      }
     },
-    [controlledOnChange]
+    [onChange]
   )
-
-  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
   return (
     <Fieldset
@@ -75,7 +65,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
         {options.map(option => (
           <Radio
             key={JSON.stringify(option.value)}
-            checked={equals(option.value, controlledValue)}
+            checked={equals(option.value, value)}
             disabled={disabled}
             name={name}
             onChange={(_: any, isChecked: boolean) => handleChange(option.value, isChecked)}

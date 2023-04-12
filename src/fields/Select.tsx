@@ -6,8 +6,6 @@ import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useClickOutsideEffect } from '../hooks/useClickOutsideEffect'
-import { useFieldControl } from '../hooks/useFieldControl'
-import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
 import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
@@ -18,6 +16,8 @@ import type { Option, OptionAsRsuiteItemDataType, OptionValueType } from '../typ
 import type { MouseEvent, ReactNode } from 'react'
 import type { SelectPickerProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
+
+const renderMenuItem = (node: ReactNode) => <span title={String(node)}>{String(node)}</span>
 
 export type SelectProps<OptionValue extends OptionValueType = string> = Omit<
   SelectPickerProps<any>,
@@ -39,7 +39,6 @@ export type SelectProps<OptionValue extends OptionValueType = string> = Omit<
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
-  isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
   onChange?: ((nextValue: OptionValue | undefined) => Promisable<void>) | undefined
@@ -54,7 +53,6 @@ export function Select<OptionValue extends OptionValueType = string>({
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
-  isUndefinedWhenDisabled = false,
   label,
   onChange,
   options,
@@ -69,14 +67,9 @@ export function Select<OptionValue extends OptionValueType = string>({
   const [isOpen, setIsOpen] = useState(false)
 
   const { forceUpdate } = useForceUpdate()
-
-  const { controlledOnChange, controlledValue } = useFieldControl(value, onChange, {
-    disabled,
-    isUndefinedWhenDisabled
-  })
   const controlledRsuiteValue = useMemo(
-    () => getRsuiteValueFromOptionValue(controlledValue, optionValueKey),
-    [controlledValue, optionValueKey]
+    () => getRsuiteValueFromOptionValue(value, optionValueKey),
+    [value, optionValueKey]
   )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const data = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
@@ -88,19 +81,20 @@ export function Select<OptionValue extends OptionValueType = string>({
   }, [])
 
   const handleClean = useCallback(() => {
-    controlledOnChange(undefined)
-  }, [controlledOnChange])
+    if (onChange) {
+      onChange(undefined)
+    }
+  }, [onChange])
 
   const handleSelect = useCallback(
     (_: string, selectedItem: OptionAsRsuiteItemDataType<OptionValue>) => {
       close()
-
-      controlledOnChange(selectedItem.optionValue)
+      if (onChange) {
+        onChange(selectedItem.optionValue)
+      }
     },
-    [close, controlledOnChange]
+    [close, onChange]
   )
-
-  const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
 
   const toggle = useCallback(
     (event: MouseEvent<HTMLElement>) => {
@@ -124,8 +118,6 @@ export function Select<OptionValue extends OptionValueType = string>({
     },
     [isOpen]
   )
-
-  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
   useClickOutsideEffect(boxRef, close, baseContainer)
 

@@ -12,9 +12,12 @@ export function FormikCoordinatesInput({ name, ...originalProps }: FormikCoordin
   const [field, meta, helpers] = useField(name)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const defaultValue = useMemo(() => field.value, [])
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleChange = useMemo(() => (nextCoordinates: number[] | undefined) => helpers.setValue(nextCoordinates), [])
+  const defaultValue = useMemo(() => field.value, [name])
+  const handleChange = useMemo(
+    () => (nextCoordinates: number[] | undefined) => helpers.setValue(nextCoordinates),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [name]
+  )
 
   return <CoordinatesInput defaultValue={defaultValue} error={meta.error} onChange={handleChange} {...originalProps} />
 }

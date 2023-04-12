@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
-import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { InputNumberProps } from 'rsuite'
@@ -16,7 +15,6 @@ export type NumberInputProps = Omit<InputNumberProps, 'as' | 'defaultValue' | 'i
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
-  isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
   onChange?: ((nextValue: number | undefined) => Promisable<void>) | undefined
@@ -28,7 +26,6 @@ export function NumberInput({
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
-  isUndefinedWhenDisabled = false,
   label,
   onChange,
   value,
@@ -54,8 +51,6 @@ export function NumberInput({
     },
     [onChange]
   )
-
-  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
   return (
     <Field className="Field-NumberInput">
