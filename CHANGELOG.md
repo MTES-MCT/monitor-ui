@@ -1,3 +1,16 @@
+# [5.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.2.2...v5.3.0) (2023-04-12)
+
+
+### Bug Fixes
+
+* **fields:** update value in MultiCheckbox on value prop change ([c9a11c8](https://github.com/MTES-MCT/monitor-ui/commit/c9a11c85c4b35f5df2979916588e0ab091ffd06f))
+* **fields:** update value in MultiRadio on value prop change ([a230925](https://github.com/MTES-MCT/monitor-ui/commit/a230925361a54bad0251159600dba4c87965867b))
+
+
+### Features
+
+* **fields:** add isErrorMessageHidden prop to fields ([f5d498d](https://github.com/MTES-MCT/monitor-ui/commit/f5d498da707133d5cb45105da5675f48b368664b))
+
 ## [5.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v5.2.0...v5.2.1) (2023-04-11)
 
 
