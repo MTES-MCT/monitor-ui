@@ -6,7 +6,6 @@ import styled from 'styled-components'
 
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
-import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { CheckboxProps as RsuiteCheckboxProps } from 'rsuite'
@@ -17,7 +16,6 @@ export type CheckboxProps = Omit<RsuiteCheckboxProps, 'as' | 'checked' | 'defaul
   checked?: boolean | undefined
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
-  isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
   onChange?: ((isCheched: boolean) => Promisable<void>) | undefined
@@ -26,7 +24,6 @@ export function Checkbox({
   checked = false,
   error,
   isErrorMessageHidden = false,
-  isUndefinedWhenDisabled = false,
   label,
   onChange,
   ...originalProps
@@ -42,8 +39,6 @@ export function Checkbox({
     },
     [onChange]
   )
-
-  useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
 
   return (
     <Field className="Field-Checkbox">
