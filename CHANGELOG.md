@@ -1,3 +1,10 @@
+## [5.2.2](https://github.com/MTES-MCT/monitor-ui/compare/v5.2.1...v5.2.2) (2023-04-12)
+
+
+### Reverts
+
+* Revert "fix(fields): fix css on multiselect" ([23fd616](https://github.com/MTES-MCT/monitor-ui/commit/23fd616eea831537bfcfa0b91d22ddaeca2cc2d2))
+
 ## [5.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v5.2.0...v5.2.1) (2023-04-11)
 
 
