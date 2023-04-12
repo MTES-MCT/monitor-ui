@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
@@ -41,13 +41,17 @@ export default {
 }
 
 export function _TextInput(props: TextInputProps) {
-  const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
+  const [outputValue, setOutputValue] = useState<string | undefined>(props.value)
+
+  useEffect(() => {
+    setOutputValue(props.value)
+  }, [props.value])
 
   return (
     <>
-      <TextInput {...props} onChange={setOutputValue} />
+      <TextInput {...props} onChange={setOutputValue} value={outputValue} />
 
-      {outputValue !== '∅' && <Output value={outputValue} />}
+      <Output value={outputValue} />
     </>
   )
 }

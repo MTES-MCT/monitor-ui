@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
@@ -15,6 +15,7 @@ const args: TextareaProps = {
   label: 'A textarea',
   name: 'myTextarea',
   placeholder: 'A textarea placeholder',
+  rows: 2,
   value: undefined
 }
 
@@ -41,13 +42,16 @@ export default {
 }
 
 export function _Textarea(props: TextareaProps) {
-  const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
+  const [outputValue, setOutputValue] = useState<string | undefined>(props.value)
+  useEffect(() => {
+    setOutputValue(props.value)
+  }, [props.value])
 
   return (
     <>
-      <Textarea {...props} onChange={setOutputValue} />
+      <Textarea {...props} onChange={setOutputValue} value={outputValue} />
 
-      {outputValue !== '∅' && <Output value={outputValue} />}
+      <Output value={outputValue} />
     </>
   )
 }

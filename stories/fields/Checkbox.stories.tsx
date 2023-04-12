@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
@@ -26,13 +26,16 @@ export default {
 }
 
 export function _Checkbox(props: CheckboxProps) {
-  const [outputValue, setOutputValue] = useState<boolean | '∅'>('∅')
+  const [outputValue, setOutputValue] = useState<boolean | undefined>(props.checked)
+  useEffect(() => {
+    setOutputValue(props.checked)
+  }, [props.checked])
 
   return (
     <>
-      <Checkbox {...props} onChange={setOutputValue} />
+      <Checkbox {...props} checked={outputValue} onChange={setOutputValue} />
 
-      {outputValue !== '∅' && <Output value={outputValue} />}
+      <Output value={outputValue} />
     </>
   )
 }

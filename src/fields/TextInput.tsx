@@ -6,7 +6,6 @@ import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
-import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { InputProps } from 'rsuite'
@@ -34,23 +33,16 @@ export function TextInput({
   value,
   ...originalProps
 }: TextInputProps) {
-  const controlledValue = useMemo(
-    () => (!isUndefinedWhenDisabled || !originalProps.disabled ? value : undefined),
-    [isUndefinedWhenDisabled, originalProps.disabled, value]
-  )
   const controlledError = useMemo(() => normalizeString(error), [error])
-  const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([originalProps.disabled, originalProps.name])
+  const hasError = Boolean(controlledError)
 
   const handleChange = useCallback(
-    (nextValue: string | null) => {
+    (nextValue: string) => {
       if (!onChange) {
         return
       }
 
-      const normalizedNextValue = nextValue && nextValue.trim().length ? nextValue : undefined
-
-      onChange(normalizedNextValue)
+      onChange(nextValue)
     },
     [onChange]
   )
@@ -69,13 +61,13 @@ export function TextInput({
       </Label>
 
       <StyledInput
-        key={key}
         $hasError={hasError}
         $isLight={isLight}
         id={originalProps.name}
         onChange={handleChange}
         type="text"
-        value={controlledValue}
+        // handle undefined as a value for a controlled component
+        value={value || ''}
         {...originalProps}
       />
 

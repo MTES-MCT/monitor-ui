@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef } from 'react'
+import { BaseSyntheticEvent, useCallback, useMemo } from 'react'
 import { Input } from 'rsuite'
 import styled from 'styled-components'
 
@@ -6,16 +6,12 @@ import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
-import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
 
-import type { MutableRefObject, TextareaHTMLAttributes } from 'react'
+import type { InputProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
-export type TextareaProps = Omit<
-  TextareaHTMLAttributes<HTMLTextAreaElement>,
-  'defaultValue' | 'id' | 'onChange' | 'value'
-> & {
+export type TextareaProps = Omit<InputProps, 'defaultValue' | 'id' | 'onChange' | 'value'> & {
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
@@ -24,6 +20,7 @@ export type TextareaProps = Omit<
   label: string
   name: string
   onChange?: ((nextValue: string | undefined) => Promisable<void>) | undefined
+  rows?: number
   value?: string | undefined
 }
 export function Textarea({
@@ -38,44 +35,42 @@ export function Textarea({
   value,
   ...originalProps
 }: TextareaProps) {
-  const inputRef = useRef() as MutableRefObject<HTMLTextAreaElement>
-
-  const controlledValue = useMemo(
-    () => (!isUndefinedWhenDisabled || !originalProps.disabled ? value : undefined),
-    [isUndefinedWhenDisabled, originalProps.disabled, value]
-  )
   const controlledError = useMemo(() => normalizeString(error), [error])
-  const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([originalProps.disabled, originalProps.name])
+  const hasError = Boolean(controlledError)
 
-  const handleChange = useCallback(() => {
-    if (!onChange) {
-      return
-    }
+  const handleChange = useCallback(
+    (e: BaseSyntheticEvent) => {
+      if (!onChange) {
+        return
+      }
 
-    const nextValue = inputRef.current.value
-    const normalizedNextValue = nextValue.trim().length ? nextValue : undefined
-
-    onChange(normalizedNextValue)
-  }, [onChange])
+      onChange(e.target.value)
+    },
+    [onChange]
+  )
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
 
   return (
     <Field className="Field-Textarea">
-      <Label disabled={originalProps.disabled} htmlFor={originalProps.name} isHidden={isLabelHidden}>
+      <Label
+        disabled={originalProps.disabled}
+        hasError={hasError}
+        htmlFor={originalProps.name}
+        isHidden={isLabelHidden}
+      >
         {label}
       </Label>
 
       <StyledInput
-        key={key}
-        ref={inputRef}
+        $hasError={hasError}
         $isLight={isLight}
         as="textarea"
         id={originalProps.name}
         onChange={handleChange}
         rows={rows}
-        value={controlledValue}
+        // handle undefined as a value for a controlled component
+        value={value || ''}
         {...originalProps}
       />
 
@@ -89,6 +84,7 @@ const StyledInput = styled(Input)<{
 }>`
   background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
   border: 0;
+  outline: ${p => (p.$hasError ? `1px solid ${p.theme.color.maximumRed}` : 0)};
   font-size: 13px;
   padding: 7px 11px;
   width: 100%;

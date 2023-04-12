@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
@@ -40,13 +40,17 @@ export default {
 }
 
 export function _NumberInput(props: NumberInputProps) {
-  const [outputValue, setOutputValue] = useState<number | undefined | '∅'>('∅')
+  const [outputValue, setOutputValue] = useState<number | undefined>(props.value)
+
+  useEffect(() => {
+    setOutputValue(props.value)
+  }, [props.value])
 
   return (
     <>
-      <NumberInput {...props} onChange={setOutputValue} />
+      <NumberInput {...props} onChange={setOutputValue} value={outputValue} />
 
-      {outputValue !== '∅' && <Output value={outputValue} />}
+      <Output value={outputValue} />
     </>
   )
 }
