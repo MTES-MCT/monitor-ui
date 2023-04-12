@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components'
 
 import { FieldError } from '../elements/FieldError'
 import { Fieldset } from '../elements/Fieldset'
-import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Option, OptionValueType } from '../types'
@@ -17,7 +16,6 @@ export type MultiCheckboxProps<OptionValue extends OptionValueType = any> = {
   isInline?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
-  isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
   onChange?: ((nextValue: OptionValue[] | undefined) => Promisable<void>) | undefined
@@ -32,7 +30,6 @@ export function MultiCheckbox<OptionValue extends OptionValueType>({
   isInline = false,
   isLabelHidden = false,
   isLight = false,
-  isUndefinedWhenDisabled = false,
   label,
   name,
   onChange,
@@ -49,8 +46,6 @@ export function MultiCheckbox<OptionValue extends OptionValueType>({
     },
     [onChange]
   )
-
-  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
   return (
     <Fieldset
