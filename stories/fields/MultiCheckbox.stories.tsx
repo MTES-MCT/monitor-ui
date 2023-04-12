@@ -16,7 +16,7 @@ const args: MultiCheckboxProps = {
   label: 'Pick some options',
   name: 'myMultiCheckbox',
   options: [
-    { label: 'First Option', value: 'FIRST_OPTION' },
+    { label: 'First Option', value: { is: 'object' } },
     { label: 'Second Option', value: 'SECOND_OPTION' },
     { label: 'Third Option', value: 'THIRD_OPTION' },
     { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
@@ -45,13 +45,13 @@ export default {
 }
 
 export function _MultiCheckbox(props: MultiCheckboxProps) {
-  const [outputValue, setOutputValue] = useState<string[] | undefined | '∅'>('∅')
+  const [outputValue, setOutputValue] = useState<any>(props.value)
 
   return (
     <>
-      <MultiCheckbox {...props} onChange={setOutputValue} />
+      <MultiCheckbox {...props} onChange={setOutputValue} value={outputValue} />
 
-      {outputValue !== '∅' && <Output value={outputValue} />}
+      <Output value={outputValue} />
     </>
   )
 }
