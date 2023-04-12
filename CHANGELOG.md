@@ -1,3 +1,10 @@
+## [5.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v5.3.0...v5.3.1) (2023-04-12)
+
+
+### Bug Fixes
+
+* **fields:** update value in DatePicker & DateRangePicker on defaultValue change ([c2d1eb7](https://github.com/MTES-MCT/monitor-ui/commit/c2d1eb79a5f53e3844fc246de2a8b030a75590b6))
+
 # [5.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.2.2...v5.3.0) (2023-04-12)
 
 
