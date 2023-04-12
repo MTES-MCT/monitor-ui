@@ -23,11 +23,8 @@ export default {
   component: Textarea,
 
   argTypes: {
-    defaultValue: {
+    value: {
       control: 'text'
-    },
-    isMulti: {
-      control: 'boolean'
     }
   },
 

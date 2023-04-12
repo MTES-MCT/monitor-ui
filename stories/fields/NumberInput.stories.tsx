@@ -22,9 +22,6 @@ export default {
   component: NumberInput,
 
   argTypes: {
-    isMulti: {
-      control: 'boolean'
-    },
     value: {
       control: 'number'
     }

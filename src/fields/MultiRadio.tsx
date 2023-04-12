@@ -48,7 +48,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
 
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([disabled, name, value])
+  const key = useKey([controlledValue, disabled, name])
 
   const handleChange = useCallback(
     (nextOptionValue: OptionValue, isChecked: boolean) => {
@@ -63,7 +63,6 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
 
   return (
     <Fieldset
-      key={key}
       className="Field-MultiRadio"
       disabled={disabled}
       hasError={hasError}
@@ -71,7 +70,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
       isLight={isLight}
       legend={label}
     >
-      <CheckboxesBox $isInline={isInline}>
+      <CheckboxesBox key={key} $isInline={isInline}>
         {options.map(option => (
           <Radio
             key={JSON.stringify(option.value)}

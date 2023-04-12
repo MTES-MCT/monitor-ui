@@ -7,6 +7,7 @@ import { FieldError } from '../elements/FieldError'
 import { Fieldset } from '../elements/Fieldset'
 import { useFieldControl } from '../hooks/useFieldControl'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
+import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Option, OptionValueType } from '../types'
@@ -44,8 +45,10 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
     disabled,
     isUndefinedWhenDisabled
   })
+
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
+  const key = useKey([controlledValue, disabled, name])
 
   const handleChange = useCallback(
     (nextOptionValue: OptionValue, isChecked: boolean) => {
@@ -71,7 +74,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
       isLight={isLight}
       legend={label}
     >
-      <ChecboxesBox $hasError={hasError} $isInline={isInline}>
+      <ChecboxesBox key={key} $hasError={hasError} $isInline={isInline}>
         {options.map((option, index) => (
           <Checkbox
             key={JSON.stringify(option.value)}
