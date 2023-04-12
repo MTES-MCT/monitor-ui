@@ -75,7 +75,7 @@ export function Checkbox({
   useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
 
   return (
-    <Field key={key} className="Field-Checkbox">
+    <Field className="Field-Checkbox">
       <StyledCheckbox
         key={key}
         checked={controlledChecked}

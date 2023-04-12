@@ -23,11 +23,8 @@ export default {
   component: TextInput,
 
   argTypes: {
-    defaultValue: {
+    value: {
       control: 'text'
-    },
-    isMulti: {
-      control: 'boolean'
     }
   },
 
