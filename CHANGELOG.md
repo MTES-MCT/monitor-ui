@@ -1,3 +1,23 @@
+## [5.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v5.2.0...v5.2.1) (2023-04-11)
+
+
+### Bug Fixes
+
+* **cypress:** include registerMonitorUiCustomCommands() typings in module ([81373dc](https://github.com/MTES-MCT/monitor-ui/commit/81373dca3f7b3a62770cb858ae601e984834f4c0))
+
+# [5.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.1.1...v5.2.0) (2023-04-11)
+
+
+### Bug Fixes
+
+* **cypress:** export index file instead of directory ([5a0c394](https://github.com/MTES-MCT/monitor-ui/commit/5a0c394919d9a7d8e6910ca1bbdb9a383c019ca0))
+* **fields:** fix css on multiselect ([ad23dc0](https://github.com/MTES-MCT/monitor-ui/commit/ad23dc0967f6fe0b235518bc03724aa3695672bf))
+
+
+### Features
+
+* **cypress:** wrap commands registration within a registerMonitorUiCustomCommands() function ([2142789](https://github.com/MTES-MCT/monitor-ui/commit/21427893bd628ef8780566fe0b715f3ef5be10d9))
+
 ## [5.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v5.1.0...v5.1.1) (2023-04-11)
 
 

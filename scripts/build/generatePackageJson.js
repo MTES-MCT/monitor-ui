@@ -8,6 +8,7 @@ const distPackageExtraProps = {
   exports: {
     '.': './index.js',
     './assets/': './assets/',
+    './cypress': './cypress/index.js',
     './cypress/': './cypress/'
   },
   homepage: 'https://mtes-mct.github.io/monitor-ui/',
@@ -22,7 +23,7 @@ const distPackageExtraProps = {
   },
   sideEffects: false,
   type: 'module',
-  types: './src/index.d.ts'
+  types: './index.d.ts'
 }
 
 ;(async () => {
