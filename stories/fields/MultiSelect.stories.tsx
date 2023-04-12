@@ -57,7 +57,7 @@ export function _MultiSelect(props: MultiSelectProps) {
 
   const [isNewWindowOpen, setIsNewWindowOpen] = useState(false)
   const [isNewWindowFirstLoad, setIsNewWindowFirstLoad] = useState(true)
-  const [outputValue, setOutputValue] = useState<string[] | undefined | '∅'>('∅')
+  const [outputValue, setOutputValue] = useState<string[] | undefined>()
 
   const { forceUpdate } = useForceUpdate()
 
@@ -84,9 +84,9 @@ export function _MultiSelect(props: MultiSelectProps) {
         </Button>
       </NewWindowButtonBox>
 
-      <MultiSelect {...props} onChange={setOutputValue} />
+      <MultiSelect {...props} onChange={setOutputValue} value={outputValue} />
 
-      {outputValue !== '∅' && <Output value={outputValue} />}
+      <Output value={outputValue} />
 
       {isNewWindowOpen && (
         <NewWindow isStoryBook onUnload={() => setIsNewWindowOpen(false)}>

@@ -6,10 +6,7 @@ import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useClickOutsideEffect } from '../hooks/useClickOutsideEffect'
-import { useFieldControl } from '../hooks/useFieldControl'
-import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
-import { useKey } from '../hooks/useKey'
 import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
 import { getRsuiteValueFromOptionValue } from '../utils/getRsuiteValueFromOptionValue'
 import { normalizeString } from '../utils/normalizeString'
@@ -18,6 +15,8 @@ import type { Option, OptionValueType } from '../types'
 import type { MouseEvent, ReactNode } from 'react'
 import type { TagPickerProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
+
+const renderMenuItem = (node: ReactNode) => <span title={String(node)}>{String(node)}</span>
 
 export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omit<
   TagPickerProps,
@@ -29,7 +28,6 @@ export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omi
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
-  isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
   onChange?: ((nextValue: OptionValue[] | undefined) => Promisable<void>) | undefined
@@ -37,6 +35,7 @@ export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omi
   options: Option<OptionValue>[]
   value?: OptionValue[] | undefined
 }
+
 export function MultiSelect<OptionValue extends OptionValueType = string>({
   baseContainer,
   disabled = false,
@@ -44,7 +43,6 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
-  isUndefinedWhenDisabled = false,
   label,
   onChange,
   options,
@@ -58,22 +56,13 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 
   const [isOpen, setIsOpen] = useState(false)
 
-  const { controlledOnChange, controlledValue } = useFieldControl(value, onChange, {
-    disabled,
-    isUndefinedWhenDisabled
-  })
   const controlledRsuiteValue = useMemo(
-    () =>
-      (controlledValue || []).map(controlledValueItem =>
-        getRsuiteValueFromOptionValue(controlledValueItem, optionValueKey)
-      ),
-    [controlledValue, optionValueKey]
+    () => (value || []).map(controlledValueItem => getRsuiteValueFromOptionValue(controlledValueItem, optionValueKey)),
+    [value, optionValueKey]
   )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const data = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([disabled, originalProps.name, value])
-
   const { forceUpdate } = useForceUpdate()
 
   const close = useCallback(() => {
@@ -93,13 +82,12 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
         : []
 
       const normalizedNextValue = !nextValue.length ? undefined : nextValue
-
-      controlledOnChange(normalizedNextValue)
+      if (onChange) {
+        onChange(normalizedNextValue)
+      }
     },
-    [controlledOnChange, options, optionValueKey]
+    [onChange, options, optionValueKey]
   )
-
-  const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
 
   const toggle = useCallback(
     (event: MouseEvent<HTMLElement>) => {
@@ -122,8 +110,6 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
     [isOpen]
   )
 
-  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
-
   useClickOutsideEffect(boxRef, close, baseContainer)
 
   useEffect(() => {
@@ -139,7 +125,6 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
       <Box ref={boxRef} $hasError={hasError} $isActive={isOpen} $isLight={isLight} onClick={toggle}>
         {boxRef.current && (
           <TagPicker
-            key={key}
             container={boxRef.current}
             data={data}
             disabled={disabled}
