@@ -57,7 +57,7 @@ export function _MultiSelect(props: MultiSelectProps) {
 
   const [isNewWindowOpen, setIsNewWindowOpen] = useState(false)
   const [isNewWindowFirstLoad, setIsNewWindowFirstLoad] = useState(true)
-  const [outputValue, setOutputValue] = useState<string[] | undefined>()
+  const [outputValue, setOutputValue] = useState(props.value)
 
   const { forceUpdate } = useForceUpdate()
 

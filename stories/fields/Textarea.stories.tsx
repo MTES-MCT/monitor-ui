@@ -42,7 +42,7 @@ export default {
 }
 
 export function _Textarea(props: TextareaProps) {
-  const [outputValue, setOutputValue] = useState<string | undefined>(props.value)
+  const [outputValue, setOutputValue] = useState(props.value)
   useEffect(() => {
     setOutputValue(props.value)
   }, [props.value])

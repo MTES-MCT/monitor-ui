@@ -45,13 +45,13 @@ export default {
 }
 
 export function _MultiRadio(props: MultiRadioProps) {
-  const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
+  const [outputValue, setOutputValue] = useState(props.value)
 
   return (
     <>
-      <MultiRadio {...props} onChange={setOutputValue} />
+      <MultiRadio {...props} onChange={setOutputValue} value={outputValue} />
 
-      {outputValue !== '∅' && <Output value={outputValue} />}
+      <Output value={outputValue} />
     </>
   )
 }

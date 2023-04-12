@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent, useCallback, useMemo } from 'react'
+import { BaseSyntheticEvent, TextareaHTMLAttributes, useCallback, useMemo } from 'react'
 import { Input } from 'rsuite'
 import styled from 'styled-components'
 
@@ -10,7 +10,10 @@ import { normalizeString } from '../utils/normalizeString'
 import type { InputProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
-export type TextareaProps = Omit<InputProps, 'defaultValue' | 'id' | 'onChange' | 'value'> & {
+export type TextareaProps = Omit<
+  InputProps & TextareaHTMLAttributes<HTMLTextAreaElement>,
+  'defaultValue' | 'id' | 'onChange'
+> & {
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
@@ -18,8 +21,6 @@ export type TextareaProps = Omit<InputProps, 'defaultValue' | 'id' | 'onChange' 
   label: string
   name: string
   onChange?: ((nextValue: string | undefined) => Promisable<void>) | undefined
-  rows?: number
-  value?: string | undefined
 }
 export function Textarea({
   error,
