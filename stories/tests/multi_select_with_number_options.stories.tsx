@@ -36,13 +36,13 @@ export default {
 }
 
 export function _MultiSelect(props: MultiSelectProps) {
-  const [outputValue, setOutputValue] = useState<any>('∅')
+  const [outputValue, setOutputValue] = useState<any>(undefined)
 
   return (
     <>
-      <MultiSelect {...props} onChange={setOutputValue} />
+      <MultiSelect {...props} onChange={setOutputValue} value={outputValue} />
 
-      {outputValue !== '∅' && <Output value={outputValue} />}
+      <Output value={outputValue} />
     </>
   )
 }
