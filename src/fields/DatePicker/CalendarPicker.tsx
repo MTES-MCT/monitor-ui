@@ -91,6 +91,7 @@ export const Box = styled.div`
 
     .rs-picker-toggle {
       border: 0 !important;
+      box-shadow: none;
       padding: 0;
 
       * {

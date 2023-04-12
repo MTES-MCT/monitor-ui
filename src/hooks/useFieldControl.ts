@@ -17,6 +17,7 @@ export function useFieldControl<T>(
 ): {
   controlledOnChange: (nextValue: T) => Promisable<void>
   controlledValue: T | undefined
+  setInternalValue: (nextValue: T) => Promisable<void>
 } {
   const { disabled, isUndefinedWhenDisabled } = props
 
@@ -41,6 +42,15 @@ export function useFieldControl<T>(
     [onChange]
   )
 
+  const setInternalValue = useCallback(
+    (nextValue: T) => {
+      internalValueRef.current = nextValue
+
+      forceUpdate()
+    },
+    [forceUpdate]
+  )
+
   // We update the `internalValue` each time the `value` prop is updated
   useEffect(() => {
     if (isEqual(value, previousValue)) {
@@ -52,5 +62,5 @@ export function useFieldControl<T>(
     forceUpdate()
   }, [forceUpdate, previousValue, value])
 
-  return { controlledOnChange, controlledValue }
+  return { controlledOnChange, controlledValue, setInternalValue }
 }

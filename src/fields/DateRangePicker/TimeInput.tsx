@@ -1,10 +1,12 @@
-import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react'
+import { isEqual } from 'lodash'
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 
 import { NumberInput } from './NumberInput'
 import { RangedTimePicker } from './RangedTimePicker'
 import { isHtmlElement } from './utils'
 import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
+import { usePrevious } from '../../hooks/usePrevious'
 import { Clock } from '../../icons'
 
 import type { NumberInputProps } from './NumberInput'
@@ -14,7 +16,6 @@ import type { Promisable } from 'type-fest'
 
 export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'onNext'> & {
   baseContainer?: Document | HTMLDivElement | undefined
-  defaultValue?: TimeTuple | undefined
   // TODO Check why TS thinks there is no `disabled` prop in `NumberInputProps`.
   disabled: boolean
   isCompact: boolean
@@ -29,11 +30,11 @@ export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
   onInput: () => Promisable<void>
   onNext?: (() => Promisable<void>) | undefined
   onPrevious?: (() => Promisable<void>) | undefined
+  value?: TimeTuple | undefined
 }
 function TimeInputWithRef(
   {
     baseContainer,
-    defaultValue,
     disabled = false,
     isCompact,
     isEndDate = false,
@@ -45,7 +46,8 @@ function TimeInputWithRef(
     onFocus,
     onInput,
     onNext,
-    onPrevious
+    onPrevious,
+    value
   }: TimeInputProps,
   ref: ForwardedRef<TimeInputRef>
 ) {
@@ -55,12 +57,14 @@ function TimeInputWithRef(
   const minuteInputRef = useRef<HTMLInputElement>(null)
   /* eslint-enable no-null/no-null */
 
-  const [controlledDefaultValue, setControlledDefaultValue] = useState(defaultValue)
+  const [controlledValue, setControlledValue] = useState(value)
   const [hasFormatError, setHasFormatError] = useState(false)
   const [hasValidationError, setHasValidationError] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
   const [isTimePickerOpen, setIsTimePickerOpen] = useState(false)
   const [timePickerFilter, setTimePickerFilter] = useState<RegExp>(/.*/)
+
+  const previousValue = usePrevious(value)
 
   const baseDocument = useMemo(
     () => (isHtmlElement(baseContainer) ? baseContainer.ownerDocument : window.document),
@@ -128,7 +132,7 @@ function TimeInputWithRef(
     (nextTimeTuple: TimeTuple) => {
       closeRangedTimePicker()
 
-      setControlledDefaultValue(nextTimeTuple)
+      setControlledValue(nextTimeTuple)
 
       onChange(nextTimeTuple)
     },
@@ -166,6 +170,14 @@ function TimeInputWithRef(
 
   useClickOutsideEffect(boxRef, closeRangedTimePicker, baseContainer)
 
+  useEffect(() => {
+    if (isEqual(value, previousValue) || isFocused) {
+      return
+    }
+
+    setControlledValue(value)
+  }, [isFocused, previousValue, value])
+
   return (
     <Box
       ref={boxRef}
@@ -180,7 +192,6 @@ function TimeInputWithRef(
           <NumberInput
             ref={hourInputRef}
             aria-label={`Heure${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
-            defaultValue={controlledDefaultValue && controlledDefaultValue[0]}
             disabled={disabled}
             isLight={isLight}
             max={23}
@@ -195,12 +206,12 @@ function TimeInputWithRef(
             onNext={() => minuteInputRef.current?.focus()}
             onPrevious={onPrevious}
             size={2}
+            value={controlledValue && controlledValue[0]}
           />
           :
           <NumberInput
             ref={minuteInputRef}
             aria-label={`Minute${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
-            defaultValue={controlledDefaultValue && controlledDefaultValue[1]}
             disabled={disabled}
             isLight={isLight}
             max={59}
@@ -215,6 +226,7 @@ function TimeInputWithRef(
             onNext={onNext}
             onPrevious={() => hourInputRef.current?.focus()}
             size={2}
+            value={controlledValue && controlledValue[1]}
           />
         </div>
 
