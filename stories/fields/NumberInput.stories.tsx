@@ -22,11 +22,11 @@ export default {
   component: NumberInput,
 
   argTypes: {
-    defaultValue: {
-      control: 'number'
-    },
     isMulti: {
       control: 'boolean'
+    },
+    value: {
+      control: 'number'
     }
   },
 
