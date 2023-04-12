@@ -6,7 +6,7 @@ import type { Promisable } from 'type-fest'
 
 export type NumberInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  'maxLength' | 'onInput' | 'pattern' | 'type' | 'value'
+  'defaultValue' | 'maxLength' | 'onInput' | 'pattern' | 'type'
 > & {
   isLight: boolean
   max: number
@@ -25,7 +25,6 @@ export type NumberInputProps = Omit<
 }
 function NumberInputWithRef(
   {
-    defaultValue,
     isLight,
     max,
     min,
@@ -38,6 +37,7 @@ function NumberInputWithRef(
     onNext,
     onPrevious,
     size,
+    value,
     ...nativeProps
   }: NumberInputProps,
   ref: ForwardedRef<HTMLInputElement>
@@ -82,11 +82,10 @@ function NumberInputWithRef(
 
     onFormatError(false)
 
-    const { value } = inputRef.current
     if (onInput) {
-      onInput(value)
+      onInput(inputRef.current.value)
     }
-    if (value.length !== size) {
+    if (inputRef.current.value.length !== size) {
       return
     }
 
@@ -97,7 +96,7 @@ function NumberInputWithRef(
       return
     }
 
-    if (onFilled && value.length === size) {
+    if (onFilled && inputRef.current.value.length === size) {
       onFilled()
     }
   }, [max, min, onFilled, onFormatError, onInput, size])
@@ -147,11 +146,11 @@ function NumberInputWithRef(
 
   return (
     <StyledNumberInput
-      key={String(defaultValue)}
+      key={String(value)}
       ref={inputRef}
       $isLight={isLight}
       $size={size}
-      defaultValue={defaultValue}
+      defaultValue={value}
       maxLength={size}
       onClick={handleClick}
       onFocus={handleFocus}

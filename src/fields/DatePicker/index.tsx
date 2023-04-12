@@ -16,7 +16,7 @@
  */
 
 import classNames from 'classnames'
-import { useCallback, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 import styled from 'styled-components'
 
 import { CalendarPicker } from './CalendarPicker'
@@ -25,6 +25,7 @@ import { Fieldset } from '../../elements/Fieldset'
 import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
 import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
+import { usePrevious } from '../../hooks/usePrevious'
 import { customDayjs } from '../../utils/customDayjs'
 import { normalizeString } from '../../utils/normalizeString'
 import { DateInput } from '../DateRangePicker/DateInput'
@@ -120,9 +121,12 @@ export function DatePicker({
 
   const isCalendarPickerOpenRef = useRef(false)
 
+  const hasMountedRef = useRef(false)
   const selectedUtcDateAsDayjsRef = useRef(defaultValue ? customDayjs(defaultValue) : undefined)
   const selectedUtcDateTupleRef = useRef(getUtcDateTupleFromDayjs(selectedUtcDateAsDayjsRef.current))
   const selectedUtcTimeTupleRef = useRef(getUtcTimeTupleFromDayjs(selectedUtcDateAsDayjsRef.current))
+
+  const previousDefaultValue = usePrevious(defaultValue)
 
   const { forceUpdate } = useForceUpdate()
 
@@ -290,6 +294,29 @@ export function DatePicker({
 
   useClickOutsideEffect(boxRef, closeCalendarPicker, baseContainer)
 
+  useEffect(() => {
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true
+
+      return
+    }
+
+    if (
+      (defaultValue instanceof Date &&
+        previousDefaultValue instanceof Date &&
+        defaultValue.toISOString() === previousDefaultValue.toISOString()) ||
+      defaultValue === previousDefaultValue
+    ) {
+      return
+    }
+
+    selectedUtcDateAsDayjsRef.current = defaultValue ? customDayjs(defaultValue) : undefined
+    selectedUtcDateTupleRef.current = getUtcDateTupleFromDayjs(selectedUtcDateAsDayjsRef.current)
+    selectedUtcTimeTupleRef.current = getUtcTimeTupleFromDayjs(selectedUtcDateAsDayjsRef.current)
+
+    forceUpdate()
+  }, [defaultValue, forceUpdate, previousDefaultValue])
+
   return (
     <Fieldset
       className={classNames('Field-DatePicker', className)}
@@ -303,7 +330,6 @@ export function DatePicker({
           <DateInput
             ref={dateInputRef}
             baseContainer={baseContainer || undefined}
-            defaultValue={selectedUtcDateTupleRef.current}
             disabled={disabled}
             isCompact={isCompact}
             isEndDate={isEndDate}
@@ -313,6 +339,7 @@ export function DatePicker({
             onClick={openCalendarPicker}
             onInput={handleDateOrTimeInputInput}
             onNext={handleDateInputNext}
+            value={selectedUtcDateTupleRef.current}
           />
         </Field>
 
@@ -322,7 +349,6 @@ export function DatePicker({
               key={JSON.stringify(selectedUtcTimeTupleRef.current)}
               ref={timeInputRef}
               baseContainer={baseContainer || undefined}
-              defaultValue={selectedUtcTimeTupleRef.current}
               disabled={disabled}
               isCompact={isCompact}
               isLight={isLight}
@@ -332,6 +358,7 @@ export function DatePicker({
               onFocus={closeCalendarPicker}
               onInput={handleDateOrTimeInputInput}
               onPrevious={() => dateInputRef.current?.focus(true)}
+              value={selectedUtcTimeTupleRef.current}
             />
           </Field>
         )}

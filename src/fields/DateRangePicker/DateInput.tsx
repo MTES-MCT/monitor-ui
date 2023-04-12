@@ -12,7 +12,6 @@ import type { Promisable } from 'type-fest'
 
 export type DateInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'onNext'> & {
   baseContainer: Document | HTMLDivElement | undefined
-  defaultValue?: DateTuple | undefined
   // TODO Check why TS thinks there is no `disabled` prop in `NumberInputProps`.
   disabled: boolean
   isCompact: boolean
@@ -32,11 +31,11 @@ export type DateInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
   onClick: () => Promisable<void>
   /** Called each time any date input receive a keyboard-input change whether the value is valid or not. */
   onInput: () => Promisable<void>
+  value?: DateTuple | undefined
 }
 function DateInputWithRef(
   {
     baseContainer,
-    defaultValue,
     disabled = false,
     isCompact,
     isEndDate = false,
@@ -49,7 +48,8 @@ function DateInputWithRef(
     onClick,
     onInput,
     onNext,
-    onPrevious
+    onPrevious,
+    value
   }: DateInputProps,
   ref: ForwardedRef<DateInputRef>
 ) {
@@ -60,6 +60,8 @@ function DateInputWithRef(
   const yearInputRef = useRef<HTMLInputElement>(null)
   /* eslint-enable no-null/no-null */
 
+  const lastValueBeforeFocusRef = useRef(value)
+
   const [hasFormatError, setHasFormatError] = useState(false)
   const [hasValidationError, setHasValidationError] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
@@ -68,6 +70,13 @@ function DateInputWithRef(
     () => (isHtmlElement(baseContainer) ? baseContainer.ownerDocument : window.document),
     [baseContainer]
   )
+  const controlledValue = useMemo(() => {
+    if (!isFocused) {
+      lastValueBeforeFocusRef.current = value
+    }
+
+    return lastValueBeforeFocusRef.current
+  }, [isFocused, value])
 
   useImperativeHandle<DateInputRef, DateInputRef>(ref, () => ({
     box: boxRef.current,
@@ -160,7 +169,6 @@ function DateInputWithRef(
         <NumberInput
           ref={dayInputRef}
           aria-label={`Jour${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
-          defaultValue={defaultValue && formatNumberAsDoubleDigit(defaultValue[2])}
           disabled={disabled}
           isLight={isLight}
           max={31}
@@ -175,12 +183,12 @@ function DateInputWithRef(
           onNext={() => monthInputRef.current?.focus()}
           onPrevious={onPrevious}
           size={2}
+          value={controlledValue && controlledValue[2]}
         />
         /
         <NumberInput
           ref={monthInputRef}
           aria-label={`Mois${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
-          defaultValue={defaultValue && formatNumberAsDoubleDigit(defaultValue[1])}
           disabled={disabled}
           isLight={isLight}
           max={12}
@@ -195,12 +203,12 @@ function DateInputWithRef(
           onNext={() => yearInputRef.current?.focus()}
           onPrevious={() => dayInputRef.current?.focus()}
           size={2}
+          value={controlledValue && controlledValue[1]}
         />
         /
         <NumberInput
           ref={yearInputRef}
           aria-label={`Année${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
-          defaultValue={defaultValue && defaultValue[0]}
           disabled={disabled}
           isLight={isLight}
           max={2030}
@@ -215,6 +223,7 @@ function DateInputWithRef(
           onNext={onNext}
           onPrevious={() => monthInputRef.current?.focus()}
           size={4}
+          value={controlledValue && controlledValue[0]}
         />
       </div>
 

@@ -18,19 +18,26 @@
  * (we return `.000Z` rather than `.999Z` because the backend does not handle milliseconds as expected).
  */
 
-import { useCallback, useMemo, useRef } from 'react'
+import { isEqual } from 'lodash'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
 import { DateInput } from './DateInput'
 import { RangeCalendarPicker } from './RangeCalendarPicker'
 import { TimeInput } from './TimeInput'
 import { DateInputRef, DateRangePosition, DateTuple, DateTupleRange, TimeInputRef, TimeTuple } from './types'
-import { getDateTupleFromUtcDate, getTimeTupleFromUtcDate, getUtcDateFromDateAndTimeTuple } from './utils'
+import {
+  getDayjsFromUtcDateAndTimeTuple,
+  getUtcDateFromDateAndTimeTuple,
+  getUtcDateTupleFromDayjs,
+  getUtcTimeTupleFromDayjs
+} from './utils'
 import { FieldError } from '../../elements/FieldError'
 import { Fieldset } from '../../elements/Fieldset'
 import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
 import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
+import { usePrevious } from '../../hooks/usePrevious'
 import { customDayjs } from '../../utils/customDayjs'
 import { normalizeString } from '../../utils/normalizeString'
 
@@ -113,14 +120,17 @@ export function DateRangePicker({
   const endTimeInputRef = useRef<TimeInputRef>(null)
   /* eslint-enable no-null/no-null */
 
+  const hasMountedRef = useRef(false)
   const isRangeCalendarPickerOpenRef = useRef(false)
 
-  const selectedStartUtcDateRef = useRef(defaultValue ? customDayjs(defaultValue[0]).toDate() : undefined)
-  const selectedEndUtcDateRef = useRef(defaultValue ? customDayjs(defaultValue[1]).toDate() : undefined)
-  const selectedStartDateTupleRef = useRef(getDateTupleFromUtcDate(selectedStartUtcDateRef.current))
-  const selectedEndDateTupleRef = useRef(getDateTupleFromUtcDate(selectedEndUtcDateRef.current))
-  const selectedStartTimeTupleRef = useRef(getTimeTupleFromUtcDate(selectedStartUtcDateRef.current))
-  const selectedEndTimeTupleRef = useRef(getTimeTupleFromUtcDate(selectedEndUtcDateRef.current))
+  const selectedStartDateAsDayjsRef = useRef(defaultValue ? customDayjs(defaultValue[0]) : undefined)
+  const selectedEndDateAsDayjsRef = useRef(defaultValue ? customDayjs(defaultValue[1]) : undefined)
+  const selectedStartDateTupleRef = useRef(getUtcDateTupleFromDayjs(selectedStartDateAsDayjsRef.current))
+  const selectedEndDateTupleRef = useRef(getUtcDateTupleFromDayjs(selectedEndDateAsDayjsRef.current))
+  const selectedStartTimeTupleRef = useRef(getUtcTimeTupleFromDayjs(selectedStartDateAsDayjsRef.current))
+  const selectedEndTimeTupleRef = useRef(getUtcTimeTupleFromDayjs(selectedEndDateAsDayjsRef.current))
+
+  const previousDefaultValue = usePrevious(defaultValue)
 
   const { forceUpdate } = useForceUpdate()
 
@@ -140,25 +150,27 @@ export function DateRangePicker({
   )
 
   const submit = useCallback(() => {
-    if (!onChange || !selectedStartUtcDateRef.current || !selectedEndUtcDateRef.current) {
+    if (!onChange || !selectedStartDateAsDayjsRef.current || !selectedEndDateAsDayjsRef.current) {
       return
     }
 
     if (isStringDate) {
-      const utcizedStartDateAsString = selectedStartUtcDateRef.current.toISOString()
-      const utcizedEndDateAsString = selectedEndUtcDateRef.current.toISOString()
+      const startUtcDateAsString = selectedStartDateAsDayjsRef.current.utc().toISOString()
+      const endUtcDateAsString = selectedEndDateAsDayjsRef.current.utc().toISOString()
 
-      const nextDateAsStringRange: DateAsStringRange = [utcizedStartDateAsString, utcizedEndDateAsString]
+      const nextUtcDateAsStringRange: DateAsStringRange = [startUtcDateAsString, endUtcDateAsString]
 
-      ;(onChange as (nextUtcDateRange: DateAsStringRange) => Promisable<void>)(nextDateAsStringRange)
-    } else {
-      const utcizedStartDate = selectedStartUtcDateRef.current
-      const utcizedEndDate = selectedEndUtcDateRef.current
+      ;(onChange as (nextUtcDateRange: DateAsStringRange) => Promisable<void>)(nextUtcDateAsStringRange)
 
-      const nextDateRange: DateRange = [utcizedStartDate, utcizedEndDate]
-
-      ;(onChange as (nextUtcDateRange: DateRange) => Promisable<void>)(nextDateRange)
+      return
     }
+
+    const startUtcDate = selectedStartDateAsDayjsRef.current.toDate()
+    const endUtcDate = selectedEndDateAsDayjsRef.current.toDate()
+
+    const nextDateRange: DateRange = [startUtcDate, endUtcDate]
+
+    ;(onChange as (nextUtcDateRange: DateRange) => Promisable<void>)(nextDateRange)
   }, [isStringDate, onChange])
 
   const closeRangeCalendarPicker = useCallback(() => {
@@ -222,9 +234,9 @@ export function DateRangePicker({
           // we must update the selected start date and call onChange()
           const startUtcTimeTuple: TimeTuple =
             withTime && selectedStartTimeTupleRef.current ? selectedStartTimeTupleRef.current : ['00', '00']
-          const nextStartDate = getUtcDateFromDateAndTimeTuple(nextDateTuple, startUtcTimeTuple)
+          const nextStartDateAsDayjs = getDayjsFromUtcDateAndTimeTuple(nextDateTuple, startUtcTimeTuple)
 
-          selectedStartUtcDateRef.current = nextStartDate
+          selectedStartDateAsDayjsRef.current = nextStartDateAsDayjs
 
           submit()
         }
@@ -239,9 +251,9 @@ export function DateRangePicker({
         if (!withTime || selectedEndTimeTupleRef.current) {
           // we must update the selected end date and call onChange()
           const endTimeTuple = (withTime ? selectedEndTimeTupleRef.current : ['23', '59']) as TimeTuple
-          const nextEndDate = getUtcDateFromDateAndTimeTuple(nextDateTuple, endTimeTuple, true)
+          const nextEndDateAsDayjs = getDayjsFromUtcDateAndTimeTuple(nextDateTuple, endTimeTuple, true)
 
-          selectedEndUtcDateRef.current = nextEndDate
+          selectedEndDateAsDayjsRef.current = nextEndDateAsDayjs
 
           submit()
         }
@@ -302,21 +314,21 @@ export function DateRangePicker({
       // If this is a date picker without a time input,
       if (!withTime) {
         // we have to fix the start date at the beginning of the day
-        selectedStartUtcDateRef.current = getUtcDateFromDateAndTimeTuple(nextStartUtcDateTuple, ['00', '00'])
+        selectedStartDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(nextStartUtcDateTuple, ['00', '00'])
         // and the end date at the end of the day
-        selectedEndUtcDateRef.current = getUtcDateFromDateAndTimeTuple(nextEndUtcDateTuple, ['23', '59'], true)
+        selectedEndDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(nextEndUtcDateTuple, ['23', '59'], true)
       }
 
       // If this is a date picker with a time input,
       else {
         // we include the selected start time if it exists, set it at the beginning of the day if not
-        selectedStartUtcDateRef.current = getUtcDateFromDateAndTimeTuple(
+        selectedStartDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(
           nextStartUtcDateTuple,
           selectedStartTimeTupleRef.current || ['00', '00']
         )
 
         // we include the selected end time if it exists, set it at the end of the day if not
-        selectedEndUtcDateRef.current = getUtcDateFromDateAndTimeTuple(
+        selectedEndDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(
           nextEndUtcDateTuple,
           selectedEndTimeTupleRef.current || ['23', '59'],
           true
@@ -324,9 +336,9 @@ export function DateRangePicker({
       }
 
       selectedStartDateTupleRef.current = nextStartUtcDateTuple
-      selectedStartTimeTupleRef.current = getTimeTupleFromUtcDate(selectedStartUtcDateRef.current)
+      selectedStartTimeTupleRef.current = getUtcTimeTupleFromDayjs(selectedStartDateAsDayjsRef.current)
       selectedEndDateTupleRef.current = nextEndUtcDateTuple
-      selectedEndTimeTupleRef.current = getTimeTupleFromUtcDate(selectedEndUtcDateRef.current)
+      selectedEndTimeTupleRef.current = getUtcTimeTupleFromDayjs(selectedEndDateAsDayjsRef.current)
 
       closeRangeCalendarPicker()
 
@@ -345,9 +357,9 @@ export function DateRangePicker({
         // If a start date has already been selected
         if (selectedStartDateTupleRef.current) {
           // we must update the selected start date accordingly and submit it
-          const nextStartDate = getUtcDateFromDateAndTimeTuple(selectedStartDateTupleRef.current, nextTimeTuple)
+          const nextStartDateAsDayjs = getDayjsFromUtcDateAndTimeTuple(selectedStartDateTupleRef.current, nextTimeTuple)
 
-          selectedStartUtcDateRef.current = nextStartDate
+          selectedStartDateAsDayjsRef.current = nextStartDateAsDayjs
 
           submit()
         }
@@ -359,9 +371,13 @@ export function DateRangePicker({
         // If an end date has already been selected
         if (selectedEndDateTupleRef.current) {
           // we must update the selected end date accordingly and submit it
-          const nextEndDate = getUtcDateFromDateAndTimeTuple(selectedEndDateTupleRef.current, nextTimeTuple, true)
+          const nextEndDateAsDayjs = getDayjsFromUtcDateAndTimeTuple(
+            selectedEndDateTupleRef.current,
+            nextTimeTuple,
+            true
+          )
 
-          selectedEndUtcDateRef.current = nextEndDate
+          selectedEndDateAsDayjsRef.current = nextEndDateAsDayjs
 
           submit()
         }
@@ -384,6 +400,37 @@ export function DateRangePicker({
 
   useClickOutsideEffect([endDateInputRef, startDateInputRef], closeRangeCalendarPicker, baseContainer)
 
+  useEffect(() => {
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true
+
+      return
+    }
+
+    if (
+      (defaultValue &&
+        previousDefaultValue &&
+        defaultValue[0] instanceof Date &&
+        defaultValue[1] instanceof Date &&
+        previousDefaultValue[0] instanceof Date &&
+        previousDefaultValue[1] instanceof Date &&
+        defaultValue[0].toISOString() === previousDefaultValue[0].toISOString() &&
+        defaultValue[1].toISOString() === previousDefaultValue[1].toISOString()) ||
+      isEqual(defaultValue, previousDefaultValue)
+    ) {
+      return
+    }
+
+    selectedStartDateAsDayjsRef.current = defaultValue ? customDayjs(defaultValue[0]) : undefined
+    selectedEndDateAsDayjsRef.current = defaultValue ? customDayjs(defaultValue[1]) : undefined
+    selectedStartDateTupleRef.current = getUtcDateTupleFromDayjs(selectedStartDateAsDayjsRef.current)
+    selectedEndDateTupleRef.current = getUtcDateTupleFromDayjs(selectedEndDateAsDayjsRef.current)
+    selectedStartTimeTupleRef.current = getUtcTimeTupleFromDayjs(selectedStartDateAsDayjsRef.current)
+    selectedEndTimeTupleRef.current = getUtcTimeTupleFromDayjs(selectedEndDateAsDayjsRef.current)
+
+    forceUpdate()
+  }, [defaultValue, forceUpdate, previousDefaultValue])
+
   return (
     <Fieldset
       className="Field-DateRangePicker"
@@ -397,7 +444,6 @@ export function DateRangePicker({
           <DateInput
             ref={startDateInputRef}
             baseContainer={baseContainer || undefined}
-            defaultValue={selectedStartDateTupleRef.current}
             disabled={disabled}
             isCompact={isCompact}
             isForcedFocused={isRangeCalendarPickerOpenRef.current}
@@ -410,6 +456,7 @@ export function DateRangePicker({
             onClick={openRangeCalendarPicker}
             onInput={handleDateOrTimeInputInput}
             onNext={handleStartDateInputNext}
+            value={selectedStartDateTupleRef.current}
           />
         </Field>
 
@@ -418,7 +465,6 @@ export function DateRangePicker({
             <TimeInput
               ref={startTimeInputRef}
               baseContainer={baseContainer || undefined}
-              defaultValue={selectedStartTimeTupleRef.current}
               disabled={disabled}
               isCompact={isCompact}
               isLight={isLight}
@@ -430,6 +476,7 @@ export function DateRangePicker({
               onInput={handleDateOrTimeInputInput}
               onNext={() => endDateInputRef.current?.focus()}
               onPrevious={() => startDateInputRef.current?.focus(true)}
+              value={selectedStartTimeTupleRef.current}
             />
           </Field>
         )}
@@ -438,7 +485,6 @@ export function DateRangePicker({
           <DateInput
             ref={endDateInputRef}
             baseContainer={baseContainer || undefined}
-            defaultValue={selectedEndDateTupleRef.current}
             disabled={disabled}
             isCompact={isCompact}
             isEndDate
@@ -453,6 +499,7 @@ export function DateRangePicker({
             onInput={handleDateOrTimeInputInput}
             onNext={handleEndDateInputNext}
             onPrevious={handleEndDateInputPrevious}
+            value={selectedEndDateTupleRef.current}
           />
         </Field>
 
@@ -461,7 +508,6 @@ export function DateRangePicker({
             <TimeInput
               ref={endTimeInputRef}
               baseContainer={baseContainer || undefined}
-              defaultValue={selectedEndTimeTupleRef.current}
               disabled={disabled}
               isCompact={isCompact}
               isEndDate
@@ -472,6 +518,7 @@ export function DateRangePicker({
               onFocus={closeRangeCalendarPicker}
               onInput={handleDateOrTimeInputInput}
               onPrevious={() => endDateInputRef.current?.focus(true)}
+              value={selectedEndTimeTupleRef.current}
             />
           </Field>
         )}

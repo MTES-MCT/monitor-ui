@@ -117,6 +117,7 @@ const Box = styled.div`
     .rs-picker-toggle {
       border: 0 !important;
       padding: 0;
+      box-shadow: none;
 
       * {
         display: none;
