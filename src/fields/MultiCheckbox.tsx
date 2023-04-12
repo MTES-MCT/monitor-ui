@@ -1,13 +1,12 @@
-import { isEqual } from 'lodash'
 import { equals, includes, reject } from 'ramda'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo } from 'react'
 import styled, { css } from 'styled-components'
 
 import { Checkbox } from './Checkbox'
 import { FieldError } from '../elements/FieldError'
 import { Fieldset } from '../elements/Fieldset'
+import { useFieldControl } from '../hooks/useFieldControl'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
-import { usePrevious } from '../hooks/usePrevious'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Option, OptionValueType } from '../types'
@@ -28,10 +27,9 @@ export type MultiCheckboxProps<OptionValue extends OptionValueType = string> = {
   value?: OptionValue[] | undefined
 }
 export function MultiCheckbox<OptionValue extends OptionValueType = string>({
-  value = [],
   disabled = false,
-  isErrorMessageHidden = false,
   error,
+  isErrorMessageHidden = false,
   isInline = false,
   isLabelHidden = false,
   isLight = false,
@@ -39,23 +37,13 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
   label,
   name,
   onChange,
-  options
+  options,
+  value
 }: MultiCheckboxProps<OptionValue>) {
-  // This tracks the component internal value which allows us to react to value changes after each checkbox toggling
-  const [internalValue, setInternalValue] = useState<OptionValue[] | undefined>(value)
-
-  // and compare it with an eventual external value change (via the `value` prop)
-  const previousValue = usePrevious(value)
-
-  // to decide which on is the source of "truth" in `controlledValue` (the last one to be changed is the true value)
-  const controlledValue = useMemo(() => {
-    // If the `value` has changed, `value` takes precedence,
-    // otherwise we can use our current internal value
-    const nextControlledValue = isEqual(value, previousValue) ? internalValue : value
-
-    return !isUndefinedWhenDisabled || !disabled ? nextControlledValue : undefined
-  }, [disabled, internalValue, isUndefinedWhenDisabled, previousValue, value])
-
+  const { controlledOnChange, controlledValue } = useFieldControl(value, onChange, {
+    disabled,
+    isUndefinedWhenDisabled
+  })
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
 
@@ -67,13 +55,9 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
 
       const normalizedNextValue = nextCheckedOptionValues.length ? nextCheckedOptionValues : undefined
 
-      setInternalValue(normalizedNextValue)
-
-      if (onChange) {
-        onChange(normalizedNextValue)
-      }
+      controlledOnChange(normalizedNextValue)
     },
-    [controlledValue, onChange]
+    [controlledOnChange, controlledValue]
   )
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)

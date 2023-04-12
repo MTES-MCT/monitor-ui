@@ -29,7 +29,7 @@ export default {
   component: MultiCheckbox,
 
   argTypes: {
-    defaultValue: {
+    value: {
       control: 'inline-check',
       options: ['FIRST_OPTION', 'SECOND_OPTION', 'THIRD_OPTION', 'A_VERY_VERY_LONG_OPTION']
     }
