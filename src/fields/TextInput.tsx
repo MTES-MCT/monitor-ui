@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
-import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { InputProps } from 'rsuite'
@@ -16,7 +15,6 @@ export type TextInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'on
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
-  isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
   onChange?: ((nextValue: string | undefined) => Promisable<void>) | undefined
@@ -27,7 +25,6 @@ export function TextInput({
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
-  isUndefinedWhenDisabled = false,
   label,
   onChange,
   value,
@@ -46,8 +43,6 @@ export function TextInput({
     },
     [onChange]
   )
-
-  useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
 
   return (
     <Field className="Field-TextInput">
