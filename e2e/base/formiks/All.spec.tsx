@@ -15,7 +15,7 @@ context('All', () => {
     )
   })
 
-  it('Should fill, change and clear the select', () => {
+  it('Should fill, change and clear the text input', () => {
     cy.fill('Text input', 'A text input value')
 
     outputShouldBe({
@@ -27,6 +27,26 @@ context('All', () => {
     outputShouldBe({
       textInput: ''
     })
+  })
+
+  it('Should set input to undefined when input is disabled', () => {
+    cy.fill('Text input', 'A text input value')
+
+    outputShouldBe({
+      textInput: 'A text input value'
+    })
+
+    cy.fill('Read only ?', true)
+
+    outputShouldBe({
+      textInput: 'A text input value'
+    })
+
+    cy.fill('Read only ?', false)
+    cy.fill('set to undefined when field is disabled', true)
+
+    cy.fill('Read only ?', true)
+    outputShouldBe({})
   })
 
   it('Should fill the text input with a hidden label', () => {
@@ -51,6 +71,26 @@ context('All', () => {
     })
   })
 
+  it('Should set textarea to undefined when textarea is disabled', () => {
+    cy.fill('Textarea', 'A text area value')
+
+    outputShouldBe({
+      textarea: 'A text area value'
+    })
+
+    cy.fill('Read only ?', true)
+
+    outputShouldBe({
+      textarea: 'A text area value'
+    })
+
+    cy.fill('Read only ?', false)
+    cy.fill('set to undefined when field is disabled', true)
+
+    cy.fill('Read only ?', true)
+    outputShouldBe({})
+  })
+
   it('Should fill the textarea with a hidden label', () => {
     cy.fill('Textarea with hidden label', 'A textarea with hidden label value')
 
@@ -73,6 +113,26 @@ context('All', () => {
     })
   })
 
+  it('Should set checkbox to undefined when checkbox is disabled', () => {
+    cy.fill('Checkbox', true)
+
+    outputShouldBe({
+      checkbox: true
+    })
+
+    cy.fill('Read only ?', true)
+
+    outputShouldBe({
+      checkbox: true
+    })
+
+    cy.fill('Read only ?', false)
+    cy.fill('set to undefined when field is disabled', true)
+
+    cy.fill('Read only ?', true)
+    outputShouldBe({})
+  })
+
   it('Should select the 2nd option in the select, and clear it', () => {
     cy.fill('Select', 'Second select option')
 
@@ -82,6 +142,26 @@ context('All', () => {
 
     cy.fill('Select', undefined)
 
+    outputShouldBe({})
+  })
+
+  it('Should set select to undefined when select is disabled', () => {
+    cy.fill('Select', 'Second select option')
+
+    outputShouldBe({
+      select: 'SECOND_SELECT_OPTION'
+    })
+
+    cy.fill('Read only ?', true)
+
+    outputShouldBe({
+      select: 'SECOND_SELECT_OPTION'
+    })
+
+    cy.fill('Read only ?', false)
+    cy.fill('set to undefined when field is disabled', true)
+
+    cy.fill('Read only ?', true)
     outputShouldBe({})
   })
 
@@ -167,6 +247,35 @@ context('All', () => {
     })
   })
 
+  it('Should set multicheckbox to undefined when multicheckbox is disabled', () => {
+    cy.fill('Multi checkbox with hidden label', [
+      'Second multi checkbox with hidden label option',
+      'Third multi checkbox with hidden label option'
+    ])
+
+    outputShouldBe({
+      multiCheckboxWithHiddenLabel: [
+        'SECOND_MULTI_CHECKBOX_WITH_HIDDEN_LABEL_OPTION',
+        'THIRD_MULTI_CHECKBOX_WITH_HIDDEN_LABEL_OPTION'
+      ]
+    })
+
+    cy.fill('Read only ?', true)
+
+    outputShouldBe({
+      multiCheckboxWithHiddenLabel: [
+        'SECOND_MULTI_CHECKBOX_WITH_HIDDEN_LABEL_OPTION',
+        'THIRD_MULTI_CHECKBOX_WITH_HIDDEN_LABEL_OPTION'
+      ]
+    })
+
+    cy.fill('Read only ?', false)
+    cy.fill('set to undefined when field is disabled', true)
+
+    cy.fill('Read only ?', true)
+    outputShouldBe({})
+  })
+
   it('Should check the 2nd option in the multi radio, and clear them', () => {
     cy.fill('Multi radio', 'Second multi radio option')
 
@@ -181,5 +290,25 @@ context('All', () => {
     outputShouldBe({
       multiRadioWithHiddenLabel: 'SECOND_MULTI_RADIO_WITH_HIDDEN_LABEL_OPTION'
     })
+  })
+
+  it('Should set multiradio to undefined when multiradio is disabled', () => {
+    cy.fill('Multi radio', 'Second multi radio option')
+
+    outputShouldBe({
+      multiRadio: 'SECOND_MULTI_RADIO_OPTION'
+    })
+
+    cy.fill('Read only ?', true)
+
+    outputShouldBe({
+      multiRadio: 'SECOND_MULTI_RADIO_OPTION'
+    })
+
+    cy.fill('Read only ?', false)
+    cy.fill('set to undefined when field is disabled', true)
+
+    cy.fill('Read only ?', true)
+    outputShouldBe({})
   })
 })

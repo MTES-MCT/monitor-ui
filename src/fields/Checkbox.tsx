@@ -64,6 +64,12 @@ const StyledCheckbox = styled(RsuiteCheckbox)`
     .rs-checkbox-wrapper {
       left: 2px;
       top: 2px !important;
+      &:after {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+      }
     }
   }
 `
