@@ -2805,7 +2805,7 @@ __metadata:
     "@ivangabriele/eslint-config-typescript-react": 4.3.0
     "@ivangabriele/prettier-config": 3.1.0
     "@jest/globals": 29.3.1
-    "@playwright/test": ^1.29.0
+    "@playwright/test": 1.32.3
     "@rollup/plugin-commonjs": 24.0.1
     "@rollup/plugin-node-resolve": 15.0.1
     "@rollup/plugin-replace": 5.0.2
@@ -2895,11 +2895,11 @@ __metadata:
     tslib: 2.5.0
     type-fest: 3.5.0
     typescript: 4.9.5
-    use-debounce: ^9.0.3
+    use-debounce: 9.0.4
     webpack: 5.76.0
     yup: 1.0.2
   peerDependencies:
-    cypress: ^10.0.0
+    cypress: ^10.0.0 || ^11.0.0 || ^12.0.0
     formik: ^2.0.0
     react: ^18.0.0
     react-dom: ^18.0.0
@@ -3308,19 +3308,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.29.0":
-  version: 1.32.1
-  resolution: "@playwright/test@npm:1.32.1"
+"@playwright/test@npm:1.32.3":
+  version: 1.32.3
+  resolution: "@playwright/test@npm:1.32.3"
   dependencies:
     "@types/node": "*"
     fsevents: 2.3.2
-    playwright-core: 1.32.1
+    playwright-core: 1.32.3
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     playwright: cli.js
-  checksum: f997f3d235cdd5fc3e42eb89d639bc4cc4ee2817ddb7b7a7494a856194fa626dd4dafd62ee7815a4a0e751ede0b55aa68811d766c1d3c07c0a4e4513c17ac1f6
+  checksum: f248e5851d04183954ec6f3a5f2c8e3b0ea0085a83e0e695068c5c2eb6acd4dddb16829a429829a4eb9fe0a4518f6a5594890cf9bf4259255c9e07a5964be625
   languageName: node
   linkType: hard
 
@@ -19555,6 +19555,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"playwright-core@npm:1.32.3":
+  version: 1.32.3
+  resolution: "playwright-core@npm:1.32.3"
+  bin:
+    playwright: cli.js
+  checksum: 7ea091c41a7d1bb97b445bc541a85b123ffcf167bcc00fb7e13e9079f06c92f59fd27caf9d1c1d7e0054f2b5765d1a16d198833c2be7266cebb9dbb916cd90f4
+  languageName: node
+  linkType: hard
+
 "playwright@npm:^1.14.0":
   version: 1.32.1
   resolution: "playwright@npm:1.32.1"
@@ -24316,12 +24325,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-debounce@npm:^9.0.3":
-  version: 9.0.3
-  resolution: "use-debounce@npm:9.0.3"
+"use-debounce@npm:9.0.4":
+  version: 9.0.4
+  resolution: "use-debounce@npm:9.0.4"
   peerDependencies:
     react: ">=16.8.0"
-  checksum: e9aa3b89abe28bd746cfb5e7edc281d786788b6afe4063cfd8e34c4fff58af212809f13bffa16ff291bead199abb497325330e66d1e772d1843853edbd4646ba
+  checksum: 37da4ecbe4e10a6230580cac03a8cae1788ea3e417dfdd92fcf654325458cf1b4567fd57bebf888edab62701a6abe47059a585008fd04228784f223f94d66ce4
   languageName: node
   linkType: hard
 
