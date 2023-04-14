@@ -1,3 +1,10 @@
+## [5.3.2](https://github.com/MTES-MCT/monitor-ui/compare/v5.3.1...v5.3.2) (2023-04-14)
+
+
+### Bug Fixes
+
+* **cypress:** allow cypress v11 & v12 ([4bdf77a](https://github.com/MTES-MCT/monitor-ui/commit/4bdf77aeac87a2bff4827252282ccbf26cea6f7e))
+
 # [5.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.2.2...v5.3.0) (2023-04-12)
 
 
