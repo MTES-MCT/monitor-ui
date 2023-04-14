@@ -49,7 +49,7 @@
     "@ivangabriele/eslint-config-typescript-react": "4.3.0",
     "@ivangabriele/prettier-config": "3.1.0",
     "@jest/globals": "29.3.1",
-    "@playwright/test": "^1.29.0",
+    "@playwright/test": "1.32.3",
     "@rollup/plugin-commonjs": "24.0.1",
     "@rollup/plugin-node-resolve": "15.0.1",
     "@rollup/plugin-replace": "5.0.2",
@@ -137,12 +137,12 @@
     "ts-loader": "9.4.2",
     "type-fest": "3.5.0",
     "typescript": "4.9.5",
-    "use-debounce": "^9.0.3",
+    "use-debounce": "9.0.4",
     "webpack": "5.76.0",
     "yup": "1.0.2"
   },
   "peerDependencies": {
-    "cypress": "^10.0.0",
+    "cypress": "^10.0.0 || ^11.0.0 || ^12.0.0",
     "formik": "^2.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
