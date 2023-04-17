@@ -65,8 +65,9 @@ export * as Icon from './icons'
 */
 
 export { useClickOutsideEffect } from './hooks/useClickOutsideEffect'
-export { useKey } from './hooks/useKey'
+export { useFieldControl } from './hooks/useFieldControl'
 export { useForceUpdate } from './hooks/useForceUpdate'
+export { useKey } from './hooks/useKey'
 export { usePrevious } from './hooks/usePrevious'
 
 /* -----------------------------------------------------------------------------
@@ -87,7 +88,16 @@ export { stopMouseEventPropagation } from './utils/stopMouseEventPropagation'
 */
 
 export type { PartialTheme, Theme } from './theme'
-export type { Coordinates, DateAsStringRange, DateRange, IconProps, Option, OptionValueType, Undefine } from './types'
+export type {
+  Coordinates,
+  DateAsStringRange,
+  DateRange,
+  Defined,
+  IconProps,
+  Option,
+  OptionValueType,
+  Undefine
+} from './types'
 
 export type { DropdownProps, DropdownItemProps } from './components/Dropdown'
 export type { SingleTagProps } from './components/SingleTag'

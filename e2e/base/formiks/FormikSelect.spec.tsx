@@ -6,7 +6,7 @@ import { mountAndWait, outputShouldBe } from '../utils'
 
 const { _FormikSelect: BaseStory } = composeStories(baseStories as any) as any
 
-context('Base', () => {
+context('Story', () => {
   beforeEach(() => {
     mountAndWait(
       <GlobalDecoratorWrapper>

@@ -1,8 +1,8 @@
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
-import { _MultiSelect as MultiSelectStory } from '../../../stories/fields/MultiSelect.stories'
+import { _MultiRadio as MultiRadioStory } from '../../../stories/fields/MultiRadio.stories'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
-import type { MultiSelectProps } from '../../../src'
+import type { MultiRadioProps } from '../../../src'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const OPTIONS_TYPES = {
@@ -27,9 +27,9 @@ const OPTIONS_TYPES = {
 Object.keys(OPTIONS_TYPES).forEach(optionType => {
   context(`Story (${optionType} options)`, () => {
     const options = OPTIONS_TYPES[optionType]
-    const commonProps: MultiSelectProps = {
-      label: 'A multiple select',
-      name: 'myMultiSelect',
+    const commonProps: MultiRadioProps = {
+      label: 'A multiple radio',
+      name: 'myMultiRadio',
       options,
       ...(optionType === 'object'
         ? {
@@ -38,80 +38,70 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
         : {})
     }
 
-    it('Should fill, change and clear the multiple select', () => {
+    it('Should fill and change the multiple radio', () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} />
+          <MultiRadioStory {...commonProps} />
         </GlobalDecoratorWrapper>
       )
 
       outputShouldNotBe()
 
-      cy.fill('A multiple select', [options[0].label])
+      cy.fill('A multiple radio', options[0].label)
 
-      outputShouldBe([options[0].value])
+      outputShouldBe(options[0].value)
 
-      cy.fill('A multiple select', [options[1].label, options[2].label])
+      cy.fill('A multiple radio', options[1].label)
 
-      outputShouldBe([options[1].value, options[2].value])
-
-      cy.fill('A multiple select', undefined)
-
-      outputShouldBe(undefined)
+      outputShouldBe(options[1].value)
     })
 
-    it(`Should fill, change and clear the multiple select with \`value={[${JSON.stringify(
-      options[2].value
-    )}]\``, () => {
+    it(`Should fill and change the multiple radio with \`value={${JSON.stringify(options[2].value)}}\``, () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} value={[options[2].value]} />
+          <MultiRadioStory {...commonProps} value={options[2].value} />
         </GlobalDecoratorWrapper>
       )
 
       outputShouldNotBe()
 
-      cy.fill('A multiple select', [options[0].label])
+      cy.fill('A multiple radio', options[0].label)
 
-      outputShouldBe([options[0].value])
+      outputShouldBe(options[0].value)
 
-      cy.fill('A multiple select', [options[1].label, options[2].label])
+      cy.fill('A multiple radio', options[1].label)
 
-      outputShouldBe([options[1].value, options[2].value])
-
-      cy.fill('A multiple select', undefined)
-
-      outputShouldBe(undefined)
+      outputShouldBe(options[1].value)
     })
 
-    it('Should fill the multiple select with `isLabelHidden`', () => {
+    it('Should fill the multiple radio with `isLabelHidden`', () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} isLabelHidden />
+          <MultiRadioStory {...commonProps} isLabelHidden />
         </GlobalDecoratorWrapper>
       )
 
       outputShouldNotBe()
 
-      cy.fill('A multiple select', [options[0].label])
+      cy.fill('A multiple radio', options[0].label)
 
-      outputShouldBe([options[0].value])
+      outputShouldBe(options[0].value)
     })
 
     it('Should NOT call `onChange(undefined)` with `disabled`', () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} disabled />
+          <MultiRadioStory {...commonProps} disabled />
         </GlobalDecoratorWrapper>
       )
 
       outputShouldNotBe()
     })
 
-    it(`Should NOT call \`onChange(undefined)\` with \`disabled value={[${JSON.stringify(options[2].value)}]\``, () => {
+    it(`Should NOT call \`onChange(undefined)\` with \`disabled value={${JSON.stringify(options[2].value)}}\``, () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} disabled value={[options[2].value]} />
+          <MultiRadioStory {...commonProps} disabled value={options[2].value} />
         </GlobalDecoratorWrapper>
       )
 
@@ -121,19 +111,19 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} disabled isUndefinedWhenDisabled />
+          <MultiRadioStory {...commonProps} disabled isUndefinedWhenDisabled />
         </GlobalDecoratorWrapper>
       )
 
       outputShouldBe(undefined)
     })
 
-    it(`Should call \`onChange(undefined)\` with \`disabled isUndefinedWhenDisabled value={[${JSON.stringify(
+    it(`Should call \`onChange(undefined)\` with \`disabled isUndefinedWhenDisabled value={${JSON.stringify(
       options[2].value
-    )}]\``, () => {
+    )}}\``, () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} disabled isUndefinedWhenDisabled value={[options[2].value]} />
+          <MultiRadioStory {...commonProps} disabled isUndefinedWhenDisabled value={options[2].value} />
         </GlobalDecoratorWrapper>
       )
 

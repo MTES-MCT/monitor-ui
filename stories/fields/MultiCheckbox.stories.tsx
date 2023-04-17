@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { MultiCheckbox } from '../../src'
+import { MultiCheckbox, useFieldControl } from '../../src'
 
 import type { MultiCheckboxProps } from '../../src'
 
@@ -47,9 +47,11 @@ export default {
 export function _MultiCheckbox(props: MultiCheckboxProps) {
   const [outputValue, setOutputValue] = useState<string[] | undefined | '∅'>('∅')
 
+  const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
+
   return (
     <>
-      <MultiCheckbox {...props} onChange={setOutputValue} />
+      <MultiCheckbox {...props} onChange={controlledOnChange} value={controlledValue} />
 
       {outputValue !== '∅' && <Output value={outputValue} />}
     </>

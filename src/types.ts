@@ -21,6 +21,8 @@ export type Option<OptionValue extends OptionValueType = string> = Omit<ItemData
 }
 export type OptionValueType = boolean | number | string | Record<string, any>
 
+export type Defined<T> = T extends undefined ? never : T
+
 /**
  * Mark all the props type of an interface/type as `| undefined`
  *

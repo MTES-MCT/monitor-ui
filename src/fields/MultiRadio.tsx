@@ -5,7 +5,6 @@ import styled, { css } from 'styled-components'
 
 import { FieldError } from '../elements/FieldError'
 import { Fieldset } from '../elements/Fieldset'
-import { useFieldControl } from '../hooks/useFieldControl'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
@@ -41,22 +40,21 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   options,
   value
 }: MultiRadioProps<OptionValue>) {
-  const { controlledOnChange, controlledValue } = useFieldControl(value, onChange, {
-    disabled,
-    isUndefinedWhenDisabled
-  })
-
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([controlledValue, disabled, name])
+  const key = useKey([value, disabled, name])
 
   const handleChange = useCallback(
     (nextOptionValue: OptionValue, isChecked: boolean) => {
+      if (!onChange) {
+        return
+      }
+
       const nextCheckedOptionValue = isChecked ? nextOptionValue : undefined
 
-      controlledOnChange(nextCheckedOptionValue)
+      onChange(nextCheckedOptionValue)
     },
-    [controlledOnChange]
+    [onChange]
   )
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
@@ -74,7 +72,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
         {options.map(option => (
           <Radio
             key={JSON.stringify(option.value)}
-            checked={equals(option.value, controlledValue)}
+            checked={equals(option.value, value)}
             disabled={disabled}
             name={name}
             onChange={(_: any, isChecked: boolean) => handleChange(option.value, isChecked)}

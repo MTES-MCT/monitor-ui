@@ -6,16 +6,16 @@ import { useState } from 'react'
 
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
 import { Output } from '../../../.storybook/components/Output'
-import { Button, FormikCheckbox, FormikEffect, CheckboxProps, FormikCheckboxProps } from '../../../src'
+import { Button, FormikTextInput, FormikEffect, TextInputProps, FormikTextInputProps } from '../../../src'
 import { mountAndWait, outputShouldBe } from '../utils'
 
 function Template({
   initialValue,
   updatedValue,
   ...props
-}: FormikCheckboxProps & {
-  initialValue?: boolean
-  updatedValue: boolean
+}: FormikTextInputProps & {
+  initialValue?: TextInputProps['value']
+  updatedValue: TextInputProps['value']
 }) {
   const [isDisabled, setIsDisabled] = useState(false)
   const [outputValue, setOutputValue] = useState({})
@@ -40,7 +40,7 @@ function Template({
           <>
             <FormikEffect onChange={onChange} />
 
-            <FormikCheckbox {...props} disabled={isDisabled} />
+            <FormikTextInput {...props} disabled={isDisabled} />
 
             <Button onClick={() => setIsDisabled(true)}>Disable</Button>
             <Button onClick={() => setFieldValue(props.name, updatedValue)}>Update</Button>
@@ -55,24 +55,22 @@ function Template({
 }
 
 context('Template', () => {
-  const commonProps: CheckboxProps = {
+  const commonProps: TextInputProps = {
     label: 'A text input',
-    name: 'myCheckbox'
+    name: 'myTextInput'
   }
 
   it('Should update and reset the text input value', () => {
-    const updatedValue = true
+    const updatedValue = 'abcd'
 
     mountAndWait(<Template {...commonProps} updatedValue={updatedValue} />)
 
-    outputShouldBe({
-      myCheckbox: false
-    })
+    outputShouldBe({})
 
     cy.clickButton('Update')
 
     outputShouldBe({
-      myCheckbox: updatedValue
+      myTextInput: updatedValue
     })
 
     cy.clickButton('Reset')
@@ -81,19 +79,19 @@ context('Template', () => {
   })
 
   it('Should update and reset the text input value with initial values', () => {
-    const initialValue = false
-    const updatedValue = true
+    const initialValue = 'abc'
+    const updatedValue = 'abcd'
 
     mountAndWait(<Template {...commonProps} initialValue={initialValue} updatedValue={updatedValue} />)
 
     outputShouldBe({
-      myCheckbox: initialValue
+      myTextInput: initialValue
     })
 
     cy.clickButton('Update')
 
     outputShouldBe({
-      myCheckbox: updatedValue
+      myTextInput: updatedValue
     })
 
     cy.clickButton('Reset')
@@ -102,40 +100,36 @@ context('Template', () => {
   })
 
   it('Should update and disable the text input value', () => {
-    const updatedValue = true
+    const updatedValue = 'abcd'
 
     mountAndWait(<Template {...commonProps} updatedValue={updatedValue} />)
 
-    outputShouldBe({
-      myCheckbox: false
-    })
+    outputShouldBe({})
 
     cy.clickButton('Update')
 
     outputShouldBe({
-      myCheckbox: updatedValue
+      myTextInput: updatedValue
     })
 
     cy.clickButton('Disable')
 
     outputShouldBe({
-      myCheckbox: updatedValue
+      myTextInput: updatedValue
     })
   })
 
   it('Should update and disable the text input value with `isUndefinedWhenDisabled`', () => {
-    const updatedValue = true
+    const updatedValue = 'abcd'
 
     mountAndWait(<Template {...commonProps} isUndefinedWhenDisabled updatedValue={updatedValue} />)
 
-    outputShouldBe({
-      myCheckbox: false
-    })
+    outputShouldBe({})
 
     cy.clickButton('Update')
 
     outputShouldBe({
-      myCheckbox: updatedValue
+      myTextInput: updatedValue
     })
 
     cy.clickButton('Disable')

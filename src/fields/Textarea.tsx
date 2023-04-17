@@ -40,10 +40,6 @@ export function Textarea({
 }: TextareaProps) {
   const inputRef = useRef() as MutableRefObject<HTMLTextAreaElement>
 
-  const controlledValue = useMemo(
-    () => (!isUndefinedWhenDisabled || !originalProps.disabled ? value : undefined),
-    [isUndefinedWhenDisabled, originalProps.disabled, value]
-  )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([originalProps.disabled, originalProps.name])
@@ -75,7 +71,7 @@ export function Textarea({
         id={originalProps.name}
         onChange={handleChange}
         rows={rows}
-        value={controlledValue}
+        value={value}
         {...originalProps}
       />
 

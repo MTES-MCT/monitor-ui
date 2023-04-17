@@ -7,7 +7,7 @@ import {
   NewWindowStoryBox
 } from '../../.storybook/components/StoryDecorator'
 import { LOREM_IPSUM } from '../../.storybook/constants'
-import { Accent, Button, Select, Size, useForceUpdate } from '../../src'
+import { Accent, Button, Select, Size, useFieldControl, useForceUpdate } from '../../src'
 import { NewWindow } from '../../src/components/NewWindow'
 
 import type { SelectProps } from '../../src'
@@ -59,6 +59,8 @@ export function _Select(props: SelectProps) {
   const [isNewWindowFirstLoad, setIsNewWindowFirstLoad] = useState(true)
   const [outputValue, setOutputValue] = useState<any>('∅')
 
+  const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
+
   const { forceUpdate } = useForceUpdate()
 
   useEffect(
@@ -84,7 +86,7 @@ export function _Select(props: SelectProps) {
         </Button>
       </NewWindowButtonBox>
 
-      {!isNewWindowOpen && <Select {...props} onChange={setOutputValue} />}
+      {!isNewWindowOpen && <Select {...props} onChange={controlledOnChange} value={controlledValue} />}
 
       {outputValue !== '∅' && <Output value={outputValue} />}
 
@@ -92,7 +94,12 @@ export function _Select(props: SelectProps) {
         <NewWindow isStoryBook onUnload={() => setIsNewWindowOpen(false)}>
           <NewWindowStoryBox ref={newWindowStoryBoxRef}>
             {newWindowStoryBoxRef.current && (
-              <Select {...props} baseContainer={newWindowStoryBoxRef.current} onChange={setOutputValue} />
+              <Select
+                {...props}
+                baseContainer={newWindowStoryBoxRef.current}
+                onChange={controlledOnChange}
+                value={controlledValue}
+              />
             )}
           </NewWindowStoryBox>
         </NewWindow>

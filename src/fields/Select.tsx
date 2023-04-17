@@ -6,7 +6,6 @@ import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useClickOutsideEffect } from '../hooks/useClickOutsideEffect'
-import { useFieldControl } from '../hooks/useFieldControl'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
@@ -70,34 +69,33 @@ export function Select<OptionValue extends OptionValueType = string>({
 
   const { forceUpdate } = useForceUpdate()
 
-  const { controlledOnChange, controlledValue } = useFieldControl(value, onChange, {
-    disabled,
-    isUndefinedWhenDisabled
-  })
-  const controlledRsuiteValue = useMemo(
-    () => getRsuiteValueFromOptionValue(controlledValue, optionValueKey),
-    [controlledValue, optionValueKey]
-  )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const data = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([disabled, originalProps.name, value])
+  const rsuiteValue = useMemo(() => getRsuiteValueFromOptionValue(value, optionValueKey), [value, optionValueKey])
 
   const close = useCallback(() => {
     setIsOpen(false)
   }, [])
 
   const handleClean = useCallback(() => {
-    controlledOnChange(undefined)
-  }, [controlledOnChange])
+    if (!onChange) {
+      return
+    }
+
+    onChange(undefined)
+  }, [onChange])
 
   const handleSelect = useCallback(
     (_: string, selectedItem: OptionAsRsuiteItemDataType<OptionValue>) => {
       close()
 
-      controlledOnChange(selectedItem.optionValue)
+      if (onChange) {
+        onChange(selectedItem.optionValue)
+      }
     },
-    [close, controlledOnChange]
+    [close, onChange]
   )
 
   const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
@@ -154,7 +152,7 @@ export function Select<OptionValue extends OptionValueType = string>({
             open={isOpen}
             renderMenuItem={renderMenuItem}
             searchable={searchable}
-            value={controlledRsuiteValue}
+            value={rsuiteValue}
             {...originalProps}
           />
         )}

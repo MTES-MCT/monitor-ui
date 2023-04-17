@@ -9,7 +9,7 @@ import { Button, FormikDatePicker, FormikEffect } from '../../../src'
 import Meta, { _FormikDatePicker as FormikDatePickerStory } from '../../../stories/formiks/FormikDatePicker.stories'
 import { mountAndWait, outputShouldBe } from '../utils'
 
-context('Base', () => {
+context('Story', () => {
   beforeEach(() => {
     mountAndWait(
       <GlobalDecoratorWrapper>
@@ -37,7 +37,7 @@ context('Base', () => {
   })
 })
 
-context('Base (with time)', () => {
+context('Story (`withTime={true}`)', () => {
   beforeEach(() => {
     mountAndWait(
       <GlobalDecoratorWrapper>
@@ -65,7 +65,7 @@ context('Base (with time)', () => {
   })
 })
 
-context('Advanced', () => {
+context('Custom (`withTime={true}`)', () => {
   it('Should update the date defaultValue', () => {
     const initialDateAsString = '2021-02-03T12:34:56.000Z'
     const updatedDateAsString = '2023-04-05T21:43:56.000Z'

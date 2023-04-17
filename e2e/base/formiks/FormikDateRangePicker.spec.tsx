@@ -11,7 +11,7 @@ import Meta, {
 } from '../../../stories/formiks/FormikDateRangePicker.stories'
 import { mountAndWait, outputShouldBe } from '../utils'
 
-context('Base', () => {
+context('Story', () => {
   beforeEach(() => {
     mountAndWait(
       <GlobalDecoratorWrapper>
@@ -45,7 +45,7 @@ context('Base', () => {
   })
 })
 
-context('Base (with time)', () => {
+context('Story (`withTime={true}`)', () => {
   beforeEach(() => {
     mountAndWait(
       <GlobalDecoratorWrapper>
@@ -79,8 +79,8 @@ context('Base (with time)', () => {
   })
 })
 
-context('Advanced', () => {
-  it('Should update the date range defaultValue', () => {
+context('Custom (`withTime={true}`)', () => {
+  it('Should update `defaultValue`', () => {
     const initialStartDateAsString = '2021-02-03T12:34:56.000Z'
     const initialEndDateAsString = '2022-02-03T12:34:56.000Z'
     const updatedStartDateAsString = '2023-04-05T21:43:56.000Z'

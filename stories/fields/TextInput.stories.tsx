@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { TextInput } from '../../src'
+import { TextInput, useFieldControl } from '../../src'
 
 import type { TextInputProps } from '../../src'
 
@@ -40,9 +40,11 @@ export default {
 export function _TextInput(props: TextInputProps) {
   const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
 
+  const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue, '')
+
   return (
     <>
-      <TextInput {...props} onChange={setOutputValue} />
+      <TextInput {...props} onChange={controlledOnChange} value={controlledValue} />
 
       {outputValue !== '∅' && <Output value={outputValue} />}
     </>
