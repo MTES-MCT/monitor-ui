@@ -6,7 +6,6 @@ import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useClickOutsideEffect } from '../hooks/useClickOutsideEffect'
-import { useFieldControl } from '../hooks/useFieldControl'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
@@ -58,21 +57,14 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 
   const [isOpen, setIsOpen] = useState(false)
 
-  const { controlledOnChange, controlledValue } = useFieldControl(value, onChange, {
-    disabled,
-    isUndefinedWhenDisabled
-  })
-  const controlledRsuiteValue = useMemo(
-    () =>
-      (controlledValue || []).map(controlledValueItem =>
-        getRsuiteValueFromOptionValue(controlledValueItem, optionValueKey)
-      ),
-    [controlledValue, optionValueKey]
-  )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const data = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([disabled, originalProps.name, value])
+  const rsuiteValue = useMemo(
+    () => (value || []).map(valueItem => getRsuiteValueFromOptionValue(valueItem, optionValueKey)),
+    [optionValueKey, value]
+  )
 
   const { forceUpdate } = useForceUpdate()
 
@@ -82,6 +74,10 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 
   const handleChange = useCallback(
     (nextOptionRsuiteValues: string[] | null) => {
+      if (!onChange) {
+        return
+      }
+
       const nextValue = nextOptionRsuiteValues
         ? options
             .filter(option =>
@@ -91,12 +87,11 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
             )
             .map(option => option.value)
         : []
-
       const normalizedNextValue = !nextValue.length ? undefined : nextValue
 
-      controlledOnChange(normalizedNextValue)
+      onChange(normalizedNextValue)
     },
-    [controlledOnChange, options, optionValueKey]
+    [onChange, options, optionValueKey]
   )
 
   const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
@@ -150,7 +145,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
             open={isOpen}
             renderMenuItem={renderMenuItem}
             searchable={searchable}
-            value={controlledRsuiteValue}
+            value={rsuiteValue}
             {...originalProps}
           />
         )}

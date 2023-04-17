@@ -1,8 +1,8 @@
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
-import { _MultiSelect as MultiSelectStory } from '../../../stories/fields/MultiSelect.stories'
+import { _MultiCheckbox as MultiCheckboxStory } from '../../../stories/fields/MultiCheckbox.stories'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
-import type { MultiSelectProps } from '../../../src'
+import type { MultiCheckboxProps } from '../../../src'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const OPTIONS_TYPES = {
@@ -27,9 +27,9 @@ const OPTIONS_TYPES = {
 Object.keys(OPTIONS_TYPES).forEach(optionType => {
   context(`Story (${optionType} options)`, () => {
     const options = OPTIONS_TYPES[optionType]
-    const commonProps: MultiSelectProps = {
-      label: 'A multiple select',
-      name: 'myMultiSelect',
+    const commonProps: MultiCheckboxProps = {
+      label: 'A multiple checkbox',
+      name: 'myMultiCheckbox',
       options,
       ...(optionType === 'object'
         ? {
@@ -38,62 +38,62 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
         : {})
     }
 
-    it('Should fill, change and clear the multiple select', () => {
+    it('Should fill, change and clear the multiple checkbox', () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} />
+          <MultiCheckboxStory {...commonProps} />
         </GlobalDecoratorWrapper>
       )
 
       outputShouldNotBe()
 
-      cy.fill('A multiple select', [options[0].label])
+      cy.fill('A multiple checkbox', [options[0].label])
 
       outputShouldBe([options[0].value])
 
-      cy.fill('A multiple select', [options[1].label, options[2].label])
+      cy.fill('A multiple checkbox', [options[1].label, options[2].label])
 
       outputShouldBe([options[1].value, options[2].value])
 
-      cy.fill('A multiple select', undefined)
+      cy.fill('A multiple checkbox', undefined)
 
       outputShouldBe(undefined)
     })
 
-    it(`Should fill, change and clear the multiple select with \`value={[${JSON.stringify(
+    it(`Should fill, change and clear the multiple checkbox with \`value={[${JSON.stringify(
       options[2].value
     )}]\``, () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} value={[options[2].value]} />
+          <MultiCheckboxStory {...commonProps} value={[options[2].value]} />
         </GlobalDecoratorWrapper>
       )
 
       outputShouldNotBe()
 
-      cy.fill('A multiple select', [options[0].label])
+      cy.fill('A multiple checkbox', [options[0].label])
 
       outputShouldBe([options[0].value])
 
-      cy.fill('A multiple select', [options[1].label, options[2].label])
+      cy.fill('A multiple checkbox', [options[1].label, options[2].label])
 
       outputShouldBe([options[1].value, options[2].value])
 
-      cy.fill('A multiple select', undefined)
+      cy.fill('A multiple checkbox', undefined)
 
       outputShouldBe(undefined)
     })
 
-    it('Should fill the multiple select with `isLabelHidden`', () => {
+    it('Should fill the multiple checkbox with `isLabelHidden`', () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} isLabelHidden />
+          <MultiCheckboxStory {...commonProps} isLabelHidden />
         </GlobalDecoratorWrapper>
       )
 
       outputShouldNotBe()
 
-      cy.fill('A multiple select', [options[0].label])
+      cy.fill('A multiple checkbox', [options[0].label])
 
       outputShouldBe([options[0].value])
     })
@@ -101,7 +101,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     it('Should NOT call `onChange(undefined)` with `disabled`', () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} disabled />
+          <MultiCheckboxStory {...commonProps} disabled />
         </GlobalDecoratorWrapper>
       )
 
@@ -111,7 +111,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     it(`Should NOT call \`onChange(undefined)\` with \`disabled value={[${JSON.stringify(options[2].value)}]\``, () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} disabled value={[options[2].value]} />
+          <MultiCheckboxStory {...commonProps} disabled value={[options[2].value]} />
         </GlobalDecoratorWrapper>
       )
 
@@ -121,7 +121,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} disabled isUndefinedWhenDisabled />
+          <MultiCheckboxStory {...commonProps} disabled isUndefinedWhenDisabled />
         </GlobalDecoratorWrapper>
       )
 
@@ -133,7 +133,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     )}]\``, () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} disabled isUndefinedWhenDisabled value={[options[2].value]} />
+          <MultiCheckboxStory {...commonProps} disabled isUndefinedWhenDisabled value={[options[2].value]} />
         </GlobalDecoratorWrapper>
       )
 

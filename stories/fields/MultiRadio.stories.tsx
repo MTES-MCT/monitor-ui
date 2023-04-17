@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { MultiRadio } from '../../src'
+import { MultiRadio, useFieldControl } from '../../src'
 
 import type { MultiRadioProps } from '../../src'
 
@@ -47,9 +47,11 @@ export default {
 export function _MultiRadio(props: MultiRadioProps) {
   const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
 
+  const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
+
   return (
     <>
-      <MultiRadio {...props} onChange={setOutputValue} />
+      <MultiRadio {...props} onChange={controlledOnChange} value={controlledValue} />
 
       {outputValue !== '∅' && <Output value={outputValue} />}
     </>

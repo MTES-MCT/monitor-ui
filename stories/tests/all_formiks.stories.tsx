@@ -3,16 +3,7 @@ import { noop } from 'lodash'
 import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import {
-  FormikCheckbox,
-  FormikEffect,
-  FormikMultiCheckbox,
-  FormikMultiRadio,
-  FormikMultiSelect,
-  FormikSelect,
-  FormikTextarea,
-  FormikTextInput
-} from '../../src'
+import { FormikEffect, FormikMultiCheckbox, FormikMultiRadio, FormikMultiSelect, FormikSelect } from '../../src'
 
 export default {
   title: 'Tests/All formiks',
@@ -35,19 +26,6 @@ export function Template() {
         <h1>Test Page</h1>
 
         <div>
-          <FormikTextInput label="Text input" name="textInput" />
-          <hr />
-          <FormikTextInput isLabelHidden label="Text input with hidden label" name="textInputWithHiddenLabel" />
-
-          <hr />
-          <FormikTextarea label="Textarea" name="textarea" />
-          <hr />
-          <FormikTextarea isLabelHidden label="Textarea with hidden label" name="textareaWithHiddenLabel" />
-
-          <hr />
-          <FormikCheckbox label="Checkbox" name="checkbox" />
-
-          <hr />
           <FormikSelect
             label="Select"
             name="select"

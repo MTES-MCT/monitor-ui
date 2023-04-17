@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { Checkbox } from '../../src'
+import { Checkbox, useFieldControl } from '../../src'
 
 import type { CheckboxProps } from '../../src'
 
@@ -28,9 +28,14 @@ export default {
 export function _Checkbox(props: CheckboxProps) {
   const [outputValue, setOutputValue] = useState<boolean | '∅'>('∅')
 
+  const { controlledOnChange, controlledValue: controlledChecked } = useFieldControl(
+    props.checked,
+    setOutputValue as any
+  )
+
   return (
     <>
-      <Checkbox {...props} onChange={setOutputValue} />
+      <Checkbox {...props} checked={controlledChecked} onChange={controlledOnChange} />
 
       {outputValue !== '∅' && <Output value={outputValue} />}
     </>

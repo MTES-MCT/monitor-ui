@@ -7,7 +7,7 @@ import {
   NewWindowStoryBox
 } from '../../.storybook/components/StoryDecorator'
 import { LOREM_IPSUM } from '../../.storybook/constants'
-import { Accent, Button, MultiSelect, Size, useForceUpdate } from '../../src'
+import { Accent, Button, MultiSelect, Size, useFieldControl, useForceUpdate } from '../../src'
 import { NewWindow } from '../../src/components/NewWindow'
 
 import type { MultiSelectProps } from '../../src'
@@ -59,6 +59,8 @@ export function _MultiSelect(props: MultiSelectProps) {
   const [isNewWindowFirstLoad, setIsNewWindowFirstLoad] = useState(true)
   const [outputValue, setOutputValue] = useState<string[] | undefined | '∅'>('∅')
 
+  const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
+
   const { forceUpdate } = useForceUpdate()
 
   useEffect(
@@ -84,7 +86,7 @@ export function _MultiSelect(props: MultiSelectProps) {
         </Button>
       </NewWindowButtonBox>
 
-      <MultiSelect {...props} onChange={setOutputValue} />
+      <MultiSelect {...props} onChange={controlledOnChange} value={controlledValue} />
 
       {outputValue !== '∅' && <Output value={outputValue} />}
 
@@ -92,7 +94,12 @@ export function _MultiSelect(props: MultiSelectProps) {
         <NewWindow isStoryBook onUnload={() => setIsNewWindowOpen(false)}>
           <NewWindowStoryBox ref={newWindowStoryBoxRef}>
             {newWindowStoryBoxRef.current && (
-              <MultiSelect {...props} baseContainer={newWindowStoryBoxRef.current} onChange={setOutputValue} />
+              <MultiSelect
+                {...props}
+                baseContainer={newWindowStoryBoxRef.current}
+                onChange={controlledOnChange}
+                value={controlledValue}
+              />
             )}
           </NewWindowStoryBox>
         </NewWindow>

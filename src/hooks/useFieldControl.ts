@@ -1,39 +1,41 @@
 import { isEqual } from 'lodash'
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
-import { useForceUpdate } from './useForceUpdate'
 import { usePrevious } from './usePrevious'
 
 import type { Promisable } from 'type-fest'
+import type { Defined } from 'yup'
+
+type UseFieldControlReturn<T> = {
+  controlledOnChange: (nextValue: T) => Promisable<void>
+  controlledValue: T | undefined
+}
 
 export function useFieldControl<T>(
   value: T,
+  onChange: ((nextValue: T) => Promisable<void>) | undefined
+): UseFieldControlReturn<T>
+export function useFieldControl<T>(
+  value: T,
   onChange: ((nextValue: T) => Promisable<void>) | undefined,
-  props: {
-    [key: string]: any
-    disabled: boolean
-    isUndefinedWhenDisabled: boolean
-  }
-): {
-  controlledOnChange: (nextValue: T) => Promisable<void>
-  controlledValue: T | undefined
-  setInternalValue: (nextValue: T) => Promisable<void>
-} {
-  const { disabled, isUndefinedWhenDisabled } = props
-
-  // This tracks the component internal value which allows us to react to value changes after the checkbox toggling
-  const internalValueRef = useRef(value)
-
-  // and compare it with an eventual external value change (via the `value` prop)
+  defaultValueWhenUndefined: Defined<T>
+): UseFieldControlReturn<T>
+export function useFieldControl<T>(
+  value: T,
+  onChange: ((nextValue: T) => Promisable<void>) | undefined,
+  defaultValueWhenUndefined?: T
+): UseFieldControlReturn<T> {
   const previousValue = usePrevious(value)
 
-  const { forceUpdate } = useForceUpdate()
+  const [internalValue, setInternalValue] = useState(value)
 
-  const controlledValue: T | undefined = isUndefinedWhenDisabled && disabled ? undefined : internalValueRef.current
+  const controlledValue =
+    internalValue === undefined && defaultValueWhenUndefined !== undefined ? defaultValueWhenUndefined : internalValue
 
+  // We keep track of the field value changes via `internalValue`
   const controlledOnChange = useCallback(
     (nextValue: T) => {
-      internalValueRef.current = nextValue
+      setInternalValue(nextValue)
 
       if (onChange) {
         onChange(nextValue)
@@ -42,25 +44,14 @@ export function useFieldControl<T>(
     [onChange]
   )
 
-  const setInternalValue = useCallback(
-    (nextValue: T) => {
-      internalValueRef.current = nextValue
-
-      forceUpdate()
-    },
-    [forceUpdate]
-  )
-
-  // We update the `internalValue` each time the `value` prop is updated
+  // And we override `internalValue` each time the `value` prop is updated
   useEffect(() => {
     if (isEqual(value, previousValue)) {
       return
     }
 
-    internalValueRef.current = value
+    setInternalValue(value)
+  }, [previousValue, value])
 
-    forceUpdate()
-  }, [forceUpdate, previousValue, value])
-
-  return { controlledOnChange, controlledValue, setInternalValue }
+  return { controlledOnChange, controlledValue }
 }

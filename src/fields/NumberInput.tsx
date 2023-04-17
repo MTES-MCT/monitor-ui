@@ -34,10 +34,6 @@ export function NumberInput({
   value,
   ...originalProps
 }: NumberInputProps) {
-  const controlledValue = useMemo(
-    () => (!isUndefinedWhenDisabled || !originalProps.disabled ? value : undefined),
-    [isUndefinedWhenDisabled, originalProps.disabled, value]
-  )
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([originalProps.disabled, originalProps.name])
@@ -77,7 +73,7 @@ export function NumberInput({
         id={originalProps.name}
         onChange={handleChange}
         type="number"
-        value={controlledValue}
+        value={value}
         {...originalProps}
       />
 

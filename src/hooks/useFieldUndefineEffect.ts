@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 
+import { usePrevious } from './usePrevious'
+
 import type { Promisable } from 'type-fest'
 
 export function useFieldUndefineEffect(
@@ -7,8 +9,10 @@ export function useFieldUndefineEffect(
   onChange: ((nextValue: any, ...args: any[]) => Promisable<void>) | undefined,
   onDisable?: () => Promisable<void>
 ) {
+  const wasDisabled = usePrevious(disabled)
+
   useEffect(() => {
-    if (!disabled) {
+    if (!disabled || disabled === wasDisabled) {
       return
     }
 
@@ -19,5 +23,5 @@ export function useFieldUndefineEffect(
     if (onChange) {
       onChange(undefined)
     }
-  }, [disabled, onChange, onDisable])
+  }, [disabled, onChange, onDisable, wasDisabled])
 }

@@ -5,7 +5,6 @@ import styled, { css } from 'styled-components'
 import { Checkbox } from './Checkbox'
 import { FieldError } from '../elements/FieldError'
 import { Fieldset } from '../elements/Fieldset'
-import { useFieldControl } from '../hooks/useFieldControl'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
@@ -41,26 +40,25 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
   options,
   value
 }: MultiCheckboxProps<OptionValue>) {
-  const { controlledOnChange, controlledValue } = useFieldControl(value, onChange, {
-    disabled,
-    isUndefinedWhenDisabled
-  })
-
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([controlledValue, disabled, name])
+  const key = useKey([value, disabled, name])
 
   const handleChange = useCallback(
     (nextOptionValue: OptionValue, isChecked: boolean) => {
+      if (!onChange) {
+        return
+      }
+
       const nextCheckedOptionValues = isChecked
-        ? [...(controlledValue || []), nextOptionValue]
-        : reject(equals(nextOptionValue))(controlledValue || [])
+        ? [...(value || []), nextOptionValue]
+        : reject(equals(nextOptionValue))(value || [])
 
       const normalizedNextValue = nextCheckedOptionValues.length ? nextCheckedOptionValues : undefined
 
-      controlledOnChange(normalizedNextValue)
+      onChange(normalizedNextValue)
     },
-    [controlledOnChange, controlledValue]
+    [onChange, value]
   )
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
@@ -78,7 +76,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
         {options.map((option, index) => (
           <Checkbox
             key={JSON.stringify(option.value)}
-            checked={includes(option.value, controlledValue || [])}
+            checked={includes(option.value, value || [])}
             disabled={disabled}
             label={option.label}
             name={`${name}${index}`}

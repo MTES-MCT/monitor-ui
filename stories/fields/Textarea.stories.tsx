@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { Textarea } from '../../src'
+import { Textarea, useFieldControl } from '../../src'
 
 import type { TextareaProps } from '../../src'
 
@@ -40,9 +40,11 @@ export default {
 export function _Textarea(props: TextareaProps) {
   const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
 
+  const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue, '')
+
   return (
     <>
-      <Textarea {...props} onChange={setOutputValue} />
+      <Textarea {...props} onChange={controlledOnChange} value={controlledValue} />
 
       {outputValue !== '∅' && <Output value={outputValue} />}
     </>
