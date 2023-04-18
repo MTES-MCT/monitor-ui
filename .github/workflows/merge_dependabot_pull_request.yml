@@ -1,9 +1,6 @@
 name: Merge Dependabot Pull Request
 
 on:
-  pull_request:
-    branches:
-      - 'dependabot/**'
   workflow_run:
     # workflows: [Check, E2E, Preview]
     # Because of https://github.com/orgs/community/discussions/16059
@@ -14,7 +11,7 @@ jobs:
   merge:
     name: Merge Dependabot Pull Request
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ startsWith(github.ref, 'dependabot/') && github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Merge pull request
         uses: pascalgn/automerge-action@v0.15.6
