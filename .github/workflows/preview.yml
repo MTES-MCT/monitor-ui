@@ -34,8 +34,9 @@ jobs:
     needs: publish
     steps:
       - name: Update Pull Request Preview URL
-        uses: ivangabriele/find-and-replace-pull-request-body@v1.0.3
+        uses: ivangabriele/find-and-replace-pull-request-body@v1.1.1
         with:
           githubToken: ${{ secrets.GH_PAT }}
-          find: '_Waiting for deployment..._<!-- AUTOFILLED_PREVIEW_URL -->'
+          find: AUTOFILLED_PREVIEW_URL
+          isHtmlCommentTag: true
           replace: ${{ needs.publish.outputs.storybookUrl }}
