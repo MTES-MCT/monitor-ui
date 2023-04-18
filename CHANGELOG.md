@@ -1,3 +1,10 @@
+## [5.3.3](https://github.com/MTES-MCT/monitor-ui/compare/v5.3.2...v5.3.3) (2023-04-18)
+
+
+### Bug Fixes
+
+* **fields:** migrate internal values to fully controlled values in controlled value fields ([06ccbe9](https://github.com/MTES-MCT/monitor-ui/commit/06ccbe971e66d65f1ba83c6fe5e39aab18016a08))
+
 ## [5.3.2](https://github.com/MTES-MCT/monitor-ui/compare/v5.3.1...v5.3.2) (2023-04-14)
 
 
