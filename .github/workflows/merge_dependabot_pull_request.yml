@@ -3,7 +3,7 @@ name: Merge Dependabot Pull Request
 on:
   pull_request:
     branches:
-      - 'dependabot/*'
+      - 'dependabot/**'
   workflow_run:
     workflows: [Check, E2E, Preview]
     types: [completed]
