@@ -5,7 +5,9 @@ on:
     branches:
       - 'dependabot/**'
   workflow_run:
-    workflows: [Check, E2E, Preview]
+    # workflows: [Check, E2E, Preview]
+    # Because of https://github.com/orgs/community/discussions/16059
+    workflows: [E2E]
     types: [completed]
 
 jobs:
