@@ -6,12 +6,14 @@ on:
     # Because of https://github.com/orgs/community/discussions/16059
     workflows: [E2E]
     types: [completed]
+    branches:
+      - 'dependabot/**'
 
 jobs:
   merge:
     name: Merge Dependabot Pull Request
     runs-on: ubuntu-latest
-    if: ${{ startsWith(github.ref, 'refs/heads/dependabot/') && github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Merge pull request
         uses: pascalgn/automerge-action@v0.15.6
