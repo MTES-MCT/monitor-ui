@@ -29,13 +29,13 @@ export function fillDatePicker(
         })()
 
   if (!dateOrDateWithTimeTuple) {
-    cy.wrap(fieldsetElement).find('[aria-label="Jour"]').clear()
-    cy.wrap(fieldsetElement).find('[aria-label="Mois"]').clear()
-    cy.wrap(fieldsetElement).find('[aria-label="Année"]').clear()
+    cy.wrap(fieldsetElement).find('[aria-label="Jour"]').clear({ force: true })
+    cy.wrap(fieldsetElement).find('[aria-label="Mois"]').clear({ force: true })
+    cy.wrap(fieldsetElement).find('[aria-label="Année"]').clear({ force: true })
 
     if (hasTimeInput) {
-      cy.wrap(fieldsetElement).find('[aria-label="Heure"]').clear()
-      cy.wrap(fieldsetElement).find('[aria-label="Minute"]').clear()
+      cy.wrap(fieldsetElement).find('[aria-label="Heure"]').clear({ force: true })
+      cy.wrap(fieldsetElement).find('[aria-label="Minute"]').clear({ force: true })
     }
 
     cy.clickOutside(fieldsetElementOffsetLeft, fieldsetElementOffsetTop - 1)
