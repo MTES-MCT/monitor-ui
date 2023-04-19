@@ -3037,7 +3037,7 @@ __metadata:
     react: 18.2.0
     react-coordinate-input: 1.0.0
     react-dom: 18.2.0
-    react-imask: 6.4.3
+    react-imask: 6.6.0
     react-is: 18.2.0
     rollup: 3.19.1
     rollup-plugin-bundle-size: 1.0.3
@@ -14661,7 +14661,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"imask@npm:^6.2.2, imask@npm:^6.4.3":
+"imask@npm:^6.2.2, imask@npm:^6.6.0":
   version: 6.6.0
   resolution: "imask@npm:6.6.0"
   checksum: 8f3b3f2d7645c707880f1a4f8ea0a0442cda408347aadc1f08cc24be4e3be731610f805ced89733d27799aee1a5f5c50a5dd5dfb40671cc4bcb8ea39306411a0
@@ -21912,15 +21912,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-imask@npm:6.4.3":
-  version: 6.4.3
-  resolution: "react-imask@npm:6.4.3"
+"react-imask@npm:6.6.0":
+  version: 6.6.0
+  resolution: "react-imask@npm:6.6.0"
   dependencies:
-    imask: ^6.4.3
-    prop-types: ^15.7.2
+    imask: ^6.6.0
+    prop-types: ^15.8.1
   peerDependencies:
     react: ">=0.14.0"
-  checksum: c5cdb46e4bf258bccbb0ed2a1b9b54e4c63935a4d7598d39868d6c10b03a1bbf99be5745d312c53ce3ce5ddd8369118914309c9995ef607727387d464186ea7e
+  checksum: f81b7fb3d9a1c5bbf3b8c6387fe5c2a104a31a90c3f6f5f3366b89f03ed33672eb6afc168cf736dffd106be9fa041cfbade2c433ec79664d82310ee696242198
   languageName: node
   linkType: hard
 
