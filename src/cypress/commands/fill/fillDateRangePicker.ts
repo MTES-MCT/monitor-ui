@@ -32,22 +32,22 @@ export function fillDateRangePicker(
         })()
 
   if (!dateOrDateWithTimeTupleRange) {
-    cy.wrap(fieldsetElement).find('[aria-label="Jour de début"]').clear()
-    cy.wrap(fieldsetElement).find('[aria-label="Mois de début"]').clear()
-    cy.wrap(fieldsetElement).find('[aria-label="Année de début"]').clear()
+    cy.wrap(fieldsetElement).find('[aria-label="Jour de début"]').clear({ force: true })
+    cy.wrap(fieldsetElement).find('[aria-label="Mois de début"]').clear({ force: true })
+    cy.wrap(fieldsetElement).find('[aria-label="Année de début"]').clear({ force: true })
 
     if (hasTimeInput) {
-      cy.wrap(fieldsetElement).find('[aria-label="Heure de début"]').clear()
-      cy.wrap(fieldsetElement).find('[aria-label="Minute de début"]').clear()
+      cy.wrap(fieldsetElement).find('[aria-label="Heure de début"]').clear({ force: true })
+      cy.wrap(fieldsetElement).find('[aria-label="Minute de début"]').clear({ force: true })
     }
 
-    cy.wrap(fieldsetElement).find('[aria-label="Jour de fin"]').clear()
-    cy.wrap(fieldsetElement).find('[aria-label="Mois de fin"]').clear()
-    cy.wrap(fieldsetElement).find('[aria-label="Année de fin"]').clear()
+    cy.wrap(fieldsetElement).find('[aria-label="Jour de fin"]').clear({ force: true })
+    cy.wrap(fieldsetElement).find('[aria-label="Mois de fin"]').clear({ force: true })
+    cy.wrap(fieldsetElement).find('[aria-label="Année de fin"]').clear({ force: true })
 
     if (hasTimeInput) {
-      cy.wrap(fieldsetElement).find('[aria-label="Heure de fin"]').clear()
-      cy.wrap(fieldsetElement).find('[aria-label="Minute de fin"]').clear()
+      cy.wrap(fieldsetElement).find('[aria-label="Heure de fin"]').clear({ force: true })
+      cy.wrap(fieldsetElement).find('[aria-label="Minute de fin"]').clear({ force: true })
     }
 
     cy.clickOutside(fieldsetElementOffsetLeft, fieldsetElementOffsetTop - 1)
