@@ -32,22 +32,22 @@ export function fillDateRangePicker(
         })()
 
   if (!dateOrDateWithTimeTupleRange) {
-    cy.wrap(fieldsetElement).get('[aria-label="Jour de début"]').clear()
-    cy.wrap(fieldsetElement).get('[aria-label="Mois de début"]').clear()
-    cy.wrap(fieldsetElement).get('[aria-label="Année de début"]').clear()
+    cy.wrap(fieldsetElement).find('[aria-label="Jour de début"]').clear()
+    cy.wrap(fieldsetElement).find('[aria-label="Mois de début"]').clear()
+    cy.wrap(fieldsetElement).find('[aria-label="Année de début"]').clear()
 
     if (hasTimeInput) {
-      cy.wrap(fieldsetElement).get('[aria-label="Heure de début"]').clear()
-      cy.wrap(fieldsetElement).get('[aria-label="Minute de début"]').clear()
+      cy.wrap(fieldsetElement).find('[aria-label="Heure de début"]').clear()
+      cy.wrap(fieldsetElement).find('[aria-label="Minute de début"]').clear()
     }
 
-    cy.wrap(fieldsetElement).get('[aria-label="Jour de fin"]').clear()
-    cy.wrap(fieldsetElement).get('[aria-label="Mois de fin"]').clear()
-    cy.wrap(fieldsetElement).get('[aria-label="Année de fin"]').clear()
+    cy.wrap(fieldsetElement).find('[aria-label="Jour de fin"]').clear()
+    cy.wrap(fieldsetElement).find('[aria-label="Mois de fin"]').clear()
+    cy.wrap(fieldsetElement).find('[aria-label="Année de fin"]').clear()
 
     if (hasTimeInput) {
-      cy.wrap(fieldsetElement).get('[aria-label="Heure de fin"]').clear()
-      cy.wrap(fieldsetElement).get('[aria-label="Minute de fin"]').clear()
+      cy.wrap(fieldsetElement).find('[aria-label="Heure de fin"]').clear()
+      cy.wrap(fieldsetElement).find('[aria-label="Minute de fin"]').clear()
     }
 
     cy.clickOutside(fieldsetElementOffsetLeft, fieldsetElementOffsetTop - 1)
@@ -61,22 +61,22 @@ export function fillDateRangePicker(
   const [startYear, startMonth, startDay, startHour, startMinute] = startDateOrDateWithTimeTuple
   const [endYear, endMonth, endDay, endHour, endMinute] = endDateOrDateWithTimeTuple
 
-  cy.wrap(fieldsetElement).get('[aria-label="Jour de début"]').type(String(startDay).padStart(2, '0'))
-  cy.wrap(fieldsetElement).get('[aria-label="Mois de début"]').type(String(startMonth).padStart(2, '0'))
-  cy.wrap(fieldsetElement).get('[aria-label="Année de début"]').type(String(startYear))
+  cy.wrap(fieldsetElement).find('[aria-label="Jour de début"]').type(String(startDay).padStart(2, '0'))
+  cy.wrap(fieldsetElement).find('[aria-label="Mois de début"]').type(String(startMonth).padStart(2, '0'))
+  cy.wrap(fieldsetElement).find('[aria-label="Année de début"]').type(String(startYear))
 
   if (hasTimeInput) {
-    cy.wrap(fieldsetElement).get('[aria-label="Heure de début"]').type(String(startHour).padStart(2, '0'))
-    cy.wrap(fieldsetElement).get('[aria-label="Minute de début"]').type(String(startMinute).padStart(2, '0'))
+    cy.wrap(fieldsetElement).find('[aria-label="Heure de début"]').type(String(startHour).padStart(2, '0'))
+    cy.wrap(fieldsetElement).find('[aria-label="Minute de début"]').type(String(startMinute).padStart(2, '0'))
   }
 
-  cy.wrap(fieldsetElement).get('[aria-label="Jour de fin"]').type(String(endDay).padStart(2, '0'))
-  cy.wrap(fieldsetElement).get('[aria-label="Mois de fin"]').type(String(endMonth).padStart(2, '0'))
-  cy.wrap(fieldsetElement).get('[aria-label="Année de fin"]').type(String(endYear))
+  cy.wrap(fieldsetElement).find('[aria-label="Jour de fin"]').type(String(endDay).padStart(2, '0'))
+  cy.wrap(fieldsetElement).find('[aria-label="Mois de fin"]').type(String(endMonth).padStart(2, '0'))
+  cy.wrap(fieldsetElement).find('[aria-label="Année de fin"]').type(String(endYear))
 
   if (hasTimeInput) {
-    cy.wrap(fieldsetElement).get('[aria-label="Heure de fin"]').type(String(endHour).padStart(2, '0'))
-    cy.wrap(fieldsetElement).get('[aria-label="Minute de fin"]').type(String(endMinute).padStart(2, '0'))
+    cy.wrap(fieldsetElement).find('[aria-label="Heure de fin"]').type(String(endHour).padStart(2, '0'))
+    cy.wrap(fieldsetElement).find('[aria-label="Minute de fin"]').type(String(endMinute).padStart(2, '0'))
   }
 
   cy.clickOutside(fieldsetElementOffsetLeft, fieldsetElementOffsetTop - 1)
