@@ -10,23 +10,23 @@ function App() {
     <>
       <h2>DatePicker</h2>
       <DatePicker
-        data-testid="fields-datepicker"
+        data-cy="fields-datepicker"
         defaultValue={undefined}
         label="A date"
         onChange={setDatePickerOutput}
         withTime
       />
-      <pre data-testid="fields-datepicker-output">{JSON.stringify(datePickerOutut)}</pre>
+      <pre data-cy="fields-datepicker-output">{JSON.stringify(datePickerOutut)}</pre>
 
       <h2>DateRangePicker</h2>
       <DateRangePicker
-        data-testid="fields-daterangepicker"
+        data-cy="fields-daterangepicker"
         defaultValue={undefined}
         label="A date range"
         onChange={setDateRangePickerOutput}
         withTime
       />
-      <pre data-testid="fields-daterangepicker-output">{JSON.stringify(dateRangePickerOutut)}</pre>
+      <pre data-cy="fields-daterangepicker-output">{JSON.stringify(dateRangePickerOutut)}</pre>
     </>
   )
 }

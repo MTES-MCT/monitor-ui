@@ -14,7 +14,7 @@ jobs:
         uses: browser-actions/setup-firefox@latest
         with:
           firefox-version: 104.0.2
-      - name: Setup
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           cache: yarn
@@ -27,8 +27,8 @@ jobs:
     name: E2E Test
     strategy:
       matrix:
-        timeZone: ["Europe/Paris"]
-        dst: ["", "DST"]
+        timeZone: ['Europe/Paris']
+        dst: ['', 'DST']
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -37,7 +37,7 @@ jobs:
         uses: browser-actions/setup-firefox@latest
         with:
           firefox-version: 104.0.2
-      - name: Setup
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           cache: yarn
@@ -60,35 +60,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Cache
-        if: ${{ always() }}
-        id: cache
-        uses: actions/cache@v3
-        # https://playwright.dev/docs/ci#directories-to-cache
+      - name: Setup Firefox
+        uses: browser-actions/setup-firefox@latest
         with:
-          path: ~/.cache/ms-playwright
-          key: ${{ hashFiles('yarn.lock') }}
-      - name: Setup
+          firefox-version: 104.0.2
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           cache: yarn
           node-version: 18
       - name: Install
         run: yarn
-      - name: Setup tests
+      - name: Serve Release Sample
         run: |
-          yarn playwright install --with-deps firefox
           yarn test:e2e:release:setup &
           bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:3000)" != "200" ]]; do sleep 5; done'
       - name: Test
         run: yarn test:e2e:release
-      - name: Archive failed tests trace
-        if: ${{ failure() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-results
-          path: |
-            ./test-results
 
   # Storybook E2E Tests with test-storybook (Playwright under the hood)
   # https://storybook.js.org/docs/react/writing-tests/test-runner
@@ -98,7 +86,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           cache: yarn
