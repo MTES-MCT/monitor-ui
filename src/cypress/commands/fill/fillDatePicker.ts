@@ -29,13 +29,13 @@ export function fillDatePicker(
         })()
 
   if (!dateOrDateWithTimeTuple) {
-    cy.wrap(fieldsetElement).get('[aria-label="Jour"]').clear()
-    cy.wrap(fieldsetElement).get('[aria-label="Mois"]').clear()
-    cy.wrap(fieldsetElement).get('[aria-label="Année"]').clear()
+    cy.wrap(fieldsetElement).find('[aria-label="Jour"]').clear()
+    cy.wrap(fieldsetElement).find('[aria-label="Mois"]').clear()
+    cy.wrap(fieldsetElement).find('[aria-label="Année"]').clear()
 
     if (hasTimeInput) {
-      cy.wrap(fieldsetElement).get('[aria-label="Heure"]').clear()
-      cy.wrap(fieldsetElement).get('[aria-label="Minute"]').clear()
+      cy.wrap(fieldsetElement).find('[aria-label="Heure"]').clear()
+      cy.wrap(fieldsetElement).find('[aria-label="Minute"]').clear()
     }
 
     cy.clickOutside(fieldsetElementOffsetLeft, fieldsetElementOffsetTop - 1)
@@ -46,13 +46,13 @@ export function fillDatePicker(
 
   const [year, month, day, hour, minute] = dateOrDateWithTimeTuple
 
-  cy.wrap(fieldsetElement).get('[aria-label="Jour"]').type(String(day).padStart(2, '0'))
-  cy.wrap(fieldsetElement).get('[aria-label="Mois"]').type(String(month).padStart(2, '0'))
-  cy.wrap(fieldsetElement).get('[aria-label="Année"]').type(String(year))
+  cy.wrap(fieldsetElement).find('[aria-label="Jour"]').type(String(day).padStart(2, '0'))
+  cy.wrap(fieldsetElement).find('[aria-label="Mois"]').type(String(month).padStart(2, '0'))
+  cy.wrap(fieldsetElement).find('[aria-label="Année"]').type(String(year))
 
   if (hasTimeInput) {
-    cy.wrap(fieldsetElement).get('[aria-label="Heure"]').type(String(hour).padStart(2, '0'))
-    cy.wrap(fieldsetElement).get('[aria-label="Minute"]').type(String(minute).padStart(2, '0'))
+    cy.wrap(fieldsetElement).find('[aria-label="Heure"]').type(String(hour).padStart(2, '0'))
+    cy.wrap(fieldsetElement).find('[aria-label="Minute"]').type(String(minute).padStart(2, '0'))
   }
 
   cy.clickOutside(fieldsetElementOffsetLeft, fieldsetElementOffsetTop - 1)
