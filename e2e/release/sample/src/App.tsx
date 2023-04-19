@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { DatePicker, DateRangePicker } from '@mtes-mct/monitor-ui'
 import { useState } from 'react'
 
@@ -31,5 +30,4 @@ function App() {
   )
 }
 
-// eslint-disable-next-line import/no-default-export
 export default App

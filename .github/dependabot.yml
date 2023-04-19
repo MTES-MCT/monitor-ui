@@ -7,3 +7,10 @@ updates:
     commit-message:
       prefix: 'build(deps)'
       prefix-development: 'build(dev-deps)'
+  - package-ecosystem: 'npm'
+    directory: '/e2e/release/sample'
+    schedule:
+      interval: 'weekly'
+    commit-message:
+      prefix: 'build(deps)'
+      prefix-development: 'build(dev-deps)'
