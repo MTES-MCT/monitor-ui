@@ -146,11 +146,6 @@ dist
 # Cypress
 /cypress/
 
-# Playright
-/playwright/.cache/
-/playwright-report/
-/test-results/
-
 # Rollup
 /.rollup.cache/
 

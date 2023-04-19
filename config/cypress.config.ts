@@ -1,5 +1,8 @@
 import { defineConfig } from 'cypress'
+import { platform } from 'os'
 import { config as webpackConfig } from './webpack.config'
+
+const DOMAIN = platform() === 'darwin' ? '0.0.0.0' : 'localhost'
 
 export default defineConfig({
   component: {
@@ -10,6 +13,12 @@ export default defineConfig({
     },
     specPattern: 'e2e/base/**/*.spec.tsx',
     supportFile: 'config/cypress/support/component.ts'
+  },
+  e2e: {
+    baseUrl: `http://${DOMAIN}:3000`,
+    specPattern: 'e2e/release/**/*.spec.ts',
+    excludeSpecPattern: 'e2e/release/sample/**',
+    supportFile: 'config/cypress/support/e2e.ts'
   },
   projectId: 'monitor-ui',
   retries: {
