@@ -1,3 +1,10 @@
+## [5.3.5](https://github.com/MTES-MCT/monitor-ui/compare/v5.3.4...v5.3.5) (2023-04-19)
+
+
+### Bug Fixes
+
+* **cypress:** enable force in fields clearing ([41ce7b4](https://github.com/MTES-MCT/monitor-ui/commit/41ce7b41555501fd798d31d5040ff3dcbfdd777e))
+
 ## [5.3.4](https://github.com/MTES-MCT/monitor-ui/compare/v5.3.3...v5.3.4) (2023-04-19)
 
 
