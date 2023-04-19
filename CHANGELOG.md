@@ -1,3 +1,10 @@
+## [5.3.4](https://github.com/MTES-MCT/monitor-ui/compare/v5.3.3...v5.3.4) (2023-04-19)
+
+
+### Bug Fixes
+
+* **cypress:** wrap fill() DatePicker & DateRangePicker selectors within fieldset ([85fa305](https://github.com/MTES-MCT/monitor-ui/commit/85fa3058db87df8a56c3c52a4fc62f3cd47f3e88))
+
 ## [5.3.3](https://github.com/MTES-MCT/monitor-ui/compare/v5.3.2...v5.3.3) (2023-04-18)
 
 
