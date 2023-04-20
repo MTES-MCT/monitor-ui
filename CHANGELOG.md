@@ -1,3 +1,10 @@
+## [5.3.6](https://github.com/MTES-MCT/monitor-ui/compare/v5.3.5...v5.3.6) (2023-04-20)
+
+
+### Bug Fixes
+
+* **fields:** fix value of undefined on controlled inputs ([1a5fa11](https://github.com/MTES-MCT/monitor-ui/commit/1a5fa11ba9ce2357ab964e7c6a7b52914f6434f8))
+
 ## [5.3.5](https://github.com/MTES-MCT/monitor-ui/compare/v5.3.4...v5.3.5) (2023-04-19)
 
 
