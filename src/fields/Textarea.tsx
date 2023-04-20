@@ -71,7 +71,7 @@ export function Textarea({
         id={originalProps.name}
         onChange={handleChange}
         rows={rows}
-        value={value}
+        value={value || ''}
         {...originalProps}
       />
 

@@ -71,7 +71,7 @@ export function TextInput({
         id={originalProps.name}
         onChange={handleChange}
         type="text"
-        value={value}
+        value={value || ''}
         {...originalProps}
       />
 
