@@ -73,7 +73,7 @@ export function NumberInput({
         id={originalProps.name}
         onChange={handleChange}
         type="number"
-        value={value}
+        value={value || ''}
         {...originalProps}
       />
 
