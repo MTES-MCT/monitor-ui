@@ -47,7 +47,7 @@
     "@commitlint/config-conventional": "17.4.2",
     "@ivangabriele/commitlint-config": "1.0.6",
     "@ivangabriele/eslint-config-typescript-base": "6.0.1",
-    "@ivangabriele/eslint-config-typescript-react": "4.3.0",
+    "@ivangabriele/eslint-config-typescript-react": "7.1.0",
     "@ivangabriele/prettier-config": "3.1.0",
     "@jest/globals": "29.3.1",
     "@rollup/plugin-commonjs": "24.1.0",

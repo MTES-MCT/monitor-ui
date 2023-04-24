@@ -2237,30 +2237,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ivangabriele/eslint-config-typescript-react@npm:4.3.0":
-  version: 4.3.0
-  resolution: "@ivangabriele/eslint-config-typescript-react@npm:4.3.0"
+"@ivangabriele/eslint-config-typescript-react@npm:7.1.0":
+  version: 7.1.0
+  resolution: "@ivangabriele/eslint-config-typescript-react@npm:7.1.0"
   peerDependencies:
-    "@ivangabriele/prettier-config": ^3.0.2
-    "@typescript-eslint/eslint-plugin": ^5.18.0
-    "@typescript-eslint/parser": ^5.18.0
+    "@ivangabriele/prettier-config": ^3.0.0
+    "@typescript-eslint/eslint-plugin": ^5.0.0
+    "@typescript-eslint/parser": ^5.0.0
     eslint: ^8.0.0
-    eslint-config-airbnb: ^19.0.4
+    eslint-config-airbnb: ^19.0.0
     eslint-config-airbnb-typescript: ^17.0.0
-    eslint-config-prettier: ^8.3.0
-    eslint-plugin-import: ^2.25.4
-    eslint-plugin-jest: ^26.0.0
-    eslint-plugin-jsx-a11y: ^6.5.1
-    eslint-plugin-no-null: 1.0.2
+    eslint-config-prettier: ^8.0.0
+    eslint-plugin-import: ^2.0.0
+    eslint-plugin-jest: ^27.0.0
+    eslint-plugin-jsx-a11y: ^6.0.0
+    eslint-plugin-no-null: ^1.0.0
     eslint-plugin-prettier: ^4.0.0
-    eslint-plugin-react: ^7.28.0
-    eslint-plugin-react-hooks: ^4.3.0
-    eslint-plugin-sort-destructure-keys: ^1.4.0
-    eslint-plugin-sort-keys-fix: ^1.1.2
-    eslint-plugin-typescript-sort-keys: ^2.1.0
-    prettier: ^2.5.1
-    typescript: ^4.4.4
-  checksum: 03a67a09396525eb56067868cd0d0999256cc3d036440d796de1289fedeadfb1c91751873d97470139d8a23961b14af6fd9a220b986738c7e40920282c9cb638
+    eslint-plugin-react: ^7.0.0
+    eslint-plugin-react-hooks: ^4.0.0
+    eslint-plugin-sort-destructure-keys: ^1.0.0
+    eslint-plugin-sort-keys-fix: ^1.0.0
+    eslint-plugin-typescript-sort-keys: ^2.0.0
+    typescript: ^5.0.0
+  checksum: b9a676b0f4cd8ccf300b36c84edb57d391edca6dcc93cbd836827970f35c9fe3864395369460afc8c04d95f23d0f69c6497953a48e8bca9a837ba21531e248ac
   languageName: node
   linkType: hard
 
@@ -2960,7 +2959,7 @@ __metadata:
     "@commitlint/config-conventional": 17.4.2
     "@ivangabriele/commitlint-config": 1.0.6
     "@ivangabriele/eslint-config-typescript-base": 6.0.1
-    "@ivangabriele/eslint-config-typescript-react": 4.3.0
+    "@ivangabriele/eslint-config-typescript-react": 7.1.0
     "@ivangabriele/prettier-config": 3.1.0
     "@jest/globals": 29.3.1
     "@rollup/plugin-commonjs": 24.1.0
