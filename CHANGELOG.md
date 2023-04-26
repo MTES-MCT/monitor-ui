@@ -1,3 +1,15 @@
+# [5.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.3.6...v5.4.0) (2023-04-26)
+
+
+### Bug Fixes
+
+* **fields:** apply lint ([4b89b0b](https://github.com/MTES-MCT/monitor-ui/commit/4b89b0baa32fb97de4b35e01df82902df5ea89cb))
+
+
+### Features
+
+* **fields:** add isCleanable prop to select picker ([2924521](https://github.com/MTES-MCT/monitor-ui/commit/2924521b06490774e248c7bfedd843c2c456a848))
+
 ## [5.3.6](https://github.com/MTES-MCT/monitor-ui/compare/v5.3.5...v5.3.6) (2023-04-20)
 
 
