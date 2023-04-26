@@ -150,12 +150,12 @@ export function Select<OptionValue extends OptionValueType = string>({
             disabled={disabled}
             id={originalProps.name}
             onClean={handleClean}
+            // Since we customized `ItemDataType` type by adding `optionValue`, we have an optional vs required conflict
+            onSelect={handleSelect as any}
+            open={isOpen}
             renderMenuItem={renderMenuItem}
             searchable={searchable}
             value={rsuiteValue}
-            open={isOpen}
-            // Since we customized `ItemDataType` type by adding `optionValue`, we have an optional vs required conflict
-            onSelect={handleSelect as any}
             {...originalProps}
           />
         )}
