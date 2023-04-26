@@ -35,6 +35,7 @@ export type SelectProps<OptionValue extends OptionValueType = string> = Omit<
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
   error?: string | undefined
+  isCleanable?: boolean | undefined
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
@@ -50,6 +51,7 @@ export function Select<OptionValue extends OptionValueType = string>({
   baseContainer,
   disabled = false,
   error,
+  isCleanable = true,
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
@@ -142,17 +144,18 @@ export function Select<OptionValue extends OptionValueType = string>({
           <StyledSelectPicker
             key={key}
             $isLight={isLight}
+            cleanable={isCleanable}
             container={boxRef.current}
             data={data}
             disabled={disabled}
             id={originalProps.name}
             onClean={handleClean}
-            // Since we customized `ItemDataType` type by adding `optionValue`, we have an optional vs required conflict
-            onSelect={handleSelect as any}
-            open={isOpen}
             renderMenuItem={renderMenuItem}
             searchable={searchable}
             value={rsuiteValue}
+            open={isOpen}
+            // Since we customized `ItemDataType` type by adding `optionValue`, we have an optional vs required conflict
+            onSelect={handleSelect as any}
             {...originalProps}
           />
         )}
