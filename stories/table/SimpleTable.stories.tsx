@@ -187,6 +187,7 @@ export function _SimpleTable() {
           <IconButton
             accent={Accent.SECONDARY}
             Icon={Icon.FocusZones}
+            // eslint-disable-next-line no-console
             onClick={() => console.log(info.getValue())}
             size={Size.SMALL}
           />
@@ -198,6 +199,7 @@ export function _SimpleTable() {
         accessorFn: row => row.id,
         id: 'edit',
         cell: info => (
+          // eslint-disable-next-line no-console
           <Button Icon={Icon.Edit} onClick={() => console.log(info.getValue())} size={Size.SMALL}>
             Editer
           </Button>
@@ -220,6 +222,7 @@ export function _SimpleTable() {
     getSortedRowModel: getSortedRowModel()
   })
 
+  // eslint-disable-next-line no-null/no-null
   const tableContainerRef = useRef<HTMLDivElement>(null)
 
   const { rows } = table.getRowModel()
@@ -261,7 +264,7 @@ export function _SimpleTable() {
                         ({
                           asc: <Icon.Close />,
                           desc: <Icon.Chevron />
-                        }[header.column.getIsSorted() as string] ?? <Icon.SortingArrows size="14" />)}
+                        }[header.column.getIsSorted() as string] ?? <Icon.SortingArrows size={14} />)}
                     </StyledSortContainer>
                   )}
                 </StyledTh>
