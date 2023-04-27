@@ -1,3 +1,10 @@
+# [5.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.4.0...v5.5.0) (2023-04-27)
+
+
+### Features
+
+* **icons:** add mission action icon ([7c8dbf4](https://github.com/MTES-MCT/monitor-ui/commit/7c8dbf4d6a565e5e201aea2f80ae811a9c5e2238))
+
 # [5.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.3.6...v5.4.0) (2023-04-26)
 
 
