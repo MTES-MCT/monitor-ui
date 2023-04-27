@@ -39,6 +39,7 @@ import { MeasureBrokenLine } from './MeasureBrokenLine'
 import { MeasureCircle } from './MeasureCircle'
 import { MeasureLine } from './MeasureLine'
 import { Minus } from './Minus'
+import { MissionAction } from './MissionAction'
 import { More } from './More'
 import { Note } from './Note'
 import { Observation } from './Observation'
@@ -107,6 +108,7 @@ export {
   MeasureCircle,
   MeasureLine,
   Minus,
+  MissionAction,
   More,
   Note,
   Observation,
