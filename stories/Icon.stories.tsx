@@ -279,6 +279,12 @@ export function _Icon(props: IconProps) {
       </Cell>
       <Cell>
         <IconBox>
+          <Icon.MissionAction {...props} />
+        </IconBox>
+        <Code>MissionAction</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
           <Icon.More {...props} />
         </IconBox>
         <Code>More</Code>
