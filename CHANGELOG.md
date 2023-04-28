@@ -1,3 +1,10 @@
+# [5.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.5.0...v5.6.0) (2023-04-28)
+
+
+### Features
+
+* **icons:** add expand icon ([3376d0f](https://github.com/MTES-MCT/monitor-ui/commit/3376d0f2e8244effafc5722ae6f4bea0dc46c65b))
+
 # [5.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.4.0...v5.5.0) (2023-04-27)
 
 
