@@ -153,6 +153,12 @@ export function _Icon(props: IconProps) {
       </Cell>
       <Cell>
         <IconBox>
+          <Icon.Expand {...props} />
+        </IconBox>
+        <Code>Expand</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
           <Icon.Favorite {...props} />
         </IconBox>
         <Code>Favorite</Code>

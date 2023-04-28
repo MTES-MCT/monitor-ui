@@ -18,6 +18,7 @@ import { Drapeau } from './Drapeau'
 import { Duplicate } from './Duplicate'
 import { Edit } from './Edit'
 import { EditBis } from './EditBis'
+import { Expand } from './Expand'
 import { Favorite } from './Favorite'
 import { FilledArrow } from './FilledArrow'
 import { Filter } from './Filter'
@@ -87,6 +88,7 @@ export {
   Duplicate,
   Edit,
   EditBis,
+  Expand,
   Favorite,
   FilledArrow,
   Filter,
