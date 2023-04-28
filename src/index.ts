@@ -30,6 +30,7 @@ export { Label } from './elements/Label'
 export { Legend } from './elements/Legend'
 export { Tag } from './elements/Tag'
 export { TagGroup } from './elements/TagGroup'
+export { SimpleTable } from './elements/Table/SimpleTable'
 
 export { Search } from './fields/Search'
 export { Checkbox } from './fields/Checkbox'

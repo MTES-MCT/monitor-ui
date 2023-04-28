@@ -2,16 +2,9 @@ import { flexRender, getCoreRowModel, getSortedRowModel, SortingState, useReactT
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { useCallback, useMemo, useRef, useState } from 'react'
 
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { Accent, Button, Icon, IconButton, Size } from '../../src'
-import {
-  StyledBodyTr,
-  StyledHead,
-  StyledSortContainer,
-  StyledTable,
-  StyledTd,
-  StyledTh
-} from '../../src/elements/Table/SimpleTable'
+import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
+import { Accent, Button, Icon, IconButton, Size } from '../../../src'
+import { SimpleTable } from '../../../src/elements/Table/SimpleTable'
 
 const fakeData1 = Array(100).fill({
   closedBy: 'TIM',
@@ -111,7 +104,7 @@ const fakeData2 = Array(100).fill({
 const data = [...fakeData1, ...fakeData2]
 
 export default {
-  title: 'Table/SimpleTable',
+  title: 'Elements/Table/SimpleTable',
   decorators: [generateStoryDecorator()]
 }
 
@@ -246,14 +239,14 @@ export function _SimpleTable() {
 
   return (
     <div ref={tableContainerRef}>
-      <StyledTable>
-        <StyledHead>
+      <SimpleTable.StyledTable>
+        <SimpleTable.StyledHead>
           {table.getHeaderGroups().map(headerGroup => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map(header => (
-                <StyledTh key={header.id}>
+                <SimpleTable.StyledTh key={header.id}>
                   {header.isPlaceholder ? undefined : (
-                    <StyledSortContainer
+                    <SimpleTable.StyledSortContainer
                       {...{
                         className: header.column.getCanSort() ? 'cursor-pointer select-none' : '',
                         onClick: header.column.getToggleSortingHandler()
@@ -265,13 +258,13 @@ export function _SimpleTable() {
                           asc: <Icon.Close />,
                           desc: <Icon.Chevron />
                         }[header.column.getIsSorted() as string] ?? <Icon.SortingArrows size={14} />)}
-                    </StyledSortContainer>
+                    </SimpleTable.StyledSortContainer>
                   )}
-                </StyledTh>
+                </SimpleTable.StyledTh>
               ))}
             </tr>
           ))}
-        </StyledHead>
+        </SimpleTable.StyledHead>
         <tbody>
           {paddingTop > 0 && (
             <tr>
@@ -282,11 +275,13 @@ export function _SimpleTable() {
             const row = rows[virtualRow.index]
 
             return (
-              <StyledBodyTr key={virtualRow.key}>
+              <SimpleTable.StyledBodyTr key={virtualRow.key}>
                 {row?.getVisibleCells().map(cell => (
-                  <StyledTd key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</StyledTd>
+                  <SimpleTable.StyledTd key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </SimpleTable.StyledTd>
                 ))}
-              </StyledBodyTr>
+              </SimpleTable.StyledBodyTr>
             )
           })}
           {paddingBottom > 0 && (
@@ -295,7 +290,7 @@ export function _SimpleTable() {
             </tr>
           )}
         </tbody>
-      </StyledTable>
+      </SimpleTable.StyledTable>
     </div>
   )
 }

@@ -1,21 +1,21 @@
 import styled from 'styled-components'
 
-export const StyledTable = styled.table`
+const StyledTable = styled.table`
   width: 100%;
   table-layout: auto;
   overflow: auto;
 `
-export const StyledHead = styled.thead`
+const StyledHead = styled.thead`
   position: sticky;
   top: 0;
 `
 
-export const StyledSortContainer = styled.div`
+const StyledSortContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 `
-export const StyledTh = styled.th`
+const StyledTh = styled.th`
   background-color: ${p => p.theme.color.gainsboro};
   border: 1px solid ${p => p.theme.color.lightGray};
   color: ${p => p.theme.color.slateGray};
@@ -26,7 +26,7 @@ export const StyledTh = styled.th`
   text-overflow: ellipsis;
   white-space: nowrap;
 `
-export const StyledBodyTr = styled.tr`
+const StyledBodyTr = styled.tr`
   :hover {
     background-color: ${p => p.theme.color.blueYonder[25]};
   }
@@ -61,7 +61,7 @@ export const StyledBodyTr = styled.tr`
   }
 `
 
-export const StyledTd = styled.td`
+const StyledTd = styled.td`
   font-size: 13px;
   font-weight: 500;
   color: ${p => p.theme.color.gunMetal};
@@ -72,3 +72,12 @@ export const StyledTd = styled.td`
   text-overflow: ellipsis;
   white-space: nowrap;
 `
+
+export const SimpleTable = {
+  StyledBodyTr,
+  StyledHead,
+  StyledSortContainer,
+  StyledTable,
+  StyledTd,
+  StyledTh
+}
