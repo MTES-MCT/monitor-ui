@@ -4,10 +4,16 @@ const StyledTable = styled.table`
   width: 100%;
   table-layout: auto;
   overflow: auto;
+  border-collapse: separate;
 `
 const StyledHead = styled.thead`
   position: sticky;
   top: 0;
+  z-index: 1;
+
+  th:first-child {
+    border-left: 1px solid ${p => p.theme.color.lightGray};
+  }
 `
 
 const StyledSortContainer = styled.div`
@@ -17,7 +23,9 @@ const StyledSortContainer = styled.div`
 `
 const StyledTh = styled.th`
   background-color: ${p => p.theme.color.gainsboro};
-  border: 1px solid ${p => p.theme.color.lightGray};
+  border-top: 1px solid ${p => p.theme.color.lightGray};
+  border-bottom: 1px solid ${p => p.theme.color.lightGray};
+  border-right: 1px solid ${p => p.theme.color.lightGray};
   color: ${p => p.theme.color.slateGray};
   font-size: 13px;
   font-weight: 500;
@@ -26,37 +34,19 @@ const StyledTh = styled.th`
   text-overflow: ellipsis;
   white-space: nowrap;
 `
+
 const StyledBodyTr = styled.tr`
   :hover {
     background-color: ${p => p.theme.color.blueYonder[25]};
   }
-  td:first-child,
-  td:nth-child(2) {
-    width: 180px;
+  td:first-child {
+    border-left: 1px solid ${p => p.theme.color.lightGray};
   }
 
-  td:nth-child(3) {
-    width: 90px;
-  }
-  td:nth-child(4),
-  td:nth-child(7) {
-    max-width: 200px;
-  }
-
-  td:nth-child(5),
-  td:nth-child(6),
-  td:nth-child(8) {
-    width: 100px;
-  }
-
-  td:nth-child(9) {
-    width: 120px;
-  }
   td:nth-child(10) {
-    width: 60px;
+    text-align: center;
   }
   td:nth-child(11) {
-    width: 160px;
     text-align: center;
   }
 `
@@ -66,7 +56,8 @@ const StyledTd = styled.td`
   font-weight: 500;
   color: ${p => p.theme.color.gunMetal};
   text-align: left;
-  border: 1px solid ${p => p.theme.color.lightGray};
+  border-bottom: 1px solid ${p => p.theme.color.lightGray};
+  border-right: 1px solid ${p => p.theme.color.lightGray};
   overflow: hidden;
   padding: 10px;
   text-overflow: ellipsis;
