@@ -95,7 +95,7 @@ const fakeData2 = Array(100).fill({
   missionNature: ['ENV', 'FISH'],
   missionSource: 'MONITORENV',
   missionTypes: ['LAND'],
-  observationsCacem: 'Black bit sell. House relate policy once. White member worker east even anyone detail professor.',
+  observationsCacem: '',
   observationsCnsp: undefined,
   openBy: 'RAN',
   startDateTimeUtc: '01 mai 23, 05h57 (UTC)'
@@ -117,19 +117,25 @@ export function _SimpleTable() {
         accessorFn: row => row.startDateTimeUtc,
         id: 'dateDebut',
         cell: info => info.getValue(),
-        header: () => 'Début'
+        header: () => 'Début',
+        enableResizing: true,
+        size: 180
       },
       {
         accessorFn: row => row.endDateTimeUtc,
         id: 'dateFin',
         cell: info => info.getValue(),
-        header: () => 'Fin'
+        header: () => 'Fin',
+        enableResizing: true,
+        size: 180
       },
       {
         accessorFn: row => row.missionSource,
         id: 'missionSource',
         cell: info => info.getValue(),
-        header: () => 'Origine'
+        header: () => 'Origine',
+        enableResizing: true,
+        size: 90
       },
       {
         accessorFn: row =>
@@ -137,41 +143,57 @@ export function _SimpleTable() {
         id: 'Unit and Administration',
         cell: info => info.getValue(),
         header: () => 'Unité (Administration)',
-        enableSorting: false
+        enableSorting: false,
+        enableResizing: true,
+        maxSize: 280,
+        minSize: 100,
+        size: 200
       },
       {
         accessorFn: row => row.missionTypes,
         id: 'type',
         cell: info => info.getValue(),
         header: () => 'Type',
-        enableSorting: false
+        enableSorting: false,
+        enableResizing: true,
+        size: 100
       },
       {
         accessorFn: row => row.facade,
         id: 'seaFront',
         cell: info => info.getValue(),
-        header: () => 'Facade'
+        header: () => 'Facade',
+        enableResizing: true,
+        size: 100
       },
       {
         accessorFn: row => row.observationsCacem,
         id: 'observationsCacem',
         cell: info => info.getValue(),
         header: () => 'Thématiques',
-        enableSorting: false
+        enableSorting: false,
+        enableResizing: true,
+        maxSize: 280,
+        minSize: 100,
+        size: 200
       },
       {
         accessorFn: row => row.controlUnits.length,
         id: 'controls',
         cell: info => info.getValue(),
         header: () => 'Nbre contrôles',
-        enableSorting: false
+        enableSorting: false,
+        enableResizing: true,
+        size: 100
       },
       {
         accessorFn: row => row.status,
         id: 'status',
         cell: info => info.getValue(),
         header: () => 'Statut',
-        enableSorting: false
+        enableSorting: false,
+        enableResizing: true,
+        size: 100
       },
       {
         accessorFn: row => row.geom,
@@ -186,7 +208,9 @@ export function _SimpleTable() {
           />
         ),
         header: () => '',
-        enableSorting: false
+        enableSorting: false,
+        enableResizing: true,
+        size: 60
       },
       {
         accessorFn: row => row.id,
@@ -198,7 +222,9 @@ export function _SimpleTable() {
           </Button>
         ),
         header: () => '',
-        enableSorting: false
+        enableSorting: false,
+        enableResizing: true,
+        size: 160
       }
     ],
     []
@@ -210,6 +236,7 @@ export function _SimpleTable() {
     state: {
       sorting
     },
+    enableSortingRemoval: false,
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel()
@@ -222,7 +249,7 @@ export function _SimpleTable() {
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
     getScrollElement: () => tableContainerRef.current,
-    estimateSize: () => 40,
+    estimateSize: () => 10,
     overscan: 10,
     // Pass correct keys to virtualizer it's important when rows change position
     getItemKey: useCallback((index: number) => `${rows[index]?.id}`, [rows])
@@ -244,7 +271,16 @@ export function _SimpleTable() {
           {table.getHeaderGroups().map(headerGroup => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map(header => (
-                <SimpleTable.StyledTh key={header.id}>
+                <SimpleTable.StyledTh
+                  key={header.id}
+                  {...{
+                    style: {
+                      maxWidth: header.column.getSize(),
+                      minWidth: header.column.getSize(),
+                      width: header.column.getSize()
+                    }
+                  }}
+                >
                   {header.isPlaceholder ? undefined : (
                     <SimpleTable.StyledSortContainer
                       {...{
@@ -255,8 +291,8 @@ export function _SimpleTable() {
                       {flexRender(header.column.columnDef.header, header.getContext())}
                       {header.column.getCanSort() &&
                         ({
-                          asc: <Icon.Close />,
-                          desc: <Icon.Chevron />
+                          asc: <div>▲</div>,
+                          desc: <div>▼</div>
                         }[header.column.getIsSorted() as string] ?? <Icon.SortingArrows size={14} />)}
                     </SimpleTable.StyledSortContainer>
                   )}
@@ -277,7 +313,16 @@ export function _SimpleTable() {
             return (
               <SimpleTable.StyledBodyTr key={virtualRow.key}>
                 {row?.getVisibleCells().map(cell => (
-                  <SimpleTable.StyledTd key={cell.id}>
+                  <SimpleTable.StyledTd
+                    {...{
+                      key: cell.id,
+                      style: {
+                        maxWidth: cell.column.getSize(),
+                        minWidth: cell.column.getSize(),
+                        width: cell.column.getSize()
+                      }
+                    }}
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </SimpleTable.StyledTd>
                 ))}
