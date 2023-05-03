@@ -1,3 +1,10 @@
+## [5.7.1](https://github.com/MTES-MCT/monitor-ui/compare/v5.7.0...v5.7.1) (2023-05-03)
+
+
+### Bug Fixes
+
+* **components:** type all allowed features in NewWindow ([1883816](https://github.com/MTES-MCT/monitor-ui/commit/18838169cc7a642c0e0d6e12fc833c23f5c69416))
+
 # [5.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.6.0...v5.7.0) (2023-05-03)
 
 
