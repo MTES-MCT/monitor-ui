@@ -1,3 +1,10 @@
+# [5.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.6.0...v5.7.0) (2023-05-03)
+
+
+### Features
+
+* **components:** add NewWindow ([86d066f](https://github.com/MTES-MCT/monitor-ui/commit/86d066f34809fe63a79baaced69bad79c958a228))
+
 # [5.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.5.0...v5.6.0) (2023-04-28)
 
 
