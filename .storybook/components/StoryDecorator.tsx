@@ -1,10 +1,12 @@
-import { useMemo, useState } from 'react'
+import { forwardRef, useEffect, useImperativeHandle, useMemo, useState, useRef } from 'react'
 import styled from 'styled-components'
 
-import { Accent, Button, Size, THEME } from '../../src'
-import { NewWindow } from '../../src/components/NewWindow'
+import { GlobalDecoratorWrapper } from './GlobalDecorator'
+import { Accent, Button, NewWindow, Size, THEME, useForceUpdate, useNewWindow, NewWindowContext } from '../../src'
 
+import type { NewWindowContextValue } from '../../src'
 import type { Story, StoryContext } from '@storybook/react'
+import type { ForwardedRef, MutableRefObject } from 'react'
 
 export function generateStoryDecorator({
   fixedWidth,
@@ -15,8 +17,8 @@ export function generateStoryDecorator({
   hasDarkMode?: boolean
   withNewWindowButton?: boolean
 } = {}) {
-  return function StoryDecorator(Story: Story, context: StoryContext) {
-    const { args } = context
+  return function StoryDecorator(Story: Story, { args }: StoryContext) {
+    const newWindowRef = useRef() as MutableRefObject<HTMLDivElement>
 
     const [isNewWindowOpen, setIsNewWindowOpen] = useState(false)
 
@@ -36,6 +38,12 @@ export function generateStoryDecorator({
       [args.isLight]
     )
 
+    const { forceUpdate } = useForceUpdate()
+
+    useEffect(() => {
+      forceUpdate()
+    }, [forceUpdate])
+
     return (
       <>
         {withNewWindowButton && (
@@ -46,20 +54,64 @@ export function generateStoryDecorator({
           </NewWindowButtonBox>
         )}
 
-        <StoryBox style={style}>
-          <Story />
-        </StoryBox>
+        {!isNewWindowOpen && (
+          <StoryBox style={style}>
+            <Story />
+          </StoryBox>
+        )}
 
         {withNewWindowButton && isNewWindowOpen && (
-          <NewWindow isStoryBook onUnload={() => setIsNewWindowOpen(false)}>
-            <NewWindowStoryBox>
-              <Story />
-            </NewWindowStoryBox>
+          <NewWindow features={{ height: 600, width: 800 }} onUnload={() => setIsNewWindowOpen(false)}>
+            <NewWindowStoryWrapper ref={newWindowRef} Story={Story} />
           </NewWindow>
         )}
       </>
     )
   }
+}
+
+function NewWindowStoryWrapperWithRef({ Story }: { Story: Story }, ref: ForwardedRef<HTMLDivElement | null>) {
+  // eslint-disable-next-line no-null/no-null
+  const wrapperRef = useRef<HTMLDivElement | null>(null)
+
+  const [isFirstRender, setIsFirstRender] = useState(true)
+
+  useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(ref, () => wrapperRef.current)
+
+  const newWindowContextProviderValue: NewWindowContextValue = useMemo(
+    () => ({
+      newWindowContainerRef: wrapperRef.current
+        ? (wrapperRef as MutableRefObject<HTMLDivElement>)
+        : { current: window.document.createElement('div') }
+    }),
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [isFirstRender]
+  )
+
+  useEffect(() => {
+    setIsFirstRender(false)
+  }, [])
+
+  return (
+    <NewWindowStoryBox ref={wrapperRef}>
+      {!isFirstRender && (
+        <NewWindowContext.Provider value={newWindowContextProviderValue}>
+          <GlobalDecoratorWrapper>
+            <NewWindowStory Story={Story} />
+          </GlobalDecoratorWrapper>
+        </NewWindowContext.Provider>
+      )}
+    </NewWindowStoryBox>
+  )
+}
+
+const NewWindowStoryWrapper = forwardRef(NewWindowStoryWrapperWithRef)
+
+function NewWindowStory({ Story }: { Story: Story }) {
+  const { newWindowContainerRef } = useNewWindow()
+
+  return <Story args={{ baseContainer: newWindowContainerRef.current }} />
 }
 
 const StoryBox = styled.div`
@@ -68,12 +120,12 @@ const StoryBox = styled.div`
   width: 100%;
 `
 
-export const NewWindowButtonBox = styled.div`
+const NewWindowButtonBox = styled.div`
   position: fixed;
   right: 16px;
   top: 16px;
 `
-export const NewWindowStoryBox = styled.div`
+const NewWindowStoryBox = styled.div`
   height: 100%;
   padding: 16px;
   width: 100%;

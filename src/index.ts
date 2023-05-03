@@ -19,6 +19,7 @@ export { ThemeProvider } from './ThemeProvider'
 */
 
 export { Dropdown } from './components/Dropdown'
+export { NewWindow } from './components/NewWindow'
 export { SingleTag } from './components/SingleTag'
 
 export { Button } from './elements/Button'
@@ -68,6 +69,7 @@ export { useClickOutsideEffect } from './hooks/useClickOutsideEffect'
 export { useFieldControl } from './hooks/useFieldControl'
 export { useForceUpdate } from './hooks/useForceUpdate'
 export { useKey } from './hooks/useKey'
+export { NewWindowContext, useNewWindow } from './hooks/useNewWindow'
 export { usePrevious } from './hooks/usePrevious'
 
 /* -----------------------------------------------------------------------------
@@ -100,6 +102,7 @@ export type {
 } from './types'
 
 export type { DropdownProps, DropdownItemProps } from './components/Dropdown'
+export type { NewWindowProps } from './components/NewWindow'
 export type { SingleTagProps } from './components/SingleTag'
 
 export type { ButtonProps } from './elements/Button'
@@ -141,3 +144,5 @@ export type { FormikNumberInputProps } from './formiks/FormikNumberInput'
 export type { FormikSelectProps } from './formiks/FormikSelect'
 export type { FormikTextareaProps } from './formiks/FormikTextarea'
 export type { FormikTextInputProps } from './formiks/FormikTextInput'
+
+export type { NewWindowContextValue } from './hooks/useNewWindow'

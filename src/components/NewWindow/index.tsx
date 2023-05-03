@@ -1,176 +1,247 @@
-/* eslint-disable no-console */
+/* eslint-disable no-null/no-null, @typescript-eslint/naming-convention */
 
-import { MutableRefObject, useCallback, useEffect, useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
+import { PureComponent, ReactNode } from 'react'
+import ReactDOM from 'react-dom'
 
+import type { Define } from '../../types'
 import type { Promisable } from 'type-fest'
 
-const CACHE: {
-  CONTAINER_ELEMENT: HTMLDivElement | null
-  COUNTER: number
-} = {
-  // eslint-disable-next-line no-null/no-null
-  CONTAINER_ELEMENT: null,
-  COUNTER: 0
-}
-
 export type NewWindowProps = {
-  center?: 'parent' | 'screen'
-  children: any
-  height?: number
-  isStoryBook?: boolean
-  name?: string
-  onOpen?: (window: Window) => Promisable<void>
-  onUnload?: () => Promisable<void>
-  title?: string
-  url?: string
-  width?: number
+  center?: 'parent' | 'screen' | undefined
+  children?: ReactNode | undefined
+  closeOnUnmount?: boolean | undefined
+  copyStyles?: boolean | undefined
+  features?:
+    | Partial<{
+        height: number
+        left: number
+        top: number
+        width: number
+      }>
+    | undefined
+  name?: string | undefined
+  onBlock?: ((a: null) => Promisable<void>) | undefined
+  onChangeFocus?: ((visibility: 'hidden' | 'visible') => Promisable<void>) | undefined
+  onOpen?: ((window: Window) => Promisable<void>) | undefined
+  onUnload?: ((a: null) => Promisable<void>) | undefined
+  shouldHaveFocus?: boolean | undefined
+  showPrompt?: boolean | undefined
+  title?: string | undefined
+  url?: string | undefined
 }
-export function NewWindow({
-  center = 'parent',
-  children,
-  height = 780,
-  isStoryBook = false,
-  name = '',
-  onOpen,
-  onUnload,
-  title = 'New Window',
-  url = '',
-  width = 1024
-}: NewWindowProps) {
-  const isReleasedRef = useRef(false)
-  const windowCheckerIntervalRef = useRef<NodeJS.Timer | undefined>(undefined)
-  const windowPropsRef = useRef<{
-    height: number
-    left: number
-    top: number
-    width: number
-  }>({
-    height,
-    left: 0,
-    top: 0,
-    width
-  })
-  // eslint-disable-next-line no-null/no-null
-  const windowRef = useRef(null) as MutableRefObject<Window | null>
 
-  const [isMounted, setIsMounted] = useState(false)
+type DefinedNewWindowProps = Required<Define<NewWindowProps>>
+
+type NewWindowState = {
+  mounted: boolean
+}
+export class NewWindow extends PureComponent<NewWindowProps, NewWindowState> {
+  private container: HTMLDivElement | null
+  private released: boolean
+  private window: Window | null
+  private windowCheckerInterval: NodeJS.Timer | undefined
+
+  constructor(props: NewWindowProps) {
+    super(props)
+
+    this.container = null
+    this.window = null
+    this.windowCheckerInterval = undefined
+    this.released = false
+    this.state = {
+      mounted: false
+    }
+    this.beforeUnloadListener = this.beforeUnloadListener.bind(this)
+  }
+
+  override componentDidMount() {
+    const { onChangeFocus } = this.props as DefinedNewWindowProps
+
+    this.openChild()
+    this.setState({ mounted: true })
+
+    this.window?.addEventListener('beforeunload', this.beforeUnloadListener, { capture: true })
+
+    this.window?.addEventListener('blur', () => {
+      onChangeFocus('hidden')
+    })
+    this.window?.addEventListener('focus', () => {
+      onChangeFocus('visible')
+    })
+  }
+
+  override componentDidUpdate(prevProps) {
+    const { shouldHaveFocus } = this.props
+    if (prevProps.shouldHaveFocus !== shouldHaveFocus && shouldHaveFocus) {
+      this.window?.focus()
+    }
+  }
 
   /**
-   * Release the new window and anything that was bound to it.
+   * Closes the opened window (if any) when NewWindow will unmount if the
+   * prop {closeOnUnmount} is true, otherwise the NewWindow will remain open
    */
-  const closeWindow = useCallback(() => {
-    // This method can be called once.
-    if (isReleasedRef.current && (!isStoryBook || (isStoryBook && CACHE.COUNTER > 1))) {
-      return
+  override componentWillUnmount() {
+    const { children, closeOnUnmount } = this.props
+    if (this.window) {
+      if (closeOnUnmount) {
+        this.window.close()
+      } else if (children) {
+        // Clone any children so they aren't removed when react stops rendering
+        const clone = this.container?.cloneNode(true) as HTMLDivElement
+        clone?.setAttribute('id', 'new-window-container-static')
+        this.window.document.body.appendChild(clone)
+      }
+    }
+    this.window?.removeEventListener('beforeunload', this.beforeUnloadListener, { capture: true })
+  }
+
+  beforeUnloadListener(event: BeforeUnloadEvent) {
+    const { showPrompt } = this.props
+
+    if (showPrompt) {
+      event.preventDefault()
+
+      // eslint-disable-next-line no-param-reassign, no-return-assign
+      return (event.returnValue = 'blocked')
     }
 
-    // console.debug(CACHE.COUNTER, 'closeWindow()')
-
-    isReleasedRef.current = true
-
-    // eslint-disable-next-line no-null/no-null
-    CACHE.CONTAINER_ELEMENT = null
-    CACHE.COUNTER = 0
-
-    // Remove checker interval.
-    clearInterval(windowCheckerIntervalRef.current)
-
-    if (typeof onUnload === 'function') {
-      onUnload()
-    }
-  }, [isStoryBook, onUnload])
+    // eslint-disable-next-line no-return-assign, no-param-reassign
+    return null
+  }
 
   /**
    * Create the new window when NewWindow component mount.
    */
-  const createWindow = useCallback(() => {
-    // console.debug(CACHE.COUNTER, 'createWindow()')
-    if (!window.top) {
-      return
-    }
+  openChild() {
+    const { center, copyStyles, features, name, onBlock, onOpen, title, url } = this.props as DefinedNewWindowProps
 
-    if (center === 'parent') {
-      windowPropsRef.current = {
-        ...windowPropsRef.current,
-        left: window.top.outerWidth / 2 + window.top.screenX - windowPropsRef.current.width / 2,
-        top: window.top.outerHeight / 2 + window.top.screenY - windowPropsRef.current.height / 2
+    // Prepare position of the new window to be centered against the 'parent' window or 'screen'.
+    if (typeof center === 'string' && (features.width === undefined || features.height === undefined)) {
+      console.warn('width and height window features must be present when a center prop is provided')
+    } else if (center === 'parent') {
+      if (!window.top) {
+        console.error('`window.top` is null.')
+
+        return
       }
+
+      features.left = window.top.outerWidth / 2 + window.top.screenX - (features.width as number) / 2
+      features.top = window.top.outerHeight / 2 + window.top.screenY - (features.height as number) / 2
     } else if (center === 'screen') {
-      windowPropsRef.current = {
-        ...windowPropsRef.current,
-        left: window.innerWidth / 2 - windowPropsRef.current.width / 2 + window.screenLeft,
-        top: window.innerHeight / 2 - windowPropsRef.current.height / 2 + window.screenTop
-      }
+      // eslint-disable-next-line no-nested-ternary
+      const width = window.innerWidth
+        ? window.innerWidth
+        : document.documentElement.clientWidth
+        ? document.documentElement.clientWidth
+        : window.screen.width
+      // eslint-disable-next-line no-nested-ternary
+      const height = window.innerHeight
+        ? window.innerHeight
+        : document.documentElement.clientHeight
+        ? document.documentElement.clientHeight
+        : window.screen.height
+
+      features.left = width / 2 - (features.width as number) / 2 + window.screenLeft
+      features.top = height / 2 - (features.height as number) / 2 + window.screenTop
     }
 
     // Open a new window.
-    windowRef.current = window.open(url, name, toWindowFeatures(windowPropsRef.current))
-    if (!windowRef.current) {
-      return
-    }
-
-    CACHE.CONTAINER_ELEMENT = windowRef.current.document.createElement('div')
+    this.window = window.open(url, name, toWindowFeatures(features))
+    this.container = this.window?.document.createElement('div') as HTMLDivElement
     // When a new window use content from a cross-origin there's no way we can attach event
     // to it. Therefore, we need to detect in a interval when the new window was destroyed
     // or was closed.
-    windowCheckerIntervalRef.current = setInterval(() => {
-      if (!windowRef.current || windowRef.current.closed) {
-        closeWindow()
+    this.windowCheckerInterval = setInterval(() => {
+      if (!this.window || this.window.closed) {
+        this.release()
       }
     }, 50)
 
-    windowRef.current.document.title = title
-    CACHE.CONTAINER_ELEMENT.setAttribute('id', 'new-window-container')
-    windowRef.current.document.body.appendChild(CACHE.CONTAINER_ELEMENT)
+    // Check if the new window was succesfully opened.
+    if (this.window) {
+      this.window.document.title = title
 
-    setImmediate(() => {
-      if (!windowRef.current) {
-        return
+      // Check if the container already exists as the window may have been already open
+      this.container = this.window.document.getElementById('new-window-container') as HTMLDivElement
+      if (this.container === null) {
+        this.container = this.window.document.createElement('div')
+        this.container.setAttribute('id', 'new-window-container')
+        this.window.document.body.appendChild(this.container)
+      } else {
+        // Remove any existing content
+        const staticContainer = this.window.document.getElementById(
+          'new-window-container-static'
+        ) as HTMLDivElement | null
+        if (staticContainer) {
+          this.window.document.body.removeChild(staticContainer)
+        }
       }
 
-      copyStyles(document, windowRef.current.document)
-    })
-
-    if (typeof onOpen === 'function') {
-      onOpen(windowRef.current)
-    }
-
-    // Release anything bound to this component before the new window unload.
-    // windowRef.current.addEventListener('beforeunload', () => rele())
-
-    setIsMounted(true)
-  }, [center, closeWindow, name, onOpen, title, url])
-
-  useEffect(() => {
-    CACHE.COUNTER += 1
-
-    // console.debug(CACHE.COUNTER)
-  }, [])
-
-  useEffect(() => {
-    if (!isMounted && (!isStoryBook || (isStoryBook && CACHE.COUNTER > 1))) {
-      createWindow()
-    }
-
-    return () => {
-      if (!windowRef.current || (isStoryBook && CACHE.COUNTER > 1)) {
-        return
+      // If specified, copy styles from parent window's document.
+      if (copyStyles) {
+        setTimeout(() => onCopyStyles(document, this.window?.document), 0)
       }
 
-      // console.debug(CACHE.COUNTER, 'unmount()')
+      if (typeof onOpen === 'function') {
+        onOpen(this.window)
+      }
 
-      windowRef.current.close()
+      // Release anything bound to this component before the new window unload.
+    } else if (typeof onBlock === 'function') {
+      // Handle error on opening of new window.
+      onBlock(null)
+    } else {
+      console.warn('A new window could not be opened. Maybe it was blocked.')
     }
-  }, [children, createWindow, isMounted, isStoryBook])
-
-  // console.debug(CACHE.COUNTER, isMounted, CACHE.CONTAINER_ELEMENT)
-
-  if (!isMounted || !CACHE.CONTAINER_ELEMENT) {
-    return <></>
   }
 
-  return createPortal(children, CACHE.CONTAINER_ELEMENT)
+  /**
+   * Release the new window and anything that was bound to it.
+   */
+  release() {
+    // This method can be called once.
+    if (this.released) {
+      return
+    }
+    this.released = true
+
+    // Remove checker interval.
+    clearInterval(this.windowCheckerInterval)
+
+    // Call any function bound to the `onUnload` prop.
+    const { onUnload } = this.props
+
+    if (typeof onUnload === 'function') {
+      onUnload(null)
+    }
+  }
+
+  override render() {
+    const { mounted } = this.state
+    const { children } = this.props
+    if (!mounted || !this.container) {
+      return null
+    }
+
+    return ReactDOM.createPortal(children, this.container) as any
+  }
+}
+
+;(NewWindow as any).defaultProps = {
+  center: 'parent',
+  closeOnUnmount: true,
+  copyStyles: true,
+  features: { height: '640px', width: '600px' },
+  name: '',
+  onBlock: null,
+  onChangeFocus: () => {},
+  onOpen: null,
+  onUnload: null,
+  shouldHaveFocus: false,
+  showPrompt: false,
+  title: '',
+  url: ''
 }
 
 /**
@@ -181,7 +252,13 @@ export function NewWindow({
 /**
  * Copy styles from a source document to a target.
  */
-function copyStyles(source: DocumentOrShadowRoot, target: Record<string, any>) {
+function onCopyStyles(source: Document, target: Document | undefined): void {
+  if (!target) {
+    console.error('`target` is undefined.')
+
+    return
+  }
+
   // Store style tags, avoid reflow in the loop
   const headFrag = target.createDocumentFragment()
 
@@ -191,7 +268,6 @@ function copyStyles(source: DocumentOrShadowRoot, target: Record<string, any>) {
     try {
       rules = styleSheet.cssRules
     } catch (err) {
-      // eslint-disable-next-line no-console
       console.error(err)
     }
     if (rules) {
@@ -201,19 +277,13 @@ function copyStyles(source: DocumentOrShadowRoot, target: Record<string, any>) {
       // Write the text of each rule into the body of the style element
       Array.from(styleSheet.cssRules).forEach(cssRule => {
         const { type } = cssRule
-        // console.debug(type, cssRule.constructor.name)
-
-        // Skip unknown rules
-        // if (type === CSSRule.UNKNOWN_RULE) {
-        //   return
-        // }
 
         let returnText = ''
 
         if (type === CSSRule.KEYFRAMES_RULE) {
           // IE11 will throw error when trying to access cssText property, so we
           // need to assemble them
-          returnText = getKeyFrameText(cssRule as any)
+          returnText = getKeyFrameText(cssRule)
         } else if ([CSSRule.IMPORT_RULE, CSSRule.FONT_FACE_RULE].includes(type)) {
           // Check if the cssRule type is CSSImportRule (3) or CSSFontFaceRule (5)
           // to handle local imports on a about:blank page
@@ -244,11 +314,12 @@ function copyStyles(source: DocumentOrShadowRoot, target: Record<string, any>) {
 /**
  * Make keyframe rules.
  */
-function getKeyFrameText(styleSheetRule: { cssRules: CSSKeyframeRule[]; name: string }): string {
-  const tokens = ['@keyframes', styleSheetRule.name, '{']
-  Array.from(styleSheetRule.cssRules as CSSKeyframeRule[]).forEach(rule => {
+// This should be `CSSRule` instead of `any` but this code is a bit tedious.
+function getKeyFrameText(cssRule: any /** CSSRule */): string {
+  const tokens = ['@keyframes', cssRule.name, '{']
+  Array.from(cssRule.cssRules).forEach((keyframesCssRule: any) => {
     // type === CSSRule.KEYFRAME_RULE should always be true
-    tokens.push(rule.keyText, '{', rule.style.cssText, '}')
+    tokens.push(keyframesCssRule.keyText, '{', keyframesCssRule.style.cssText, '}')
   })
   tokens.push('}')
 
@@ -261,7 +332,7 @@ function getKeyFrameText(styleSheetRule: { cssRules: CSSKeyframeRule[]; name: st
 function fixUrlForRule(cssRule: CSSRule): string {
   return cssRule.cssText
     .split('url(')
-    .map((line: string) => {
+    .map(line => {
       if (line[1] === '/') {
         return `${line.slice(0, 1)}${window.location.origin}${line.slice(1)}`
       }
@@ -272,19 +343,23 @@ function fixUrlForRule(cssRule: CSSRule): string {
 }
 
 /**
- * Convert features props to window features format (name=value,other=value).
+ * Convert features props to window features format (name=value, other=value).
  */
-function toWindowFeatures(obj: Record<string, any>): string {
-  return Object.keys(obj)
-    .reduce<string[]>((features, name) => {
-      const value = obj[name]
+function toWindowFeatures(features: Record<string, any> | undefined): string {
+  if (!features) {
+    return ''
+  }
+
+  return Object.keys(features)
+    .reduce((featuresAsStrings, name) => {
+      const value = features[name]
       if (typeof value === 'boolean') {
-        features.push(`${name}=${value ? 'yes' : 'no'}`)
+        featuresAsStrings.push(`${name}=${value ? 'yes' : 'no'}`)
       } else {
-        features.push(`${name}=${value}`)
+        featuresAsStrings.push(`${name}=${value}`)
       }
 
-      return features
-    }, [])
+      return featuresAsStrings
+    }, [] as any)
     .join(',')
 }
