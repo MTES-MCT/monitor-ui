@@ -3,7 +3,7 @@
 import { PureComponent, ReactNode } from 'react'
 import ReactDOM from 'react-dom'
 
-import type { Define } from '../../types'
+import type { Define } from '../types'
 import type { Promisable } from 'type-fest'
 
 export type NewWindowProps = {
@@ -11,10 +11,16 @@ export type NewWindowProps = {
   children?: ReactNode | undefined
   closeOnUnmount?: boolean | undefined
   copyStyles?: boolean | undefined
+  /**
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/Window/open#windowfeatures
+   */
   features?:
     | Partial<{
         height: number
         left: number
+        noopener: '_blank' | '_parent' | '_self' | '_top'
+        noreferrer: string
+        popup: 'yes'
         top: number
         width: number
       }>
@@ -345,7 +351,7 @@ function fixUrlForRule(cssRule: CSSRule): string {
 /**
  * Convert features props to window features format (name=value, other=value).
  */
-function toWindowFeatures(features: Record<string, any> | undefined): string {
+function toWindowFeatures(features: NewWindowProps['features'] | undefined): string {
   if (!features) {
     return ''
   }
