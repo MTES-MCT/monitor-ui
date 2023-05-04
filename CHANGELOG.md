@@ -1,3 +1,19 @@
+# [5.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.7.1...v5.8.0) (2023-05-04)
+
+
+### Bug Fixes
+
+* **components:** retype onChangeFocus callback param in NewWindow ([da16a87](https://github.com/MTES-MCT/monitor-ui/commit/da16a87d9e461de08beb61b0f6875742ea22c19a))
+* **elements:** code review of SimpleTable ([34d7466](https://github.com/MTES-MCT/monitor-ui/commit/34d7466117fd8d08c6921e8f04e17b251ebbc957))
+* **elements:** improve style of SimpleTable ([6bfac8d](https://github.com/MTES-MCT/monitor-ui/commit/6bfac8d58141e7c3911f8f5aed605d3dc5df1abf))
+* **elements:** lint and type of SimpleTable ([9e45fde](https://github.com/MTES-MCT/monitor-ui/commit/9e45fde0e47089a0f053b48e6b702660d942050a))
+
+
+### Features
+
+* **elements:** add SimpleTable ([6517305](https://github.com/MTES-MCT/monitor-ui/commit/6517305af0b999c7dd2090460ed05d18ee797818))
+* **elements:** export component and move story in elements folder ([ca7c012](https://github.com/MTES-MCT/monitor-ui/commit/ca7c0122eae40a60f1fa405b29541e41d432525b))
+
 ## [5.7.1](https://github.com/MTES-MCT/monitor-ui/compare/v5.7.0...v5.7.1) (2023-05-03)
 
 
