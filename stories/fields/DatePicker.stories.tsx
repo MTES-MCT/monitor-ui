@@ -17,6 +17,7 @@ const args: DatePickerWithDateDateProps | DatePickerWithStringDateProps = {
   isLabelHidden: false,
   isLight: false,
   isStringDate: false,
+  isUndefinedWhenDisabled: false,
   label: 'A date',
   withTime: true
 }

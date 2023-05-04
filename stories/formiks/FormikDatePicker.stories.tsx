@@ -16,6 +16,7 @@ const args: FormikDatePickerWithDateDateProps | FormikDatePickerWithStringDatePr
   isLabelHidden: false,
   isLight: false,
   isStringDate: false,
+  isUndefinedWhenDisabled: false,
   label: 'A date',
   name: 'myDate',
   withTime: true
