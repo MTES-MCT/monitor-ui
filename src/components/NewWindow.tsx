@@ -27,7 +27,7 @@ export type NewWindowProps = {
     | undefined
   name?: string | undefined
   onBlock?: ((a: null) => Promisable<void>) | undefined
-  onChangeFocus?: ((visibility: 'hidden' | 'visible') => Promisable<void>) | undefined
+  onChangeFocus?: ((isFocused: boolean) => Promisable<void>) | undefined
   onOpen?: ((window: Window) => Promisable<void>) | undefined
   onUnload?: ((a: null) => Promisable<void>) | undefined
   shouldHaveFocus?: boolean | undefined
@@ -69,10 +69,10 @@ export class NewWindow extends PureComponent<NewWindowProps, NewWindowState> {
     this.window?.addEventListener('beforeunload', this.beforeUnloadListener, { capture: true })
 
     this.window?.addEventListener('blur', () => {
-      onChangeFocus('hidden')
+      onChangeFocus(false)
     })
     this.window?.addEventListener('focus', () => {
-      onChangeFocus('visible')
+      onChangeFocus(true)
     })
   }
 
