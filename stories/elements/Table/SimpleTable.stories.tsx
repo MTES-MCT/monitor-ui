@@ -266,12 +266,12 @@ export function _SimpleTable() {
 
   return (
     <div ref={tableContainerRef}>
-      <SimpleTable.StyledTable>
-        <SimpleTable.StyledHead>
+      <SimpleTable.Table>
+        <SimpleTable.Head>
           {table.getHeaderGroups().map(headerGroup => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map(header => (
-                <SimpleTable.StyledTh
+                <SimpleTable.Th
                   key={header.id}
                   {...{
                     style: {
@@ -282,9 +282,9 @@ export function _SimpleTable() {
                   }}
                 >
                   {header.isPlaceholder ? undefined : (
-                    <SimpleTable.StyledSortContainer
+                    <SimpleTable.SortContainer
                       {...{
-                        className: header.column.getCanSort() ? 'cursor-pointer select-none' : '',
+                        className: header.column.getCanSort() ? 'cursor-pointer' : '',
                         onClick: header.column.getToggleSortingHandler()
                       }}
                     >
@@ -294,13 +294,13 @@ export function _SimpleTable() {
                           asc: <div>▲</div>,
                           desc: <div>▼</div>
                         }[header.column.getIsSorted() as string] ?? <Icon.SortingArrows size={14} />)}
-                    </SimpleTable.StyledSortContainer>
+                    </SimpleTable.SortContainer>
                   )}
-                </SimpleTable.StyledTh>
+                </SimpleTable.Th>
               ))}
             </tr>
           ))}
-        </SimpleTable.StyledHead>
+        </SimpleTable.Head>
         <tbody>
           {paddingTop > 0 && (
             <tr>
@@ -311,9 +311,9 @@ export function _SimpleTable() {
             const row = rows[virtualRow.index]
 
             return (
-              <SimpleTable.StyledBodyTr key={virtualRow.key}>
+              <SimpleTable.BodyTr key={virtualRow.key}>
                 {row?.getVisibleCells().map(cell => (
-                  <SimpleTable.StyledTd
+                  <SimpleTable.Td
                     {...{
                       key: cell.id,
                       style: {
@@ -324,9 +324,9 @@ export function _SimpleTable() {
                     }}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </SimpleTable.StyledTd>
+                  </SimpleTable.Td>
                 ))}
-              </SimpleTable.StyledBodyTr>
+              </SimpleTable.BodyTr>
             )
           })}
           {paddingBottom > 0 && (
@@ -335,7 +335,7 @@ export function _SimpleTable() {
             </tr>
           )}
         </tbody>
-      </SimpleTable.StyledTable>
+      </SimpleTable.Table>
     </div>
   )
 }
