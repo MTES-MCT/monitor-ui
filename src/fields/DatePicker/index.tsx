@@ -63,6 +63,7 @@ export interface DatePickerProps
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
   isStringDate?: boolean | undefined
+  isUndefinedWhenDisabled?: boolean | undefined
   label: string
   /**
    * Range of minutes used to generate the time picker list.
@@ -107,6 +108,7 @@ export function DatePicker({
   isLabelHidden = false,
   isLight = false,
   isStringDate = false,
+  isUndefinedWhenDisabled = false,
   label,
   minutesRange = 15,
   onChange,
@@ -290,7 +292,7 @@ export function DatePicker({
     forceUpdate()
   }, [forceUpdate])
 
-  useFieldUndefineEffect(disabled, onChange, handleDisable)
+  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange, handleDisable)
 
   useClickOutsideEffect(boxRef, closeCalendarPicker, baseContainer)
 

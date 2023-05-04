@@ -17,6 +17,7 @@ const args: FormikDateRangePickerWithDateDateProps | FormikDateRangePickerWithSt
   isLabelHidden: false,
   isLight: false,
   isStringDate: false,
+  isUndefinedWhenDisabled: false,
   label: 'A date range',
   name: 'myDateRange',
   withTime: true
