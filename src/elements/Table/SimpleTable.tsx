@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 
-const StyledTable = styled.table`
+const Table = styled.table`
   width: 100%;
   table-layout: auto;
   overflow: auto;
   border-collapse: separate;
 `
-const StyledHead = styled.thead`
+const Head = styled.thead`
   position: sticky;
   top: 0;
   z-index: 1;
@@ -16,12 +16,17 @@ const StyledHead = styled.thead`
   }
 `
 
-const StyledSortContainer = styled.div`
+const SortContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: default;
+
+  &.cursor-pointer {
+    cursor: pointer;
+  }
 `
-const StyledTh = styled.th`
+const Th = styled.th`
   background-color: ${p => p.theme.color.gainsboro};
   border-top: 1px solid ${p => p.theme.color.lightGray};
   border-bottom: 1px solid ${p => p.theme.color.lightGray};
@@ -35,7 +40,7 @@ const StyledTh = styled.th`
   white-space: nowrap;
 `
 
-const StyledBodyTr = styled.tr`
+const BodyTr = styled.tr`
   :hover {
     background-color: ${p => p.theme.color.blueYonder[25]};
   }
@@ -51,7 +56,7 @@ const StyledBodyTr = styled.tr`
   }
 `
 
-const StyledTd = styled.td`
+const Td = styled.td`
   font-size: 13px;
   font-weight: 500;
   color: ${p => p.theme.color.gunMetal};
@@ -65,10 +70,10 @@ const StyledTd = styled.td`
 `
 
 export const SimpleTable = {
-  StyledBodyTr,
-  StyledHead,
-  StyledSortContainer,
-  StyledTable,
-  StyledTd,
-  StyledTh
+  BodyTr,
+  Head,
+  SortContainer,
+  Table,
+  Td,
+  Th
 }
