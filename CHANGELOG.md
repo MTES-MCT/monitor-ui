@@ -1,3 +1,10 @@
+## [5.8.1](https://github.com/MTES-MCT/monitor-ui/compare/v5.8.0...v5.8.1) (2023-05-04)
+
+
+### Bug Fixes
+
+* **fields:** add missing isUndefinedWhenDisabled prop to DatePicker & DateRangePicker ([17ba4f8](https://github.com/MTES-MCT/monitor-ui/commit/17ba4f8a60204c9a297d59c167c0ae2d872070cf))
+
 # [5.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.7.1...v5.8.0) (2023-05-04)
 
 
