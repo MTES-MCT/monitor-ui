@@ -1,3 +1,10 @@
+## [5.9.1](https://github.com/MTES-MCT/monitor-ui/compare/v5.9.0...v5.9.1) (2023-05-05)
+
+
+### Bug Fixes
+
+* **components:** add default class name to Dialog ([b74ea15](https://github.com/MTES-MCT/monitor-ui/commit/b74ea15a9ae9d629e99eb2917a2acc3b88936736))
+
 # [5.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.8.1...v5.9.0) (2023-05-05)
 
 
