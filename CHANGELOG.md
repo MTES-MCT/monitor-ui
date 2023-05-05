@@ -1,3 +1,10 @@
+# [5.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.8.1...v5.9.0) (2023-05-05)
+
+
+### Features
+
+* **components:** add Dialog ([89057d2](https://github.com/MTES-MCT/monitor-ui/commit/89057d25674f76b8298fc432a6bd1f521b25f605))
+
 ## [5.8.1](https://github.com/MTES-MCT/monitor-ui/compare/v5.8.0...v5.8.1) (2023-05-04)
 
 
