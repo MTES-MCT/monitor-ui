@@ -1,17 +1,20 @@
+import classnames from 'classnames'
+import { HTMLAttributes, useMemo } from 'react'
 import styled from 'styled-components'
 
 import { Action } from './Action'
 import { Body } from './Body'
 import { Title } from './Title'
-
-import type { HTMLAttributes } from 'react'
+import { stopMouseEventPropagation } from '../../utils/stopMouseEventPropagation'
 
 export type DialogProps = HTMLAttributes<HTMLDivElement> & {
   isAbsolute?: boolean
 }
-export function RawDialog({ children, isAbsolute = false, ...nativeProps }: DialogProps) {
+export function RawDialog({ children, className, isAbsolute = false, ...nativeProps }: DialogProps) {
+  const controlledClassName = useMemo(() => classnames('Component-Dialog', className), [className])
+
   return (
-    <Box $isAbsolute={isAbsolute} {...nativeProps} onClick={e => e.stopPropagation()}>
+    <Box $isAbsolute={isAbsolute} className={controlledClassName} {...nativeProps} onClick={stopMouseEventPropagation}>
       <Overlay $isAbsolute={isAbsolute} />
 
       <Window $isAbsolute={isAbsolute}>{children}</Window>
