@@ -18,6 +18,7 @@ export { ThemeProvider } from './ThemeProvider'
   Components
 */
 
+export { Dialog } from './components/Dialog'
 export { Dropdown } from './components/Dropdown'
 export { NewWindow } from './components/NewWindow'
 export { SingleTag } from './components/SingleTag'
@@ -102,6 +103,7 @@ export type {
   Undefine
 } from './types'
 
+export type { DialogProps } from './components/Dialog'
 export type { DropdownProps, DropdownItemProps } from './components/Dropdown'
 export type { NewWindowProps } from './components/NewWindow'
 export type { SingleTagProps } from './components/SingleTag'
