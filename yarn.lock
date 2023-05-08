@@ -3149,7 +3149,7 @@ __metadata:
     "@typescript-eslint/parser": 5.56.0
     babel-loader: 9.1.2
     browser-assert: 1.2.1
-    chromatic: 6.14.0
+    chromatic: 6.17.4
     classnames: 2.3.2
     codecov: 3.8.3
     cypress: 12.9.0
@@ -9811,18 +9811,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:6.14.0":
-  version: 6.14.0
-  resolution: "chromatic@npm:6.14.0"
+"chromatic@npm:6.17.4":
+  version: 6.17.4
+  resolution: "chromatic@npm:6.17.4"
   dependencies:
     "@discoveryjs/json-ext": ^0.5.7
     "@types/webpack-env": ^1.17.0
-    snyk-nodejs-lockfile-parser: ^1.43.1
+    snyk-nodejs-lockfile-parser: ^1.49.0
   bin:
     chroma: bin/main.cjs
     chromatic: bin/main.cjs
     chromatic-cli: bin/main.cjs
-  checksum: 89f56c3a6ca7782d97d7c4b4bf3e63c805e2f4d812cf73b7669e2916d836316508dd1121eecffb7156685a7a17e6dc44852c9fdd1598f06b8f974ec8a0beb3f2
+  checksum: d49ebcc17f2f3010e95d06b5084b7802d293a4ad3cd571dc5b744f5e90763a19b643729fc3dcfe86beb44b6f542800378c7a4c1478b963d3adbdc58a1bfa9988
   languageName: node
   linkType: hard
 
@@ -23840,7 +23840,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"snyk-nodejs-lockfile-parser@npm:^1.43.1":
+"snyk-nodejs-lockfile-parser@npm:^1.49.0":
   version: 1.49.0
   resolution: "snyk-nodejs-lockfile-parser@npm:1.49.0"
   dependencies:
