@@ -1,3 +1,10 @@
+## [5.9.2](https://github.com/MTES-MCT/monitor-ui/compare/v5.9.1...v5.9.2) (2023-05-10)
+
+
+### Bug Fixes
+
+* **elements:** delete stop click event propagation in Button & IconButton ([b2d70ad](https://github.com/MTES-MCT/monitor-ui/commit/b2d70adf14ce7780b6ef45ff9bbba0d026ac77ef))
+
 ## [5.9.1](https://github.com/MTES-MCT/monitor-ui/compare/v5.9.0...v5.9.1) (2023-05-05)
 
 
