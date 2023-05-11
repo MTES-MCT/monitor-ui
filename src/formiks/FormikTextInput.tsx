@@ -11,7 +11,7 @@ export function FormikTextInput({ name, ...originalProps }: FormikTextInputProps
 
   // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleChange = useMemo(() => helpers.setValue, [])
+  const handleChange = useMemo(() => helpers.setValue, [name])
 
   return <TextInput error={meta.error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
 }

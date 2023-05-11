@@ -17,9 +17,9 @@ export function FormikSearch<OptionValue extends OptionValueType = string>({
   const [field, meta, helpers] = useField(name)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const defaultValue = useMemo(() => field.value, [])
+  const defaultValue = useMemo(() => field.value, [name])
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleChange = useMemo(() => helpers.setValue, [])
+  const handleChange = useMemo(() => helpers.setValue, [name])
 
   if (!defaultValue) {
     return <Search name={name} onChange={helpers.setValue} {...originalProps} />

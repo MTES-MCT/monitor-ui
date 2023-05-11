@@ -10,15 +10,20 @@ import { Button, FormikCheckbox, FormikEffect, CheckboxProps, FormikCheckboxProp
 import { mountAndWait, outputShouldBe } from '../utils'
 
 function Template({
+  firstUpdatedValue,
   initialValue,
-  updatedValue,
+  secondUpdatedValue,
+  updatedName,
   ...props
 }: FormikCheckboxProps & {
+  firstUpdatedValue: boolean
   initialValue?: boolean
-  updatedValue: boolean
+  secondUpdatedValue?: boolean
+  updatedName?: string
 }) {
   const [isDisabled, setIsDisabled] = useState(false)
   const [outputValue, setOutputValue] = useState({})
+  const [name, setName] = useState(props.name)
 
   const onChange = nextValues => {
     setOutputValue(nextValues)
@@ -40,11 +45,13 @@ function Template({
           <>
             <FormikEffect onChange={onChange} />
 
-            <FormikCheckbox {...props} disabled={isDisabled} />
+            <FormikCheckbox {...props} disabled={isDisabled} name={name} />
 
             <Button onClick={() => setIsDisabled(true)}>Disable</Button>
-            <Button onClick={() => setFieldValue(props.name, updatedValue)}>Update</Button>
-            <Button onClick={() => setFieldValue(props.name, undefined)}>Reset</Button>
+            <Button onClick={() => setFieldValue(name, firstUpdatedValue)}>First Update</Button>
+            <Button onClick={() => setFieldValue(name, secondUpdatedValue)}>Second Update</Button>
+            <Button onClick={() => setFieldValue(name, undefined)}>Reset</Button>
+            <Button onClick={() => setName(String(updatedName))}>Update Name</Button>
           </>
         )}
       </Formik>
@@ -61,18 +68,18 @@ context('Template', () => {
   }
 
   it('Should update and reset the text input value', () => {
-    const updatedValue = true
+    const firstUpdatedValue = true
 
-    mountAndWait(<Template {...commonProps} updatedValue={updatedValue} />)
+    mountAndWait(<Template {...commonProps} firstUpdatedValue={firstUpdatedValue} />)
 
     outputShouldBe({
       myCheckbox: false
     })
 
-    cy.clickButton('Update')
+    cy.clickButton('First Update')
 
     outputShouldBe({
-      myCheckbox: updatedValue
+      myCheckbox: firstUpdatedValue
     })
 
     cy.clickButton('Reset')
@@ -82,18 +89,18 @@ context('Template', () => {
 
   it('Should update and reset the text input value with initial values', () => {
     const initialValue = false
-    const updatedValue = true
+    const firstUpdatedValue = true
 
-    mountAndWait(<Template {...commonProps} initialValue={initialValue} updatedValue={updatedValue} />)
+    mountAndWait(<Template {...commonProps} firstUpdatedValue={firstUpdatedValue} initialValue={initialValue} />)
 
     outputShouldBe({
       myCheckbox: initialValue
     })
 
-    cy.clickButton('Update')
+    cy.clickButton('First Update')
 
     outputShouldBe({
-      myCheckbox: updatedValue
+      myCheckbox: firstUpdatedValue
     })
 
     cy.clickButton('Reset')
@@ -102,44 +109,81 @@ context('Template', () => {
   })
 
   it('Should update and disable the text input value', () => {
-    const updatedValue = true
+    const firstUpdatedValue = true
 
-    mountAndWait(<Template {...commonProps} updatedValue={updatedValue} />)
+    mountAndWait(<Template {...commonProps} firstUpdatedValue={firstUpdatedValue} />)
 
     outputShouldBe({
       myCheckbox: false
     })
 
-    cy.clickButton('Update')
+    cy.clickButton('First Update')
 
     outputShouldBe({
-      myCheckbox: updatedValue
+      myCheckbox: firstUpdatedValue
     })
 
     cy.clickButton('Disable')
 
     outputShouldBe({
-      myCheckbox: updatedValue
+      myCheckbox: firstUpdatedValue
     })
   })
 
   it('Should update and disable the text input value with `isUndefinedWhenDisabled`', () => {
-    const updatedValue = true
+    const firstUpdatedValue = true
 
-    mountAndWait(<Template {...commonProps} isUndefinedWhenDisabled updatedValue={updatedValue} />)
+    mountAndWait(<Template {...commonProps} firstUpdatedValue={firstUpdatedValue} isUndefinedWhenDisabled />)
 
     outputShouldBe({
       myCheckbox: false
     })
 
-    cy.clickButton('Update')
+    cy.clickButton('First Update')
 
     outputShouldBe({
-      myCheckbox: updatedValue
+      myCheckbox: firstUpdatedValue
     })
 
     cy.clickButton('Disable')
 
     outputShouldBe({})
+  })
+
+  it('Should update the text input value with a new `name`', () => {
+    const updatedName = 'myCheckbox2'
+    const firstUpdatedValue = true
+    const secondUpdatedValue = false
+
+    mountAndWait(
+      <Template
+        {...commonProps}
+        firstUpdatedValue={firstUpdatedValue}
+        secondUpdatedValue={secondUpdatedValue}
+        updatedName={updatedName}
+      />
+    )
+
+    outputShouldBe({
+      myCheckbox: false
+    })
+
+    cy.clickButton('First Update')
+
+    outputShouldBe({
+      myCheckbox: firstUpdatedValue
+    })
+
+    cy.clickButton('Update Name')
+
+    outputShouldBe({
+      myCheckbox2: firstUpdatedValue
+    })
+
+    cy.clickButton('Second Update')
+
+    outputShouldBe({
+      myCheckbox2: secondUpdatedValue
+    })
   })
 })
