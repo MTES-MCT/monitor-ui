@@ -43,7 +43,7 @@ export default {
 }
 
 export function WithOptions(props: SearchProps) {
-  const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
+  const [outputValue, setOutputValue] = useState<any | undefined | '∅'>('∅')
 
   return (
     <>

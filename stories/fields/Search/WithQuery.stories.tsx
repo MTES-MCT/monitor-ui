@@ -37,7 +37,7 @@ export default {
 }
 
 export function WithQuery(props: SearchProps) {
-  const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
+  const [outputValue, setOutputValue] = useState<any | undefined | '∅'>('∅')
 
   return (
     <>

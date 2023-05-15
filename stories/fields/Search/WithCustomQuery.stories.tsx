@@ -32,7 +32,7 @@ export default {
 }
 
 export function WithCustomQuery(props: SearchProps) {
-  const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
+  const [outputValue, setOutputValue] = useState<any | undefined | '∅'>('∅')
   const [options, setOptions] = useState<Option[]>([])
 
   const onQuery = async nextQuery => {
