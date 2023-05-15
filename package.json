@@ -94,7 +94,7 @@
     "eslint": "8.39.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.0.0",
-    "eslint-config-prettier": "8.6.0",
+    "eslint-config-prettier": "8.8.0",
     "eslint-plugin-cypress": "2.13.3",
     "eslint-plugin-import": "2.27.5",
     "eslint-plugin-jest": "27.1.6",
