@@ -7,6 +7,7 @@ import { Search } from '../../../src'
 import type { SearchProps } from '../../../src'
 
 type Value = {
+  name: string
   subValue: string
 }
 
@@ -15,25 +16,29 @@ function MenuItem({ item }) {
     <>
       My custom menu item:
       <br />
-      {item.subValue}
+      {item}
     </>
   )
 }
 
 const args: SearchProps<Value> = {
-  defaultValue: undefined,
   error: '',
   isLabelHidden: false,
   isLight: false,
   label: 'An autocompletable select',
   name: 'autoComplete',
   placeholder: 'Type "first"',
+  optionValueKey: 'name' as any,
+  isSearchIconVisible: false,
   MenuItem,
   options: [
-    { label: 'First Option', value: { subValue: 'FIRST_OPTION' } },
-    { label: 'Second Option', value: { subValue: 'SECOND_OPTION' } },
-    { label: 'Third Option', value: { subValue: 'THIRD_OPTION' } },
-    { label: 'A Very Very Long Option', value: { subValue: 'A_VERY_VERY_LONG_OPTION' } }
+    { label: 'First Option', value: { name: 'First Option', subValue: 'FIRST_OPTION' } },
+    { label: 'Second Option', value: { name: 'Second Option', subValue: 'SECOND_OPTION' } },
+    { label: 'Third Option', value: { name: 'Third Option', subValue: 'THIRD_OPTION' } },
+    {
+      label: 'A Very Very Long Option',
+      value: { name: 'A Very Very Long  Option', subValue: 'A_VERY_VERY_LONG_OPTION' }
+    }
   ]
 }
 

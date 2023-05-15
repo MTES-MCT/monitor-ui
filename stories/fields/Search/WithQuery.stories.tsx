@@ -14,6 +14,7 @@ const args: SearchProps = {
   name: 'autoComplete',
   placeholder: 'Type "brew"',
   throttleDuration: 500,
+  options: [],
   queryMap: ({ id, name }) => ({
     label: name,
     value: id
