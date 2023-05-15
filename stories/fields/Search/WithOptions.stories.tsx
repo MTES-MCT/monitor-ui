@@ -6,21 +6,26 @@ import { Search } from '../../../src'
 
 import type { SearchProps } from '../../../src'
 
-const args: SearchProps = {
-  defaultValue: undefined,
+type Value = {
+  id: number
+  name: string
+}
+
+const args: SearchProps<Value> = {
   error: '',
   isLabelHidden: false,
-  isSearchIconHidden: false,
   isLight: false,
   label: 'An autocompletable select',
   name: 'autoComplete',
   placeholder: 'Type "first"',
+  optionValueKey: 'name' as any,
   options: [
-    { label: 'First Option', value: 'FIRST_OPTION' },
-    { label: 'Second Option', value: 'SECOND_OPTION' },
-    { label: 'Third Option', value: 'THIRD_OPTION' },
-    { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
-  ]
+    { label: 'First Option', value: { id: 1, name: 'First Option' } },
+    { label: 'Second Option', value: { id: 2, name: 'Second Option' } },
+    { label: 'Third Option', value: { id: 3, name: 'Third Option' } },
+    { label: 'A Very Very Long Option', value: { id: 4, name: 'A Very Very Long Option' } }
+  ],
+  value: undefined
 }
 
 export default {
@@ -47,17 +52,7 @@ export function WithOptions(props: SearchProps) {
 
   return (
     <>
-      <Search
-        {...props}
-        MenuItem={undefined}
-        onChange={setOutputValue}
-        options={[
-          { label: 'First Option', value: 'FIRST_OPTION' },
-          { label: 'Second Option', value: 'SECOND_OPTION' },
-          { label: 'Third Option', value: 'THIRD_OPTION' },
-          { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
-        ]}
-      />
+      <Search {...props} MenuItem={undefined} onChange={setOutputValue} />
 
       {outputValue !== '∅' && <Output value={outputValue} />}
     </>
