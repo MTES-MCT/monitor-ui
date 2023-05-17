@@ -1,4 +1,5 @@
 import { Formik } from 'formik'
+import ky from 'ky'
 import { useMemo, useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
@@ -13,12 +14,7 @@ const args: FormikSearchProps = {
   isLight: false,
   label: 'An autocompletable select',
   name: 'autoComplete',
-  placeholder: 'Type "brew"',
-  queryMap: ({ id, name }) => ({
-    label: name,
-    value: id
-  }),
-  queryUrl: 'https://api.openbrewerydb.org/breweries?by_name=%s'
+  placeholder: 'Type "brew"'
 }
 
 export default {
@@ -44,6 +40,22 @@ export const WithQuery = (props: FormikSearchProps) => {
     | '∅'
   >('∅')
 
+  const [options, setOptions] = useState<{ label: any; value: any }[]>([])
+
+  const onQuery = async value => {
+    const results: Record<string, any>[] = await ky
+      .get(`https://api.openbrewerydb.org/breweries?by_name=${value}`)
+      .json()
+
+    const dataFormatted = results
+      ? results.map(({ id, name }) => ({
+          label: name,
+          value: id
+        }))
+      : []
+    setOptions(dataFormatted)
+  }
+
   const key = useMemo(() => props.name, [props.name])
 
   return (
@@ -52,7 +64,7 @@ export const WithQuery = (props: FormikSearchProps) => {
         <>
           <FormikEffect onChange={setOutputValue} />
 
-          <FormikSearch {...props} />
+          <FormikSearch {...props} onQuery={onQuery} options={options} />
         </>
       </Formik>
 

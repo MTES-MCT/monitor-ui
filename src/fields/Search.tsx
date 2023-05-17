@@ -1,9 +1,7 @@
 import classnames from 'classnames'
-import ky from 'ky'
 import React, { SyntheticEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AutoComplete as RsuiteAutoComplete } from 'rsuite'
 import styled from 'styled-components'
-import { useDebouncedCallback } from 'use-debounce'
 
 import { Accent, Size } from '../constants'
 import { Field } from '../elements/Field'
@@ -20,7 +18,7 @@ import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
 import { getRsuiteValueFromOptionValue } from '../utils/getRsuiteValueFromOptionValue'
 import { normalizeString } from '../utils/normalizeString'
 
-import type { Option, OptionAsRsuiteItemDataType, OptionValueType } from '../types'
+import type { Option, OptionValueType } from '../types'
 import type { AutoCompleteProps as RsuiteAutoCompleteProps } from 'rsuite'
 import type { ItemDataType } from 'rsuite/esm/@types/common'
 import type { Promisable } from 'type-fest'
@@ -43,10 +41,6 @@ export type SearchProps<OptionValue extends OptionValueType = string> = Omit<
   onQuery?: ((nextQuery: string | undefined) => Promisable<void>) | undefined
   optionValueKey?: keyof OptionValue | undefined
   options?: Option<OptionValue>[]
-  queryMap?: ((record: Record<string, any>) => Option<OptionValue>) | undefined
-  queryUrl?: string | undefined
-  /** Duration in milliseconds */
-  throttleDuration?: number
   value?: OptionValue | undefined
 }
 export function Search<OptionValue extends OptionValueType = string>({
@@ -63,9 +57,6 @@ export function Search<OptionValue extends OptionValueType = string>({
   onQuery,
   options = [],
   optionValueKey,
-  queryMap,
-  queryUrl,
-  throttleDuration = 200,
   value,
   ...originalProps
 }: SearchProps<OptionValue>) {
@@ -74,7 +65,6 @@ export function Search<OptionValue extends OptionValueType = string>({
   const queryRef = useRef<string | undefined>(undefined)
 
   const data = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
-  const [formattedOptions, setFormattedOptions] = useState<OptionAsRsuiteItemDataType<OptionValue>[]>(data)
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -98,16 +88,6 @@ export function Search<OptionValue extends OptionValueType = string>({
     setIsOpen(false)
   }, [])
 
-  const fetchQueryResponse = useDebouncedCallback(
-    async (_searched: string, _queryUrl: string, _queryMap: (record: Record<string, any>) => Option<OptionValue>) => {
-      const url = _queryUrl.replace('%s', _searched)
-      const rawData: Record<string, any>[] = await ky.get(url).json()
-
-      return rawData.map(_queryMap)
-    },
-    throttleDuration
-  )
-
   const handleChange = useCallback(
     async (nextQuery: OptionValue, event: SyntheticEvent) => {
       if (!(typeof nextQuery === 'string')) {
@@ -121,11 +101,6 @@ export function Search<OptionValue extends OptionValueType = string>({
         setIsOpen(false)
       }
 
-      if (queryUrl && queryMap && queryRef.current) {
-        const nextData = (await fetchQueryResponse(queryRef.current, queryUrl, queryMap)) || []
-        setFormattedOptions(getRsuiteDataFromOptions(nextData, optionValueKey))
-      }
-
       if (onChange && !queryRef.current) {
         onChange(undefined)
       }
@@ -134,7 +109,7 @@ export function Search<OptionValue extends OptionValueType = string>({
         onQuery(queryRef.current)
       }
     },
-    [onChange, onQuery, queryMap, queryUrl, fetchQueryResponse, optionValueKey]
+    [onChange, onQuery]
   )
 
   const handleSelect = useCallback(
@@ -172,7 +147,7 @@ export function Search<OptionValue extends OptionValueType = string>({
             key={key}
             $isLight={isLight}
             container={boxRef.current}
-            data={formattedOptions}
+            data={data}
             id={originalProps.name}
             onChange={handleChange}
             onSelect={handleSelect}
