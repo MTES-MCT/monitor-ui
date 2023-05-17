@@ -1,3 +1,21 @@
+# [6.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.9.2...v6.0.0) (2023-05-17)
+
+
+### Bug Fixes
+
+* **fields:** fix search component ([8776915](https://github.com/MTES-MCT/monitor-ui/commit/87769151f5152c05810b6849e267d73f9f4eb8d3))
+
+
+* fix(fields)!: format options and create test e2e ([69b3070](https://github.com/MTES-MCT/monitor-ui/commit/69b3070409a3f5c3aa9063b12bf990d6cb92fa65))
+
+
+### BREAKING CHANGES
+
+* - pass option in `onChange` function instead of value
+- rename prop to display search icon
+- replace defaultValue with value
+- add optionValueKey prop
+
 ## [5.9.2](https://github.com/MTES-MCT/monitor-ui/compare/v5.9.1...v5.9.2) (2023-05-10)
 
 
