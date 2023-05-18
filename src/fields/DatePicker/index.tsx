@@ -15,7 +15,7 @@
  * it MUST BE interpreted as `2021-12-31T00:00:00.000Z` and NOT `2021-12-31T00:00:00.000±HH:MM`.
  */
 
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import styled from 'styled-components'
 
@@ -132,6 +132,7 @@ export function DatePicker({
 
   const { forceUpdate } = useForceUpdate()
 
+  const controlledClassName = useMemo(() => classnames('Field-DatePicker', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const defaultTimeTuple: TimeTuple = useMemo(() => (isEndDate ? ['23', '59'] : ['00', '00']), [isEndDate])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
@@ -321,7 +322,7 @@ export function DatePicker({
 
   return (
     <Fieldset
-      className={classNames('Field-DatePicker', className)}
+      className={controlledClassName}
       disabled={disabled}
       isLegendHidden={isLabelHidden}
       legend={label}

@@ -1,4 +1,5 @@
-import { useCallback } from 'react'
+import classnames from 'classnames'
+import { type HTMLAttributes, useCallback } from 'react'
 import styled from 'styled-components'
 
 import { Accent } from '../constants'
@@ -7,11 +8,13 @@ import { Close } from '../icons'
 
 import type { Promisable } from 'type-fest'
 
-export type SingleTagProps = {
+export type SingleTagProps = HTMLAttributes<HTMLDivElement> & {
   children: string
   onDelete: () => Promisable<void>
 }
-export function SingleTag({ children, onDelete }: SingleTagProps) {
+export function SingleTag({ children, className, onDelete, ...nativeProps }: SingleTagProps) {
+  const controlledClassName = classnames('Component-SingleTag', className)
+
   const handleDelete = useCallback(() => {
     if (onDelete) {
       onDelete()
@@ -19,12 +22,10 @@ export function SingleTag({ children, onDelete }: SingleTagProps) {
   }, [onDelete])
 
   return (
-    <div>
-      <Box>
-        <Text>{children}</Text>
-        <StyledIconButton accent={Accent.TERTIARY} Icon={Close} iconSize={10} onClick={handleDelete} />
-      </Box>
-    </div>
+    <Box className={controlledClassName} {...nativeProps}>
+      <Text>{children}</Text>
+      <StyledIconButton accent={Accent.TERTIARY} Icon={Close} iconSize={10} onClick={handleDelete} />
+    </Box>
   )
 }
 

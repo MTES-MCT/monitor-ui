@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 
@@ -39,6 +39,7 @@ export function CoordinatesInput({
   onChange = noop,
   ...nativeProps
 }: CoordinatesInputProps) {
+  const controlledClassName = classnames('Field-CoordinatesInput', className)
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
 
@@ -83,7 +84,7 @@ export function CoordinatesInput({
 
   return (
     <StyledFieldset
-      className={classNames('Field-CoordinatesInput', className)}
+      className={controlledClassName}
       isLegendHidden={isLabelHidden}
       isLight={isLight}
       legend={label}

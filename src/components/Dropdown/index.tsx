@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import { useMemo } from 'react'
 import { Dropdown as RsuiteDropdown } from 'rsuite'
 import styled from 'styled-components'
@@ -12,11 +13,12 @@ import type { DropdownProps as RsuiteDropdownProps } from 'rsuite'
 export type DropdownProps = Omit<RsuiteDropdownProps, 'as' | 'icon'> & {
   Icon?: FunctionComponent<IconProps>
 }
-function RawDropdown({ Icon, ...originalProps }: DropdownProps) {
+function RawDropdown({ className, Icon, ...originalProps }: DropdownProps) {
+  const controlledClassName = classnames('Component-Dropdow', className)
   const icon = useMemo(() => (Icon ? <Icon size={20} /> : undefined), [Icon])
   const hasIcon = useMemo(() => Boolean(Icon), [Icon])
 
-  return <StyledDropdown $hasIcon={hasIcon} icon={icon} {...originalProps} />
+  return <StyledDropdown $hasIcon={hasIcon} className={controlledClassName} icon={icon} {...originalProps} />
 }
 
 // TODO We need to split into multiple styled components as done in `<Button />`.

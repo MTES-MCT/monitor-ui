@@ -1,4 +1,4 @@
-import glob from 'glob'
+import * as glob from 'glob'
 import { promises as fs } from 'fs'
 
 const getIconNameFromIconPath = svgIconPath => /([^/]+)\.svg$/.exec(svgIconPath)[1]
@@ -25,9 +25,8 @@ async function generateIcon({ count, index, svgIconPath, template }) {
   console.log('Generating icons: Fetching files…')
 
   const template = await fs.readFile('./scripts/icons/iconTemplate.tsxt', 'utf-8')
-  const svgIconPaths = glob.sync('./src/assets/icons/*.svg')
+  const svgIconPaths = glob.sync('./src/assets/icons/*.svg').sort()
   const count = svgIconPaths.length
-  const indexCeiling = count - 1
   let index = -1
 
   while (++index < count) {

@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
-export type IconBoxProps = {
+import type { HTMLAttributes } from 'react'
+
+export type IconBoxProps = HTMLAttributes<HTMLDivElement> & {
   $color?: string | undefined
   /** In pixels */
   $size?: number | undefined
@@ -8,7 +10,9 @@ export type IconBoxProps = {
 /**
  * Internal component used to wrap SVG icon components
  */
-export const IconBox = styled.div<IconBoxProps>`
+export const IconBox = styled.div.attrs<IconBoxProps, IconBoxProps>(() => ({
+  className: 'Element-IconBox'
+}))`
   display: inline-block;
   color: ${p => p.$color ?? 'inherit'};
 

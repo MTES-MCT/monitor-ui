@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import ky from 'ky'
 import React, { SyntheticEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AutoComplete as RsuiteAutoComplete } from 'rsuite'
@@ -50,6 +51,7 @@ export type SearchProps<OptionValue extends OptionValueType = string> = Omit<
 }
 export function Search<OptionValue extends OptionValueType = string>({
   baseContainer,
+  className,
   error,
   isErrorMessageHidden = false,
   isLabelHidden,
@@ -78,6 +80,7 @@ export function Search<OptionValue extends OptionValueType = string>({
 
   const { forceUpdate } = useForceUpdate()
 
+  const controlledClassName = useMemo(() => classnames('Field-Search', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
 
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
@@ -153,7 +156,7 @@ export function Search<OptionValue extends OptionValueType = string>({
   }, [forceUpdate])
 
   return (
-    <Field className="Field-Search">
+    <Field className={controlledClassName}>
       <Label
         disabled={originalProps.disabled}
         hasError={hasError}
