@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import { useMemo } from 'react'
 import styled from 'styled-components'
 
@@ -23,6 +24,7 @@ export type IconButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'chi
 }
 export function IconButton({
   accent = Accent.PRIMARY,
+  className,
   color,
   Icon,
   iconSize,
@@ -37,11 +39,12 @@ export function IconButton({
   const commonProps = useMemo(
     () => ({
       children,
+      className: classnames('Element-IconButton', className),
       size,
       type,
       ...nativeProps
     }),
-    [children, nativeProps, size, type]
+    [children, className, nativeProps, size, type]
   )
 
   switch (accent) {

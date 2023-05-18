@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import { FunctionComponent, HTMLAttributes, useMemo } from 'react'
 import styled from 'styled-components'
 
@@ -14,7 +15,17 @@ export type TagProps = HTMLAttributes<HTMLSpanElement> & {
   bulletColor?: string | undefined
   isLight?: boolean | undefined
 }
-export function Tag({ accent, bullet, bulletColor, children, color, Icon, isLight = false, ...nativeProps }: TagProps) {
+export function Tag({
+  accent,
+  bullet,
+  bulletColor,
+  children,
+  className,
+  color,
+  Icon,
+  isLight = false,
+  ...nativeProps
+}: TagProps) {
   const commonChildren = useMemo(() => {
     const defaultColor = color || THEME.color.gunMetal
 
@@ -42,9 +53,10 @@ export function Tag({ accent, bullet, bulletColor, children, color, Icon, isLigh
     () => ({
       $isLight: isLight,
       children: commonChildren,
+      className: classnames('Element-Tag', className),
       ...nativeProps
     }),
-    [commonChildren, isLight, nativeProps]
+    [className, commonChildren, isLight, nativeProps]
   )
 
   switch (accent) {

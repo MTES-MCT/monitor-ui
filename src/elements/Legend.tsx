@@ -1,6 +1,5 @@
+import classnames from 'classnames'
 import styled from 'styled-components'
-
-import { Label } from './Label'
 
 import type { HTMLAttributes } from 'react'
 
@@ -9,10 +8,15 @@ export type LegendProps = HTMLAttributes<HTMLLegendElement> & {
   hasError?: boolean | undefined
   isHidden?: boolean | undefined
 }
-export function Legend({ disabled = false, hasError = false, isHidden = false, ...nativeProps }: LegendProps) {
-  return <StyledLabel as="legend" disabled={disabled} hasError={hasError} isHidden={isHidden} {...nativeProps} />
-}
-
-const StyledLabel = styled(Label)`
+export const Legend = styled.legend.attrs<LegendProps, LegendProps>(props => ({
+  className: classnames('Element-Legend', props.className)
+}))`
+  color: ${p =>
+    // eslint-disable-next-line no-nested-ternary
+    p.disabled ? p.theme.color.lightGray : p.hasError ? p.theme.color.maximumRed : p.theme.color.slateGray};
+  display: ${p => (p.isHidden ? 'none' : 'block')};
+  font-size: 13px;
+  line-height: 1.3846;
+  margin-bottom: 4px;
   padding: 0;
 `

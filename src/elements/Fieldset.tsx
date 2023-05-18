@@ -1,7 +1,7 @@
-import { FieldsetHTMLAttributes, useMemo } from 'react'
+import classnames from 'classnames'
+import { type FieldsetHTMLAttributes, useMemo } from 'react'
 import styled, { css } from 'styled-components'
 
-import { Field } from './Field'
 import { Legend } from './Legend'
 
 export type FieldsetProps = Omit<FieldsetHTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange' | 'value'> & {
@@ -13,6 +13,7 @@ export type FieldsetProps = Omit<FieldsetHTMLAttributes<HTMLFieldSetElement>, 'd
 }
 export function Fieldset({
   children,
+  className,
   hasBorder = false,
   hasError = false,
   isLegendHidden = false,
@@ -23,27 +24,30 @@ export function Fieldset({
   const hasLegend = useMemo(() => Boolean(legend), [legend])
 
   return (
-    <StyledField as="fieldset" {...nativeProps}>
+    <Box className={classnames('Element-Fieldset', className)} {...nativeProps}>
       {legend && (
         <Legend disabled={nativeProps.disabled} hasError={hasError} isHidden={isLegendHidden}>
           {legend}
         </Legend>
       )}
 
-      <Box $hasBorder={hasBorder} $hasLegend={hasLegend} $isLight={isLight}>
+      <InnerBox $hasBorder={hasBorder} $hasLegend={hasLegend} $isLight={isLight}>
         {children}
-      </Box>
-    </StyledField>
+      </InnerBox>
+    </Box>
   )
 }
 
-const StyledField = styled(Field)`
+const Box = styled.fieldset`
+  align-items: flex-start;
   border: 0;
+  display: flex;
+  flex-direction: column;
   margin: 0;
   padding: 0;
 `
 
-const Box = styled.div<{
+const InnerBox = styled.div<{
   $hasBorder: boolean
   $hasLegend: boolean
   $isLight: boolean

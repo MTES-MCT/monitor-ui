@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import { useMemo } from 'react'
 import styled from 'styled-components'
 
@@ -22,6 +23,7 @@ export type ButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'childre
 export function Button({
   accent = Accent.PRIMARY,
   children,
+  className,
   Icon,
   isFullWidth = false,
   size = Size.NORMAL,
@@ -42,12 +44,13 @@ export function Button({
     () => ({
       as: StyledButton,
       children: commonChildren,
+      className: classnames('Element-Button', className),
       isFullWidth,
       size,
       type,
       ...nativeProps
     }),
-    [commonChildren, isFullWidth, nativeProps, size, type]
+    [className, commonChildren, isFullWidth, nativeProps, size, type]
   )
 
   switch (accent) {

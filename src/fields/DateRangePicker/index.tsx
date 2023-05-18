@@ -18,6 +18,7 @@
  * (we return `.000Z` rather than `.999Z` because the backend does not handle milliseconds as expected).
  */
 
+import classnames from 'classnames'
 import { isEqual } from 'lodash'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import styled, { css } from 'styled-components'
@@ -99,6 +100,7 @@ export function DateRangePicker(props: DateRangePickerWithDateDateProps): JSX.El
 export function DateRangePicker(props: DateRangePickerWithStringDateProps): JSX.Element
 export function DateRangePicker({
   baseContainer,
+  className,
   defaultValue,
   disabled = false,
   error,
@@ -136,6 +138,7 @@ export function DateRangePicker({
 
   const { forceUpdate } = useForceUpdate()
 
+  const controlledClassName = useMemo(() => classnames('Field-DateRangePicker', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
 
@@ -435,7 +438,7 @@ export function DateRangePicker({
 
   return (
     <Fieldset
-      className="Field-DateRangePicker"
+      className={controlledClassName}
       disabled={disabled}
       isLegendHidden={isLabelHidden}
       legend={label}
