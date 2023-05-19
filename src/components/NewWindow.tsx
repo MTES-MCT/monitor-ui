@@ -1,6 +1,6 @@
 /* eslint-disable no-null/no-null, @typescript-eslint/naming-convention */
 
-import { PureComponent, ReactNode } from 'react'
+import { PureComponent, type ReactNode } from 'react'
 import ReactDOM from 'react-dom'
 
 import type { Define } from '../types'
@@ -290,7 +290,7 @@ function onCopyStyles(source: Document, target: Document | undefined): void {
           // IE11 will throw error when trying to access cssText property, so we
           // need to assemble them
           returnText = getKeyFrameText(cssRule)
-        } else if ([CSSRule.IMPORT_RULE, CSSRule.FONT_FACE_RULE].includes(type)) {
+        } else if ([CSSRule.IMPORT_RULE, CSSRule.FONT_FACE_RULE].includes(type as any)) {
           // Check if the cssRule type is CSSImportRule (3) or CSSFontFaceRule (5)
           // to handle local imports on a about:blank page
           // '/custom.css' turns to 'http://my-site.com/custom.css'

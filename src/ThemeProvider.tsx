@@ -1,7 +1,7 @@
 import { mergeDeepRight } from 'ramda'
 import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components'
 
-import { THEME, Theme } from './theme'
+import { THEME, type Theme } from './theme'
 
 import type { PartialDeep } from 'type-fest'
 

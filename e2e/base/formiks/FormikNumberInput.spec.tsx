@@ -6,7 +6,13 @@ import { useState } from 'react'
 
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
 import { Output } from '../../../.storybook/components/Output'
-import { Button, FormikNumberInput, FormikEffect, NumberInputProps, FormikNumberInputProps } from '../../../src'
+import {
+  Button,
+  FormikNumberInput,
+  FormikEffect,
+  type NumberInputProps,
+  type FormikNumberInputProps
+} from '../../../src'
 import { mountAndWait, outputShouldBe } from '../utils'
 
 function Template({

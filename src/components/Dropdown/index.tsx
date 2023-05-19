@@ -81,4 +81,4 @@ export const Dropdown: FunctionComponent<DropdownProps> & {
   Item
 })
 
-export { DropdownItemProps }
+export { type DropdownItemProps }

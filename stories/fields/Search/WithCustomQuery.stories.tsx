@@ -3,9 +3,7 @@ import { useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
-import { Option, Search } from '../../../src'
-
-import type { SearchProps } from '../../../src'
+import { type Option, Search, type SearchProps } from '../../../src'
 
 const args: SearchProps = {
   error: '',

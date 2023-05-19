@@ -1,7 +1,17 @@
-import { forwardRef, KeyboardEvent, useCallback, useImperativeHandle, useMemo, useRef } from 'react'
+import {
+  forwardRef,
+  type KeyboardEvent,
+  useCallback,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  type FocusEvent,
+  type ForwardedRef,
+  type InputHTMLAttributes,
+  type MouseEvent
+} from 'react'
 import styled from 'styled-components'
 
-import type { FocusEvent, ForwardedRef, InputHTMLAttributes, MouseEvent } from 'react'
 import type { Promisable } from 'type-fest'
 
 export type NumberInputProps = Omit<

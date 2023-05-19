@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { FunctionComponent, HTMLAttributes, useMemo } from 'react'
+import { type FunctionComponent, type HTMLAttributes, useMemo } from 'react'
 import styled from 'styled-components'
 
 import { Disk } from './Disk'
