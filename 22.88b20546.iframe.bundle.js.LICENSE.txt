@@ -18,8 +18,6 @@
  * Released under the MIT License.
  */
 
-/*! MIT License © Sindre Sorhus */
-
 /**
  * @license
  * Lodash <https://lodash.com/>
