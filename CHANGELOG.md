@@ -1,3 +1,10 @@
+## [6.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v6.0.0...v6.0.1) (2023-05-19)
+
+
+### Bug Fixes
+
+* add missing classnames ([23f83f1](https://github.com/MTES-MCT/monitor-ui/commit/23f83f13a2b909712bf1580e8e9545a314236dbb))
+
 # [6.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v5.9.2...v6.0.0) (2023-05-17)
 
 
