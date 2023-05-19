@@ -6,7 +6,7 @@ import { useState } from 'react'
 
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
 import { Output } from '../../../.storybook/components/Output'
-import { Button, FormikCheckbox, FormikEffect, CheckboxProps, FormikCheckboxProps } from '../../../src'
+import { Button, FormikCheckbox, FormikEffect, type CheckboxProps, type FormikCheckboxProps } from '../../../src'
 import { mountAndWait, outputShouldBe } from '../utils'
 
 function Template({

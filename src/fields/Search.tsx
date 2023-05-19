@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import React, { SyntheticEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { type ElementType, type SyntheticEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AutoComplete as RsuiteAutoComplete } from 'rsuite'
 import styled from 'styled-components'
 
@@ -27,7 +27,7 @@ export type SearchProps<OptionValue extends OptionValueType = string> = Omit<
   RsuiteAutoCompleteProps,
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'open' | 'onSelect' | 'value'
 > & {
-  MenuItem?: React.ElementType | undefined
+  MenuItem?: ElementType | undefined
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
   error?: string | undefined

@@ -6,7 +6,7 @@ import { useState } from 'react'
 
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
 import { Output } from '../../../.storybook/components/Output'
-import { Button, FormikTextInput, FormikEffect, TextInputProps, FormikTextInputProps } from '../../../src'
+import { Button, FormikTextInput, FormikEffect, type TextInputProps, type FormikTextInputProps } from '../../../src'
 import { mountAndWait, outputShouldBe } from '../utils'
 
 function Template({

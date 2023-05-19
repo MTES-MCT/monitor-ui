@@ -26,7 +26,14 @@ import styled, { css } from 'styled-components'
 import { DateInput } from './DateInput'
 import { RangeCalendarPicker } from './RangeCalendarPicker'
 import { TimeInput } from './TimeInput'
-import { DateInputRef, DateRangePosition, DateTuple, DateTupleRange, TimeInputRef, TimeTuple } from './types'
+import {
+  type DateInputRef,
+  DateRangePosition,
+  type DateTuple,
+  type DateTupleRange,
+  type TimeInputRef,
+  type TimeTuple
+} from './types'
 import {
   getDayjsFromUtcDateAndTimeTuple,
   getUtcDateFromDateAndTimeTuple,
