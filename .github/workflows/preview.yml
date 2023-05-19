@@ -25,6 +25,7 @@ jobs:
         id: publish
         uses: chromaui/action@v1
         with:
+          buildScriptName: 'build:storybook'
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GH_PAT }}
 
