@@ -1,3 +1,16 @@
+# [6.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v6.0.1...v6.1.0) (2023-05-19)
+
+
+### Bug Fixes
+
+* **fields:** delete queryMap and queryUrl props ([5e00cb0](https://github.com/MTES-MCT/monitor-ui/commit/5e00cb0baa8dc6937b44a800e24f61d04a258ab7))
+
+
+### Features
+
+* **fields:** add Icon prop to TextInput ([a885011](https://github.com/MTES-MCT/monitor-ui/commit/a885011f2cd0d09034e9d45a54a356b4ffdd7d6c))
+* **icons:** update and add icons ([efd44f2](https://github.com/MTES-MCT/monitor-ui/commit/efd44f243fa2f2914b1c15a755245c99f2c06a76))
+
 ## [6.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v6.0.0...v6.0.1) (2023-05-19)
 
 
