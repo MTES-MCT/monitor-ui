@@ -10,7 +10,6 @@
     "declarationDir": "./dist",
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
-    "importsNotUsedAsValues": "error",
     "incremental": false,
     "isolatedModules": true,
     "jsx": "react-jsx",
@@ -35,7 +34,8 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "target": "ES2022",
-    "useUnknownInCatchVariables": true
+    "useUnknownInCatchVariables": true,
+    "verbatimModuleSyntax": true
   },
   "include": ["**/*.js", "**/*.jsx", "**/*.mjs", "**/*.ts", "**/*.tsx", ".storybook/**/*.ts", ".storybook/**/*.tsx"],
   "exclude": [
