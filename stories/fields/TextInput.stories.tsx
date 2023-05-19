@@ -1,8 +1,9 @@
 import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
+import { Showcase } from '../../.storybook/components/Showcase'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { TextInput, useFieldControl } from '../../src'
+import { Icon, Size, TextInput, useFieldControl } from '../../src'
 
 import type { TextInputProps } from '../../src'
 
@@ -23,6 +24,10 @@ export default {
   component: TextInput,
 
   argTypes: {
+    size: {
+      control: 'inline-radio',
+      options: Size
+    },
     value: {
       control: 'text'
     }
@@ -47,6 +52,16 @@ export function _TextInput(props: TextInputProps) {
       <TextInput {...props} onChange={controlledOnChange} value={controlledValue} />
 
       {outputValue !== '∅' && <Output value={outputValue} />}
+
+      <Showcase>
+        <TextInput
+          Icon={Icon.Search}
+          label="A text input with an icon"
+          name="myTextInputWithAnIcon"
+          placeholder="A text input placeholder"
+          size={Size.LARGE}
+        />
+      </Showcase>
     </>
   )
 }

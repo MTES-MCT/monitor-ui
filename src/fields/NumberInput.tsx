@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import { useCallback, useMemo } from 'react'
 import { Input } from 'rsuite'
 import styled from 'styled-components'
@@ -24,6 +25,7 @@ export type NumberInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | '
   value?: number | undefined
 }
 export function NumberInput({
+  className,
   error,
   isErrorMessageHidden = false,
   isLabelHidden = false,
@@ -31,9 +33,11 @@ export function NumberInput({
   isUndefinedWhenDisabled = false,
   label,
   onChange,
+  style,
   value,
   ...originalProps
 }: NumberInputProps) {
+  const controlledClassname = useMemo(() => classnames('Field-NumberInput', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([originalProps.disabled, originalProps.name])
@@ -56,7 +60,7 @@ export function NumberInput({
   useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
 
   return (
-    <Field className="Field-NumberInput">
+    <Field className={controlledClassname} style={style}>
       <Label
         disabled={originalProps.disabled}
         hasError={hasError}
@@ -87,11 +91,17 @@ const StyledInput = styled(Input)<{
   $isLight: boolean
 }>`
   background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
-  border: 0;
+  border: solid 1px ${p => p.theme.color.blueYonder[100]};
+  border-radius: 0;
   font-size: 13px;
+  /* TODO It should be 18px but computed line-height is stuck to min. 18.5px. Investigate that. */
+  line-height: 19px;
+  outline: ${p => (p.$hasError ? `1px solid ${p.theme.color.maximumRed}` : 0)};
+  padding: 3px 8px 6px;
+  vertical-align: center;
   width: 100%;
-  ${p => (p.$hasError ? `outline: 1px solid ${p.theme.color.maximumRed}` : '')};
-  &:focus {
+
+  :focus {
     outline-width: 1px;
     outline-color: ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray)};
   }
