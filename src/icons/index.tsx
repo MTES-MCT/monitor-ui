@@ -50,12 +50,14 @@ import { PinpointHide } from './PinpointHide'
 import { Plane } from './Plane'
 import { Plus } from './Plus'
 import { Reject } from './Reject'
+import { Report } from './Report'
 import { Save } from './Save'
 import { Search } from './Search'
 import { SelectCircle } from './SelectCircle'
 import { SelectPolygon } from './SelectPolygon'
 import { SelectRectangle } from './SelectRectangle'
 import { SelectZone } from './SelectZone'
+import { Semaphore } from './Semaphore'
 import { ShowErsMessages } from './ShowErsMessages'
 import { ShowXml } from './ShowXml'
 import { SortingArrows } from './SortingArrows'
@@ -120,12 +122,14 @@ export {
   Plane,
   Plus,
   Reject,
+  Report,
   Save,
   Search,
   SelectCircle,
   SelectPolygon,
   SelectRectangle,
   SelectZone,
+  Semaphore,
   ShowErsMessages,
   ShowXml,
   SortingArrows,

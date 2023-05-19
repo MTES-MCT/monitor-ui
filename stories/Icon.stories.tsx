@@ -339,6 +339,12 @@ export function _Icon(props: IconProps) {
       </Cell>
       <Cell>
         <IconBox>
+          <Icon.Report {...props} />
+        </IconBox>
+        <Code>Report</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
           <Icon.Save {...props} />
         </IconBox>
         <Code>Save</Code>
@@ -366,6 +372,12 @@ export function _Icon(props: IconProps) {
           <Icon.SelectZone {...props} />
         </IconBox>
         <Code>SelectZone</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
+          <Icon.Semaphore {...props} />
+        </IconBox>
+        <Code>Semaphore</Code>
       </Cell>
       <Cell>
         <IconBox>
