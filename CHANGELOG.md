@@ -1,3 +1,10 @@
+## [6.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v6.2.0...v6.2.1) (2023-05-21)
+
+
+### Bug Fixes
+
+* **fields:** replace deprecated Rsuite disabledDate prop with shouldDisableDate ([6ff1a1c](https://github.com/MTES-MCT/monitor-ui/commit/6ff1a1cbf037010858b07db0f1c84a8faf9d2bd5))
+
 # [6.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v6.1.1...v6.2.0) (2023-05-21)
 
 
