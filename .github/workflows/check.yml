@@ -5,6 +5,7 @@ on: push
 jobs:
   lint:
     name: Lint
+    if: ${{ !startsWith('refs/heads/ci-release-v', github.ref) }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,6 +30,7 @@ jobs:
 
   type:
     name: Type
+    if: ${{ !startsWith('refs/heads/ci-release-v', github.ref) }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -45,6 +47,7 @@ jobs:
 
   test_unit:
     name: Unit Test
+    if: ${{ !startsWith('refs/heads/ci-release-v', github.ref) }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -62,6 +65,7 @@ jobs:
         run: yarn codecov
   test_unit_in_paris:
     name: Unit Test
+    if: ${{ !startsWith('refs/heads/ci-release-v', github.ref) }}
     strategy:
       matrix:
         timeZone: ['Europe/Paris']
