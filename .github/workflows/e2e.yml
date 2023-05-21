@@ -6,7 +6,7 @@ jobs:
   # Normal E2E testing with Cypress
   test_e2e:
     name: E2E Test
-    if: ${{ !startsWith('refs/heads/ci-release-v', github.ref) }}
+    if: ${{ !startsWith(github.ref, 'refs/heads/ci-release-v') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,7 +26,7 @@ jobs:
         run: yarn test:e2e
   test_e2e_in_paris:
     name: E2E Test
-    if: ${{ !startsWith('refs/heads/ci-release-v', github.ref) }}
+    if: ${{ !startsWith(github.ref, 'refs/heads/ci-release-v') }}
     strategy:
       matrix:
         timeZone: ['Europe/Paris']
@@ -58,7 +58,7 @@ jobs:
   # Release build sanity check with Playwright
   test_e2e_release:
     name: Release E2E Test
-    if: ${{ !startsWith('refs/heads/ci-release-v', github.ref) }}
+    if: ${{ !startsWith(github.ref, 'refs/heads/ci-release-v') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -84,7 +84,7 @@ jobs:
   # Storybook E2E Tests with test-storybook (Playwright under the hood)
   # https://storybook.js.org/docs/react/writing-tests/test-runner
   test_e2e_storybook:
-    if: ${{ !startsWith('refs/heads/ci-release-v', github.ref) }}
+    if: ${{ !startsWith(github.ref, 'refs/heads/ci-release-v') }}
     name: Storybook E2E Test
     runs-on: ubuntu-latest
     steps:
