@@ -10,7 +10,8 @@ const args: IconButtonProps = {
   accent: Accent.PRIMARY,
   iconSize: undefined,
   Icon: Icon.Close,
-  size: Size.NORMAL
+  size: Size.NORMAL,
+  withUnpropagatedClick: false
 }
 
 export default {

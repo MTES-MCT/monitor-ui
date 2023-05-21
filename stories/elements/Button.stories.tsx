@@ -9,7 +9,8 @@ const args: ButtonProps = {
   children: 'A label',
   isFullWidth: false,
   Icon: undefined,
-  size: Size.NORMAL
+  size: Size.NORMAL,
+  withUnpropagatedClick: false
 }
 
 export default {

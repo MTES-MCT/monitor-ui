@@ -1,11 +1,10 @@
 import classnames from 'classnames'
-import { useMemo } from 'react'
+import { useCallback, useMemo, type MouseEvent, type ButtonHTMLAttributes, type FunctionComponent } from 'react'
 import styled from 'styled-components'
 
 import { Accent, Size } from '../constants'
-
-import type { IconProps } from '../types'
-import type { ButtonHTMLAttributes, FunctionComponent } from 'react'
+import { type IconProps } from '../types'
+import { stopMouseEventPropagation } from '../utils/stopMouseEventPropagation'
 
 const ICON_SIZE: Record<Size, number> = {
   [Size.LARGE]: 20,
@@ -19,6 +18,8 @@ export type ButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'childre
   children?: string | undefined
   isFullWidth?: boolean | undefined
   size?: Size | undefined
+  /** Prevent onClick event propagation. */
+  withUnpropagatedClick?: boolean | undefined
 }
 export function Button({
   accent = Accent.PRIMARY,
@@ -26,10 +27,25 @@ export function Button({
   className,
   Icon,
   isFullWidth = false,
+  onClick,
   size = Size.NORMAL,
   type = 'button',
+  withUnpropagatedClick = false,
   ...nativeProps
 }: ButtonProps) {
+  const handleClick = useCallback(
+    (event: MouseEvent<HTMLButtonElement>) => {
+      if (withUnpropagatedClick) {
+        stopMouseEventPropagation(event)
+      }
+
+      if (onClick) {
+        onClick(event)
+      }
+    },
+    [onClick, withUnpropagatedClick]
+  )
+
   const commonChildren = useMemo(
     () => (
       <>
@@ -46,11 +62,12 @@ export function Button({
       children: commonChildren,
       className: classnames('Element-Button', className),
       isFullWidth,
+      onClick: handleClick,
       size,
       type,
       ...nativeProps
     }),
-    [className, commonChildren, isFullWidth, nativeProps, size, type]
+    [className, commonChildren, handleClick, isFullWidth, nativeProps, size, type]
   )
 
   switch (accent) {
