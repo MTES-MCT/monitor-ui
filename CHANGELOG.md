@@ -1,3 +1,10 @@
+# [6.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v6.1.1...v6.2.0) (2023-05-21)
+
+
+### Features
+
+* **elements:** add withUnpropagatedClick prop to Button & IconButton ([67943f5](https://github.com/MTES-MCT/monitor-ui/commit/67943f5c2bc9e225a13b0185869fef86bebec069))
+
 ## [6.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v6.1.0...v6.1.1) (2023-05-21)
 
 
