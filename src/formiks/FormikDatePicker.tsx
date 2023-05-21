@@ -26,8 +26,16 @@ export function FormikDatePicker({ name, ...originalProps }: FormikDatePickerPro
   const [field, meta, helpers] = useField<DateRange | undefined>(name)
 
   const error = meta.touched ? meta.error : undefined
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleChange = useMemo(() => helpers.setValue, [])
+  const handleChange = useMemo(
+    () => value => {
+      helpers.setTouched(true)
+      helpers.setValue(value)
+    },
+
+    // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  )
 
   return <UntypedDatePicker defaultValue={field.value} error={error} onChange={handleChange} {...originalProps} />
 }

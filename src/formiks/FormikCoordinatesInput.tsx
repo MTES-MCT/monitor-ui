@@ -14,8 +14,16 @@ export function FormikCoordinatesInput({ name, ...originalProps }: FormikCoordin
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])
   const error = meta.touched ? meta.error : undefined
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleChange = useMemo(() => (nextCoordinates: number[] | undefined) => helpers.setValue(nextCoordinates), [])
+  const handleChange = useMemo(
+    () => value => {
+      helpers.setTouched(true)
+      helpers.setValue(value)
+    },
+
+    // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  )
 
   return <CoordinatesInput defaultValue={defaultValue} error={error} onChange={handleChange} {...originalProps} />
 }

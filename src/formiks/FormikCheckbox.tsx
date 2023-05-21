@@ -19,9 +19,11 @@ export function FormikCheckbox({ name, ...originalProps }: FormikCheckboxProps) 
   // it wouldn't make sense to keep it as `undefined` since `undefined` means `false` in the case of a checkbox
   useEffect(
     () => {
+      helpers.setTouched(true)
       helpers.setValue(isChecked)
     },
 
+    // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   )
