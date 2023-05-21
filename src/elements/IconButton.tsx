@@ -1,12 +1,11 @@
 import classnames from 'classnames'
-import { useMemo } from 'react'
+import { useMemo, type MouseEvent, type ButtonHTMLAttributes, type FunctionComponent, useCallback } from 'react'
 import styled from 'styled-components'
 
 import { PrimaryButton, SecondaryButton } from './Button'
 import { Accent, Size } from '../constants'
-
-import type { IconProps } from '../types'
-import type { ButtonHTMLAttributes, FunctionComponent } from 'react'
+import { type IconProps } from '../types'
+import { stopMouseEventPropagation } from '../utils/stopMouseEventPropagation'
 
 const ICON_SIZE_IN_PX: Record<Size, number> = {
   [Size.LARGE]: 26,
@@ -18,9 +17,11 @@ export type IconButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'chi
   Icon: FunctionComponent<IconProps>
   accent?: Accent | undefined
   color?: string | undefined
-  /** In pixels, override `size` prop default values */
+  /** In pixels, override `size` prop default values. */
   iconSize?: number | undefined
   size?: Size | undefined
+  /** Prevent onClick event propagation. */
+  withUnpropagatedClick?: boolean | undefined
 }
 export function IconButton({
   accent = Accent.PRIMARY,
@@ -28,23 +29,40 @@ export function IconButton({
   color,
   Icon,
   iconSize,
+  onClick,
   size = Size.NORMAL,
   type = 'button',
+  withUnpropagatedClick = false,
   ...nativeProps
 }: IconButtonProps) {
-  const children = useMemo(
+  const handleClick = useCallback(
+    (event: MouseEvent<HTMLButtonElement>) => {
+      if (withUnpropagatedClick) {
+        stopMouseEventPropagation(event)
+      }
+
+      if (onClick) {
+        onClick(event)
+      }
+    },
+    [onClick, withUnpropagatedClick]
+  )
+
+  const commonChildren = useMemo(
     () => <Icon color={color} size={iconSize || ICON_SIZE_IN_PX[size]} />,
     [color, Icon, iconSize, size]
   )
+
   const commonProps = useMemo(
     () => ({
-      children,
+      children: commonChildren,
       className: classnames('Element-IconButton', className),
+      onClick: handleClick,
       size,
       type,
       ...nativeProps
     }),
-    [children, className, nativeProps, size, type]
+    [className, commonChildren, handleClick, nativeProps, size, type]
   )
 
   switch (accent) {
