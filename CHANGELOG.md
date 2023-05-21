@@ -1,3 +1,10 @@
+## [6.2.2](https://github.com/MTES-MCT/monitor-ui/compare/v6.2.1...v6.2.2) (2023-05-21)
+
+
+### Bug Fixes
+
+* **formiks:** set touched to true on change ([2507de9](https://github.com/MTES-MCT/monitor-ui/commit/2507de91c5ba117ecda97916e58414958bb40107))
+
 ## [6.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v6.2.0...v6.2.1) (2023-05-21)
 
 
