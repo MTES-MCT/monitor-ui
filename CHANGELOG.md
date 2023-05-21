@@ -1,3 +1,10 @@
+## [6.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v6.1.0...v6.1.1) (2023-05-21)
+
+
+### Bug Fixes
+
+* **formiks:** show error when touched ([f554973](https://github.com/MTES-MCT/monitor-ui/commit/f554973c68901406b08e3adbe37fc49a1407580b))
+
 # [6.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v6.0.1...v6.1.0) (2023-05-19)
 
 
