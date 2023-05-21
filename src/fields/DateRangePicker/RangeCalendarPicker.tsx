@@ -45,7 +45,7 @@ export function RangeCalendarPicker({ defaultValue, isHistorical, isOpen, onChan
     [defaultValue]
   )
   const utcTodayAsDayjs = useMemo(() => customDayjs().utc().endOf('day'), [])
-  const disabledDate = useMemo(
+  const shouldDisableDate = useMemo(
     () => (date: Date) => isHistorical ? getUtcizedDayjs(date).isAfter(utcTodayAsDayjs) : false,
     [isHistorical, utcTodayAsDayjs]
   )
@@ -86,12 +86,12 @@ export function RangeCalendarPicker({ defaultValue, isHistorical, isOpen, onChan
       {boxRef.current && (
         <RsuiteDateRangePicker
           container={boxRef.current}
-          disabledDate={disabledDate}
           format="yyyy-MM-dd"
           locale={RSUITE_CALENDAR_LOCALE}
           onSelect={handleSelect}
           open={isOpen}
           ranges={[]}
+          shouldDisableDate={shouldDisableDate}
           // `defaultValue` seems to be immediatly cancelled so we come down to using a controlled `value`
           // eslint-disable-next-line no-null/no-null
           value={controlledValue ?? null}

@@ -34,7 +34,7 @@ export function CalendarPicker({ isHistorical, isOpen, onChange, value }: Calend
 
   const utcTodayAsDayjs = useMemo(() => customDayjs().utc().endOf('day'), [])
   const controlledValue = useMemo(() => (value ? getLocalizedDayjs(value).toDate() : undefined), [value])
-  const disabledDate = useMemo(
+  const shouldDisableDate = useMemo(
     () => (date?: Date) => date && isHistorical ? getUtcizedDayjs(date).isAfter(utcTodayAsDayjs) : false,
     [isHistorical, utcTodayAsDayjs]
   )
@@ -61,13 +61,13 @@ export function CalendarPicker({ isHistorical, isOpen, onChange, value }: Calend
       {boxRef.current && (
         <RsuiteDatePicker
           container={boxRef.current}
-          disabledDate={disabledDate}
           format="yyyy-MM-dd"
           locale={RSUITE_CALENDAR_LOCALE}
           oneTap
           onSelect={handleSelect}
           open={isOpen}
           ranges={[]}
+          shouldDisableDate={shouldDisableDate}
           // eslint-disable-next-line no-null/no-null
           value={controlledValue ?? null}
         />
