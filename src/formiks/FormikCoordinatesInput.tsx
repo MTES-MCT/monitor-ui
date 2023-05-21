@@ -13,8 +13,9 @@ export function FormikCoordinatesInput({ name, ...originalProps }: FormikCoordin
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultValue = useMemo(() => field.value, [])
+  const error = meta.touched ? meta.error : undefined
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = useMemo(() => (nextCoordinates: number[] | undefined) => helpers.setValue(nextCoordinates), [])
 
-  return <CoordinatesInput defaultValue={defaultValue} error={meta.error} onChange={handleChange} {...originalProps} />
+  return <CoordinatesInput defaultValue={defaultValue} error={error} onChange={handleChange} {...originalProps} />
 }

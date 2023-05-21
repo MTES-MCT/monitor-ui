@@ -25,8 +25,9 @@ export function FormikDatePicker(props: FormikDatePickerWithStringDateProps): JS
 export function FormikDatePicker({ name, ...originalProps }: FormikDatePickerProps) {
   const [field, meta, helpers] = useField<DateRange | undefined>(name)
 
+  const error = meta.touched ? meta.error : undefined
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = useMemo(() => helpers.setValue, [])
 
-  return <UntypedDatePicker defaultValue={field.value} error={meta.error} onChange={handleChange} {...originalProps} />
+  return <UntypedDatePicker defaultValue={field.value} error={error} onChange={handleChange} {...originalProps} />
 }

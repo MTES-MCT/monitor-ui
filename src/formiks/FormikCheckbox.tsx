@@ -9,10 +9,10 @@ export type FormikCheckboxProps = Omit<CheckboxProps, 'checked' | 'error' | 'onC
 export function FormikCheckbox({ name, ...originalProps }: FormikCheckboxProps) {
   const [field, meta, helpers] = useField<boolean | undefined>(name)
 
+  const error = meta.touched ? meta.error : undefined
   // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = useMemo(() => helpers.setValue, [])
-
   const isChecked = Boolean(field.value)
 
   // A checkbox must initialize its Formik value on mount:
@@ -26,5 +26,5 @@ export function FormikCheckbox({ name, ...originalProps }: FormikCheckboxProps) 
     []
   )
 
-  return <Checkbox checked={isChecked} error={meta.error} name={name} onChange={handleChange} {...originalProps} />
+  return <Checkbox checked={isChecked} error={error} name={name} onChange={handleChange} {...originalProps} />
 }
