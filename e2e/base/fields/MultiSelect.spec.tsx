@@ -1,5 +1,5 @@
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
-import { _MultiSelect as MultiSelectStory } from '../../../stories/fields/MultiSelect.stories'
+import { _MultiSelect as MultiSelectStory } from '../../../stories/fields/MultiSelect/MultiSelect.stories'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
 import type { MultiSelectProps } from '../../../src'

@@ -1,11 +1,11 @@
 import { useState } from 'react'
 
-import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { LOREM_IPSUM } from '../../.storybook/constants'
-import { MultiSelect, useFieldControl } from '../../src'
+import { Output } from '../../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
+import { LOREM_IPSUM } from '../../../.storybook/constants'
+import { MultiSelect, useFieldControl } from '../../../src'
 
-import type { MultiSelectProps } from '../../src'
+import type { MultiSelectProps } from '../../../src'
 
 const args: MultiSelectProps = {
   disabled: false,

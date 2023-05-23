@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { TagPicker } from 'rsuite'
+import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react'
+import { TagPicker, type TagPickerProps } from 'rsuite'
 import styled from 'styled-components'
 
 import { Field } from '../elements/Field'
@@ -9,13 +9,12 @@ import { useClickOutsideEffect } from '../hooks/useClickOutsideEffect'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
+import { type CustomSearch } from '../libs/CustomSearch'
+import { type Option, type OptionAsRsuiteItemDataType, type OptionValueType } from '../types'
 import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
 import { getRsuiteValueFromOptionValue } from '../utils/getRsuiteValueFromOptionValue'
 import { normalizeString } from '../utils/normalizeString'
 
-import type { Option, OptionValueType } from '../types'
-import type { MouseEvent, ReactNode } from 'react'
-import type { TagPickerProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
 export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omit<
@@ -24,6 +23,7 @@ export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omi
 > & {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
+  customSearch?: CustomSearch<Option<OptionValue>> | undefined
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
@@ -38,6 +38,7 @@ export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omi
 }
 export function MultiSelect<OptionValue extends OptionValueType = string>({
   baseContainer,
+  customSearch,
   disabled = false,
   error,
   isErrorMessageHidden = false,
@@ -54,6 +55,9 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 }: MultiSelectProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
+  const customSearchRef = useRef(customSearch)
+  const lastSearchQueryRef = useRef('')
+  const customSearchLabelMatchesRef = useRef<string[]>([])
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -64,6 +68,24 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   const rsuiteValue = useMemo(
     () => (value || []).map(valueItem => getRsuiteValueFromOptionValue(valueItem, optionValueKey)),
     [optionValueKey, value]
+  )
+  const searchBy = useMemo(
+    () =>
+      customSearchRef.current
+        ? (query: string, _, item: OptionAsRsuiteItemDataType<OptionValue>) => {
+            if (!customSearchRef.current || !query.trim().length) {
+              return true
+            }
+
+            if (query !== lastSearchQueryRef.current) {
+              lastSearchQueryRef.current = query
+              customSearchLabelMatchesRef.current = customSearchRef.current.find(query).map(option => option.label)
+            }
+
+            return customSearchLabelMatchesRef.current.includes(item.label)
+          }
+        : undefined,
+    []
   )
 
   const { forceUpdate } = useForceUpdate()
@@ -145,6 +167,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
             open={isOpen}
             renderMenuItem={renderMenuItem}
             searchable={searchable}
+            searchBy={searchBy as any}
             value={rsuiteValue}
             {...originalProps}
           />
