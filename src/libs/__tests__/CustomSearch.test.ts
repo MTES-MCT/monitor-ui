@@ -66,14 +66,49 @@ describe('libs/CustomSearch.find()', () => {
     expect(result[0]).toMatchObject({ code: 'ME', description: 'mémo' })
   })
 
-  it('should return the expected first item when searching with/without diacritics', () => {
+  it('should return the expected length and first item when searching with/without diacritics', () => {
     const keys = ['description']
 
     const customSearch = new CustomSearch(collection, keys)
     const firstResult = customSearch.find('emoi')
+
+    expect(firstResult).toHaveLength(4)
+    expect(firstResult[0]).toMatchObject({ code: 'MF', description: 'mémoire' })
+
     const secondResult = customSearch.find('ÊMOÏ')
 
-    expect(firstResult[0]).toMatchObject({ code: 'MF', description: 'mémoire' })
+    expect(secondResult).toHaveLength(4)
     expect(secondResult[0]).toMatchObject({ code: 'MF', description: 'mémoire' })
+  })
+
+  it('should return the expected length and item when using `isStrict`', () => {
+    const keys = ['description']
+    const options = {
+      isStrict: true
+    }
+
+    const customSearch = new CustomSearch(collection, keys, options)
+    const result = customSearch.find('emoi')
+
+    expect(result).toHaveLength(1)
+    expect(result).toMatchObject([{ code: 'MF', description: 'mémoire' }])
+  })
+
+  it('should return 4 items', () => {
+    const keys = ['description']
+
+    const customSearch = new CustomSearch(collection, keys)
+    const result = customSearch.find('e')
+
+    expect(result).toHaveLength(4)
+  })
+
+  it('should return 1 item', () => {
+    const keys = ['description']
+
+    const customSearch = new CustomSearch(collection, keys)
+    const result = customSearch.find('e', 1)
+
+    expect(result).toHaveLength(1)
   })
 })
