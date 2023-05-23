@@ -3162,6 +3162,7 @@ __metadata:
     "@swc/jest": 0.2.26
     "@tanstack/react-table": ^8.8.5
     "@tanstack/react-virtual": beta
+    "@types/diacritics": 1.3.1
     "@types/jabber": 1.2.0
     "@types/jest": 29.5.1
     "@types/node": 18.14.1
@@ -3181,6 +3182,7 @@ __metadata:
     cypress: 12.9.0
     date-fns: 2.29.3
     dayjs: 1.11.7
+    diacritics: 1.3.0
     eslint: 8.39.0
     eslint-config-airbnb: 19.0.4
     eslint-config-airbnb-typescript: 17.0.0
@@ -3198,6 +3200,7 @@ __metadata:
     eslint-plugin-typescript-sort-keys: 2.3.0
     file-loader: 6.2.0
     formik: 2.2.9
+    fuse.js: 6.6.2
     gh-pages: 5.0.0
     glob: 10.2.2
     http-server: 14.1.1
@@ -5855,6 +5858,13 @@ __metadata:
   version: 1.3.2
   resolution: "@types/detect-port@npm:1.3.2"
   checksum: e4678244fbe8801014798b3efb967c886e6fc0fe94fb771a1be9558b35c68910b23bd30984df4a276b927820ce436b244506fb0972116d1b18506ac96bfd1a50
+  languageName: node
+  linkType: hard
+
+"@types/diacritics@npm:1.3.1":
+  version: 1.3.1
+  resolution: "@types/diacritics@npm:1.3.1"
+  checksum: c4f369e918b6c9ad09662bb7a15c28e12760a294fc84b8201e0748fcd485a38175d383a75756adbd4b7fe7b3a996ca01deae4ac1a496b7c7dfc5210efd0ec6db
   languageName: node
   linkType: hard
 
@@ -10041,6 +10051,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"diacritics@npm:1.3.0":
+  version: 1.3.0
+  resolution: "diacritics@npm:1.3.0"
+  checksum: ef7552c36e221879be22bc977281d1ae644f0eb94a24b380d654bf3aeae76c8096e533059732980bb3b5cb77ce7de4178f038f79415ee715f6d3eea7025cadea
+  languageName: node
+  linkType: hard
+
 "diff-sequences@npm:^28.1.1":
   version: 28.1.1
   resolution: "diff-sequences@npm:28.1.1"
@@ -12068,6 +12085,13 @@ __metadata:
   version: 1.2.3
   resolution: "functions-have-names@npm:1.2.3"
   checksum: c3f1f5ba20f4e962efb71344ce0a40722163e85bee2101ce25f88214e78182d2d2476aa85ef37950c579eb6cf6ee811c17b3101bb84004bb75655f3e33f3fdb5
+  languageName: node
+  linkType: hard
+
+"fuse.js@npm:6.6.2":
+  version: 6.6.2
+  resolution: "fuse.js@npm:6.6.2"
+  checksum: 17ae758ce205276ebd88bd9c9f088a100be0b4896abac9f6b09847151269d1690f41d7f98ff5813d4a58973162dbd99d0072ce807020fee6f9de60170f6b08eb
   languageName: node
   linkType: hard
 

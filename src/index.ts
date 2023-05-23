@@ -75,6 +75,12 @@ export { NewWindowContext, useNewWindow } from './hooks/useNewWindow'
 export { usePrevious } from './hooks/usePrevious'
 
 /* -----------------------------------------------------------------------------
+  Librairies
+*/
+
+export { CustomSearch } from './libs/CustomSearch'
+
+/* -----------------------------------------------------------------------------
   Utils
 */
 
@@ -149,3 +155,5 @@ export type { FormikTextareaProps } from './formiks/FormikTextarea'
 export type { FormikTextInputProps } from './formiks/FormikTextInput'
 
 export type { NewWindowContextValue } from './hooks/useNewWindow'
+
+export type { CustomSearchKey, CustomSearchOptions } from './libs/CustomSearch'
