@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { SelectPicker } from 'rsuite'
+import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react'
+import { SelectPicker, type SelectPickerProps } from 'rsuite'
 import styled from 'styled-components'
 
 import { Field } from '../elements/Field'
@@ -9,13 +9,12 @@ import { useClickOutsideEffect } from '../hooks/useClickOutsideEffect'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
+import { type CustomSearch } from '../libs/CustomSearch'
+import { type Option, type OptionAsRsuiteItemDataType, type OptionValueType } from '../types'
 import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
 import { getRsuiteValueFromOptionValue } from '../utils/getRsuiteValueFromOptionValue'
 import { normalizeString } from '../utils/normalizeString'
 
-import type { Option, OptionAsRsuiteItemDataType, OptionValueType } from '../types'
-import type { MouseEvent, ReactNode } from 'react'
-import type { SelectPickerProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
 export type SelectProps<OptionValue extends OptionValueType = string> = Omit<
@@ -34,6 +33,7 @@ export type SelectProps<OptionValue extends OptionValueType = string> = Omit<
 > & {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
+  customSearch?: CustomSearch<Option<OptionValue>> | undefined
   error?: string | undefined
   isCleanable?: boolean | undefined
   isErrorMessageHidden?: boolean | undefined
@@ -49,6 +49,7 @@ export type SelectProps<OptionValue extends OptionValueType = string> = Omit<
 }
 export function Select<OptionValue extends OptionValueType = string>({
   baseContainer,
+  customSearch,
   disabled = false,
   error,
   isCleanable = true,
@@ -66,6 +67,9 @@ export function Select<OptionValue extends OptionValueType = string>({
 }: SelectProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
+  const customSearchRef = useRef(customSearch)
+  const lastSearchQueryRef = useRef('')
+  const customSearchLabelMatchesRef = useRef<string[]>([])
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -76,6 +80,24 @@ export function Select<OptionValue extends OptionValueType = string>({
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([disabled, originalProps.name, value])
   const rsuiteValue = useMemo(() => getRsuiteValueFromOptionValue(value, optionValueKey), [value, optionValueKey])
+  const searchBy = useMemo(
+    () =>
+      customSearchRef.current
+        ? (query: string, _, item: OptionAsRsuiteItemDataType<OptionValue>) => {
+            if (!customSearchRef.current || !query.trim().length) {
+              return true
+            }
+
+            if (query !== lastSearchQueryRef.current) {
+              lastSearchQueryRef.current = query
+              customSearchLabelMatchesRef.current = customSearchRef.current.find(query).map(option => option.label)
+            }
+
+            return customSearchLabelMatchesRef.current.includes(item.label)
+          }
+        : undefined,
+    []
+  )
 
   const close = useCallback(() => {
     setIsOpen(false)
@@ -154,7 +176,8 @@ export function Select<OptionValue extends OptionValueType = string>({
             onSelect={handleSelect as any}
             open={isOpen}
             renderMenuItem={renderMenuItem}
-            searchable={searchable}
+            searchable={!!customSearch || searchable}
+            searchBy={searchBy as any}
             value={rsuiteValue}
             {...originalProps}
           />

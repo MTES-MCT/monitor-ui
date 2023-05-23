@@ -1,5 +1,5 @@
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
-import { _Select as SelectStory } from '../../../stories/fields/Select.stories'
+import { _Select as SelectStory } from '../../../stories/fields/Select/Select.stories'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
 import type { SelectProps } from '../../../src'

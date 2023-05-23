@@ -1,11 +1,9 @@
 import { useState } from 'react'
 
-import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { LOREM_IPSUM } from '../../.storybook/constants'
-import { Select, useFieldControl } from '../../src'
-
-import type { SelectProps } from '../../src'
+import { Output } from '../../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
+import { LOREM_IPSUM } from '../../../.storybook/constants'
+import { Select, useFieldControl, type SelectProps } from '../../../src'
 
 const args: SelectProps = {
   disabled: false,
