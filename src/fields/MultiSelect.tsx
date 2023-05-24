@@ -188,7 +188,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
             onClick={toggle}
             open={isOpen}
             renderMenuItem={renderMenuItem}
-            searchable={searchable}
+            searchable={!!customSearch || searchable}
             searchBy={searchBy as any}
             value={selectedRsuiteValue}
             {...originalProps}
