@@ -107,7 +107,7 @@ export class CustomSearch<T extends Record<string, any> = Record<string, any>> {
    * @returns     A list of matching items
    */
   public find(query: string, limit?: number): T[] {
-    const normalizedQuery = this.#isDiacriticSensitive ? query : diacritics.remove(query)
+    const normalizedQuery = (this.#isDiacriticSensitive ? query : diacritics.remove(query)).trim()
 
     // Here we use Fuse.js `useExtendedSearch` option to avoid fuzziness
     // when `CustomSearch` `isStrict` option is set to `true`.
