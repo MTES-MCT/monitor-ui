@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react'
 import { TagPicker, type TagPickerProps } from 'rsuite'
 import styled from 'styled-components'
-import { useDebouncedCallback } from 'use-debounce'
 
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
@@ -56,33 +55,55 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 }: MultiSelectProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
+  /**
+   * Current list of option labels found by `CustomSearch.find()` for the current select search query
+   *
+   * @description
+   * `undefined` means that search query is empty, thus all labels should be a match.
+   */
+  const customSearchLabelMatchesRef = useRef<string[] | undefined>(undefined)
   /** Instance of `CustomSearch` */
   const customSearchRef = useRef(customSearch)
-  /** Current list of option labels found by `CustomSearch.find()` for the current select search query */
-  const customSearchLabelMatchesRef = useRef<string[]>([])
+  /** Last search query (only used when `customSearch` prop is set) */
+  const previousSearchQueryRef = useRef('')
 
   const [isOpen, setIsOpen] = useState(false)
 
   const controlledError = useMemo(() => normalizeString(error), [error])
-  const data = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
+  const rsuiteData = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([disabled, originalProps.name, value])
+  const selectedRsuiteValue = useMemo(
+    () => (value || []).map(valueItem => getRsuiteValueFromOptionValue(valueItem, optionValueKey)),
+    [optionValueKey, value]
+  )
+
   const searchBy = useMemo(
     () =>
       // Since this function is called by a `.filter()` in Rsuite,
       // we first prepare `CustomSearch` results in `handleSearch()` (called each time the search query changes),
-      // and we use the `customSearchLabelMatchesRef` ref-stored results, in the form of option labels,
+      // and we use the `customSearchLabelMatches` ref-stored results, in the form of option labels,
       // to check if the current option label is part of these results.
       // Note that options label are expected to be unique in order for this pattern to work.
-      customSearchRef.current
-        ? (query: string, _label: ReactNode, item: OptionAsRsuiteItemDataType<OptionValue>) =>
-            query.trim().length > 0 ? customSearchLabelMatchesRef.current.includes(item.label) : true
+      boxRef.current && customSearchRef.current
+        ? (query: string, _label: ReactNode, item: OptionAsRsuiteItemDataType<OptionValue>) => {
+            if (!customSearchRef.current) {
+              throw new Error('`customSearchRef.current` is undefined.')
+            }
+
+            // Since this function will be called xN times, N being the number of options,
+            // we only want to update found option labels once each time the search query changes.
+            if (query !== previousSearchQueryRef.current) {
+              const nextCustomSearchLabelMatches =
+                query.trim().length > 0 ? customSearchRef.current.find(query).map(option => option.label) : undefined
+
+              customSearchLabelMatchesRef.current = nextCustomSearchLabelMatches
+            }
+
+            return customSearchLabelMatchesRef.current ? customSearchLabelMatchesRef.current.includes(item.label) : true
+          }
         : undefined,
     []
-  )
-  const rsuiteValue = useMemo(
-    () => (value || []).map(valueItem => getRsuiteValueFromOptionValue(valueItem, optionValueKey)),
-    [optionValueKey, value]
   )
 
   const { forceUpdate } = useForceUpdate()
@@ -91,35 +112,27 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
     setIsOpen(false)
   }, [])
 
+  const getOptionValuesFromRsuiteDataValues = useCallback(
+    (rsuiteValues: string[]) =>
+      rsuiteData
+        .filter(rsuiteDataItem => rsuiteValues.includes(rsuiteDataItem.value))
+        .map(rsuiteDataItem => rsuiteDataItem.optionValue),
+    [rsuiteData]
+  )
+
   const handleChange = useCallback(
     (nextOptionRsuiteValues: string[] | null) => {
       if (!onChange) {
         return
       }
 
-      const nextValue = nextOptionRsuiteValues
-        ? options
-            .filter(option =>
-              nextOptionRsuiteValues.includes(
-                optionValueKey ? (option.value as any)[optionValueKey] : String(option.value)
-              )
-            )
-            .map(option => option.value)
-        : []
-      const normalizedNextValue = !nextValue.length ? undefined : nextValue
+      const nextValue = nextOptionRsuiteValues ? getOptionValuesFromRsuiteDataValues(nextOptionRsuiteValues) : []
+      const normalizedNextValue = nextValue.length > 0 ? nextValue : undefined
 
       onChange(normalizedNextValue)
     },
-    [onChange, options, optionValueKey]
+    [getOptionValuesFromRsuiteDataValues, onChange]
   )
-
-  const handleSearch = useDebouncedCallback((query: string) => {
-    if (!customSearchRef.current) {
-      return
-    }
-
-    customSearchLabelMatchesRef.current = customSearchRef.current.find(query).map(option => option.label)
-  }, 500)
 
   const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
 
@@ -163,18 +176,16 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
           <TagPicker
             key={key}
             container={boxRef.current}
-            data={data}
+            data={rsuiteData}
             disabled={disabled}
             id={originalProps.name}
-            // Since we customized `ItemDataType` type by adding `optionValue`, we have an optional vs required conflict
-            onChange={handleChange as any}
+            onChange={handleChange}
             onClick={toggle}
-            onSearch={handleSearch}
             open={isOpen}
             renderMenuItem={renderMenuItem}
             searchable={searchable}
             searchBy={searchBy as any}
-            value={rsuiteValue}
+            value={selectedRsuiteValue}
             {...originalProps}
           />
         )}
@@ -191,6 +202,7 @@ const Box = styled.div<{
   $isLight: boolean
 }>`
   position: relative;
+  user-select: none;
   width: 100%;
 
   > .rs-picker-input {
