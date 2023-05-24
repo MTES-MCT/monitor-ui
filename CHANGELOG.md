@@ -1,3 +1,17 @@
+# [6.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v6.2.2...v6.3.0) (2023-05-24)
+
+
+### Bug Fixes
+
+* **fields:** fix multiple performance issues in Select & MultiSelect ([771e33e](https://github.com/MTES-MCT/monitor-ui/commit/771e33e9fcad59f2dbbea1aeb7ef9efeba85d840))
+
+
+### Features
+
+* **fields:** add customSearch prop to Select & MultiSelect ([217bd58](https://github.com/MTES-MCT/monitor-ui/commit/217bd58142898e8fff89fd7ea748ba3bf7d42144))
+* **libs:** add CustomSearch ([6dfe696](https://github.com/MTES-MCT/monitor-ui/commit/6dfe696d7b11b941ba257da20d59b7ceabb7a7be))
+* **libs:** add isStrict & threshold options to CustomSearch ([c059a57](https://github.com/MTES-MCT/monitor-ui/commit/c059a57ffbfa052bbf3fb7d83e145421dd2c5a57))
+
 ## [6.2.2](https://github.com/MTES-MCT/monitor-ui/compare/v6.2.1...v6.2.2) (2023-05-21)
 
 
