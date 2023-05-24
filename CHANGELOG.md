@@ -1,3 +1,12 @@
+## [6.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v6.3.0...v6.3.1) (2023-05-24)
+
+
+### Bug Fixes
+
+* **fields:** force searchable when using customSearch prop in MultiSelect ([1c195cb](https://github.com/MTES-MCT/monitor-ui/commit/1c195cbe7514e24d3fff4e4af91b310f47a20ec8))
+* **fields:** link unreachable customSearch case in Select & MultiSelect ([d821901](https://github.com/MTES-MCT/monitor-ui/commit/d82190185bdfaae2e8322fae7dfc847214d645c8))
+* **libs:** trim query param in find() method ([3a7dd9d](https://github.com/MTES-MCT/monitor-ui/commit/3a7dd9d84f3782b5fa1fc8c76711015975245777))
+
 # [6.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v6.2.2...v6.3.0) (2023-05-24)
 
 
