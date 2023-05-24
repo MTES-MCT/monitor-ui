@@ -1,25 +1,24 @@
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
+import { CustomSearch, type MultiSelectProps } from '../../../src'
 import { _MultiSelect as MultiSelectStory } from '../../../stories/fields/MultiSelect/MultiSelect.stories'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
-
-import type { MultiSelectProps } from '../../../src'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const OPTIONS_TYPES = {
   string: [
-    { label: 'First Option', value: 'FIRST_OPTION' },
-    { label: 'Second Option', value: 'SECOND_OPTION' },
-    { label: 'Third Option', value: 'THIRD_OPTION' }
+    { label: 'La Première Option', value: 'FIRST_OPTION' },
+    { label: 'La Seconde Option', value: 'SECOND_OPTION' },
+    { label: 'La Troisième Option', value: 'THIRD_OPTION' }
   ],
   number: [
-    { label: 'First Option', value: 0 },
-    { label: 'Second Option', value: 1 },
-    { label: 'Third Option', value: 2 }
+    { label: 'La Première Option', value: 0 },
+    { label: 'La Seconde Option', value: 1 },
+    { label: 'La Troisième Option', value: 2 }
   ],
   object: [
-    { label: 'First Option', value: { id: 0, name: 'First Option Name' } },
-    { label: 'Second Option', value: { id: 1, name: 'Second Option Name' } },
-    { label: 'Third Option', value: { id: 2, name: 'Third Option Name' } }
+    { label: 'La Première Option', value: { id: 0, name: 'Nom de la première option' } },
+    { label: 'La Seconde Option', value: { id: 1, name: 'Nom de la seconde option' } },
+    { label: 'La Troisième Option', value: { id: 2, name: 'Nom de la troisième option' } }
   ]
 }
 /* eslint-enable sort-keys-fix/sort-keys-fix */
@@ -138,6 +137,45 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       )
 
       outputShouldBe(undefined)
+    })
+
+    it('Should filter and select the expected options when using `customSearch`', () => {
+      const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
+
+      mountAndWait(
+        <GlobalDecoratorWrapper>
+          <MultiSelectStory {...commonProps} customSearch={customSearch as any} />
+        </GlobalDecoratorWrapper>
+      )
+
+      outputShouldNotBe()
+
+      cy.get('.rs-picker-input').click()
+      cy.get('.rs-picker-search-input > input').type('la remie')
+      cy.get('.rs-picker-check-menu > div[role="option"]:first-child').click()
+      cy.clickOutside()
+
+      outputShouldBe([options[0].value])
+
+      // Reset the MultiSelect
+      cy.fill('A multiple select', undefined)
+
+      cy.get('.rs-picker-input').click()
+      cy.get('.rs-picker-search-input > input').type('la option')
+      cy.get('.rs-picker-check-menu > div[role="option"]:first-child').click()
+      cy.clickOutside()
+
+      outputShouldBe([options[0].value])
+
+      // Reset the MultiSelect
+      cy.fill('A multiple select', undefined)
+
+      cy.get('.rs-picker-input').click()
+      cy.get('.rs-picker-search-input > input').type('sêcôndÈ')
+      cy.get('.rs-picker-check-menu > div[role="option"]:first-child').click()
+      cy.clickOutside()
+
+      outputShouldBe([options[1].value])
     })
   })
 })
