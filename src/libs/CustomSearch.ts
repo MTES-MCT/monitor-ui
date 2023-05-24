@@ -1,6 +1,6 @@
 import diacritics from 'diacritics'
 import Fuse from 'fuse.js'
-import { update } from 'lodash'
+import { flow, get, update } from 'lodash/fp'
 
 export type CustomSearchOptions = Partial<{
   /** Cache search index to avoid Must be unique in the entire application. */
@@ -161,23 +161,27 @@ export class CustomSearch<T extends Record<string, any> = Record<string, any>> {
   ): T[] {
     // These are the prop paths that needs to be normalized,
     // represented as an array dot-seperated strings (i.e.: `['aProperty', 'a.nested.property']`)
-    const collectionKeysAsStrings = keys.map(key => (typeof key === 'string' ? key : key.name))
+    const collectionKeysAsPaths = keys.map(key => (typeof key === 'string' ? key : key.name))
 
-    // TODO This does not follow FP principles.
-    // Maybe there is an FP-friendly solution using Lodash (via 'lodash/fp') or vanilla JS?
-    return collection.map(collectionItem => {
-      // We have to destructure the collection item in order to avoid pointer modifications since `update()` is not FP
-      const normalizedCollectionItem = { ...collectionItem }
+    // Now that we have a list of prop paths, we want to generate a list of transformers
+    // able for remove diacritics of a collection item, one transformer per collection item prop path.
+    const collectionItemTransformers = collectionKeysAsPaths.map(collectionKeyAsPath => (collectionItem: T): T => {
+      const collectionItemPropValue = get(collectionKeyAsPath, collectionItem)
 
-      collectionKeysAsStrings.forEach(keyAsString => {
-        // Be careful here, `keyAsString` can contains dots to represent nested properties, which `update()` understands
-        update(normalizedCollectionItem, keyAsString, itemPropValue =>
-          // The type check is a safeguard against unexpected values (a non-string would otherwise throw an error)
-          typeof itemPropValue === 'string' ? diacritics.remove(itemPropValue) : itemPropValue
-        )
-      })
+      // This type check is a safeguard against unexpected values (a non-string value would otherwise throw an error)
+      if (typeof get(collectionKeyAsPath, collectionItem) !== 'string') {
+        console.warn(`"${collectionKeyAsPath}" is not a string (value: \`${collectionItemPropValue}\`).`)
 
-      return normalizedCollectionItem
+        return collectionItem
+      }
+
+      return update(collectionKeyAsPath, diacritics.remove, collectionItem)
     })
+
+    // We can then generate a single function piping all these collection item transformers...
+    const cleanCollectionItemDiacritics: (collectionItem: T) => T = flow(collectionItemTransformers)
+
+    // ...and apply them to each collection item via a mapper
+    return collection.map(cleanCollectionItemDiacritics)
   }
 }
