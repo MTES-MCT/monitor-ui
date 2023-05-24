@@ -50,7 +50,7 @@ export default {
   ]
 }
 
-export function SelectWithCustomSearch(props: MultiSelectProps<FakeUser>) {
+export function MultiSelectWithCustomSearch(props: MultiSelectProps<FakeUser>) {
   const customSearchRef = useRef<CustomSearch<Option<FakeUser>> | undefined>(undefined)
 
   const [options, setOptions] = useState<Option<FakeUser>[]>([])
@@ -63,7 +63,7 @@ export function SelectWithCustomSearch(props: MultiSelectProps<FakeUser>) {
       const users: FakeUser[] = await ky
         .get('https://raw.githubusercontent.com/ivangabriele/fakeapi/main/api/users.json')
         .json()
-      const nextOptions: Option<FakeUser>[] = users.map(user => ({
+      const nextOptions: Option<FakeUser>[] = users.slice(0, 10000).map(user => ({
         label: user.username,
         value: user
       }))
@@ -80,9 +80,15 @@ export function SelectWithCustomSearch(props: MultiSelectProps<FakeUser>) {
 
       {customSearchRef.current && options.length && (
         <>
-          <MultiSelect {...props} onChange={controlledOnChange} options={options} value={controlledValue} />
+          <MultiSelect
+            {...props}
+            customSearch={customSearchRef.current}
+            onChange={controlledOnChange}
+            options={options}
+            value={controlledValue}
+          />
           <div>
-            <em>This multiple select loads a list of 100,000 users in order to check search performances.</em>
+            <em>Loads a list of 10,000 users in order to check performances.</em>
           </div>
 
           {outputValue !== '∅' && <Output value={outputValue} />}

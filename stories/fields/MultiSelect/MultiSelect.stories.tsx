@@ -22,8 +22,9 @@ const args: MultiSelectProps = {
     { label: LOREM_IPSUM, value: 'LOREM_IPSUM' }
   ],
   placeholder: 'Pick some options',
-  searchable: false,
-  value: undefined
+  searchable: true,
+  value: undefined,
+  virtualized: false
 }
 
 export default {

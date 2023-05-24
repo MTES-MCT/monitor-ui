@@ -22,7 +22,8 @@ const args: SelectProps = {
   ],
   placeholder: 'Pick an option',
   searchable: false,
-  value: undefined
+  value: undefined,
+  virtualized: false
 }
 
 export default {
