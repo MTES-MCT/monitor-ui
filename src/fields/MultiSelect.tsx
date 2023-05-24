@@ -85,7 +85,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
       // and we use the `customSearchLabelMatches` ref-stored results, in the form of option labels,
       // to check if the current option label is part of these results.
       // Note that options label are expected to be unique in order for this pattern to work.
-      boxRef.current && customSearchRef.current
+      customSearchRef.current
         ? (query: string, _label: ReactNode, item: OptionAsRsuiteItemDataType<OptionValue>) => {
             if (!customSearchRef.current) {
               throw new Error('`customSearchRef.current` is undefined.')
@@ -98,6 +98,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
                 query.trim().length > 0 ? customSearchRef.current.find(query).map(option => option.label) : undefined
 
               customSearchLabelMatchesRef.current = nextCustomSearchLabelMatches
+              previousSearchQueryRef.current = query
             }
 
             return customSearchLabelMatchesRef.current ? customSearchLabelMatchesRef.current.includes(item.label) : true
