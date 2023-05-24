@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react'
 import { TagPicker, type TagPickerProps } from 'rsuite'
 import styled from 'styled-components'
+import { useDebouncedCallback } from 'use-debounce'
 
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
@@ -55,8 +56,9 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 }: MultiSelectProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
+  /** Instance of `CustomSearch` */
   const customSearchRef = useRef(customSearch)
-  const lastSearchQueryRef = useRef('')
+  /** Current list of option labels found by `CustomSearch.find()` for the current select search query */
   const customSearchLabelMatchesRef = useRef<string[]>([])
 
   const [isOpen, setIsOpen] = useState(false)
@@ -65,27 +67,22 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   const data = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([disabled, originalProps.name, value])
+  const searchBy = useMemo(
+    () =>
+      // Since this function is called by a `.filter()` in Rsuite,
+      // we first prepare `CustomSearch` results in `handleSearch()` (called each time the search query changes),
+      // and we use the `customSearchLabelMatchesRef` ref-stored results, in the form of option labels,
+      // to check if the current option label is part of these results.
+      // Note that options label are expected to be unique in order for this pattern to work.
+      customSearchRef.current
+        ? (query: string, _label: ReactNode, item: OptionAsRsuiteItemDataType<OptionValue>) =>
+            query.trim().length > 0 ? customSearchLabelMatchesRef.current.includes(item.label) : true
+        : undefined,
+    []
+  )
   const rsuiteValue = useMemo(
     () => (value || []).map(valueItem => getRsuiteValueFromOptionValue(valueItem, optionValueKey)),
     [optionValueKey, value]
-  )
-  const searchBy = useMemo(
-    () =>
-      customSearchRef.current
-        ? (query: string, _, item: OptionAsRsuiteItemDataType<OptionValue>) => {
-            if (!customSearchRef.current || !query.trim().length) {
-              return true
-            }
-
-            if (query !== lastSearchQueryRef.current) {
-              lastSearchQueryRef.current = query
-              customSearchLabelMatchesRef.current = customSearchRef.current.find(query).map(option => option.label)
-            }
-
-            return customSearchLabelMatchesRef.current.includes(item.label)
-          }
-        : undefined,
-    []
   )
 
   const { forceUpdate } = useForceUpdate()
@@ -115,6 +112,14 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
     },
     [onChange, options, optionValueKey]
   )
+
+  const handleSearch = useDebouncedCallback((query: string) => {
+    if (!customSearchRef.current) {
+      return
+    }
+
+    customSearchLabelMatchesRef.current = customSearchRef.current.find(query).map(option => option.label)
+  }, 500)
 
   const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
 
@@ -164,6 +169,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
             // Since we customized `ItemDataType` type by adding `optionValue`, we have an optional vs required conflict
             onChange={handleChange as any}
             onClick={toggle}
+            onSearch={handleSearch}
             open={isOpen}
             renderMenuItem={renderMenuItem}
             searchable={searchable}

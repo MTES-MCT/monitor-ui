@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react'
 import { SelectPicker, type SelectPickerProps } from 'rsuite'
 import styled from 'styled-components'
+import { useDebouncedCallback } from 'use-debounce'
 
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
@@ -67,8 +68,9 @@ export function Select<OptionValue extends OptionValueType = string>({
 }: SelectProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
+  /** Instance of `CustomSearch` */
   const customSearchRef = useRef(customSearch)
-  const lastSearchQueryRef = useRef('')
+  /** Current list of option labels found by `CustomSearch.find()` for the current select search query */
   const customSearchLabelMatchesRef = useRef<string[]>([])
 
   const [isOpen, setIsOpen] = useState(false)
@@ -79,25 +81,20 @@ export function Select<OptionValue extends OptionValueType = string>({
   const data = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([disabled, originalProps.name, value])
-  const rsuiteValue = useMemo(() => getRsuiteValueFromOptionValue(value, optionValueKey), [value, optionValueKey])
   const searchBy = useMemo(
     () =>
+      // Since this function is called by a `.filter()` in Rsuite,
+      // we first prepare `CustomSearch` results in `handleSearch()` (called each time the search query changes),
+      // and we use the `customSearchLabelMatchesRef` ref-stored results, in the form of option labels,
+      // to check if the current option label is part of these results.
+      // Note that options label are expected to be unique in order for this pattern to work.
       customSearchRef.current
-        ? (query: string, _, item: OptionAsRsuiteItemDataType<OptionValue>) => {
-            if (!customSearchRef.current || !query.trim().length) {
-              return true
-            }
-
-            if (query !== lastSearchQueryRef.current) {
-              lastSearchQueryRef.current = query
-              customSearchLabelMatchesRef.current = customSearchRef.current.find(query).map(option => option.label)
-            }
-
-            return customSearchLabelMatchesRef.current.includes(item.label)
-          }
+        ? (query: string, _label: ReactNode, item: OptionAsRsuiteItemDataType<OptionValue>) =>
+            query.trim().length > 0 ? customSearchLabelMatchesRef.current.includes(item.label) : true
         : undefined,
     []
   )
+  const rsuiteValue = useMemo(() => getRsuiteValueFromOptionValue(value, optionValueKey), [value, optionValueKey])
 
   const close = useCallback(() => {
     setIsOpen(false)
@@ -110,6 +107,14 @@ export function Select<OptionValue extends OptionValueType = string>({
 
     onChange(undefined)
   }, [onChange])
+
+  const handleSearch = useDebouncedCallback((query: string) => {
+    if (!customSearchRef.current) {
+      return
+    }
+
+    customSearchLabelMatchesRef.current = customSearchRef.current.find(query).map(option => option.label)
+  }, 500)
 
   const handleSelect = useCallback(
     (_: string, selectedItem: OptionAsRsuiteItemDataType<OptionValue>) => {
@@ -172,6 +177,7 @@ export function Select<OptionValue extends OptionValueType = string>({
             disabled={disabled}
             id={originalProps.name}
             onClean={handleClean}
+            onSearch={handleSearch}
             // Since we customized `ItemDataType` type by adding `optionValue`, we have an optional vs required conflict
             onSelect={handleSelect as any}
             open={isOpen}
