@@ -114,9 +114,13 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 
   const getOptionValuesFromRsuiteDataValues = useCallback(
     (rsuiteValues: string[]) =>
-      rsuiteData
-        .filter(rsuiteDataItem => rsuiteValues.includes(rsuiteDataItem.value))
-        .map(rsuiteDataItem => rsuiteDataItem.optionValue),
+      rsuiteData.reduce((optionsValues, rsuiteDataItem) => {
+        if (!rsuiteValues.includes(rsuiteDataItem.value)) {
+          return optionsValues
+        }
+
+        return [...optionsValues, rsuiteDataItem.optionValue]
+      }, [] as OptionValue[]),
     [rsuiteData]
   )
 
