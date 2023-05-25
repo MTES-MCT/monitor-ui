@@ -101,9 +101,11 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
       const nextValue = nextOptionRsuiteValues ? getOptionValuesFromRsuiteDataValues(nextOptionRsuiteValues) : []
       const normalizedNextValue = nextValue.length > 0 ? nextValue : undefined
 
+      setControlledRsuiteData(rsuiteData)
+
       onChange(normalizedNextValue)
     },
-    [getOptionValuesFromRsuiteDataValues, onChange]
+    [getOptionValuesFromRsuiteDataValues, onChange, rsuiteData]
   )
 
   const handleSearch = useCallback(
@@ -114,12 +116,12 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 
       const nextControlledRsuiteData =
         nextQuery.trim().length >= customSearchMinQueryLength
-          ? getRsuiteDataFromOptions(customSearchRef.current.find(nextQuery))
+          ? getRsuiteDataFromOptions(customSearchRef.current.find(nextQuery), optionValueKey)
           : rsuiteData
 
       setControlledRsuiteData(nextControlledRsuiteData)
     },
-    [customSearchMinQueryLength, rsuiteData]
+    [customSearchMinQueryLength, optionValueKey, rsuiteData]
   )
 
   const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
@@ -176,7 +178,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
             renderMenuItem={renderMenuItem}
             searchable={!!customSearch || searchable}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
-            // that's why we send this "always true" filter to disable Rsuite SelectPicker internal search filtering
+            // that's why we send this "always true" filter to disable Rsuite TagPicker internal search filtering
             searchBy={(customSearch ? () => true : undefined) as any}
             value={selectedRsuiteValue}
             {...originalProps}
