@@ -10,7 +10,7 @@ import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
 import { type CustomSearch } from '../libs/CustomSearch'
-import { type Option, type OptionAsRsuiteItemDataType, type OptionValueType } from '../types'
+import { type Option, type OptionValueType } from '../types'
 import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
 import { getRsuiteValueFromOptionValue } from '../utils/getRsuiteValueFromOptionValue'
 import { normalizeString } from '../utils/normalizeString'
@@ -24,6 +24,8 @@ export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omi
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
   customSearch?: CustomSearch<Option<OptionValue>> | undefined
+  /** Minimum search query length required to trigger custom search filtering. */
+  customSearchMinQueryLength?: number | undefined
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
@@ -39,6 +41,7 @@ export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omi
 export function MultiSelect<OptionValue extends OptionValueType = string>({
   baseContainer,
   customSearch,
+  customSearchMinQueryLength = 1,
   disabled = false,
   error,
   isErrorMessageHidden = false,
@@ -55,19 +58,8 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 }: MultiSelectProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
-  /**
-   * Current list of option labels found by `CustomSearch.find()` for the current select search query
-   *
-   * @description
-   * `undefined` means that search query is empty, thus all labels should be a match.
-   */
-  const customSearchLabelMatchesRef = useRef<string[] | undefined>(undefined)
   /** Instance of `CustomSearch` */
   const customSearchRef = useRef(customSearch)
-  /** Last search query (only used when `customSearch` prop is set) */
-  const previousSearchQueryRef = useRef('')
-
-  const [isOpen, setIsOpen] = useState(false)
 
   const controlledError = useMemo(() => normalizeString(error), [error])
   const rsuiteData = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
@@ -78,34 +70,9 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
     [optionValueKey, value]
   )
 
-  const searchBy = useMemo(
-    () =>
-      // Since this function is called by a `.filter()` in Rsuite,
-      // we first prepare `CustomSearch` results in `handleSearch()` (called each time the search query changes),
-      // and we use the `customSearchLabelMatches` ref-stored results, in the form of option labels,
-      // to check if the current option label is part of these results.
-      // Note that options label are expected to be unique in order for this pattern to work.
-      customSearchRef.current
-        ? (query: string, _label: ReactNode, item: OptionAsRsuiteItemDataType<OptionValue>) => {
-            if (!customSearchRef.current) {
-              throw new Error('`customSearchRef.current` is undefined.')
-            }
-
-            // Since this function will be called xN times, N being the number of options,
-            // we only want to update found option labels once each time the search query changes.
-            if (query !== previousSearchQueryRef.current) {
-              const nextCustomSearchLabelMatches =
-                query.trim().length > 0 ? customSearchRef.current.find(query).map(option => option.label) : undefined
-
-              customSearchLabelMatchesRef.current = nextCustomSearchLabelMatches
-              previousSearchQueryRef.current = query
-            }
-
-            return customSearchLabelMatchesRef.current ? customSearchLabelMatchesRef.current.includes(item.label) : true
-          }
-        : undefined,
-    []
-  )
+  // Only used when `customSearch` prop is set
+  const [controlledRsuiteData, setControlledRsuiteData] = useState(customSearch ? rsuiteData : undefined)
+  const [isOpen, setIsOpen] = useState(false)
 
   const { forceUpdate } = useForceUpdate()
 
@@ -137,6 +104,22 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
       onChange(normalizedNextValue)
     },
     [getOptionValuesFromRsuiteDataValues, onChange]
+  )
+
+  const handleSearch = useCallback(
+    (nextQuery: string) => {
+      if (!customSearchRef.current || nextQuery.trim().length < customSearchMinQueryLength) {
+        return
+      }
+
+      const nextControlledRsuiteData =
+        nextQuery.trim().length >= customSearchMinQueryLength
+          ? getRsuiteDataFromOptions(customSearchRef.current.find(nextQuery))
+          : rsuiteData
+
+      setControlledRsuiteData(nextControlledRsuiteData)
+    },
+    [customSearchMinQueryLength, rsuiteData]
   )
 
   const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
@@ -181,15 +164,20 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
           <TagPicker
             key={key}
             container={boxRef.current}
-            data={rsuiteData}
+            // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
+            // when we don't, we don't need to control that and just pass the non-internally-controlled `rsuiteData`
+            data={controlledRsuiteData || rsuiteData}
             disabled={disabled}
             id={originalProps.name}
             onChange={handleChange}
             onClick={toggle}
+            onSearch={handleSearch}
             open={isOpen}
             renderMenuItem={renderMenuItem}
             searchable={!!customSearch || searchable}
-            searchBy={searchBy as any}
+            // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
+            // that's why we send this "always true" filter to disable Rsuite SelectPicker internal search filtering
+            searchBy={(customSearch ? () => true : undefined) as any}
             value={selectedRsuiteValue}
             {...originalProps}
           />
