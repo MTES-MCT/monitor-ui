@@ -154,11 +154,17 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
       outputShouldBe(options[0].value)
 
+      // Reset the Select
+      cy.fill('A select', undefined)
+
       cy.get('.rs-picker-select').click()
       cy.get('.rs-picker-search-bar-input').type('la option')
       cy.get('.rs-picker-select-menu > div[role="option"]:first-child').click()
 
       outputShouldBe(options[0].value)
+
+      // Reset the Select
+      cy.fill('A select', undefined)
 
       cy.get('.rs-picker-select').click()
       cy.get('.rs-picker-search-bar-input').type('sêcôndÈ')
