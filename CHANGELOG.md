@@ -1,3 +1,10 @@
+## [6.3.2](https://github.com/MTES-MCT/monitor-ui/compare/v6.3.1...v6.3.2) (2023-05-25)
+
+
+### Bug Fixes
+
+* **libs:** make CustomSearch fully functional ([931dda0](https://github.com/MTES-MCT/monitor-ui/commit/931dda03e79ba3710d9ae0d14a45305e0c57b819))
+
 ## [6.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v6.3.0...v6.3.1) (2023-05-24)
 
 
