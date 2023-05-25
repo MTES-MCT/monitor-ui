@@ -18,6 +18,7 @@ import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
 import { getRsuiteValueFromOptionValue } from '../utils/getRsuiteValueFromOptionValue'
 import { normalizeString } from '../utils/normalizeString'
 
+import type { CustomSearch } from '../libs/CustomSearch'
 import type { Option, OptionValueType } from '../types'
 import type { AutoCompleteProps as RsuiteAutoCompleteProps } from 'rsuite'
 import type { ItemDataType } from 'rsuite/esm/@types/common'
@@ -30,6 +31,9 @@ export type SearchProps<OptionValue extends OptionValueType = string> = Omit<
   MenuItem?: ElementType | undefined
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
+  customSearch?: CustomSearch<Option<OptionValue>> | undefined
+  /** Minimum search query length required to trigger custom search filtering. */
+  customSearchMinQueryLength?: number | undefined
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
@@ -46,6 +50,8 @@ export type SearchProps<OptionValue extends OptionValueType = string> = Omit<
 export function Search<OptionValue extends OptionValueType = string>({
   baseContainer,
   className,
+  customSearch = undefined,
+  customSearchMinQueryLength = 1,
   error,
   isErrorMessageHidden = false,
   isLabelHidden,
@@ -62,6 +68,9 @@ export function Search<OptionValue extends OptionValueType = string>({
 }: SearchProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
+  /** Instance of `CustomSearch` */
+  const customSearchRef = useRef(customSearch)
+
   const queryRef = useRef<string | undefined>(undefined)
 
   const data = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
@@ -78,7 +87,8 @@ export function Search<OptionValue extends OptionValueType = string>({
 
   const rsuiteValue = useMemo(() => getRsuiteValueFromOptionValue(value, optionValueKey), [value, optionValueKey])
   const [inputValue, setInputValue] = useState<string | undefined>(rsuiteValue)
-
+  // Only used when `customSearch` prop is set
+  const [controlledRsuiteData, setControlledRsuiteData] = useState(customSearch ? data : undefined)
   const close = useCallback(() => {
     setIsOpen(false)
   }, [])
@@ -93,6 +103,15 @@ export function Search<OptionValue extends OptionValueType = string>({
       if (!(typeof nextQuery === 'string')) {
         return
       }
+
+      if (customSearch && customSearchRef.current) {
+        const nextControlledRsuiteData =
+          nextQuery.trim().length >= customSearchMinQueryLength
+            ? getRsuiteDataFromOptions(customSearchRef.current.find(nextQuery), optionValueKey)
+            : data
+        setControlledRsuiteData(nextControlledRsuiteData)
+      }
+
       queryRef.current = normalizeString(nextQuery)
       if (event.type === 'change') {
         setInputValue(nextQuery)
@@ -109,9 +128,8 @@ export function Search<OptionValue extends OptionValueType = string>({
         onQuery(queryRef.current)
       }
     },
-    [onChange, onQuery]
+    [customSearch, onChange, onQuery, data, customSearchMinQueryLength, optionValueKey]
   )
-
   const handleSelect = useCallback(
     (_, item: Option<OptionValue>) => {
       if (onChange) {
@@ -147,7 +165,12 @@ export function Search<OptionValue extends OptionValueType = string>({
             key={key}
             $isLight={isLight}
             container={boxRef.current}
-            data={data}
+            // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
+            // when we don't, we don't need to control that and just pass the non-internally-controlled `rsuiteData`
+            data={controlledRsuiteData || data}
+            // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
+            // that's why we send this "always true" filter to disable Rsuite SelectPicker internal search filtering
+            filterBy={(customSearch ? () => true : undefined) as any}
             id={originalProps.name}
             onChange={handleChange}
             onSelect={handleSelect}
@@ -208,7 +231,7 @@ const StyledAutoComplete = styled(RsuiteAutoComplete)<{
   font-size: 13px;
   flex-grow: 1;
 
-  > input {
+  .rs-input {
     background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
     border-width: 0 0 1px;
     border-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
@@ -220,7 +243,11 @@ const StyledAutoComplete = styled(RsuiteAutoComplete)<{
 
     :focus {
       outline: unset;
-      border-color: ${p => p.theme.color.blueGray['100']};
+      border-color: transparent;
+    }
+    :hover {
+      outline: unset;
+      border-color: transparent;
     }
   }
 `
