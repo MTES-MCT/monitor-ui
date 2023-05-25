@@ -16,7 +16,7 @@ const args: SearchProps = {
   isLight: false,
   label: 'An autocompletable select',
   name: 'autoComplete',
-  placeholder: 'Type "brew"'
+  placeholder: 'Type what you want'
 }
 
 export default {

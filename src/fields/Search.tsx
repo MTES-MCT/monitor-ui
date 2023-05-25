@@ -19,7 +19,7 @@ import { getRsuiteValueFromOptionValue } from '../utils/getRsuiteValueFromOption
 import { normalizeString } from '../utils/normalizeString'
 
 import type { CustomSearch } from '../libs/CustomSearch'
-import type { Option, OptionValueType } from '../types'
+import type { Option, OptionAsRsuiteItemDataType, OptionValueType } from '../types'
 import type { AutoCompleteProps as RsuiteAutoCompleteProps } from 'rsuite'
 import type { ItemDataType } from 'rsuite/esm/@types/common'
 import type { Promisable } from 'type-fest'
@@ -87,8 +87,12 @@ export function Search<OptionValue extends OptionValueType = string>({
 
   const rsuiteValue = useMemo(() => getRsuiteValueFromOptionValue(value, optionValueKey), [value, optionValueKey])
   const [inputValue, setInputValue] = useState<string | undefined>(rsuiteValue)
+
   // Only used when `customSearch` prop is set
-  const [controlledRsuiteData, setControlledRsuiteData] = useState(customSearch ? data : undefined)
+  const [controlledRsuiteData, setControlledRsuiteData] = useState<
+    OptionAsRsuiteItemDataType<OptionValue>[] | undefined
+  >(customSearch ? [] : undefined)
+
   const close = useCallback(() => {
     setIsOpen(false)
   }, [])
@@ -108,7 +112,7 @@ export function Search<OptionValue extends OptionValueType = string>({
         const nextControlledRsuiteData =
           nextQuery.trim().length >= customSearchMinQueryLength
             ? getRsuiteDataFromOptions(customSearchRef.current.find(nextQuery), optionValueKey)
-            : data
+            : []
         setControlledRsuiteData(nextControlledRsuiteData)
       }
 
@@ -128,7 +132,7 @@ export function Search<OptionValue extends OptionValueType = string>({
         onQuery(queryRef.current)
       }
     },
-    [customSearch, onChange, onQuery, data, customSearchMinQueryLength, optionValueKey]
+    [customSearch, onChange, onQuery, customSearchMinQueryLength, optionValueKey]
   )
   const handleSelect = useCallback(
     (_, item: Option<OptionValue>) => {
