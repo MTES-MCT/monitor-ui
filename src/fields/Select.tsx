@@ -108,12 +108,12 @@ export function Select<OptionValue extends OptionValueType = string>({
 
       const nextControlledRsuiteData =
         nextQuery.trim().length >= customSearchMinQueryLength
-          ? getRsuiteDataFromOptions(customSearchRef.current.find(nextQuery))
+          ? getRsuiteDataFromOptions(customSearchRef.current.find(nextQuery), optionValueKey)
           : rsuiteData
 
       setControlledRsuiteData(nextControlledRsuiteData)
     },
-    [customSearchMinQueryLength, rsuiteData]
+    [customSearchMinQueryLength, optionValueKey, rsuiteData]
   )
 
   const handleSelect = useCallback(
