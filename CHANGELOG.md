@@ -1,3 +1,10 @@
+## [6.4.1](https://github.com/MTES-MCT/monitor-ui/compare/v6.4.0...v6.4.1) (2023-05-25)
+
+
+### Bug Fixes
+
+* **fields:** don't display list when no value ([7fa81b3](https://github.com/MTES-MCT/monitor-ui/commit/7fa81b367b23f993800addaa5d5667a73c4407d8))
+
 # [6.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v6.3.3...v6.4.0) (2023-05-25)
 
 
