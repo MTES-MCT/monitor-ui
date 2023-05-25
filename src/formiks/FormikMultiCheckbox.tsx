@@ -16,10 +16,8 @@ export function FormikMultiCheckbox<OptionValue extends OptionValueType = string
 }: FormikMultiCheckboxProps<OptionValue>) {
   const [field, meta, helpers] = useField<OptionValue[] | undefined>(name)
 
-  const error = meta.touched ? meta.error : undefined
   const handleChange = useMemo(
     () => value => {
-      helpers.setTouched(true)
       helpers.setValue(value)
     },
 
@@ -28,5 +26,5 @@ export function FormikMultiCheckbox<OptionValue extends OptionValueType = string
     []
   )
 
-  return <MultiCheckbox error={error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
+  return <MultiCheckbox error={meta.error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
 }

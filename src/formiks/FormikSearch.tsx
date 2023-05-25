@@ -16,10 +16,8 @@ export function FormikSearch<OptionValue extends OptionValueType = string>({
 }: FormikSearchProps<OptionValue>) {
   const [field, meta, helpers] = useField(name)
 
-  const error = meta.touched ? meta.error : undefined
   const handleChange = useMemo(
     () => value => {
-      helpers.setTouched(true)
       helpers.setValue(value)
     },
 
@@ -28,5 +26,5 @@ export function FormikSearch<OptionValue extends OptionValueType = string>({
     []
   )
 
-  return <Search error={error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
+  return <Search error={meta.error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
 }

@@ -9,10 +9,8 @@ export type FormikTextareaProps = Omit<TextareaProps, 'error' | 'onChange' | 'va
 export function FormikTextarea({ name, ...originalProps }: FormikTextareaProps) {
   const [field, meta, helpers] = useField(name)
 
-  const error = meta.touched ? meta.error : undefined
   const handleChange = useMemo(
     () => value => {
-      helpers.setTouched(true)
       helpers.setValue(value)
     },
 
@@ -21,5 +19,5 @@ export function FormikTextarea({ name, ...originalProps }: FormikTextareaProps) 
     []
   )
 
-  return <Textarea error={error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
+  return <Textarea error={meta.error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
 }

@@ -9,10 +9,8 @@ export type FormikNumberInputProps = Omit<NumberInputProps, 'error' | 'onChange'
 export function FormikNumberInput({ name, ...originalProps }: FormikNumberInputProps) {
   const [field, meta, helpers] = useField(name)
 
-  const error = meta.touched ? meta.error : undefined
   const handleChange = useMemo(
     () => value => {
-      helpers.setTouched(true)
       helpers.setValue(value)
     },
 
@@ -21,5 +19,5 @@ export function FormikNumberInput({ name, ...originalProps }: FormikNumberInputP
     []
   )
 
-  return <NumberInput error={error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
+  return <NumberInput error={meta.error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
 }

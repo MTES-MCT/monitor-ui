@@ -16,10 +16,8 @@ export function FormikMultiSelect<OptionValue extends OptionValueType = string>(
 }: FormikMultiSelectProps<OptionValue>) {
   const [field, meta, helpers] = useField<OptionValue[] | undefined>(name)
 
-  const error = meta.touched ? meta.error : undefined
   const handleChange = useMemo(
     () => value => {
-      helpers.setTouched(true)
       helpers.setValue(value)
     },
 
@@ -28,5 +26,5 @@ export function FormikMultiSelect<OptionValue extends OptionValueType = string>(
     []
   )
 
-  return <MultiSelect error={error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
+  return <MultiSelect error={meta.error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
 }
