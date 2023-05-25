@@ -1,3 +1,11 @@
+## [6.3.3](https://github.com/MTES-MCT/monitor-ui/compare/v6.3.2...v6.3.3) (2023-05-25)
+
+
+### Bug Fixes
+
+* **fields:** control options internally with customSearch in Select & MultiSelect ([251ad18](https://github.com/MTES-MCT/monitor-ui/commit/251ad188dbc388c6efcaa1e2bf0afdd0ba343a65))
+* **fields:** reset controlled rsuite data on change with customSearch in MultiSelect ([b96b6d5](https://github.com/MTES-MCT/monitor-ui/commit/b96b6d5eb0e3e00170449ec5df0615ee7c6cea96))
+
 ## [6.3.2](https://github.com/MTES-MCT/monitor-ui/compare/v6.3.1...v6.3.2) (2023-05-25)
 
 
