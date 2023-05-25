@@ -1,3 +1,15 @@
+# [6.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v6.3.3...v6.4.0) (2023-05-25)
+
+
+### Bug Fixes
+
+* **formiks:** delete setTouched in handleChange and delete touched condition for error ([17a9e24](https://github.com/MTES-MCT/monitor-ui/commit/17a9e249a74352f0696a9cc2146aa4e88422a542))
+
+
+### Features
+
+* **fields:** add customSearch prop to Search ([53e993a](https://github.com/MTES-MCT/monitor-ui/commit/53e993ac1cd8c218a3bddbd5cef0d36778589166))
+
 ## [6.3.3](https://github.com/MTES-MCT/monitor-ui/compare/v6.3.2...v6.3.3) (2023-05-25)
 
 
