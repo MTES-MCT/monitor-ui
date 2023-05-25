@@ -1,20 +1,16 @@
-import ky from 'ky'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
-import { CustomSearch, Select, useFieldControl, type SelectProps, type Option } from '../../../src'
+import SPECIES from '../../../.storybook/data/species.json'
+import { CustomSearch, Select, useFieldControl, type SelectProps } from '../../../src'
 
-type FakeUser = {
-  avatar: string
-  birthdate: string
-  email: string
-  id: string
-  registeredAt: string
-  username: string
+type Specy = {
+  code: string
+  name: string
 }
 
-const args: SelectProps<FakeUser> = {
+const args: SelectProps<Specy> = {
   disabled: false,
   error: '',
   isCleanable: true,
@@ -24,7 +20,7 @@ const args: SelectProps<FakeUser> = {
   label: 'A select',
   name: 'mySelect',
   options: [],
-  optionValueKey: 'id',
+  optionValueKey: 'code',
   placeholder: 'Pick an option',
   value: undefined,
   virtualized: true
@@ -50,50 +46,48 @@ export default {
   ]
 }
 
-export function SelectWithCustomSearch(props: SelectProps<FakeUser>) {
-  const customSearchRef = useRef<CustomSearch<Option<FakeUser>> | undefined>(undefined)
+export function SelectWithCustomSearch(props: SelectProps<Specy>) {
+  const optionsRef = useRef(
+    (SPECIES as Specy[]).map(specy => ({
+      label: `${specy.code} - ${specy.name}`,
+      value: specy
+    }))
+  )
+  const customSearchRef = useRef(
+    new CustomSearch(
+      optionsRef.current,
+      [
+        {
+          name: 'value.code',
+          weight: 0.9
+        },
+        {
+          name: 'value.name',
+          weight: 0.1
+        }
+      ],
+      { isStrict: true }
+    )
+  )
 
-  const [options, setOptions] = useState<Option<FakeUser>[]>([])
-  const [outputValue, setOutputValue] = useState<FakeUser | undefined | '∅'>('∅')
+  const [outputValue, setOutputValue] = useState<Specy | undefined | '∅'>('∅')
 
   const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
 
-  useEffect(() => {
-    ;(async () => {
-      const users: FakeUser[] = await ky
-        .get('https://raw.githubusercontent.com/ivangabriele/fakeapi/main/api/users.json')
-        .json()
-      const nextOptions: Option<FakeUser>[] = users.slice(0, 10000).map(user => ({
-        label: user.username,
-        value: user
-      }))
-
-      customSearchRef.current = new CustomSearch(nextOptions, ['label'], { isStrict: true })
-
-      setOptions(nextOptions)
-    })()
-  }, [])
-
   return (
     <>
-      {!options.length && <p>Loading options...</p>}
+      <Select
+        {...props}
+        customSearch={customSearchRef.current}
+        onChange={controlledOnChange}
+        options={optionsRef.current}
+        value={controlledValue}
+      />
+      <div>
+        <em>Loads a pre-shuffled list of {optionsRef.current.length} species in order to check performances.</em>
+      </div>
 
-      {customSearchRef.current && options.length && (
-        <>
-          <Select
-            {...props}
-            customSearch={customSearchRef.current}
-            onChange={controlledOnChange}
-            options={options}
-            value={controlledValue}
-          />
-          <div>
-            <em>Loads a list of 10,000 users in order to check performances.</em>
-          </div>
-
-          {outputValue !== '∅' && <Output value={outputValue} />}
-        </>
-      )}
+      {outputValue !== '∅' && <Output value={outputValue} />}
     </>
   )
 }
