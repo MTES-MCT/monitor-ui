@@ -1,3 +1,10 @@
+# [6.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v6.4.1...v6.5.0) (2023-05-25)
+
+
+### Features
+
+* **cypress:** extend retries to caught errors in fill command ([6ea6839](https://github.com/MTES-MCT/monitor-ui/commit/6ea6839c489b83c3807f5779ece254d9652dc95e))
+
 ## [6.4.1](https://github.com/MTES-MCT/monitor-ui/compare/v6.4.0...v6.4.1) (2023-05-25)
 
 
