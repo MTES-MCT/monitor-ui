@@ -16,10 +16,8 @@ export function FormikSelect<OptionValue extends OptionValueType = string>({
 }: FormikSelectProps<OptionValue>) {
   const [field, meta, helpers] = useField<OptionValue | undefined>(name)
 
-  const error = meta.touched ? meta.error : undefined
   const handleChange = useMemo(
     () => value => {
-      helpers.setTouched(true)
       helpers.setValue(value)
     },
 
@@ -28,5 +26,5 @@ export function FormikSelect<OptionValue extends OptionValueType = string>({
     []
   )
 
-  return <Select error={error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
+  return <Select error={meta.error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
 }

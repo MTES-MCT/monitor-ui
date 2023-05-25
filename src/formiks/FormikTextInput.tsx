@@ -9,10 +9,8 @@ export type FormikTextInputProps = Omit<TextInputProps, 'error' | 'onChange' | '
 export function FormikTextInput({ name, ...originalProps }: FormikTextInputProps) {
   const [field, meta, helpers] = useField(name)
 
-  const error = meta.touched ? meta.error : undefined
   const handleChange = useMemo(
     () => value => {
-      helpers.setTouched(true)
       helpers.setValue(value)
     },
 
@@ -21,5 +19,5 @@ export function FormikTextInput({ name, ...originalProps }: FormikTextInputProps
     []
   )
 
-  return <TextInput error={error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
+  return <TextInput error={meta.error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
 }
