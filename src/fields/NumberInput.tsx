@@ -32,7 +32,9 @@ export function NumberInput({
   isLight = false,
   isUndefinedWhenDisabled = false,
   label,
+  onBlur,
   onChange,
+  onFocus,
   style,
   value,
   ...originalProps
@@ -65,15 +67,23 @@ export function NumberInput({
   const handleBlur = useCallback(
     (event: FocusEvent<HTMLInputElement>) => {
       event.target.removeEventListener('wheel', preventWheelEvent)
+
+      if (onBlur) {
+        onBlur(event)
+      }
     },
-    [preventWheelEvent]
+    [onBlur, preventWheelEvent]
   )
 
   const handleFocus = useCallback(
     (event: FocusEvent<HTMLInputElement>) => {
       event.target.addEventListener('wheel', preventWheelEvent)
+
+      if (onFocus) {
+        onFocus(event)
+      }
     },
-    [preventWheelEvent]
+    [onFocus, preventWheelEvent]
   )
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
