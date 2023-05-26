@@ -8,6 +8,7 @@ import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useKey } from '../hooks/useKey'
+import { usePreventWheelEvent } from '../hooks/usePreventWheelEvent'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Promisable } from 'type-fest'
@@ -44,30 +45,7 @@ export function NumberInput({
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([originalProps.disabled, originalProps.name])
 
-  /**
-   * Prevent any wheel event from emitting while allowing page scroll when focused.
-   *
-   * @description
-   * We want to prevent the number input from changing when the user accidentally scrolls up or down.
-   * That's why we prevent the default behavior of wheel events when it is focused.
-   *
-   * We also want to allow the user to be able to scroll the page while focused on a number input,
-   * That's why we blur this input when a "wheel" (=> "scroll") event happens.
-   *
-   * Because React uses passive event handler by default,
-   * we can't just call `preventDefault` in the `onWheel` event target.
-   * We thus have to use the input reference and add our event handler manually.
-   *
-   * @see https://github.com/facebook/react/pull/19654
-   */
-  const preventWheelEvent = useCallback((event: WheelEvent) => {
-    if (!inputRef.current) {
-      return
-    }
-
-    event.preventDefault()
-    inputRef.current.blur()
-  }, [])
+  const preventWheelEvent = usePreventWheelEvent(inputRef)
 
   const handleChange = useCallback(
     (nextValue: string) => {
