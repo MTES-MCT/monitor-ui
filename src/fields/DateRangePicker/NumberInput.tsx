@@ -7,8 +7,7 @@ import {
   useRef,
   type FocusEvent,
   type ForwardedRef,
-  type InputHTMLAttributes,
-  type MouseEvent
+  type InputHTMLAttributes
 } from 'react'
 import styled from 'styled-components'
 
@@ -41,7 +40,7 @@ function NumberInputWithRef(
     max,
     min,
     onBack,
-    onClick,
+    onBlur,
     onFilled,
     onFocus,
     onFormatError,
@@ -66,19 +65,12 @@ function NumberInputWithRef(
   const handleBlur = useCallback(
     (event: FocusEvent<HTMLInputElement>) => {
       event.target.removeEventListener('wheel', preventWheelEvent)
-    },
-    [preventWheelEvent]
-  )
 
-  const handleClick = useCallback(
-    (event: MouseEvent<HTMLInputElement>) => {
-      // event.stopPropagation()
-
-      if (onClick) {
-        onClick(event)
+      if (onBlur) {
+        onBlur(event)
       }
     },
-    [onClick]
+    [onBlur, preventWheelEvent]
   )
 
   const handleFocus = useCallback(
@@ -176,7 +168,6 @@ function NumberInputWithRef(
       defaultValue={value}
       maxLength={size}
       onBlur={handleBlur}
-      onClick={handleClick}
       onFocus={handleFocus}
       onInput={handleInput}
       onKeyDown={handleKeyDown}
