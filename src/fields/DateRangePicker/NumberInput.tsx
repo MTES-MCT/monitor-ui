@@ -59,6 +59,38 @@ function NumberInputWithRef(
 
   useImperativeHandle(ref, () => inputRef.current as HTMLInputElement)
 
+  /**
+   * Prevent any wheel event from emitting while allowing page scroll when focused.
+   *
+   * @description
+   * We want to prevent the number input from changing when the user accidentally scrolls up or down.
+   * That's why we prevent the default behavior of wheel events when it is focused.
+   *
+   * We also want to allow the user to be able to scroll the page while focused on a number input,
+   * That's why we blur this input when a "wheel" (=> "scroll") event happens.
+   *
+   * Because React uses passive event handler by default,
+   * we can't just call `preventDefault` in the `onWheel` event target.
+   * We thus have to use the input reference and add our event handler manually.
+   *
+   * @see https://github.com/facebook/react/pull/19654
+   */
+  const preventWheelEvent = useCallback((event: WheelEvent) => {
+    if (!inputRef.current) {
+      return
+    }
+
+    event.preventDefault()
+    inputRef.current.blur()
+  }, [])
+
+  const handleBlur = useCallback(
+    (event: FocusEvent<HTMLInputElement>) => {
+      event.target.removeEventListener('wheel', preventWheelEvent)
+    },
+    [preventWheelEvent]
+  )
+
   const handleClick = useCallback(
     (event: MouseEvent<HTMLInputElement>) => {
       // event.stopPropagation()
@@ -76,13 +108,15 @@ function NumberInputWithRef(
         return
       }
 
+      event.target.addEventListener('wheel', preventWheelEvent)
+
       inputRef.current.select()
 
       if (onFocus) {
         onFocus(event)
       }
     },
-    [onFocus]
+    [onFocus, preventWheelEvent]
   )
 
   const handleInput = useCallback(() => {
@@ -162,6 +196,7 @@ function NumberInputWithRef(
       $size={size}
       defaultValue={value}
       maxLength={size}
+      onBlur={handleBlur}
       onClick={handleClick}
       onFocus={handleFocus}
       onInput={handleInput}
