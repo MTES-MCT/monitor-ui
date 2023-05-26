@@ -1,3 +1,11 @@
+## [6.5.1](https://github.com/MTES-MCT/monitor-ui/compare/v6.5.0...v6.5.1) (2023-05-26)
+
+
+### Bug Fixes
+
+* **fields:** add missing onBlur & onFocus props passing in NumberInput ([25c210e](https://github.com/MTES-MCT/monitor-ui/commit/25c210e498c37f275aa32dc5104e0c2824eb4a64))
+* **fields:** prevent wheel event in NumberInput, DatePicker & DateRangePicker ([21a1c20](https://github.com/MTES-MCT/monitor-ui/commit/21a1c205620e977b411e755793ff92dfc17da20b))
+
 # [6.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v6.4.1...v6.5.0) (2023-05-25)
 
 
