@@ -1,3 +1,10 @@
+## [6.5.2](https://github.com/MTES-MCT/monitor-ui/compare/v6.5.1...v6.5.2) (2023-05-27)
+
+
+### Bug Fixes
+
+* **fields:** add missing and normalize error styles ([8104328](https://github.com/MTES-MCT/monitor-ui/commit/810432817e7ea1dfa77427a1ea4fac83cdd41713))
+
 ## [6.5.1](https://github.com/MTES-MCT/monitor-ui/compare/v6.5.0...v6.5.1) (2023-05-26)
 
 
