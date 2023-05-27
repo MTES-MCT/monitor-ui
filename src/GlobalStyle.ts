@@ -70,9 +70,26 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 700;
   }
 
+
+  * {
+    box-sizing: border-box;
+
+    ::before,
+    ::after {
+      box-sizing: border-box;
+    }
+  }
+
+
+  html, body, #root {
+    height: 100%;
+  }
+
   body {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
     font-family: Marianne, sans-serif;
-    font-size: 16px;
+    font-size: 13px;
     line-height: 1.3846;
   }
 `

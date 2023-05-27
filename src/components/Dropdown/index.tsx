@@ -25,14 +25,15 @@ function RawDropdown({ className, Icon, ...originalProps }: DropdownProps) {
 const StyledDropdown = styled(RsuiteDropdown)<{
   $hasIcon: boolean
 }>`
-  .rs-btn {
+  > .rs-btn {
     align-items: center;
     background-color: ${p => p.theme.color.charcoal};
     border: solid 1px ${p => p.theme.color.charcoal};
+    border-radius: 0;
     color: ${p => p.theme.color.gainsboro};
     display: flex;
     font-size: 13px;
-    padding: ${p => (p.$hasIcon ? '4px' : '5px')} 12px ${p => (p.$hasIcon ? '5px' : '7px')};
+    padding: ${p => (p.$hasIcon ? '3px' : '4px')} 12px ${p => (p.$hasIcon ? '6px' : '8px')};
 
     :hover {
       background-color: ${p => p.theme.color.blueYonder['100']};
@@ -52,9 +53,8 @@ const StyledDropdown = styled(RsuiteDropdown)<{
       color: ${p => p.theme.color.cultured};
     }
 
-    /* SVG Icon Components are wrapped within a <div /> */
-    > div {
-      margin: 1px 8px 0 0;
+    > .Element-IconBox {
+      margin: 3px 8px 0 0;
     }
 
     > svg {

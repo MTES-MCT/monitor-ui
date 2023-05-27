@@ -32,7 +32,6 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components'
 const UntypedThemeProvider = ThemeProvider as any
 
 import 'rsuite/dist/rsuite.css'
-import '@mtes-mct/monitor-ui/assets/stylesheets/rsuite-override.css'
 
 export function App() {
   return (

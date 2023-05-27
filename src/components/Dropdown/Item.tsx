@@ -24,15 +24,13 @@ const StyledDropdownItem = styled(RsuiteDropdown.Item)<{
   display: flex;
   font-size: 13px;
   line-height: 1;
-  padding: 12px;
-  padding: ${p => (p.$hasIcon ? '7px' : '11px')} 12px ${p => (p.$hasIcon ? '9px' : '14px')};
+  padding: ${p => (p.$hasIcon ? '6px' : '10px')} 12px ${p => (p.$hasIcon ? '10px' : '15px')};
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--lightGray);
   }
 
-  /* SVG Icon Components are wrapped within a <div /> */
-  > div {
-    margin-top: 1px;
+  > .Element-IconBox {
+    margin-top: 3px;
   }
 `

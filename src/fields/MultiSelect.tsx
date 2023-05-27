@@ -213,6 +213,7 @@ const Box = styled.div<{
 
         return p.theme.color.gainsboro
       }} !important;
+    border-radius: 0;
     cursor: pointer;
     width: 100%;
 
@@ -262,6 +263,7 @@ const Box = styled.div<{
 
       > .rs-tag {
         background-color: ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
+        border-radius: 0;
         font-size: 11px;
         line-height: 1.3636; // = 15px
 

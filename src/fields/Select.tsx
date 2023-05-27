@@ -221,6 +221,7 @@ const Box = styled.div<{
 
     > .rs-picker-toggle {
       border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.gainsboro)} !important;
+      border-radius: 0;
       font-size: 13px;
       line-height: 1.3846;
       padding: 4px 40px 6px 8px;
