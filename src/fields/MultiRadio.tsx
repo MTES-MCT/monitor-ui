@@ -68,7 +68,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
       isLight={isLight}
       legend={label}
     >
-      <CheckboxesBox key={key} $isInline={isInline}>
+      <Box key={key} $hasError={hasError} $isInline={isInline}>
         {options.map(option => (
           <Radio
             key={JSON.stringify(option.value)}
@@ -80,20 +80,22 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
             {option.label}
           </Radio>
         ))}
-      </CheckboxesBox>
+      </Box>
 
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
     </Fieldset>
   )
 }
 
-const CheckboxesBox = styled.div<{
+const Box = styled.div<{
+  $hasError: boolean
   $isInline: boolean
 }>`
   color: ${p => p.theme.color.gunMetal};
   display: flex;
   flex-direction: ${p => (p.$isInline ? 'row' : 'column')};
   font-weight: 500;
+  outline: ${p => (p.$hasError ? `1px solid ${p.theme.color.maximumRed}` : 0)};
 
   > .rs-radio {
     * {

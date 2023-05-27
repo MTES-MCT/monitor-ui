@@ -123,18 +123,22 @@ const StyledInput = styled(Input)<{
   $isLight: boolean
 }>`
   background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
-  border: solid 1px ${p => p.theme.color.blueYonder[100]};
+  border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.gainsboro)};
   border-radius: 0;
   font-size: 13px;
   /* TODO It should be 18px but computed line-height is stuck to min. 18.5px. Investigate that. */
   line-height: 19px;
-  outline: ${p => (p.$hasError ? `1px solid ${p.theme.color.maximumRed}` : 0)};
   padding: 3px 8px 6px;
   vertical-align: center;
   width: 100%;
 
+  :hover {
+    border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueYonder[100])} !important;
+  }
+
+  :active,
   :focus {
-    outline-width: 1px;
-    outline-color: ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray)};
+    border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray[100])} !important;
+    outline: 0;
   }
 `

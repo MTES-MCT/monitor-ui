@@ -59,13 +59,19 @@ export function Textarea({
 
   return (
     <Field className="Field-Textarea">
-      <Label disabled={originalProps.disabled} htmlFor={originalProps.name} isHidden={isLabelHidden}>
+      <Label
+        disabled={originalProps.disabled}
+        hasError={hasError}
+        htmlFor={originalProps.name}
+        isHidden={isLabelHidden}
+      >
         {label}
       </Label>
 
       <StyledInput
         key={key}
         ref={inputRef}
+        $hasError={hasError}
         $isLight={isLight}
         as="textarea"
         id={originalProps.name}
@@ -81,15 +87,26 @@ export function Textarea({
 }
 
 const StyledInput = styled(Input)<{
+  $hasError: boolean
   $isLight: boolean
 }>`
   background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
-  border: 0;
+  border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.gainsboro)};
   font-size: 13px;
   padding: 7px 11px;
   width: 100%;
 
   ::placeholder {
     color: ${p => (p.$isLight ? p.theme.color.slateGray : p.theme.color.slateGray)};
+  }
+
+  :hover {
+    border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueYonder[100])} !important;
+  }
+
+  :active,
+  :focus {
+    border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray[100])} !important;
+    outline: 0;
   }
 `

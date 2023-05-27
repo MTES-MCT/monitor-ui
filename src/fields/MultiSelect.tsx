@@ -222,7 +222,7 @@ const Box = styled.div<{
 
     :active,
     :focus {
-      border: solid 1px ${p => p.theme.color.blueGray[100]} !important;
+      border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray[100])} !important;
     }
 
     > .rs-picker-toggle {

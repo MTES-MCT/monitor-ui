@@ -166,7 +166,7 @@ export function Select<OptionValue extends OptionValueType = string>({
         {label}
       </Label>
 
-      <Box ref={boxRef} onClick={toggle}>
+      <Box ref={boxRef} $hasError={hasError} onClick={toggle}>
         {boxRef.current && (
           <StyledSelectPicker
             key={key}
@@ -209,7 +209,9 @@ const StyledSelectPicker = styled(SelectPicker)<{
   }
 `
 
-const Box = styled.div`
+const Box = styled.div<{
+  $hasError: boolean
+}>`
   position: relative;
   user-select: none;
   width: 100%;
@@ -218,18 +220,18 @@ const Box = styled.div`
     width: 100%;
 
     > .rs-picker-toggle {
-      border: solid 1px ${p => p.theme.color.gainsboro} !important;
+      border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.gainsboro)} !important;
       font-size: 13px;
       line-height: 1.3846;
       padding: 4px 40px 6px 8px;
 
       :hover {
-        border: solid 1px ${p => p.theme.color.blueYonder[100]} !important;
+        border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueYonder[100])} !important;
       }
 
       :active,
       :focus {
-        border: solid 1px ${p => p.theme.color.blueGray[100]} !important;
+        border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray[100])} !important;
       }
 
       > .rs-stack {
