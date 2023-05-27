@@ -17,7 +17,7 @@
 
 import classnames from 'classnames'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { CalendarPicker } from './CalendarPicker'
 import { FieldError } from '../../elements/FieldError'
@@ -324,11 +324,12 @@ export function DatePicker({
     <Fieldset
       className={controlledClassName}
       disabled={disabled}
+      hasError={hasError}
       isLegendHidden={isLabelHidden}
       legend={label}
       {...nativeProps}
     >
-      <Box ref={boxRef}>
+      <Box ref={boxRef} $hasError={hasError} $isDisabled={disabled}>
         <Field>
           <DateInput
             ref={dateInputRef}
@@ -379,15 +380,30 @@ export function DatePicker({
   )
 }
 
-const Box = styled.div`
+const Box = styled.div<{
+  $hasError: boolean
+  $isDisabled: boolean
+}>`
   * {
     font-weight: 500;
     line-height: 1;
   }
 
   color: ${p => p.theme.color.gunMetal};
+  display: inline-flex;
   font-size: 13px;
+  outline: ${p => (p.$hasError ? `1px solid ${p.theme.color.maximumRed}` : 0)};
   position: relative;
+
+  ${p =>
+    p.$isDisabled &&
+    css`
+      * {
+        background-color: ${p.theme.color.cultured} !important;
+        color: ${p.theme.color.lightGray} !important;
+        cursor: not-allowed;
+      }
+    `}
 `
 
 const Field = styled.span<{

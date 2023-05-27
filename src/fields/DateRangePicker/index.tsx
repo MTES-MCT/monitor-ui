@@ -447,11 +447,12 @@ export function DateRangePicker({
     <Fieldset
       className={controlledClassName}
       disabled={disabled}
+      hasError={hasError}
       isLegendHidden={isLabelHidden}
       legend={label}
       {...nativeProps}
     >
-      <Box isDisabled={disabled}>
+      <Box $hasError={hasError} $isDisabled={disabled}>
         <Field>
           <DateInput
             ref={startDateInputRef}
@@ -549,7 +550,8 @@ export function DateRangePicker({
 }
 
 const Box = styled.div<{
-  isDisabled: boolean
+  $hasError: boolean
+  $isDisabled: boolean
 }>`
   * {
     font-weight: 500;
@@ -557,11 +559,13 @@ const Box = styled.div<{
   }
 
   color: ${p => p.theme.color.gunMetal};
+  display: inline-flex;
   font-size: 13px;
+  outline: ${p => (p.$hasError ? `1px solid ${p.theme.color.maximumRed}` : 0)};
   position: relative;
 
   ${p =>
-    p.isDisabled &&
+    p.$isDisabled &&
     css`
       * {
         background-color: ${p.theme.color.cultured} !important;
