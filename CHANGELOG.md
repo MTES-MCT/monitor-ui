@@ -1,3 +1,10 @@
+# [6.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v6.5.2...v6.6.0) (2023-05-28)
+
+
+### Features
+
+* **formiks:** add onError prop to FormikEffect ([6b6ad2e](https://github.com/MTES-MCT/monitor-ui/commit/6b6ad2e191adf1d4a488040990fa2b7633c6b502))
+
 ## [6.5.2](https://github.com/MTES-MCT/monitor-ui/compare/v6.5.1...v6.5.2) (2023-05-27)
 
 
