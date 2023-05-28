@@ -1,4 +1,4 @@
-import { noop } from 'lodash'
+import { noop } from 'lodash/fp'
 
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { Accent, Button, Dialog } from '../../src'

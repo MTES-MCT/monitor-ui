@@ -1,4 +1,5 @@
 import classnames from 'classnames'
+import { noop } from 'lodash/fp'
 import { useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 
@@ -9,7 +10,6 @@ import { CoordinatesFormat } from '../../constants'
 import { FieldError } from '../../elements/FieldError'
 import { Fieldset } from '../../elements/Fieldset'
 import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
-import { noop } from '../../utils/noop'
 import { normalizeString } from '../../utils/normalizeString'
 
 import type { FieldsetProps } from '../../elements/Fieldset'

@@ -1,11 +1,11 @@
 import { Formik } from 'formik'
+import { noop } from 'lodash/fp'
 import { useMemo, useState } from 'react'
 import * as Yup from 'yup'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { FormikEffect, FormikTextarea } from '../../src'
-import { noop } from '../../src/utils/noop'
 
 import type { FormikTextareaProps } from '../../src'
 
