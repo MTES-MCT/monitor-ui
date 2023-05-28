@@ -1,10 +1,10 @@
 import { Formik } from 'formik'
+import { noop } from 'lodash/fp'
 import { useMemo, useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { FormikEffect, FormikTextInput } from '../../src'
-import { noop } from '../../src/utils/noop'
 
 import type { FormikTextInputProps } from '../../src'
 

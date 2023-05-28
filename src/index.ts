@@ -89,7 +89,6 @@ export { getCoordinates, coordinatesAreDistinct } from './utils/coordinates'
 export { getLocalizedDayjs } from './utils/getLocalizedDayjs'
 export { getPseudoRandomString } from './utils/getPseudoRandomString'
 export { getUtcizedDayjs } from './utils/getUtcizedDayjs'
-export { noop } from './utils/noop'
 export { isNumeric } from './utils/isNumeric'
 export { stopMouseEventPropagation } from './utils/stopMouseEventPropagation'
 

@@ -4,11 +4,11 @@ import { mount } from 'cypress/react18'
 // Maybe by allowing virtual dom testing in Cypress config?
 export const mountAndWait: typeof mount = (jsx, options, rerenderKey) => mount(jsx, options, rerenderKey).wait(250)
 
-export const outputShouldBe = (value: any) => {
+export const outputShouldBe = (value: any, label: string = 'Output') => {
   // eslint-disable-next-line no-null/no-null
   const expected = value !== undefined ? JSON.stringify(value, null, 2) : 'undefined'
 
-  cy.get('.mui-output')
+  cy.get(`.mui-output[data-cy="${label}"]`)
     .invoke('text')
     .then(result => {
       if (expected !== result) {

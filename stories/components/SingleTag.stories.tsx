@@ -1,5 +1,7 @@
+import { noop } from 'lodash/fp'
+
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { SingleTag, noop } from '../../src'
+import { SingleTag } from '../../src'
 
 import type { SingleTagProps } from '../../src'
 

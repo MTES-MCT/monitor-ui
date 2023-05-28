@@ -1,10 +1,10 @@
 import { Field, Formik } from 'formik'
+import { noop } from 'lodash/fp'
 import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { FormikEffect } from '../../src'
-import { noop } from '../../src/utils/noop'
 
 import type { FormikEffectProps } from '../../src'
 

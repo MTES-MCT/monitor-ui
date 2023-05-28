@@ -1,11 +1,11 @@
 import { Formik } from 'formik'
 import ky from 'ky'
+import { noop } from 'lodash/fp'
 import { useMemo, useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
 import { FormikEffect, FormikSearch } from '../../../src'
-import { noop } from '../../../src/utils/noop'
 
 import type { FormikSearchProps } from '../../../src'
 

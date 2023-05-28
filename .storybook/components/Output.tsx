@@ -2,16 +2,19 @@ import { useMemo } from 'react'
 import styled from 'styled-components'
 
 export type OutputProps = {
+  label?: string
   value?: any
 }
-export function Output({ value }: OutputProps) {
+export function Output({ label = 'Output', value }: OutputProps) {
   // eslint-disable-next-line no-null/no-null
   const valueAsString = useMemo(() => (value === undefined ? 'undefined' : JSON.stringify(value, null, 2)), [value])
 
   return (
     <>
-      <Title>{`Output (type: ${typeof value === 'object' ? value.constructor.name : typeof value})`}</Title>
-      <Value className="mui-output">{valueAsString}</Value>
+      <Title>{`${label} (type: ${typeof value === 'object' ? value.constructor.name : typeof value})`}</Title>
+      <Value className="mui-output" data-cy={label}>
+        {valueAsString}
+      </Value>
     </>
   )
 }

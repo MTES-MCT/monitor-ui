@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 
 import { Formik } from 'formik'
-import { noop } from 'lodash'
+import { noop } from 'lodash/fp'
 import { useState } from 'react'
 
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
@@ -56,11 +56,11 @@ function Template({
 
 context('Template', () => {
   const commonProps: CheckboxProps = {
-    label: 'A text input',
+    label: 'A checkbox',
     name: 'myCheckbox'
   }
 
-  it('Should update and reset the text input value', () => {
+  it('Should update and reset the checkbox value', () => {
     const updatedValue = true
 
     mountAndWait(<Template {...commonProps} updatedValue={updatedValue} />)
@@ -80,7 +80,7 @@ context('Template', () => {
     outputShouldBe({})
   })
 
-  it('Should update and reset the text input value with initial values', () => {
+  it('Should update and reset the checkbox value with initial values', () => {
     const initialValue = false
     const updatedValue = true
 
@@ -101,7 +101,7 @@ context('Template', () => {
     outputShouldBe({})
   })
 
-  it('Should update and disable the text input value', () => {
+  it('Should update and disable the checkbox value', () => {
     const updatedValue = true
 
     mountAndWait(<Template {...commonProps} updatedValue={updatedValue} />)
@@ -123,7 +123,7 @@ context('Template', () => {
     })
   })
 
-  it('Should update and disable the text input value with `isUndefinedWhenDisabled`', () => {
+  it('Should update and disable the checkbox value with `isUndefinedWhenDisabled`', () => {
     const updatedValue = true
 
     mountAndWait(<Template {...commonProps} isUndefinedWhenDisabled updatedValue={updatedValue} />)
