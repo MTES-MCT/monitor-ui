@@ -65,7 +65,7 @@
     "@semantic-release/github": "8.0.7",
     "@semantic-release/npm": "10.0.3",
     "@semantic-release/release-notes-generator": "10.0.3",
-    "@storybook/addon-a11y": "7.0.12",
+    "@storybook/addon-a11y": "7.0.18",
     "@storybook/addon-essentials": "7.0.12",
     "@storybook/react": "7.0.18",
     "@storybook/react-webpack5": "7.0.12",
