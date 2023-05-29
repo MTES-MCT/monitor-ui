@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react'
 import { TagPicker, type TagPickerProps } from 'rsuite'
 import styled from 'styled-components'
@@ -40,6 +41,7 @@ export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omi
 }
 export function MultiSelect<OptionValue extends OptionValueType = string>({
   baseContainer,
+  className,
   customSearch,
   customSearchMinQueryLength = 1,
   disabled = false,
@@ -53,6 +55,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   options,
   optionValueKey,
   searchable = false,
+  style,
   value,
   ...originalProps
 }: MultiSelectProps<OptionValue>) {
@@ -61,6 +64,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   /** Instance of `CustomSearch` */
   const customSearchRef = useRef(customSearch)
 
+  const controlledClassName = useMemo(() => classnames('Field-MultiSelect', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const rsuiteData = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
@@ -156,7 +160,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   }, [forceUpdate])
 
   return (
-    <Field className="Field-MultiSelect">
+    <Field className={controlledClassName} style={style}>
       <Label disabled={disabled} hasError={hasError} htmlFor={originalProps.name} isHidden={isLabelHidden}>
         {label}
       </Label>

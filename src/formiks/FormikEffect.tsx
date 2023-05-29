@@ -8,7 +8,7 @@ import type { Promisable } from 'type-fest'
 
 export type FormikEffectProps = {
   onChange: (nextValues: Record<string, any>) => Promisable<void>
-  onError?: ((nextValues: Record<string, any>) => Promisable<void>) | undefined
+  onError?: ((nextErrors: Record<string, any>) => Promisable<void>) | undefined
 }
 export function FormikEffect({ onChange, onError }: FormikEffectProps) {
   const { errors, values } = useFormikContext<Record<string, any>>()

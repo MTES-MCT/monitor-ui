@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import { useCallback, useMemo, useRef } from 'react'
 import { Input } from 'rsuite'
 import styled from 'styled-components'
@@ -27,6 +28,7 @@ export type TextareaProps = Omit<
   value?: string | undefined
 }
 export function Textarea({
+  className,
   error,
   isErrorMessageHidden = false,
   isLabelHidden = false,
@@ -35,11 +37,13 @@ export function Textarea({
   label,
   onChange,
   rows = 3,
+  style,
   value,
   ...originalProps
 }: TextareaProps) {
   const inputRef = useRef() as MutableRefObject<HTMLTextAreaElement>
 
+  const controlledClassname = useMemo(() => classnames('Field-Textarea', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([originalProps.disabled, originalProps.name])
@@ -58,7 +62,7 @@ export function Textarea({
   useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
 
   return (
-    <Field className="Field-Textarea">
+    <Field className={controlledClassname} style={style}>
       <Label
         disabled={originalProps.disabled}
         hasError={hasError}
