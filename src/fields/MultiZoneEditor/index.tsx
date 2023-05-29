@@ -1,7 +1,8 @@
 // TODO Clean, split and finalize this component.
 
+import classnames from 'classnames'
 import { equals, remove } from 'ramda'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import styled from 'styled-components'
 
 import { Accent } from '../../constants'
@@ -17,6 +18,7 @@ import type { Promisable } from 'type-fest'
 
 export type MultiZoneEditorProps = {
   addButtonLabel: string
+  className?: string | undefined
   defaultValue?: Record<string, any>[] | undefined
   disabled?: boolean | undefined
   error?: string | undefined
@@ -31,9 +33,11 @@ export type MultiZoneEditorProps = {
   onChange?: ((nextZones: Record<string, any>[] | undefined) => Promisable<void>) | undefined
   onDelete?: ((nextZones: Record<string, any>[]) => Promisable<void>) | undefined
   onEdit?: ((zone: Record<string, any>, index: number) => Promisable<void>) | undefined
+  style?: CSSProperties | undefined
 }
 export function MultiZoneEditor({
   addButtonLabel,
+  className,
   defaultValue = [],
   disabled = false,
   error,
@@ -47,12 +51,14 @@ export function MultiZoneEditor({
   onCenter,
   onChange,
   onDelete,
-  onEdit
+  onEdit,
+  style
 }: MultiZoneEditorProps) {
   const prevDefaultValueRef = useRef(defaultValue)
 
   const [zones, setZones] = useState(defaultValue)
 
+  const controlledClassName = useMemo(() => classnames('Field-MultiZoneEditor', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
 
@@ -112,7 +118,13 @@ export function MultiZoneEditor({
   useFieldUndefineEffect(disabled, onChange, handleDisable)
 
   return (
-    <Fieldset className="Field-MultiZoneEditor" disabled={disabled} isLegendHidden={isLabelHidden} legend={label}>
+    <Fieldset
+      className={controlledClassName}
+      disabled={disabled}
+      isLegendHidden={isLabelHidden}
+      legend={label}
+      style={style}
+    >
       <Button
         accent={Accent.SECONDARY}
         disabled={disabled || isAddButtonDisabled}

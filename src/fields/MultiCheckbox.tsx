@@ -1,5 +1,6 @@
+import classnames from 'classnames'
 import { equals, includes, reject } from 'ramda'
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, type CSSProperties } from 'react'
 import styled, { css } from 'styled-components'
 
 import { Checkbox } from './Checkbox'
@@ -13,6 +14,7 @@ import type { Option, OptionValueType } from '../types'
 import type { Promisable } from 'type-fest'
 
 export type MultiCheckboxProps<OptionValue extends OptionValueType = string> = {
+  className?: string | undefined
   disabled?: boolean | undefined
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
@@ -24,9 +26,11 @@ export type MultiCheckboxProps<OptionValue extends OptionValueType = string> = {
   name: string
   onChange?: ((nextValue: OptionValue[] | undefined) => Promisable<void>) | undefined
   options: Option<OptionValue>[]
+  style?: CSSProperties | undefined
   value?: OptionValue[] | undefined
 }
 export function MultiCheckbox<OptionValue extends OptionValueType = string>({
+  className,
   disabled = false,
   error,
   isErrorMessageHidden = false,
@@ -38,8 +42,10 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
   name,
   onChange,
   options,
+  style,
   value
 }: MultiCheckboxProps<OptionValue>) {
+  const controlledClassName = useMemo(() => classnames('Field-MultiCheckbox', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([value, disabled, name])
@@ -65,12 +71,13 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
 
   return (
     <Fieldset
-      className="Field-MultiCheckbox"
+      className={controlledClassName}
       disabled={disabled}
       hasError={hasError}
       isLegendHidden={isLabelHidden}
       isLight={isLight}
       legend={label}
+      style={style}
     >
       <ChecboxesBox key={key} $hasError={hasError} $isInline={isInline}>
         {options.map((option, index) => (

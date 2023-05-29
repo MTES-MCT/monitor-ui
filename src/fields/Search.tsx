@@ -63,6 +63,7 @@ export function Search<OptionValue extends OptionValueType = string>({
   onQuery,
   options = [],
   optionValueKey,
+  style,
   value,
   ...originalProps
 }: SearchProps<OptionValue>) {
@@ -153,7 +154,7 @@ export function Search<OptionValue extends OptionValueType = string>({
   }, [forceUpdate])
 
   return (
-    <Field className={controlledClassName}>
+    <Field className={controlledClassName} style={style}>
       <Label
         disabled={originalProps.disabled}
         hasError={hasError}

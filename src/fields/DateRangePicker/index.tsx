@@ -121,6 +121,7 @@ export function DateRangePicker({
   label,
   minutesRange = 15,
   onChange,
+  style,
   withTime = false,
   ...nativeProps
 }: DateRangePickerProps) {
@@ -450,6 +451,7 @@ export function DateRangePicker({
       hasError={hasError}
       isLegendHidden={isLabelHidden}
       legend={label}
+      style={style}
       {...nativeProps}
     >
       <Box $hasError={hasError} $isDisabled={disabled}>

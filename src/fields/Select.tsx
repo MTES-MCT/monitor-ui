@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react'
 import { SelectPicker, type SelectPickerProps } from 'rsuite'
 import styled from 'styled-components'
@@ -51,6 +52,7 @@ export type SelectProps<OptionValue extends OptionValueType = string> = Omit<
 }
 export function Select<OptionValue extends OptionValueType = string>({
   baseContainer,
+  className,
   customSearch,
   customSearchMinQueryLength = 1,
   disabled = false,
@@ -65,6 +67,7 @@ export function Select<OptionValue extends OptionValueType = string>({
   options,
   optionValueKey,
   searchable = false,
+  style,
   value,
   ...originalProps
 }: SelectProps<OptionValue>) {
@@ -75,6 +78,7 @@ export function Select<OptionValue extends OptionValueType = string>({
 
   const { forceUpdate } = useForceUpdate()
 
+  const controlledClassname = useMemo(() => classnames('Field-Select', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const rsuiteData = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
@@ -161,7 +165,7 @@ export function Select<OptionValue extends OptionValueType = string>({
   }, [forceUpdate])
 
   return (
-    <Field className="Field-Select">
+    <Field className={controlledClassname} style={style}>
       <Label disabled={disabled} hasError={hasError} htmlFor={originalProps.name} isHidden={isLabelHidden}>
         {label}
       </Label>

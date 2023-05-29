@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
-import { useCallback, useMemo } from 'react'
+import classnames from 'classnames'
+import { useCallback, useMemo, type CSSProperties } from 'react'
 import { Checkbox as RsuiteCheckbox } from 'rsuite'
 import styled from 'styled-components'
 
@@ -16,22 +17,27 @@ import type { Promisable } from 'type-fest'
 
 export type CheckboxProps = Omit<RsuiteCheckboxProps, 'as' | 'checked' | 'defaultChecked' | 'id' | 'onChange'> & {
   checked?: boolean | undefined
+  className?: string | undefined
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
   onChange?: ((isCheched: boolean) => Promisable<void>) | undefined
+  style?: CSSProperties | undefined
 }
 export function Checkbox({
   checked = false,
+  className,
   error,
   isErrorMessageHidden = false,
   isUndefinedWhenDisabled = false,
   label,
   onChange,
+  style,
   ...originalProps
 }: CheckboxProps) {
+  const controlledClassName = useMemo(() => classnames('Field-Checkbox', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = getPseudoRandomString()
@@ -50,7 +56,7 @@ export function Checkbox({
   useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
 
   return (
-    <Field className="Field-Checkbox">
+    <Field className={controlledClassName} style={style}>
       <StyledCheckbox key={key} checked={checked} id={originalProps.name} onChange={handleChange} {...originalProps}>
         {label}
       </StyledCheckbox>
