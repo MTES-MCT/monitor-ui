@@ -67,7 +67,7 @@
     "@semantic-release/release-notes-generator": "10.0.3",
     "@storybook/addon-a11y": "7.0.12",
     "@storybook/addon-essentials": "7.0.12",
-    "@storybook/react": "7.0.12",
+    "@storybook/react": "7.0.18",
     "@storybook/react-webpack5": "7.0.12",
     "@storybook/test-runner": "0.10.0",
     "@storybook/testing-react": "2.0.1",
