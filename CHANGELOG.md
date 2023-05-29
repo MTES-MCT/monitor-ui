@@ -1,3 +1,13 @@
+# [7.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v6.6.0...v7.0.0) (2023-05-29)
+
+
+* fix(fields)!: move style prop passing to container level ([3d727a1](https://github.com/MTES-MCT/monitor-ui/commit/3d727a17b49898f268c7e7b8405ba60c65211a30))
+
+
+### BREAKING CHANGES
+
+* Fields `style` & `className` props are now passed to the container.
+
 # [6.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v6.5.2...v6.6.0) (2023-05-28)
 
 
