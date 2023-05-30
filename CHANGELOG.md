@@ -1,3 +1,10 @@
+# [7.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v7.0.0...v7.1.0) (2023-05-30)
+
+
+### Features
+
+* **elements:** expose FieldError ([1e8efa9](https://github.com/MTES-MCT/monitor-ui/commit/1e8efa9c82812442d532cfce2b8837716570e78a))
+
 # [7.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v6.6.0...v7.0.0) (2023-05-29)
 
 
