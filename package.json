@@ -36,7 +36,7 @@
     "test:unit:watch": "yarn test:unit --watch"
   },
   "dependencies": {
-    "@babel/runtime": "7.21.0",
+    "@babel/runtime": "7.21.5",
     "@tanstack/react-table": "^8.8.5",
     "@tanstack/react-virtual": "beta",
     "prop-types": "15.8.1",
