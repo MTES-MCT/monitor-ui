@@ -31,6 +31,7 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 const UntypedThemeProvider = ThemeProvider as any
 
+import 'react-toastify/dist/ReactToastify.css'
 import 'rsuite/dist/rsuite.css'
 import '@mtes-mct/monitor-ui/assets/stylesheets/rsuite-override.css'
 
