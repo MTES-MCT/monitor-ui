@@ -92,6 +92,7 @@ export { getLocalizedDayjs } from './utils/getLocalizedDayjs'
 export { getPseudoRandomString } from './utils/getPseudoRandomString'
 export { getUtcizedDayjs } from './utils/getUtcizedDayjs'
 export { isNumeric } from './utils/isNumeric'
+export { logSoftError } from './utils/logSoftError'
 export { stopMouseEventPropagation } from './utils/stopMouseEventPropagation'
 
 /* -----------------------------------------------------------------------------
