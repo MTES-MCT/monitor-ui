@@ -1,5 +1,6 @@
 import { GlobalDecorator } from './components/GlobalDecorator'
 
+import 'react-toastify/dist/ReactToastify.css'
 import 'rsuite/dist/rsuite.min.css'
 import '../src/assets/stylesheets/rsuite-override.css'
 

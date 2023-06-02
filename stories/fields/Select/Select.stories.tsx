@@ -5,6 +5,8 @@ import { generateStoryDecorator } from '../../../.storybook/components/StoryDeco
 import { LOREM_IPSUM } from '../../../.storybook/constants'
 import { Select, useFieldControl, type SelectProps } from '../../../src'
 
+import type { Meta } from '@storybook/react'
+
 const args: SelectProps = {
   disabled: false,
   error: '',
@@ -26,7 +28,7 @@ const args: SelectProps = {
   virtualized: false
 }
 
-export default {
+const meta: Meta<SelectProps> = {
   title: 'Fields/Select',
   component: Select,
 
@@ -41,10 +43,13 @@ export default {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasDarkMode: true,
+      withNewWindowButton: true
     })
   ]
 }
+
+export default meta
 
 export function _Select(props: SelectProps) {
   const [outputValue, setOutputValue] = useState<any>('∅')

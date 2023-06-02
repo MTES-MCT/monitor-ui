@@ -5,7 +5,7 @@ import { GlobalDecoratorWrapper } from './GlobalDecorator'
 import { Accent, Button, NewWindow, Size, THEME, useForceUpdate, useNewWindow, NewWindowContext } from '../../src'
 
 import type { NewWindowContextValue } from '../../src'
-import type { Story, StoryContext } from '@storybook/react'
+import type { StoryContext, StoryFn, StrictArgs } from '@storybook/react'
 import type { ForwardedRef, MutableRefObject } from 'react'
 
 export function generateStoryDecorator({
@@ -17,7 +17,7 @@ export function generateStoryDecorator({
   hasDarkMode?: boolean
   withNewWindowButton?: boolean
 } = {}) {
-  return function StoryDecorator(Story: Story, { args }: StoryContext) {
+  return function StoryDecorator(Story: StoryFn, { args }: StoryContext) {
     const newWindowRef = useRef() as MutableRefObject<HTMLDivElement>
 
     const [isNewWindowOpen, setIsNewWindowOpen] = useState(false)
@@ -62,7 +62,7 @@ export function generateStoryDecorator({
 
         {withNewWindowButton && isNewWindowOpen && (
           <NewWindow features={{ height: 600, width: 800 }} onUnload={() => setIsNewWindowOpen(false)}>
-            <NewWindowStoryWrapper ref={newWindowRef} Story={Story} />
+            <NewWindowStoryWrapper ref={newWindowRef} Story={Story} storyArgs={args} />
           </NewWindow>
         )}
       </>
@@ -70,7 +70,10 @@ export function generateStoryDecorator({
   }
 }
 
-function NewWindowStoryWrapperWithRef({ Story }: { Story: Story }, ref: ForwardedRef<HTMLDivElement | null>) {
+function NewWindowStoryWrapperWithRef(
+  { Story, storyArgs }: { Story: StoryFn; storyArgs: StrictArgs },
+  ref: ForwardedRef<HTMLDivElement | null>
+) {
   // eslint-disable-next-line no-null/no-null
   const wrapperRef = useRef<HTMLDivElement | null>(null)
 
@@ -98,7 +101,7 @@ function NewWindowStoryWrapperWithRef({ Story }: { Story: Story }, ref: Forwarde
       {!isFirstRender && (
         <NewWindowContext.Provider value={newWindowContextProviderValue}>
           <GlobalDecoratorWrapper>
-            <NewWindowStory Story={Story} />
+            <NewWindowStory Story={Story} storyArgs={storyArgs} />
           </GlobalDecoratorWrapper>
         </NewWindowContext.Provider>
       )}
@@ -108,10 +111,10 @@ function NewWindowStoryWrapperWithRef({ Story }: { Story: Story }, ref: Forwarde
 
 const NewWindowStoryWrapper = forwardRef(NewWindowStoryWrapperWithRef)
 
-function NewWindowStory({ Story }: { Story: Story }) {
+function NewWindowStory({ Story, storyArgs }: { Story: StoryFn; storyArgs: StrictArgs }) {
   const { newWindowContainerRef } = useNewWindow()
 
-  return <Story args={{ baseContainer: newWindowContainerRef.current }} />
+  return <Story args={{ ...storyArgs, baseContainer: newWindowContainerRef.current }} />
 }
 
 const StoryBox = styled.div`
