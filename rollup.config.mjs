@@ -7,7 +7,7 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 
 export default [
   {
-    external: ['rsuite/locales/fr_FR'],
+    external: ['lodash/fp', 'rsuite/locales/fr_FR'],
 
     input: './src/index.ts',
 
