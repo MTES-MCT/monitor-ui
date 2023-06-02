@@ -1,4 +1,5 @@
 /* eslint-disable import/no-default-export, @typescript-eslint/naming-convention */
+
 import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import typescript from '@rollup/plugin-typescript'
@@ -7,7 +8,7 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 
 export default [
   {
-    external: ['lodash/fp', 'rsuite/locales/fr_FR'],
+    external: ['rsuite/locales/fr_FR'],
 
     input: './src/index.ts',
 
