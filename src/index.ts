@@ -21,6 +21,7 @@ export { ThemeProvider } from './ThemeProvider'
 export { Dialog } from './components/Dialog'
 export { Dropdown } from './components/Dropdown'
 export { NewWindow } from './components/NewWindow'
+export { NotificationEvent, Notifier } from './components/Notifier'
 export { SingleTag } from './components/SingleTag'
 
 export { Button } from './elements/Button'
@@ -112,6 +113,7 @@ export type {
 export type { DialogProps } from './components/Dialog'
 export type { DropdownProps, DropdownItemProps } from './components/Dropdown'
 export type { NewWindowProps } from './components/NewWindow'
+export type { NotifierProps } from './components/Notifier'
 export type { SingleTagProps } from './components/SingleTag'
 
 export type { ButtonProps } from './elements/Button'
