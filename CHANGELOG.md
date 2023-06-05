@@ -1,3 +1,16 @@
+# [7.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v7.1.0...v7.2.0) (2023-06-05)
+
+
+### Bug Fixes
+
+* **build:** remove lodash & ol from peer deps ([9377efa](https://github.com/MTES-MCT/monitor-ui/commit/9377efa5a668d32206c0bb74f095af2cf6ce53f0))
+
+
+### Features
+
+* **components:** add Notfier ([bc641e7](https://github.com/MTES-MCT/monitor-ui/commit/bc641e7cdf6e5f78028351821c943255075403bd))
+* **utils:** add logSoftError() ([a867557](https://github.com/MTES-MCT/monitor-ui/commit/a867557a72cc81135ff07236d5e9fe2b94746e13))
+
 # [7.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v7.0.0...v7.1.0) (2023-05-30)
 
 
