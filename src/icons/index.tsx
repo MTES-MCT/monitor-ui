@@ -45,6 +45,7 @@ import { More } from './More'
 import { Note } from './Note'
 import { Observation } from './Observation'
 import { Pin } from './Pin'
+import { PinFilled } from './PinFilled'
 import { Pinpoint } from './Pinpoint'
 import { PinpointHide } from './PinpointHide'
 import { Plane } from './Plane'
@@ -117,6 +118,7 @@ export {
   Note,
   Observation,
   Pin,
+  PinFilled,
   Pinpoint,
   PinpointHide,
   Plane,
