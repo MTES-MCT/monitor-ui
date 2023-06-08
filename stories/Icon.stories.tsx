@@ -315,6 +315,12 @@ export function _Icon(props: IconProps) {
       </Cell>
       <Cell>
         <IconBox>
+          <Icon.PinFilled {...props} />
+        </IconBox>
+        <Code>PinFilled</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
           <Icon.Pinpoint {...props} />
         </IconBox>
         <Code>Pinpoint</Code>
