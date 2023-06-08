@@ -48,21 +48,19 @@ export function IconButton({
     [onClick, withUnpropagatedClick]
   )
 
-  const commonChildren = useMemo(
-    () => <Icon color={color} size={iconSize || ICON_SIZE_IN_PX[size]} />,
-    [color, Icon, iconSize, size]
-  )
+  const commonChildren = useMemo(() => <Icon size={iconSize || ICON_SIZE_IN_PX[size]} />, [Icon, iconSize, size])
 
   const commonProps = useMemo(
     () => ({
       children: commonChildren,
       className: classnames('Element-IconButton', className),
+      color,
       onClick: handleClick,
       size,
       type,
       ...nativeProps
     }),
-    [className, commonChildren, handleClick, nativeProps, size, type]
+    [className, color, commonChildren, handleClick, nativeProps, size, type]
   )
 
   switch (accent) {
@@ -92,10 +90,12 @@ const StyledButton = styled.button<{
   padding: ${p => PADDING[p.size]};
 `
 
-const TertiaryButton = styled.button`
+const TertiaryButton = styled.button<{
+  color: string | undefined
+}>`
   background-color: transparent;
   border: 1px solid transparent;
-  color: ${p => p.theme.color.charcoal};
+  color: ${p => p.color || p.theme.color.charcoal};
 
   :hover,
   &._hover {
