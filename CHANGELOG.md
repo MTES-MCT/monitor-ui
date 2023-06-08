@@ -1,3 +1,10 @@
+## [7.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v7.2.0...v7.2.1) (2023-06-08)
+
+
+### Bug Fixes
+
+* **elements:** unbold and italicize FieldError ([4ba529e](https://github.com/MTES-MCT/monitor-ui/commit/4ba529e97e1f90a7ea3beff4bf479081687c8e5f))
+
 # [7.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v7.1.0...v7.2.0) (2023-06-05)
 
 
