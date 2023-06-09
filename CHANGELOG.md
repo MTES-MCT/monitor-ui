@@ -1,3 +1,11 @@
+# [7.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v7.2.1...v7.3.0) (2023-06-09)
+
+
+### Features
+
+* **components:** clean naming for export ([83f3b1b](https://github.com/MTES-MCT/monitor-ui/commit/83f3b1bb3eec48b01abdea7444b6c8e2ca0f9c56))
+* **components:** create SideMenu component ([1ba4358](https://github.com/MTES-MCT/monitor-ui/commit/1ba435820145634ce8449612d2f4e7ff63d894da))
+
 ## [7.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v7.2.0...v7.2.1) (2023-06-08)
 
 
