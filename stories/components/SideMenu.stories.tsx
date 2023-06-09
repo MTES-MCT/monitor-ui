@@ -1,9 +1,7 @@
 import { useState } from 'react'
 
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { Icon } from '../../src'
-import { SideMenu } from '../../src/components/SideMenu'
-import { Button } from '../../src/components/SideMenu/Button'
+import { Icon, SideMenu } from '../../src'
 
 export default {
   title: 'Components/SideMenu',
@@ -20,21 +18,21 @@ export function _SideMenu(props) {
   return (
     <div style={{ height: '500px' }}>
       <SideMenu {...props}>
-        <Button
+        <SideMenu.Button
           Icon={Icon.Alert}
-          isSelected={selectedButton === 'bouton 1'}
+          isActive={selectedButton === 'bouton 1'}
           onClick={() => setSelectedButton('bouton 1')}
           title="bouton 1"
         />
-        <Button
+        <SideMenu.Button
           Icon={Icon.MissionAction}
-          isSelected={selectedButton === 'bouton 2'}
+          isActive={selectedButton === 'bouton 2'}
           onClick={() => setSelectedButton('bouton 2')}
           title="bouton 2"
         />
-        <Button
+        <SideMenu.Button
           Icon={Icon.Vms}
-          isSelected={selectedButton === 'bouton 3'}
+          isActive={selectedButton === 'bouton 3'}
           onClick={() => setSelectedButton('bouton 3')}
           title="bouton 2"
         />
