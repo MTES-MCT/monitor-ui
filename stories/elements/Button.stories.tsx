@@ -1,6 +1,6 @@
 import { Showcase } from '../../.storybook/components/Showcase'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { Accent, Button, Icon, Size } from '../../src'
+import { Accent, Button, Icon, Size, THEME } from '../../src'
 
 import type { ButtonProps } from '../../src'
 
@@ -13,6 +13,10 @@ const args: ButtonProps = {
   withUnpropagatedClick: false
 }
 
+const iconsMap = {
+  Close: Icon.Close,
+  Duplicate: Icon.Duplicate
+}
 export default {
   title: 'Elements/Button',
   component: Button,
@@ -25,6 +29,19 @@ export default {
     size: {
       control: 'inline-radio',
       options: Size
+    },
+    color: {
+      control: {
+        type: 'color',
+        presetColors: [THEME.color.charcoal, THEME.color.goldenPoppy, THEME.color.maximumRed]
+      }
+    },
+    Icon: {
+      options: [undefined, ...Object.keys(iconsMap)],
+      mapping: {
+        undefined,
+        ...iconsMap
+      }
     }
   },
 

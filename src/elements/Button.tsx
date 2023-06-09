@@ -16,6 +16,7 @@ export type ButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'childre
   Icon?: FunctionComponent<IconProps> | undefined
   accent?: Accent | undefined
   children?: string | undefined
+  color?: string | undefined
   isFullWidth?: boolean | undefined
   size?: Size | undefined
   /** Prevent onClick event propagation. */
@@ -25,6 +26,7 @@ export function Button({
   accent = Accent.PRIMARY,
   children,
   className,
+  color,
   Icon,
   isFullWidth = false,
   onClick,
@@ -61,13 +63,14 @@ export function Button({
       as: StyledButton,
       children: commonChildren,
       className: classnames('Element-Button', className),
+      color,
       isFullWidth,
       onClick: handleClick,
       size,
       type,
       ...nativeProps
     }),
-    [className, commonChildren, handleClick, isFullWidth, nativeProps, size, type]
+    [className, color, commonChildren, handleClick, isFullWidth, nativeProps, size, type]
   )
 
   switch (accent) {
@@ -119,10 +122,12 @@ const ButtonLabel = styled.span`
   white-space: nowrap;
 `
 
-export const PrimaryButton = styled.button`
+export const PrimaryButton = styled.button<{
+  color: string | undefined
+}>`
   background-color: ${p => p.theme.color.charcoal};
   border: 1px solid ${p => p.theme.color.charcoal};
-  color: ${p => p.theme.color.gainsboro};
+  color: ${p => p.color || p.theme.color.gainsboro};
 
   :hover,
   &._hover {
@@ -149,7 +154,7 @@ export const PrimaryButton = styled.button`
 export const SecondaryButton = styled.button`
   background-color: transparent;
   border: 1px solid ${p => p.theme.color.charcoal};
-  color: ${p => p.theme.color.charcoal};
+  color: ${p => p.color || p.theme.color.charcoal};
 
   :hover,
   &._hover {
@@ -176,7 +181,7 @@ export const SecondaryButton = styled.button`
 export const TertiaryButton = styled.button`
   background-color: ${p => p.theme.color.white};
   border: 1px solid ${p => p.theme.color.white};
-  color: ${p => p.theme.color.charcoal};
+  color: ${p => p.color || p.theme.color.charcoal};
 
   :hover,
   &._hover {
