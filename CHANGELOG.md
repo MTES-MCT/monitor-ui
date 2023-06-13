@@ -1,3 +1,10 @@
+## [7.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v7.3.0...v7.3.1) (2023-06-13)
+
+
+### Bug Fixes
+
+* **components:** fix style ([fa5ddb6](https://github.com/MTES-MCT/monitor-ui/commit/fa5ddb6a351cba430d1a2f2452ac66e756e3722b))
+
 # [7.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v7.2.1...v7.3.0) (2023-06-09)
 
 
