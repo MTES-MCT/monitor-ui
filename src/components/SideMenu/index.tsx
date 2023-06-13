@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   background-color: ${p => p.theme.color.charcoal};
   box-sizing: border-box;
   display: flex;
-  height: 100%;
+  height: 100vh;
   flex-direction: column;
   width: 64px;
   padding: 64px 0 0;
