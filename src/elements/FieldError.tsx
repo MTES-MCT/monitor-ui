@@ -12,7 +12,7 @@ export const FieldError = styled.p.attrs<FieldErrorProps, FieldErrorProps>(props
   color: ${p => p.theme.color.maximumRed};
   display: ${p => (p.isDisabled ? 'none' : 'block')};
   font-size: 13px;
-  font-weight: 700;
+  font-style: italic;
   line-height: 1.3846;
   margin: 4px 0 0 0;
 `

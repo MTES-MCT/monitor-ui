@@ -1,3 +1,25 @@
+## [7.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v7.3.0...v7.3.1) (2023-06-13)
+
+
+### Bug Fixes
+
+* **components:** fix style ([fa5ddb6](https://github.com/MTES-MCT/monitor-ui/commit/fa5ddb6a351cba430d1a2f2452ac66e756e3722b))
+
+# [7.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v7.2.1...v7.3.0) (2023-06-09)
+
+
+### Features
+
+* **components:** clean naming for export ([83f3b1b](https://github.com/MTES-MCT/monitor-ui/commit/83f3b1bb3eec48b01abdea7444b6c8e2ca0f9c56))
+* **components:** create SideMenu component ([1ba4358](https://github.com/MTES-MCT/monitor-ui/commit/1ba435820145634ce8449612d2f4e7ff63d894da))
+
+## [7.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v7.2.0...v7.2.1) (2023-06-08)
+
+
+### Bug Fixes
+
+* **elements:** unbold and italicize FieldError ([4ba529e](https://github.com/MTES-MCT/monitor-ui/commit/4ba529e97e1f90a7ea3beff4bf479081687c8e5f))
+
 # [7.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v7.1.0...v7.2.0) (2023-06-05)
 
 
