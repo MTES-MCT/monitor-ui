@@ -1,3 +1,10 @@
+# [7.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v7.3.1...v7.4.0) (2023-06-15)
+
+
+### Features
+
+* **icons:** add PinFilled icon ([dfef008](https://github.com/MTES-MCT/monitor-ui/commit/dfef008403136f2bc3dfeab66a1ea42aa9b8ff70))
+
 ## [7.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v7.3.0...v7.3.1) (2023-06-13)
 
 
