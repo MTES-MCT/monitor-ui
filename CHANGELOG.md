@@ -1,3 +1,5 @@
+## [7.4.1](https://github.com/MTES-MCT/monitor-ui/compare/v7.4.0...v7.4.1) (2023-06-21)
+
 # [7.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v7.3.1...v7.4.0) (2023-06-15)
 
 
