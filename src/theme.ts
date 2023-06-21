@@ -39,6 +39,9 @@ export const THEME = {
 
     /** CONTEXTUAL COLORS */
 
+    // Mission status
+    yellowGreen: '#8CC800',
+
     // Risk Factor
     cadetGray: '#8E9A9F',
     grullo: '#B89B8C',
