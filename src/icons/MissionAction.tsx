@@ -5,12 +5,12 @@ import type { IconProps } from '../types'
 export function MissionAction({ color, size, ...nativeProps }: IconProps) {
   return (
     <IconBox $color={color} $size={size}>
-      <svg height="24.798" viewBox="0 0 20.289 24.798" width="20.289" {...nativeProps}>
-        <path
-          d="M18.781,2.254h3.382a1.127,1.127,0,0,1,1.127,1.127V23.671A1.127,1.127,0,0,1,22.162,24.8H4.127A1.127,1.127,0,0,1,3,23.671V3.382A1.127,1.127,0,0,1,4.127,2.254H7.509V0H9.763V2.254h6.763V0h2.254ZM7.509,9.017v2.254H18.781V9.017Zm0,4.509v2.254H18.781V13.526Z"
-          fill="currentColor"
-          transform="translate(-3)"
-        />
+      <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
+        <path d="M214,2V0h-2V2h-4V0h-2V2h-3V18h14V2Zm1,14H205V4h10Z" fill="currentColor" transform="translate(-200)" />
+        <rect fill="currentColor" height="1.5" transform="translate(7 6.5)" width="6" />
+        <rect fill="currentColor" height="1.5" transform="translate(7 9.5)" width="6" />
+        <path d="M200,0h20V20H200Z" fill="none" transform="translate(-200)" />
+        <path d="M200,0h20V20H200Z" fill="none" transform="translate(-200)" />
       </svg>
     </IconBox>
   )
