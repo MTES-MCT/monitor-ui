@@ -24,6 +24,7 @@ const MenuButton = styled(IconButton)<{
   border-bottom: solid 0.5px ${p => p.theme.color.slateGray};
   color: ${p => (p.$isActive ? p.theme.color.white : p.theme.color.gainsboro)};
   padding: 18px;
+  height: 64px;
 
   :hover,
   :focus {
