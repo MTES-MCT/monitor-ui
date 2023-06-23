@@ -1,29 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+<svg id="Summary" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
   <defs>
     <clipPath id="clip">
       <use xlink:href="#fill"/>
     </clipPath>
-    <clipPath id="clip-2">
-      <use xlink:href="#fill-2"/>
-    </clipPath>
-    <clipPath id="clip-3">
-      <use xlink:href="#fill-3"/>
-    </clipPath>
   </defs>
-  <g id="Summary" transform="translate(-200)">
-    <path id="Tracé_1345" data-name="Tracé 1345" d="M216,4V16H204V4h12M202,2V18h16V2Z" fill="currentColor"/>
-    <g id="Rectangle_6085" data-name="Rectangle 6085" transform="translate(206 6)" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2">
-      <rect id="fill" width="8" height="1.5" stroke="none"/>
-      <path d="M0,0.5h8M7,0v1.5M8,1h-8M1,1.5v-1.5" fill="none" clip-path="url(#clip)"/>
-    </g>
-    <g id="Rectangle_6086" data-name="Rectangle 6086" transform="translate(206 9.25)" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2">
-      <rect id="fill-2" width="8" height="1.5" stroke="none"/>
-      <path d="M0,0.5h8M7,0v1.5M8,1h-8M1,1.5v-1.5" fill="none" clip-path="url(#clip-2)"/>
-    </g>
-    <g id="Rectangle_6087" data-name="Rectangle 6087" transform="translate(206 12.5)" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2">
-      <rect id="fill-3" width="8" height="1.5" stroke="none"/>
-      <path d="M0,0.5h8M7,0v1.5M8,1h-8M1,1.5v-1.5" fill="none" clip-path="url(#clip-3)"/>
-    </g>
-    <rect id="Rectangle_6088" data-name="Rectangle 6088" width="20" height="20" transform="translate(200)" fill="none"/>
+  <g id="Groupe_4295" data-name="Groupe 4295">
+    <rect id="Rectangle_6280" data-name="Rectangle 6280" width="20" height="20" fill="none"/>
+  </g>
+  <g id="Groupe_4296" data-name="Groupe 4296">
+    <rect id="Rectangle_6281" data-name="Rectangle 6281" width="8" height="1.5" transform="translate(6 6)" fill="#707785"/>
+    <rect id="Rectangle_6282" data-name="Rectangle 6282" width="8" height="1.5" transform="translate(6 9.25)" fill="#707785"/>
+    <rect id="Rectangle_6283" data-name="Rectangle 6283" width="8" height="1.5" transform="translate(6 12.5)" fill="#707785"/>
+    <path id="Tracé_1462" data-name="Tracé 1462" d="M16.5,3.5v13H3.5V3.5h13M18,2H2V18H18V2Z" fill="#707785"/>
   </g>
 </svg>
