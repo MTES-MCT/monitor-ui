@@ -1,3 +1,10 @@
+## [7.4.3](https://github.com/MTES-MCT/monitor-ui/compare/v7.4.2...v7.4.3) (2023-06-23)
+
+
+### Bug Fixes
+
+* **icons:** update summary icon ([9bfaa18](https://github.com/MTES-MCT/monitor-ui/commit/9bfaa18cfbc086bcea9ec2d18862b05bab6e9f55))
+
 ## [7.4.2](https://github.com/MTES-MCT/monitor-ui/compare/v7.4.1...v7.4.2) (2023-06-22)
 
 
