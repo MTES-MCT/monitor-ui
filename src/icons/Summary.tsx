@@ -10,28 +10,15 @@ export function Summary({ color, size, ...nativeProps }: IconProps) {
           <clipPath>
             <use />
           </clipPath>
-          <clipPath>
-            <use />
-          </clipPath>
-          <clipPath>
-            <use />
-          </clipPath>
         </defs>
-        <g transform="translate(-200)">
-          <path d="M216,4V16H204V4h12M202,2V18h16V2Z" fill="currentColor" />
-          <g fill="none" stroke="currentColor" strokeMiterlimit="10" strokeWidth="2" transform="translate(206 6)">
-            <rect height="1.5" stroke="none" width="8" />
-            <path clipPath="url(#clip)" d="M0,0.5h8M7,0v1.5M8,1h-8M1,1.5v-1.5" fill="none" />
-          </g>
-          <g fill="none" stroke="currentColor" strokeMiterlimit="10" strokeWidth="2" transform="translate(206 9.25)">
-            <rect height="1.5" stroke="none" width="8" />
-            <path clipPath="url(#clip-2)" d="M0,0.5h8M7,0v1.5M8,1h-8M1,1.5v-1.5" fill="none" />
-          </g>
-          <g fill="none" stroke="currentColor" strokeMiterlimit="10" strokeWidth="2" transform="translate(206 12.5)">
-            <rect height="1.5" stroke="none" width="8" />
-            <path clipPath="url(#clip-3)" d="M0,0.5h8M7,0v1.5M8,1h-8M1,1.5v-1.5" fill="none" />
-          </g>
-          <rect fill="none" height="20" transform="translate(200)" width="20" />
+        <g>
+          <rect fill="none" height="20" width="20" />
+        </g>
+        <g>
+          <rect fill="currentColor" height="1.5" transform="translate(6 6)" width="8" />
+          <rect fill="currentColor" height="1.5" transform="translate(6 9.25)" width="8" />
+          <rect fill="currentColor" height="1.5" transform="translate(6 12.5)" width="8" />
+          <path d="M16.5,3.5v13H3.5V3.5h13M18,2H2V18H18V2Z" fill="currentColor" />
         </g>
       </svg>
     </IconBox>
