@@ -130,7 +130,7 @@
     "react": "18.2.0",
     "react-coordinate-input": "1.0.0",
     "react-dom": "18.2.0",
-    "react-imask": "6.6.0",
+    "react-imask": "7.0.1",
     "react-is": "18.2.0",
     "react-toastify": "9.1.3",
     "rollup": "3.19.1",
