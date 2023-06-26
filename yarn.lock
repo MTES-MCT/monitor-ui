@@ -4384,7 +4384,7 @@ __metadata:
     "@types/diacritics": 1.3.1
     "@types/jabber": 1.2.0
     "@types/jest": 29.5.2
-    "@types/node": 18.14.1
+    "@types/node": 20.3.1
     "@types/ramda": 0.28.23
     "@types/react": 18.2.7
     "@types/react-dom": 18.2.4
@@ -7710,10 +7710,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:18.14.1":
-  version: 18.14.1
-  resolution: "@types/node@npm:18.14.1"
-  checksum: 58556bbdb0050e44a4934742c1da2530812782c06d266a758e669e44c5aa196166c5fce45fdb03f016876717e3840478b3220129bb77367f979607564047f0a3
+"@types/node@npm:20.3.1":
+  version: 20.3.1
+  resolution: "@types/node@npm:20.3.1"
+  checksum: 63a393ab6d947be17320817b35d7277ef03728e231558166ed07ee30b09fd7c08861be4d746f10fdc63ca7912e8cd023939d4eab887ff6580ff704ff24ed810c
   languageName: node
   linkType: hard
 
