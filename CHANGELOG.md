@@ -1,3 +1,11 @@
+# [7.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v7.4.3...v7.5.0) (2023-06-29)
+
+
+### Features
+
+* **fields:** add lowercase handling in DMD coordinates input ([efc25f0](https://github.com/MTES-MCT/monitor-ui/commit/efc25f09eb62e5f32ad7fcdc1f019777fea8c42d))
+* **fields:** remove precision on DMD minute decimals ([31498d3](https://github.com/MTES-MCT/monitor-ui/commit/31498d39912dba785472aaed295a9493c7014fae))
+
 ## [7.4.3](https://github.com/MTES-MCT/monitor-ui/compare/v7.4.2...v7.4.3) (2023-06-23)
 
 
