@@ -1,5 +1,6 @@
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
-import { CoordinatesFormat, CoordinatesInputProps } from '../../../src'
+import { CoordinatesFormat } from '../../../src'
+import type { CoordinatesInputProps } from '../../../src'
 import { _CoordinatesInput as CoordinatesInputStory } from '../../../stories/fields/CoordinatesInput.stories'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
