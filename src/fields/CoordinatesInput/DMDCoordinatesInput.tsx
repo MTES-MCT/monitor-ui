@@ -52,7 +52,7 @@ export function DMDCoordinatesInput({
     const latitude = mask._unmaskedValue.substring(0, 8)
     // eslint-disable-next-line no-underscore-dangle
     const longitude = mask._unmaskedValue.substring(8, mask._unmaskedValue.length)
-    const NS = latitude[latitude.length - 1]
+    const NS = latitude[latitude.length - 1].toUpperCase()
     if (!['N', 'S'].includes(NS)) {
       setError('La latitude doit être N ou S')
 
@@ -67,7 +67,7 @@ export function DMDCoordinatesInput({
     const latitudeMinutes = parseInt(latitude.substring(2, 4), 10)
     const latitudeSeconds = parseInt(latitude.substring(4, 7), 10)
 
-    const EW = longitude[longitude.length - 1]
+    const EW = longitude[longitude.length - 1].toUpperCase()
     if (!['E', 'W'].includes(EW)) {
       setError('La longitude doit être E ou W')
 
