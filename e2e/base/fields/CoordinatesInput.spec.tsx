@@ -1,7 +1,9 @@
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
-import { CoordinatesFormat, CoordinatesInputProps } from '../../../src'
+import { CoordinatesFormat } from '../../../src'
 import { _CoordinatesInput as CoordinatesInputStory } from '../../../stories/fields/CoordinatesInput.stories'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
+
+import type { CoordinatesInputProps } from '../../../src'
 
 context('Story', () => {
   it('Should fill the DMD coordinates with lowercase N/W and two minutes decimals', () => {
