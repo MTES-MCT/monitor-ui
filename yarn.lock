@@ -3714,9 +3714,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ivangabriele/eslint-config-typescript-base@npm:7.1.0":
-  version: 7.1.0
-  resolution: "@ivangabriele/eslint-config-typescript-base@npm:7.1.0"
+"@ivangabriele/eslint-config-typescript-base@npm:7.1.1":
+  version: 7.1.1
+  resolution: "@ivangabriele/eslint-config-typescript-base@npm:7.1.1"
   peerDependencies:
     "@ivangabriele/prettier-config": ^3.0.0
     "@typescript-eslint/eslint-plugin": ^5.0.0
@@ -3733,7 +3733,7 @@ __metadata:
     eslint-plugin-sort-keys-fix: ^1.0.0
     eslint-plugin-typescript-sort-keys: ^2.0.0
     typescript: ^5.0.0
-  checksum: d1464b3065a82112af2ff446141992ad651f304f8820afe7d2a637cf7c443185b7e84eb4ddea866b4626e5bbbb5e4f115d0684ba3783633f2e036f4661391d70
+  checksum: d99e2d96054ed8a0c10a9df2427b015f4b6a86bcd925a0ad6d5c8bfd86fccfbdd4330a37456ba883997366172e2b650e979df353c92814b85a9e18405f49fbe2
   languageName: node
   linkType: hard
 
@@ -4416,7 +4416,7 @@ __metadata:
     "@commitlint/cli": 17.5.1
     "@commitlint/config-conventional": 17.6.3
     "@ivangabriele/commitlint-config": 1.0.6
-    "@ivangabriele/eslint-config-typescript-base": 7.1.0
+    "@ivangabriele/eslint-config-typescript-base": 7.1.1
     "@ivangabriele/eslint-config-typescript-react": 7.1.0
     "@ivangabriele/prettier-config": 3.1.0
     "@jest/globals": 29.3.1
