@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@sentry/react": "7.57.0",
-    "cypress": "12.15.0",
+    "cypress": "12.16.0",
     "formik": "2.4.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
