@@ -1,3 +1,11 @@
+# [7.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v7.5.0...v7.6.0) (2023-07-05)
+
+
+### Features
+
+* **theme:** add amp colors ([46cf039](https://github.com/MTES-MCT/monitor-ui/commit/46cf039a94a403ff9522a521c423a1488d652337))
+* **theme:** add story for colors + yarncache ([b848553](https://github.com/MTES-MCT/monitor-ui/commit/b84855336c0dd5c6cc988e1c3a81a82d0f32de55))
+
 # [7.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v7.4.3...v7.5.0) (2023-06-29)
 
 
