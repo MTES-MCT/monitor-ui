@@ -30,6 +30,7 @@ import { customDayjs } from '../../utils/customDayjs'
 import { normalizeString } from '../../utils/normalizeString'
 import { DateInput } from '../DateRangePicker/DateInput'
 import { TimeInput } from '../DateRangePicker/TimeInput'
+import { InputControlProvider } from '../DateRangePicker/useInputControl'
 import {
   getDayjsFromUtcDateAndTimeTuple,
   getUtcDateFromDateAndTimeTuple,
@@ -167,16 +168,8 @@ export function DatePicker({
     forceUpdate()
   }, [forceUpdate])
 
-  const handleDateInputNext = useCallback(() => {
-    if (!withTime || !timeInputRef.current) {
-      return
-    }
-
-    timeInputRef.current.focus()
-  }, [withTime])
-
   const handleDateInputChange = useCallback(
-    (nextUtcDateTuple: DateTuple, isFilled: boolean) => {
+    (nextUtcDateTuple: DateTuple) => {
       selectedUtcDateTupleRef.current = nextUtcDateTuple
 
       // If there is no time input or a time has already been selected,
@@ -189,12 +182,8 @@ export function DatePicker({
 
         submit()
       }
-
-      if (isFilled) {
-        handleDateInputNext()
-      }
     },
-    [defaultTimeTuple, handleDateInputNext, isEndDate, submit, withTime]
+    [defaultTimeTuple, isEndDate, submit, withTime]
   )
 
   const handleCalendarPickerChange = useCallback(
@@ -228,7 +217,7 @@ export function DatePicker({
       submit()
 
       if (withTime && !selectedUtcTimeTupleRef.current && timeInputRef.current) {
-        timeInputRef.current.focus()
+        timeInputRef.current?.focus()
       }
     },
     [closeCalendarPicker, defaultTimeTuple, forceUpdate, isEndDate, submit, withTime]
@@ -331,44 +320,42 @@ export function DatePicker({
       style={style}
       {...nativeProps}
     >
-      <Box ref={boxRef} $hasError={hasError} $isDisabled={disabled}>
-        <Field>
-          <DateInput
-            ref={dateInputRef}
-            baseContainer={baseContainer || undefined}
-            disabled={disabled}
-            isCompact={isCompact}
-            isEndDate={isEndDate}
-            isForcedFocused={isCalendarPickerOpenRef.current}
-            isLight={isLight}
-            onChange={handleDateInputChange}
-            onClick={openCalendarPicker}
-            onInput={handleDateOrTimeInputInput}
-            onNext={handleDateInputNext}
-            value={selectedUtcDateTupleRef.current}
-          />
-        </Field>
-
-        {withTime && (
-          <Field $isTimeField>
-            <TimeInput
-              key={JSON.stringify(selectedUtcTimeTupleRef.current)}
-              ref={timeInputRef}
-              baseContainer={baseContainer || undefined}
+      <InputControlProvider>
+        <Box ref={boxRef} $hasError={hasError} $isDisabled={disabled}>
+          <Field>
+            <DateInput
+              ref={dateInputRef}
               disabled={disabled}
               isCompact={isCompact}
+              isEndDate={isEndDate}
+              isForcedFocused={isCalendarPickerOpenRef.current}
               isLight={isLight}
-              minutesRange={minutesRange}
-              onBack={() => dateInputRef.current?.focus(true)}
-              onChange={handleTimeInputFilled}
-              onFocus={closeCalendarPicker}
+              onChange={handleDateInputChange}
+              onClick={openCalendarPicker}
               onInput={handleDateOrTimeInputInput}
-              onPrevious={() => dateInputRef.current?.focus(true)}
-              value={selectedUtcTimeTupleRef.current}
+              value={selectedUtcDateTupleRef.current}
             />
           </Field>
-        )}
-      </Box>
+
+          {withTime && (
+            <Field $isTimeField>
+              <TimeInput
+                key={JSON.stringify(selectedUtcTimeTupleRef.current)}
+                ref={timeInputRef}
+                baseContainer={baseContainer || undefined}
+                disabled={disabled}
+                isCompact={isCompact}
+                isLight={isLight}
+                minutesRange={minutesRange}
+                onChange={handleTimeInputFilled}
+                onFocus={closeCalendarPicker}
+                onInput={handleDateOrTimeInputInput}
+                value={selectedUtcTimeTupleRef.current}
+              />
+            </Field>
+          )}
+        </Box>
+      </InputControlProvider>
 
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
 

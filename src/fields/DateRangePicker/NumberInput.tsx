@@ -1,56 +1,37 @@
 import {
   forwardRef,
-  type KeyboardEvent,
   useCallback,
   useImperativeHandle,
   useMemo,
   useRef,
   type FocusEvent,
   type ForwardedRef,
-  type InputHTMLAttributes
+  type InputHTMLAttributes,
+  useEffect,
+  type KeyboardEvent
 } from 'react'
 import styled from 'styled-components'
 
+import { useInputControl } from './useInputControl'
 import { usePreventWheelEvent } from '../../hooks/usePreventWheelEvent'
 
+import type { NumberInputIndex } from './useInputControl/types'
 import type { Promisable } from 'type-fest'
 
 export type NumberInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
   'defaultValue' | 'maxLength' | 'onInput' | 'pattern' | 'type'
 > & {
+  index: NumberInputIndex
   isLight: boolean
   max: number
   min: number
-  /** Called when the use press backspace key while the input is empty. */
-  onBack?: (() => Promisable<void>) | undefined
-  /** Called when the input value reaches the size property. */
-  onFilled?: (() => Promisable<void>) | undefined
   onFormatError: (hasNextFormatError: boolean) => Promisable<void>
   onInput?: ((nextValue: string) => Promisable<void>) | undefined
-  /** Called when the right arrow is pressed while the cursor is positionned at the input end. */
-  onNext?: (() => Promisable<void>) | undefined
-  /** Called when the left arrow is pressed while the cursor is positionned at the input start. */
-  onPrevious?: (() => Promisable<void>) | undefined
   size: number
 }
 function NumberInputWithRef(
-  {
-    isLight,
-    max,
-    min,
-    onBack,
-    onBlur,
-    onFilled,
-    onFocus,
-    onFormatError,
-    onInput,
-    onNext,
-    onPrevious,
-    size,
-    value,
-    ...nativeProps
-  }: NumberInputProps,
+  { index, isLight, max, min, onBlur, onFocus, onFormatError, onInput, size, value, ...nativeProps }: NumberInputProps,
   ref: ForwardedRef<HTMLInputElement>
 ) {
   // eslint-disable-next-line no-null/no-null
@@ -60,6 +41,7 @@ function NumberInputWithRef(
 
   useImperativeHandle(ref, () => inputRef.current as HTMLInputElement)
 
+  const { handleKeyDown: handleKeyDownViaInputControl, registerInput } = useInputControl()
   const preventWheelEvent = usePreventWheelEvent(inputRef)
 
   const handleBlur = useCallback(
@@ -107,57 +89,19 @@ function NumberInputWithRef(
     const valueAsNumber = Number(inputRef.current.value)
     if (Number.isNaN(valueAsNumber) || valueAsNumber < min || valueAsNumber > max) {
       onFormatError(true)
-
-      return
     }
-
-    if (onFilled && inputRef.current.value.length === size) {
-      onFilled()
-    }
-  }, [max, min, onFilled, onFormatError, onInput, size])
+  }, [max, min, onFormatError, onInput, size])
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent<HTMLInputElement>) => {
-      if (!inputRef.current) {
-        return
-      }
-
-      if (
-        onPrevious &&
-        event.key === 'ArrowLeft' &&
-        inputRef.current.selectionStart === 0 &&
-        // We don't want to call that function when the user is selecting the input text
-        inputRef.current.selectionEnd === inputRef.current.selectionStart
-      ) {
-        event.preventDefault()
-
-        onPrevious()
-
-        return
-      }
-
-      if (
-        onNext &&
-        event.key === 'ArrowRight' &&
-        inputRef.current.selectionStart === inputRef.current.value.length &&
-        // We don't want to call that function when the user is selecting the input text
-        inputRef.current.selectionEnd === inputRef.current.selectionStart
-      ) {
-        event.preventDefault()
-
-        onNext()
-
-        return
-      }
-
-      if (onBack && event.key === 'Backspace' && !inputRef.current.value.length) {
-        event.preventDefault()
-
-        onBack()
-      }
+      handleKeyDownViaInputControl(event, inputRef, size)
     },
-    [onBack, onNext, onPrevious]
+    [handleKeyDownViaInputControl, size]
   )
+
+  useEffect(() => {
+    registerInput(inputRef, index)
+  }, [index, registerInput])
 
   return (
     <StyledNumberInput
@@ -170,7 +114,7 @@ function NumberInputWithRef(
       onBlur={handleBlur}
       onFocus={handleFocus}
       onInput={handleInput}
-      onKeyDown={handleKeyDown}
+      onKeyUp={handleKeyDown}
       pattern="\d*"
       placeholder={placeholder}
       type="text"

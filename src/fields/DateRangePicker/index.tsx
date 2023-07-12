@@ -34,6 +34,7 @@ import {
   type TimeInputRef,
   type TimeTuple
 } from './types'
+import { InputControlProvider } from './useInputControl'
 import {
   getDayjsFromUtcDateAndTimeTuple,
   getUtcDateFromDateAndTimeTuple,
@@ -201,44 +202,8 @@ export function DateRangePicker({
     forceUpdate()
   }, [forceUpdate])
 
-  const handleEndDateInputNext = useCallback(() => {
-    if (!withTime || !endTimeInputRef.current) {
-      return
-    }
-
-    endTimeInputRef.current.focus()
-  }, [withTime])
-
-  const handleEndDateInputPrevious = useCallback(() => {
-    if (!startDateInputRef.current) {
-      return
-    }
-
-    if (withTime && startTimeInputRef.current) {
-      startTimeInputRef.current.focus(true)
-
-      return
-    }
-
-    startDateInputRef.current.focus(true)
-  }, [withTime])
-
-  const handleStartDateInputNext = useCallback(() => {
-    if (!endDateInputRef.current) {
-      return
-    }
-
-    if (withTime && startTimeInputRef.current) {
-      startTimeInputRef.current.focus()
-
-      return
-    }
-
-    endDateInputRef.current.focus()
-  }, [withTime])
-
   const handleDateInputChange = useCallback(
-    (position: DateRangePosition, nextDateTuple: DateTuple, isFilled: boolean) => {
+    (position: DateRangePosition, nextDateTuple: DateTuple) => {
       if (position === DateRangePosition.START) {
         selectedStartDateTupleRef.current = nextDateTuple
 
@@ -253,10 +218,6 @@ export function DateRangePicker({
 
           submit()
         }
-
-        if (isFilled) {
-          handleStartDateInputNext()
-        }
       } else {
         selectedEndDateTupleRef.current = nextDateTuple
 
@@ -270,13 +231,9 @@ export function DateRangePicker({
 
           submit()
         }
-
-        if (isFilled) {
-          handleEndDateInputNext()
-        }
       }
     },
-    [handleEndDateInputNext, handleStartDateInputNext, submit, withTime]
+    [submit, withTime]
   )
 
   /**
@@ -360,7 +317,7 @@ export function DateRangePicker({
     [closeRangeCalendarPicker, submit, withTime]
   )
 
-  const handleTimeInputFilled = useCallback(
+  const handleTimeInputChange = useCallback(
     (position: DateRangePosition, nextTimeTuple: TimeTuple) => {
       if (!endDateInputRef.current) {
         return
@@ -378,8 +335,6 @@ export function DateRangePicker({
         }
 
         selectedStartTimeTupleRef.current = nextTimeTuple
-
-        endDateInputRef.current.focus()
       } else {
         // If an end date has already been selected
         if (selectedEndDateTupleRef.current) {
@@ -454,90 +409,77 @@ export function DateRangePicker({
       style={style}
       {...nativeProps}
     >
-      <Box $hasError={hasError} $isDisabled={disabled}>
-        <Field>
-          <DateInput
-            ref={startDateInputRef}
-            baseContainer={baseContainer || undefined}
-            disabled={disabled}
-            isCompact={isCompact}
-            isForcedFocused={isRangeCalendarPickerOpenRef.current}
-            isLight={isLight}
-            isRange
-            isStartDate
-            onChange={(nextDateTuple, isFilled) =>
-              handleDateInputChange(DateRangePosition.START, nextDateTuple, isFilled)
-            }
-            onClick={openRangeCalendarPicker}
-            onInput={handleDateOrTimeInputInput}
-            onNext={handleStartDateInputNext}
-            value={selectedStartDateTupleRef.current}
-          />
-        </Field>
-
-        {withTime && (
-          <Field isTimeField>
-            <TimeInput
-              ref={startTimeInputRef}
-              baseContainer={baseContainer || undefined}
+      <InputControlProvider>
+        <Box $hasError={hasError} $isDisabled={disabled}>
+          <Field>
+            <DateInput
+              ref={startDateInputRef}
               disabled={disabled}
               isCompact={isCompact}
+              isForcedFocused={isRangeCalendarPickerOpenRef.current}
               isLight={isLight}
+              isRange
               isStartDate
-              minutesRange={minutesRange}
-              onBack={() => startDateInputRef.current?.focus(true)}
-              onChange={nextTimeTuple => handleTimeInputFilled(DateRangePosition.START, nextTimeTuple)}
-              onFocus={closeRangeCalendarPicker}
+              onChange={nextDateTuple => handleDateInputChange(DateRangePosition.START, nextDateTuple)}
+              onClick={openRangeCalendarPicker}
               onInput={handleDateOrTimeInputInput}
-              onNext={() => endDateInputRef.current?.focus()}
-              onPrevious={() => startDateInputRef.current?.focus(true)}
-              value={selectedStartTimeTupleRef.current}
+              value={selectedStartDateTupleRef.current}
             />
           </Field>
-        )}
 
-        <Field isEndDateField>
-          <DateInput
-            ref={endDateInputRef}
-            baseContainer={baseContainer || undefined}
-            disabled={disabled}
-            isCompact={isCompact}
-            isEndDate
-            isForcedFocused={isRangeCalendarPickerOpenRef.current}
-            isLight={isLight}
-            isRange
-            onBack={handleEndDateInputPrevious}
-            onChange={(nextDateTuple, isFilled) =>
-              handleDateInputChange(DateRangePosition.END, nextDateTuple, isFilled)
-            }
-            onClick={openRangeCalendarPicker}
-            onInput={handleDateOrTimeInputInput}
-            onNext={handleEndDateInputNext}
-            onPrevious={handleEndDateInputPrevious}
-            value={selectedEndDateTupleRef.current}
-          />
-        </Field>
+          {withTime && (
+            <Field isTimeField>
+              <TimeInput
+                ref={startTimeInputRef}
+                baseContainer={baseContainer || undefined}
+                disabled={disabled}
+                isCompact={isCompact}
+                isLight={isLight}
+                isStartDate
+                minutesRange={minutesRange}
+                onChange={nextTimeTuple => handleTimeInputChange(DateRangePosition.START, nextTimeTuple)}
+                onFocus={closeRangeCalendarPicker}
+                onInput={handleDateOrTimeInputInput}
+                value={selectedStartTimeTupleRef.current}
+              />
+            </Field>
+          )}
 
-        {withTime && (
-          <Field isTimeField>
-            <TimeInput
-              ref={endTimeInputRef}
-              baseContainer={baseContainer || undefined}
+          <Field isEndDateField>
+            <DateInput
+              ref={endDateInputRef}
               disabled={disabled}
               isCompact={isCompact}
               isEndDate
+              isForcedFocused={isRangeCalendarPickerOpenRef.current}
               isLight={isLight}
-              minutesRange={minutesRange}
-              onBack={() => endDateInputRef.current?.focus(true)}
-              onChange={nextTimeTuple => handleTimeInputFilled(DateRangePosition.END, nextTimeTuple)}
-              onFocus={closeRangeCalendarPicker}
+              isRange
+              onChange={nextDateTuple => handleDateInputChange(DateRangePosition.END, nextDateTuple)}
+              onClick={openRangeCalendarPicker}
               onInput={handleDateOrTimeInputInput}
-              onPrevious={() => endDateInputRef.current?.focus(true)}
-              value={selectedEndTimeTupleRef.current}
+              value={selectedEndDateTupleRef.current}
             />
           </Field>
-        )}
-      </Box>
+
+          {withTime && (
+            <Field isTimeField>
+              <TimeInput
+                ref={endTimeInputRef}
+                baseContainer={baseContainer || undefined}
+                disabled={disabled}
+                isCompact={isCompact}
+                isEndDate
+                isLight={isLight}
+                minutesRange={minutesRange}
+                onChange={nextTimeTuple => handleTimeInputChange(DateRangePosition.END, nextTimeTuple)}
+                onFocus={closeRangeCalendarPicker}
+                onInput={handleDateOrTimeInputInput}
+                value={selectedEndTimeTupleRef.current}
+              />
+            </Field>
+          )}
+        </Box>
+      </InputControlProvider>
 
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
 

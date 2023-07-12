@@ -2,10 +2,8 @@ type BaseInputRef = {
   box: HTMLDivElement | null
   /**
    * Focus the first input in the group.
-   *
-   * @param inLastInputOfTheGroup - If `true`, focus the last input in the group instead of the first one
    */
-  focus: (inLastInputOfTheGroup?: boolean) => void
+  focus: () => void
 }
 
 export type DateInputRef = BaseInputRef &

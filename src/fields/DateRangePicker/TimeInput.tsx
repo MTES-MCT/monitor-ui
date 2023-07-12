@@ -4,17 +4,16 @@ import styled from 'styled-components'
 
 import { NumberInput } from './NumberInput'
 import { RangedTimePicker } from './RangedTimePicker'
-import { isHtmlElement } from './utils'
+import { NumberInputIndex } from './useInputControl/types'
 import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
 import { usePrevious } from '../../hooks/usePrevious'
 import { Clock } from '../../icons'
 
-import type { NumberInputProps } from './NumberInput'
 import type { TimeInputRef, TimeTuple } from './types'
 import type { ForwardedRef } from 'react'
 import type { Promisable } from 'type-fest'
 
-export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'onNext'> & {
+export type TimeInputProps = {
   baseContainer?: Document | HTMLDivElement | undefined
   // TODO Check why TS thinks there is no `disabled` prop in `NumberInputProps`.
   disabled: boolean
@@ -28,8 +27,6 @@ export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
   onFocus?: (() => Promisable<void>) | undefined
   /** Called each time any time input receive a keyboard-input change whether the value is valid or not. */
   onInput: () => Promisable<void>
-  onNext?: (() => Promisable<void>) | undefined
-  onPrevious?: (() => Promisable<void>) | undefined
   value?: TimeTuple | undefined
 }
 function TimeInputWithRef(
@@ -41,12 +38,9 @@ function TimeInputWithRef(
     isLight,
     isStartDate = false,
     minutesRange = 15,
-    onBack,
     onChange,
     onFocus,
     onInput,
-    onNext,
-    onPrevious,
     value
   }: TimeInputProps,
   ref: ForwardedRef<TimeInputRef>
@@ -66,19 +60,24 @@ function TimeInputWithRef(
 
   const previousValue = usePrevious(value)
 
-  const baseDocument = useMemo(
-    () => (isHtmlElement(baseContainer) ? baseContainer.ownerDocument : window.document),
-    [baseContainer]
+  const { hourIndex, minuteIndex } = useMemo(
+    () =>
+      isEndDate
+        ? {
+            hourIndex: NumberInputIndex.END_HOUR,
+            minuteIndex: NumberInputIndex.END_MINUTE
+          }
+        : {
+            hourIndex: NumberInputIndex.START_HOUR,
+            minuteIndex: NumberInputIndex.START_MINUTE
+          },
+    [isEndDate]
   )
 
   useImperativeHandle<TimeInputRef, TimeInputRef>(ref, () => ({
     box: boxRef.current,
-    focus: (isInLastInputOfTheGroup = false) => {
-      if (isInLastInputOfTheGroup) {
-        minuteInputRef.current?.focus()
-      } else {
-        hourInputRef.current?.focus()
-      }
+    focus: () => {
+      hourInputRef.current?.focus()
     },
     getValueAsPartialTimeTuple: () => [
       hourInputRef.current?.value.length ? hourInputRef.current.value : undefined,
@@ -90,15 +89,29 @@ function TimeInputWithRef(
     setIsTimePickerOpen(false)
   }, [])
 
-  const handleBack = useCallback(() => {
-    if (!onBack) {
+  /**
+   * Call `onChange()` if both inputs are filled and valid, otherwise call `onInput()`.
+   */
+  const callOnChangeIfFilledOrElseOnInput = useCallback(() => {
+    if (!hourInputRef.current || !minuteInputRef.current) {
+      return
+    }
+
+    setHasValidationError(false)
+
+    if (hourInputRef.current.value.length !== 2 || minuteInputRef.current.value.length !== 2) {
+      setHasValidationError(true)
+
+      onInput()
+
       return
     }
 
     closeRangedTimePicker()
 
-    onBack()
-  }, [closeRangedTimePicker, onBack])
+    const nextTimeTuple: TimeTuple = [hourInputRef.current.value, minuteInputRef.current.value]
+    onChange(nextTimeTuple)
+  }, [closeRangedTimePicker, onChange, onInput])
 
   const handleBlur = useCallback(() => {
     setIsFocused(false)
@@ -123,9 +136,9 @@ function TimeInputWithRef(
 
       setTimePickerFilter(nextRangedTimePickerFilter)
 
-      onInput()
+      callOnChangeIfFilledOrElseOnInput()
     },
-    [onInput]
+    [callOnChangeIfFilledOrElseOnInput]
   )
 
   const handleTimePickerChange = useCallback(
@@ -142,31 +155,6 @@ function TimeInputWithRef(
   const openRangedTimePicker = useCallback(() => {
     setIsTimePickerOpen(true)
   }, [])
-
-  const submit = useCallback(() => {
-    if (!hourInputRef.current || !minuteInputRef.current) {
-      return
-    }
-
-    setHasValidationError(false)
-
-    if (baseDocument.activeElement === hourInputRef.current) {
-      minuteInputRef.current.focus()
-    }
-
-    if (!hourInputRef.current.value.length || !minuteInputRef.current.value.length) {
-      if (minuteInputRef.current.value.length && !hourInputRef.current.value.length) {
-        setHasValidationError(true)
-      }
-
-      return
-    }
-
-    closeRangedTimePicker()
-
-    const nextTimeTuple: TimeTuple = [hourInputRef.current.value, minuteInputRef.current.value]
-    onChange(nextTimeTuple)
-  }, [baseDocument, closeRangedTimePicker, onChange])
 
   useClickOutsideEffect(boxRef, closeRangedTimePicker, baseContainer)
 
@@ -193,18 +181,15 @@ function TimeInputWithRef(
             ref={hourInputRef}
             aria-label={`Heure${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
             disabled={disabled}
+            index={hourIndex}
             isLight={isLight}
             max={23}
             min={0}
-            onBack={handleBack}
             onBlur={handleBlur}
             onClick={openRangedTimePicker}
-            onFilled={submit}
             onFocus={handleFocus}
             onFormatError={handleFormatError}
             onInput={handleHourInput}
-            onNext={() => minuteInputRef.current?.focus()}
-            onPrevious={onPrevious}
             size={2}
             value={controlledValue && controlledValue[0]}
           />
@@ -213,18 +198,15 @@ function TimeInputWithRef(
             ref={minuteInputRef}
             aria-label={`Minute${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
             disabled={disabled}
+            index={minuteIndex}
             isLight={isLight}
             max={59}
             min={0}
-            onBack={() => hourInputRef.current?.focus()}
             onBlur={handleBlur}
             onClick={openRangedTimePicker}
-            onFilled={submit}
             onFocus={handleFocus}
             onFormatError={handleFormatError}
-            onInput={onInput}
-            onNext={onNext}
-            onPrevious={() => hourInputRef.current?.focus()}
+            onInput={callOnChangeIfFilledOrElseOnInput}
             size={2}
             value={controlledValue && controlledValue[1]}
           />
