@@ -188,7 +188,7 @@ export function DatePicker({
 
   const handleCalendarPickerChange = useCallback(
     (nextUtcizedDateTuple: DateTuple) => {
-      // If this is a date picker without a time input,
+      // If there is no time input,
       if (!withTime) {
         selectedUtcDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(
           nextUtcizedDateTuple,
@@ -198,7 +198,7 @@ export function DatePicker({
         )
       }
 
-      // If this is a date picker with a time input,
+      // If there is a time input,
       else {
         selectedUtcDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(
           nextUtcizedDateTuple,
@@ -215,10 +215,6 @@ export function DatePicker({
       forceUpdate()
 
       submit()
-
-      if (withTime && !selectedUtcTimeTupleRef.current && timeInputRef.current) {
-        timeInputRef.current?.focus()
-      }
     },
     [closeCalendarPicker, defaultTimeTuple, forceUpdate, isEndDate, submit, withTime]
   )

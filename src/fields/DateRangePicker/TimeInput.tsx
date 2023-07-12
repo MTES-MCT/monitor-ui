@@ -76,9 +76,6 @@ function TimeInputWithRef(
 
   useImperativeHandle<TimeInputRef, TimeInputRef>(ref, () => ({
     box: boxRef.current,
-    focus: () => {
-      hourInputRef.current?.focus()
-    },
     getValueAsPartialTimeTuple: () => [
       hourInputRef.current?.value.length ? hourInputRef.current.value : undefined,
       minuteInputRef.current?.value.length ? minuteInputRef.current.value : undefined

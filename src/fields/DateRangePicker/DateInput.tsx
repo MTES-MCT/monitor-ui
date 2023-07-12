@@ -87,9 +87,6 @@ function DateInputWithRef(
   useImperativeHandle<DateInputRef, DateInputRef>(ref, () => ({
     box: boxRef.current,
     contains: boxRef.current ? boxRef.current.contains.bind(boxRef.current) : () => false,
-    focus: () => {
-      dayInputRef.current?.focus()
-    },
     getValueAsPartialDateTuple: () => [
       yearInputRef.current?.value.length ? yearInputRef.current.value : undefined,
       monthInputRef.current?.value.length ? monthInputRef.current.value : undefined,

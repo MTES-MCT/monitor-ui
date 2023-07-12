@@ -1,9 +1,5 @@
 type BaseInputRef = {
   box: HTMLDivElement | null
-  /**
-   * Focus the first input in the group.
-   */
-  focus: () => void
 }
 
 export type DateInputRef = BaseInputRef &
