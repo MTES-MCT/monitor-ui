@@ -1,14 +1,14 @@
 import { set } from 'lodash/fp'
 import { useRef, useCallback, type RefObject, type KeyboardEvent, type ReactNode, useMemo } from 'react'
 
-import { InputControlContext } from './context'
+import { FocusControlContext } from './context'
 
 import type { NumberInputIndex } from './types'
 
-export type InputControlProviderProps = {
+export type FocusControlProviderProps = {
   children: ReactNode
 }
-export function InputControlProvider({ children }: InputControlProviderProps) {
+export function FocusControlProvider({ children }: FocusControlProviderProps) {
   const inputsRef = useRef<Array<RefObject<HTMLInputElement>>>([])
 
   const focusInput = useCallback((currentFocusedInputRef: RefObject<HTMLInputElement>, direction: -1 | 1) => {
@@ -26,7 +26,7 @@ export function InputControlProvider({ children }: InputControlProviderProps) {
     nextFocusedInputRef.current.focus()
   }, [])
 
-  const handleKeyDown = useCallback(
+  const handleKeyUp = useCallback(
     (event: KeyboardEvent<HTMLInputElement>, inputRef: RefObject<HTMLInputElement>, filledLength: number) => {
       if (
         (event.key === 'ArrowRight' && event.currentTarget.selectionStart === event.currentTarget.value.length) ||
@@ -38,9 +38,7 @@ export function InputControlProvider({ children }: InputControlProviderProps) {
       } else if (
         (event.key === 'ArrowLeft' &&
           // The caret must be at the beginning of the input
-          event.currentTarget.selectionStart === 0 &&
-          // It must not be a "range selection"
-          event.currentTarget.selectionStart !== event.currentTarget.selectionEnd) ||
+          event.currentTarget.selectionStart === 0) ||
         (event.key === 'Backspace' && event.currentTarget.value === '')
       ) {
         focusInput(inputRef, -1)
@@ -62,7 +60,7 @@ export function InputControlProvider({ children }: InputControlProviderProps) {
     }
   }, [])
 
-  const value = useMemo(() => ({ handleKeyDown, registerInput }), [handleKeyDown, registerInput])
+  const value = useMemo(() => ({ handleKeyUp, registerInput }), [handleKeyUp, registerInput])
 
-  return <InputControlContext.Provider value={value}>{children}</InputControlContext.Provider>
+  return <FocusControlContext.Provider value={value}>{children}</FocusControlContext.Provider>
 }

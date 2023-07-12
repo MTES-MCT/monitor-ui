@@ -2,7 +2,7 @@ import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState
 import styled from 'styled-components'
 
 import { NumberInput } from './NumberInput'
-import { NumberInputIndex } from './useInputControl/types'
+import { NumberInputIndex } from './useFocusControl/types'
 import { formatNumberAsDoubleDigit } from './utils'
 import { Calendar } from '../../icons'
 
@@ -77,6 +77,7 @@ function DateInputWithRef(
   )
 
   const controlledValue = useMemo(() => {
+    // We only want the `value` prop to trigger `<NumberInput />` re-mounting when they are not focused.
     if (!isFocused) {
       lastValueBeforeFocusRef.current = value
     }
@@ -150,8 +151,10 @@ function DateInputWithRef(
         {isRange && isStartDate && <span>Du </span>}
         {isRange && isEndDate && <span>Au </span>}
         <NumberInput
+          key={`day-${controlledValue && controlledValue[2]}`}
           ref={dayInputRef}
           aria-label={`Jour${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
+          defaultValue={controlledValue && controlledValue[2]}
           disabled={disabled}
           index={dayIndex}
           isLight={isLight}
@@ -163,12 +166,13 @@ function DateInputWithRef(
           onFormatError={handleFormatError}
           onInput={callOnChangeIfFilledOrElseOnInput}
           size={2}
-          value={controlledValue && controlledValue[2]}
         />
         /
         <NumberInput
+          key={`month-${controlledValue && controlledValue[1]}`}
           ref={monthInputRef}
           aria-label={`Mois${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
+          defaultValue={controlledValue && controlledValue[1]}
           disabled={disabled}
           index={monthIndex}
           isLight={isLight}
@@ -180,12 +184,13 @@ function DateInputWithRef(
           onFormatError={handleFormatError}
           onInput={callOnChangeIfFilledOrElseOnInput}
           size={2}
-          value={controlledValue && controlledValue[1]}
         />
         /
         <NumberInput
+          key={`year-${controlledValue && controlledValue[0]}`}
           ref={yearInputRef}
           aria-label={`Année${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
+          defaultValue={controlledValue && controlledValue[0]}
           disabled={disabled}
           index={yearIndex}
           isLight={isLight}
@@ -197,7 +202,6 @@ function DateInputWithRef(
           onFormatError={handleFormatError}
           onInput={callOnChangeIfFilledOrElseOnInput}
           size={4}
-          value={controlledValue && controlledValue[0]}
         />
       </div>
 

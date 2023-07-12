@@ -12,15 +12,15 @@ import {
 } from 'react'
 import styled from 'styled-components'
 
-import { useInputControl } from './useInputControl'
+import { useFocusControl } from './useFocusControl'
 import { usePreventWheelEvent } from '../../hooks/usePreventWheelEvent'
 
-import type { NumberInputIndex } from './useInputControl/types'
+import type { NumberInputIndex } from './useFocusControl/types'
 import type { Promisable } from 'type-fest'
 
 export type NumberInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  'defaultValue' | 'maxLength' | 'onInput' | 'pattern' | 'type'
+  'maxLength' | 'onKeyUp' | 'onInput' | 'pattern' | 'placeholder' | 'type' | 'value'
 > & {
   index: NumberInputIndex
   isLight: boolean
@@ -31,7 +31,7 @@ export type NumberInputProps = Omit<
   size: number
 }
 function NumberInputWithRef(
-  { index, isLight, max, min, onBlur, onFocus, onFormatError, onInput, size, value, ...nativeProps }: NumberInputProps,
+  { index, isLight, max, min, onBlur, onFocus, onFormatError, onInput, size, ...nativeProps }: NumberInputProps,
   ref: ForwardedRef<HTMLInputElement>
 ) {
   // eslint-disable-next-line no-null/no-null
@@ -41,7 +41,7 @@ function NumberInputWithRef(
 
   useImperativeHandle(ref, () => inputRef.current as HTMLInputElement)
 
-  const { handleKeyDown: handleKeyDownViaInputControl, registerInput } = useInputControl()
+  const { handleKeyUp: handleKeyUpViaInputControl, registerInput } = useFocusControl()
   const preventWheelEvent = usePreventWheelEvent(inputRef)
 
   const handleBlur = useCallback(
@@ -92,11 +92,11 @@ function NumberInputWithRef(
     }
   }, [max, min, onFormatError, onInput, size])
 
-  const handleKeyDown = useCallback(
+  const handleKeyUp = useCallback(
     (event: KeyboardEvent<HTMLInputElement>) => {
-      handleKeyDownViaInputControl(event, inputRef, size)
+      handleKeyUpViaInputControl(event, inputRef, size)
     },
-    [handleKeyDownViaInputControl, size]
+    [handleKeyUpViaInputControl, size]
   )
 
   useEffect(() => {
@@ -105,16 +105,14 @@ function NumberInputWithRef(
 
   return (
     <StyledNumberInput
-      key={String(value)}
       ref={inputRef}
       $isLight={isLight}
       $size={size}
-      defaultValue={value}
       maxLength={size}
       onBlur={handleBlur}
       onFocus={handleFocus}
       onInput={handleInput}
-      onKeyUp={handleKeyDown}
+      onKeyUp={handleKeyUp}
       pattern="\d*"
       placeholder={placeholder}
       type="text"

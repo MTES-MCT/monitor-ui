@@ -30,7 +30,7 @@ import { customDayjs } from '../../utils/customDayjs'
 import { normalizeString } from '../../utils/normalizeString'
 import { DateInput } from '../DateRangePicker/DateInput'
 import { TimeInput } from '../DateRangePicker/TimeInput'
-import { InputControlProvider } from '../DateRangePicker/useInputControl'
+import { FocusControlProvider } from '../DateRangePicker/useFocusControl'
 import {
   getDayjsFromUtcDateAndTimeTuple,
   getUtcDateFromDateAndTimeTuple,
@@ -316,7 +316,7 @@ export function DatePicker({
       style={style}
       {...nativeProps}
     >
-      <InputControlProvider>
+      <FocusControlProvider>
         <Box ref={boxRef} $hasError={hasError} $isDisabled={disabled}>
           <Field>
             <DateInput
@@ -336,7 +336,6 @@ export function DatePicker({
           {withTime && (
             <Field $isTimeField>
               <TimeInput
-                key={JSON.stringify(selectedUtcTimeTupleRef.current)}
                 ref={timeInputRef}
                 baseContainer={baseContainer || undefined}
                 disabled={disabled}
@@ -351,7 +350,7 @@ export function DatePicker({
             </Field>
           )}
         </Box>
-      </InputControlProvider>
+      </FocusControlProvider>
 
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
 

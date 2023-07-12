@@ -13,8 +13,8 @@ export enum NumberInputIndex {
   END_MINUTE = 9
 }
 
-export type InputControlContextValue = {
-  handleKeyDown: (
+export type FocusControlContextValue = {
+  handleKeyUp: (
     event: KeyboardEvent<HTMLInputElement>,
     inputRef: RefObject<HTMLInputElement>,
     filledLength: number

@@ -34,7 +34,7 @@ import {
   type TimeInputRef,
   type TimeTuple
 } from './types'
-import { InputControlProvider } from './useInputControl'
+import { FocusControlProvider } from './useFocusControl'
 import {
   getDayjsFromUtcDateAndTimeTuple,
   getUtcDateFromDateAndTimeTuple,
@@ -409,7 +409,7 @@ export function DateRangePicker({
       style={style}
       {...nativeProps}
     >
-      <InputControlProvider>
+      <FocusControlProvider>
         <Box $hasError={hasError} $isDisabled={disabled}>
           <Field>
             <DateInput
@@ -479,7 +479,7 @@ export function DateRangePicker({
             </Field>
           )}
         </Box>
-      </InputControlProvider>
+      </FocusControlProvider>
 
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
 

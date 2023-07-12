@@ -1,12 +1,10 @@
-import { isEqual } from 'lodash'
-import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
+import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 
 import { NumberInput } from './NumberInput'
 import { RangedTimePicker } from './RangedTimePicker'
-import { NumberInputIndex } from './useInputControl/types'
+import { NumberInputIndex } from './useFocusControl/types'
 import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
-import { usePrevious } from '../../hooks/usePrevious'
 import { Clock } from '../../icons'
 
 import type { TimeInputRef, TimeTuple } from './types'
@@ -50,15 +48,24 @@ function TimeInputWithRef(
   const hourInputRef = useRef<HTMLInputElement>(null)
   const minuteInputRef = useRef<HTMLInputElement>(null)
   /* eslint-enable no-null/no-null */
+  const lastValueBeforeFocusRef = useRef(value)
 
-  const [controlledValue, setControlledValue] = useState(value)
   const [hasFormatError, setHasFormatError] = useState(false)
   const [hasValidationError, setHasValidationError] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
   const [isTimePickerOpen, setIsTimePickerOpen] = useState(false)
   const [timePickerFilter, setTimePickerFilter] = useState<RegExp>(/.*/)
 
-  const previousValue = usePrevious(value)
+  const controlledValue = useMemo(() => {
+    // We only want the `value` prop to trigger `<NumberInput />` re-mounting when they are not focused.
+    if (!isFocused) {
+      lastValueBeforeFocusRef.current = value
+    }
+
+    return lastValueBeforeFocusRef.current
+  }, [isFocused, value])
+
+  const key = JSON.stringify(controlledValue)
 
   const { hourIndex, minuteIndex } = useMemo(
     () =>
@@ -142,8 +149,6 @@ function TimeInputWithRef(
     (nextTimeTuple: TimeTuple) => {
       closeRangedTimePicker()
 
-      setControlledValue(nextTimeTuple)
-
       onChange(nextTimeTuple)
     },
     [closeRangedTimePicker, onChange]
@@ -154,14 +159,6 @@ function TimeInputWithRef(
   }, [])
 
   useClickOutsideEffect(boxRef, closeRangedTimePicker, baseContainer)
-
-  useEffect(() => {
-    if (isEqual(value, previousValue) || isFocused) {
-      return
-    }
-
-    setControlledValue(value)
-  }, [isFocused, previousValue, value])
 
   return (
     <Box
@@ -175,8 +172,10 @@ function TimeInputWithRef(
       <InputGroup>
         <div>
           <NumberInput
+            key={`hour-${key}`}
             ref={hourInputRef}
             aria-label={`Heure${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
+            defaultValue={controlledValue && controlledValue[0]}
             disabled={disabled}
             index={hourIndex}
             isLight={isLight}
@@ -188,12 +187,13 @@ function TimeInputWithRef(
             onFormatError={handleFormatError}
             onInput={handleHourInput}
             size={2}
-            value={controlledValue && controlledValue[0]}
           />
           :
           <NumberInput
+            key={`minute-${key}`}
             ref={minuteInputRef}
             aria-label={`Minute${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
+            defaultValue={controlledValue && controlledValue[1]}
             disabled={disabled}
             index={minuteIndex}
             isLight={isLight}
@@ -205,7 +205,6 @@ function TimeInputWithRef(
             onFormatError={handleFormatError}
             onInput={callOnChangeIfFilledOrElseOnInput}
             size={2}
-            value={controlledValue && controlledValue[1]}
           />
         </div>
 
