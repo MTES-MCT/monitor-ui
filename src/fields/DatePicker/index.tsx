@@ -179,9 +179,9 @@ export function DatePicker({
     (nextUtcDateTuple: DateTuple, isFilled: boolean) => {
       selectedUtcDateTupleRef.current = nextUtcDateTuple
 
-      // If there is no time input or a time has already been selected,
-      if (!withTime || selectedUtcTimeTupleRef.current) {
-        // we must update the selected date and call onChange()
+      // If there is NO time input OR there is a time input WHILE a time has been selected,
+      if (!withTime || (withTime && selectedUtcTimeTupleRef.current)) {
+        // we must update the selected datetime and call `onChange()`
         const timeTuple =
           withTime && selectedUtcTimeTupleRef.current ? selectedUtcTimeTupleRef.current : defaultTimeTuple
 
@@ -199,7 +199,7 @@ export function DatePicker({
 
   const handleCalendarPickerChange = useCallback(
     (nextUtcizedDateTuple: DateTuple) => {
-      // If this is a date picker without a time input,
+      // If there is NO time input,
       if (!withTime) {
         selectedUtcDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(
           nextUtcizedDateTuple,
@@ -209,12 +209,11 @@ export function DatePicker({
         )
       }
 
-      // If this is a date picker with a time input,
-      else {
+      // If there is a time input AND a time has been selected,
+      else if (selectedUtcTimeTupleRef.current) {
         selectedUtcDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(
           nextUtcizedDateTuple,
-          // we include the selected time if it exists, or set it to the start (or end) of the day if it doesn't
-          selectedUtcTimeTupleRef.current || defaultTimeTuple,
+          selectedUtcTimeTupleRef.current,
           isEndDate
         )
       }
