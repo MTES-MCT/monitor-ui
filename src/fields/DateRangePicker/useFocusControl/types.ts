@@ -19,5 +19,5 @@ export type FocusControlContextValue = {
     inputRef: RefObject<HTMLInputElement>,
     filledLength: number
   ) => void
-  registerInput: (inputRef: RefObject<HTMLInputElement>, index: NumberInputIndex) => () => void
+  registerInput: (inputRef: RefObject<HTMLInputElement>, index: NumberInputIndex) => void
 }

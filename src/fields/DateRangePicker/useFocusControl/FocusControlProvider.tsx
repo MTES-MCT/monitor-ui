@@ -32,7 +32,7 @@ export function FocusControlProvider({ children }: FocusControlProviderProps) {
         (event.key === 'ArrowRight' && event.currentTarget.selectionStart === event.currentTarget.value.length) ||
         (event.currentTarget.value.length === filledLength &&
           // We don't want to focus the next input when the user is trying to delete or move within the input
-          !['ArrowLeft', 'ArrowRight', 'Backspace', 'Tab'].includes(event.key))
+          !['ArrowLeft', 'ArrowRight', 'Backspace', 'Delete', 'Tab'].includes(event.key))
       ) {
         focusInput(inputRef, 1)
       } else if (
@@ -49,15 +49,6 @@ export function FocusControlProvider({ children }: FocusControlProviderProps) {
 
   const registerInput = useCallback((inputRef: RefObject<HTMLInputElement>, index: NumberInputIndex) => {
     inputsRef.current = set(index, inputRef, inputsRef.current)
-
-    // console.group('registerInput()')
-    // console.log('index', index)
-    // console.log('inputRef.current', inputRef.current)
-    // console.groupEnd()
-
-    return () => {
-      inputsRef.current = inputsRef.current.filter(_inputRef => _inputRef !== inputRef)
-    }
   }, [])
 
   const value = useMemo(() => ({ handleKeyUp, registerInput }), [handleKeyUp, registerInput])
