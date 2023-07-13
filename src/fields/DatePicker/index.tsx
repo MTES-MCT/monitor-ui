@@ -16,7 +16,7 @@
  */
 
 import classnames from 'classnames'
-import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { CalendarPicker } from './CalendarPicker'
@@ -122,21 +122,20 @@ export function DatePicker({
   const timeInputRef = useRef<TimeInputRef>(null)
   /* eslint-enable no-null/no-null */
 
-  const isCalendarPickerOpenRef = useRef(false)
-
   const hasMountedRef = useRef(false)
   const selectedUtcDateAsDayjsRef = useRef(defaultValue ? customDayjs(defaultValue) : undefined)
   const selectedUtcDateTupleRef = useRef(getUtcDateTupleFromDayjs(selectedUtcDateAsDayjsRef.current))
   const selectedUtcTimeTupleRef = useRef(getUtcTimeTupleFromDayjs(selectedUtcDateAsDayjsRef.current))
 
-  const previousDefaultValue = usePrevious(defaultValue)
-
-  const { forceUpdate } = useForceUpdate()
+  const [isRangeCalendarPickerOpen, setIsRangeCalendarPickerOpen] = useState(false)
 
   const controlledClassName = useMemo(() => classnames('Field-DatePicker', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const defaultTimeTuple: TimeTuple = useMemo(() => (isEndDate ? ['23', '59'] : ['00', '00']), [isEndDate])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
+  const previousDefaultValue = usePrevious(defaultValue)
+
+  const { forceUpdate } = useForceUpdate()
 
   const calendarPickerDefaultValue = useMemo(
     () =>
@@ -147,7 +146,7 @@ export function DatePicker({
     [selectedUtcDateTupleRef.current]
   )
 
-  const submit = useCallback(() => {
+  const callOnChange = useCallback(() => {
     if (!onChange || !selectedUtcDateAsDayjsRef.current) {
       return
     }
@@ -161,91 +160,7 @@ export function DatePicker({
     }
   }, [isStringDate, onChange])
 
-  const closeCalendarPicker = useCallback(() => {
-    isCalendarPickerOpenRef.current = false
-
-    forceUpdate()
-  }, [forceUpdate])
-
-  const handleDateInputNext = useCallback(() => {
-    if (!withTime || !timeInputRef.current) {
-      return
-    }
-
-    timeInputRef.current.focus()
-  }, [withTime])
-
-  const handleDateInputChange = useCallback(
-    (nextUtcDateTuple: DateTuple, isFilled: boolean) => {
-      selectedUtcDateTupleRef.current = nextUtcDateTuple
-
-      // If there is NO time input OR there is a time input WHILE a time has been selected,
-      if (!withTime || (withTime && selectedUtcTimeTupleRef.current)) {
-        // we must update the selected datetime and call `onChange()`
-        const timeTuple =
-          withTime && selectedUtcTimeTupleRef.current ? selectedUtcTimeTupleRef.current : defaultTimeTuple
-
-        selectedUtcDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(nextUtcDateTuple, timeTuple, isEndDate)
-
-        submit()
-      }
-
-      if (isFilled) {
-        handleDateInputNext()
-      }
-    },
-    [defaultTimeTuple, handleDateInputNext, isEndDate, submit, withTime]
-  )
-
-  const handleCalendarPickerChange = useCallback(
-    (nextUtcizedDateTuple: DateTuple) => {
-      // If there is NO time input,
-      if (!withTime) {
-        selectedUtcDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(
-          nextUtcizedDateTuple,
-          // we set the time to the start (or end) of the day
-          defaultTimeTuple,
-          isEndDate
-        )
-      }
-
-      // If there is a time input AND a time has been selected,
-      else if (selectedUtcTimeTupleRef.current) {
-        selectedUtcDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(
-          nextUtcizedDateTuple,
-          selectedUtcTimeTupleRef.current,
-          isEndDate
-        )
-      }
-
-      selectedUtcDateTupleRef.current = nextUtcizedDateTuple
-      selectedUtcTimeTupleRef.current = getUtcTimeTupleFromDayjs(selectedUtcDateAsDayjsRef.current)
-
-      closeCalendarPicker()
-      forceUpdate()
-
-      submit()
-
-      if (withTime && !selectedUtcTimeTupleRef.current && timeInputRef.current) {
-        timeInputRef.current.focus()
-      }
-    },
-    [closeCalendarPicker, defaultTimeTuple, forceUpdate, isEndDate, submit, withTime]
-  )
-
-  const handleDisable = useCallback(() => {
-    selectedUtcDateTupleRef.current = undefined
-    selectedUtcTimeTupleRef.current = undefined
-
-    forceUpdate()
-  }, [forceUpdate])
-
-  /**
-   * @description
-   * This function is used to detect a user clearing all the date/time-related inputs
-   * in order to call `onChange(undefined)` when everything is cleared
-   */
-  const handleDateOrTimeInputInput = useCallback(() => {
+  const callOnChangeUndefinedIfInputsAreEmpty = useCallback(() => {
     if (!dateInputRef.current || !onChange) {
       return
     }
@@ -268,30 +183,105 @@ export function DatePicker({
     }
   }, [onChange, withTime])
 
-  const handleTimeInputFilled = useCallback(
+  const closeCalendarPicker = useCallback(() => {
+    setIsRangeCalendarPickerOpen(false)
+  }, [])
+
+  const handleDateInputNext = useCallback(() => {
+    if (!withTime || !timeInputRef.current) {
+      return
+    }
+
+    timeInputRef.current.focus()
+  }, [withTime])
+
+  const handleDateInputChange = useCallback(
+    (nextUtcDateTuple: DateTuple, isFilled: boolean) => {
+      selectedUtcDateTupleRef.current = nextUtcDateTuple
+
+      // If there is NO time input OR there is a time input WHILE a time is selected,
+      if (!withTime || (withTime && selectedUtcTimeTupleRef.current)) {
+        // we must update the selected datetime and call `onChange()`
+        const timeTuple =
+          withTime && selectedUtcTimeTupleRef.current ? selectedUtcTimeTupleRef.current : defaultTimeTuple
+
+        selectedUtcDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(nextUtcDateTuple, timeTuple, isEndDate)
+
+        callOnChange()
+      }
+
+      if (isFilled) {
+        handleDateInputNext()
+      }
+    },
+    [callOnChange, defaultTimeTuple, handleDateInputNext, isEndDate, withTime]
+  )
+
+  const handleCalendarPickerChange = useCallback(
+    (nextUtcizedDateTuple: DateTuple) => {
+      // If there is NO time input,
+      if (!withTime) {
+        // we update the selected datetime
+        selectedUtcDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(
+          nextUtcizedDateTuple,
+          // with a time set to the start (or end) of the day
+          defaultTimeTuple,
+          isEndDate
+        )
+      }
+
+      // If there is a time input AND a time is selected,
+      else if (selectedUtcTimeTupleRef.current) {
+        // we update the selected datetime
+        selectedUtcDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(
+          nextUtcizedDateTuple,
+          selectedUtcTimeTupleRef.current,
+          isEndDate
+        )
+      }
+
+      selectedUtcDateTupleRef.current = nextUtcizedDateTuple
+      selectedUtcTimeTupleRef.current = getUtcTimeTupleFromDayjs(selectedUtcDateAsDayjsRef.current)
+
+      closeCalendarPicker()
+      forceUpdate()
+
+      callOnChange()
+
+      if (withTime && !selectedUtcTimeTupleRef.current && timeInputRef.current) {
+        timeInputRef.current.focus()
+      }
+    },
+    [callOnChange, closeCalendarPicker, defaultTimeTuple, forceUpdate, isEndDate, withTime]
+  )
+
+  const handleDisable = useCallback(() => {
+    selectedUtcDateTupleRef.current = undefined
+    selectedUtcTimeTupleRef.current = undefined
+
+    forceUpdate()
+  }, [forceUpdate])
+
+  const handleTimeInputChange = useCallback(
     (nextTimeTuple: TimeTuple) => {
-      // If a date has already been selected
+      // If a date is selected
       if (selectedUtcDateTupleRef.current) {
-        // we must update the selected date accordingly and submit it
+        // we update the selected datetime
         const nextDateAsDayjs = getDayjsFromUtcDateAndTimeTuple(selectedUtcDateTupleRef.current, nextTimeTuple)
 
         selectedUtcDateAsDayjsRef.current = nextDateAsDayjs
-
-        submit()
       }
 
       selectedUtcTimeTupleRef.current = nextTimeTuple
 
-      submit()
+      callOnChange()
     },
-    [submit]
+    [callOnChange]
   )
 
   const openCalendarPicker = useCallback(() => {
-    isCalendarPickerOpenRef.current = true
-
-    forceUpdate()
-  }, [forceUpdate])
+    setIsRangeCalendarPickerOpen(true)
+  }, [])
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange, handleDisable)
 
@@ -338,11 +328,11 @@ export function DatePicker({
             disabled={disabled}
             isCompact={isCompact}
             isEndDate={isEndDate}
-            isForcedFocused={isCalendarPickerOpenRef.current}
+            isForcedFocused={isRangeCalendarPickerOpen}
             isLight={isLight}
             onChange={handleDateInputChange}
             onClick={openCalendarPicker}
-            onInput={handleDateOrTimeInputInput}
+            onInput={callOnChangeUndefinedIfInputsAreEmpty}
             onNext={handleDateInputNext}
             value={selectedUtcDateTupleRef.current}
           />
@@ -359,9 +349,9 @@ export function DatePicker({
               isLight={isLight}
               minutesRange={minutesRange}
               onBack={() => dateInputRef.current?.focus(true)}
-              onChange={handleTimeInputFilled}
+              onChange={handleTimeInputChange}
               onFocus={closeCalendarPicker}
-              onInput={handleDateOrTimeInputInput}
+              onInput={callOnChangeUndefinedIfInputsAreEmpty}
               onPrevious={() => dateInputRef.current?.focus(true)}
               value={selectedUtcTimeTupleRef.current}
             />
@@ -373,7 +363,7 @@ export function DatePicker({
 
       <CalendarPicker
         isHistorical={isHistorical}
-        isOpen={isCalendarPickerOpenRef.current}
+        isOpen={isRangeCalendarPickerOpen}
         onChange={handleCalendarPickerChange}
         value={calendarPickerDefaultValue}
       />
