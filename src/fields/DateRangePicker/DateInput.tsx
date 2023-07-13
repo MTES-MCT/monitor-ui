@@ -6,7 +6,7 @@ import { NumberInputIndex } from './useFocusControl/types'
 import { formatNumberAsDoubleDigit } from './utils'
 import { Calendar } from '../../icons'
 
-import type { DateTuple, DateInputRef } from './types'
+import type { DateTuple, DateInputRef, PartialDateTuple } from './types'
 import type { ForwardedRef } from 'react'
 import type { Promisable } from 'type-fest'
 
@@ -29,7 +29,7 @@ export type DateInputProps = {
   onChange: (nextDateTuple: DateTuple) => Promisable<void>
   onClick: () => Promisable<void>
   onInput: () => Promisable<void>
-  value?: DateTuple | undefined
+  value: PartialDateTuple
 }
 function DateInputWithRef(
   {

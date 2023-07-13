@@ -1,7 +1,7 @@
 import { customDayjs } from '../../utils/customDayjs'
 
-import type { DateTuple, TimeTuple } from './types'
-import type { Option } from '../../types'
+import type { DateTuple, PartialDateTuple, PartialTimeTuple, TimeTuple } from './types'
+import type { DateAsStringRange, DateRange, Option } from '../../types'
 import type { Dayjs } from 'dayjs'
 
 export function formatNumberAsDoubleDigit(numberLike: number | string): string {
@@ -51,19 +51,23 @@ export function getDayjsFromUtcDateAndTimeTuple(
  *
  * @example
  * ```ts
- * console.log(getDateFromDateAndTimeTuple(['2021', '31', '12'], ['00', '00']).toISOString())
+ * console.log(getDateFromDateAndTimeTuple(['2021', '31', '12'], ['00', '00'], false).toISOString())
  * // => "2021-12-31T00:00:00.000Z"
  * console.log(getDateFromDateAndTimeTuple(['2021', '31', '12'], ['23', '59'], true).toISOString())
  * // => "2021-12-31T23:59:59.000Z"
  * ```
  */
 export function getUtcDateFromDateAndTimeTuple(
-  dateTuple: DateTuple,
-  timeTuple: TimeTuple,
-  isEnd: boolean = false
-): Date {
+  dateTuple: PartialDateTuple,
+  timeTuple: PartialTimeTuple,
+  isEnd: boolean
+): Date | undefined {
   const [year, month, day] = dateTuple
   const [hour, minute] = timeTuple
+
+  if (!year || !month || !day || !hour || !minute) {
+    return undefined
+  }
 
   const rawDateAsDayjs = customDayjs()
     .utc()
@@ -83,12 +87,9 @@ export function getUtcDateFromDateAndTimeTuple(
     : rawDateAsDayjs.startOf('minute').toDate()
 }
 
-export function getDateTupleFromUtcDate(utcDate: undefined): undefined
-export function getDateTupleFromUtcDate(utcDate: Date): DateTuple
-export function getDateTupleFromUtcDate(utcDate?: Date): DateTuple | undefined
-export function getDateTupleFromUtcDate(utcDate?: Date): DateTuple | undefined {
+export function getDateTupleFromUtcDate(utcDate?: Date): PartialDateTuple {
   if (!utcDate) {
-    return undefined
+    return [undefined, undefined, undefined]
   }
 
   return [
@@ -130,31 +131,60 @@ export const getRangedTimeOptions = (minutesRange: number): Option<TimeTuple>[] 
   })
 }
 
-export function getTimeTupleFromUtcDate(utcDate?: Date): TimeTuple | undefined {
+export function getTimeTupleFromUtcDate(utcDate?: Date): PartialTimeTuple {
   if (!utcDate) {
-    return undefined
+    return [undefined, undefined]
   }
 
   return [formatNumberAsDoubleDigit(utcDate.getHours()), formatNumberAsDoubleDigit(utcDate.getMinutes())]
 }
 
-export function getUtcDateTupleFromDayjs(dateAsDayjs: undefined): undefined
-export function getUtcDateTupleFromDayjs(dateAsDayjs: Dayjs): DateTuple
-export function getUtcDateTupleFromDayjs(dateAsDayjs?: Dayjs): DateTuple | undefined
-export function getUtcDateTupleFromDayjs(dateAsDayjs?: Dayjs): DateTuple | undefined {
+export function getUtcDateTupleFromDayjs(dateAsDayjs?: Dayjs): PartialDateTuple {
   if (!dateAsDayjs) {
-    return undefined
+    return [undefined, undefined, undefined]
   }
 
   return [dateAsDayjs.utc().format('YYYY'), dateAsDayjs.utc().format('MM'), dateAsDayjs.utc().format('DD')]
 }
 
-export function getUtcTimeTupleFromDayjs(dateAsDayjs?: Dayjs): TimeTuple | undefined {
+export function getUtcTimeTupleFromDayjs(dateAsDayjs?: Dayjs): PartialTimeTuple {
   if (!dateAsDayjs) {
-    return undefined
+    return [undefined, undefined]
   }
 
   return [dateAsDayjs.utc().format('HH'), dateAsDayjs.utc().format('mm')]
+}
+
+export function getUtcizedDateTupleFromDateRange(
+  dateRange: DateRange | DateAsStringRange | undefined,
+  isEndDate: boolean
+): PartialDateTuple {
+  if (!dateRange) {
+    return [undefined, undefined, undefined]
+  }
+
+  const dateAsDayjs = customDayjs(dateRange[isEndDate ? 1 : 0])
+
+  return [dateAsDayjs.utc().format('YYYY'), dateAsDayjs.utc().format('MM'), dateAsDayjs.utc().format('DD')]
+}
+
+export function getUtcizedTimeTupleFromDateRange(
+  dateRange: DateRange | DateAsStringRange | undefined,
+  isEndDate: boolean
+): PartialTimeTuple {
+  if (!dateRange) {
+    return [undefined, undefined]
+  }
+
+  const dateAsDayjs = customDayjs(dateRange[isEndDate ? 1 : 0])
+
+  return [dateAsDayjs.utc().format('HH'), dateAsDayjs.utc().format('mm')]
+}
+
+export function isFullDateTuple(partialDateTuple: PartialDateTuple): partialDateTuple is DateTuple {
+  const [year, month, day] = partialDateTuple
+
+  return !!year && !!month && !!day
 }
 
 // The type is not accurate here but it's good enough to use the protoypes we need for the feature
@@ -165,4 +195,10 @@ export function isHtmlElement(element: Document | HTMLDivElement | undefined): e
   }
 
   return Boolean((element as HTMLDivElement).tagName)
+}
+
+export function isFullTimeTuple(partialTimeTuple: PartialTimeTuple): partialTimeTuple is TimeTuple {
+  const [hour, minute] = partialTimeTuple
+
+  return !!hour && !!minute
 }

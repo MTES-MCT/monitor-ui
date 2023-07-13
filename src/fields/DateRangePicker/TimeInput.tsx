@@ -7,7 +7,7 @@ import { NumberInputIndex } from './useFocusControl/types'
 import { useClickOutsideEffect } from '../../hooks/useClickOutsideEffect'
 import { Clock } from '../../icons'
 
-import type { TimeInputRef, TimeTuple } from './types'
+import type { PartialTimeTuple, TimeInputRef, TimeTuple } from './types'
 import type { ForwardedRef } from 'react'
 import type { Promisable } from 'type-fest'
 
@@ -25,7 +25,7 @@ export type TimeInputProps = {
   onFocus?: (() => Promisable<void>) | undefined
   /** Called each time any time input receive a keyboard-input change whether the value is valid or not. */
   onInput: () => Promisable<void>
-  value?: TimeTuple | undefined
+  value: PartialTimeTuple
 }
 function TimeInputWithRef(
   {
