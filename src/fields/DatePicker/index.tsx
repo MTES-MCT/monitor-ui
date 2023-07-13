@@ -198,12 +198,12 @@ export function DatePicker({
         )
       }
 
-      // If there is a time input,
-      else {
+      // If there is a time input and a time has been selected,
+      else if (selectedUtcTimeTupleRef.current) {
         selectedUtcDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(
           nextUtcizedDateTuple,
           // we include the selected time if it exists, or set it to the start (or end) of the day if it doesn't
-          selectedUtcTimeTupleRef.current || defaultTimeTuple,
+          selectedUtcTimeTupleRef.current,
           isEndDate
         )
       }
