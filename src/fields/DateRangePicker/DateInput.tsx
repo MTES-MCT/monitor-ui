@@ -211,8 +211,6 @@ function DateInputWithRef(
           aria-label={`Année${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
           disabled={disabled}
           isLight={isLight}
-          max={2030}
-          min={2020}
           onBack={() => monthInputRef.current?.focus()}
           onBlur={handleBlur}
           onClick={onClick}

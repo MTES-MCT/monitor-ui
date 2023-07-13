@@ -20,8 +20,8 @@ export type NumberInputProps = Omit<
   'defaultValue' | 'maxLength' | 'onInput' | 'pattern' | 'type'
 > & {
   isLight: boolean
-  max: number
-  min: number
+  max?: number
+  min?: number
   /** Called when the use press backspace key while the input is empty. */
   onBack?: (() => Promisable<void>) | undefined
   /** Called when the input value reaches the size property. */
