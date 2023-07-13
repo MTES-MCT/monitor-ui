@@ -281,38 +281,38 @@ export function DateRangePicker({
     (nextUtcDateTupleRange: DateTupleRange) => {
       const [nextStartUtcDateTuple, nextEndUtcDateTuple] = nextUtcDateTupleRange
 
-      // If this is a date picker without a time input,
+      selectedStartDateTupleRef.current = nextStartUtcDateTuple
+      selectedEndDateTupleRef.current = nextEndUtcDateTuple
+
+      // If the date picker has a time input,
       if (!withTime) {
-        // we have to fix the start date at the beginning of the day
+        // we have to set the start date at the beginning of the day
         selectedStartDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(nextStartUtcDateTuple, ['00', '00'])
         // and the end date at the end of the day
         selectedEndDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(nextEndUtcDateTuple, ['23', '59'], true)
+
+        // and we update both the start/end date and start/end time
+        selectedStartTimeTupleRef.current = getUtcTimeTupleFromDayjs(selectedStartDateAsDayjsRef.current)
+        selectedEndTimeTupleRef.current = getUtcTimeTupleFromDayjs(selectedEndDateAsDayjsRef.current)
+
+        submit()
       }
 
-      // If this is a date picker with a time input,
-      else {
-        // we include the selected start time if it exists, set it at the beginning of the day if not
+      // If the date picker has no time input AND both start and end time have been selected
+      else if (selectedStartTimeTupleRef.current && selectedEndTimeTupleRef.current) {
         selectedStartDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(
           nextStartUtcDateTuple,
-          selectedStartTimeTupleRef.current || ['00', '00']
+          selectedStartTimeTupleRef.current
         )
-
-        // we include the selected end time if it exists, set it at the end of the day if not
         selectedEndDateAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(
           nextEndUtcDateTuple,
-          selectedEndTimeTupleRef.current || ['23', '59'],
-          true
+          selectedEndTimeTupleRef.current
         )
+
+        submit()
       }
 
-      selectedStartDateTupleRef.current = nextStartUtcDateTuple
-      selectedStartTimeTupleRef.current = getUtcTimeTupleFromDayjs(selectedStartDateAsDayjsRef.current)
-      selectedEndDateTupleRef.current = nextEndUtcDateTuple
-      selectedEndTimeTupleRef.current = getUtcTimeTupleFromDayjs(selectedEndDateAsDayjsRef.current)
-
       closeRangeCalendarPicker()
-
-      submit()
     },
     [closeRangeCalendarPicker, submit, withTime]
   )
