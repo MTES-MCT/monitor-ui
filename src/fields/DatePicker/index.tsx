@@ -248,7 +248,7 @@ export function DatePicker({
 
       callOnChange()
 
-      if (withTime && !selectedUtcTimeTupleRef.current && timeInputRef.current) {
+      if (withTime && timeInputRef.current) {
         timeInputRef.current.focus()
       }
     },
@@ -341,7 +341,6 @@ export function DatePicker({
         {withTime && (
           <Field $isTimeField>
             <TimeInput
-              key={JSON.stringify(selectedUtcTimeTupleRef.current)}
               ref={timeInputRef}
               baseContainer={baseContainer || undefined}
               disabled={disabled}
