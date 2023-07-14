@@ -4510,7 +4510,7 @@ __metadata:
     rollup-plugin-peer-deps-external: 2.2.4
     rollup-plugin-postcss: 4.0.2
     rollup-plugin-sizes: 1.0.5
-    rsuite: 5.31.1
+    rsuite: 5.37.0
     semantic-release: 21.0.5
     storybook: 7.0.24
     storybook-addon-performance: 0.17.1
@@ -20252,6 +20252,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-use-set@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "react-use-set@npm:1.0.0"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: ffdd7958450c0eb6adae186ebb88118c4caf400f46204f95c548785be6fd5d6d46f25903d3ea660a1795bea92dbe147546732dbfb9ff465e32d5cec3eb3959a1
+  languageName: node
+  linkType: hard
+
 "react-window@npm:^1.8.8":
   version: 1.8.9
   resolution: "react-window@npm:1.8.9"
@@ -20924,9 +20933,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rsuite-table@npm:^5.10.3":
-  version: 5.10.3
-  resolution: "rsuite-table@npm:5.10.3"
+"rsuite-table@npm:^5.11.0":
+  version: 5.11.0
+  resolution: "rsuite-table@npm:5.11.0"
   dependencies:
     "@babel/runtime": ^7.12.5
     "@juggle/resize-observer": ^3.3.1
@@ -20939,13 +20948,13 @@ __metadata:
     prop-types: ^15.7.2
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: 6bd549110aa4b224860040ac3e07abd00c494291db6e7dde831607cb4528753cb66e44d8c8208e79030f7865eb7a2695996ddb4ac0935d1c7787b9c95c95c3b7
+  checksum: 85a513efd38419a843d586af739f9a2b376759a7939d6d3200ef695e85fc39a4f0514c5c8f4422259e8b9c86d86048e0f4e08e0e9cd305eee69a2da7270dc26c
   languageName: node
   linkType: hard
 
-"rsuite@npm:5.31.1":
-  version: 5.31.1
-  resolution: "rsuite@npm:5.31.1"
+"rsuite@npm:5.37.0":
+  version: 5.37.0
+  resolution: "rsuite@npm:5.37.0"
   dependencies:
     "@babel/runtime": ^7.20.1
     "@juggle/resize-observer": ^3.4.0
@@ -20959,13 +20968,14 @@ __metadata:
     dom-lib: ^3.1.3
     lodash: ^4.17.11
     prop-types: ^15.8.1
+    react-use-set: ^1.0.0
     react-window: ^1.8.8
-    rsuite-table: ^5.10.3
-    schema-typed: ^2.1.2
+    rsuite-table: ^5.11.0
+    schema-typed: ^2.1.3
   peerDependencies:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: cf3a70376a3cc4bb2a46f5b60f7b23b1b3879a4da18f55bb44b7908c926d0f48fc4cfcbf87aa96ca4869b27fbcf8112090e8a7848fd4bb067751e6ce179062d4
+  checksum: ae21c8db23497c76164386b585f9f36eb1f3df8c9ee938f956f8557d9a8225e33bac2932f5a52e9b8aab3a74ae42a9552723537d0b2b86b134cad8a37a05e7fe
   languageName: node
   linkType: hard
 
@@ -21067,10 +21077,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"schema-typed@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "schema-typed@npm:2.1.2"
-  checksum: 9caaba905ffa2b0fd0fe4b019753de9f347ab1877e03ae1d7cd3974dd89c83da2fc3b9e49fedfa34575357223915b733b684973aad80c37aabce6dc7f94b512a
+"schema-typed@npm:^2.1.3":
+  version: 2.1.3
+  resolution: "schema-typed@npm:2.1.3"
+  checksum: c0f84a2a477347c4746f319f4ebfc241bac04e057f765e5ef6be479d749b00168bc21211e836f767878e2007c236acf103a351b42749c31f8e6acd2c4b74f0e9
   languageName: node
   linkType: hard
 
