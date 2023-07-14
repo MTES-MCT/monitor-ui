@@ -328,18 +328,23 @@ export function DateRangePicker({
 
       // If there is a time input,
       else {
-        // we include the selected start time if it exists, set it at the beginning of the day if not
-        selectedStartDateTimeAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(
-          nextStartUtcDateTuple,
-          selectedStartTimeTupleRef.current || ['00', '00']
-        )
+        // AND there is BOTH a selected start time and a selected end time,
+        if (selectedStartTimeTupleRef.current && selectedEndTimeTupleRef.current) {
+          // we update the selected start datetime
+          selectedStartDateTimeAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(
+            nextStartUtcDateTuple,
+            selectedStartTimeTupleRef.current
+          )
 
-        // we include the selected end time if it exists, set it at the end of the day if not
-        selectedEndDateTimeAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(
-          nextEndUtcDateTuple,
-          selectedEndTimeTupleRef.current || ['23', '59'],
-          true
-        )
+          // we update the selected start datetime
+          selectedEndDateTimeAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(
+            nextEndUtcDateTuple,
+            selectedEndTimeTupleRef.current,
+            true
+          )
+        }
+
+        startTimeInputRef.current?.focus()
       }
 
       selectedStartDateTupleRef.current = nextStartUtcDateTuple
