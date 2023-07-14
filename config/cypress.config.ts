@@ -11,6 +11,7 @@ export default defineConfig({
       bundler: 'webpack',
       webpackConfig
     },
+    // indexHtmlFile: `${process.cwd()}/config/cypress/support/component-index.html`,
     specPattern: 'e2e/base/**/*.spec.tsx',
     supportFile: 'config/cypress/support/component.ts'
   },
