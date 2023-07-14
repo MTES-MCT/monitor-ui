@@ -151,13 +151,13 @@ export function DateRangePicker({
 
   const { forceUpdate } = useForceUpdate()
 
-  const rangeCalendarPickerDefaultValue = useMemo(
+  const rangeCalendarPickerDefaultValue: DateRange | undefined = useMemo(
     () =>
       selectedStartDateTupleRef.current && selectedEndDateTupleRef.current
-        ? ([
+        ? [
             getUtcDateFromDateAndTimeTuple(selectedStartDateTupleRef.current, ['00', '00']),
             getUtcDateFromDateAndTimeTuple(selectedEndDateTupleRef.current, ['00', '00'], true)
-          ] as DateRange)
+          ]
         : undefined,
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [selectedEndDateTupleRef.current, selectedStartDateTupleRef.current]
@@ -533,6 +533,7 @@ export function DateRangePicker({
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
 
       <RangeCalendarPicker
+        key={JSON.stringify(rangeCalendarPickerDefaultValue)}
         defaultValue={rangeCalendarPickerDefaultValue}
         isHistorical={isHistorical}
         isOpen={isRangeCalendarPickerOpen}
