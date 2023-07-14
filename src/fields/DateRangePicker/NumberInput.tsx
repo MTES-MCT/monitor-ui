@@ -116,7 +116,7 @@ function NumberInputWithRef(
     }
   }, [max, min, onFilled, onFormatError, onInput, size])
 
-  const handleKeyDown = useCallback(
+  const handleKeyUp = useCallback(
     (event: KeyboardEvent<HTMLInputElement>) => {
       if (!inputRef.current) {
         return
@@ -155,8 +155,21 @@ function NumberInputWithRef(
 
         onBack()
       }
+
+      // TODO Find a better solution that this dirty hack handling "onRefilled" case.
+      if (
+        onNext &&
+        inputRef.current.value.length === size &&
+        inputRef.current.selectionStart === inputRef.current.value.length &&
+        // We don't want to call that function when the user is selecting the input text
+        inputRef.current.selectionEnd === inputRef.current.selectionStart
+      ) {
+        event.preventDefault()
+
+        onNext()
+      }
     },
-    [onBack, onNext, onPrevious]
+    [onBack, onNext, onPrevious, size]
   )
 
   return (
@@ -170,7 +183,7 @@ function NumberInputWithRef(
       onBlur={handleBlur}
       onFocus={handleFocus}
       onInput={handleInput}
-      onKeyDown={handleKeyDown}
+      onKeyUp={handleKeyUp}
       pattern="\d*"
       placeholder={placeholder}
       type="text"

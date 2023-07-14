@@ -277,8 +277,8 @@ export function DateRangePicker({
       if (position === DateRangePosition.START) {
         selectedStartDateTupleRef.current = nextDateTuple
 
-        // If there is NO time input OR a start time is selected,
-        if (!withTime || selectedStartTimeTupleRef.current) {
+        // If there is NO time input OR there is a time input WHILE a start time is selected,
+        if (!withTime || (withTime && selectedStartTimeTupleRef.current)) {
           // we update the selected start datetime
           const startUtcTimeTuple: TimeTuple =
             withTime && selectedStartTimeTupleRef.current ? selectedStartTimeTupleRef.current : ['00', '00']
@@ -295,8 +295,8 @@ export function DateRangePicker({
       } else {
         selectedEndDateTupleRef.current = nextDateTuple
 
-        // If there is NO time input OR an end time is selected,
-        if (!withTime || selectedEndTimeTupleRef.current) {
+        // If there is NO time input OR there is a time input WHILE a start time is selected,
+        if (!withTime || (withTime && selectedEndTimeTupleRef.current)) {
           // we update the selected end datetime
           const endTimeTuple = (withTime ? selectedEndTimeTupleRef.current : ['23', '59']) as TimeTuple
           const nextEndDateAsDayjs = getDayjsFromUtcDateAndTimeTuple(nextDateTuple, endTimeTuple, true)
@@ -370,8 +370,6 @@ export function DateRangePicker({
         }
 
         selectedStartTimeTupleRef.current = nextTimeTuple
-
-        endDateInputRef.current.focus()
       } else {
         // If an end date is selected
         if (selectedEndDateTupleRef.current) {
