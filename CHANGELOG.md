@@ -1,3 +1,17 @@
+## [7.6.1](https://github.com/MTES-MCT/monitor-ui/compare/v7.6.0...v7.6.1) (2023-07-14)
+
+
+### Bug Fixes
+
+* **fields:** auto-focus start time on calendar pick in DateRangePicker ([b077c32](https://github.com/MTES-MCT/monitor-ui/commit/b077c32acb1afef224f369f89126384e2294b80e))
+* **fields:** fix calendar pick to time focus switching in DatePicker ([1300b79](https://github.com/MTES-MCT/monitor-ui/commit/1300b797375216bdeef7e3b4395cd09d977eba12))
+* **fields:** fix calendar pick to time focus switching when filled in DatePicker ([59cd4af](https://github.com/MTES-MCT/monitor-ui/commit/59cd4af98d8980276b586a8c97f765a536829169))
+* **fields:** fix hour to minute focus switching when filled in DateRangePicker ([340533f](https://github.com/MTES-MCT/monitor-ui/commit/340533f3ad4e362a82eefdfac829cb577f22665b))
+* **fields:** fix partially calendar update on date input change in DateRangePicker ([5712e6a](https://github.com/MTES-MCT/monitor-ui/commit/5712e6a3b7bc49fd14617f4033aed0ed1499f9a5))
+* **fields:** fix partially filled date update on calendar pick in DatePicker & DateRangePicker ([9c138be](https://github.com/MTES-MCT/monitor-ui/commit/9c138be011dc3839438fe9990a9770ae97371efd))
+* **fields:** remove internal min/max for year in DatePicker & DateRangePicker ([388f069](https://github.com/MTES-MCT/monitor-ui/commit/388f06942b29ba4219a8724fb80dc87d112f48d6))
+* **fields:** update backspace when filled behavior in DatePicker & DateRangePicker ([599aacd](https://github.com/MTES-MCT/monitor-ui/commit/599aacdbd1767a607f2477398ee2874ce7774499))
+
 # [7.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v7.5.0...v7.6.0) (2023-07-05)
 
 
