@@ -25,7 +25,7 @@
     "preview": "echo 'Linting generated icons…' && yarn eslint --fix ./src/icons && echo 'Done.'",
     "test": "yarn test:lint && yarn test:type",
     "test:e2e": "yarn cypress run --browser firefox --config-file ./cypress.config.ts --component",
-    "test:e2e:release": "yarn cypress run --browser firefox --config-file ./config/cypress.config.ts --e2e",
+    "test:e2e:release": "yarn cypress run --browser firefox --config-file ./cypress.config.ts --e2e",
     "test:e2e:release:setup": "sh ./scripts/e2e/run_release_sample.sh",
     "test:e2e:storybook": "test-storybook --browsers firefox",
     "test:e2e:open": "yarn cypress open --browser firefox --config-file ./cypress.config.ts --component",
