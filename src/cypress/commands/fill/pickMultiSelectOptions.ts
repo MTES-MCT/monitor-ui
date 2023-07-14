@@ -51,11 +51,7 @@ export function pickMultiSelectOptions(
           cy.get('.rs-picker-check-menu').find('.rs-picker-search-bar-input').type(value)
         }
 
-        cy.get('.rs-picker-check-menu')
-          .find('.rs-checkbox-checker')
-          .contains(value)
-          .scrollIntoView()
-          .forceClick()
+        cy.get('.rs-picker-check-menu').find('.rs-checkbox-checker').contains(value).scrollIntoView().forceClick()
       })
 
       // TODO Investigate that (this should be -1).
