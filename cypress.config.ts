@@ -1,24 +1,28 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 import { defineConfig } from 'cypress'
 import { platform } from 'os'
-import { config as webpackConfig } from './webpack.config'
+
+import { config as webpackConfig } from './config/webpack.config'
 
 const DOMAIN = platform() === 'darwin' ? '0.0.0.0' : 'localhost'
 
+// eslint-disable-next-line import/no-default-export
 export default defineConfig({
   component: {
     devServer: {
-      framework: 'react',
       bundler: 'webpack',
+      framework: 'react',
       webpackConfig
     },
-    // indexHtmlFile: `${process.cwd()}/config/cypress/support/component-index.html`,
+    indexHtmlFile: `config/cypress/support/component-index.html`,
     specPattern: 'e2e/base/**/*.spec.tsx',
     supportFile: 'config/cypress/support/component.ts'
   },
   e2e: {
     baseUrl: `http://${DOMAIN}:3000`,
-    specPattern: 'e2e/release/**/*.spec.ts',
     excludeSpecPattern: 'e2e/release/sample/**',
+    specPattern: 'e2e/release/**/*.spec.ts',
     supportFile: 'config/cypress/support/e2e.ts'
   },
   projectId: 'monitor-ui',

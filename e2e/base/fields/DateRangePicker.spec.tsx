@@ -30,6 +30,75 @@ context('Base', () => {
 
     outputShouldBe(undefined)
   })
+
+  it('Should automatically switch focus', () => {
+    // First fill
+
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Jour de début"]').type('01')
+
+    cy.get('input[aria-label="Mois de début"]').should('have.focus')
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Mois de début"]').type('02')
+
+    cy.get('input[aria-label="Année de début"]').should('have.focus')
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Année de début"]').type('2023')
+
+    cy.get('input[aria-label="Jour de fin"]').should('have.focus')
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Jour de fin"]').type('03')
+
+    cy.get('input[aria-label="Mois de fin"]').should('have.focus')
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Mois de fin"]').type('04')
+
+    cy.get('input[aria-label="Année de fin"]').should('have.focus')
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Année de fin"]').type('2024')
+
+    cy.get('input[aria-label="Année de fin"]').should('have.focus')
+    outputShouldBe(['2023-02-01T00:00:00.000Z', '2024-04-03T23:59:59.000Z'])
+
+    // Start year change
+
+    cy.get('input[aria-label="Année de début"]').type('2024')
+
+    cy.get('input[aria-label="Jour de fin"]').should('have.focus')
+    outputShouldBe(['2024-02-01T00:00:00.000Z', '2024-04-03T23:59:59.000Z'])
+
+    // Start month change
+
+    cy.get('input[aria-label="Mois de début"]').type('01')
+
+    cy.get('input[aria-label="Année de début"]').should('have.focus')
+    outputShouldBe(['2024-01-01T00:00:00.000Z', '2024-04-03T23:59:59.000Z'])
+
+    // Month deletion followed by calendar pick
+
+    cy.get('input[aria-label="Mois de début"]').type('{backspace}')
+
+    cy.get('input[aria-label="Mois de début"]').should('have.focus')
+    outputShouldBe(['2024-01-01T00:00:00.000Z', '2024-04-03T23:59:59.000Z'])
+
+    cy.get('button[aria-label="Previous month"]').first().click()
+    cy.get('div[role="button"][title="11/12/2023"]').click()
+    cy.get('div[role="button"][title="09/01/2024"]').click()
+
+    cy.get('input[aria-label="Jour de début"]').should('have.value', '11')
+    cy.get('input[aria-label="Mois de début"]').should('have.value', '12')
+    cy.get('input[aria-label="Année de début"]').should('have.value', '2023')
+    cy.get('input[aria-label="Jour de fin"]').should('have.value', '09')
+    cy.get('input[aria-label="Mois de fin"]').should('have.value', '01')
+    cy.get('input[aria-label="Année de fin"]').should('have.value', '2024')
+    outputShouldBe(['2023-12-11T00:00:00.000Z', '2024-01-09T23:59:59.000Z'])
+  })
 })
 
 context('Base (with time)', () => {
@@ -59,5 +128,102 @@ context('Base (with time)', () => {
     cy.fill('A date range', undefined)
 
     outputShouldBe(undefined)
+  })
+
+  it('Should automatically switch focus', () => {
+    // First fill
+
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Jour de début"]').type('01')
+
+    cy.get('input[aria-label="Mois de début"]').should('have.focus')
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Mois de début"]').type('02')
+
+    cy.get('input[aria-label="Année de début"]').should('have.focus')
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Année de début"]').type('2023')
+
+    cy.get('input[aria-label="Heure de début"]').should('have.focus')
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Heure de début"]').type('12')
+
+    cy.get('input[aria-label="Minute de début"]').should('have.focus')
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Minute de début"]').type('34')
+
+    cy.get('input[aria-label="Jour de fin"]').should('have.focus')
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Jour de fin"]').type('03')
+
+    cy.get('input[aria-label="Mois de fin"]').should('have.focus')
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Mois de fin"]').type('04')
+
+    cy.get('input[aria-label="Année de fin"]').should('have.focus')
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Année de fin"]').type('2024')
+
+    cy.get('input[aria-label="Heure de fin"]').should('have.focus')
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Heure de fin"]').type('23')
+
+    cy.get('input[aria-label="Minute de fin"]').should('have.focus')
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Minute de fin"]').type('56')
+
+    cy.get('input[aria-label="Minute de fin"]').should('have.focus')
+    outputShouldBe(['2023-02-01T12:34:00.000Z', '2024-04-03T23:56:59.000Z'])
+
+    // Start hour change
+
+    cy.get('input[aria-label="Heure de début"]').type('13')
+
+    cy.get('input[aria-label="Minute de début"]').should('have.focus')
+    outputShouldBe(['2023-02-01T13:34:00.000Z', '2024-04-03T23:56:59.000Z'])
+
+    // Start year change
+
+    cy.get('input[aria-label="Année de début"]').type('2024')
+
+    cy.get('input[aria-label="Heure de début"]').should('have.focus')
+    outputShouldBe(['2024-02-01T13:34:00.000Z', '2024-04-03T23:56:59.000Z'])
+
+    // Start month change
+
+    cy.get('input[aria-label="Mois de début"]').type('01')
+
+    cy.get('input[aria-label="Année de début"]').should('have.focus')
+    outputShouldBe(['2024-01-01T13:34:00.000Z', '2024-04-03T23:56:59.000Z'])
+
+    // Month deletion followed by calendar pick
+
+    cy.get('input[aria-label="Mois de début"]').type('{backspace}')
+
+    cy.get('input[aria-label="Mois de début"]').should('have.focus')
+    outputShouldBe(['2024-01-01T13:34:00.000Z', '2024-04-03T23:56:59.000Z'])
+
+    cy.get('button[aria-label="Previous month"]').first().click()
+    cy.get('div[role="button"][title="11/12/2023"]').click()
+    cy.get('div[role="button"][title="09/01/2024"]').click()
+
+    cy.get('input[aria-label="Heure de début"]').should('have.focus')
+    cy.get('input[aria-label="Jour de début"]').should('have.value', '11')
+    cy.get('input[aria-label="Mois de début"]').should('have.value', '12')
+    cy.get('input[aria-label="Année de début"]').should('have.value', '2023')
+    cy.get('input[aria-label="Jour de fin"]').should('have.value', '09')
+    cy.get('input[aria-label="Mois de fin"]').should('have.value', '01')
+    cy.get('input[aria-label="Année de fin"]').should('have.value', '2024')
+    outputShouldBe(['2023-12-11T13:34:00.000Z', '2024-01-09T23:56:59.000Z'])
   })
 })
