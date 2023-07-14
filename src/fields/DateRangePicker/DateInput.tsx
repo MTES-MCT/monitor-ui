@@ -78,6 +78,8 @@ function DateInputWithRef(
     return lastValueBeforeFocusRef.current
   }, [isFocused, value])
 
+  const key = JSON.stringify(lastValueBeforeFocusRef.current)
+
   useImperativeHandle<DateInputRef, DateInputRef>(ref, () => ({
     box: boxRef.current,
     contains: boxRef.current ? boxRef.current.contains.bind(boxRef.current) : () => false,
@@ -167,6 +169,7 @@ function DateInputWithRef(
         {isRange && isStartDate && <span>Du </span>}
         {isRange && isEndDate && <span>Au </span>}
         <NumberInput
+          key={`${key}-day`}
           ref={dayInputRef}
           aria-label={`Jour${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
           disabled={disabled}
@@ -187,6 +190,7 @@ function DateInputWithRef(
         />
         /
         <NumberInput
+          key={`${key}-month`}
           ref={monthInputRef}
           aria-label={`Mois${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
           disabled={disabled}
@@ -207,6 +211,7 @@ function DateInputWithRef(
         />
         /
         <NumberInput
+          key={`${key}-year`}
           ref={yearInputRef}
           aria-label={`Année${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
           disabled={disabled}
