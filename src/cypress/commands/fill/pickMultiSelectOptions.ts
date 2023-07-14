@@ -40,7 +40,7 @@ export function pickMultiSelectOptions(
 
     cy.wrap(fieldElement).find('.rs-picker-toggle').forceClick()
 
-    cy.get('.rs-picker-picker-check-menu').then(([multiSelectMenuElement]) => {
+    cy.get('.rs-picker-check-menu').then(([multiSelectMenuElement]) => {
       if (!multiSelectMenuElement) {
         throw new Error('`multiSelectMenuElement` is undefined.')
       }
@@ -48,10 +48,10 @@ export function pickMultiSelectOptions(
       const maybeSearchInput = multiSelectMenuElement.querySelector('.rs-picker-search-bar-input')
       values.forEach(value => {
         if (maybeSearchInput) {
-          cy.get('.rs-picker-picker-check-menu').find('.rs-picker-search-bar-input').type(value)
+          cy.get('.rs-picker-check-menu').find('.rs-picker-search-bar-input').type(value)
         }
 
-        cy.get('.rs-picker-picker-check-menu')
+        cy.get('.rs-picker-check-menu')
           .find('.rs-checkbox-checker')
           .contains(value)
           .scrollIntoView()
