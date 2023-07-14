@@ -116,6 +116,21 @@ function NumberInputWithRef(
     }
   }, [max, min, onFilled, onFormatError, onInput, size])
 
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLInputElement>) => {
+      if (!inputRef.current) {
+        return
+      }
+
+      if (onBack && event.key === 'Backspace' && !inputRef.current.value.length) {
+        event.preventDefault()
+
+        onBack()
+      }
+    },
+    [onBack]
+  )
+
   const handleKeyUp = useCallback(
     (event: KeyboardEvent<HTMLInputElement>) => {
       if (!inputRef.current) {
@@ -150,12 +165,6 @@ function NumberInputWithRef(
         return
       }
 
-      if (onBack && event.key === 'Backspace' && !inputRef.current.value.length) {
-        event.preventDefault()
-
-        onBack()
-      }
-
       // TODO Find a better solution that this dirty hack handling "onRefilled" case.
       if (
         onNext &&
@@ -169,7 +178,7 @@ function NumberInputWithRef(
         onNext()
       }
     },
-    [onBack, onNext, onPrevious, size]
+    [onNext, onPrevious, size]
   )
 
   return (
@@ -183,6 +192,7 @@ function NumberInputWithRef(
       onBlur={handleBlur}
       onFocus={handleFocus}
       onInput={handleInput}
+      onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       pattern="\d*"
       placeholder={placeholder}
