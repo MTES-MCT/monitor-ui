@@ -8,6 +8,7 @@
     "esModuleInterop": true,
     "declaration": true,
     "declarationDir": "./dist",
+    "declarationMap": true,
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": false,
@@ -37,14 +38,14 @@
     "useUnknownInCatchVariables": true,
     "verbatimModuleSyntax": true
   },
-  "include": ["**/*.js", "**/*.jsx", "**/*.mjs", "**/*.ts", "**/*.tsx", ".storybook/**/*.ts", ".storybook/**/*.tsx"],
+  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", ".storybook/**/*.ts", ".storybook/**/*.tsx"],
   "exclude": [
-    ".eslintrc.js",
     "config/*",
     "dist/*",
     "e2e/release/sample/*",
     "node_modules/*",
     "scripts/*",
-    "storybook-static/*"
+    "storybook-static/*",
+    ".eslintrc.cjs"
   ]
 }

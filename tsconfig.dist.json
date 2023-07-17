@@ -1,6 +1,12 @@
 {
-  "extends": ".",
-  "include": ["**/*.js", "**/*.jsx", "**/*.mjs", "**/*.ts", "**/*.tsx"],
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "moduleResolution": "Bundler",
+    "noEmit": false,
+    "rootDir": "./src"
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": [
     ".storybook/*",
     "config/*",
@@ -9,9 +15,10 @@
     "node_modules/*",
     "scripts/*",
     "src/cypress/*",
-    "storybook-static/*",
-    "rollup.config.mjs",
     "stories/*",
+    "storybook-static/*",
+    ".eslintrc.cjs",
+    "rollup.config.js",
     "**/*.test.ts"
   ]
 }

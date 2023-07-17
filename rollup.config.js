@@ -2,10 +2,12 @@
 
 import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
-import typescript from '@rollup/plugin-typescript'
 import url from '@rollup/plugin-url'
 import nodePolyfills from 'rollup-plugin-node-polyfills'
-import peerDepsExternal from 'rollup-plugin-peer-deps-external'
+// import peerDepsExternal from 'rollup-plugin-peer-deps-external'
+// TODO This is a temporary fix.
+import peerDepsExternal from '@chrisneedham/rollup-plugin-peer-deps-external'
+import { swc } from 'rollup-plugin-swc3'
 
 export default [
   {
@@ -28,15 +30,16 @@ export default [
         include: ['**/*.woff2'],
         limit: Infinity
       }),
-      nodeResolve({
-        extensions: ['css', '.js', 'json', '.jsx', '.ts', '.tson', '.tsx']
-      }),
       // Convert CommonJS to ES6:
       commonjs(),
       // Polyfill Node.js modules:
       nodePolyfills(),
+      nodeResolve({
+        extensions: ['.css', '.cjs', '.js', '.json', '.jsx', '.mjs', '.ts', '.tson', '.tsx'],
+        preferBuiltins: true
+      }),
       // Transpile TS & TSX to JS:
-      typescript({
+      swc({
         tsconfig: './tsconfig.dist.json'
       })
     ]
@@ -62,7 +65,7 @@ export default [
       // Convert CommonJS to ES6:
       commonjs(),
       // Transpile TS & TSX to JS:
-      typescript({
+      swc({
         tsconfig: './src/cypress/tsconfig.dist.json'
       })
     ]

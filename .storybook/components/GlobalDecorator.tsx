@@ -5,7 +5,7 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 import { GlobalStyle, THEME } from '../../src'
 
-import type { ComponentStory } from '@storybook/react'
+import type { StoryFn } from '@storybook/react'
 
 const UntypedGlobalStyle = GlobalStyle as any
 const UntypedThemeProvider = ThemeProvider as any
@@ -32,7 +32,7 @@ const CustomGlobalStyle: any = createGlobalStyle`
   }
 `
 
-export function GlobalDecorator(Story: ComponentStory<any>) {
+export function GlobalDecorator(Story: StoryFn<any>) {
   return (
     <GlobalDecoratorWrapper>
       <Story />

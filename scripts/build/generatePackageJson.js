@@ -1,5 +1,5 @@
-const { promises: fs } = require('fs')
-const { mergeLeft, omit, pipe } = require('ramda')
+import { promises as fs } from 'fs'
+import { mergeLeft, omit, pipe } from 'ramda'
 
 const distPackageExtraProps = {
   bugs: {
@@ -22,8 +22,7 @@ const distPackageExtraProps = {
     url: 'git+https://github.com/MTES-MCT/monitor-ui.git'
   },
   sideEffects: false,
-  type: 'module',
-  types: './src/index.d.ts'
+  types: './index.d.ts'
 }
 
 ;(async () => {

@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
-// eslint-disable-next-line no-undef
-module.exports = {
+export default {
   clearMocks: true,
   collectCoverageFrom: ['<rootDir>/src/utils/*.ts', '<rootDir>/src/**/utils.ts'],
   maxWorkers: '50%',
