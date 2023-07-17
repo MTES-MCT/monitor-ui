@@ -27,7 +27,7 @@ module.exports = {
     '/e2e/release/sample/',
     '/scripts/',
     '/storybook-static/',
-    '.eslintrc.js',
+    '.eslintrc.cjs',
     'rollup.config.js'
   ],
   rules: {
