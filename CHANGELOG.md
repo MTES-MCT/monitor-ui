@@ -1,3 +1,10 @@
+## [7.6.2](https://github.com/MTES-MCT/monitor-ui/compare/v7.6.1...v7.6.2) (2023-07-17)
+
+
+### Bug Fixes
+
+* **build:** update bundle types path ([1565c73](https://github.com/MTES-MCT/monitor-ui/commit/1565c7319b0f918ebccced9ad34f3aa44f0c9fdf))
+
 ## [7.6.1](https://github.com/MTES-MCT/monitor-ui/compare/v7.6.0...v7.6.1) (2023-07-14)
 
 
