@@ -23,7 +23,7 @@ const distPackageExtraProps = {
   },
   sideEffects: false,
   type: 'module',
-  types: './index.d.ts'
+  types: './src/index.d.ts'
 }
 
 ;(async () => {
