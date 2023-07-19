@@ -1,3 +1,13 @@
+# [8.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v7.6.2...v8.0.0) (2023-07-19)
+
+
+* build(deps)!: upgrade rsuite ([e17df4c](https://github.com/MTES-MCT/monitor-ui/commit/e17df4c0b8c41ee0803b2596f9a20ec6beab28e7))
+
+
+### BREAKING CHANGES
+
+* upgrade rsuite peer deps
+
 ## [7.6.2](https://github.com/MTES-MCT/monitor-ui/compare/v7.6.1...v7.6.2) (2023-07-17)
 
 
