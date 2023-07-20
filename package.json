@@ -40,7 +40,7 @@
     "@tanstack/react-table": "^8.9.3",
     "@tanstack/react-virtual": "beta",
     "prop-types": "15.8.1",
-    "tslib": "2.5.3"
+    "tslib": "2.6.0"
   },
   "devDependencies": {
     "@babel/core": "7.22.1",
