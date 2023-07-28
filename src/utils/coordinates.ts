@@ -122,7 +122,7 @@ function getDMSFromDecimal(dd: number, latitudeOrLongitude: CoordinateLatLon) {
   const [minutesInteger, minutesDecimal] = getMinutes(absoluteDecimalDegrees, degrees)
 
   // Get the seconds by multiplying the decimal part by 60
-  const seconds = (minutesDecimal * 1e-3 * 60).toFixed(0)
+  const seconds = (Number(minutesDecimal) * 1e-3 * 60).toFixed(0)
 
   const formattedDegrees = getPaddedDegrees(degrees, latitudeOrLongitude)
   const formattedMinutes = minutesInteger.padStart(2, '0')
@@ -143,6 +143,9 @@ const getMinutes = (absoluteDecimalDegrees: number, degrees: number): [string, s
   }
 
   const [minutesInteger, minuteDecimals] = minutes.split('.')
+  if (!minutesInteger || !minuteDecimals) {
+    throw new Error('`minutesInteger` or `minuteDecimals` are undefined.')
+  }
 
   return [minutesInteger, minuteDecimals]
 }
