@@ -101,16 +101,14 @@ function getDMSCoordinates(transformedCoordinates: number[]): string[] {
 function getDMDFromDecimal(dd: number, latitudeOrLongitude: CoordinateLatLon): string {
   const hemisphere = getHemisphere(dd, latitudeOrLongitude)
 
-  const absDD = Math.abs(dd)
-  const degrees = truncate(absDD)
-  const minutes = truncate((absDD - degrees) * 60)
-  let decimal = (absDD - degrees) * 60
-  decimal -= Math.floor(decimal)
-  decimal = Math.round(decimal * 1000)
+  // Get the decimal degrees as an absolute value
+  const absoluteDecimalDegrees = Math.abs(dd)
+  const degrees = truncate(absoluteDecimalDegrees)
+  const [minutesInteger, minuteDecimals] = getMinutes(absoluteDecimalDegrees, degrees)
 
   const formattedDegrees = getPaddedDegrees(degrees, latitudeOrLongitude)
-  const formattedMinutes = minutes.toString().padStart(2, '0')
-  const formattedDecimal = decimal.toString().padStart(3, '0').substring(0, 3)
+  const formattedMinutes = minutesInteger.padStart(2, '0')
+  const formattedDecimal = minuteDecimals.padStart(3, '0').substring(0, 3)
 
   return `${formattedDegrees}° ${formattedMinutes}.${formattedDecimal}′ ${hemisphere}`
 }
@@ -118,16 +116,35 @@ function getDMDFromDecimal(dd: number, latitudeOrLongitude: CoordinateLatLon): s
 function getDMSFromDecimal(dd: number, latitudeOrLongitude: CoordinateLatLon) {
   const hemisphere = getHemisphere(dd, latitudeOrLongitude)
 
-  const absDD = Math.abs(dd)
-  const degrees = truncate(absDD)
-  const minutes = truncate((absDD - degrees) * 60)
-  const seconds = (Math.round((((absDD - degrees) * 60 - minutes) * 60 + Number.EPSILON) * 100) / 100).toFixed(0)
+  // Get the decimal degrees as an absolute value
+  const absoluteDecimalDegrees = Math.abs(dd)
+  const degrees = truncate(absoluteDecimalDegrees)
+  const [minutesInteger, minutesDecimal] = getMinutes(absoluteDecimalDegrees, degrees)
+
+  // Get the seconds by multiplying the decimal part by 60
+  const seconds = (minutesDecimal * 1e-3 * 60).toFixed(0)
 
   const formattedDegrees = getPaddedDegrees(degrees, latitudeOrLongitude)
-  const formattedMinutes = minutes.toString().padStart(2, '0')
+  const formattedMinutes = minutesInteger.padStart(2, '0')
   const formattedSeconds = seconds.toString().padStart(2, '0')
 
   return `${formattedDegrees}° ${formattedMinutes}′ ${formattedSeconds}″${hemisphere ? ` ${hemisphere}` : ''}`
+}
+
+/**
+ * Get the minutes
+ * @return - the minutes as an array of [minutesInteger, minuteDecimals]
+ */
+const getMinutes = (absoluteDecimalDegrees: number, degrees: number): [string, string] => {
+  // Get the minutes by multiplying the decimal part by 60
+  let minutes = Number((absoluteDecimalDegrees - degrees) * 60).toFixed(3)
+  if (minutes.split('.').length < 1) {
+    minutes += '.000'
+  }
+
+  const [minutesInteger, minuteDecimals] = minutes.split('.')
+
+  return [minutesInteger, minuteDecimals]
 }
 
 const getHemisphere = (dd: number, latitudeOrLongitude: CoordinateLatLon) => {
@@ -160,6 +177,12 @@ const getPaddedDegrees = (degrees: number | string, latitudeOrLongitude: Coordin
   }
 }
 
+/**
+ * If n > 0
+ * - Get the largest integer less than or equal to n
+ * - Else, rounds n to the next largest integer.
+ * @param n - number
+ */
 function truncate(n: number): number {
   return n > 0 ? Math.floor(n) : Math.ceil(n)
 }
