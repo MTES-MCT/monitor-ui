@@ -84,6 +84,8 @@ describe('getCoordinates', () => {
     const coordinates = getCoordinates([-5.1756, 47.4658], WSG84_PROJECTION, CoordinatesFormat.DEGREES_MINUTES_SECONDS)
 
     expect(coordinates).not.toBeUndefined()
+    expect(coordinates[0]).toEqual('47° 27′ 57″ N')
+    expect(coordinates[1]).toEqual('005° 10′ 32″ W')
   })
 
   it('should get DMS with coordinates for another³ dummy lon/lat', async () => {
