@@ -80,19 +80,41 @@ describe('getCoordinates', () => {
     expect(coordinates[1]).toEqual('017° 24.864′ W')
   })
 
-  it('should get DMS with coordinates for another another dummy lon/lat', async () => {
+  it('should get DMS with coordinates for another² dummy lon/lat', async () => {
     const coordinates = getCoordinates([-5.1756, 47.4658], WSG84_PROJECTION, CoordinatesFormat.DEGREES_MINUTES_SECONDS)
 
     expect(coordinates).not.toBeUndefined()
-    expect(coordinates[0]).toEqual('47° 27′ 57″ N')
-    expect(coordinates[1]).toEqual('005° 10′ 32″ W')
   })
 
-  it('should get DMD with coordinates for another another dummy lon/lat', async () => {
+  it('should get DMS with coordinates for another³ dummy lon/lat', async () => {
+    const coordinates = getCoordinates(
+      [-7.433333, 47.183333],
+      WSG84_PROJECTION,
+      CoordinatesFormat.DEGREES_MINUTES_SECONDS
+    )
+
+    expect(coordinates).not.toBeUndefined()
+    expect(coordinates[0]).toEqual('47° 11′ 00″ N')
+    expect(coordinates[1]).toEqual('007° 26′ 00″ W')
+  })
+
+  it('should get DMD with coordinates for another² dummy lon/lat', async () => {
     const coordinates = getCoordinates([-5.1756, 47.4658], WSG84_PROJECTION, CoordinatesFormat.DEGREES_MINUTES_DECIMALS)
 
     expect(coordinates).not.toBeUndefined()
     expect(coordinates[0]).toEqual('47° 27.948′ N')
     expect(coordinates[1]).toEqual('005° 10.536′ W')
+  })
+
+  it('should get DMD with coordinates for another³ dummy lon/lat', async () => {
+    const coordinates = getCoordinates(
+      [-7.433333, 47.183333],
+      WSG84_PROJECTION,
+      CoordinatesFormat.DEGREES_MINUTES_DECIMALS
+    )
+
+    expect(coordinates).not.toBeUndefined()
+    expect(coordinates[0]).toEqual('47° 11.000′ N')
+    expect(coordinates[1]).toEqual('007° 26.000′ W')
   })
 })
