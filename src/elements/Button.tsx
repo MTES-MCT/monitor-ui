@@ -88,7 +88,7 @@ const FONT_SIZE: Record<Size, string> = {
   [Size.SMALL]: '11px'
 }
 const PADDING: Record<Size, string> = {
-  [Size.LARGE]: '6px 12px',
+  [Size.LARGE]: '12px',
   [Size.NORMAL]: '6px 12px',
   [Size.SMALL]: '5px 8px 4px'
 }
