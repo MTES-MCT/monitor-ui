@@ -16,7 +16,7 @@ import type { IconProps } from '../types'
 import type { InputProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 
-export type TextInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'onChange' | 'size' | 'type' | 'value'> & {
+export type TextInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'onChange' | 'size' | 'value'> & {
   Icon?: FunctionComponent<IconProps> | undefined
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
@@ -41,6 +41,7 @@ export function TextInput({
   onChange,
   size = Size.NORMAL,
   style,
+  type = 'text',
   value,
   ...originalProps
 }: TextInputProps) {
@@ -84,7 +85,7 @@ export function TextInput({
           $size={size}
           id={originalProps.name}
           onChange={handleChange}
-          type="text"
+          type={type}
           value={value || ''}
           {...originalProps}
         />
