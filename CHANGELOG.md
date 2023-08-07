@@ -1,3 +1,17 @@
+# [8.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v8.0.0...v8.1.0) (2023-08-07)
+
+
+### Bug Fixes
+
+* **components:** anyify children type in NewWindow ([5a73dfa](https://github.com/MTES-MCT/monitor-ui/commit/5a73dfadb676417f1436245e9824bd1b96761a19))
+* **components:** re-type ToastContainer in Notifier ([b2f8e74](https://github.com/MTES-MCT/monitor-ui/commit/b2f8e747ca1fbfb5fe0a3ba25d2a76f719bcaa58))
+
+
+### Features
+
+* **elements:** add TableWithRowSelection ([93ed01e](https://github.com/MTES-MCT/monitor-ui/commit/93ed01ef5d96644f1ce04a11d59225eb02af69b2))
+* **elements:** use SimpleTable style ([90beafa](https://github.com/MTES-MCT/monitor-ui/commit/90beafa5f3905781a7b59d85389028427713d9b7))
+
 # [8.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v7.6.2...v8.0.0) (2023-07-19)
 
 
