@@ -5,7 +5,7 @@ import { useCallback, useMemo, useRef, useState, type HTMLProps, useEffect } fro
 
 import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
 import { Accent, Button, Icon, IconButton, Size } from '../../../src'
-import { TableWithRowSelection } from '../../../src/elements/Table/TableWithRowSelection'
+import { TableWithSelectableRows } from '../../../src/elements/Table/TableWithSelectableRows'
 
 const fakeData1 = Array(100).fill({
   id: 4,
@@ -85,7 +85,7 @@ const fakeData2 = Array(100).fill({
 const data = [...fakeData1, ...fakeData2]
 
 export default {
-  title: 'Elements/Table/TableWithRowSelection',
+  title: 'Elements/Table/TableWithSelectableRows',
   decorators: [generateStoryDecorator()]
 }
 
@@ -105,7 +105,7 @@ function IndeterminateCheckbox({
   return <input ref={ref} className={`${className} cursor-pointer`} type="checkbox" {...rest} />
 }
 
-export function _TableWithRowSelection() {
+export function _TableWithSelectableRows() {
   const [rowSelection, setRowSelection] = useState({})
   const [sorting, setSorting] = useState<SortingState>([{ id: 'createdAt', desc: false }])
 
@@ -298,12 +298,12 @@ export function _TableWithRowSelection() {
         <IconButton accent={Accent.SECONDARY} Icon={Icon.Archive} onClick={archiveReportings} />
       </div>
       <div ref={tableContainerRef}>
-        <TableWithRowSelection.Table>
-          <TableWithRowSelection.Head>
+        <TableWithSelectableRows.Table>
+          <TableWithSelectableRows.Head>
             {table.getHeaderGroups().map(headerGroup => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
-                  <TableWithRowSelection.Th
+                  <TableWithSelectableRows.Th
                     key={header.id}
                     {...{
                       style: {
@@ -314,7 +314,7 @@ export function _TableWithRowSelection() {
                     }}
                   >
                     {header.isPlaceholder ? undefined : (
-                      <TableWithRowSelection.SortContainer
+                      <TableWithSelectableRows.SortContainer
                         {...{
                           className: header.column.getCanSort() ? 'cursor-pointer' : '',
                           onClick: header.column.getToggleSortingHandler()
@@ -326,13 +326,13 @@ export function _TableWithRowSelection() {
                             asc: <div>▲</div>,
                             desc: <div>▼</div>
                           }[header.column.getIsSorted() as string] ?? <Icon.SortingArrows size={14} />)}
-                      </TableWithRowSelection.SortContainer>
+                      </TableWithSelectableRows.SortContainer>
                     )}
-                  </TableWithRowSelection.Th>
+                  </TableWithSelectableRows.Th>
                 ))}
               </tr>
             ))}
-          </TableWithRowSelection.Head>
+          </TableWithSelectableRows.Head>
           <tbody>
             {paddingTop > 0 && (
               <tr>
@@ -343,9 +343,9 @@ export function _TableWithRowSelection() {
               const row = rows[virtualRow.index]
 
               return (
-                <TableWithRowSelection.BodyTr key={virtualRow.key}>
+                <TableWithSelectableRows.BodyTr key={virtualRow.key}>
                   {row?.getVisibleCells().map(cell => (
-                    <TableWithRowSelection.Td
+                    <TableWithSelectableRows.Td
                       {...{
                         key: cell.id,
                         style: {
@@ -357,9 +357,9 @@ export function _TableWithRowSelection() {
                       }}
                     >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </TableWithRowSelection.Td>
+                    </TableWithSelectableRows.Td>
                   ))}
-                </TableWithRowSelection.BodyTr>
+                </TableWithSelectableRows.BodyTr>
               )
             })}
             {paddingBottom > 0 && (
@@ -368,7 +368,7 @@ export function _TableWithRowSelection() {
               </tr>
             )}
           </tbody>
-        </TableWithRowSelection.Table>
+        </TableWithSelectableRows.Table>
       </div>
     </>
   )

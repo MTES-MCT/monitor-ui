@@ -35,7 +35,7 @@ export { Legend } from './elements/Legend'
 export { Tag } from './elements/Tag'
 export { TagGroup } from './elements/TagGroup'
 export { SimpleTable } from './elements/Table/SimpleTable'
-export { TableWithRowSelection } from './elements/Table/TableWithRowSelection'
+export { TableWithSelectableRows } from './elements/Table/TableWithSelectableRows'
 
 export { Search } from './fields/Search'
 export { Checkbox } from './fields/Checkbox'
