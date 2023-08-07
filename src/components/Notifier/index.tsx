@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer, toast, type ToastContainerProps } from 'react-toastify'
 import styled from 'styled-components'
 
 import { NotificationEvent } from './NotificationEvent'
@@ -45,4 +45,7 @@ export function Notifier({ isSideWindow = false }: NotifierProps) {
 }
 
 // TODO Style the notifications with Adeline.
-const StyledToastContainer = styled(ToastContainer)``
+// We need to retype `ToastContainer` manually because `styled-components` mess up with the `children` prop
+const StyledToastContainer = styled(ToastContainer as any)`` as unknown as React.ForwardRefExoticComponent<
+  ToastContainerProps & React.RefAttributes<HTMLDivElement>
+>
