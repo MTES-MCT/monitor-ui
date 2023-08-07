@@ -230,7 +230,9 @@ export class NewWindow extends PureComponent<NewWindowProps, NewWindowState> {
       return null
     }
 
-    return ReactDOM.createPortal(children, this.container) as any
+    // For some reason `ReactNode` type is inconsistent
+    // between `@types/react` (=> `children`) and `react-dom` (=> `ReactDOM.createPortal()`)
+    return ReactDOM.createPortal(children as any, this.container) as any
   }
 }
 
