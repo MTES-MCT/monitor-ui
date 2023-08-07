@@ -320,7 +320,8 @@ export function _SimpleTable() {
                         maxWidth: cell.column.getSize(),
                         minWidth: cell.column.getSize(),
                         width: cell.column.getSize()
-                      }
+                      },
+                      $isCenter: !!(cell.column.id === 'geom' || cell.column.id === 'edit')
                     }}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
