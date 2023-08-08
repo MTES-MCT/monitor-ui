@@ -129,6 +129,7 @@ export type { LabelProps } from './elements/Label'
 export type { LegendProps } from './elements/Legend'
 export type { TagProps } from './elements/Tag'
 export type { TagGroupProps } from './elements/TagGroup'
+export type { RowCheckboxProps } from './elements/Table/TableWithSelectableRows/RowCheckbox'
 
 export type { SearchProps } from './fields/Search'
 export type { CheckboxProps } from './fields/Checkbox'
