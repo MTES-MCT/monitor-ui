@@ -115,7 +115,6 @@ export function _TableWithSelectableRows() {
               {...{
                 isChecked: row.getIsSelected(),
                 disabled: !row.getCanSelect(),
-                isIndeterminate: row.getIsSomeSelected(),
                 onChange: row.getToggleSelectedHandler(row)
               }}
             />

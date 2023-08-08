@@ -259,9 +259,7 @@ label {
   border-width: 0 0 2px;
   -webkit-transform: rotate(0deg) scale(1);
   transform: rotate(0deg) scale(1);
-  width: 8px;
   margin-top: -1px;
-  margin-left: 5px;
 }
 
 .rs-checkbox-indeterminate .rs-checkbox-wrapper .rs-checkbox-inner::before {
@@ -274,9 +272,7 @@ label {
   border-width: 0 0 2px;
   -webkit-transform: rotate(0deg) scale(1);
   transform: rotate(0deg) scale(1);
-  width: 8px;
   margin-top: 0px;
-  margin-left: 6px;
 }
 
 .rs-checkbox-disabled:not(.rs-checkbox-checked):not(.rs-checkbox-indeterminate)
@@ -303,8 +299,6 @@ label:hover .rs-checkbox-wrapper .rs-checkbox-inner:before {
 .rs-checkbox-checked .rs-checkbox-wrapper .rs-checkbox-inner::after {
   border: solid var(--white);
   border-width: 0 2px 2px 0;
-  margin-top: 3px !important;
-  margin-left: 6px !important;
 }
 
 .checkbox-hidden > div > label > .rs-checkbox-wrapper {

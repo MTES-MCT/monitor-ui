@@ -1,5 +1,14 @@
-import { useRef, type HTMLProps, useEffect } from 'react'
+import { type HTMLProps } from 'react'
 import { Checkbox as RsuiteCheckbox } from 'rsuite'
+
+export type RowCheckboxProps = {
+  className?: string
+  disabled?: boolean
+  isChecked?: boolean
+  // handle the case where some child checkboxes are checked to display an indeterminate style (-)
+  isIndeterminate?: boolean
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
 
 export function RowCheckbox({
   className = '',
@@ -7,19 +16,9 @@ export function RowCheckbox({
   isChecked = false,
   isIndeterminate = false,
   onChange = () => undefined
-}: { isChecked?: boolean; isIndeterminate?: boolean } & HTMLProps<HTMLInputElement>) {
-  // eslint-disable-next-line no-null/no-null
-  const ref = useRef<HTMLInputElement>(null!)
-
-  useEffect(() => {
-    if (typeof isIndeterminate === 'boolean') {
-      ref.current.indeterminate = !isChecked && isIndeterminate
-    }
-  }, [ref, isIndeterminate, isChecked])
-
+}: RowCheckboxProps & HTMLProps<HTMLInputElement>) {
   return (
     <RsuiteCheckbox
-      ref={ref}
       checked={isChecked}
       className={`${className} cursor-pointer`}
       disabled={disabled}
