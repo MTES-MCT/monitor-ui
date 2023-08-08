@@ -1,7 +1,7 @@
 /* eslint-disable no-null/no-null */
 import { flexRender, getCoreRowModel, getSortedRowModel, type SortingState, useReactTable } from '@tanstack/react-table'
 import { useVirtualizer } from '@tanstack/react-virtual'
-import { useCallback, useMemo, useRef, useState, type HTMLProps, useEffect } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 
 import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
 import { Accent, Button, Icon, IconButton, Size } from '../../../src'
@@ -89,22 +89,6 @@ export default {
   decorators: [generateStoryDecorator()]
 }
 
-function IndeterminateCheckbox({
-  className = '',
-  indeterminate,
-  ...rest
-}: { indeterminate?: boolean } & HTMLProps<HTMLInputElement>) {
-  const ref = useRef<HTMLInputElement>(null!)
-
-  useEffect(() => {
-    if (typeof indeterminate === 'boolean') {
-      ref.current.indeterminate = !rest.checked && indeterminate
-    }
-  }, [ref, indeterminate, rest.checked])
-
-  return <input ref={ref} className={`${className} cursor-pointer`} type="checkbox" {...rest} />
-}
-
 export function _TableWithSelectableRows() {
   const [rowSelection, setRowSelection] = useState({})
   const [sorting, setSorting] = useState<SortingState>([{ id: 'createdAt', desc: false }])
@@ -117,21 +101,21 @@ export function _TableWithSelectableRows() {
         enableSorting: false,
         accessorFn: row => row.reportingId,
         header: ({ table }) => (
-          <IndeterminateCheckbox
+          <TableWithSelectableRows.RowCheckbox
             {...{
-              checked: table.getIsAllRowsSelected(),
-              indeterminate: table.getIsSomeRowsSelected(),
+              isChecked: table.getIsAllRowsSelected(),
+              isIndeterminate: table.getIsSomeRowsSelected(),
               onChange: table.getToggleAllRowsSelectedHandler()
             }}
           />
         ),
         cell: ({ row }) => (
           <div className="px-1">
-            <IndeterminateCheckbox
+            <TableWithSelectableRows.RowCheckbox
               {...{
-                checked: row.getIsSelected(),
+                isChecked: row.getIsSelected(),
                 disabled: !row.getCanSelect(),
-                indeterminate: row.getIsSomeSelected(),
+                isIndeterminate: row.getIsSomeSelected(),
                 onChange: row.getToggleSelectedHandler(row)
               }}
             />
