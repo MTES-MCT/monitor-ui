@@ -23,7 +23,7 @@ export type CheckboxProps = Omit<RsuiteCheckboxProps, 'as' | 'checked' | 'defaul
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
-  onChange?: ((isCheched: boolean) => Promisable<void>) | undefined
+  onChange?: ((isChecked: boolean) => Promisable<void>) | undefined
   style?: CSSProperties | undefined
 }
 export function Checkbox({

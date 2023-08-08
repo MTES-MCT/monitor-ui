@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
-import { SimpleTable } from './SimpleTable'
+import { RowCheckbox } from './RowCheckbox'
+import { SimpleTable } from '../SimpleTable'
+
+export { RowCheckbox }
 
 const Table = styled(SimpleTable.Table)`
   border-collapse: separate;
@@ -39,6 +42,7 @@ const Td = styled(SimpleTable.Td)`
 export const TableWithSelectableRows = {
   BodyTr,
   Head,
+  RowCheckbox,
   SortContainer,
   Table,
   Td,
