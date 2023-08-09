@@ -1,10 +1,12 @@
+/* eslint-disable no-console */
 /* eslint-disable no-null/no-null */
 import { flexRender, getCoreRowModel, getSortedRowModel, type SortingState, useReactTable } from '@tanstack/react-table'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { useCallback, useMemo, useRef, useState } from 'react'
+import styled from 'styled-components'
 
 import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
-import { Accent, Icon, IconButton } from '../../../src'
+import { Accent, Dropdown, Icon, IconButton } from '../../../src'
 import { TableWithSelectableRows } from '../../../src/elements/Table/TableWithSelectableRows'
 
 const fakeData1 = Array(100).fill({
@@ -89,36 +91,29 @@ export default {
   decorators: [generateStoryDecorator()]
 }
 
-const ButtonsGroupRow = ({ id, idToOpen, onClick }) => (
-  <TableWithSelectableRows.ButtonsGroup>
-    <IconButton
-      accent={Accent.TERTIARY}
-      Icon={Icon.Duplicate}
-      // eslint-disable-next-line no-console
-      onClick={() => console.log(id)}
-    />
-    <IconButton
-      accent={Accent.TERTIARY}
-      Icon={Icon.Edit}
-      // eslint-disable-next-line no-console
-      onClick={() => console.log(id)}
-    />
+const ButtonsGroupRow = ({ id, onSelect }) => (
+  <ButtonsGroup>
+    <IconButton accent={Accent.TERTIARY} Icon={Icon.Duplicate} onClick={() => console.log(id)} />
+    <IconButton accent={Accent.TERTIARY} Icon={Icon.Edit} onClick={() => console.log(id)} />
 
-    <IconButton accent={Accent.TERTIARY} Icon={Icon.More} onClick={() => onClick(id)} />
-    {idToOpen === id && (
-      <TableWithSelectableRows.SubButtonsGroup>
-        <IconButton accent={Accent.TERTIARY} Icon={Icon.Archive} onClick={() => onClick(null)} />
-        <IconButton accent={Accent.TERTIARY} Icon={Icon.Delete} onClick={() => onClick(null)} />
-      </TableWithSelectableRows.SubButtonsGroup>
-    )}
-  </TableWithSelectableRows.ButtonsGroup>
+    <Dropdown accent={Accent.SECONDARY} Icon={Icon.More} onSelect={onSelect}>
+      <Dropdown.Item accent={Accent.SECONDARY} eventKey="ARCHIVE" Icon={Icon.Archive} />
+      <Dropdown.Item accent={Accent.SECONDARY} eventKey="DELETE" Icon={Icon.Delete} />
+    </Dropdown>
+  </ButtonsGroup>
 )
 
 export function _TableWithSelectableRows() {
   const [rowSelection, setRowSelection] = useState({})
   const [sorting, setSorting] = useState<SortingState>([{ id: 'createdAt', desc: false }])
-  const [selectedId, setSelectedId] = useState()
 
+  const doAction = (key, id) => {
+    if (key === 'ARCHIVE') {
+      console.log('we want to archive the reporting with id: ', id)
+    } else {
+      console.log('we want to delete the reporting with id: ', id)
+    }
+  }
   const columns = useMemo(
     () => [
       {
@@ -220,12 +215,7 @@ export function _TableWithSelectableRows() {
       {
         accessorFn: row => row.geom,
         cell: info => (
-          <IconButton
-            accent={Accent.TERTIARY}
-            Icon={Icon.FocusZones}
-            // eslint-disable-next-line no-console
-            onClick={() => console.log(info.getValue())}
-          />
+          <IconButton accent={Accent.TERTIARY} Icon={Icon.FocusZones} onClick={() => console.log(info.getValue())} />
         ),
         enableSorting: false,
         header: () => '',
@@ -236,14 +226,14 @@ export function _TableWithSelectableRows() {
       },
       {
         accessorFn: row => row.id,
-        cell: info => <ButtonsGroupRow id={info.getValue()} idToOpen={selectedId} onClick={id => setSelectedId(id)} />,
+        cell: info => <ButtonsGroupRow id={info.getValue()} onSelect={key => doAction(key, info.getValue())} />,
         enableSorting: false,
         header: () => '',
         id: 'id',
         size: 120
       }
     ],
-    [selectedId]
+    []
   )
 
   const table = useReactTable({
@@ -378,3 +368,13 @@ export function _TableWithSelectableRows() {
     </>
   )
 }
+
+const ButtonsGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  position: relative;
+  > button {
+    padding: 0px;
+  }
+`

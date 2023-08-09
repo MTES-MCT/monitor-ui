@@ -42,41 +42,11 @@ const Td = styled(SimpleTable.Td)<{ $hasRightBorder: boolean }>`
   border-right: ${p => (p.$hasRightBorder ? `1px solid ${p.theme.color.lightGray}` : '')};
 `
 
-const ButtonsGroup = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  position: relative;
-  > button {
-    padding: 0px;
-  }
-`
-
-const SubButtonsGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 13px;
-  right: -13px;
-  background-color: transparent;
-  gap: 1px;
-  > button {
-    background-color: ${p => p.theme.color.cultured};
-    border: 1px solid ${p => p.theme.color.lightGray};
-    :hover {
-      background-color: ${p => p.theme.color.cultured};
-      border: 1px solid ${p => p.theme.color.lightGray};
-    }
-  }
-`
-
 export const TableWithSelectableRows = {
   BodyTr,
-  ButtonsGroup,
   Head,
   RowCheckbox,
   SortContainer,
-  SubButtonsGroup,
   Table,
   Td,
   Th
