@@ -1,3 +1,11 @@
+## [8.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v8.1.0...v8.1.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **elements:** clean RowCheckbox component ([0128e98](https://github.com/MTES-MCT/monitor-ui/commit/0128e98ec19e3a302f696b8e62f33aa949601193))
+* **elements:** update checkbox style for TableWithSelectableRows components ([aa15faa](https://github.com/MTES-MCT/monitor-ui/commit/aa15faae2adb7359d11ad548c23c8c67353505c7))
+
 # [8.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v8.0.0...v8.1.0) (2023-08-07)
 
 
