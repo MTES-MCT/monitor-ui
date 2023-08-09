@@ -2,6 +2,7 @@ import { useField } from 'formik'
 import { useMemo } from 'react'
 
 import { DateRangePicker } from '../fields/DateRangePicker'
+import { useKey } from '../hooks/useKey'
 
 import type {
   DateRangePickerProps,
@@ -28,6 +29,8 @@ export function FormikDateRangePicker(props: FormikDateRangePickerWithStringDate
 export function FormikDateRangePicker({ name, ...originalProps }: FormikDateRangePickerProps) {
   const [field, meta, helpers] = useField(name)
 
+  const key = useKey([field.value])
+
   const handleChange = useMemo(
     () => value => {
       helpers.setValue(value)
@@ -39,6 +42,12 @@ export function FormikDateRangePicker({ name, ...originalProps }: FormikDateRang
   )
 
   return (
-    <UntypedDateRangePicker defaultValue={field.value} error={meta.error} onChange={handleChange} {...originalProps} />
+    <UntypedDateRangePicker
+      key={key}
+      defaultValue={field.value}
+      error={meta.error}
+      onChange={handleChange}
+      {...originalProps}
+    />
   )
 }
