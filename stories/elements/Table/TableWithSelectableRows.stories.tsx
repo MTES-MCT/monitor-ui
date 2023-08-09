@@ -4,7 +4,7 @@ import { useVirtualizer } from '@tanstack/react-virtual'
 import { useCallback, useMemo, useRef, useState } from 'react'
 
 import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
-import { Accent, Button, Icon, IconButton, Size } from '../../../src'
+import { Accent, Icon, IconButton } from '../../../src'
 import { TableWithSelectableRows } from '../../../src/elements/Table/TableWithSelectableRows'
 
 const fakeData1 = Array(100).fill({
@@ -89,9 +89,35 @@ export default {
   decorators: [generateStoryDecorator()]
 }
 
+const ButtonsGroupRow = ({ id, idToOpen, onClick }) => (
+  <TableWithSelectableRows.ButtonsGroup>
+    <IconButton
+      accent={Accent.TERTIARY}
+      Icon={Icon.Duplicate}
+      // eslint-disable-next-line no-console
+      onClick={() => console.log(id)}
+    />
+    <IconButton
+      accent={Accent.TERTIARY}
+      Icon={Icon.Edit}
+      // eslint-disable-next-line no-console
+      onClick={() => console.log(id)}
+    />
+
+    <IconButton accent={Accent.TERTIARY} Icon={Icon.More} onClick={() => onClick(id)} />
+    {idToOpen === id && (
+      <TableWithSelectableRows.SubButtonsGroup>
+        <IconButton accent={Accent.TERTIARY} Icon={Icon.Archive} onClick={() => onClick(null)} />
+        <IconButton accent={Accent.TERTIARY} Icon={Icon.Delete} onClick={() => onClick(null)} />
+      </TableWithSelectableRows.SubButtonsGroup>
+    )}
+  </TableWithSelectableRows.ButtonsGroup>
+)
+
 export function _TableWithSelectableRows() {
   const [rowSelection, setRowSelection] = useState({})
   const [sorting, setSorting] = useState<SortingState>([{ id: 'createdAt', desc: false }])
+  const [selectedId, setSelectedId] = useState()
 
   const columns = useMemo(
     () => [
@@ -165,9 +191,9 @@ export function _TableWithSelectableRows() {
       {
         accessorFn: row => row,
         cell: ({ row }) => (
-          <div>
+          <span>
             {row.original.theme}: {row.original.subThemes ? row.original.subThemes.join(', ') : ''}
-          </div>
+          </span>
         ),
         enableSorting: true,
         header: () => 'Thématique',
@@ -204,25 +230,20 @@ export function _TableWithSelectableRows() {
         enableSorting: false,
         header: () => '',
         id: 'geom',
-        maxSize: 55,
-        minSize: 55,
-        size: 55
+        maxSize: 50,
+        minSize: 50,
+        size: 50
       },
       {
         accessorFn: row => row.id,
-        cell: info => (
-          // eslint-disable-next-line no-console
-          <Button Icon={Icon.Edit} onClick={() => console.log(info.getValue())} size={Size.SMALL}>
-            Editer
-          </Button>
-        ),
+        cell: info => <ButtonsGroupRow id={info.getValue()} idToOpen={selectedId} onClick={id => setSelectedId(id)} />,
         enableSorting: false,
         header: () => '',
         id: 'id',
-        size: 100
+        size: 120
       }
     ],
-    []
+    [selectedId]
   )
 
   const table = useReactTable({
@@ -336,7 +357,8 @@ export function _TableWithSelectableRows() {
                           minWidth: cell.column.getSize(),
                           width: cell.column.getSize()
                         },
-                        $isCenter: !!(cell.column.id === 'geom' || cell.column.id === 'id')
+                        $isCenter: !!(cell.column.id === 'geom' || cell.column.id === 'id'),
+                        $hasRightBorder: !!(cell.column.id === 'geom')
                       }}
                     >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
