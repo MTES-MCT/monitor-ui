@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { Dropdown, Icon } from '../../src'
+import { Accent, Dropdown, Icon } from '../../src'
 
 import type { DropdownProps } from '../../src'
 
@@ -14,11 +14,8 @@ const args: DropdownProps = {
 export default {
   title: 'Components/Dropdown',
   component: Dropdown,
-
   argTypes: {},
-
   args,
-
   decorators: [generateStoryDecorator()]
 }
 
@@ -48,14 +45,19 @@ export function _Dropdown(props: DropdownProps) {
           Delete the entire universe
         </Dropdown.Item>
       </Dropdown>
-
+      <div style={{ backgroundColor: 'red' }}>
+        <Dropdown accent={Accent.SECONDARY} {...props} Icon={Icon.More} onSelect={setOutputValue} open title="">
+          <Dropdown.Item accent={Accent.SECONDARY} eventKey="ARCHIVE" Icon={Icon.Archive} />
+          <Dropdown.Item accent={Accent.SECONDARY} eventKey="DELETE" Icon={Icon.Delete} />
+        </Dropdown>
+      </div>
       {outputValue !== '∅' && <Output value={outputValue} />}
     </Box>
   )
 }
 
 const Box = styled.div`
-  > div:nth-child(2) {
-    margin-left: 80px;
-  }
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
 `

@@ -4,6 +4,7 @@ import { Dropdown as RsuiteDropdown } from 'rsuite'
 import styled from 'styled-components'
 
 import { Item } from './Item'
+import { Accent } from '../../constants'
 
 import type { DropdownItemProps } from './Item'
 import type { IconProps } from '../../types'
@@ -12,17 +13,24 @@ import type { DropdownProps as RsuiteDropdownProps } from 'rsuite'
 
 export type DropdownProps = Omit<RsuiteDropdownProps, 'as' | 'icon'> & {
   Icon?: FunctionComponent<IconProps>
+  accent?: Accent | undefined
 }
-function RawDropdown({ className, Icon, ...originalProps }: DropdownProps) {
+function RawDropdown({ accent, className, Icon, ...originalProps }: DropdownProps) {
   const controlledClassName = classnames('Component-Dropdow', className)
   const icon = useMemo(() => (Icon ? <Icon size={20} /> : undefined), [Icon])
   const hasIcon = useMemo(() => Boolean(Icon), [Icon])
 
-  return <StyledDropdown $hasIcon={hasIcon} className={controlledClassName} icon={icon} {...originalProps} />
+  switch (accent) {
+    case Accent.SECONDARY:
+      return <SecondaryDropdown $hasIcon={hasIcon} className={controlledClassName} icon={icon} {...originalProps} />
+
+    default:
+      return <PrimaryDropdown $hasIcon={hasIcon} className={controlledClassName} icon={icon} {...originalProps} />
+  }
 }
 
 // TODO We need to split into multiple styled components as done in `<Button />`.
-const StyledDropdown = styled(RsuiteDropdown)<{
+const PrimaryDropdown = styled(RsuiteDropdown)<{
   $hasIcon: boolean
 }>`
   .rs-btn {
@@ -70,6 +78,33 @@ const StyledDropdown = styled(RsuiteDropdown)<{
   svg.rs-dropdown-item-menu-icon {
     vertical-align: middle;
     margin-right: 10px;
+  }
+`
+
+const SecondaryDropdown = styled(RsuiteDropdown)<{
+  $hasIcon: boolean
+}>`
+  .rs-btn {
+    align-items: center;
+    display: flex;
+    padding: ${p => (p.$hasIcon ? '0px ' : '5px 12px 7px')};
+
+    :hover,
+    :active {
+      background-color: transparent;
+      border: none;
+      color: ${p => p.theme.color.blueYonder['100']};
+    }
+
+    > svg {
+      display: none;
+    }
+  }
+
+  > .rs-dropdown-menu {
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
   }
 `
 
