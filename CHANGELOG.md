@@ -1,3 +1,11 @@
+# [8.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v8.1.1...v8.2.0) (2023-08-10)
+
+
+### Features
+
+* **components:** create primary and secondary accent for dropdown component ([7e29c6a](https://github.com/MTES-MCT/monitor-ui/commit/7e29c6a6d81a610b5a97c2fc4271adfd6504d8f1))
+* **elements:** add buttonsGroup component in TableWithSelectableRows component ([4a144d6](https://github.com/MTES-MCT/monitor-ui/commit/4a144d6571ac365339d89f20e792ea3f72217bf4))
+
 ## [8.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v8.1.0...v8.1.1) (2023-08-09)
 
 
