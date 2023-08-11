@@ -9,7 +9,6 @@ const Container = styled.div`
   background-color: ${p => p.theme.color.white};
   box-shadow: 0px 3px 6px ${p => p.theme.color.slateGray};
   position: relative;
-  z-index: 10;
 `
 
 const Header = styled.div`
@@ -51,6 +50,7 @@ const Footer = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
+  z-index: 10;
 `
 
 export const MapMenuModal = {
