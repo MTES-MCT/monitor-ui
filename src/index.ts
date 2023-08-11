@@ -24,6 +24,7 @@ export { NewWindow } from './components/NewWindow'
 export { NotificationEvent, Notifier } from './components/Notifier'
 export { SideMenu } from './components/SideMenu'
 export { SingleTag } from './components/SingleTag'
+export { MapMenuModal } from './components/MapMenuModal'
 
 export { Button } from './elements/Button'
 export { Field } from './elements/Field'
