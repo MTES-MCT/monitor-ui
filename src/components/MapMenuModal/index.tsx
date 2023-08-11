@@ -9,6 +9,7 @@ const Container = styled.div`
   background-color: ${p => p.theme.color.white};
   box-shadow: 0px 3px 6px ${p => p.theme.color.slateGray};
   position: relative;
+  z-index: 10;
 `
 
 const Header = styled.div`
