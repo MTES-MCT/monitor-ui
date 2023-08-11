@@ -1,3 +1,11 @@
+# [8.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v8.2.0...v8.3.0) (2023-08-11)
+
+
+### Features
+
+* **component:** create MapMenuModal component ([07ff8b5](https://github.com/MTES-MCT/monitor-ui/commit/07ff8b5f41a9367e3131b47e904a6861d5f8c752))
+* **components:** create secondary accent for single tag component ([259bb32](https://github.com/MTES-MCT/monitor-ui/commit/259bb3206f31231ba4af755c2f083c287e1136b4))
+
 # [8.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v8.1.1...v8.2.0) (2023-08-10)
 
 
