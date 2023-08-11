@@ -44,6 +44,7 @@ export function SingleTag({ accent = Accent.PRIMARY, children, className, onDele
 const Box = styled.div`
   align-items: center;
   display: inline-flex;
+  max-width: 100%;
 `
 
 const PrimaryText = styled.span`
