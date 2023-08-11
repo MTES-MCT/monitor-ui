@@ -22,6 +22,7 @@ type RangeCalendarPickerProps = {
    * The order between the start and end date doesn't matter since it's sorted internally.
    */
   defaultValue?: DateRange | undefined
+  didShowOneCalendar?: boolean
   isHistorical?: boolean | undefined
   isOpen: boolean
   /**
@@ -30,7 +31,13 @@ type RangeCalendarPickerProps = {
    */
   onChange: (nextUtcDateTupleRange: DateTupleRange) => Promisable<void>
 }
-export function RangeCalendarPicker({ defaultValue, isHistorical, isOpen, onChange }: RangeCalendarPickerProps) {
+export function RangeCalendarPicker({
+  defaultValue,
+  didShowOneCalendar = false,
+  isHistorical,
+  isOpen,
+  onChange
+}: RangeCalendarPickerProps) {
   const boxRef = useRef<HTMLDivElement>()
   // It's called "first" and "second" because the calendar can also be picked from right to left,
   // that's why we sort these first and second dates before calling `onChange()`
@@ -92,6 +99,7 @@ export function RangeCalendarPicker({ defaultValue, isHistorical, isOpen, onChan
           open={isOpen}
           ranges={[]}
           shouldDisableDate={shouldDisableDate}
+          showOneCalendar={didShowOneCalendar}
           // `defaultValue` seems to be immediatly cancelled so we come down to using a controlled `value`
           // eslint-disable-next-line no-null/no-null
           value={controlledValue ?? null}
@@ -129,7 +137,6 @@ const Box = styled.div`
     box-shadow: inset 0px 0px 0px 1px ${p => p.theme.color.lightGray};
     border-radius: 0;
     margin-top: 2px;
-    width: 495px;
 
     .rs-picker-daterange-header,
     .rs-calendar-header-time-toolbar,
