@@ -19,7 +19,8 @@ const args: DateRangePickerWithDateDateProps | DateRangePickerWithStringDateProp
   isStringDate: false,
   isUndefinedWhenDisabled: false,
   label: 'A date range',
-  withTime: true
+  withTime: true,
+  didShowOneCalendar: true
 }
 
 export default {
