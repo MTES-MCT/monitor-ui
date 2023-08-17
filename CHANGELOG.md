@@ -1,3 +1,21 @@
+# [8.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v8.3.0...v8.4.0) (2023-08-17)
+
+
+### Bug Fixes
+
+* **ci:** fix ci for dependabot ([d386c4d](https://github.com/MTES-MCT/monitor-ui/commit/d386c4d952a0695678475af7f4c727dfd35b4948))
+* **components:** fix MapMenuModal z-index ([802e9fa](https://github.com/MTES-MCT/monitor-ui/commit/802e9fa32561932823fa0eaf4a5931a709454859))
+* **components:** fix MapMenuModal.Footer z-index ([03f55fc](https://github.com/MTES-MCT/monitor-ui/commit/03f55fca037894f3e6abe2082c0456b6666130de))
+* **components:** fix SingleTag component max size ([fb20e3a](https://github.com/MTES-MCT/monitor-ui/commit/fb20e3a87af185c7fa2ba218a865e71f1985da48))
+* **fields:** add style for single calendar in DateRangePicker component ([f70380f](https://github.com/MTES-MCT/monitor-ui/commit/f70380f2de3ca7a82b4a265ed042ea8694d07a13))
+* **fields:** update dateRangePicker style ([8a783a8](https://github.com/MTES-MCT/monitor-ui/commit/8a783a850c21ef3b787218fdd2778d7e21a10677))
+* **tests:** update DateRangePicker story ([c20a373](https://github.com/MTES-MCT/monitor-ui/commit/c20a373c37e487b2d5cdc0bdf7d70feedf2089ea))
+
+
+### Features
+
+* **fields:** add showOneCalendar prop to DateRangerPicker component ([804296a](https://github.com/MTES-MCT/monitor-ui/commit/804296afb955f329f0cd55973d8d1c7ea28db9fc))
+
 # [8.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v8.2.0...v8.3.0) (2023-08-11)
 
 
