@@ -65,9 +65,9 @@ export interface DateRangePickerProps
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
   defaultValue?: DateRange | DateAsStringRange | undefined
-  didShowOneCalendar?: boolean
   disabled?: boolean | undefined
   error?: string | undefined
+  hasSingleCalendar?: boolean
   isCompact?: boolean | undefined
   isErrorMessageHidden?: boolean | undefined
   /** Only allow past dates until today. */
@@ -110,9 +110,9 @@ export function DateRangePicker({
   baseContainer,
   className,
   defaultValue,
-  didShowOneCalendar = false,
   disabled = false,
   error,
+  hasSingleCalendar = false,
   isCompact = false,
   isErrorMessageHidden = false,
   isHistorical = false,
@@ -537,7 +537,7 @@ export function DateRangePicker({
       <RangeCalendarPicker
         key={JSON.stringify(rangeCalendarPickerDefaultValue)}
         defaultValue={rangeCalendarPickerDefaultValue}
-        didShowOneCalendar={didShowOneCalendar}
+        hasSingleCalendar={hasSingleCalendar}
         isHistorical={isHistorical}
         isOpen={isRangeCalendarPickerOpen}
         onChange={handleRangeCalendarPickerChange}
