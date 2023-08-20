@@ -80,6 +80,10 @@ export type Undefine<T> = {
 // -----------------------------------------------------------------------------
 // Private types
 
+export type Native = boolean | null | number | string | undefined
+export type NativeAny = boolean | NativeArray | NativeObject | null | number | string | undefined
+export type NativeArray = Array<NativeAny>
+export type NativeObject = { [x: string]: NativeAny } | {}
 /**
  * Since Rsuite restricts `value` to `string | number`, we use this proxy type,
  * allowing us to use conventioned option values that can include objects
