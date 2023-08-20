@@ -77,6 +77,35 @@ export type Undefine<T> = {
   [K in keyof T]: T[K] | undefined
 }
 
+/**
+ * Mark all the prop types of an interface/type as `prop: <MyType> | undefined` while preserving array props.
+ *
+ * @description
+ * When `exactOptionalPropertyTypes` is enabled in tsconfig.json,
+ * this is useful to create objects allowing undefined prop values while keeping all their props required.
+ *
+ * Opposite of `Defined`.
+ *
+ * @example
+ * ```
+ * type MyType {
+ *   aRequiredProp: string
+ *   anOptionalProp?: string
+ *   anArrayProp: number[]
+ * }
+ *
+ * // `type MyPartialType = UndefineExceptArrays<MyType>` is the same as typing:
+ * type MyPartialType {
+ *   aRequiredProp: string | undefined
+ *   anOptionalProp?: string | undefined
+ *   anArrayProp: number[]
+ * }
+ * ```
+ */
+export type UndefineExceptArrays<T> = {
+  [K in keyof T]: T[K] extends (infer U)[] ? U[] : T[K] | undefined
+}
+
 // -----------------------------------------------------------------------------
 // Private types
 

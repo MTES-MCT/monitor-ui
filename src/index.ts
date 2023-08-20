@@ -118,7 +118,8 @@ export type {
   IconProps,
   Option,
   OptionValueType,
-  Undefine
+  Undefine,
+  UndefineExceptArrays
 } from './types'
 
 export type { DialogProps } from './components/Dialog'
