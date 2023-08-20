@@ -101,6 +101,7 @@ export { isDefined } from './utils/isDefined'
 export { isNumeric } from './utils/isNumeric'
 export { isObject } from './utils/isObject'
 export { logSoftError } from './utils/logSoftError'
+export { nullify } from './utils/nullify'
 export { stopMouseEventPropagation } from './utils/stopMouseEventPropagation'
 
 /* -----------------------------------------------------------------------------
