@@ -1,3 +1,18 @@
+# [8.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v8.4.0...v8.5.0) (2023-08-20)
+
+
+### Features
+
+* add internal Native types ([41f0329](https://github.com/MTES-MCT/monitor-ui/commit/41f03299a08b32e12ffefaf55c5f1331a5ac08f3))
+* **types:** add public type UndefineExceptArrays ([931edc8](https://github.com/MTES-MCT/monitor-ui/commit/931edc814a333be0333e8ccc2a6ef59e95ff43a7))
+* **utils:** add getOptionsFromIdAndName() ([e9b8865](https://github.com/MTES-MCT/monitor-ui/commit/e9b8865243215b66e9ae8cdd067f55d7fa0ad60a))
+* **utils:** add getOptionsFromLabelledEnum() ([c4b185e](https://github.com/MTES-MCT/monitor-ui/commit/c4b185e5f7ada189d5a101ec29feda6e31aeb86b))
+* **utils:** add isArray() ([7d9bd10](https://github.com/MTES-MCT/monitor-ui/commit/7d9bd10b66908949fa4b65794597cb23653a1ba9))
+* **utils:** add isDefined() ([0e49bc9](https://github.com/MTES-MCT/monitor-ui/commit/0e49bc9b9a7663dff61cc9dc0ab64abace81e60c))
+* **utils:** add isObject() ([9e1595a](https://github.com/MTES-MCT/monitor-ui/commit/9e1595a330ff3f3f7afb4af9cabdea592558434b))
+* **utils:** add nullify() ([9d21221](https://github.com/MTES-MCT/monitor-ui/commit/9d21221d126e1d27e5aa56b038ebae24766175f2))
+* **utils:** add undefine() ([2fbfcf4](https://github.com/MTES-MCT/monitor-ui/commit/2fbfcf4064822efbbf6aca5a386ff3f4e3c2c1a6))
+
 # [8.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v8.3.0...v8.4.0) (2023-08-17)
 
 
