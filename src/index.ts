@@ -103,6 +103,7 @@ export { isObject } from './utils/isObject'
 export { logSoftError } from './utils/logSoftError'
 export { nullify } from './utils/nullify'
 export { stopMouseEventPropagation } from './utils/stopMouseEventPropagation'
+export { undefine } from './utils/undefine'
 
 /* -----------------------------------------------------------------------------
   Type Definitions
