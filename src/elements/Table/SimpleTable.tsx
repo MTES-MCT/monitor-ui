@@ -51,7 +51,7 @@ const BodyTr = styled.tr`
   }
 `
 
-const Td = styled.td<{ $isCenter: boolean }>`
+const Td = styled.td<{ $isCenter?: boolean }>`
   font-size: 13px;
   font-weight: 500;
   color: ${p => p.theme.color.gunMetal};

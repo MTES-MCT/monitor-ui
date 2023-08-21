@@ -2,26 +2,26 @@ import styled from 'styled-components'
 
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { Accent, Button, Icon } from '../../src'
-import { MapMenuModal } from '../../src/components/MapMenuModal'
+import { MapMenuDialog } from '../../src/components/MapMenuDialog'
 
 export default {
-  title: 'Components/MapMenuModal',
-  component: MapMenuModal,
+  title: 'Components/MapMenuDialog',
+  component: MapMenuDialog,
   argTypes: {},
   decorators: [generateStoryDecorator()]
 }
 
-export function _MapMenuModal() {
+export function _MapMenuDialog() {
   return (
     <StyledContainer>
       <StyledFirstLine>
-        <MapMenuModal.Container>
-          <MapMenuModal.Header>
-            <MapMenuModal.CloseButton Icon={Icon.Close} />
-            <MapMenuModal.Title>Two buttons</MapMenuModal.Title>
-            <MapMenuModal.VisibilityButton accent={Accent.SECONDARY} Icon={Icon.Display} />
-          </MapMenuModal.Header>
-          <MapMenuModal.Body>
+        <MapMenuDialog.Container>
+          <MapMenuDialog.Header>
+            <MapMenuDialog.CloseButton Icon={Icon.Close} />
+            <MapMenuDialog.Title>Two buttons</MapMenuDialog.Title>
+            <MapMenuDialog.VisibilityButton accent={Accent.SECONDARY} Icon={Icon.Display} />
+          </MapMenuDialog.Header>
+          <MapMenuDialog.Body>
             <div>
               Nulla enim leo, faucibus sit amet libero id, pharetra consectetur lorem. Donec et metus placerat enim
               eleifend elementum vitae et metus. Curabitur quis gravida erat. Aenean id tortor id nulla ultricies
@@ -44,24 +44,24 @@ export function _MapMenuModal() {
               Donec tristique, magna et efficitur scelerisque, purus tellus pellentesque neque, sed condimentum turpis
               diam a dui. Quisque eleifend sem vel augue varius consequat.
             </div>
-          </MapMenuModal.Body>
-          <MapMenuModal.Footer>
+          </MapMenuDialog.Body>
+          <MapMenuDialog.Footer>
             <Button Icon={Icon.Plus} isFullWidth>
               Ajouter une nouvelle mission
             </Button>
             <Button accent={Accent.SECONDARY} Icon={Icon.Expand} isFullWidth>
               Voir la vue détaillée des missions
             </Button>
-          </MapMenuModal.Footer>
-        </MapMenuModal.Container>
+          </MapMenuDialog.Footer>
+        </MapMenuDialog.Container>
 
-        <MapMenuModal.Container>
-          <MapMenuModal.Header>
-            <MapMenuModal.CloseButton Icon={Icon.Close} />
-            <MapMenuModal.Title>One button</MapMenuModal.Title>
-            <MapMenuModal.VisibilityButton accent={Accent.SECONDARY} Icon={Icon.Display} />
-          </MapMenuModal.Header>
-          <MapMenuModal.Body>
+        <MapMenuDialog.Container>
+          <MapMenuDialog.Header>
+            <MapMenuDialog.CloseButton Icon={Icon.Close} />
+            <MapMenuDialog.Title>One button</MapMenuDialog.Title>
+            <MapMenuDialog.VisibilityButton accent={Accent.SECONDARY} Icon={Icon.Display} />
+          </MapMenuDialog.Header>
+          <MapMenuDialog.Body>
             <div>
               Nulla enim leo, faucibus sit amet libero id, pharetra consectetur lorem. Donec et metus placerat enim
               eleifend elementum vitae et metus. Curabitur quis gravida erat. Aenean id tortor id nulla ultricies
@@ -84,21 +84,21 @@ export function _MapMenuModal() {
               Donec tristique, magna et efficitur scelerisque, purus tellus pellentesque neque, sed condimentum turpis
               diam a dui. Quisque eleifend sem vel augue varius consequat.
             </div>
-          </MapMenuModal.Body>
-          <MapMenuModal.Footer>
+          </MapMenuDialog.Body>
+          <MapMenuDialog.Footer>
             <Button Icon={Icon.Plus} isFullWidth>
               Ajouter une nouvelle mission
             </Button>
-          </MapMenuModal.Footer>
-        </MapMenuModal.Container>
+          </MapMenuDialog.Footer>
+        </MapMenuDialog.Container>
       </StyledFirstLine>
-      <MapMenuModal.Container>
-        <MapMenuModal.Header>
-          <MapMenuModal.CloseButton Icon={Icon.Close} />
-          <MapMenuModal.Title>With buttons only</MapMenuModal.Title>
-          <MapMenuModal.VisibilityButton accent={Accent.SECONDARY} Icon={Icon.Display} />
-        </MapMenuModal.Header>
-        <MapMenuModal.Body>
+      <MapMenuDialog.Container>
+        <MapMenuDialog.Header>
+          <MapMenuDialog.CloseButton Icon={Icon.Close} />
+          <MapMenuDialog.Title>With buttons only</MapMenuDialog.Title>
+          <MapMenuDialog.VisibilityButton accent={Accent.SECONDARY} Icon={Icon.Display} />
+        </MapMenuDialog.Header>
+        <MapMenuDialog.Body>
           <StyledButtonsContainer>
             <Button Icon={Icon.Plus} isFullWidth>
               Ajouter une nouvelle mission
@@ -107,8 +107,8 @@ export function _MapMenuModal() {
               Voir la vue détaillée des missions
             </Button>
           </StyledButtonsContainer>
-        </MapMenuModal.Body>
-      </MapMenuModal.Container>
+        </MapMenuDialog.Body>
+      </MapMenuDialog.Container>
     </StyledContainer>
   )
 }
