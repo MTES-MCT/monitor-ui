@@ -21,6 +21,8 @@ export type Option<OptionValue extends OptionValueType = string> = Omit<ItemData
 }
 export type OptionValueType = boolean | number | string | Record<string, any>
 
+export type Filter<T> = (collection: T[]) => T[]
+
 export type Defined<T> = T extends undefined ? never : T
 
 /**

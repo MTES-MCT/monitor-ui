@@ -115,6 +115,7 @@ export type {
   DateAsStringRange,
   DateRange,
   Defined,
+  Filter,
   IconProps,
   Option,
   OptionValueType,
