@@ -89,6 +89,7 @@ export { CustomSearch } from './libs/CustomSearch'
   Utils
 */
 
+export { cleanString } from './utils/cleanString'
 export { customDayjs } from './utils/customDayjs'
 export { getCoordinates, coordinatesAreDistinct } from './utils/coordinates'
 export { getLocalizedDayjs } from './utils/getLocalizedDayjs'
@@ -101,6 +102,7 @@ export { isDefined } from './utils/isDefined'
 export { isNumeric } from './utils/isNumeric'
 export { isObject } from './utils/isObject'
 export { logSoftError } from './utils/logSoftError'
+export { normalizeString } from './utils/normalizeString'
 export { nullify } from './utils/nullify'
 export { pluralize } from './utils/pluralize'
 export { stopMouseEventPropagation } from './utils/stopMouseEventPropagation'
