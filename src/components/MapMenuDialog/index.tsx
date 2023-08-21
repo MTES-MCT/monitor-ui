@@ -8,7 +8,8 @@ const Container = styled.div`
   margin-right: 6px;
   background-color: ${p => p.theme.color.white};
   box-shadow: 0px 3px 6px ${p => p.theme.color.slateGray};
-  position: relative;
+  display: flex;
+  flex-direction: column;
 `
 
 const Header = styled.div`
@@ -16,8 +17,7 @@ const Header = styled.div`
   background-color: ${p => p.theme.color.charcoal};
   display: flex;
   justify-content: space-between;
-  padding-right: 4px;
-  padding-left: 10px;
+  padding: 9px 4px 9px 10px;
   align-items: center;
 `
 
@@ -47,13 +47,11 @@ const Footer = styled.div`
   flex-direction: column;
   gap: 8px;
   padding: 12px;
-  position: absolute;
-  bottom: 0;
   width: 100%;
   z-index: 10;
 `
 
-export const MapMenuModal = {
+export const MapMenuDialog = {
   Body,
   CloseButton,
   Container,
