@@ -1,3 +1,10 @@
+## [8.6.1](https://github.com/MTES-MCT/monitor-ui/compare/v8.6.0...v8.6.1) (2023-08-21)
+
+
+### Bug Fixes
+
+* **components:** fix style and rename MapMenuModal in MapMenuDialog ([680b320](https://github.com/MTES-MCT/monitor-ui/commit/680b32091858f05151e0d627d3b85c96757af465))
+
 # [8.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v8.5.0...v8.6.0) (2023-08-21)
 
 
