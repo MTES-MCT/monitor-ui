@@ -1,3 +1,10 @@
+# [8.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v8.5.0...v8.6.0) (2023-08-21)
+
+
+### Features
+
+* **types:** add Filter public type ([bac46f9](https://github.com/MTES-MCT/monitor-ui/commit/bac46f90fa20802e0b2745b7deca4a4c52cca589))
+
 # [8.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v8.4.0...v8.5.0) (2023-08-20)
 
 
