@@ -102,6 +102,7 @@ export { isNumeric } from './utils/isNumeric'
 export { isObject } from './utils/isObject'
 export { logSoftError } from './utils/logSoftError'
 export { nullify } from './utils/nullify'
+export { pluralize } from './utils/pluralize'
 export { stopMouseEventPropagation } from './utils/stopMouseEventPropagation'
 export { undefine } from './utils/undefine'
 
