@@ -1,3 +1,11 @@
+# [8.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v8.7.0...v8.8.0) (2023-08-22)
+
+
+### Features
+
+* **utils:** add pluralize() ([57663f7](https://github.com/MTES-MCT/monitor-ui/commit/57663f78110e0ea66771a74699c712eb757431d1))
+* **utils:** expose cleanString() & normalizeString() ([41a6a6f](https://github.com/MTES-MCT/monitor-ui/commit/41a6a6f936e403aa66bf999664f0e5ad1f7c63fd))
+
 # [8.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v8.6.1...v8.7.0) (2023-08-22)
 
 
