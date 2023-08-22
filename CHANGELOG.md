@@ -1,3 +1,10 @@
+# [8.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v8.6.1...v8.7.0) (2023-08-22)
+
+
+### Features
+
+* **icons:** add icons ([ace2a82](https://github.com/MTES-MCT/monitor-ui/commit/ace2a821c9baf8b78091111e4801706b37b3c2ee))
+
 ## [8.6.1](https://github.com/MTES-MCT/monitor-ui/compare/v8.6.0...v8.6.1) (2023-08-21)
 
 
