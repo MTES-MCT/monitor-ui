@@ -351,6 +351,12 @@ export function _Icon(props: IconProps) {
       </Cell>
       <Cell>
         <IconBox>
+          <Icon.Reset {...props} />
+        </IconBox>
+        <Code>Reset</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
           <Icon.Save {...props} />
         </IconBox>
         <Code>Save</Code>
@@ -399,9 +405,27 @@ export function _Icon(props: IconProps) {
       </Cell>
       <Cell>
         <IconBox>
+          <Icon.SortSelectedDown {...props} />
+        </IconBox>
+        <Code>SortSelectedDown</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
+          <Icon.SortSelectedUp {...props} />
+        </IconBox>
+        <Code>SortSelectedUp</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
           <Icon.SortingArrows {...props} />
         </IconBox>
         <Code>SortingArrows</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
+          <Icon.SortingChevrons {...props} />
+        </IconBox>
+        <Code>SortingChevrons</Code>
       </Cell>
       <Cell>
         <IconBox>

@@ -52,6 +52,7 @@ import { Plane } from './Plane'
 import { Plus } from './Plus'
 import { Reject } from './Reject'
 import { Report } from './Report'
+import { Reset } from './Reset'
 import { Save } from './Save'
 import { Search } from './Search'
 import { SelectCircle } from './SelectCircle'
@@ -62,6 +63,9 @@ import { Semaphore } from './Semaphore'
 import { ShowErsMessages } from './ShowErsMessages'
 import { ShowXml } from './ShowXml'
 import { SortingArrows } from './SortingArrows'
+import { SortingChevrons } from './SortingChevrons'
+import { SortSelectedDown } from './SortSelectedDown'
+import { SortSelectedUp } from './SortSelectedUp'
 import { Summary } from './Summary'
 import { Tag } from './Tag'
 import { Target } from './Target'
@@ -125,6 +129,7 @@ export {
   Plus,
   Reject,
   Report,
+  Reset,
   Save,
   Search,
   SelectCircle,
@@ -134,7 +139,10 @@ export {
   Semaphore,
   ShowErsMessages,
   ShowXml,
+  SortSelectedDown,
+  SortSelectedUp,
   SortingArrows,
+  SortingChevrons,
   Summary,
   Tag,
   Target,
