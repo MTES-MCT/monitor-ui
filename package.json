@@ -1,6 +1,6 @@
 {
   "name": "@mtes-mct/monitor-ui__root",
-  "description": "Common React UI components and styles for Monitorfish and Monitorenv.",
+  "description": "Common React components, hooks, utilities and CSS stylesheets for MonitorFish, MonitorEnv and RapportNav.",
   "version": "8.8.0",
   "license": "AGPL-3.0",
   "private": true,
