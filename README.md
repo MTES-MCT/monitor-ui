@@ -2,8 +2,8 @@
 
 [![License][img-license]][lnk-license] [![CI Status][img-github]][lnk-github] [![NPM Version][img-npm]][lnk-npm]
 
-> Common React components, hooks, utilities and CSS stylesheets for [Monitorfish][lnk-github-monitorfish] and
-> [Monitorenv][lnk-github-monitorenv].
+> Common React components, hooks, utilities and CSS stylesheets for [MonitorFish][lnk-github-monitorfish],
+> [MonitorEnv][lnk-github-monitorenv] and [RapportNav][lnk-github-rapportnav].
 
 ## Usage
 
@@ -63,6 +63,7 @@ Please read the [contributing document](CONTRIBUTING.md) for setup and contribut
 [lnk-github]: https://github.com/MTES-MCT/monitor-ui/actions?query=branch%3Amain++
 [lnk-github-monitorenv]: https://github.com/MTES-MCT/monitorenv
 [lnk-github-monitorfish]: https://github.com/MTES-MCT/monitorfish
+[lnk-github-rapportnav]: https://github.com/MTES-MCT/rapportnav2
 [lnk-license]: https://github.com/MTES-MCT/monitor-ui/blob/main/LICENSE
 [lnk-npm]: https://www.npmjs.com/package/@mtes-mct/monitor-ui
 [lnk-storybook]: https://mtes-mct.github.io/monitor-ui/
