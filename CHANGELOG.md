@@ -1,3 +1,10 @@
+## [9.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v9.0.0...v9.0.1) (2023-08-23)
+
+
+### Bug Fixes
+
+* **components:** fix secondary dropdown item size ([1cb5c9c](https://github.com/MTES-MCT/monitor-ui/commit/1cb5c9c95c349581fb4ae1b9ac9bf3cd04718698))
+
 # [9.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v8.8.0...v9.0.0) (2023-08-23)
 
 
