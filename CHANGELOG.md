@@ -1,3 +1,18 @@
+# [9.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v8.8.0...v9.0.0) (2023-08-23)
+
+
+### Bug Fixes
+
+* **utils:** fix getCoordinates rounding ([622d9fc](https://github.com/MTES-MCT/monitor-ui/commit/622d9fc887b663a92a30b74bd8a64bfb56acf40d))
+
+
+* feat(utils)!: add prop to getOptionsFromLabelledEnum function for sorted or not the options ([4ff53fe](https://github.com/MTES-MCT/monitor-ui/commit/4ff53fe398f3ac2d24a858f2f4c305d7880a22d0))
+
+
+### BREAKING CHANGES
+
+* - add mustSort prop with default value to false for sorted or not the options
+
 # [8.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v8.7.0...v8.8.0) (2023-08-22)
 
 
