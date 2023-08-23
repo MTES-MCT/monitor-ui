@@ -45,7 +45,7 @@ export function _Dropdown(props: DropdownProps) {
           Delete the entire universe
         </Dropdown.Item>
       </Dropdown>
-      <div style={{ backgroundColor: 'red' }}>
+      <div>
         <Dropdown accent={Accent.SECONDARY} {...props} Icon={Icon.More} onSelect={setOutputValue} open title="">
           <Dropdown.Item accent={Accent.SECONDARY} eventKey="ARCHIVE" Icon={Icon.Archive} />
           <Dropdown.Item accent={Accent.SECONDARY} eventKey="DELETE" Icon={Icon.Delete} />
