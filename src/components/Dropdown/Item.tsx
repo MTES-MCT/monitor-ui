@@ -31,7 +31,7 @@ const SecondaryDropdownItem = styled(RsuiteDropdown.Item)<{
 }>`
   background-color: ${p => p.theme.color.cultured};
   border: 1px solid ${p => p.theme.color.lightGray};
-  padding: 5px 7px;
+  padding: 4px;
   :hover {
     background-color: ${p => p.theme.color.cultured};
     border: 1px solid ${p => p.theme.color.lightGray};

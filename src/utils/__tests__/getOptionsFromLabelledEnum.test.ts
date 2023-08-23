@@ -1,3 +1,4 @@
+/* eslint-disable typescript-sort-keys/string-enum */
 import { expect } from '@jest/globals'
 
 import { getOptionsFromLabelledEnum } from '../getOptionsFromLabelledEnum'
@@ -5,11 +6,11 @@ import { getOptionsFromLabelledEnum } from '../getOptionsFromLabelledEnum'
 describe('utils/getOptionsFromLabelledEnum()', () => {
   it('should return the expected array of options', () => {
     enum LabelledEnum {
-      ONE = 'one',
-      TWO = 'two'
+      TWO = 'two',
+      ONE = 'one'
     }
 
-    const result = getOptionsFromLabelledEnum(LabelledEnum)
+    const result = getOptionsFromLabelledEnum(LabelledEnum, true)
 
     expect(result).toStrictEqual([
       {
@@ -19,6 +20,31 @@ describe('utils/getOptionsFromLabelledEnum()', () => {
       {
         label: 'two',
         value: 'TWO'
+      }
+    ])
+  })
+
+  it('should return the expected array of options not sorted alphabetically', () => {
+    enum LabelledEnum {
+      BANANA = 'banana',
+      APPLE = 'apple',
+      GRAPES = 'grapes'
+    }
+
+    const result = getOptionsFromLabelledEnum(LabelledEnum)
+
+    expect(result).toStrictEqual([
+      {
+        label: 'banana',
+        value: 'BANANA'
+      },
+      {
+        label: 'apple',
+        value: 'APPLE'
+      },
+      {
+        label: 'grapes',
+        value: 'GRAPES'
       }
     ])
   })
