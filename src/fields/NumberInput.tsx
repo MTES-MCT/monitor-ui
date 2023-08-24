@@ -1,6 +1,6 @@
 import classnames from 'classnames'
-import { useCallback, useMemo, useRef, type FocusEvent } from 'react'
-import { Input, type InputProps } from 'rsuite'
+import { useCallback, useMemo, useRef } from 'react'
+import { InputNumber, type InputNumberProps } from 'rsuite'
 import styled from 'styled-components'
 
 import { Field } from '../elements/Field'
@@ -8,12 +8,11 @@ import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useKey } from '../hooks/useKey'
-import { usePreventWheelEvent } from '../hooks/usePreventWheelEvent'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Promisable } from 'type-fest'
 
-export type NumberInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'onChange' | 'type' | 'value'> & {
+export type NumberInputProps = Omit<InputNumberProps, 'as' | 'defaultValue' | 'id' | 'onChange' | 'type' | 'value'> & {
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
@@ -32,9 +31,7 @@ export function NumberInput({
   isLight = false,
   isUndefinedWhenDisabled = false,
   label,
-  onBlur,
   onChange,
-  onFocus,
   style,
   value,
   ...originalProps
@@ -47,43 +44,19 @@ export function NumberInput({
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([originalProps.disabled, originalProps.name])
 
-  const preventWheelEvent = usePreventWheelEvent(inputRef)
-
   const handleChange = useCallback(
-    (nextValue: string) => {
+    (nextValue: number | string) => {
       if (!onChange) {
         return
       }
 
-      const normalizedNextValueAsString = nextValue && nextValue.length ? nextValue : undefined
+      const normalizedNextValueAsString = nextValue && nextValue.toString().length ? nextValue : undefined
       const nextValueAsNumber = Number(normalizedNextValueAsString)
       const normalizedNextValue = !Number.isNaN(nextValueAsNumber) ? nextValueAsNumber : undefined
 
       onChange(normalizedNextValue)
     },
     [onChange]
-  )
-
-  const handleBlur = useCallback(
-    (event: FocusEvent<HTMLInputElement>) => {
-      event.target.removeEventListener('wheel', preventWheelEvent)
-
-      if (onBlur) {
-        onBlur(event)
-      }
-    },
-    [onBlur, preventWheelEvent]
-  )
-
-  const handleFocus = useCallback(
-    (event: FocusEvent<HTMLInputElement>) => {
-      event.target.addEventListener('wheel', preventWheelEvent)
-
-      if (onFocus) {
-        onFocus(event)
-      }
-    },
-    [onFocus, preventWheelEvent]
   )
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
@@ -105,10 +78,9 @@ export function NumberInput({
         $hasError={hasError}
         $isLight={isLight}
         id={originalProps.name}
-        onBlur={handleBlur}
         onChange={handleChange}
-        onFocus={handleFocus}
-        type="number"
+        scrollable={false}
+        size="sm"
         value={value || ''}
         {...originalProps}
       />
@@ -118,7 +90,7 @@ export function NumberInput({
   )
 }
 
-const StyledInput = styled(Input)<{
+const StyledInput = styled(InputNumber)<{
   $hasError: boolean
   $isLight: boolean
 }>`
@@ -126,19 +98,27 @@ const StyledInput = styled(Input)<{
   border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.gainsboro)};
   border-radius: 0;
   font-size: 13px;
-  /* TODO It should be 18px but computed line-height is stuck to min. 18.5px. Investigate that. */
-  line-height: 19px;
-  padding: 3px 8px 6px;
-  vertical-align: center;
   width: 100%;
-
+  &.rs-input-group-focus {
+    outline: 0 !important;
+  }
   :hover {
     border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueYonder[100])} !important;
   }
 
   :active,
+  :focus-within,
   :focus {
     border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray[100])} !important;
-    outline: 0;
+    outline: 0 !important;
+  }
+  > input {
+    background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
+    :hover,
+    :active,
+    :focus {
+      border: none !important;
+      outline: 0;
+    }
   }
 `
