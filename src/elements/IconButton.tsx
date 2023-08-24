@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { useMemo, type MouseEvent, type ButtonHTMLAttributes, type FunctionComponent, useCallback } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { PrimaryButton, SecondaryButton } from './Button'
 import { Accent, Size } from '../constants'
@@ -19,6 +19,8 @@ export type IconButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'chi
   color?: string | undefined
   /** In pixels, override `size` prop default values. */
   iconSize?: number | undefined
+  /** Remove button border and padding. */
+  isCompact?: boolean | undefined
   size?: Size | undefined
   /** Prevent onClick event propagation. */
   withUnpropagatedClick?: boolean | undefined
@@ -29,6 +31,7 @@ export function IconButton({
   color,
   Icon,
   iconSize,
+  isCompact,
   onClick,
   size = Size.NORMAL,
   type = 'button',
@@ -57,12 +60,13 @@ export function IconButton({
     () => ({
       children: commonChildren,
       className: classnames('Element-IconButton', className),
+      isCompact,
       onClick: handleClick,
       size,
       type,
       ...nativeProps
     }),
-    [className, commonChildren, handleClick, nativeProps, size, type]
+    [className, commonChildren, handleClick, isCompact, nativeProps, size, type]
   )
 
   switch (accent) {
@@ -83,38 +87,65 @@ const PADDING: Record<Size, string> = {
   [Size.SMALL]: '3px'
 }
 
+// We can't use $-prefixed props here for some reason (maybe because the `as` prop exclude them?).
 const StyledButton = styled.button<{
+  isCompact: boolean | undefined
   size: Size
 }>`
   align-items: center;
   display: flex;
   justify-content: center;
-  padding: ${p => PADDING[p.size]};
+  padding: ${p => (p.isCompact ? 0 : PADDING[p.size])};
+
+  ${p =>
+    p.isCompact &&
+    css`
+      border: 0;
+
+      :hover,
+      &._hover {
+        border: 0;
+      }
+      border: 0;
+
+      :active,
+      &._active {
+        border: 0;
+      }
+      border: 0;
+
+      :disabled,
+      &._disabled {
+        border: 0;
+      }
+    `}
 `
 
-const TertiaryButton = styled.button`
+const TertiaryButton = styled.button<{
+  isCompact: boolean | undefined
+}>`
   background-color: transparent;
-  border: 1px solid transparent;
+  border: ${p => (p.isCompact ? 0 : '1px solid transparent')};
   color: ${p => p.theme.color.charcoal};
 
   :hover,
   &._hover {
     background-color: transparent;
-    border: 1px solid transparent;
+    border: ${p => (p.isCompact ? 0 : '1px solid transparent')};
     color: ${p => p.theme.color.blueYonder['100']};
   }
 
   :active,
   &._active {
     background-color: transparent;
-    border: 1px solid transparent;
+    border: ${p => (p.isCompact ? 0 : '1px solid transparent')};
     color: ${p => p.theme.color.blueGray['100']};
   }
 
   :disabled,
   &._disabled {
     background-color: transparent;
-    border: 1px solid transparent;
+    border: ${p => (p.isCompact ? 0 : '1px solid transparent')};
     color: ${p => p.theme.color.lightGray};
   }
 `

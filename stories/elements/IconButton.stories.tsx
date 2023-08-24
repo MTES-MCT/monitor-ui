@@ -9,6 +9,7 @@ import type { IconButtonProps } from '../../src'
 const args: IconButtonProps = {
   accent: Accent.PRIMARY,
   iconSize: undefined,
+  isCompact: false,
   Icon: Icon.Close,
   size: Size.NORMAL,
   withUnpropagatedClick: false
