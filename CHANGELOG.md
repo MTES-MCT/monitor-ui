@@ -1,3 +1,10 @@
+# [9.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v9.0.1...v9.1.0) (2023-08-25)
+
+
+### Features
+
+* **elements:** add isCompact prop to IconButton ([ec25e63](https://github.com/MTES-MCT/monitor-ui/commit/ec25e63a2dc4b5a2ba846c499819ac02c6a91651))
+
 ## [9.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v9.0.0...v9.0.1) (2023-08-23)
 
 
