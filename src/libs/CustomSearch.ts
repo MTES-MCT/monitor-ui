@@ -24,9 +24,19 @@ export type CustomSearchOptions = Partial<{
    */
   isStrict: boolean
   /**
+   * By default, location is set to 0 and distance to 100
+   * When isStrict is false, for something to be considered a match, it would have to be within
+   * (threshold) 0.4 x (distance) 100 = 40 characters away from the expected location 0. (i.e. the first 40 characters)
+   * When true, search will ignore location and distance, so it won't matter where in the string the pattern appears.
+   *
+   * @default true
+   * @see https://www.fusejs.io/concepts/scoring-theory.html#scoring-theory
+   */
+  shouldIgnoreLocation: boolean
+  /**
    * At what point does the match algorithm give up.
    *
-   * @default 0.6
+   * @default 0.4
    * @description
    * A threshold of `0.0` requires a perfect match (of both letters and location),
    * a threshold of `1.0` would match anything.
@@ -69,7 +79,8 @@ export class CustomSearch<T extends Record<string, any> = Record<string, any>> {
       isCaseSensitive = false,
       isDiacriticSensitive = false,
       isStrict = false,
-      threshold = 0.6
+      shouldIgnoreLocation = true,
+      threshold = 0.4
     }: CustomSearchOptions = {}
   ) {
     const maybeCache = cacheKey ? FUSE_SEARCH_CACHE[cacheKey] : undefined
@@ -83,7 +94,7 @@ export class CustomSearch<T extends Record<string, any> = Record<string, any>> {
     this.#fuse = new Fuse(
       normalizedCollection,
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      { isCaseSensitive, keys, threshold, useExtendedSearch: isStrict },
+      { ignoreLocation: shouldIgnoreLocation, isCaseSensitive, keys, threshold, useExtendedSearch: isStrict },
       maybeCache ? Fuse.parseIndex<T>(maybeCache.fuseSearchIndex) : undefined
     )
     this.#isDiacriticSensitive = isDiacriticSensitive
