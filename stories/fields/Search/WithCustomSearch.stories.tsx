@@ -56,7 +56,7 @@ export function WithCustomSearch(props: SearchProps) {
           weight: 0.1
         }
       ],
-      { isStrict: true }
+      { isStrict: false, shouldIgnoreLocation: true }
     )
   )
 
