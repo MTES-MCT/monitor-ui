@@ -1,3 +1,10 @@
+## [9.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v9.1.0...v9.1.1) (2023-08-30)
+
+
+### Bug Fixes
+
+* **libs:** ignoreLocation by default when using fuzzySearch ([1cee6f2](https://github.com/MTES-MCT/monitor-ui/commit/1cee6f25ea88b5d1fcafdcd0e0233459d2479dc3))
+
 # [9.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v9.0.1...v9.1.0) (2023-08-25)
 
 
