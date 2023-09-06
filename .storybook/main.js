@@ -1,7 +1,12 @@
 /* eslint-env node */
 
 module.exports = {
-  addons: ['@storybook/addon-essentials', 'storybook-addon-performance', '@storybook/addon-a11y'],
+  addons: [
+    '@storybook/addon-essentials',
+    'storybook-addon-performance',
+    '@storybook/addon-a11y',
+    'storybook-addon-react-router-v6'
+  ],
   docs: {
     autodocs: true
   },

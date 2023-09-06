@@ -4832,6 +4832,8 @@ __metadata:
     react-dom: 18.2.0
     react-imask: 7.1.3
     react-is: 18.2.0
+    react-router: 6.15.0
+    react-router-dom: 6.15.0
     react-toastify: 9.1.3
     rollup: 3.19.1
     rollup-plugin-bundle-size: 1.0.3
@@ -4842,6 +4844,7 @@ __metadata:
     semantic-release: 21.0.7
     storybook: 7.0.24
     storybook-addon-performance: 0.17.1
+    storybook-addon-react-router-v6: 2.0.7
     styled-components: 5.3.10
     ts-loader: 9.4.2
     tslib: 2.5.3
@@ -4856,6 +4859,8 @@ __metadata:
     formik: ^2.0.0
     react: ^18.0.0
     react-dom: ^18.0.0
+    react-router: ^6.0.0
+    react-router-dom: ^6.0.0
     rsuite: ^5.37.0
     styled-components: ^5.0.0
   languageName: unknown
@@ -5324,6 +5329,13 @@ __metadata:
     "@pnpm/network.ca-file": ^1.0.1
     config-chain: ^1.1.11
   checksum: d9a386c3d4cd97436d050e9c80b198e5e9c3288e6fe0e8972f9969cf46617cb43218120529852a886c62c5b15f06832b1d6cc75b256f2ee9092d9cfb3ce329fb
+  languageName: node
+  linkType: hard
+
+"@remix-run/router@npm:1.8.0":
+  version: 1.8.0
+  resolution: "@remix-run/router@npm:1.8.0"
+  checksum: f754f02d3b4fc86791b88acf16065000609e2324b9436027844a76831c7107c0994067cb83abdd6093c282bd518a5c89b5e02aead585782978586e3a04534428
   languageName: node
   linkType: hard
 
@@ -11044,6 +11056,13 @@ __metadata:
     array-ify: ^1.0.0
     dot-prop: ^5.1.0
   checksum: fb71d70632baa1e93283cf9d80f30ac97f003aabee026e0b4426c9716678079ef5fea7519b84d012cbed938c476493866a38a79760564a9e21ae9433e40e6f0d
+  languageName: node
+  linkType: hard
+
+"compare-versions@npm:^6.0.0":
+  version: 6.1.0
+  resolution: "compare-versions@npm:6.1.0"
+  checksum: d4e2a45706a023d8d0b6680338b66b79e20bd02d1947f0ac6531dab634cbed89fa373b3f03d503c5e489761194258d6e1bae67a07f88b1efc61648454f2d47e7
   languageName: node
   linkType: hard
 
@@ -20936,6 +20955,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-inspector@npm:6.0.2":
+  version: 6.0.2
+  resolution: "react-inspector@npm:6.0.2"
+  peerDependencies:
+    react: ^16.8.4 || ^17.0.0 || ^18.0.0
+  checksum: dab7a7daf570c283fdc5d4e07ee8941ee8670af698ab5a27a704602b248e29ab911b117310d64c30a4af93931b2d6ee2a729369e3f5ab7f02df4651692e195a5
+  languageName: node
+  linkType: hard
+
 "react-inspector@npm:^6.0.0":
   version: 6.0.1
   resolution: "react-inspector@npm:6.0.1"
@@ -20989,6 +21017,30 @@ __metadata:
     react: ^16.0.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
   checksum: 55f4abad7f7523d16b081b5ab20f75c539a54a08253ce7e9df473d48386f42ceca6c31584ba9fa26e3528b498ef6685ec77fb9a22cffc97df05fb326d0bf1b26
+  languageName: node
+  linkType: hard
+
+"react-router-dom@npm:6.15.0":
+  version: 6.15.0
+  resolution: "react-router-dom@npm:6.15.0"
+  dependencies:
+    "@remix-run/router": 1.8.0
+    react-router: 6.15.0
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: 95301837e293654f00934de6a4bdb27bfb06f613503e4cce7a93f19384793729832e7479d50faf3b9457d149014d4df40a3ee3a5193d7e3a3caadb7aaa6ec0f9
+  languageName: node
+  linkType: hard
+
+"react-router@npm:6.15.0":
+  version: 6.15.0
+  resolution: "react-router@npm:6.15.0"
+  dependencies:
+    "@remix-run/router": 1.8.0
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 345b29277e13997f2625f0037f537eaf1955bb9f44ebfea80dd3ff83fc06273f7b64e1be944bfc75945fd2af5af917874133a8a93ed5ecaca523be8f045ae166
   languageName: node
   linkType: hard
 
@@ -22519,6 +22571,32 @@ __metadata:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
   checksum: eac920f8515c93b014e25ef9ae4733a44c7ca9594505fff7a8155314ae2080627f74d0891ff9b25a624b18e968fa4df382cf998749e46ff167b58157aec49676
+  languageName: node
+  linkType: hard
+
+"storybook-addon-react-router-v6@npm:2.0.7":
+  version: 2.0.7
+  resolution: "storybook-addon-react-router-v6@npm:2.0.7"
+  dependencies:
+    compare-versions: ^6.0.0
+    react-inspector: 6.0.2
+  peerDependencies:
+    "@storybook/blocks": ^7.0.0
+    "@storybook/channels": ^7.0.0
+    "@storybook/components": ^7.0.0
+    "@storybook/core-events": ^7.0.0
+    "@storybook/manager-api": ^7.0.0
+    "@storybook/preview-api": ^7.0.0
+    "@storybook/theming": ^7.0.0
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-router-dom: ^6.4.0
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 5167ba3c01f0f2101b944dd97809e432fce463f35ef678adac824a3c051a9cae80cfbe59b710c2924462ba6b7ede7188d90aacb5f9b50ee5b120de3144d8d69c
   languageName: node
   linkType: hard
 

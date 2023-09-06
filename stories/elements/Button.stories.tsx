@@ -1,13 +1,12 @@
 import { Showcase } from '../../.storybook/components/Showcase'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { Accent, Button, Icon, Size } from '../../src'
+import { Accent, Button, type ButtonProps, Icon, Size } from '../../src'
 
-import type { ButtonProps } from '../../src'
 import type { Meta } from '@storybook/react'
 
 const args: ButtonProps = {
   accent: Accent.PRIMARY,
-  children: 'A label',
+  children: 'A button label',
   isFullWidth: false,
   Icon: undefined,
   size: Size.NORMAL,

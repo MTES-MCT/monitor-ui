@@ -82,16 +82,18 @@ export function Button({
   }
 }
 
-const FONT_SIZE: Record<Size, string> = {
+export const FONT_SIZE: Record<Size, string> = {
   [Size.LARGE]: '13px',
   [Size.NORMAL]: '13px',
   [Size.SMALL]: '11px'
 }
-const PADDING: Record<Size, string> = {
+
+export const PADDING: Record<Size, string> = {
   [Size.LARGE]: '6px 12px',
   [Size.NORMAL]: '6px 12px',
   [Size.SMALL]: '5px 8px 4px'
 }
+
 const StyledButton = styled.button<{
   isFullWidth: boolean
   size: Size
@@ -110,7 +112,7 @@ const StyledButton = styled.button<{
   }
 `
 
-const ButtonLabel = styled.span`
+export const ButtonLabel = styled.span`
   line-height: 1.3846;
   margin-top: -3px;
   min-width: 0;
