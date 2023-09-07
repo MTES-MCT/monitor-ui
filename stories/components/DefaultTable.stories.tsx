@@ -4,7 +4,7 @@ import { DefaultTable, type DefaultTableProps } from '../../src'
 import type { Meta } from '@storybook/react'
 import type { ColumnDef } from '@tanstack/react-table'
 
-export const COLUMNS: Array<ColumnDef<(typeof DATA)[0]>> = [
+const COLUMNS: Array<ColumnDef<(typeof DATA)[0]>> = [
   {
     accessorFn: row => row.id,
     enableSorting: false,
@@ -20,7 +20,8 @@ export const COLUMNS: Array<ColumnDef<(typeof DATA)[0]>> = [
   {
     accessorFn: row => row.firstName,
     header: () => 'First Name',
-    id: 'firstName'
+    id: 'firstName',
+    size: 240
   }
 ]
 
