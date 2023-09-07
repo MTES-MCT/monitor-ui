@@ -105,6 +105,12 @@ export function _Icon(props: IconProps) {
       </Cell>
       <Cell>
         <IconBox>
+          <Icon.ControlUnit {...props} />
+        </IconBox>
+        <Code>ControlUnit</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
           <Icon.Delete {...props} />
         </IconBox>
         <Code>Delete</Code>
@@ -333,6 +339,12 @@ export function _Icon(props: IconProps) {
       </Cell>
       <Cell>
         <IconBox>
+          <Icon.Plane {...props} />
+        </IconBox>
+        <Code>Plane</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
           <Icon.Plus {...props} />
         </IconBox>
         <Code>Plus</Code>
@@ -366,6 +378,12 @@ export function _Icon(props: IconProps) {
           <Icon.Search {...props} />
         </IconBox>
         <Code>Search</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
+          <Icon.SelectCircle {...props} />
+        </IconBox>
+        <Code>SelectCircle</Code>
       </Cell>
       <Cell>
         <IconBox>

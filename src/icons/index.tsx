@@ -10,6 +10,7 @@ import { Clock } from './Clock'
 import { Close } from './Close'
 import { Confirm } from './Confirm'
 import { Control } from './Control'
+import { ControlUnit } from './ControlUnit'
 import { Delete } from './Delete'
 import { Display } from './Display'
 import { DoubleChevron } from './DoubleChevron'
@@ -87,6 +88,7 @@ export {
   Close,
   Confirm,
   Control,
+  ControlUnit,
   Delete,
   Display,
   DoubleChevron,
