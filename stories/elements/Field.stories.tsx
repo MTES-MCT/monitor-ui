@@ -2,10 +2,11 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { Field } from '../../src'
 
 import type { FieldProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: FieldProps = {}
 
-export default {
+const meta: Meta<FieldProps> = {
   title: 'Elements/Field',
   component: Field,
 
@@ -15,6 +16,8 @@ export default {
 
   decorators: [generateStoryDecorator()]
 }
+
+export default meta
 
 export function _Field(props: FieldProps) {
   return <Field {...props}>This is a field for form inputs but it’s basically a div.</Field>

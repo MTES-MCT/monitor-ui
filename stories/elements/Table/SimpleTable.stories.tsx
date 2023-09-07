@@ -6,6 +6,8 @@ import { generateStoryDecorator } from '../../../.storybook/components/StoryDeco
 import { Accent, Button, Icon, IconButton, Size } from '../../../src'
 import { SimpleTable } from '../../../src/elements/Table/SimpleTable'
 
+import type { Meta } from '@storybook/react'
+
 const fakeData1 = Array(100).fill({
   closedBy: 'TIM',
   controlUnits: [
@@ -103,10 +105,13 @@ const fakeData2 = Array(100).fill({
 
 const data = [...fakeData1, ...fakeData2]
 
-export default {
+const meta: Meta<{}> = {
   title: 'Elements/Table/SimpleTable',
+
   decorators: [generateStoryDecorator()]
 }
+
+export default meta
 
 export function _SimpleTable() {
   const [sorting, setSorting] = useState<SortingState>([{ id: 'dateDebut', desc: false }])

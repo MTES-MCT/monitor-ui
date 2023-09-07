@@ -9,6 +9,8 @@ import { generateStoryDecorator } from '../../../.storybook/components/StoryDeco
 import { Accent, Dropdown, Icon, IconButton } from '../../../src'
 import { TableWithSelectableRows } from '../../../src/elements/Table/TableWithSelectableRows'
 
+import type { Meta } from '@storybook/react'
+
 const fakeData1 = Array(100).fill({
   id: 4,
   reportingId: 2300004,
@@ -86,10 +88,13 @@ const fakeData2 = Array(100).fill({
 
 const data = [...fakeData1, ...fakeData2]
 
-export default {
+const meta: Meta<{}> = {
   title: 'Elements/Table/TableWithSelectableRows',
+
   decorators: [generateStoryDecorator()]
 }
+
+export default meta
 
 const ButtonsGroupRow = ({ id, onSelect }) => (
   <ButtonsGroup>

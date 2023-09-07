@@ -3,6 +3,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { Accent, Button, Icon, Size } from '../../src'
 
 import type { ButtonProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: ButtonProps = {
   accent: Accent.PRIMARY,
@@ -13,7 +14,7 @@ const args: ButtonProps = {
   withUnpropagatedClick: false
 }
 
-export default {
+const meta: Meta<ButtonProps> = {
   title: 'Elements/Button',
   component: Button,
 
@@ -32,6 +33,8 @@ export default {
 
   decorators: [generateStoryDecorator()]
 }
+
+export default meta
 
 export function _Button(props: ButtonProps) {
   return (

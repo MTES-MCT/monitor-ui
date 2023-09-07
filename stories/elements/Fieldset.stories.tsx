@@ -2,6 +2,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { Fieldset } from '../../src'
 
 import type { FieldsetProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: FieldsetProps = {
   disabled: false,
@@ -11,7 +12,7 @@ const args: FieldsetProps = {
   legend: 'A fieldset legend'
 }
 
-export default {
+const meta: Meta<FieldsetProps> = {
   title: 'Elements/Fieldset',
   component: Fieldset,
 
@@ -25,6 +26,8 @@ export default {
     })
   ]
 }
+
+export default meta
 
 export function _Fieldset(props: FieldsetProps) {
   return (

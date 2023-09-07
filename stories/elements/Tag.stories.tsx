@@ -3,13 +3,14 @@ import { getEnumValuesWithUndefined, getUndefinedPropsFromUndefinedStringProps }
 import { Accent, Tag, TagBullet } from '../../src'
 
 import type { TagProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: TagProps = {
   children: 'A tag',
   isLight: false
 }
 
-export default {
+const meta: Meta<TagProps> = {
   title: 'Elements/Tag',
   component: Tag,
 
@@ -35,6 +36,8 @@ export default {
     })
   ]
 }
+
+export default meta
 
 export function _Tag(props: TagProps) {
   const normalizedProps = getUndefinedPropsFromUndefinedStringProps(props)
