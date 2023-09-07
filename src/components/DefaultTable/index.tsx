@@ -7,7 +7,6 @@ import {
 } from '@tanstack/react-table'
 import { useState } from 'react'
 
-import { EditButton } from './EditButton'
 import { Td } from './Td'
 import { Th } from './Th'
 import { SimpleTable } from '../../elements/Table/SimpleTable'
@@ -21,7 +20,7 @@ export type DefaultTableProps<
   data: T[] | undefined
   initialSorting: SortingState
 }
-function DefaultTableBase<
+export function DefaultTable<
   T extends {
     id: number
   }
@@ -79,7 +78,3 @@ function DefaultTableBase<
     </>
   )
 }
-
-export const DefaultTable = Object.assign(DefaultTableBase, {
-  EditButton
-})
