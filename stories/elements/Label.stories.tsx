@@ -2,6 +2,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { Label } from '../../src'
 
 import type { LabelProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: LabelProps = {
   children: 'A form input label',
@@ -9,7 +10,7 @@ const args: LabelProps = {
   isHidden: false
 }
 
-export default {
+const meta: Meta<LabelProps> = {
   title: 'Elements/Label',
   component: Label,
 
@@ -19,6 +20,8 @@ export default {
 
   decorators: [generateStoryDecorator()]
 }
+
+export default meta
 
 export function _Label(props: LabelProps) {
   return <Label {...props} />

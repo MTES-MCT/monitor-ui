@@ -2,10 +2,11 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { Accent, Tag, TagGroup } from '../../src'
 
 import type { TagGroupProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: TagGroupProps = {}
 
-export default {
+const meta: Meta<TagGroupProps> = {
   title: 'Elements/TagGroup',
   component: TagGroup,
 
@@ -15,6 +16,8 @@ export default {
 
   decorators: [generateStoryDecorator()]
 }
+
+export default meta
 
 export function _TagGroup(props: TagGroupProps) {
   return (

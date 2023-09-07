@@ -2,6 +2,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { Legend } from '../../src'
 
 import type { LegendProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: LegendProps = {
   children: 'A form fieldset legend',
@@ -9,7 +10,7 @@ const args: LegendProps = {
   isHidden: false
 }
 
-export default {
+const meta: Meta<LegendProps> = {
   title: 'Elements/Legend',
   component: Legend,
 
@@ -19,6 +20,8 @@ export default {
 
   decorators: [generateStoryDecorator()]
 }
+
+export default meta
 
 export function _Legend(props: LegendProps) {
   return <Legend {...props} />
