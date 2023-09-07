@@ -4,15 +4,16 @@ import { generateStoryDecorator } from '../.storybook/components/StoryDecorator'
 import { Icon, THEME } from '../src'
 
 import type { IconProps } from '../src'
+import type { Meta } from '@storybook/react'
 
 const args: IconProps = {
   color: THEME.color.charcoal,
   size: 32
 }
 
-export default {
+const meta: Meta<IconProps> = {
   title: 'Icon',
-  component: Icon,
+  component: Icon as any,
 
   argTypes: {
     color: {
@@ -27,6 +28,8 @@ export default {
 
   decorators: [generateStoryDecorator()]
 }
+
+export default meta
 
 export function _Icon(props: IconProps) {
   return (

@@ -5,19 +5,25 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { SingleTag } from '../../src'
 
 import type { SingleTagProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: SingleTagProps = {
   children: 'A single deletable tag',
   onDelete: noop
 }
 
-export default {
+const meta: Meta<SingleTagProps> = {
   title: 'Components/SingleTag',
   component: SingleTag,
+
   argTypes: {},
+
   args,
+
   decorators: [generateStoryDecorator()]
 }
+
+export default meta
 
 export function _SingleTag(props: SingleTagProps) {
   return (
