@@ -93,8 +93,15 @@ export class CustomSearch<T extends Record<string, any> = Record<string, any>> {
 
     this.#fuse = new Fuse(
       normalizedCollection,
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      { ignoreLocation: shouldIgnoreLocation, isCaseSensitive, keys, threshold, useExtendedSearch: isStrict },
+      /* eslint-disable @typescript-eslint/naming-convention */
+      {
+        ignoreLocation: shouldIgnoreLocation,
+        isCaseSensitive,
+        keys,
+        threshold,
+        useExtendedSearch: isStrict
+      },
+      /* eslint-enable @typescript-eslint/naming-convention */
       maybeCache ? Fuse.parseIndex<T>(maybeCache.fuseSearchIndex) : undefined
     )
     this.#isDiacriticSensitive = isDiacriticSensitive
