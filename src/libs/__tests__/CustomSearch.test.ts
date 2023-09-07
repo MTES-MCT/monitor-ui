@@ -47,7 +47,7 @@ describe('libs/CustomSearch.cleanCollectionDiacritics()', () => {
 
 describe('libs/CustomSearch.find()', () => {
   // We shuffle the collection to ensure that test results are independant from array order
-  const collection = shuffle(TEST_COLLECTION)
+  const shuffledTestCollection = shuffle(TEST_COLLECTION)
 
   it('should return the expected first item when searching for a weighted prop', () => {
     const keys = [
@@ -59,7 +59,7 @@ describe('libs/CustomSearch.find()', () => {
       'other.prop'
     ]
 
-    const customSearch = new CustomSearch(collection, keys)
+    const customSearch = new CustomSearch(shuffledTestCollection, keys)
 
     const result = customSearch.find('me')
 
@@ -69,7 +69,7 @@ describe('libs/CustomSearch.find()', () => {
   it('should return the expected length and first item when searching with/without diacritics', () => {
     const keys = ['description']
 
-    const customSearch = new CustomSearch(collection, keys)
+    const customSearch = new CustomSearch(shuffledTestCollection, keys)
     const firstResult = customSearch.find('emoi')
 
     expect(firstResult).toHaveLength(4)
@@ -81,34 +81,73 @@ describe('libs/CustomSearch.find()', () => {
     expect(secondResult[0]).toMatchObject({ code: 'MF', description: 'mémoire' })
   })
 
-  it('should return the expected length and item when using `isStrict`', () => {
+  it('should return the expected length and item when enabling `isStrict`', () => {
     const keys = ['description']
     const options = {
       isStrict: true
     }
 
-    const customSearch = new CustomSearch(collection, keys, options)
+    const customSearch = new CustomSearch(shuffledTestCollection, keys, options)
     const result = customSearch.find('emoi')
 
     expect(result).toHaveLength(1)
     expect(result).toMatchObject([{ code: 'MF', description: 'mémoire' }])
   })
 
-  it('should return 4 items', () => {
+  it('should return all the matching items by default', () => {
     const keys = ['description']
 
-    const customSearch = new CustomSearch(collection, keys)
+    const customSearch = new CustomSearch(shuffledTestCollection, keys)
     const result = customSearch.find('e')
 
     expect(result).toHaveLength(4)
   })
 
-  it('should return 1 item', () => {
+  it('should return the expected length when specifying <limit> parameter', () => {
     const keys = ['description']
 
-    const customSearch = new CustomSearch(collection, keys)
+    const customSearch = new CustomSearch(shuffledTestCollection, keys)
     const result = customSearch.find('e', 1)
 
     expect(result).toHaveLength(1)
+  })
+
+  it('should return both lower and upper case items by default', () => {
+    const collection = [{ name: 'Avec Majuscule' }, { name: 'sans majuscule' }]
+    const keys = ['name']
+
+    const customSearch = new CustomSearch(collection, keys)
+    const result = customSearch.find('M')
+
+    expect(result).toHaveLength(2)
+    expect(result).toMatchObject([{ name: 'Avec Majuscule' }, { name: 'sans majuscule' }])
+  })
+
+  it('should return the expected case items when enabling `isCaseSensitive`', () => {
+    const collection = [{ name: 'Avec Majuscule' }, { name: 'sans majuscule' }]
+    const keys = ['name']
+    const options = {
+      isCaseSensitive: true
+    }
+
+    const customSearch = new CustomSearch(collection, keys, options)
+    const result = customSearch.find('M')
+
+    expect(result).toHaveLength(1)
+    expect(result).toMatchObject([{ name: 'Avec Majuscule' }])
+  })
+
+  it('should return both lower and upper case items when enabling `isStrict`', () => {
+    const collection = [{ name: 'Avec Majuscule' }, { name: 'sans majuscule' }]
+    const keys = ['name']
+    const options = {
+      isStrict: true
+    }
+
+    const customSearch = new CustomSearch(collection, keys, options)
+    const result = customSearch.find('M')
+
+    expect(result).toHaveLength(2)
+    expect(result).toMatchObject([{ name: 'Avec Majuscule' }, { name: 'sans majuscule' }])
   })
 })
