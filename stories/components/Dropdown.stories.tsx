@@ -6,18 +6,24 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { Accent, Dropdown, Icon } from '../../src'
 
 import type { DropdownProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: DropdownProps = {
   title: 'A dropdow menu'
 }
 
-export default {
+const meta: Meta<DropdownProps> = {
   title: 'Components/Dropdown',
   component: Dropdown,
+
   argTypes: {},
+
   args,
+
   decorators: [generateStoryDecorator()]
 }
+
+export default meta
 
 export function _Dropdown(props: DropdownProps) {
   const [outputValue, setOutputValue] = useState<boolean | '∅'>('∅')

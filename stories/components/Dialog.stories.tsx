@@ -4,12 +4,13 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { Accent, Button, Dialog } from '../../src'
 
 import type { DialogProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: DialogProps = {
   isAbsolute: false
 }
 
-export default {
+const meta: Meta<DialogProps> = {
   title: 'Components/Dialog',
   component: Dialog,
 
@@ -19,6 +20,8 @@ export default {
 
   decorators: [generateStoryDecorator()]
 }
+
+export default meta
 
 export function _Dialog(props: DialogProps) {
   return (

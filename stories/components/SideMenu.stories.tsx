@@ -3,7 +3,9 @@ import { useState } from 'react'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { Icon, SideMenu } from '../../src'
 
-export default {
+import type { Meta } from '@storybook/react'
+
+const meta: Meta<{}> = {
   title: 'Components/SideMenu',
   component: SideMenu,
 
@@ -12,12 +14,14 @@ export default {
   decorators: [generateStoryDecorator()]
 }
 
-export function _SideMenu(props) {
+export default meta
+
+export function _SideMenu() {
   const [selectedButton, setSelectedButton] = useState('bouton 2')
 
   return (
     <div style={{ height: '500px' }}>
-      <SideMenu {...props}>
+      <SideMenu>
         <SideMenu.Button
           Icon={Icon.Alert}
           isActive={selectedButton === 'bouton 1'}

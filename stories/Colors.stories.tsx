@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { generateStoryDecorator } from '../.storybook/components/StoryDecorator'
 import { THEME } from '../src'
 
+import type { Meta } from '@storybook/react'
+
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -20,11 +22,13 @@ const ColorSample = styled.div`
   }
 `
 
-export default {
+const meta: Meta<typeof ColorSample> = {
   title: 'Colors',
   component: ColorSample,
   decorators: [generateStoryDecorator()]
 }
+
+export default meta
 
 export function _Colors() {
   return (

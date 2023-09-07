@@ -4,12 +4,18 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { Accent, Button, Icon } from '../../src'
 import { MapMenuDialog } from '../../src/components/MapMenuDialog'
 
-export default {
+import type { Meta } from '@storybook/react'
+
+const meta: Meta<{}> = {
   title: 'Components/MapMenuDialog',
-  component: MapMenuDialog,
+  component: MapMenuDialog as any,
+
   argTypes: {},
+
   decorators: [generateStoryDecorator()]
 }
+
+export default meta
 
 export function _MapMenuDialog() {
   return (
