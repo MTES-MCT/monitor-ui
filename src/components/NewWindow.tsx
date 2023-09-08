@@ -213,7 +213,7 @@ export class NewWindow extends PureComponent<NewWindowProps, NewWindowState> {
     this.released = true
 
     // Remove checker interval.
-    clearInterval(this.windowCheckerInterval)
+    clearInterval(this.windowCheckerInterval as number | undefined)
 
     // Call any function bound to the `onUnload` prop.
     const { onUnload } = this.props
