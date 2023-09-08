@@ -1,13 +1,12 @@
-/* eslint-disable no-console */
-/* eslint-disable no-null/no-null */
+/* eslint-disable no-console, no-null/no-null */
+
 import { flexRender, getCoreRowModel, getSortedRowModel, type SortingState, useReactTable } from '@tanstack/react-table'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 
-import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
-import { Accent, Dropdown, Icon, IconButton } from '../../../src'
-import { TableWithSelectableRows } from '../../../src/elements/Table/TableWithSelectableRows'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { Accent, Dropdown, Icon, IconButton, TableWithSelectableRows } from '../../src'
 
 import type { Meta } from '@storybook/react'
 
@@ -89,7 +88,7 @@ const fakeData2 = Array(100).fill({
 const data = [...fakeData1, ...fakeData2]
 
 const meta: Meta<{}> = {
-  title: 'Elements/Table/TableWithSelectableRows',
+  title: 'Tables/TableWithSelectableRows',
 
   decorators: [generateStoryDecorator()]
 }

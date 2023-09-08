@@ -1,8 +1,8 @@
 import { flexRender, type Header } from '@tanstack/react-table'
 
 import { SortingIcon } from './SortingIcon'
-import { SimpleTable } from '../../elements/Table/SimpleTable'
 import { SortingArrows } from '../../icons'
+import { SimpleTable } from '../SimpleTable'
 
 import type { ReactNode } from 'react'
 

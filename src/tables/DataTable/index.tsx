@@ -9,9 +9,9 @@ import { useState } from 'react'
 
 import { Td } from './Td'
 import { Th } from './Th'
-import { SimpleTable } from '../../elements/Table/SimpleTable'
+import { SimpleTable } from '../SimpleTable'
 
-export type DefaultTableProps<
+export type DataTableProps<
   T extends {
     id: number
   }
@@ -20,11 +20,11 @@ export type DefaultTableProps<
   data: T[] | undefined
   initialSorting: SortingState
 }
-export function DefaultTable<
+export function DataTable<
   T extends {
     id: number
   }
->({ columns, data, initialSorting }: DefaultTableProps<T>) {
+>({ columns, data, initialSorting }: DataTableProps<T>) {
   const [sorting, setSorting] = useState<SortingState>(initialSorting)
 
   const table = useReactTable({

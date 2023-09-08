@@ -18,7 +18,6 @@ export { ThemeProvider } from './ThemeProvider'
   Components
 */
 
-export { DefaultTable } from './components/DefaultTable'
 export { Dialog } from './components/Dialog'
 export { Dropdown } from './components/Dropdown'
 export { NewWindow } from './components/NewWindow'
@@ -36,8 +35,6 @@ export { Label } from './elements/Label'
 export { Legend } from './elements/Legend'
 export { Tag } from './elements/Tag'
 export { TagGroup } from './elements/TagGroup'
-export { SimpleTable } from './elements/Table/SimpleTable'
-export { TableWithSelectableRows } from './elements/Table/TableWithSelectableRows'
 
 export { Search } from './fields/Search'
 export { Checkbox } from './fields/Checkbox'
@@ -87,6 +84,14 @@ export { usePrevious } from './hooks/usePrevious'
 export { CustomSearch } from './libs/CustomSearch'
 
 /* -----------------------------------------------------------------------------
+  Tables
+*/
+
+export { DataTable } from './tables/DataTable'
+export { SimpleTable } from './tables/SimpleTable'
+export { TableWithSelectableRows } from './tables/TableWithSelectableRows'
+
+/* -----------------------------------------------------------------------------
   Utils
 */
 
@@ -127,7 +132,6 @@ export type {
   UndefineExceptArrays
 } from './types'
 
-export type { DefaultTableProps } from './components/DefaultTable'
 export type { DialogProps } from './components/Dialog'
 export type { DropdownProps, DropdownItemProps } from './components/Dropdown'
 export type { NewWindowProps } from './components/NewWindow'
@@ -144,7 +148,6 @@ export type { LabelProps } from './elements/Label'
 export type { LegendProps } from './elements/Legend'
 export type { TagProps } from './elements/Tag'
 export type { TagGroupProps } from './elements/TagGroup'
-export type { RowCheckboxProps } from './elements/Table/TableWithSelectableRows/RowCheckbox'
 
 export type { SearchProps } from './fields/Search'
 export type { CheckboxProps } from './fields/Checkbox'
@@ -180,3 +183,6 @@ export type { FormikTextInputProps } from './formiks/FormikTextInput'
 export type { NewWindowContextValue } from './hooks/useNewWindow'
 
 export type { CustomSearchKey, CustomSearchOptions } from './libs/CustomSearch'
+
+export type { DataTableProps } from './tables/DataTable'
+export type { RowCheckboxProps } from './tables/TableWithSelectableRows/RowCheckbox'
