@@ -16,7 +16,7 @@ export type DataTableProps<
     id: number
   }
 > = {
-  columns: Array<ColumnDef<T, any>>
+  columns: Array<ColumnDef<T>>
   data: T[] | undefined
   initialSorting: SortingState
 }
