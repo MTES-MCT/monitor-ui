@@ -1,5 +1,5 @@
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { DefaultTable, type DefaultTableProps } from '../../src'
+import { DataTable, type DataTableProps } from '../../src'
 
 import type { Meta } from '@storybook/react'
 import type { ColumnDef } from '@tanstack/react-table'
@@ -38,7 +38,7 @@ const DATA = [
   { id: 10, firstName: 'Jenny', lastName: 'Martinez' }
 ]
 
-const args: DefaultTableProps<(typeof DATA)[0]> = {
+const args: DataTableProps<(typeof DATA)[0]> = {
   columns: COLUMNS,
   data: DATA,
   initialSorting: [
@@ -50,9 +50,9 @@ const args: DefaultTableProps<(typeof DATA)[0]> = {
   ]
 }
 
-const meta: Meta<DefaultTableProps<(typeof DATA)[0]>> = {
-  title: 'Components/DefaultTable',
-  component: DefaultTable,
+const meta: Meta<DataTableProps<(typeof DATA)[0]>> = {
+  title: 'Tables/DataTable',
+  component: DataTable,
 
   argTypes: {},
 
@@ -63,10 +63,10 @@ const meta: Meta<DefaultTableProps<(typeof DATA)[0]>> = {
 
 export default meta
 
-export function _DefaultTable(props: DefaultTableProps<(typeof DATA)[0]>) {
+export function _DataTable(props: DataTableProps<(typeof DATA)[0]>) {
   return (
     <>
-      <DefaultTable {...props} />
+      <DataTable {...props} />
     </>
   )
 }

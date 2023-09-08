@@ -1,6 +1,6 @@
 import { flexRender, type Cell } from '@tanstack/react-table'
 
-import { SimpleTable } from '../../elements/Table/SimpleTable'
+import { SimpleTable } from '../SimpleTable'
 
 import type { ReactNode } from 'react'
 

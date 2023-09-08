@@ -2,9 +2,8 @@ import { flexRender, getCoreRowModel, getSortedRowModel, type SortingState, useR
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { useCallback, useMemo, useRef, useState } from 'react'
 
-import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
-import { Accent, Button, Icon, IconButton, Size } from '../../../src'
-import { SimpleTable } from '../../../src/elements/Table/SimpleTable'
+import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { Accent, Button, Icon, IconButton, Size, SimpleTable } from '../../src'
 
 import type { Meta } from '@storybook/react'
 
@@ -106,7 +105,7 @@ const fakeData2 = Array(100).fill({
 const data = [...fakeData1, ...fakeData2]
 
 const meta: Meta<{}> = {
-  title: 'Elements/Table/SimpleTable',
+  title: 'Tables/SimpleTable',
 
   decorators: [generateStoryDecorator()]
 }
