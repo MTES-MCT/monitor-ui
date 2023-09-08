@@ -1,3 +1,10 @@
+## [9.2.2](https://github.com/MTES-MCT/monitor-ui/compare/v9.2.1...v9.2.2) (2023-09-08)
+
+
+### Bug Fixes
+
+* **tables:** remove secondary generic type in DataTable ([ff2208c](https://github.com/MTES-MCT/monitor-ui/commit/ff2208c13b2db93260ca3999e2ca85357aa09ba9))
+
 ## [9.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v9.2.0...v9.2.1) (2023-09-08)
 
 # [9.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v9.1.1...v9.2.0) (2023-09-08)
