@@ -1,3 +1,20 @@
+# [9.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v9.1.1...v9.2.0) (2023-09-08)
+
+
+### Bug Fixes
+
+* **assets:** add missing namespace prop in PinFilled.svg ([45c51e7](https://github.com/MTES-MCT/monitor-ui/commit/45c51e768ad85e2d12c0ccd23e0ad7a72e8fa3fa))
+* upgrade tslib from 2.5.3 to 2.6.0 ([ec49963](https://github.com/MTES-MCT/monitor-ui/commit/ec4996339470eca216884d75abddc8ea58b20655))
+
+
+### Features
+
+* **components:** add DefaultTable ([33926ed](https://github.com/MTES-MCT/monitor-ui/commit/33926ed2b1f69ca22e4ac22c06b3f1dca42a6a51))
+* **components:** remove EditButton from DefaultTable ([67342ba](https://github.com/MTES-MCT/monitor-ui/commit/67342ba6dd2a5cc4dd041cabf37cd114f49e8c3e))
+* **cypres:** add Cypress v13 support ([21df390](https://github.com/MTES-MCT/monitor-ui/commit/21df390cd6e7e8960528675dc10413af0a4ec089))
+* **icons:** add ControlUnit, Plane & SelectCircle ([64a8bfa](https://github.com/MTES-MCT/monitor-ui/commit/64a8bfae3b82f8179e5451b7f54e9f5229e20f07))
+* **tables:** rename DefaultTable to DataTable ([3904123](https://github.com/MTES-MCT/monitor-ui/commit/390412398bad3862a755c878087c0e9eb6626327))
+
 ## [9.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v9.1.0...v9.1.1) (2023-08-30)
 
 
