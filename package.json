@@ -44,9 +44,9 @@
   },
   "devDependencies": {
     "@babel/core": "7.22.1",
-    "@babel/preset-env": "^7.22.9",
-    "@babel/preset-react": "^7.22.5",
-    "@babel/preset-typescript": "^7.22.5",
+    "@babel/preset-env": "7.22.15",
+    "@babel/preset-react": "7.22.15",
+    "@babel/preset-typescript": "7.22.15",
     "@commitlint/cli": "17.6.7",
     "@commitlint/config-conventional": "17.6.7",
     "@ivangabriele/commitlint-config": "1.0.6",
