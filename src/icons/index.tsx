@@ -8,6 +8,7 @@ import { Check } from './Check'
 import { Chevron } from './Chevron'
 import { Clock } from './Clock'
 import { Close } from './Close'
+import { Comment } from './Comment'
 import { Confirm } from './Confirm'
 import { Control } from './Control'
 import { ControlUnit } from './ControlUnit'
@@ -45,6 +46,7 @@ import { MissionAction } from './MissionAction'
 import { More } from './More'
 import { Note } from './Note'
 import { Observation } from './Observation'
+import { Phone } from './Phone'
 import { Pin } from './Pin'
 import { PinFilled } from './PinFilled'
 import { Pinpoint } from './Pinpoint'
@@ -53,6 +55,7 @@ import { Plane } from './Plane'
 import { Plus } from './Plus'
 import { Reject } from './Reject'
 import { Report } from './Report'
+import { Rescue } from './Rescue'
 import { Reset } from './Reset'
 import { Save } from './Save'
 import { Search } from './Search'
@@ -86,6 +89,7 @@ export {
   Chevron,
   Clock,
   Close,
+  Comment,
   Confirm,
   Control,
   ControlUnit,
@@ -123,6 +127,7 @@ export {
   More,
   Note,
   Observation,
+  Phone,
   Pin,
   PinFilled,
   Pinpoint,
@@ -131,6 +136,7 @@ export {
   Plus,
   Reject,
   Report,
+  Rescue,
   Reset,
   Save,
   Search,
