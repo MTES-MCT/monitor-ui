@@ -1,3 +1,16 @@
+# [9.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v9.2.2...v9.3.0) (2023-09-19)
+
+
+### Bug Fixes
+
+* **button:** update settings for large button ([62eca52](https://github.com/MTES-MCT/monitor-ui/commit/62eca522e98320f5974f654ee97f7be28d6097c6))
+
+
+### Features
+
+* **icons:** add icons ([87e6577](https://github.com/MTES-MCT/monitor-ui/commit/87e657787b200f8605385f8e7b2fd61db45dcc6c))
+* **theme:** add custom zones colors ([957b7a3](https://github.com/MTES-MCT/monitor-ui/commit/957b7a3a315ca003012788c760a9172f5fbea797))
+
 ## [9.2.2](https://github.com/MTES-MCT/monitor-ui/compare/v9.2.1...v9.2.2) (2023-09-08)
 
 
