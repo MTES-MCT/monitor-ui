@@ -96,6 +96,15 @@ export const THEME = {
     apricot: '#F0C1A1',
     melon: '#E7A58D',
     paleDogwood: '#F8D7CE',
-    seashell: '#FCECE4'
+    seashell: '#FCECE4',
+
+    // Custom Zones
+    darkGoldenrod: '#A98A0F',
+    pear: '#DBE33E',
+    jonquil: '#F0CB38',
+    earthYellow: '#E6B771',
+    ecru: '#BAAB68',
+    goldMetallic: '#C5A730',
+    mindaro: '#F2F58E'
   }
 }
