@@ -1,0 +1,17 @@
+<svg id="Unlink" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <rect id="Rectangle_6510" data-name="Rectangle 6510" width="20" height="20" fill="none"/>
+  <g id="Groupe_5098" data-name="Groupe 5098">
+    <rect id="Rectangle_6511" data-name="Rectangle 6511" width="2" height="22" transform="translate(17.071 1.515) rotate(45)" fill="#707785"/>
+    <g id="Groupe_5095" data-name="Groupe 5095">
+      <path id="Tracé_1700" data-name="Tracé 1700" d="M3.22,14.659l1.67-1.67A3,3,0,0,1,5,7H9V5H5a4.992,4.992,0,0,0-1.78,9.659Z" fill="#707785"/>
+    </g>
+    <g id="Groupe_5096" data-name="Groupe 5096">
+      <path id="Tracé_1701" data-name="Tracé 1701" d="M8.879,9H6v2h.879Z" fill="currentColor"/>
+      <path id="Tracé_1702" data-name="Tracé 1702" d="M10.414,11l2-2H9.586l-2,2Z" fill="currentColor"/>
+      <path id="Tracé_1703" data-name="Tracé 1703" d="M11.121,11H14V9h-.879Z" fill="currentColor"/>
+    </g>
+    <g id="Groupe_5097" data-name="Groupe 5097">
+      <path id="Tracé_1704" data-name="Tracé 1704" d="M16.78,5.341l-1.67,1.67A3,3,0,0,1,15,13H11v2h4a4.992,4.992,0,0,0,1.78-9.659Z" fill="#707785"/>
+    </g>
+  </g>
+</svg>

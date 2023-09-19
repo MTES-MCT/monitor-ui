@@ -1,0 +1,11 @@
+<svg id="Link" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <path id="Tracé_1511" data-name="Tracé 1511" d="M0,0H20V20H0Z" fill="none"/>
+  <g id="Groupe_5094" data-name="Groupe 5094">
+    <g id="Groupe_5093" data-name="Groupe 5093">
+      <path id="Tracé_1698" data-name="Tracé 1698" d="M5,7H9V5H5A5,5,0,0,0,5,15H9V13H5A3,3,0,0,1,5,7Z" fill="currentColor"/>
+      <path id="Tracé_1699" data-name="Tracé 1699" d="M15,13H11v2h4A5,5,0,0,0,15,5H11V7h4a3,3,0,0,1,0,6Z" fill="currentColor"/>
+      <rect id="Rectangle_6508" data-name="Rectangle 6508" width="8" height="2" transform="translate(6 9)" fill="currentColor"/>
+    </g>
+    <rect id="Rectangle_6509" data-name="Rectangle 6509" width="20" height="20" fill="none"/>
+  </g>
+</svg>
