@@ -350,6 +350,10 @@ label:hover .rs-checkbox-wrapper .rs-checkbox-inner:before {
   line-height: 17px;
 }
 
+.rs-radio:hover .rs-radio-inner:before {
+  border-color: var(--charcoal);
+}
+
 /* form */
 .rs-form:not(.rs-form-inline) .rs-form-group:not(:last-child) {
   margin-bottom: 32px;
@@ -699,4 +703,8 @@ label:hover .rs-checkbox-wrapper .rs-checkbox-inner:before {
 .rs-table-row-expanded {
   height: 100px !important;
   background: white !important;
+}
+
+.rs-plaintext {
+  font-size: 13px !important;
 }
