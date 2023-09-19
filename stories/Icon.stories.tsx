@@ -258,6 +258,12 @@ export function _Icon(props: IconProps) {
       </Cell>
       <Cell>
         <IconBox>
+          <Icon.Link {...props} />
+        </IconBox>
+        <Code>Link</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
           <Icon.List {...props} />
         </IconBox>
         <Code>List</Code>
@@ -483,6 +489,12 @@ export function _Icon(props: IconProps) {
           <Icon.Target {...props} />
         </IconBox>
         <Code>Target</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
+          <Icon.Unlink {...props} />
+        </IconBox>
+        <Code>Unlink</Code>
       </Cell>
       <Cell>
         <IconBox>

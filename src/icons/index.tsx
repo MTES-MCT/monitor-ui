@@ -35,6 +35,7 @@ import { Hide } from './Hide'
 import { Info } from './Info'
 import { Infringement } from './Infringement'
 import { Landmark } from './Landmark'
+import { Link } from './Link'
 import { List } from './List'
 import { MapLayers } from './MapLayers'
 import { MeasureAngle } from './MeasureAngle'
@@ -73,6 +74,7 @@ import { SortSelectedUp } from './SortSelectedUp'
 import { Summary } from './Summary'
 import { Tag } from './Tag'
 import { Target } from './Target'
+import { Unlink } from './Unlink'
 import { Unlock } from './Unlock'
 import { Vessel } from './Vessel'
 import { ViewOnMap } from './ViewOnMap'
@@ -116,6 +118,7 @@ export {
   Info,
   Infringement,
   Landmark,
+  Link,
   List,
   MapLayers,
   MeasureAngle,
@@ -154,6 +157,7 @@ export {
   Summary,
   Tag,
   Target,
+  Unlink,
   Unlock,
   Vessel,
   ViewOnMap,
