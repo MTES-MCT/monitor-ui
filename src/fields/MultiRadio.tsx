@@ -21,6 +21,7 @@ export type MultiRadioProps<OptionValue extends OptionValueType = string> = {
   isInline?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isReadOnly?: boolean
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
@@ -37,6 +38,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   isInline = false,
   isLabelHidden = false,
   isLight = false,
+  isReadOnly = false,
   isUndefinedWhenDisabled = false,
   label,
   name,
@@ -75,7 +77,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
       legend={label}
       style={style}
     >
-      <Box key={key} $hasError={hasError} $isInline={isInline}>
+      <Box key={key} $hasError={hasError} $isInline={isInline} $isReadOnly={isReadOnly}>
         {options.map(option => (
           <Radio
             key={JSON.stringify(option.value)}
@@ -83,6 +85,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
             disabled={disabled}
             name={name}
             onChange={(_: any, isChecked: boolean) => handleChange(option.value, isChecked)}
+            readOnly={isReadOnly}
           >
             {option.label}
           </Radio>
@@ -97,6 +100,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
 const Box = styled.div<{
   $hasError: boolean
   $isInline: boolean
+  $isReadOnly: boolean
 }>`
   color: ${p => p.theme.color.gunMetal};
   display: flex;
@@ -134,6 +138,34 @@ const Box = styled.div<{
     css`
       > .rs-radio:not(:first-child) {
         margin-left: 12px;
+      }
+    `}
+
+    ${p =>
+    p.$isReadOnly &&
+    css`
+      .rs-radio {
+        .rs-radio-checker {
+          label {
+            cursor: not-allowed;
+            .rs-radio-wrapper [type='radio'] {
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+      .rs-radio:not(.rs-radio-checked):hover .rs-radio-inner:before {
+        border-color: ${p.theme.color.lightGray};
+      }
+      .rs-radio:not(.rs-radio-checked) .rs-radio-inner:before {
+        background-color: ${p.theme.color.white};
+      }
+      .rs-radio:not(.rs-radio-checked) {
+        .rs-radio-checker {
+          label {
+            color: ${p.theme.color.slateGray};
+          }
+        }
       }
     `}
 `

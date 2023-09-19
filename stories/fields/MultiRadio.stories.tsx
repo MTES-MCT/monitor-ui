@@ -51,9 +51,18 @@ export function _MultiRadio(props: MultiRadioProps) {
 
   return (
     <>
-      <MultiRadio {...props} onChange={controlledOnChange} value={controlledValue} />
+      <div style={{ marginBottom: '32px' }}>
+        <MultiRadio {...props} onChange={controlledOnChange} value={controlledValue} />
 
-      {outputValue !== '∅' && <Output value={outputValue} />}
+        {outputValue !== '∅' && <Output value={outputValue} />}
+      </div>
+      <MultiRadio
+        {...props}
+        isReadOnly
+        label="Multiradio in readOnly mode"
+        onChange={controlledOnChange}
+        value="FIRST_OPTION"
+      />
     </>
   )
 }

@@ -61,6 +61,17 @@ export function _TextInput(props: TextInputProps) {
           placeholder="A text input placeholder"
           size={Size.LARGE}
         />
+
+        <div style={{ marginTop: '32px' }}>
+          <TextInput
+            label="A text input with plaintext prop"
+            name="myTextInputWithPlaintextProp"
+            placeholder="A text input placeholder"
+            plaintext
+            size={Size.LARGE}
+            value="Plain text value"
+          />
+        </div>
       </Showcase>
     </>
   )
