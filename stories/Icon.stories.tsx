@@ -168,6 +168,12 @@ export function _Icon(props: IconProps) {
       </Cell>
       <Cell>
         <IconBox>
+          <Icon.EditUnbordered {...props} />
+        </IconBox>
+        <Code>EditUnbordered</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
           <Icon.Expand {...props} />
         </IconBox>
         <Code>Expand</Code>
