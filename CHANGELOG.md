@@ -1,3 +1,11 @@
+# [9.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v9.3.0...v9.4.0) (2023-09-20)
+
+
+### Features
+
+* **icons:** add EditUnbordered icon ([743b90c](https://github.com/MTES-MCT/monitor-ui/commit/743b90ce4f03a0f08c73cf41f9595e956bc6676a))
+* **icons:** add Link andUnlink icons ([5b001a3](https://github.com/MTES-MCT/monitor-ui/commit/5b001a313539626d88f28100557ddf8fe1abf0d8))
+
 # [9.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v9.2.2...v9.3.0) (2023-09-19)
 
 
