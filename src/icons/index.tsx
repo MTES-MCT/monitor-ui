@@ -20,6 +20,7 @@ import { Drapeau } from './Drapeau'
 import { Duplicate } from './Duplicate'
 import { Edit } from './Edit'
 import { EditBis } from './EditBis'
+import { EditUnbordered } from './EditUnbordered'
 import { Expand } from './Expand'
 import { Favorite } from './Favorite'
 import { FilledArrow } from './FilledArrow'
@@ -103,6 +104,7 @@ export {
   Duplicate,
   Edit,
   EditBis,
+  EditUnbordered,
   Expand,
   Favorite,
   FilledArrow,
