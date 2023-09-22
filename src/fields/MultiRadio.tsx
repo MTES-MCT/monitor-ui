@@ -65,7 +65,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
     [onChange]
   )
 
-  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
+  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled && !isReadOnly, onChange)
 
   return (
     <Fieldset
