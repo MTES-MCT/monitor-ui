@@ -5,6 +5,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { MultiRadio, useFieldControl } from '../../src'
 
 import type { MultiRadioProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: MultiRadioProps = {
   disabled: false,
@@ -24,7 +25,7 @@ const args: MultiRadioProps = {
   value: undefined
 }
 
-export default {
+const meta: Meta<MultiRadioProps> = {
   title: 'Fields/MultiRadio',
   component: MultiRadio,
 
@@ -43,6 +44,7 @@ export default {
     })
   ]
 }
+export default meta
 
 export function _MultiRadio(props: MultiRadioProps) {
   const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
