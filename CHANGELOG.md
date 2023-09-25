@@ -1,3 +1,25 @@
+# [10.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v9.4.0...v10.0.0) (2023-09-25)
+
+
+### Bug Fixes
+
+* **fields:** prevent onChange event on readOnly mode ([73ebb17](https://github.com/MTES-MCT/monitor-ui/commit/73ebb1737fb4044e340e35ada565fa323f47d89f))
+
+
+* feat(theme)!: add new color and update accentuation colors ([0d673f4](https://github.com/MTES-MCT/monitor-ui/commit/0d673f44c27a1b5d9c98a589dc90e2c6b974904e))
+
+
+### Features
+
+* **fields:** add isReadOnly prop on multiRadio component and add custom style for plaintext ([7b903cc](https://github.com/MTES-MCT/monitor-ui/commit/7b903ccb91ba9c227534f25c35edcac12f54fd47))
+
+
+### BREAKING CHANGES
+
+* Accentuation colors are no longer objects with key accentuation
+but just string with this pattern `colorAccentuationNumber`.
+Exemple: `blueYonder[25]` becomes `blueYonder25`
+
 # [9.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v9.3.0...v9.4.0) (2023-09-20)
 
 
