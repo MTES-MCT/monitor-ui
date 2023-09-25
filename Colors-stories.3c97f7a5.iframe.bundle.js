@@ -13,16 +13,19 @@
 `;try{generateStoryDecorator.displayName="generateStoryDecorator",generateStoryDecorator.__docgenInfo={description:"",displayName:"generateStoryDecorator",props:{fixedWidth:{defaultValue:null,description:"",name:"fixedWidth",required:!1,type:{name:"number"}},hasDarkMode:{defaultValue:{value:"false"},description:"",name:"hasDarkMode",required:!1,type:{name:"boolean"}},withNewWindowButton:{defaultValue:{value:"false"},description:"",name:"withNewWindowButton",required:!1,type:{name:"boolean"}}}},"undefined"!=typeof STORYBOOK_REACT_CLASSES&&(STORYBOOK_REACT_CLASSES[".storybook/components/StoryDecorator.tsx#generateStoryDecorator"]={docgenInfo:generateStoryDecorator.__docgenInfo,name:"generateStoryDecorator",path:".storybook/components/StoryDecorator.tsx#generateStoryDecorator"})}catch(__react_docgen_typescript_loader_error){}},"./stories/Colors.stories.tsx":(__unused_webpack_module,__webpack_exports__,__webpack_require__)=>{__webpack_require__.r(__webpack_exports__),__webpack_require__.d(__webpack_exports__,{_Colors:()=>_Colors,__namedExportsOrder:()=>__namedExportsOrder,default:()=>__WEBPACK_DEFAULT_EXPORT__});var styled_components__WEBPACK_IMPORTED_MODULE_3__=__webpack_require__("./node_modules/styled-components/dist/styled-components.browser.esm.js"),_storybook_components_StoryDecorator__WEBPACK_IMPORTED_MODULE_0__=__webpack_require__("./.storybook/components/StoryDecorator.tsx"),_src__WEBPACK_IMPORTED_MODULE_1__=__webpack_require__("./src/index.ts"),react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__=__webpack_require__("./node_modules/react/jsx-runtime.js");const Wrapper=styled_components__WEBPACK_IMPORTED_MODULE_3__.ZP.div`
   display: flex;
   flex-wrap: wrap;
-`,ColorSample=styled_components__WEBPACK_IMPORTED_MODULE_3__.ZP.div`
-  width: 120px;
-  height: 120px;
-  margin: 5px;
-  display: inline-block;
-  background-color: ${props=>props.color};
-  border: 1px solid black;
+`,ColorContainer=styled_components__WEBPACK_IMPORTED_MODULE_3__.ZP.div`
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 16px;
+  border: ${p=>`1px solid ${p.theme.color.lightGray}`};
   > span {
-    color: white;
-    filter: drop-shadow(1px 1px 0px black);
+    font-size: 13px;
   }
-`,__WEBPACK_DEFAULT_EXPORT__={title:"Colors",component:ColorSample,decorators:[(0,_storybook_components_StoryDecorator__WEBPACK_IMPORTED_MODULE_0__.N)()]};function _Colors(){return(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Wrapper,{children:Object.entries(_src__WEBPACK_IMPORTED_MODULE_1__.C6.color).map((([key,value])=>"object"==typeof value?Object.entries(value).map((([key2,value2])=>(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ColorSample,{color:value2,children:(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span",{children:[key,".",key2," ",(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br",{})," ",value2]})},key2))):(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ColorSample,{color:value,children:(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span",{children:[key," ",(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br",{})," ",value]})},key)))})}_Colors.displayName="_Colors",_Colors.parameters={..._Colors.parameters,docs:{..._Colors.parameters?.docs,source:{originalSource:"function _Colors() {\n  return <Wrapper>\n      {Object.entries(THEME.color).map(([key, value]) => {\n      if (typeof value === 'object') {\n        return Object.entries(value).map(([key2, value2]) => <ColorSample key={key2} color={value2}>\n              <span>\n                {key}.{key2} <br /> {value2}\n              </span>\n            </ColorSample>);\n      }\n      return <ColorSample key={key} color={value}>\n            <span>\n              {key} <br /> {value}\n            </span>\n          </ColorSample>;\n    })}\n    </Wrapper>;\n}",..._Colors.parameters?.docs?.source}}};const __namedExportsOrder=["_Colors"]}}]);
-//# sourceMappingURL=Colors-stories.18bf8675.iframe.bundle.js.map
+`,ColorSample=styled_components__WEBPACK_IMPORTED_MODULE_3__.ZP.div`
+  width: 150px;
+  height: 100px;
+  background-color: ${props=>props.color};
+  border: ${p=>`1px solid ${p.theme.color.lightGray}`};
+`,__WEBPACK_DEFAULT_EXPORT__={title:"Colors",component:ColorSample,decorators:[(0,_storybook_components_StoryDecorator__WEBPACK_IMPORTED_MODULE_0__.N)({fixedWidth:1e3})]};function _Colors(){return(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Wrapper,{children:Object.entries(_src__WEBPACK_IMPORTED_MODULE_1__.C6.color).map((([key,value])=>(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(ColorContainer,{children:[(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span",{children:[key," ",(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br",{})," ",value]}),(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ColorSample,{color:value})]},key)))})}_Colors.displayName="_Colors",_Colors.parameters={..._Colors.parameters,docs:{..._Colors.parameters?.docs,source:{originalSource:"function _Colors() {\n  return <Wrapper>\n      {Object.entries(THEME.color).map(([key, value]) => <ColorContainer key={key}>\n          <span>\n            {key} <br /> {value}\n          </span>\n          <ColorSample color={value} />\n        </ColorContainer>)}\n    </Wrapper>;\n}",..._Colors.parameters?.docs?.source}}};const __namedExportsOrder=["_Colors"]}}]);
+//# sourceMappingURL=Colors-stories.3c97f7a5.iframe.bundle.js.map
