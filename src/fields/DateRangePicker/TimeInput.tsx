@@ -252,9 +252,9 @@ const Box = styled.div<{
   background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
   box-shadow: ${p =>
     p.$hasError || p.$isFocused
-      ? `inset 0px 0px 0px 1px ${p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray[100]}`
+      ? `inset 0px 0px 0px 1px ${p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray}`
       : 'none'};
-  color: ${p => (p.$isFocused ? p.theme.color.blueGray[100] : p.theme.color.slateGray)};
+  color: ${p => (p.$isFocused ? p.theme.color.blueGray : p.theme.color.slateGray)};
   display: inline-block;
   font-size: inherit;
   padding: ${p => (p.$isCompact ? '4.5px 8px 7px' : '3px 8px 5px')};
@@ -265,13 +265,9 @@ const Box = styled.div<{
     box-shadow: ${p =>
       `inset 0px 0px 0px 1px ${
         // eslint-disable-next-line no-nested-ternary
-        p.$isDisabled
-          ? p.theme.color.cultured
-          : p.$isFocused
-          ? p.theme.color.blueGray[100]
-          : p.theme.color.blueYonder[100]
+        p.$isDisabled ? p.theme.color.cultured : p.$isFocused ? p.theme.color.blueGray : p.theme.color.blueYonder
       }`};
-    color: ${p => (p.$isFocused ? p.theme.color.blueGray[100] : p.theme.color.blueYonder[100])};
+    color: ${p => (p.$isFocused ? p.theme.color.blueGray : p.theme.color.blueYonder)};
   }
 `
 

@@ -22,20 +22,18 @@ export const THEME = {
     white: '#FFFFFF',
 
     // Accentuation Colors
-    blueYonder: {
-      25: '#D4DDE7',
-      100: '#567A9E'
-    },
-    blueGray: {
-      100: '#5697D2',
-      25: '#D4E5F4'
-    },
+    blueYonder: '#567A9E',
+    blueYonder25: '#D4DDE7',
+    blueGray: '#5697D2',
+    blueGray25: '#D4E5F4',
+    maximumRed: '#E1000F',
+    maximumRed15: '#FBD9DB',
+
     babyBlueEyes: '#99C9FF',
 
     // Notification Colors
     mediumSeaGreen: '#29B361',
     goldenPoppy: '#FAC11A',
-    maximumRed: '#E1000F',
 
     /** CONTEXTUAL COLORS */
 
@@ -55,10 +53,6 @@ export const THEME = {
     // Beacon Malfunction
     powderBlue: '#9ED7D9',
     wheat: '#EDD6A4',
-    // goldenPoppy: '#FAC11A',
-    // maximumRed: '#E1000F',
-    // charcoal: '#3B4559',
-    // mediumSeaGreen: '#29B361',
     opal: '#A5BCC0',
 
     // Regulation Areas

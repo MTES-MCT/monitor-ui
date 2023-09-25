@@ -126,15 +126,15 @@ export const PrimaryButton = styled.button`
 
   :hover,
   &._hover {
-    background-color: ${p => p.theme.color.blueYonder['100']};
-    border: 1px solid ${p => p.theme.color.blueYonder['100']};
+    background-color: ${p => p.theme.color.blueYonder};
+    border: 1px solid ${p => p.theme.color.blueYonder};
     color: ${p => p.theme.color.white};
   }
 
   :active,
   &._active {
-    background-color: ${p => p.theme.color.blueGray['100']};
-    border: 1px solid ${p => p.theme.color.blueGray['100']};
+    background-color: ${p => p.theme.color.blueGray};
+    border: 1px solid ${p => p.theme.color.blueGray};
     color: ${p => p.theme.color.white};
   }
 
@@ -153,16 +153,16 @@ export const SecondaryButton = styled.button`
 
   :hover,
   &._hover {
-    background-color: ${p => p.theme.color.blueYonder['25']};
-    border: 1px solid ${p => p.theme.color.blueYonder['100']};
-    color: ${p => p.theme.color.blueYonder['100']};
+    background-color: ${p => p.theme.color.blueYonder25};
+    border: 1px solid ${p => p.theme.color.blueYonder};
+    color: ${p => p.theme.color.blueYonder};
   }
 
   :active,
   &._active {
-    background-color: ${p => p.theme.color.blueGray['25']};
-    border: 1px solid ${p => p.theme.color.blueGray['100']};
-    color: ${p => p.theme.color.blueGray['100']};
+    background-color: ${p => p.theme.color.blueGray25};
+    border: 1px solid ${p => p.theme.color.blueGray};
+    color: ${p => p.theme.color.blueGray};
   }
 
   :disabled,
@@ -180,16 +180,16 @@ export const TertiaryButton = styled.button`
 
   :hover,
   &._hover {
-    background-color: ${p => p.theme.color.blueYonder['25']};
-    border: 1px solid ${p => p.theme.color.blueYonder['25']};
-    color: ${p => p.theme.color.blueYonder['100']};
+    background-color: ${p => p.theme.color.blueYonder25};
+    border: 1px solid ${p => p.theme.color.blueYonder25};
+    color: ${p => p.theme.color.blueYonder};
   }
 
   :active,
   &._active {
-    background-color: ${p => p.theme.color.blueGray['25']};
-    border: 1px solid ${p => p.theme.color.blueGray['100']};
-    color: ${p => p.theme.color.blueGray['100']};
+    background-color: ${p => p.theme.color.blueGray25};
+    border: 1px solid ${p => p.theme.color.blueGray};
+    color: ${p => p.theme.color.blueGray};
   }
 
   :disabled,

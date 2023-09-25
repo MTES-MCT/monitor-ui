@@ -43,7 +43,7 @@ const Th = styled.th`
 const BodyTr = styled.tr`
   :hover {
     > td {
-      background-color: ${p => p.theme.color.blueYonder[25]};
+      background-color: ${p => p.theme.color.blueYonder25};
     }
   }
   td:first-child {

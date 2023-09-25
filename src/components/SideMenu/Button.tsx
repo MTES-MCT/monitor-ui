@@ -19,7 +19,7 @@ const MenuButton = styled(IconButton)<{
   $isActive?: boolean
 }>`
   animation: none;
-  background: ${p => (p.$isActive ? p.theme.color.blueGray[100] : 'none')};
+  background: ${p => (p.$isActive ? p.theme.color.blueGray : 'none')};
   border: 0;
   border-bottom: solid 0.5px ${p => p.theme.color.slateGray};
   color: ${p => (p.$isActive ? p.theme.color.white : p.theme.color.gainsboro)};
@@ -28,7 +28,7 @@ const MenuButton = styled(IconButton)<{
 
   :hover,
   :focus {
-    background: ${p => (p.$isActive ? p.theme.color.blueGray[100] : 'rgba(255, 255, 255, 0.125)')};
+    background: ${p => (p.$isActive ? p.theme.color.blueGray : 'rgba(255, 255, 255, 0.125)')};
     border: 0;
     border: none;
     color: ${p => p.theme.color.white};

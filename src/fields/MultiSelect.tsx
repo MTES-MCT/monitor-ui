@@ -212,7 +212,7 @@ const Box = styled.div<{
           return p.theme.color.maximumRed
         }
         if (p.$isActive) {
-          return p.theme.color.blueGray[100]
+          return p.theme.color.blueGray
         }
 
         return p.theme.color.gainsboro
@@ -221,12 +221,12 @@ const Box = styled.div<{
     width: 100%;
 
     :hover {
-      border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueYonder[100])} !important;
+      border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueYonder)} !important;
     }
 
     :active,
     :focus {
-      border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray[100])} !important;
+      border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray)} !important;
     }
 
     > .rs-picker-toggle {

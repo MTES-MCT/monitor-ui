@@ -162,7 +162,7 @@ export const Box = styled.div`
           width: 33px;
 
           &.rs-calendar-table-cell-in-range:before {
-            background-color: ${p => p.theme.color.blueGray[25]};
+            background-color: ${p => p.theme.color.blueGray25};
             height: 33px;
             margin-top: 0;
           }
@@ -177,8 +177,8 @@ export const Box = styled.div`
             width: 33px;
           }
           &:hover .rs-calendar-table-cell-content {
-            background-color: ${p => p.theme.color.blueYonder[25]};
-            color: ${p => p.theme.color.blueYonder[100]};
+            background-color: ${p => p.theme.color.blueYonder25};
+            color: ${p => p.theme.color.blueYonder};
           }
           &[role='columnheader'] .rs-calendar-table-cell-content,
           &[role='columnheader']:hover .rs-calendar-table-cell-content {
@@ -190,7 +190,7 @@ export const Box = styled.div`
             color: ${p => p.theme.color.lightGray};
           }
           &.rs-calendar-table-cell-selected > .rs-calendar-table-cell-content {
-            background-color: ${p => p.theme.color.blueGray[100]};
+            background-color: ${p => p.theme.color.blueGray};
           }
         }
       }
@@ -203,7 +203,7 @@ export const Box = styled.div`
           color: ${p => p.theme.color.slateGray};
 
           &.rs-calendar-month-dropdown-year-active {
-            color: ${p => p.theme.color.blueYonder[100]};
+            color: ${p => p.theme.color.blueYonder};
           }
         }
 
@@ -219,11 +219,11 @@ export const Box = styled.div`
             width: 33px;
           }
           &:hover > .rs-calendar-month-dropdown-cell-content {
-            background-color: ${p => p.theme.color.blueYonder[25]};
-            color: ${p => p.theme.color.blueYonder[100]};
+            background-color: ${p => p.theme.color.blueYonder25};
+            color: ${p => p.theme.color.blueYonder};
           }
           &.rs-calendar-month-dropdown-cell-active > .rs-calendar-month-dropdown-cell-content {
-            background-color: ${p => p.theme.color.blueGray[100]};
+            background-color: ${p => p.theme.color.blueGray};
             color: ${p => p.theme.color.white};
           }
         }

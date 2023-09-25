@@ -132,14 +132,14 @@ const TertiaryButton = styled.button<{
   &._hover {
     background-color: transparent;
     border: ${p => (p.isCompact ? 0 : '1px solid transparent')};
-    color: ${p => p.theme.color.blueYonder['100']};
+    color: ${p => p.theme.color.blueYonder};
   }
 
   :active,
   &._active {
     background-color: transparent;
     border: ${p => (p.isCompact ? 0 : '1px solid transparent')};
-    color: ${p => p.theme.color.blueGray['100']};
+    color: ${p => p.theme.color.blueGray};
   }
 
   :disabled,
