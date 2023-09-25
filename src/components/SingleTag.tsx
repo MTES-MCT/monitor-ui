@@ -80,29 +80,29 @@ const PrimaryIconButton = styled(IconButton)`
 `
 
 const SecondaryText = styled(PrimaryText)`
-  background-color: ${p => p.theme.color.blueYonder[100]};
+  background-color: ${p => p.theme.color.blueYonder};
   color: ${p => p.theme.color.white};
 `
 
 const SecondaryIconButton = styled(PrimaryIconButton)`
-  background-color: ${p => p.theme.color.blueYonder[100]};
+  background-color: ${p => p.theme.color.blueYonder};
   color: ${p => p.theme.color.white};
 
   :hover,
   &._hover {
-    background-color: ${p => p.theme.color.blueYonder[100]};
-    color: ${p => p.theme.color.blueYonder[25]};
+    background-color: ${p => p.theme.color.blueYonder};
+    color: ${p => p.theme.color.blueYonder25};
   }
 
   :active,
   &._active {
-    background-color: ${p => p.theme.color.blueYonder[100]};
-    color: ${p => p.theme.color.blueYonder[25]};
+    background-color: ${p => p.theme.color.blueYonder};
+    color: ${p => p.theme.color.blueYonder25};
   }
 
   :disabled,
   &._disabled {
-    background-color: ${p => p.theme.color.blueYonder[100]};
-    color: ${p => p.theme.color.blueYonder[25]};
+    background-color: ${p => p.theme.color.blueYonder};
+    color: ${p => p.theme.color.blueYonder25};
   }
 `

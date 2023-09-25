@@ -37,7 +37,7 @@ const SecondaryDropdownItem = styled(RsuiteDropdown.Item)<{
   :hover {
     background-color: ${p => p.theme.color.cultured};
     border: 1px solid ${p => p.theme.color.lightGray};
-    color: ${p => p.theme.color.blueYonder['100']};
+    color: ${p => p.theme.color.blueYonder};
   }
   &:not(:last-child) {
     margin-bottom: 1px;

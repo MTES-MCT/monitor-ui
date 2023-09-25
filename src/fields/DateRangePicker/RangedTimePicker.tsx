@@ -144,14 +144,14 @@ const Box = styled.div`
 const Option = styled.div<{
   isSelected: boolean
 }>`
-  background-color: ${p => (p.isSelected ? p.theme.color.blueGray[100] : 'transparent')};
+  background-color: ${p => (p.isSelected ? p.theme.color.blueGray : 'transparent')};
   color: ${p => (p.isSelected ? p.theme.color.white : p.theme.color.gunMetal)};
   cursor: pointer;
   line-height: 1;
   padding: 5px 0 7px 6.5px;
 
   :hover {
-    background-color: ${p => (p.isSelected ? p.theme.color.blueGray[100] : p.theme.color.blueYonder[25])};
+    background-color: ${p => (p.isSelected ? p.theme.color.blueGray : p.theme.color.blueYonder25)};
   }
 
   > span {

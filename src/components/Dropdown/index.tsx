@@ -43,14 +43,14 @@ const PrimaryDropdown = styled(RsuiteDropdown)<{
     padding: ${p => (p.$hasIcon ? '4px' : '5px')} 12px ${p => (p.$hasIcon ? '5px' : '7px')};
 
     :hover {
-      background-color: ${p => p.theme.color.blueYonder['100']};
-      border: 1px solid ${p => p.theme.color.blueYonder['100']};
+      background-color: ${p => p.theme.color.blueYonder};
+      border: 1px solid ${p => p.theme.color.blueYonder};
       color: ${p => p.theme.color.white};
     }
 
     :active {
-      background-color: ${p => p.theme.color.blueGray['100']};
-      border: 1px solid ${p => p.theme.color.blueGray['100']};
+      background-color: ${p => p.theme.color.blueGray};
+      border: 1px solid ${p => p.theme.color.blueGray};
       color: ${p => p.theme.color.white};
     }
 
@@ -93,7 +93,7 @@ const SecondaryDropdown = styled(RsuiteDropdown)<{
     :active {
       background-color: transparent;
       border: none;
-      color: ${p => p.theme.color.blueYonder['100']};
+      color: ${p => p.theme.color.blueYonder};
     }
 
     > svg {
