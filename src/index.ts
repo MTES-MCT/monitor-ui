@@ -120,6 +120,7 @@ export { undefine } from './utils/undefine'
 
 export type { PartialTheme, Theme } from './theme'
 export type {
+  CollectionItem,
   Coordinates,
   DateAsStringRange,
   DateRange,

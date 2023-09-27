@@ -1,6 +1,11 @@
+import classnames from 'classnames'
 import styled from 'styled-components'
 
-const Table = styled.table`
+import type { TableHTMLAttributes } from 'react'
+
+const Table = styled.table.attrs<TableHTMLAttributes<HTMLTableElement>>(props => ({
+  className: classnames('Table-SimpleTable', props.className)
+}))`
   width: 100%;
   table-layout: auto;
   overflow: auto;
