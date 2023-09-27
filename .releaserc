@@ -21,8 +21,8 @@
             "release": "patch"
           },
           {
-            "type": "chore",
-            "scope": "deps",
+            "type": "build",
+            "scope": "dev-deps",
             "release": "patch"
           },
           {
@@ -32,6 +32,10 @@
           {
             "type": "feat",
             "release": "minor"
+          },
+          {
+            "type": "perf",
+            "release": "patch"
           },
           {
             "type": "refactor",
@@ -53,7 +57,43 @@
     [
       "@semantic-release/release-notes-generator",
       {
-        "preset": "angular"
+        "preset": "conventionalcommits",
+        "writerOpts": {
+          "types": [
+            {
+              "type": "feat",
+              "section": "Features"
+            },
+            {
+              "type": "perf",
+              "section": "Performance Improvements"
+            },
+            {
+              "type": "fix",
+              "section": "Bug Fixes"
+            },
+            {
+              "type": "revert",
+              "section": "Reverts"
+            },
+            {
+              "type": "docs",
+              "section": "Documentation"
+            },
+            {
+              "type": "style",
+              "section": "Styles"
+            },
+            {
+              "type": "refactor",
+              "section": "Code Refactoring"
+            },
+            {
+              "type": "build",
+              "section": "Dependencies Upgrades"
+            }
+          ]
+        }
       }
     ],
     "@semantic-release/changelog",
