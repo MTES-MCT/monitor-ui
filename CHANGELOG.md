@@ -1,3 +1,10 @@
+# [10.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.0.0...v10.1.0) (2023-09-27)
+
+
+### Features
+
+* **cypress:** add getTableRowById() custom command ([c9ccd60](https://github.com/MTES-MCT/monitor-ui/commit/c9ccd607cd502bb15c3cd61f504ffcd0a0eb878f))
+
 # [10.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v9.4.0...v10.0.0) (2023-09-25)
 
 
