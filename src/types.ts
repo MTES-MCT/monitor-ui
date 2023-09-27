@@ -4,6 +4,10 @@ import type { ItemDataType } from 'rsuite/esm/@types/common'
 // -----------------------------------------------------------------------------
 // Public types
 
+export interface CollectionItem {
+  id: number
+}
+
 export type Coordinates = [number, number]
 
 export type DateRange = [Date, Date]

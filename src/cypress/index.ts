@@ -3,6 +3,7 @@ import { clickOutside } from './commands/clickOutside'
 import { fill } from './commands/fill'
 import { forceClick } from './commands/forceClick'
 import { getDataCy } from './commands/getDataCy'
+import { getTableRowById } from './commands/getTableRowById'
 
 export const registerMonitorUiCustomCommands = () => {
   Cypress.Commands.add('clickButton' as any, { prevSubject: 'optional' } as any, clickButton as any)
@@ -30,6 +31,8 @@ export const registerMonitorUiCustomCommands = () => {
   Cypress.Commands.add('forceClick', { prevSubject: true }, forceClick)
 
   Cypress.Commands.add('getDataCy', getDataCy)
+
+  Cypress.Commands.add('getTableRowById', { prevSubject: 'optional' } as any, getTableRowById)
 }
 
 registerMonitorUiCustomCommands()

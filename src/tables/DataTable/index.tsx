@@ -11,20 +11,14 @@ import { Td } from './Td'
 import { Th } from './Th'
 import { SimpleTable } from '../SimpleTable'
 
-export type DataTableProps<
-  T extends {
-    id: number
-  }
-> = {
+import type { CollectionItem } from '../../types'
+
+export type DataTableProps<T extends CollectionItem> = {
   columns: Array<ColumnDef<T>>
   data: T[] | undefined
   initialSorting: SortingState
 }
-export function DataTable<
-  T extends {
-    id: number
-  }
->({ columns, data, initialSorting }: DataTableProps<T>) {
+export function DataTable<T extends CollectionItem>({ columns, data, initialSorting }: DataTableProps<T>) {
   const [sorting, setSorting] = useState<SortingState>(initialSorting)
 
   const table = useReactTable({
@@ -64,7 +58,7 @@ export function DataTable<
 
               <tbody>
                 {rows.map(row => (
-                  <SimpleTable.BodyTr key={row.id}>
+                  <SimpleTable.BodyTr key={row.id} data-id={row.getValue<number>('id')}>
                     {row.getVisibleCells().map(cell => (
                       <Td key={cell.id} cell={cell} />
                     ))}
