@@ -13,6 +13,21 @@
       2,
       "always",
       1000
+    ],
+    "type-enum": [
+      2,
+      "always",
+      [
+        "build",
+        "ci",
+        "docs",
+        "feat",
+        "fix",
+        "perf",
+        "style",
+        "revert",
+        "test"
+      ]
     ]
   }
 }
