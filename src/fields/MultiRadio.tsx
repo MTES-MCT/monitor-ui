@@ -82,7 +82,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
           <Radio
             key={JSON.stringify(option.value)}
             checked={equals(option.value, value)}
-            disabled={disabled}
+            disabled={option.isDisabled || disabled}
             name={name}
             onChange={(_: any, isChecked: boolean) => handleChange(option.value, isChecked)}
             readOnly={isReadOnly}
