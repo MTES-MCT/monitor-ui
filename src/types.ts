@@ -20,6 +20,7 @@ export type IconProps = SVGProps<SVGSVGElement> & {
 }
 
 export type Option<OptionValue extends OptionValueType = string> = Omit<ItemDataType<string>, 'label' | 'value'> & {
+  isDisabled?: boolean
   label: string
   value: OptionValue
 }
