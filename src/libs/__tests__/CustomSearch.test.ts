@@ -1,6 +1,7 @@
 import { expect } from '@jest/globals'
 
 import { CustomSearch } from '../CustomSearch'
+import { cleanCollectionDiacritics } from '../CustomSearch/utils/cleanCollectionDiacritics'
 
 function shuffle<T = any>(array: T[]): T[] {
   const clonedArray = [...array]
@@ -28,7 +29,7 @@ const TEST_COLLECTION = [
   { code: 'MH', description: 'mémoriser', ignored: 'mémoriser', other: { prop: 'mémoriser' } }
 ]
 
-describe('libs/CustomSearch.cleanCollectionDiacritics()', () => {
+describe('libs/CustomSearch/utils/cleanCollectionDiacritics()', () => {
   it('should return the expected result', () => {
     const keys = [
       {
@@ -39,7 +40,7 @@ describe('libs/CustomSearch.cleanCollectionDiacritics()', () => {
       'other.prop'
     ]
 
-    const result = CustomSearch.cleanCollectionDiacritics(TEST_COLLECTION, keys)
+    const result = cleanCollectionDiacritics(TEST_COLLECTION, keys)
 
     expect(result[0]).toMatchObject({ code: 'ME', description: 'memo', other: { prop: 'memo' } })
   })
