@@ -1,7 +1,8 @@
 import diacritics from 'diacritics'
 import { flow, get, update } from 'lodash/fp'
 
-import type { CustomSearchKey } from '../types'
+import type { CustomSearchKey } from '../libs/CustomSearch/types'
+import type { AnyObject } from '../types'
 
 /**
  * Replace all the diacritics with unaccented letters in a collection, targetting the provided keys.
@@ -27,7 +28,7 @@ import type { CustomSearchKey } from '../types'
  * // => `{ "name": "aerosol", "description": "Un aérosol.", author: { name: 'Camille Hervé' }`
  * ```
  */
-export function cleanCollectionDiacritics<T extends Record<string, any> = Record<string, any>>(
+export function cleanCollectionDiacritics<T extends AnyObject = AnyObject>(
   collection: T[],
   keys: Array<CustomSearchKey<T>>
 ): T[] {

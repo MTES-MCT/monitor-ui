@@ -1,7 +1,7 @@
 import { expect } from '@jest/globals'
 
+import { cleanCollectionDiacritics } from '../../utils/cleanCollectionDiacritics'
 import { CustomSearch } from '../CustomSearch'
-import { cleanCollectionDiacritics } from '../CustomSearch/utils/cleanCollectionDiacritics'
 
 function shuffle<T = any>(array: T[]): T[] {
   const clonedArray = [...array]
@@ -150,5 +150,47 @@ describe('libs/CustomSearch.find()', () => {
 
     expect(result).toHaveLength(2)
     expect(result).toMatchObject([{ name: 'Avec Majuscule' }, { name: 'sans majuscule' }])
+  })
+
+  it('should NOT invalidate cache without `withCacheInvalidation`', () => {
+    const firstCollection = [{ name: 'abc' }, { name: 'def' }]
+    const keys = ['name']
+    const options = {
+      cacheKey: 'TEST_CACHE_KEY'
+    }
+
+    const firstCustomSearch = new CustomSearch(firstCollection, keys, options)
+    const firstResult = firstCustomSearch.find('ghi')
+
+    expect(firstResult).toHaveLength(0)
+
+    const secondCollection = [{ name: 'abc' }, { name: 'def' }, { name: 'ghi' }]
+
+    const secondCustomSearch = new CustomSearch(secondCollection, keys, options)
+    const secondResult = secondCustomSearch.find('ghi')
+
+    expect(secondResult).toHaveLength(0)
+  })
+
+  it('should invalidate cache when enabling `withCacheInvalidation`', () => {
+    const firstCollection = [{ name: 'abc' }, { name: 'def' }]
+    const keys = ['name']
+    const options = {
+      cacheKey: 'TEST_CACHE_KEY',
+      withCacheInvalidation: true
+    }
+
+    const firstCustomSearch = new CustomSearch(firstCollection, keys, options)
+    const firstResult = firstCustomSearch.find('ghi')
+
+    expect(firstResult).toHaveLength(0)
+
+    const secondCollection = [{ name: 'abc' }, { name: 'def' }, { name: 'ghi' }]
+
+    const secondCustomSearch = new CustomSearch(secondCollection, keys, options)
+    const secondResult = secondCustomSearch.find('ghi')
+
+    expect(secondResult).toHaveLength(1)
+    expect(secondResult).toMatchObject([{ name: 'ghi' }])
   })
 })
