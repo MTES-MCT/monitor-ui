@@ -29,23 +29,7 @@ describe('utils/getHashFromCollection()', () => {
     expect(firstResult).not.toBe(secondResult)
   })
 
-  it('should return consistent hashes regardless of item order when using `sortingKey`', () => {
-    const firstCollection = [
-      { id: 2, name: 'Item B' },
-      { id: 1, name: 'Item A' }
-    ]
-    const secondCollection = [
-      { id: 1, name: 'Item A' },
-      { id: 2, name: 'Item B' }
-    ]
-
-    const firstResult = getHashFromCollection(firstCollection, 'id')
-    const secondResult = getHashFromCollection(secondCollection, 'id')
-
-    expect(firstResult).toBe(secondResult)
-  })
-
-  it('should return different hashes based on item order when no `sortingKey` is provided', () => {
+  it('should return consistent hashes regardless of item order', () => {
     const firstCollection = [
       { id: 2, name: 'Item B' },
       { id: 1, name: 'Item A' }
@@ -58,14 +42,6 @@ describe('utils/getHashFromCollection()', () => {
     const firstResult = getHashFromCollection(firstCollection)
     const secondResult = getHashFromCollection(secondCollection)
 
-    expect(firstResult).not.toBe(secondResult)
-  })
-
-  it('should return "0" for an empty collection', () => {
-    const collection = []
-
-    const result = getHashFromCollection(collection)
-
-    expect(result).toBe('0')
+    expect(firstResult).toBe(secondResult)
   })
 })

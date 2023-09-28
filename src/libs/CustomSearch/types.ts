@@ -1,10 +1,20 @@
+import type { AnyCollection } from '../../types'
 import type Fuse from 'fuse.js'
+
+export type CustomSearchCache = Record<string, CustomSearchCacheRecord>
+export type CustomSearchCacheRecord = {
+  fuseSearchIndex: any
+  normalizedCollection: AnyCollection
+  originalCollection: AnyCollection
+  originalCollectionHash: string
+}
 
 export type CustomSearchKey<T> = string | Fuse.FuseOptionKeyObject<T>
 
 export type CustomSearchOptions = Partial<{
   /** Cache search index to avoid Must be unique in the entire application. */
   cacheKey: string | undefined
+
   /**
    * Indicates whether comparisons should be case sensitive.
    *
@@ -12,8 +22,10 @@ export type CustomSearchOptions = Partial<{
    * @see https://fusejs.io/api/options.html#iscasesensitive
    */
   isCaseSensitive: boolean
+
   /** Indicates whether comparisons should be diacritic (= accent) sensitive. */
   isDiacriticSensitive: boolean
+
   /**
    * Use strict keywords matching, disabling fuzziness.
    *
@@ -23,6 +35,7 @@ export type CustomSearchOptions = Partial<{
    * instead of returning both by default (`false`).
    */
   isStrict: boolean
+
   /**
    * By default, location is set to 0 and distance to 100
    * When isStrict is false, for something to be considered a match, it would have to be within
@@ -33,6 +46,7 @@ export type CustomSearchOptions = Partial<{
    * @see https://www.fusejs.io/concepts/scoring-theory.html#scoring-theory
    */
   shouldIgnoreLocation: boolean
+
   /**
    * At what point does the match algorithm give up.
    *
@@ -44,4 +58,7 @@ export type CustomSearchOptions = Partial<{
    * @see https://fusejs.io/api/options.html#threshold
    */
   threshold: number
+
+  /** Invalidate cached index when the collection changes. */
+  withCacheInvalidation: boolean
 }>
