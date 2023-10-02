@@ -64,6 +64,9 @@ export function _Tag(props: TagProps) {
       <Tag bullet={TagBullet.DISK} bulletColor={THEME.color.mediumSeaGreen} {...normalizedProps}>
         A tag with a green bullet
       </Tag>
+      <Tag borderColor={THEME.color.slateGray} {...normalizedProps}>
+        A tag with a border
+      </Tag>
       <Tag
         backgroundColor={THEME.color.maximumRed15}
         color={THEME.color.charcoal}

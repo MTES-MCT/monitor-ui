@@ -12,6 +12,7 @@ export type TagProps = HTMLAttributes<HTMLSpanElement> & {
   Icon?: FunctionComponent<IconProps> | undefined
   accent?: Accent | undefined
   backgroundColor?: string | undefined
+  borderColor?: string | undefined
   bullet?: TagBullet | undefined
   bulletColor?: string | undefined
   isLight?: boolean | undefined
@@ -19,6 +20,7 @@ export type TagProps = HTMLAttributes<HTMLSpanElement> & {
 export function Tag({
   accent,
   backgroundColor,
+  borderColor,
   bullet,
   bulletColor,
   children,
@@ -73,12 +75,13 @@ export function Tag({
       return <TertiaryTag {...commonProps} />
 
     default:
-      return <Box $backgroundColor={backgroundColor} $color={color} {...commonProps} />
+      return <Box $backgroundColor={backgroundColor} $borderColor={borderColor} $color={color} {...commonProps} />
   }
 }
 
 const Box = styled.span<{
   $backgroundColor?: string | undefined
+  $borderColor?: string | undefined
   $color?: string | undefined
   $isLight: boolean
 }>`
@@ -91,6 +94,7 @@ const Box = styled.span<{
 
     return p.$isLight ? p.theme.color.white : 'transparent'
   }};
+  border: ${p => (p.$borderColor ? `1px solid ${p.$borderColor}` : 'none')};
   border-radius: 11px;
   color: ${p => (p.$color ? p.$color : p.theme.color.gunMetal)};
   display: inline-flex;
