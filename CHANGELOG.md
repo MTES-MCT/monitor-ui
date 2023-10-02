@@ -1,3 +1,10 @@
+## [10.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.1.1...v10.2.0) (2023-10-02)
+
+
+### Features
+
+* **field:** add disabled prop on Option type to handle case where only certain options are disabled ([58dc8f8](https://github.com/MTES-MCT/monitor-ui/commit/58dc8f8342dcac01f6d59ca5e05bfc4b05b738a7))
+
 ## [10.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v10.1.0...v10.1.1) (2023-09-27)
 
 # [10.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.0.0...v10.1.0) (2023-09-27)
