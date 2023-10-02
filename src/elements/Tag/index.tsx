@@ -11,12 +11,14 @@ import type { IconProps } from '../../types'
 export type TagProps = HTMLAttributes<HTMLSpanElement> & {
   Icon?: FunctionComponent<IconProps> | undefined
   accent?: Accent | undefined
+  backgroundColor?: string | undefined
   bullet?: TagBullet | undefined
   bulletColor?: string | undefined
   isLight?: boolean | undefined
 }
 export function Tag({
   accent,
+  backgroundColor,
   bullet,
   bulletColor,
   children,
@@ -41,8 +43,9 @@ export function Tag({
 
     return (
       <>
-        {Icon && <Icon size={1} />}
-        {bullet === TagBullet.DISK && <Disk $color={controlledBulletColor} />}
+        {/* Refactor when bullet will be a real icon */}
+        {Icon && !bullet && <Icon size={16} />}
+        {bullet === TagBullet.DISK && !Icon && <Disk $color={controlledBulletColor} />}
 
         {children}
       </>
@@ -70,16 +73,24 @@ export function Tag({
       return <TertiaryTag {...commonProps} />
 
     default:
-      return <Box $color={color} {...commonProps} />
+      return <Box $backgroundColor={backgroundColor} $color={color} {...commonProps} />
   }
 }
 
 const Box = styled.span<{
+  $backgroundColor?: string | undefined
   $color?: string | undefined
   $isLight: boolean
 }>`
-  align-items: center;
-  background-color: ${p => (p.$isLight ? p.theme.color.white : 'transparent')};
+  align-items: end;
+  align-self: flex-start;
+  background-color: ${p => {
+    if (p.$backgroundColor) {
+      return p.$backgroundColor
+    }
+
+    return p.$isLight ? p.theme.color.white : 'transparent'
+  }};
   border-radius: 11px;
   color: ${p => (p.$color ? p.$color : p.theme.color.gunMetal)};
   display: inline-flex;
@@ -111,7 +122,7 @@ export const PrimaryTag = styled(Box)<{
 export const SecondaryTag = styled(Box)<{
   $isLight: boolean
 }>`
-  background-color: ${p => (p.$isLight ? '#f6d012' : '#f6d012')};
+  background-color: ${p => (p.$isLight ? p.theme.color.goldenPoppy : p.theme.color.goldenPoppy)};
   color: ${p => p.theme.color.gunMetal};
 `
 
