@@ -1,3 +1,11 @@
+## [10.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v10.2.0...v10.2.1) (2023-10-03)
+
+
+### Bug Fixes
+
+* **elements:** add backgroundColor prop and fix icon size in Tag component ([f58b3f4](https://github.com/MTES-MCT/monitor-ui/commit/f58b3f42746286b9a27b04018101e4cd2f2263f6))
+* **elements:** add borderColor prop in Tag component ([1d54f61](https://github.com/MTES-MCT/monitor-ui/commit/1d54f61d80f2fc1224bcd69fe0e775dda33fbc06))
+
 ## [10.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.1.1...v10.2.0) (2023-10-02)
 
 
