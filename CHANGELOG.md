@@ -1,3 +1,10 @@
+## [10.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.2.1...v10.3.0) (2023-10-05)
+
+
+### Features
+
+* **theme:** add goldenPoppy25 ([ecc4220](https://github.com/MTES-MCT/monitor-ui/commit/ecc4220a383ddb9fd33372a7df16c625ae04f88e))
+
 ## [10.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v10.2.0...v10.2.1) (2023-10-03)
 
 
