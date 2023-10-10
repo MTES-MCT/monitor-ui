@@ -1,3 +1,10 @@
+## [10.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v10.3.0...v10.3.1) (2023-10-10)
+
+
+### Bug Fixes
+
+* **theme:** update goldenPoppy25 ([bb4901f](https://github.com/MTES-MCT/monitor-ui/commit/bb4901ff2a4e19919975540c4be3f2f662969fe8))
+
 ## [10.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.2.1...v10.3.0) (2023-10-05)
 
 
