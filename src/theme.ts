@@ -34,7 +34,7 @@ export const THEME = {
     // Notification Colors
     mediumSeaGreen: '#29B361',
     goldenPoppy: '#FAC11A',
-    goldenPoppy25: '#FAC11A',
+    goldenPoppy25: '#FAC11A40',
 
     /** CONTEXTUAL COLORS */
 
