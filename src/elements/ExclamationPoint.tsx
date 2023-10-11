@@ -1,9 +1,10 @@
-import { HTMLAttributes } from 'react'
 import styled from 'styled-components'
 
+import type { HTMLAttributes } from 'react'
+
 export type ExclamationPointProps = HTMLAttributes<HTMLSpanElement> & {
-  backgroundColor?: string
-  color?: string
+  backgroundColor?: string | undefined
+  color?: string | undefined
 }
 export const ExclamationPoint = styled.span<ExclamationPointProps>`
   background: ${p => p.backgroundColor || p.theme.color.goldenPoppy};
