@@ -13,7 +13,7 @@ const args: SingleTagProps = {
 }
 
 const meta: Meta<SingleTagProps> = {
-  title: 'Components/SingleTag',
+  title: 'Elements/SingleTag',
   component: SingleTag,
 
   argTypes: {},
