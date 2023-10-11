@@ -2,8 +2,8 @@ import classnames from 'classnames'
 import { type HTMLAttributes, useCallback } from 'react'
 import styled from 'styled-components'
 
+import { IconButton } from './IconButton'
 import { Accent } from '../constants'
-import { IconButton } from '../elements/IconButton'
 import { Close } from '../icons'
 
 import type { Promisable } from 'type-fest'
