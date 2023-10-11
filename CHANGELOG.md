@@ -1,3 +1,15 @@
+## [10.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.3.1...v10.4.0) (2023-10-11)
+
+
+### Features
+
+* **components:** add message component ([ee05bc1](https://github.com/MTES-MCT/monitor-ui/commit/ee05bc1ac50185c105560107850213973dd2d741))
+
+
+### Bug Fixes
+
+* **components:** fix ts types ([49ed263](https://github.com/MTES-MCT/monitor-ui/commit/49ed2637efa16262e4f06401cdf1adc2d2667b4b))
+
 ## [10.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v10.3.0...v10.3.1) (2023-10-10)
 
 
