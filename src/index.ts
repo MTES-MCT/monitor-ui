@@ -8,7 +8,7 @@ import 'dayjs/plugin/timezone'
 import 'dayjs/plugin/updateLocale'
 import 'dayjs/plugin/utc'
 
-export { Accent, CoordinatesFormat, Size, OPENLAYERS_PROJECTION, TagBullet, WSG84_PROJECTION } from './constants'
+export { Accent, Level, CoordinatesFormat, Size, OPENLAYERS_PROJECTION, TagBullet, WSG84_PROJECTION } from './constants'
 export { GlobalStyle } from './GlobalStyle'
 export { OnlyFontGlobalStyle } from './OnlyFontGlobalStyle'
 export { THEME } from './theme'
@@ -36,7 +36,6 @@ export { Label } from './elements/Label'
 export { Legend } from './elements/Legend'
 export { Tag } from './elements/Tag'
 export { TagGroup } from './elements/TagGroup'
-export { ExclamationPoint } from './elements/ExclamationPoint'
 
 export { Search } from './fields/Search'
 export { Checkbox } from './fields/Checkbox'
@@ -67,6 +66,8 @@ export { FormikTextarea } from './formiks/FormikTextarea'
 export { FormikTextInput } from './formiks/FormikTextInput'
 
 export * as Icon from './icons'
+
+export { ExclamationPoint } from './symbols/ExclamationPoint'
 
 /* -----------------------------------------------------------------------------
   Hooks
@@ -152,7 +153,7 @@ export type { LabelProps } from './elements/Label'
 export type { LegendProps } from './elements/Legend'
 export type { TagProps } from './elements/Tag'
 export type { TagGroupProps } from './elements/TagGroup'
-export type { ExclamationPointProps } from './elements/ExclamationPoint'
+export type { ExclamationPointProps } from './symbols/ExclamationPoint'
 
 export type { SearchProps } from './fields/Search'
 export type { CheckboxProps } from './fields/Checkbox'

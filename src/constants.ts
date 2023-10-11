@@ -4,6 +4,13 @@ export enum Accent {
   TERTIARY = 'TERTIARY'
 }
 
+export enum Level {
+  ERROR = 'ERROR',
+  INFO = 'INFO',
+  SUCCESS = 'SUCCESS',
+  WARNING = 'WARNING'
+}
+
 export enum CoordinatesFormat {
   DECIMAL_DEGREES = 'DD',
   DEGREES_MINUTES_DECIMALS = 'DMD',

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { Message } from '../../src'
+import { Level, Message } from '../../src'
 
 import type { MessageProps } from '../../src'
 import type { Meta } from '@storybook/react'
@@ -26,7 +26,7 @@ export default meta
 export function _Message(props: MessageProps) {
   return (
     <StyledContainer>
-      <Message {...props} />
+      <Message level={Level.WARNING} {...props} />
       <Message {...props}>
         A very very very very very very very very very very very very very very very long text
       </Message>

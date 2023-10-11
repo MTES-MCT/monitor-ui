@@ -1,29 +1,32 @@
 import { type HTMLAttributes } from 'react'
 import styled from 'styled-components'
 
-import { ExclamationPoint } from '../elements/ExclamationPoint'
+import { Level } from '../constants'
+import { ExclamationPoint } from '../symbols/ExclamationPoint'
+import { THEME } from '../theme'
 
 export type MessageProps = HTMLAttributes<HTMLDivElement> & {
-  backgroundColor?: string | undefined
   children?: string | undefined
-  color?: string | undefined
-  iconBackgroundColor?: string | undefined
-  iconColor?: string | undefined
+  level?: Level | undefined
 }
-export function Message({
-  backgroundColor,
-  children,
-  color,
-  iconBackgroundColor,
-  iconColor,
-  ...nativeProps
-}: MessageProps) {
-  return (
-    <Box backgroundColor={backgroundColor} color={color} {...nativeProps}>
-      <StyledExclamationPoint backgroundColor={iconBackgroundColor} color={iconColor} />
-      <Text>{children}</Text>
-    </Box>
-  )
+export function Message({ children, level = Level.WARNING, ...nativeProps }: MessageProps) {
+  switch (level) {
+    case Level.WARNING:
+      return (
+        <Box backgroundColor={THEME.color.goldenPoppy25} color={THEME.color.slateGray} {...nativeProps}>
+          <StyledExclamationPoint backgroundColor={THEME.color.goldenPoppy} color={THEME.color.white} />
+          <Text>{children}</Text>
+        </Box>
+      )
+
+    default:
+      return (
+        <Box backgroundColor={THEME.color.goldenPoppy25} color={THEME.color.slateGray} {...nativeProps}>
+          <StyledExclamationPoint backgroundColor={THEME.color.goldenPoppy} color={THEME.color.white} />
+          <Text>{children}</Text>
+        </Box>
+      )
+  }
 }
 
 const Text = styled.div`
