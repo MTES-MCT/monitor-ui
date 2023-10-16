@@ -36,7 +36,7 @@ context('Story', () => {
     cy.get('div[data-cy-root=""]').getTableRowById(5).should('not.contain', 'George')
   })
 
-  it('Should find the matching last name using `cy.getTableRowById()` within a previous subject', () => {
+  it('Should find the matching last name using `cy.getTableRowByText()` within a previous subject', () => {
     mountAndWait(
       <GlobalDecoratorWrapper>
         <DataTableStory {...dataTableProps} />
