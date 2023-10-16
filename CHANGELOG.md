@@ -1,3 +1,10 @@
+## [10.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.4.0...v10.5.0) (2023-10-16)
+
+
+### Features
+
+* **cypress:** add cy.getTableRowByText() command ([944c010](https://github.com/MTES-MCT/monitor-ui/commit/944c0108073d1ff070fa417a0c0399f14a0ceb57))
+
 ## [10.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.3.1...v10.4.0) (2023-10-11)
 
 
