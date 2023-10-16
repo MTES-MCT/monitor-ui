@@ -25,6 +25,7 @@ declare namespace Cypress {
     forceClick(): Chainable<JQuery<HTMLElement>>
     getDataCy(dataCy: string): Chainable<JQuery<HTMLElement>>
     getTableRowById(id: number): Chainable<JQuery<HTMLElement>>
+    getTableRowByText(text: string): Chainable<JQuery<HTMLElement>>
   }
 
   type DateTuple = [number, number, number]

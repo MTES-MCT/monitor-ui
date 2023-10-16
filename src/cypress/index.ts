@@ -4,6 +4,7 @@ import { fill } from './commands/fill'
 import { forceClick } from './commands/forceClick'
 import { getDataCy } from './commands/getDataCy'
 import { getTableRowById } from './commands/getTableRowById'
+import { getTableRowByText } from './commands/getTableRowByText'
 
 export const registerMonitorUiCustomCommands = () => {
   Cypress.Commands.add('clickButton' as any, { prevSubject: 'optional' } as any, clickButton as any)
@@ -32,7 +33,23 @@ export const registerMonitorUiCustomCommands = () => {
 
   Cypress.Commands.add('getDataCy', getDataCy)
 
+  /**
+   * @example
+   * ```ts
+   *   cy.getTableRowById(42)
+   *   cy.getDataCy('my-list').getTableRowByText(42).clickButton('Edit')
+   * ```
+   */
   Cypress.Commands.add('getTableRowById', { prevSubject: 'optional' } as any, getTableRowById)
+
+  /**
+   * @example
+   * ```ts
+   *   cy.getTableRowByText('First Row Name')
+   *   cy.getDataCy('my-list').getTableRowByText('First Row Name').clickButton('Edit')
+   * ```
+   */
+  Cypress.Commands.add('getTableRowByText', { prevSubject: 'optional' } as any, getTableRowByText)
 }
 
 registerMonitorUiCustomCommands()
