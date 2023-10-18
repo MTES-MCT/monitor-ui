@@ -1,3 +1,10 @@
+## [10.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.5.0...v10.6.0) (2023-10-18)
+
+
+### Features
+
+* **icons:** add Car ([8bc41e3](https://github.com/MTES-MCT/monitor-ui/commit/8bc41e30ddd50b23751049416062eb2716789386))
+
 ## [10.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.4.0...v10.5.0) (2023-10-16)
 
 
