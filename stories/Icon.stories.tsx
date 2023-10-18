@@ -66,6 +66,12 @@ export function _Icon(props: IconProps) {
       </Cell>
       <Cell>
         <IconBox>
+          <Icon.Car {...props} />
+        </IconBox>
+        <Code>Car</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
           <Icon.Calendar {...props} />
         </IconBox>
         <Code>Calendar</Code>
