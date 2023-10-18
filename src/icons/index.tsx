@@ -4,6 +4,7 @@ import { Anchor } from './Anchor'
 import { Archive } from './Archive'
 import { Attention } from './Attention'
 import { Calendar } from './Calendar'
+import { Car } from './Car'
 import { Check } from './Check'
 import { Chevron } from './Chevron'
 import { Clock } from './Clock'
@@ -88,6 +89,7 @@ export {
   Archive,
   Attention,
   Calendar,
+  Car,
   Check,
   Chevron,
   Clock,
