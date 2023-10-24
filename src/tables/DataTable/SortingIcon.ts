@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { Chevron } from '../../icons'
 
-export const SortingIcon = styled(Chevron)<{
+export const SortingIcon = styled(Chevron as any)<{
   $isDescending?: boolean
 }>`
   cursor: pointer;

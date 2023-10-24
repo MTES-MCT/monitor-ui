@@ -97,7 +97,7 @@ export function CoordinatesInput({
   )
 }
 
-const StyledFieldset = styled(Fieldset)`
+const StyledFieldset = styled(Fieldset as any)`
   input {
     background-color: ${p => (p.isLight ? p.theme.color.white : p.theme.color.gainsboro)};
     border: ${p => (p.isLight ? `1px solid ${p.theme.color.lightGray}` : 'none')};

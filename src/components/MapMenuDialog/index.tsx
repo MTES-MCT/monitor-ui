@@ -33,11 +33,11 @@ const Body = styled.div`
   padding: 12px;
 `
 
-const VisibilityButton = styled(IconButton)`
+const VisibilityButton = styled(IconButton as any)`
   background-color: ${p => p.theme.color.gainsboro};
 `
 
-const CloseButton = styled(IconButton)`
+const CloseButton = styled(IconButton as any)`
   color: white;
 `
 

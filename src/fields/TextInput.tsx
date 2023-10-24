@@ -108,7 +108,7 @@ const PADDING_WITH_ICON: Record<Size, string> = {
   [Size.NORMAL]: '3px 38px 6px 8px',
   [Size.SMALL]: '3px 38px 6px 8px'
 }
-const StyledInput = styled(Input)<{
+const StyledInput = styled(Input as any)<{
   $hasError: boolean
   $hasIcon: boolean
   $isLight: boolean

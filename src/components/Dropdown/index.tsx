@@ -30,7 +30,7 @@ function RawDropdown({ accent, className, Icon, ...originalProps }: DropdownProp
 }
 
 // TODO We need to split into multiple styled components as done in `<Button />`.
-const PrimaryDropdown = styled(RsuiteDropdown)<{
+const PrimaryDropdown = styled(RsuiteDropdown as any)<{
   $hasIcon: boolean
 }>`
   .rs-btn {
@@ -81,7 +81,7 @@ const PrimaryDropdown = styled(RsuiteDropdown)<{
   }
 `
 
-const SecondaryDropdown = styled(RsuiteDropdown)<{
+const SecondaryDropdown = styled(RsuiteDropdown as any)<{
   $hasIcon: boolean
 }>`
   .rs-btn {

@@ -208,7 +208,7 @@ export function Search<OptionValue extends OptionValueType = string>({
   )
 }
 
-const StyledCloseButton = styled(IconButton)<{
+const StyledCloseButton = styled(IconButton as any)<{
   isSearchIconVisible: boolean
 }>`
   cursor: pointer;
@@ -218,7 +218,7 @@ const StyledCloseButton = styled(IconButton)<{
   width: 30px;
 `
 
-const StyledIconSearch = styled(SearchIcon)`
+const StyledIconSearch = styled(SearchIcon as any)`
   margin: 10px 10px 10px 8px;
 `
 
@@ -230,7 +230,7 @@ const Separator = styled.div`
   font-size: 20.5px;
 `
 
-const StyledAutoComplete = styled(RsuiteAutoComplete)<{
+const StyledAutoComplete = styled(RsuiteAutoComplete as any)<{
   $isLight: boolean
 }>`
   font-size: 13px;

@@ -66,7 +66,7 @@ export function Checkbox({
   )
 }
 
-const StyledCheckbox = styled(RsuiteCheckbox)`
+const StyledCheckbox = styled(RsuiteCheckbox as any)`
   > .rs-checkbox-checker {
     min-height: 0;
     padding-left: 28px;

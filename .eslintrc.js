@@ -220,6 +220,8 @@ module.exports = {
 
         'import/no-default-export': 'off',
 
+        'jsx-a11y/control-has-associated-label': 'off',
+
         'react/destructuring-assignment': 'off',
         'react/function-component-definition': 'off',
 

@@ -204,7 +204,7 @@ export function Select<OptionValue extends OptionValueType = string>({
   )
 }
 
-const StyledSelectPicker = styled(SelectPicker)<{
+const StyledSelectPicker = styled(SelectPicker as any)<{
   $isLight: boolean
 }>`
   > .rs-picker-toggle {

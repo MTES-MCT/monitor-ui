@@ -15,7 +15,7 @@ export function Button({ Icon, isActive, title, ...originalProps }: SideMenuButt
   return <MenuButton $isActive={isActive} Icon={Icon} iconSize={26} role="menuitem" title={title} {...originalProps} />
 }
 
-const MenuButton = styled(IconButton)<{
+const MenuButton = styled(IconButton as any)<{
   $isActive?: boolean
 }>`
   animation: none;
