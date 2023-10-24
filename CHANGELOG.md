@@ -1,3 +1,11 @@
+## [10.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.6.0...v10.7.0) (2023-10-24)
+
+
+### Features
+
+* **libs:** add withCacheInvalidation option in CustomSearch ([537f8c4](https://github.com/MTES-MCT/monitor-ui/commit/537f8c487f96c903d2b0e7b3ad4cafae7e734f0a))
+* **utils:** add getHashFromCollection() ([b3ea1b6](https://github.com/MTES-MCT/monitor-ui/commit/b3ea1b6eff17cdf6eb8f28e6233488e44fa3d4ea))
+
 ## [10.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.5.0...v10.6.0) (2023-10-18)
 
 
