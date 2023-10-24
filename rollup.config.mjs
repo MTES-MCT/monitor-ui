@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import typescript from '@rollup/plugin-typescript'
 import url from '@rollup/plugin-url'
+import nodePolyfills from 'rollup-plugin-node-polyfills'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 
 export default [
@@ -32,6 +33,8 @@ export default [
       }),
       // Convert CommonJS to ES6:
       commonjs(),
+      // Polyfill Node.js modules:
+      nodePolyfills(),
       // Transpile TS & TSX to JS:
       typescript({
         tsconfig: './tsconfig.dist.json'
