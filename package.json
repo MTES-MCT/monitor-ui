@@ -168,5 +168,5 @@
       "bash -c 'npm run test:type'"
     ]
   },
-  "packageManager": "yarn@3.4.1"
+  "packageManager": "yarn@4.0.0"
 }
