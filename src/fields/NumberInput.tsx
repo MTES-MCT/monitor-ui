@@ -118,7 +118,7 @@ export function NumberInput({
   )
 }
 
-const StyledInput = styled(Input)<{
+const StyledInput = styled(Input as any)<{
   $hasError: boolean
   $isLight: boolean
 }>`

@@ -58,7 +58,7 @@ const PrimaryText = styled.span`
   white-space: nowrap;
 `
 
-const PrimaryIconButton = styled(IconButton)`
+const PrimaryIconButton = styled(IconButton as any)`
   background-color: ${p => p.theme.color.lightGray};
   margin-left: 1px;
   padding: 7px;

@@ -26,7 +26,7 @@ export function Item({ accent, Icon, ...originalProps }: DropdownItemProps) {
 }
 
 // TODO We need to split that into multiple styled components as done in `<Button />`.
-const SecondaryDropdownItem = styled(RsuiteDropdown.Item)<{
+const SecondaryDropdownItem = styled(RsuiteDropdown.Item as any)<{
   $hasIcon: boolean
 }>`
   background-color: ${p => p.theme.color.cultured};
@@ -43,7 +43,7 @@ const SecondaryDropdownItem = styled(RsuiteDropdown.Item)<{
     margin-bottom: 1px;
   }
 `
-const PrimaryDropdownItem = styled(RsuiteDropdown.Item)<{
+const PrimaryDropdownItem = styled(RsuiteDropdown.Item as any)<{
   $hasIcon: boolean
 }>`
   align-items: center;
