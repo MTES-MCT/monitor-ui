@@ -149,7 +149,7 @@ dist
 # Storybook
 /storybook-static/
 
-# Yarn with Zero-Installs
+# Yarn without Zero-Installs
 # https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
 .yarn/*
 !.yarn/cache
