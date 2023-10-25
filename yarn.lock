@@ -3465,7 +3465,7 @@ __metadata:
     eslint-plugin-sort-keys-fix: "npm:1.1.2"
     eslint-plugin-typescript-sort-keys: "npm:2.3.0"
     file-loader: "npm:6.2.0"
-    formik: "npm:2.4.2"
+    formik: "npm:2.4.5"
     fuse.js: "npm:6.6.2"
     gh-pages: "npm:6.0.0"
     glob: "npm:10.3.3"
@@ -6778,7 +6778,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/hoist-non-react-statics@npm:*":
+"@types/hoist-non-react-statics@npm:*, @types/hoist-non-react-statics@npm:^3.3.1":
   version: 3.3.4
   resolution: "@types/hoist-non-react-statics@npm:3.3.4"
   dependencies:
@@ -12532,10 +12532,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"formik@npm:2.4.2":
-  version: 2.4.2
-  resolution: "formik@npm:2.4.2"
+"formik@npm:2.4.5":
+  version: 2.4.5
+  resolution: "formik@npm:2.4.5"
   dependencies:
+    "@types/hoist-non-react-statics": "npm:^3.3.1"
     deepmerge: "npm:^2.1.1"
     hoist-non-react-statics: "npm:^3.3.0"
     lodash: "npm:^4.17.21"
@@ -12545,7 +12546,7 @@ __metadata:
     tslib: "npm:^2.0.0"
   peerDependencies:
     react: ">=16.8.0"
-  checksum: ef17db09ba54d1bc30989e5797a07dc9335388c76235616e10d16b3a8acf33efa0f7f742e66179f910c84c8734a5103ac7dc67c778666a4088e8b1efd53f84b3
+  checksum: 61f0d9eb092edd122f0d2988ca3d0a01073bde38af977e96ba9818382dc1fefd4cdb016cd61f08443055a748bbbbe2a95347d4528b81cc5c1c6f75865fc84927
   languageName: node
   linkType: hard
 
