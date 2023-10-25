@@ -2,8 +2,9 @@ import { useRef, useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
+import { LOREM_IPSUM } from '../../../.storybook/constants'
 import SPECIES from '../../../.storybook/data/species.json'
-import { MultiSelect, type MultiSelectProps, useFieldControl, CustomSearch } from '../../../src'
+import { useFieldControl, CustomSearch, CheckPicker, type CheckPickerProps } from '../../../src'
 
 import type { Meta } from '@storybook/react'
 
@@ -12,25 +13,29 @@ type Specy = {
   name: string
 }
 
-const args: MultiSelectProps<Specy> = {
+const args: CheckPickerProps<{}> = {
   disabled: false,
   error: '',
   isErrorMessageHidden: false,
   isLabelHidden: false,
   isLight: false,
-  label: 'A multiple select',
-  name: 'myMultiSelect',
-  options: [],
-  optionValueKey: 'code',
+  label: 'A check picker',
+  name: 'myCheckPicker',
+  options: [
+    { label: 'First Option', value: 'FIRST_OPTION' },
+    { label: 'Second Option', value: 'SECOND_OPTION' },
+    { label: 'Third Option', value: 'THIRD_OPTION' },
+    { label: LOREM_IPSUM, value: 'LOREM_IPSUM' }
+  ],
   placeholder: 'Pick some options',
   searchable: true,
-  value: undefined,
-  virtualized: true
+  value: [],
+  virtualized: false
 }
 
 const meta: Meta<{}> = {
-  title: 'Fields/MultiSelect',
-  component: MultiSelect,
+  title: 'Fields/CheckPicker',
+  component: CheckPicker as any,
 
   argTypes: {
     value: {
@@ -47,9 +52,10 @@ const meta: Meta<{}> = {
     })
   ]
 }
+
 export default meta
 
-export function MultiSelectWithCustomSearch(props: MultiSelectProps<Specy>) {
+export function CheckPickerWithCustomSearch(props: CheckPickerProps<Specy>) {
   const optionsRef = useRef(
     (SPECIES as Specy[]).map(specy => ({
       label: `${specy.code} - ${specy.name}`,
@@ -79,11 +85,12 @@ export function MultiSelectWithCustomSearch(props: MultiSelectProps<Specy>) {
 
   return (
     <>
-      <MultiSelect
+      <CheckPicker
         {...props}
         customSearch={customSearchRef.current}
         onChange={controlledOnChange}
         options={optionsRef.current}
+        optionValueKey="code"
         value={controlledValue}
       />
       <div>
