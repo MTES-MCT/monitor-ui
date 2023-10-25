@@ -3531,7 +3531,7 @@ __metadata:
     react: ^18.0.0
     react-router-dom: ^6.0.0
     rsuite: ^5.37.0
-    styled-components: ^5.0.0
+    styled-components: ^5.0.0 || ^6.0.0
   languageName: unknown
   linkType: soft
 
