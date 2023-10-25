@@ -11,13 +11,13 @@ import { useKey } from '../hooks/useKey'
 import { type CustomSearch } from '../libs/CustomSearch'
 import { type Option, type OptionValueType } from '../types'
 import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
-import { getRsuiteValueFromOptionValue } from '../utils/getRsuiteValueFromOptionValue'
+import { getRsuiteValuesFromOptionValues } from '../utils/getRsuiteValuesFromOptionValues'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Promisable } from 'type-fest'
 
-export type CheckPickerProps<OptionValue extends OptionValueType> = Omit<
-  RsuiteCheckPickerProps<OptionValue>,
+export type CheckPickerProps<OptionValue extends OptionValueType = string> = Omit<
+  RsuiteCheckPickerProps<string>,
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'open' | 'renderMenuItem' | 'value'
 > & {
   customSearch?: CustomSearch<Option<OptionValue>> | undefined
@@ -33,7 +33,7 @@ export type CheckPickerProps<OptionValue extends OptionValueType> = Omit<
   onChange?: ((nextValue: OptionValue[] | undefined) => Promisable<void>) | undefined
   optionValueKey?: keyof OptionValue | undefined
   options: Option<OptionValue>[]
-  value: OptionValue[]
+  value?: OptionValue[] | undefined
 }
 export function CheckPicker<OptionValue extends OptionValueType = string>({
   className,
@@ -65,7 +65,7 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([disabled, originalProps.name])
   const selectedRsuiteValue = useMemo(
-    () => value?.map(valueItem => getRsuiteValueFromOptionValue(valueItem, optionValueKey)).filter(Boolean),
+    () => getRsuiteValuesFromOptionValues(value, optionValueKey),
     [optionValueKey, value]
   )
 
@@ -85,7 +85,7 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
   )
 
   const handleChange = useCallback(
-    (nextOptionRsuiteValues: string[] | null) => {
+    (nextOptionRsuiteValues: string[]) => {
       if (!onChange) {
         return
       }
@@ -198,34 +198,6 @@ const Box = styled.div<{
           .rs-picker-toggle-clean,
           .rs-picker-toggle-caret {
             top: 5px;
-          }
-        }
-      }
-    }
-  }
-
-  > .rs-picker-menu {
-    max-width: 100%;
-    > .rs-picker-check-menu {
-      padding-top: 6px;
-      margin: 0;
-
-      > div[role='option'] {
-        > .rs-check-item {
-          > .rs-checkbox-checker {
-            > label {
-              font-size: 13px;
-              line-height: 1.3846;
-              overflow: hidden;
-              padding: 8px 12px 8px 38px;
-              text-overflow: ellipsis;
-              white-space: nowrap;
-
-              > .rs-checkbox-wrapper {
-                left: 12px;
-                top: 10px !important;
-              }
-            }
           }
         }
       }
