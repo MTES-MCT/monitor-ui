@@ -3456,7 +3456,7 @@ __metadata:
     eslint-plugin-import: "npm:2.27.5"
     eslint-plugin-jest: "npm:27.2.3"
     eslint-plugin-jsx-a11y: "npm:6.7.1"
-    eslint-plugin-mocha: "npm:10.1.0"
+    eslint-plugin-mocha: "npm:10.2.0"
     eslint-plugin-no-null: "npm:1.0.2"
     eslint-plugin-prettier: "npm:4.2.1"
     eslint-plugin-react: "npm:7.32.2"
@@ -11490,15 +11490,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-mocha@npm:10.1.0":
-  version: 10.1.0
-  resolution: "eslint-plugin-mocha@npm:10.1.0"
+"eslint-plugin-mocha@npm:10.2.0":
+  version: 10.2.0
+  resolution: "eslint-plugin-mocha@npm:10.2.0"
   dependencies:
     eslint-utils: "npm:^3.0.0"
-    rambda: "npm:^7.1.0"
+    rambda: "npm:^7.4.0"
   peerDependencies:
     eslint: ">=7.0.0"
-  checksum: 0912bf04d7e61ce2e61ef8a3dc52bd05672b2e2e131cd42c60a08d33045891f89773ddb2344c7e115ebc34f2546a24b3bffb2a20a8b52ca3cee3f7bc3ecb4757
+  checksum: 21d661a4eae812b04c5b43cd15bc5a19e1baf7d1394727a948e0ffcb3b7cc3d4850aacf0fa50ac9e473b098d6e7dd8b3b42dbe9bdd4a82e8b765c9804a9d92c6
   languageName: node
   linkType: hard
 
@@ -19244,7 +19244,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rambda@npm:^7.1.0":
+"rambda@npm:^7.4.0":
   version: 7.5.0
   resolution: "rambda@npm:7.5.0"
   checksum: 7285b60cfc0737394dda6d467ef65a97221f9e208041d212378d78264d17acd372e09070f570af821314a9243b4edf465cbb5e15297ad44e484eac10535b8920
