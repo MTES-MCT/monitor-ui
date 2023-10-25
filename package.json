@@ -146,7 +146,7 @@
     "semantic-release": "21.1.1",
     "storybook": "7.0.27",
     "storybook-addon-performance": "0.17.1",
-    "styled-components": "5.3.10",
+    "styled-components": "6.1.0",
     "ts-loader": "9.4.2",
     "type-fest": "3.12.0",
     "typescript": "5.1.6",
