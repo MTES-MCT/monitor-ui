@@ -1,3 +1,17 @@
+## [10.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.7.0...v10.8.0) (2023-10-25)
+
+
+### Features
+
+* extend styled-components to v6 in peer deps ([440bd78](https://github.com/MTES-MCT/monitor-ui/commit/440bd7821639b55e7a23f276869cd890109af714))
+
+
+### Bug Fixes
+
+* **build:** migrate to SWC with full ESM ([9854e11](https://github.com/MTES-MCT/monitor-ui/commit/9854e1179ade9805e081faa68db93398188c4d91))
+* fix styled-components related types ([209a3bf](https://github.com/MTES-MCT/monitor-ui/commit/209a3bf07a85238f6da5bee8a7712021fb88bbfe))
+* **formiks:** return undefined in FormikCheckbox handleChange() ([369035d](https://github.com/MTES-MCT/monitor-ui/commit/369035dbb69062b84d1098ed4660479918e3ff8e))
+
 ## [10.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.6.0...v10.7.0) (2023-10-24)
 
 
