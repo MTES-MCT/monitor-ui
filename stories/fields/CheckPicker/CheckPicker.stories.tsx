@@ -1,21 +1,21 @@
 import { useState } from 'react'
+import styled from 'styled-components'
 
 import { Output } from '../../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
 import { LOREM_IPSUM } from '../../../.storybook/constants'
-import { MultiSelect, useFieldControl } from '../../../src'
+import { CheckPicker, useFieldControl, type CheckPickerProps } from '../../../src'
 
-import type { MultiSelectProps } from '../../../src'
 import type { Meta } from '@storybook/react'
 
-const args: MultiSelectProps = {
+const args: CheckPickerProps<{}> = {
   disabled: false,
   error: '',
   isErrorMessageHidden: false,
   isLabelHidden: false,
   isLight: false,
-  label: 'A multiple select',
-  name: 'myMultiSelect',
+  label: 'A check picker',
+  name: 'myCheckPicker',
   options: [
     { label: 'First Option', value: 'FIRST_OPTION' },
     { label: 'Second Option', value: 'SECOND_OPTION' },
@@ -24,13 +24,13 @@ const args: MultiSelectProps = {
   ],
   placeholder: 'Pick some options',
   searchable: true,
-  value: undefined,
+  value: [],
   virtualized: false
 }
 
 const meta: Meta<{}> = {
-  title: 'Fields/MultiSelect',
-  component: MultiSelect,
+  title: 'Fields/CheckPicker',
+  component: CheckPicker as any,
 
   argTypes: {
     value: {
@@ -47,18 +47,32 @@ const meta: Meta<{}> = {
     })
   ]
 }
+
 export default meta
 
-export function _MultiSelect(props: MultiSelectProps) {
+export function _CheckPicker(props: CheckPickerProps<string>) {
   const [outputValue, setOutputValue] = useState<string[] | undefined | '∅'>('∅')
 
   const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
 
   return (
     <>
-      <MultiSelect {...props} onChange={controlledOnChange} value={controlledValue} />
-
+      <Container>
+        <CheckPicker
+          {...props}
+          onChange={controlledOnChange}
+          // renderValue={() => <OptionValue>coucou</OptionValue>}
+          style={{ width: '300px' }}
+          value={controlledValue}
+        />
+      </Container>
       {outputValue !== '∅' && <Output value={outputValue} />}
     </>
   )
 }
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+`
