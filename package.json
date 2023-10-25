@@ -110,7 +110,7 @@
     "eslint-plugin-sort-keys-fix": "1.1.2",
     "eslint-plugin-typescript-sort-keys": "2.3.0",
     "file-loader": "6.2.0",
-    "formik": "2.4.2",
+    "formik": "2.4.5",
     "fuse.js": "6.6.2",
     "gh-pages": "6.0.0",
     "glob": "10.3.3",
