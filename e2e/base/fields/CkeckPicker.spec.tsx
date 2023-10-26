@@ -1,6 +1,6 @@
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
-import { CustomSearch, type MultiSelectProps } from '../../../src'
-import { _MultiSelect as MultiSelectStory } from '../../../stories/fields/MultiSelect/MultiSelect.stories'
+import { CustomSearch, type CheckPickerProps } from '../../../src'
+import { _CheckPicker as CheckPickerStory } from '../../../stories/fields/CheckPicker/CheckPicker.stories'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
@@ -26,7 +26,7 @@ const OPTIONS_TYPES = {
 Object.keys(OPTIONS_TYPES).forEach(optionType => {
   context(`Story (${optionType} options)`, () => {
     const options = OPTIONS_TYPES[optionType]
-    const commonProps: MultiSelectProps = {
+    const commonProps: CheckPickerProps = {
       label: 'A check picker',
       name: 'myCheckPicker',
       options,
@@ -40,7 +40,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     it('Should fill, change and clear the check picker', () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} />
+          <CheckPickerStory {...commonProps} />
         </GlobalDecoratorWrapper>
       )
 
@@ -62,7 +62,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     it(`Should fill, change and clear the check picker with \`value={[${JSON.stringify(options[2].value)}]\``, () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} value={[options[2].value]} />
+          <CheckPickerStory {...commonProps} value={[options[2].value]} />
         </GlobalDecoratorWrapper>
       )
 
@@ -84,7 +84,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     it('Should fill the check picker with `isLabelHidden`', () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} isLabelHidden />
+          <CheckPickerStory {...commonProps} isLabelHidden />
         </GlobalDecoratorWrapper>
       )
 
@@ -98,7 +98,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     it('Should NOT call `onChange(undefined)` with `disabled`', () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} disabled />
+          <CheckPickerStory {...commonProps} disabled />
         </GlobalDecoratorWrapper>
       )
 
@@ -108,7 +108,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     it(`Should NOT call \`onChange(undefined)\` with \`disabled value={[${JSON.stringify(options[2].value)}]\``, () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} disabled value={[options[2].value]} />
+          <CheckPickerStory {...commonProps} disabled value={[options[2].value]} />
         </GlobalDecoratorWrapper>
       )
 
@@ -118,7 +118,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} disabled isUndefinedWhenDisabled />
+          <CheckPickerStory {...commonProps} disabled isUndefinedWhenDisabled />
         </GlobalDecoratorWrapper>
       )
 
@@ -130,7 +130,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     )}]\``, () => {
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} disabled isUndefinedWhenDisabled value={[options[2].value]} />
+          <CheckPickerStory {...commonProps} disabled isUndefinedWhenDisabled value={[options[2].value]} />
         </GlobalDecoratorWrapper>
       )
 
@@ -142,34 +142,33 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
       mountAndWait(
         <GlobalDecoratorWrapper>
-          <MultiSelectStory {...commonProps} customSearch={customSearch as any} />
+          <CheckPickerStory {...commonProps} customSearch={customSearch as any} />
         </GlobalDecoratorWrapper>
       )
 
       outputShouldNotBe()
 
-      cy.get('.rs-picker-input').click()
-      cy.get('.rs-picker-search-input > input').type('la remie')
+      cy.get('.rs-picker-toggle').first().click()
+      cy.get('.rs-picker-search-bar-input').type('la remie')
+      cy.get('.rs-picker-check-menu > div[role="option"]:first-child').click()
+      cy.clickOutside()
+      outputShouldBe([options[0].value])
+
+      // Reset the CheckPicker
+      cy.fill('A check picker', undefined)
+
+      cy.get('.rs-picker-toggle').first().click()
+      cy.get('.rs-picker-search-bar-input').type('la option')
       cy.get('.rs-picker-check-menu > div[role="option"]:first-child').click()
       cy.clickOutside()
 
       outputShouldBe([options[0].value])
 
-      // Reset the MultiSelect
+      // Reset the CheckPicker
       cy.fill('A check picker', undefined)
 
-      cy.get('.rs-picker-input').click()
-      cy.get('.rs-picker-search-input > input').type('la option')
-      cy.get('.rs-picker-check-menu > div[role="option"]:first-child').click()
-      cy.clickOutside()
-
-      outputShouldBe([options[0].value])
-
-      // Reset the MultiSelect
-      cy.fill('A check picker', undefined)
-
-      cy.get('.rs-picker-input').click()
-      cy.get('.rs-picker-search-input > input').type('sêcôndÈ')
+      cy.get('.rs-picker-toggle').first().click()
+      cy.get('.rs-picker-search-bar-input').type('sêcôndÈ')
       cy.get('.rs-picker-check-menu > div[role="option"]:first-child').click()
       cy.clickOutside()
 

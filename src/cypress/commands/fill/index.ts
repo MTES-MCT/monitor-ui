@@ -9,6 +9,7 @@ import { fillDatePicker } from './fillDatePicker'
 import { fillDateRangePicker } from './fillDateRangePicker'
 import { fillTextarea } from './fillTextarea'
 import { fillTextInput } from './fillTextInput'
+import { pickCheckPickerOptions } from './pickCheckPickerOptions'
 import { pickMultiSelectOptions } from './pickMultiSelectOptions'
 import { pickSelectOption } from './pickSelectOption'
 import { findElementBySelector } from '../../utils/findElementBySelector'
@@ -34,7 +35,6 @@ export function fill(
     // If this is a `<label />` element
 
     const labelElement = findElementBytext('label', label as string) as HTMLLabelElement | undefined
-
     if (labelElement) {
       // -------------------------------------------------------------------------
       // If the label has a `for` attribute
@@ -69,6 +69,14 @@ export function fill(
               // Multi Select
               case rsuitePickerElement.classList.contains('rs-picker-tag'):
                 pickMultiSelectOptions(
+                  cypressHtmlforElement,
+                  Array.isArray(value) && value.length > 0 ? (value as string[]) : undefined
+                )
+                break
+
+              // Check Picker
+              case rsuitePickerElement.classList.contains('rs-picker-check'):
+                pickCheckPickerOptions(
                   cypressHtmlforElement,
                   Array.isArray(value) && value.length > 0 ? (value as string[]) : undefined
                 )

@@ -62,7 +62,8 @@ export function _CheckPicker(props: CheckPickerProps<string>) {
         <CheckPicker {...props} onChange={controlledOnChange} style={{ width: '300px' }} value={controlledValue} />
         <CheckPicker
           {...props}
-          label="A check picker with custom renderValue"
+          label="A second check picker with custom renderValue"
+          name="myCheckPicker2"
           onChange={setOutputValue2}
           renderValue={value => <div>{`Items (${value.length})`}</div>}
           style={{ width: '300px' }}
