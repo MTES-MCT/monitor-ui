@@ -132,6 +132,9 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 
   const toggle = useCallback(
     (event: MouseEvent<HTMLElement>) => {
+      if (disabled) {
+        return
+      }
       let targetElement = event.target as HTMLElement
 
       if (targetElement.tagName === 'path') {
@@ -148,7 +151,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
         setIsOpen(!isOpen)
       }
     },
-    [isOpen]
+    [isOpen, disabled]
   )
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
