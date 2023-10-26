@@ -16,6 +16,7 @@ export type ButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'childre
   Icon?: FunctionComponent<IconProps> | undefined
   accent?: Accent | undefined
   children?: string | undefined
+  isActive?: boolean | undefined
   isFullWidth?: boolean | undefined
   size?: Size | undefined
   /** Prevent onClick event propagation. */
@@ -26,6 +27,7 @@ export function Button({
   children,
   className,
   Icon,
+  isActive = false,
   isFullWidth = false,
   onClick,
   size = Size.NORMAL,
@@ -60,14 +62,15 @@ export function Button({
     () => ({
       as: StyledButton,
       children: commonChildren,
-      className: classnames('Element-Button', className),
+      className: classnames('Element-Button', isActive && '_active', className),
+      isActive,
       isFullWidth,
       onClick: handleClick,
       size,
       type,
       ...nativeProps
     }),
-    [className, commonChildren, handleClick, isFullWidth, nativeProps, size, type]
+    [className, commonChildren, handleClick, isActive, isFullWidth, nativeProps, size, type]
   )
 
   switch (accent) {

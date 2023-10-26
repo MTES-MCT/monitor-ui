@@ -19,6 +19,7 @@ export type IconButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'chi
   color?: string | undefined
   /** In pixels, override `size` prop default values. */
   iconSize?: number | undefined
+  isActive?: boolean | undefined
   /** Remove button border and padding. */
   isCompact?: boolean | undefined
   size?: Size | undefined
@@ -31,6 +32,7 @@ export function IconButton({
   color,
   Icon,
   iconSize,
+  isActive = false,
   isCompact,
   onClick,
   size = Size.NORMAL,
@@ -59,14 +61,15 @@ export function IconButton({
   const commonProps = useMemo(
     () => ({
       children: commonChildren,
-      className: classnames('Element-IconButton', className),
+      className: classnames('Element-IconButton', isActive && '_active', className),
+      isActive,
       isCompact,
       onClick: handleClick,
       size,
       type,
       ...nativeProps
     }),
-    [className, commonChildren, handleClick, isCompact, nativeProps, size, type]
+    [className, commonChildren, handleClick, isActive, isCompact, nativeProps, size, type]
   )
 
   switch (accent) {
