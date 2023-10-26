@@ -667,17 +667,6 @@ label:hover .rs-checkbox-wrapper .rs-checkbox-inner:before {
   max-height: 200px !important;
 }
 
-.rs-check-item .rs-checkbox-checker > label {
-  font-size: 13px;
-  color: var(--gunMetal);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.rs-check-item .rs-checkbox-checker > label .rs-checkbox-wrapper {
-  top: 11px !important;
-}
-
 .rs-table-cell-header .rs-table-cell-content {
   padding: 10px 7px;
 }

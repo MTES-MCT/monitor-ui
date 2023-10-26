@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { useCallback, useMemo, useRef, useState, type ReactNode } from 'react'
+import { useCallback, useMemo, useRef, useState, type ReactNode, useEffect } from 'react'
 import { CheckPicker as RsuiteCheckPicker, type CheckPickerProps as RsuiteCheckPickerProps } from 'rsuite'
 import styled from 'styled-components'
 
@@ -7,6 +7,7 @@ import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
+import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
 import { type CustomSearch } from '../libs/CustomSearch'
 import { type Option, type OptionValueType } from '../types'
@@ -69,6 +70,8 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
     [optionValueKey, value]
   )
 
+  const { forceUpdate } = useForceUpdate()
+
   // Only used when `customSearch` prop is set
   const [controlledRsuiteData, setControlledRsuiteData] = useState(customSearch ? rsuiteData : undefined)
 
@@ -120,6 +123,10 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
+  useEffect(() => {
+    forceUpdate()
+  }, [forceUpdate])
+
   return (
     <Field className={controlledClassName} style={style}>
       <Label disabled={disabled} hasError={hasError} htmlFor={originalProps.name} isHidden={isLabelHidden}>
@@ -129,6 +136,7 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
         {boxRef.current && (
           <RsuiteCheckPicker
             key={key}
+            container={boxRef.current}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
             // when we don't, we don't need to control that and just pass the non-internally-controlled `rsuiteData`
             data={controlledRsuiteData || rsuiteData}
@@ -164,12 +172,17 @@ const Box = styled.div<{
     background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
     cursor: pointer;
     width: 100%;
+    height: 30px;
 
     > .rs-picker-toggle {
       background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
       border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.gainsboro)} !important;
       cursor: inherit;
       font-size: 13px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
       :hover {
         border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.slateGray)} !important;
@@ -198,6 +211,32 @@ const Box = styled.div<{
           .rs-picker-toggle-clean,
           .rs-picker-toggle-caret {
             top: 5px;
+          }
+        }
+      }
+    }
+  }
+  > .rs-picker-menu {
+    max-width: 100%;
+    > .rs-picker-check-menu {
+      padding-top: 6px;
+      margin: 0;
+
+      > div[role='option'] {
+        > .rs-check-item {
+          > .rs-checkbox-checker {
+            > label {
+              font-size: 13px;
+              line-height: 1.3846;
+              overflow: hidden;
+              padding: 8px 12px 8px 38px;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              > .rs-checkbox-wrapper {
+                left: 12px;
+                top: 10px !important;
+              }
+            }
           }
         }
       }
