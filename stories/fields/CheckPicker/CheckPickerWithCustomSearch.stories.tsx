@@ -92,6 +92,7 @@ export function CheckPickerWithCustomSearch(props: CheckPickerProps<Specy>) {
         options={optionsRef.current}
         optionValueKey="code"
         value={controlledValue}
+        virtualized
       />
       <div>
         <em>Loads a list of 10,000 users in order to check performances.</em>

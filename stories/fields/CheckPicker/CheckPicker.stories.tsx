@@ -52,18 +52,20 @@ export default meta
 
 export function _CheckPicker(props: CheckPickerProps<string>) {
   const [outputValue, setOutputValue] = useState<string[] | undefined | '∅'>('∅')
-
+  const [outputValue2, setOutputValue2] = useState<string[]>()
   const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
 
   return (
     <>
       <Container>
+        <CheckPicker {...props} onChange={controlledOnChange} style={{ width: '300px' }} value={controlledValue} />
         <CheckPicker
           {...props}
-          onChange={controlledOnChange}
-          // renderValue={() => <OptionValue>coucou</OptionValue>}
+          label="A check picker with custom renderValue"
+          onChange={setOutputValue2}
+          renderValue={value => <div>{`Items (${value.length})`}</div>}
           style={{ width: '300px' }}
-          value={controlledValue}
+          value={outputValue2}
         />
       </Container>
       {outputValue !== '∅' && <Output value={outputValue} />}
