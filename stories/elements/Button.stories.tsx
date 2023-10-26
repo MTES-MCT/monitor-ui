@@ -123,32 +123,32 @@ export function _Button(props: ButtonProps) {
             <tr>
               <th>Active</th>
               <td>
-                <Button accent={Accent.PRIMARY} className="_active" Icon={undefined} size={Size.LARGE}>
+                <Button accent={Accent.PRIMARY} Icon={undefined} isActive size={Size.LARGE}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.PRIMARY} className="_active" Icon={Icon.Calendar} size={Size.LARGE}>
+                <Button accent={Accent.PRIMARY} Icon={Icon.Calendar} isActive size={Size.LARGE}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.PRIMARY} className="_active" Icon={undefined} size={Size.NORMAL}>
+                <Button accent={Accent.PRIMARY} Icon={undefined} isActive size={Size.NORMAL}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.PRIMARY} className="_active" Icon={Icon.Calendar} size={Size.NORMAL}>
+                <Button accent={Accent.PRIMARY} Icon={Icon.Calendar} isActive size={Size.NORMAL}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.PRIMARY} className="_active" Icon={undefined} size={Size.SMALL}>
+                <Button accent={Accent.PRIMARY} Icon={undefined} isActive size={Size.SMALL}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.PRIMARY} className="_active" Icon={Icon.Calendar} size={Size.SMALL}>
+                <Button accent={Accent.PRIMARY} Icon={Icon.Calendar} isActive size={Size.SMALL}>
                   A button
                 </Button>
               </td>
@@ -156,32 +156,32 @@ export function _Button(props: ButtonProps) {
             <tr>
               <th>Disabled</th>
               <td>
-                <Button accent={Accent.PRIMARY} className="_disabled" Icon={undefined} size={Size.LARGE}>
+                <Button accent={Accent.PRIMARY} disabled Icon={undefined} size={Size.LARGE}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.PRIMARY} className="_disabled" Icon={Icon.Calendar} size={Size.LARGE}>
+                <Button accent={Accent.PRIMARY} disabled Icon={Icon.Calendar} size={Size.LARGE}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.PRIMARY} className="_disabled" Icon={undefined} size={Size.NORMAL}>
+                <Button accent={Accent.PRIMARY} disabled Icon={undefined} size={Size.NORMAL}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.PRIMARY} className="_disabled" Icon={Icon.Calendar} size={Size.NORMAL}>
+                <Button accent={Accent.PRIMARY} disabled Icon={Icon.Calendar} size={Size.NORMAL}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.PRIMARY} className="_disabled" Icon={undefined} size={Size.SMALL}>
+                <Button accent={Accent.PRIMARY} disabled Icon={undefined} size={Size.SMALL}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.PRIMARY} className="_disabled" Icon={Icon.Calendar} size={Size.SMALL}>
+                <Button accent={Accent.PRIMARY} disabled Icon={Icon.Calendar} size={Size.SMALL}>
                   A button
                 </Button>
               </td>
@@ -270,32 +270,32 @@ export function _Button(props: ButtonProps) {
             <tr>
               <th>Active</th>
               <td>
-                <Button accent={Accent.SECONDARY} className="_active" Icon={undefined} size={Size.LARGE}>
+                <Button accent={Accent.SECONDARY} Icon={undefined} isActive size={Size.LARGE}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.SECONDARY} className="_active" Icon={Icon.Calendar} size={Size.LARGE}>
+                <Button accent={Accent.SECONDARY} Icon={Icon.Calendar} isActive size={Size.LARGE}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.SECONDARY} className="_active" Icon={undefined} size={Size.NORMAL}>
+                <Button accent={Accent.SECONDARY} Icon={undefined} isActive size={Size.NORMAL}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.SECONDARY} className="_active" Icon={Icon.Calendar} size={Size.NORMAL}>
+                <Button accent={Accent.SECONDARY} Icon={Icon.Calendar} isActive size={Size.NORMAL}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.SECONDARY} className="_active" Icon={undefined} size={Size.SMALL}>
+                <Button accent={Accent.SECONDARY} Icon={undefined} isActive size={Size.SMALL}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.SECONDARY} className="_active" Icon={Icon.Calendar} size={Size.SMALL}>
+                <Button accent={Accent.SECONDARY} Icon={Icon.Calendar} isActive size={Size.SMALL}>
                   A button
                 </Button>
               </td>
@@ -303,32 +303,32 @@ export function _Button(props: ButtonProps) {
             <tr>
               <th>Disabled</th>
               <td>
-                <Button accent={Accent.SECONDARY} className="_disabled" Icon={undefined} size={Size.LARGE}>
+                <Button accent={Accent.SECONDARY} disabled Icon={undefined} size={Size.LARGE}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.SECONDARY} className="_disabled" Icon={Icon.Calendar} size={Size.LARGE}>
+                <Button accent={Accent.SECONDARY} disabled Icon={Icon.Calendar} size={Size.LARGE}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.SECONDARY} className="_disabled" Icon={undefined} size={Size.NORMAL}>
+                <Button accent={Accent.SECONDARY} disabled Icon={undefined} size={Size.NORMAL}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.SECONDARY} className="_disabled" Icon={Icon.Calendar} size={Size.NORMAL}>
+                <Button accent={Accent.SECONDARY} disabled Icon={Icon.Calendar} size={Size.NORMAL}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.SECONDARY} className="_disabled" Icon={undefined} size={Size.SMALL}>
+                <Button accent={Accent.SECONDARY} disabled Icon={undefined} size={Size.SMALL}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.SECONDARY} className="_disabled" Icon={Icon.Calendar} size={Size.SMALL}>
+                <Button accent={Accent.SECONDARY} disabled Icon={Icon.Calendar} size={Size.SMALL}>
                   A button
                 </Button>
               </td>
@@ -417,32 +417,32 @@ export function _Button(props: ButtonProps) {
             <tr>
               <th>Active</th>
               <td>
-                <Button accent={Accent.TERTIARY} className="_active" Icon={undefined} size={Size.LARGE}>
+                <Button accent={Accent.TERTIARY} Icon={undefined} isActive size={Size.LARGE}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.TERTIARY} className="_active" Icon={Icon.Calendar} size={Size.LARGE}>
+                <Button accent={Accent.TERTIARY} Icon={Icon.Calendar} isActive size={Size.LARGE}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.TERTIARY} className="_active" Icon={undefined} size={Size.NORMAL}>
+                <Button accent={Accent.TERTIARY} Icon={undefined} isActive size={Size.NORMAL}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.TERTIARY} className="_active" Icon={Icon.Calendar} size={Size.NORMAL}>
+                <Button accent={Accent.TERTIARY} Icon={Icon.Calendar} isActive size={Size.NORMAL}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.TERTIARY} className="_active" Icon={undefined} size={Size.SMALL}>
+                <Button accent={Accent.TERTIARY} Icon={undefined} isActive size={Size.SMALL}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.TERTIARY} className="_active" Icon={Icon.Calendar} size={Size.SMALL}>
+                <Button accent={Accent.TERTIARY} Icon={Icon.Calendar} isActive size={Size.SMALL}>
                   A button
                 </Button>
               </td>
@@ -450,32 +450,32 @@ export function _Button(props: ButtonProps) {
             <tr>
               <th>Disabled</th>
               <td>
-                <Button accent={Accent.TERTIARY} className="_disabled" Icon={undefined} size={Size.LARGE}>
+                <Button accent={Accent.TERTIARY} disabled Icon={undefined} size={Size.LARGE}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.TERTIARY} className="_disabled" Icon={Icon.Calendar} size={Size.LARGE}>
+                <Button accent={Accent.TERTIARY} disabled Icon={Icon.Calendar} size={Size.LARGE}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.TERTIARY} className="_disabled" Icon={undefined} size={Size.NORMAL}>
+                <Button accent={Accent.TERTIARY} disabled Icon={undefined} size={Size.NORMAL}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.TERTIARY} className="_disabled" Icon={Icon.Calendar} size={Size.NORMAL}>
+                <Button accent={Accent.TERTIARY} disabled Icon={Icon.Calendar} size={Size.NORMAL}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.TERTIARY} className="_disabled" Icon={undefined} size={Size.SMALL}>
+                <Button accent={Accent.TERTIARY} disabled Icon={undefined} size={Size.SMALL}>
                   A button
                 </Button>
               </td>
               <td>
-                <Button accent={Accent.TERTIARY} className="_disabled" Icon={Icon.Calendar} size={Size.SMALL}>
+                <Button accent={Accent.TERTIARY} disabled Icon={Icon.Calendar} size={Size.SMALL}>
                   A button
                 </Button>
               </td>
