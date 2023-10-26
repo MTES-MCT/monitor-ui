@@ -43,7 +43,8 @@ const meta: Meta<{}> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasDarkMode: true,
+      withNewWindowButton: true
     })
   ]
 }
