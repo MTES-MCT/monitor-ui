@@ -117,8 +117,7 @@ const StyledButton = styled.button<{
       }
       border: 0;
 
-      :disabled,
-      &._disabled {
+      :disabled {
         border: 0;
       }
     `}
@@ -145,8 +144,7 @@ const TertiaryButton = styled.button<{
     color: ${p => p.theme.color.blueGray};
   }
 
-  :disabled,
-  &._disabled {
+  :disabled {
     background-color: transparent;
     border: ${p => (p.isCompact ? 0 : '1px solid transparent')};
     color: ${p => p.theme.color.lightGray};

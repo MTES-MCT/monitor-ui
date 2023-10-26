@@ -141,8 +141,7 @@ export const PrimaryButton = styled.button`
     color: ${p => p.theme.color.white};
   }
 
-  :disabled,
-  &._disabled {
+  :disabled {
     background-color: ${p => p.theme.color.lightGray};
     border: 1px solid ${p => p.theme.color.lightGray};
     color: ${p => p.theme.color.cultured};
@@ -168,8 +167,7 @@ export const SecondaryButton = styled.button`
     color: ${p => p.theme.color.blueGray};
   }
 
-  :disabled,
-  &._disabled {
+  :disabled {
     background-color: transparent;
     border: 1px solid ${p => p.theme.color.lightGray};
     color: ${p => p.theme.color.lightGray};
@@ -195,8 +193,7 @@ export const TertiaryButton = styled.button`
     color: ${p => p.theme.color.blueGray};
   }
 
-  :disabled,
-  &._disabled {
+  :disabled {
     background-color: ${p => p.theme.color.white};
     border: 1px solid ${p => p.theme.color.lightGray};
     color: ${p => p.theme.color.lightGray};
