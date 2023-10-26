@@ -1,3 +1,19 @@
+## [10.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.8.0...v10.9.0) (2023-10-26)
+
+
+### Features
+
+* **cypress:** add pickCheckPickerOptions ([6ea2e84](https://github.com/MTES-MCT/monitor-ui/commit/6ea2e844a171d925f460b1cdba115cf598f8991a))
+* **field:** clean component typing ([371f065](https://github.com/MTES-MCT/monitor-ui/commit/371f06563cfe3aa6e609a9f2eb993a0fa685785f))
+* **fields:** create CheckPicker component ([ab60aa4](https://github.com/MTES-MCT/monitor-ui/commit/ab60aa4df799282541bf39fdef2d3f2282354788))
+* **field:** update check picker story ([ec91b02](https://github.com/MTES-MCT/monitor-ui/commit/ec91b02403f675f9fce1cc028876852b9491ff3f))
+
+
+### Bug Fixes
+
+* **field:** add test and cleans style for CheckPicker component ([ea13e7b](https://github.com/MTES-MCT/monitor-ui/commit/ea13e7b093754abd6e0b777206564d7d2e73a419))
+* **filed:** fix MultiSelect when disabled ([92e45ee](https://github.com/MTES-MCT/monitor-ui/commit/92e45eec198d469542e05f8df82881bf4418f6c2))
+
 ## [10.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.7.0...v10.8.0) (2023-10-25)
 
 
