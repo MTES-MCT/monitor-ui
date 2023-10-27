@@ -1,3 +1,10 @@
+## [10.9.1](https://github.com/MTES-MCT/monitor-ui/compare/v10.9.0...v10.9.1) (2023-10-27)
+
+
+### Bug Fixes
+
+* **field:** fix Select when disabled ([a352ecd](https://github.com/MTES-MCT/monitor-ui/commit/a352ecd0081bbf174620379b1b1302f09a50330d))
+
 ## [10.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.8.0...v10.9.0) (2023-10-26)
 
 
