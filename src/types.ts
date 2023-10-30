@@ -117,7 +117,9 @@ export type UndefineExceptArrays<T> = {
 // Private types
 
 export type AnyCollection = AnyObject[]
-export type AnyObject = Record<string, any>
+export type AnyObject = {
+  [k: string]: any
+}
 
 export type Native = boolean | null | number | string | undefined
 export type NativeAny = boolean | NativeArray | NativeObject | null | number | string | undefined
