@@ -1,3 +1,10 @@
+## [10.9.3](https://github.com/MTES-MCT/monitor-ui/compare/v10.9.2...v10.9.3) (2023-10-30)
+
+
+### Bug Fixes
+
+* **utils:** make getHashFromCollection() browser-compatible ([16aae19](https://github.com/MTES-MCT/monitor-ui/commit/16aae193ada90e2a0d8a883b5ede491070f21194))
+
 ## [10.9.2](https://github.com/MTES-MCT/monitor-ui/compare/v10.9.1...v10.9.2) (2023-10-30)
 
 
