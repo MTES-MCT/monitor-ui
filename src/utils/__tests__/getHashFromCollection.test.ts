@@ -29,14 +29,15 @@ describe('utils/getHashFromCollection()', () => {
     expect(firstResult).not.toBe(secondResult)
   })
 
-  it('should return consistent hashes regardless of item order', () => {
+  it('should return consistent hashes regardless of items or props order', () => {
     const firstCollection = [
       { id: 2, name: 'Item B' },
       { id: 1, name: 'Item A' }
     ]
     const secondCollection = [
       { id: 1, name: 'Item A' },
-      { id: 2, name: 'Item B' }
+      // eslint-disable-next-line sort-keys-fix/sort-keys-fix
+      { name: 'Item B', id: 2 }
     ]
 
     const firstResult = getHashFromCollection(firstCollection)

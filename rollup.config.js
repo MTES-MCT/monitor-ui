@@ -3,7 +3,6 @@
 import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import url from '@rollup/plugin-url'
-import nodePolyfills from 'rollup-plugin-node-polyfills'
 // import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 // TODO This is a temporary fix.
 import peerDepsExternal from '@chrisneedham/rollup-plugin-peer-deps-external'
@@ -32,8 +31,6 @@ export default [
       }),
       // Convert CommonJS to ES6:
       commonjs(),
-      // Polyfill Node.js modules:
-      nodePolyfills(),
       nodeResolve({
         extensions: ['.css', '.cjs', '.js', '.json', '.jsx', '.mjs', '.ts', '.tson', '.tsx'],
         preferBuiltins: true
