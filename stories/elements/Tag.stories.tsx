@@ -34,7 +34,7 @@ const meta: Meta<TagProps> = {
     backgroundColor: {
       control: 'color'
     },
-    hasBullet: {
+    withBullet: {
       control: 'boolean'
     },
     iconColor: {
@@ -67,10 +67,10 @@ export function _Tag(props: TagProps) {
       <Tag accent={Accent.TERTIARY} {...normalizedProps}>
         A tertiary tag
       </Tag>
-      <Tag accent={Accent.TERTIARY} hasBullet {...normalizedProps}>
+      <Tag accent={Accent.TERTIARY} withBullet {...normalizedProps}>
         A tertiary tag with bullet
       </Tag>
-      <Tag hasBullet iconColor={THEME.color.mediumSeaGreen} {...normalizedProps}>
+      <Tag iconColor={THEME.color.mediumSeaGreen} withBullet {...normalizedProps}>
         A tag with a green bullet
       </Tag>
       <Tag bullet={TagBullet.DISK} bulletColor={THEME.color.mediumSeaGreen} {...normalizedProps}>
