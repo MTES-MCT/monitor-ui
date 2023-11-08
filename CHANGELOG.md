@@ -1,3 +1,10 @@
+## [10.10.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.9.3...v10.10.0) (2023-11-08)
+
+
+### Features
+
+* **icons:** add Dot and DotFilled icons ([527aa30](https://github.com/MTES-MCT/monitor-ui/commit/527aa30d19bee8ade610e4caf249ac236e94c9b2))
+
 ## [10.9.3](https://github.com/MTES-MCT/monitor-ui/compare/v10.9.2...v10.9.3) (2023-10-30)
 
 
