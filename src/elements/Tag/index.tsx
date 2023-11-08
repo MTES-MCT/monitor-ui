@@ -13,13 +13,13 @@ export type TagProps = HTMLAttributes<HTMLSpanElement> & {
   accent?: Accent | undefined
   backgroundColor?: string | undefined
   borderColor?: string | undefined
-  /* @deprecated Replaced by `hasBullet` prop. Will be removed in `v11.0.0`. */
+  /* @deprecated Replaced by `withBullet` prop. Will be removed in `v11.0.0`. */
   bullet?: TagBullet | undefined
   /* @deprecated Replaced by `iconColor` prop. Will be removed in `v11.0.0`. */
   bulletColor?: string | undefined
-  hasBullet?: boolean | undefined
   iconColor?: string | undefined
   isLight?: boolean | undefined
+  withBullet?: boolean | undefined
 }
 export function Tag({
   accent,
@@ -30,14 +30,15 @@ export function Tag({
   children,
   className,
   color,
-  hasBullet = false,
   Icon,
   iconColor,
   isLight = false,
+  withBullet = false,
   ...nativeProps
 }: TagProps) {
   // TODO remove all bullet and bulletColor related code
-  const withBullet = useMemo(() => (bullet === TagBullet.DISK || hasBullet) && !Icon, [bullet, Icon, hasBullet])
+  const withDot = useMemo(() => (bullet === TagBullet.DISK || withBullet) && !Icon, [bullet, Icon, withBullet])
+
   const commonChildren = useMemo(() => {
     const defaultColor = color || THEME.color.gunMetal
 
@@ -55,22 +56,22 @@ export function Tag({
     return (
       <>
         {Icon && <Icon color={cutomIconColor} size={16} />}
-        {withBullet && <DotFilled color={cutomIconColor} size={20} />}
+        {withDot && <DotFilled color={cutomIconColor} size={20} />}
 
         {children}
       </>
     )
-  }, [accent, bulletColor, color, children, Icon, withBullet, iconColor])
+  }, [accent, bulletColor, color, children, Icon, withDot, iconColor])
 
   const commonProps = useMemo(
     () => ({
       $isLight: isLight,
-      $withBullet: withBullet,
+      $withBullet: withDot,
       children: commonChildren,
       className: classnames('Element-Tag', className),
       ...nativeProps
     }),
-    [className, commonChildren, isLight, nativeProps, withBullet]
+    [className, commonChildren, isLight, nativeProps, withDot]
   )
 
   switch (accent) {
