@@ -13,7 +13,9 @@ export type TagProps = HTMLAttributes<HTMLSpanElement> & {
   accent?: Accent | undefined
   backgroundColor?: string | undefined
   borderColor?: string | undefined
+  /* @deprecated Replaced by `hasBullet` prop. Will be removed in `v11.0.0`. */
   bullet?: TagBullet | undefined
+  /* @deprecated Replaced by `iconColor` prop. Will be removed in `v11.0.0`. */
   bulletColor?: string | undefined
   hasBullet?: boolean | undefined
   iconColor?: string | undefined
@@ -23,7 +25,7 @@ export function Tag({
   accent,
   backgroundColor,
   borderColor,
-  bullet, // deprecated use hasBullet instead
+  bullet,
   bulletColor,
   children,
   className,
@@ -34,7 +36,7 @@ export function Tag({
   isLight = false,
   ...nativeProps
 }: TagProps) {
-  // TODO remove all bullet related code
+  // TODO remove all bullet and bulletColor related code
   const withBullet = useMemo(() => (bullet === TagBullet.DISK || hasBullet) && !Icon, [bullet, Icon, hasBullet])
   const commonChildren = useMemo(() => {
     const defaultColor = color || THEME.color.gunMetal

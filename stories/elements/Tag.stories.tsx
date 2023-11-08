@@ -33,6 +33,12 @@ const meta: Meta<TagProps> = {
     },
     backgroundColor: {
       control: 'color'
+    },
+    hasBullet: {
+      control: 'boolean'
+    },
+    iconColor: {
+      control: 'color'
     }
   },
 
