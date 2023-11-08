@@ -73,8 +73,7 @@ const PrimaryIconButton = styled(IconButton as any)`
     background-color: ${p => p.theme.color.lightGray};
   }
 
-  :disabled,
-  &._disabled {
+  :disabled {
     background-color: ${p => p.theme.color.lightGray};
   }
 `
@@ -100,8 +99,7 @@ const SecondaryIconButton = styled(PrimaryIconButton)`
     color: ${p => p.theme.color.blueYonder25};
   }
 
-  :disabled,
-  &._disabled {
+  :disabled {
     background-color: ${p => p.theme.color.blueYonder};
     color: ${p => p.theme.color.blueYonder25};
   }
