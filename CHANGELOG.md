@@ -1,3 +1,17 @@
+## [10.11.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.10.0...v10.11.0) (2023-11-08)
+
+
+### Features
+
+* **elements:** deprecate bulletColor and bullet props ([3aa1b94](https://github.com/MTES-MCT/monitor-ui/commit/3aa1b94372a7f6f899f5480cd827bcb4bce9a9b1))
+* **elements:** update variable name ([1c1f593](https://github.com/MTES-MCT/monitor-ui/commit/1c1f5933b6987fa49053e6f66f71d53c1883199f))
+* **elements:** use Dot icon for bullet in tag component ([0558562](https://github.com/MTES-MCT/monitor-ui/commit/0558562e66525c991674c6706ea01f0fe6208cc9))
+
+
+### Bug Fixes
+
+* **icons:** fix command to generate icons ([3697d30](https://github.com/MTES-MCT/monitor-ui/commit/3697d30a6ae010f578523a0d13309a9ac536eafb))
+
 ## [10.10.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.9.3...v10.10.0) (2023-11-08)
 
 
