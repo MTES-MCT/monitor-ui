@@ -21,7 +21,7 @@
     "start": "storybook dev -p 6006",
     "icons": "yarn icons:clean && yarn icons:generate && yarn icons:lint",
     "icons:clean": "rm -Rf ./src/icons && mkdir ./src/icons",
-    "icons:generate": "node --experimental-json-modules ./scripts/icons/generateIcons.mjs",
+    "icons:generate": "node ./scripts/icons/generateIcons.js",
     "icons:lint": "echo 'Linting generated icons…' && yarn eslint --fix ./src/icons && echo 'Done.'",
     "preview": "echo 'Linting generated icons…' && yarn eslint --fix ./src/icons && echo 'Done.'",
     "test": "yarn test:lint && yarn test:type",
