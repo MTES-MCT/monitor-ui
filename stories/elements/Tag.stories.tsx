@@ -61,8 +61,14 @@ export function _Tag(props: TagProps) {
       <Tag accent={Accent.TERTIARY} {...normalizedProps}>
         A tertiary tag
       </Tag>
-      <Tag bullet={TagBullet.DISK} bulletColor={THEME.color.mediumSeaGreen} {...normalizedProps}>
+      <Tag accent={Accent.TERTIARY} hasBullet {...normalizedProps}>
+        A tertiary tag with bullet
+      </Tag>
+      <Tag hasBullet iconColor={THEME.color.mediumSeaGreen} {...normalizedProps}>
         A tag with a green bullet
+      </Tag>
+      <Tag bullet={TagBullet.DISK} bulletColor={THEME.color.mediumSeaGreen} {...normalizedProps}>
+        A tag with a green bullet OLD VERSION
       </Tag>
       <Tag borderColor={THEME.color.slateGray} {...normalizedProps}>
         A tag with a border
