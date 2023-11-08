@@ -2,8 +2,8 @@ import classnames from 'classnames'
 import { type FunctionComponent, type HTMLAttributes, useMemo } from 'react'
 import styled from 'styled-components'
 
-import { Disk } from './Disk'
 import { Accent, TagBullet } from '../../constants'
+import { DotFilled } from '../../icons'
 import { THEME } from '../../theme'
 
 import type { IconProps } from '../../types'
@@ -15,26 +15,33 @@ export type TagProps = HTMLAttributes<HTMLSpanElement> & {
   borderColor?: string | undefined
   bullet?: TagBullet | undefined
   bulletColor?: string | undefined
+  hasBullet?: boolean | undefined
+  iconColor?: string | undefined
   isLight?: boolean | undefined
 }
 export function Tag({
   accent,
   backgroundColor,
   borderColor,
-  bullet,
+  bullet, // deprecated use hasBullet instead
   bulletColor,
   children,
   className,
   color,
+  hasBullet = false,
   Icon,
+  iconColor,
   isLight = false,
   ...nativeProps
 }: TagProps) {
+  // TODO remove all bullet related code
+  const withBullet = useMemo(() => (bullet === TagBullet.DISK || hasBullet) && !Icon, [bullet, Icon, hasBullet])
   const commonChildren = useMemo(() => {
     const defaultColor = color || THEME.color.gunMetal
 
-    const controlledBulletColor =
+    const cutomIconColor =
       bulletColor ||
+      iconColor ||
       (accent
         ? {
             [Accent.PRIMARY]: THEME.color.gunMetal,
@@ -45,23 +52,23 @@ export function Tag({
 
     return (
       <>
-        {/* Refactor when bullet will be a real icon */}
-        {Icon && !bullet && <Icon size={16} />}
-        {bullet === TagBullet.DISK && !Icon && <Disk $color={controlledBulletColor} />}
+        {Icon && <Icon color={cutomIconColor} size={16} />}
+        {withBullet && <DotFilled color={cutomIconColor} size={20} />}
 
         {children}
       </>
     )
-  }, [accent, bullet, bulletColor, color, children, Icon])
+  }, [accent, bulletColor, color, children, Icon, withBullet, iconColor])
 
   const commonProps = useMemo(
     () => ({
       $isLight: isLight,
+      $withBullet: withBullet,
       children: commonChildren,
       className: classnames('Element-Tag', className),
       ...nativeProps
     }),
-    [className, commonChildren, isLight, nativeProps]
+    [className, commonChildren, isLight, nativeProps, withBullet]
   )
 
   switch (accent) {
@@ -84,8 +91,9 @@ const Box = styled.span<{
   $borderColor?: string | undefined
   $color?: string | undefined
   $isLight: boolean
+  $withBullet?: boolean | undefined
 }>`
-  align-items: end;
+  align-items: ${p => (p.$withBullet ? 'flex-start' : 'end')};
   align-self: flex-start;
   background-color: ${p => {
     if (p.$backgroundColor) {
@@ -95,12 +103,11 @@ const Box = styled.span<{
     return p.$isLight ? p.theme.color.white : 'transparent'
   }};
   border: ${p => (p.$borderColor ? `1px solid ${p.$borderColor}` : 'none')};
-  border-radius: 11px;
+  border-radius: 25px;
   color: ${p => (p.$color ? p.$color : p.theme.color.gunMetal)};
   display: inline-flex;
   font-size: 13px;
-  line-height: 1.3846;
-  padding: 1px 8px 3px 8px;
+  padding: ${p => (p.$withBullet ? '0px 6px 0px 0px' : '1px 8px 3px 8px')};
 
   /* Bullet components are a span */
   > span {
@@ -111,7 +118,7 @@ const Box = styled.span<{
 
   /* SVG Icon components are wrapped within a <div /> */
   > div {
-    margin-right: 4px;
+    margin-right: ${p => (p.$withBullet ? '0px' : '4px')};
   }
 `
 
