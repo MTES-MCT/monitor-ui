@@ -138,6 +138,18 @@ export function _Icon(props: IconProps) {
       </Cell>
       <Cell>
         <IconBox>
+          <Icon.Dot {...props} />
+        </IconBox>
+        <Code>Dot</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
+          <Icon.DotFilled {...props} />
+        </IconBox>
+        <Code>DotFilled</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
           <Icon.DoubleChevron {...props} />
         </IconBox>
         <Code>DoubleChevron</Code>
