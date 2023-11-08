@@ -15,6 +15,8 @@ import { Control } from './Control'
 import { ControlUnit } from './ControlUnit'
 import { Delete } from './Delete'
 import { Display } from './Display'
+import { Dot } from './Dot'
+import { DotFilled } from './DotFilled'
 import { DoubleChevron } from './DoubleChevron'
 import { Download } from './Download'
 import { Drapeau } from './Drapeau'
@@ -100,6 +102,8 @@ export {
   ControlUnit,
   Delete,
   Display,
+  Dot,
+  DotFilled,
   DoubleChevron,
   Download,
   Drapeau,
