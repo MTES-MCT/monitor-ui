@@ -172,5 +172,21 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
       outputShouldBe(options[1].value)
     })
+    it('Should fill, clear and get all list', () => {
+      const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
+      mountAndWait(
+        <GlobalDecoratorWrapper>
+          <SelectStory {...commonProps} customSearch={customSearch as any} />
+        </GlobalDecoratorWrapper>
+      )
+
+      outputShouldNotBe()
+
+      cy.get('.rs-picker-select').click()
+      cy.get('.rs-picker-search-bar-input').type('sêc')
+      cy.get('.rs-picker-search-bar-input').type('{backspace}{backspace}{backspace}')
+
+      cy.get('.rs-picker-select-menu').find('[role="option"]').should('have.length', 3)
+    })
   })
 })
