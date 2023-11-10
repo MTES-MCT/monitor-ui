@@ -115,6 +115,8 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   const handleSearch = useCallback(
     (nextQuery: string) => {
       if (!customSearchRef.current || nextQuery.trim().length < customSearchMinQueryLength) {
+        setControlledRsuiteData(rsuiteData)
+
         return
       }
 
