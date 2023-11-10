@@ -1,3 +1,15 @@
+## [10.12.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.11.0...v10.12.0) (2023-11-10)
+
+
+### Features
+
+* **cypress:** add tests e2e ([cc1f8b9](https://github.com/MTES-MCT/monitor-ui/commit/cc1f8b98cf409e068010ee040deea034eb7a7571))
+
+
+### Bug Fixes
+
+* **fields:** return all results when user delete search in CheckPicker, Select and MultiSelect ([0e8fa67](https://github.com/MTES-MCT/monitor-ui/commit/0e8fa6703ba29e2abd0de9ba2f48b99abe087e5e))
+
 ## [10.11.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.10.0...v10.11.0) (2023-11-08)
 
 
