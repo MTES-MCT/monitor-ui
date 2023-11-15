@@ -142,7 +142,7 @@
     "rollup-plugin-swc3": "0.10.3",
     "rsuite": "5.37.0",
     "semantic-release": "21.1.1",
-    "storybook": "7.0.27",
+    "storybook": "7.5.3",
     "storybook-addon-performance": "0.17.1",
     "styled-components": "6.1.1",
     "ts-loader": "9.4.2",
