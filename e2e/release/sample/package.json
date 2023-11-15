@@ -1,8 +1,8 @@
 {
   "private": true,
   "engines": {
-    "node": ">=18",
-    "npm": "9"
+    "node": ">=20",
+    "npm": "10"
   },
   "scripts": {
     "dev": "rm -Rf node_modules/.cache && BROWSER=none PORT=3000 react-scripts start",
