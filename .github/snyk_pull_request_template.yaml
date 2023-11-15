@@ -1,0 +1,6 @@
+# https://docs.snyk.io/scan-using-snyk/snyk-open-source/open-source-basics/customize-pr-templates-closed-beta/apply-a-custom-pr-template
+# https://docs.snyk.io/scan-using-snyk/snyk-open-source/open-source-basics/customize-pr-templates-closed-beta/variables-list-and-description
+
+branch: 'snyk/bump-{{ package_name }}-from-{{ package_from }}-to-{{ package_to }}'
+commitMessage: 'build(deps): bump {{ package_name }} from {{ package_from }} to {{ package_to }}'
+title: 'build(deps): bump {{ package_name }} from {{ package_from }} to {{ package_to }}'
