@@ -1,3 +1,12 @@
+## [10.12.1](https://github.com/MTES-MCT/monitor-ui/compare/v10.12.0...v10.12.1) (2023-11-15)
+
+
+### Bug Fixes
+
+* **icon:** fix info icon ([2261c5f](https://github.com/MTES-MCT/monitor-ui/commit/2261c5f9a8ed592017cb9b2604c14619297050e0))
+* **icons:** set transparent background color for RapportNav icons ([7a002bf](https://github.com/MTES-MCT/monitor-ui/commit/7a002bfb64a05579b6713c28a94b742cedb4f5b9))
+* **icons:** update icon components after svg change ([8f00fe8](https://github.com/MTES-MCT/monitor-ui/commit/8f00fe88241cf19a9d68a4a416122d6d7af232e5))
+
 ## [10.12.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.11.0...v10.12.0) (2023-11-10)
 
 
