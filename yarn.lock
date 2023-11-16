@@ -3824,7 +3824,7 @@ __metadata:
     "@types/jest": "npm:29.5.2"
     "@types/node": "npm:20.9.0"
     "@types/ramda": "npm:0.28.23"
-    "@types/react": "npm:18.2.21"
+    "@types/react": "npm:18.2.37"
     "@types/react-dom": "npm:18.2.15"
     "@types/sha1": "npm:1.1.3"
     "@types/styled-components": "npm:5.1.29"
@@ -8015,14 +8015,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.2.21":
-  version: 18.2.21
-  resolution: "@types/react@npm:18.2.21"
+"@types/react@npm:18.2.37":
+  version: 18.2.37
+  resolution: "@types/react@npm:18.2.37"
   dependencies:
     "@types/prop-types": "npm:*"
     "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 5b5aff55d38c358a50108dddb24e06d344e4d578cc177dd2e24a7c5d0fadb034298e5e652b174053b5e75f0d6b0d9f926976c1c9f5e84fe94bb91348c54f5313
+  checksum: 79dd5d23da05bec54e7423ca17096e345eb8fd80a3bf8dd916bb5cdd60677d27c298523aa5b245d090fcc4ec100cfd58c1af4631fbac709d0a9d8be75f9d78a9
   languageName: node
   linkType: hard
 
