@@ -3894,7 +3894,7 @@ __metadata:
     styled-components: "npm:6.1.1"
     ts-loader: "npm:9.4.2"
     tslib: "npm:2.6.2"
-    type-fest: "npm:3.12.0"
+    type-fest: "npm:4.7.1"
     typescript: "npm:5.1.6"
     use-debounce: "npm:9.0.4"
     webpack: "npm:5.88.1"
@@ -22801,10 +22801,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:3.12.0":
-  version: 3.12.0
-  resolution: "type-fest@npm:3.12.0"
-  checksum: c51abb6bcb7f92601a9b143d0fa44cacc1d1c19041300168303476c36f05e561610b8c2457e321a107c715160a33f63f507552034d2fd49a7bc1dbb4c1de565f
+"type-fest@npm:4.7.1":
+  version: 4.7.1
+  resolution: "type-fest@npm:4.7.1"
+  checksum: e2cae05a6a5be98e5e5cfecee8782db1eb74594ceb1d85b5bfdb9b9ca5e236342f97435d3ff9edddd8eb92898af7f13555f85d1a53a69c362b0f56f2cceb8151
   languageName: node
   linkType: hard
 
