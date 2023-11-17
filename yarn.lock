@@ -3843,7 +3843,7 @@ __metadata:
     chromatic: "npm:6.19.9"
     classnames: "npm:2.3.2"
     codecov: "npm:3.8.3"
-    cypress: "npm:13.1.0"
+    cypress: "npm:13.5.1"
     date-fns: "npm:2.30.0"
     dayjs: "npm:1.11.10"
     diacritics: "npm:1.3.0"
@@ -8094,7 +8094,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^16.0.0, @types/node@npm:^16.18.39":
+"@types/node@npm:^16.0.0":
   version: 16.18.59
   resolution: "@types/node@npm:16.18.59"
   checksum: 1fd91564762fa985cba30b0018851d45c5528e14b432b99ab3732501a85a2d2776a4d8c2e0d082834ecae43b390d6ddcfafc42f5af0aea3cda2302aad326f0cf
@@ -8108,7 +8108,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.11.9":
+"@types/node@npm:^18.11.9, @types/node@npm:^18.17.5":
   version: 18.18.9
   resolution: "@types/node@npm:18.18.9"
   dependencies:
@@ -11369,13 +11369,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:13.1.0":
-  version: 13.1.0
-  resolution: "cypress@npm:13.1.0"
+"cypress@npm:13.5.1":
+  version: 13.5.1
+  resolution: "cypress@npm:13.5.1"
   dependencies:
     "@cypress/request": "npm:^3.0.0"
     "@cypress/xvfb": "npm:^1.2.4"
-    "@types/node": "npm:^16.18.39"
+    "@types/node": "npm:^18.17.5"
     "@types/sinonjs__fake-timers": "npm:8.1.1"
     "@types/sizzle": "npm:^2.3.2"
     arch: "npm:^2.2.0"
@@ -11418,7 +11418,7 @@ __metadata:
     yauzl: "npm:^2.10.0"
   bin:
     cypress: bin/cypress
-  checksum: 35347f8123b8c4cb097e5c2becc09a8ca6578086d4131c4e5a425fc303d01c1f00baa71b7640d107463379ba07a7b99e6441d82efe75baeb56cab3206ca8706e
+  checksum: 1fd0ca6c9e13be8ff7a4a3b83bf3ac0cc845b447881620071aff776de38fb1a1df9cfbebbf35e5d22fffda6d84f05d6c3d7ac75131bc1624720a96737e4aee2c
   languageName: node
   linkType: hard
 
