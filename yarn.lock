@@ -3894,7 +3894,7 @@ __metadata:
     rollup-plugin-postcss: "npm:4.0.2"
     rollup-plugin-sizes: "npm:1.0.5"
     rollup-plugin-swc3: "npm:0.10.3"
-    rsuite: "npm:5.37.0"
+    rsuite: "npm:5.45.0"
     semantic-release: "npm:22.0.7"
     storybook: "npm:7.5.3"
     storybook-addon-performance: "npm:0.17.1"
@@ -3912,7 +3912,7 @@ __metadata:
     formik: ^2.0.0
     react: ^18.0.0
     react-router-dom: ^6.0.0
-    rsuite: ^5.37.0
+    rsuite: ^5.45.0
     styled-components: ^5.0.0 || ^6.0.0
   languageName: unknown
   linkType: soft
@@ -21860,9 +21860,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rsuite-table@npm:^5.11.0":
-  version: 5.14.0
-  resolution: "rsuite-table@npm:5.14.0"
+"rsuite-table@npm:^5.17.0":
+  version: 5.17.0
+  resolution: "rsuite-table@npm:5.17.0"
   dependencies:
     "@babel/runtime": "npm:^7.12.5"
     "@juggle/resize-observer": "npm:^3.3.1"
@@ -21875,13 +21875,13 @@ __metadata:
     prop-types: ^15.7.2
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: ccb896c1f95320ef674ca17ced6e018f1999e3372d6df6044a6d79fd960a7ad2818611837f1d04208d6e00c565c56cbf3be01a19e0edbf599e0fc0e39ae80748
+  checksum: b31c87e4293826362e8ca9143cba0880af9908cfb642aa55de98de27048b72fa677ed27a5660bf0f7e7f15ebc3a4b0e68d211bcde870efa6d01bcfb66e10ae5b
   languageName: node
   linkType: hard
 
-"rsuite@npm:5.37.0":
-  version: 5.37.0
-  resolution: "rsuite@npm:5.37.0"
+"rsuite@npm:5.45.0":
+  version: 5.45.0
+  resolution: "rsuite@npm:5.45.0"
   dependencies:
     "@babel/runtime": "npm:^7.20.1"
     "@juggle/resize-observer": "npm:^3.4.0"
@@ -21897,12 +21897,12 @@ __metadata:
     prop-types: "npm:^15.8.1"
     react-use-set: "npm:^1.0.0"
     react-window: "npm:^1.8.8"
-    rsuite-table: "npm:^5.11.0"
+    rsuite-table: "npm:^5.17.0"
     schema-typed: "npm:^2.1.3"
   peerDependencies:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: ade2768320c2ef2e68206d385c16f744ad911c21dd7c94cf90ce08a61111ad7fdaa2292156bba077faf047777fc4053ad0877af63615c8667cc1bcc6d6937217
+  checksum: 8336a72dd50645709365d88f3f739bf23e6a62e4fcbfb3f3c0f12edfd5fc595ec3a77d72c9303dd4177f904759a10938684b0a3890dd08f5d560a685de8ffb20
   languageName: node
   linkType: hard
 

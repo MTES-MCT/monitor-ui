@@ -144,7 +144,7 @@ const Box = styled.div`
       display: none;
     }
     .rs-picker-daterange-calendar-group {
-      min-width: 495px;
+      min-width: 528px;
     }
     .rs-picker-daterange-calendar-group,
     .rs-picker-daterange-calendar-single {
