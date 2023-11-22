@@ -1,3 +1,16 @@
+## [10.14.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.13.0...v10.14.0) (2023-11-22)
+
+
+### Features
+
+* **utils:** add isEmptyish() ([085ebda](https://github.com/MTES-MCT/monitor-ui/commit/085ebdabc165ec637c7ab5258b461c2043e6d53e))
+* **utils:** add sortCollectionByLocalizedProps() ([3b2c2ed](https://github.com/MTES-MCT/monitor-ui/commit/3b2c2ede747c2f1e4d5363d0892fa7b97f9251e4))
+
+
+### Bug Fixes
+
+* **utils:** add missing index exports ([0dae0a8](https://github.com/MTES-MCT/monitor-ui/commit/0dae0a8635f2f011bc2955e0376f0eec04537eae))
+
 ## [10.13.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.12.1...v10.13.0) (2023-11-22)
 
 
