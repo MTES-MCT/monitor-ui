@@ -1,3 +1,17 @@
+## [10.13.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.12.1...v10.13.0) (2023-11-22)
+
+
+### Features
+
+* **entities:** add Administration, ControlUnit, DepartmentArea & Station ([9f04ac9](https://github.com/MTES-MCT/monitor-ui/commit/9f04ac996d7723504ad5e2d77bc5cc560b68bfcd))
+* **field:** handle disabled prop on options in MultiCheckbox component ([5f43efc](https://github.com/MTES-MCT/monitor-ui/commit/5f43efcec90b969c2dbad036482bd25366f783fd))
+
+
+### Bug Fixes
+
+* **elements:** fix checkpicker style ([d3e2efd](https://github.com/MTES-MCT/monitor-ui/commit/d3e2efdfc8756fd1058a60eb9d3aebae73c7ef4e))
+* **fields:** fix date picker size ([6114596](https://github.com/MTES-MCT/monitor-ui/commit/61145962e51206022c3fa27485ce60e926642db9))
+
 ## [10.12.1](https://github.com/MTES-MCT/monitor-ui/compare/v10.12.0...v10.12.1) (2023-11-15)
 
 
