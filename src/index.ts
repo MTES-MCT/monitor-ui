@@ -71,6 +71,19 @@ export * as Icon from './icons'
 export { ExclamationPoint } from './symbols/ExclamationPoint'
 
 /* -----------------------------------------------------------------------------
+  Entities
+
+  IMPORTANT: Use `export type` instead of `export` for entities that are ONLY made of types.
+  Otherwise, use `export` or constants won't be importable by the final applications.
+*/
+
+export type { Administration } from './entities/Administration'
+export { ControlUnit } from './entities/ControlUnit'
+export type { DepartmentArea } from './entities/DepartmentArea'
+export { Mission } from './entities/Mission'
+export type { Station } from './entities/Station'
+
+/* -----------------------------------------------------------------------------
   Hooks
 */
 
