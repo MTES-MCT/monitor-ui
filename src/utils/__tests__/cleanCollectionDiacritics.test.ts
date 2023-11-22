@@ -1,4 +1,4 @@
-import { expect } from '@jest/globals'
+import { describe, expect, it } from '@jest/globals'
 
 import { cleanCollectionDiacritics } from '../cleanCollectionDiacritics'
 
@@ -9,7 +9,7 @@ const TEST_COLLECTION = [
   { code: 'MH', description: 'mémoriser', ignored: 'mémoriser', other: { prop: 'mémoriser' } }
 ]
 
-describe('libs/CustomSearch/utils/cleanCollectionDiacritics()', () => {
+describe('utils/cleanCollectionDiacritics()', () => {
   it('should return the expected result', () => {
     const keys = [
       {

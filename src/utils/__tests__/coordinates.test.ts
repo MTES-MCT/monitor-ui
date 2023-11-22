@@ -3,7 +3,7 @@ import { describe, expect, it } from '@jest/globals'
 import { CoordinatesFormat, OPENLAYERS_PROJECTION, WSG84_PROJECTION } from '../../constants'
 import { getCoordinates } from '../coordinates'
 
-describe('getCoordinates', () => {
+describe('utils/getCoordinates()', () => {
   it('should get DMS coordinates for a dummy lon/lat', async () => {
     const coordinates = getCoordinates([-4.276, 46.947], WSG84_PROJECTION, CoordinatesFormat.DEGREES_MINUTES_SECONDS)
 
