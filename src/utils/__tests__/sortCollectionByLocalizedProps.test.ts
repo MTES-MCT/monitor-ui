@@ -8,7 +8,7 @@ function randomizeArrayOrder(array) {
   return array.sort(() => Math.random() - 0.5)
 }
 
-describe('sortCollectionByLocalizedProps', () => {
+describe('utils/sortCollectionByLocalizedProps()', () => {
   it('should sort by multiple property paths', () => {
     const propPaths = ['name.last', 'name.first']
     const collection = randomizeArrayOrder([

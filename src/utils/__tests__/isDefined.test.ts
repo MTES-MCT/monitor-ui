@@ -1,8 +1,8 @@
-import { expect } from '@jest/globals'
+import { describe, expect, it } from '@jest/globals'
 
 import { isDefined } from '../isDefined'
 
-describe('isDefined', () => {
+describe('utils/isDefined()', () => {
   it('should return `true` for a defined value', () => {
     const value = 0
 

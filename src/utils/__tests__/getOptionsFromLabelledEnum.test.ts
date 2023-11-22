@@ -1,5 +1,5 @@
 /* eslint-disable typescript-sort-keys/string-enum */
-import { expect } from '@jest/globals'
+import { describe, expect, it } from '@jest/globals'
 
 import { getOptionsFromLabelledEnum } from '../getOptionsFromLabelledEnum'
 
