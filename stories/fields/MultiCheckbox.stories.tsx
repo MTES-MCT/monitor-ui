@@ -5,6 +5,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { MultiCheckbox, useFieldControl } from '../../src'
 
 import type { MultiCheckboxProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: MultiCheckboxProps = {
   disabled: false,
@@ -16,15 +17,15 @@ const args: MultiCheckboxProps = {
   label: 'Pick some options',
   name: 'myMultiCheckbox',
   options: [
-    { label: 'First Option', value: 'FIRST_OPTION' },
-    { label: 'Second Option', value: 'SECOND_OPTION' },
-    { label: 'Third Option', value: 'THIRD_OPTION' },
-    { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
+    { label: 'First Option', value: 'FIRST_OPTION', isDisabled: false },
+    { label: 'Second Option', value: 'SECOND_OPTION', isDisabled: true },
+    { label: 'Third Option', value: 'THIRD_OPTION', isDisabled: false },
+    { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION', isDisabled: false }
   ],
   value: undefined
 }
 
-export default {
+const meta: Meta<MultiCheckboxProps> = {
   title: 'Fields/MultiCheckbox',
   component: MultiCheckbox,
 
@@ -43,6 +44,7 @@ export default {
     })
   ]
 }
+export default meta
 
 export function _MultiCheckbox(props: MultiCheckboxProps) {
   const [outputValue, setOutputValue] = useState<string[] | undefined | '∅'>('∅')
