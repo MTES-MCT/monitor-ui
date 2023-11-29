@@ -66,6 +66,10 @@
   --rs-listbox-option-selected-bg: var(--blue-gray-25);
   /* tags */
   --rs-tag-bg: var(--gainsboro);
+
+  /* toggle */
+  --rs-toggle-checked-bg: var(--charcoal);
+  --rs-toggle-checked-hover-bg: var(--gunMetal);
 }
 
 label {
