@@ -3820,7 +3820,7 @@ __metadata:
     "@types/node": "npm:20.9.0"
     "@types/ramda": "npm:0.28.23"
     "@types/react": "npm:18.2.37"
-    "@types/react-dom": "npm:18.2.15"
+    "@types/react-dom": "npm:18.2.17"
     "@types/sha1": "npm:1.1.3"
     "@types/styled-components": "npm:5.1.30"
     "@types/webpack": "npm:5.28.1"
@@ -7985,12 +7985,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:18.2.15":
-  version: 18.2.15
-  resolution: "@types/react-dom@npm:18.2.15"
+"@types/react-dom@npm:18.2.17":
+  version: 18.2.17
+  resolution: "@types/react-dom@npm:18.2.17"
   dependencies:
     "@types/react": "npm:*"
-  checksum: 70e86f15f69f89b8f179139ab2e8a8aa9765e742789f5dd5a46fec40d4300ada8fe3349cceda42b9964a018982d7ccb7d791b47f781966c992bfd37da909fbd3
+  checksum: 33b53078ed7e9e0cfc4dc691e938f7db1cc06353bc345947b41b581c3efe2b980c9e4eb6460dbf5ddc521dd91959194c970221a2bd4bfad9d23ebce338e12938
   languageName: node
   linkType: hard
 
