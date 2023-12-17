@@ -4,6 +4,7 @@ import { IMaskInput } from 'react-imask'
 import styled from 'styled-components'
 
 import { CoordinatesFormat, WSG84_PROJECTION } from '../../constants'
+import { THEME } from '../../theme'
 import { getCoordinates } from '../../utils/coordinates'
 import { isNumeric } from '../../utils/isNumeric'
 
@@ -17,6 +18,7 @@ type DMDCoordinatesInputProps = {
   coordinates: Coordinates | undefined
   coordinatesFormat: CoordinatesFormat
   disabled: boolean | undefined
+  isLight: boolean | undefined
   onChange: (nextCoordinates: Coordinates, coordinates: Coordinates | undefined) => void
 }
 // TODO This field should return undefined when cleared (i.e.: Select all & Backspace/Delete)
@@ -24,6 +26,7 @@ export function DMDCoordinatesInput({
   coordinates,
   coordinatesFormat,
   disabled = false,
+  isLight,
   onChange
 }: DMDCoordinatesInputProps) {
   const [error, setError] = useState('')
@@ -104,7 +107,10 @@ export function DMDCoordinatesInput({
         onComplete={(_, mask) => completeCoordinates(mask)}
         placeholder="__° __.___′ _ ___° __.___′"
         radix="."
-        style={{ border: error ? '1px solid red' : undefined }}
+        style={{
+          backgroundColor: isLight ? THEME.color.white : THEME.color.gainsboro,
+          border: error ? '1px solid red' : undefined
+        }}
         // TODO Use `defaultValue` here.
         value={value}
       />

@@ -2,6 +2,7 @@ import { useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { useDebouncedCallback } from 'use-debounce'
 
+import { THEME } from '../../theme'
 import { isNumeric } from '../../utils/isNumeric'
 
 import type { Coordinates } from '../../types'
@@ -9,10 +10,16 @@ import type { Coordinates } from '../../types'
 type DDCoordinatesInputProps = {
   coordinates: Coordinates | undefined
   disabled: boolean | undefined
+  isLight: boolean | undefined
   onChange: (nextCoordinates: Coordinates, coordinates: Coordinates | undefined) => void
 }
 // TODO This field should return undefined when cleared (i.e.: Select all & Backspace/Delete)
-export function DDCoordinatesInput({ coordinates, disabled = false, onChange }: DDCoordinatesInputProps) {
+export function DDCoordinatesInput({
+  coordinates,
+  disabled = false,
+  isLight = false,
+  onChange
+}: DDCoordinatesInputProps) {
   const latitudeInputRef = useRef<HTMLInputElement>()
   const longitudeInputRef = useRef<HTMLInputElement>()
 
@@ -77,7 +84,10 @@ export function DDCoordinatesInput({ coordinates, disabled = false, onChange }: 
         disabled={disabled}
         onChange={() => handleChange(coordinates)}
         placeholder="Latitude"
-        style={{ border: latitudeError ? '1px solid red' : undefined }}
+        style={{
+          backgroundColor: isLight ? THEME.color.white : THEME.color.gainsboro,
+          border: latitudeError ? '1px solid red' : undefined
+        }}
       />
       <DDInput
         ref={longitudeInputRef as any}
@@ -86,7 +96,10 @@ export function DDCoordinatesInput({ coordinates, disabled = false, onChange }: 
         disabled={disabled}
         onChange={() => handleChange(coordinates)}
         placeholder="Longitude"
-        style={{ border: longitudeError ? '1px solid red' : undefined }}
+        style={{
+          backgroundColor: isLight ? THEME.color.white : THEME.color.gainsboro,
+          border: longitudeError ? '1px solid red' : undefined
+        }}
       />
       <CoordinatesType>(DD)</CoordinatesType>
       <Error>{latitudeError}</Error>

@@ -51,6 +51,7 @@ export function CoordinatesInput({
             coordinates={defaultValue}
             coordinatesFormat={CoordinatesFormat.DEGREES_MINUTES_SECONDS}
             disabled={nativeProps.disabled}
+            isLight={isLight}
             onChange={onChange}
           />
         )
@@ -61,6 +62,7 @@ export function CoordinatesInput({
             coordinates={defaultValue}
             coordinatesFormat={CoordinatesFormat.DEGREES_MINUTES_DECIMALS}
             disabled={nativeProps.disabled}
+            isLight={isLight}
             onChange={onChange}
           />
         )
@@ -70,6 +72,7 @@ export function CoordinatesInput({
           <DDCoordinatesInput
             coordinates={defaultValue as [number, number]}
             disabled={nativeProps.disabled}
+            isLight={isLight}
             onChange={onChange}
           />
         )
@@ -77,19 +80,13 @@ export function CoordinatesInput({
       default:
         return undefined
     }
-  }, [defaultValue, nativeProps.disabled, onChange, coordinatesFormat])
+  }, [defaultValue, nativeProps.disabled, onChange, coordinatesFormat, isLight])
 
   // TODO We must add a `handleDisable()` callback here to effectively empty the inputs when disabling this field.
   useFieldUndefineEffect(nativeProps.disabled, onChange /* , handleDisable */)
 
   return (
-    <StyledFieldset
-      className={controlledClassName}
-      isLegendHidden={isLabelHidden}
-      isLight={isLight}
-      legend={label}
-      {...nativeProps}
-    >
+    <StyledFieldset className={controlledClassName} isLegendHidden={isLabelHidden} legend={label} {...nativeProps}>
       {getCoordinatesInput()}
 
       {hasError && <FieldError>{controlledError}</FieldError>}
