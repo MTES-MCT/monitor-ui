@@ -312,13 +312,13 @@ label:hover .rs-checkbox-wrapper .rs-checkbox-inner:before {
 .rs-radio-wrapper::before,
 .rs-radio-wrapper .rs-radio-inner::before,
 .rs-radio-wrapper {
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
 }
 
 .rs-radio-wrapper .rs-radio-inner::before {
   background: var(--gainsboro);
-  border-width: 2.5px;
+  border-width: 2px;
 }
 
 .rs-radio-checked .rs-radio-wrapper .rs-radio-inner::before {
@@ -329,10 +329,10 @@ label:hover .rs-checkbox-wrapper .rs-checkbox-inner:before {
 /* center of radio button when checked */
 .rs-radio-wrapper .rs-radio-inner::after {
   background: var(--charcoal);
-  width: 8px;
-  height: 8px;
-  margin-top: 5px;
-  margin-left: 5px;
+  width: 6px;
+  height: 6px;
+  margin-top: 4px;
+  margin-left: 4px;
 }
 
 .rs-radio.rs-radio-disabled .rs-radio-wrapper .rs-radio-inner::after {
