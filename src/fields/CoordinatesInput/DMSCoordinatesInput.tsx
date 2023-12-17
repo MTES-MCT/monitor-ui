@@ -3,6 +3,8 @@ import { useCallback, useMemo } from 'react'
 import CoordinateInput from 'react-coordinate-input'
 import styled from 'styled-components'
 
+import { THEME } from '../../theme'
+
 import type { CoordinatesFormat } from '../../constants'
 import type { Coordinates } from '../../types'
 
@@ -10,12 +12,14 @@ type DMSCoordinatesInputProps = {
   coordinates: Coordinates | undefined
   coordinatesFormat: CoordinatesFormat
   disabled: boolean | undefined
+  isLight: boolean | undefined
   onChange: (nextCoordinates: Coordinates | undefined, coordinates: Coordinates | undefined) => void
 }
 export function DMSCoordinatesInput({
   coordinates,
   coordinatesFormat,
   disabled = false,
+  isLight,
   onChange
 }: DMSCoordinatesInputProps) {
   /** Convert the coordinates to the [latitude, longitude] string format */
@@ -43,6 +47,9 @@ export function DMSCoordinatesInput({
         ddPrecision={6}
         disabled={disabled}
         onChange={(_, { dd }) => update(dd)}
+        style={{
+          backgroundColor: isLight ? THEME.color.white : THEME.color.gainsboro
+        }}
         // TODO Use `defaultValue` here.
         value={defaultValue}
       />
