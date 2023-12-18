@@ -1,3 +1,11 @@
+## [10.14.2](https://github.com/MTES-MCT/monitor-ui/compare/v10.14.1...v10.14.2) (2023-12-18)
+
+
+### Bug Fixes
+
+* **CoordinatesInput:** fix light mode ([643d22c](https://github.com/MTES-MCT/monitor-ui/commit/643d22c1632d863e6777b9e7c8f97137a69787dd))
+* **Multiradio:** rework sizing and centering ([46c9325](https://github.com/MTES-MCT/monitor-ui/commit/46c932564a0109f0eb2a66a902de6457231b52ea))
+
 ## [10.14.1](https://github.com/MTES-MCT/monitor-ui/compare/v10.14.0...v10.14.1) (2023-12-04)
 
 ## [10.14.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.13.0...v10.14.0) (2023-11-22)
