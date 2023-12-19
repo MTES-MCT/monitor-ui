@@ -28,7 +28,6 @@ export const THEME = {
     blueGray25: '#D4E5F4',
     maximumRed: '#E1000F',
     maximumRed15: '#FBD9DB',
-
     babyBlueEyes: '#99C9FF',
 
     // Notification Colors
