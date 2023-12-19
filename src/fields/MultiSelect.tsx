@@ -304,7 +304,7 @@ const Box = styled.div<{
     > .rs-picker-check-menu {
       margin: 0;
 
-      > div[role='option'] {
+      div[role='option'] {
         > .rs-check-item {
           > .rs-checkbox-checker {
             > label {
