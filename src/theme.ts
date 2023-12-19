@@ -33,7 +33,7 @@ export const THEME = {
 
     // Notification Colors
     mediumSeaGreen: '#29B361',
-    mediumSeaGreen25: '29b36140',
+    mediumSeaGreen25: '#c9ecd7',
     goldenPoppy: '#FAC11A',
     goldenPoppy25: '#FDF3C3',
 
