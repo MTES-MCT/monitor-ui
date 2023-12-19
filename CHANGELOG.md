@@ -1,3 +1,10 @@
+## [10.15.1](https://github.com/MTES-MCT/monitor-ui/compare/v10.15.0...v10.15.1) (2023-12-19)
+
+
+### Bug Fixes
+
+* **theme:** dummy commit to release ([9312c7e](https://github.com/MTES-MCT/monitor-ui/commit/9312c7e6e106d9ce831d66805534be06576ea3cf))
+
 ## [10.14.2](https://github.com/MTES-MCT/monitor-ui/compare/v10.14.1...v10.14.2) (2023-12-18)
 
 
