@@ -81,4 +81,28 @@ const StyledCheckbox = styled(RsuiteCheckbox as any)`
       top: 2px !important;
     }
   }
+
+  // in readOnly, override hover effects and change cursor
+  ${props =>
+    props.readOnly &&
+    `
+      > .rs-checkbox-checker:hover {
+        label {
+          cursor: not-allowed;
+        }
+        .rs-checkbox-wrapper .rs-checkbox-inner::before {
+          border-color: ${props.theme.color.lightGray};
+          background-color: ${props.theme.color.gainsboro};
+        }
+      }
+
+      &.rs-checkbox-checked {
+        > .rs-checkbox-checker:hover {
+          .rs-checkbox-wrapper .rs-checkbox-inner::before {
+            border-color: ${props.theme.color.charcoal};
+            background-color: ${props.theme.color.charcoal};
+          }
+        }
+      }
+    `}
 `

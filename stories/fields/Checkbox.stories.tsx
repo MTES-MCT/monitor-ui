@@ -11,7 +11,8 @@ const args: CheckboxProps = {
   disabled: false,
   error: '',
   label: 'Check me',
-  name: 'myCheckbox'
+  name: 'myCheckbox',
+  readOnly: false
 }
 
 export default {
