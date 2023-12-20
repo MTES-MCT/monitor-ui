@@ -1,3 +1,10 @@
+## [10.16.1](https://github.com/MTES-MCT/monitor-ui/compare/v10.16.0...v10.16.1) (2023-12-20)
+
+
+### Bug Fixes
+
+* **fields:** fix disabled prop in select component ([ab49d6e](https://github.com/MTES-MCT/monitor-ui/commit/ab49d6ecf026992d00165df6eee60b5266ba3c20))
+
 ## [10.16.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.15.2...v10.16.0) (2023-12-20)
 
 
