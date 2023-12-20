@@ -5,6 +5,18 @@
 
 * **theme:** dummy commit to release ([9312c7e](https://github.com/MTES-MCT/monitor-ui/commit/9312c7e6e106d9ce831d66805534be06576ea3cf))
 
+## [10.15.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.14.2...v10.15.0) (2023-12-19)
+
+
+### Features
+
+* **theme:** add medium sea green 25 color ([42beb7a](https://github.com/MTES-MCT/monitor-ui/commit/42beb7ab79660a81e6068e3fa460642bfd72a379))
+
+
+### Bug Fixes
+
+* **theme:** fix medium sea green 25 color ([5bf7022](https://github.com/MTES-MCT/monitor-ui/commit/5bf702278abc28634c4668a958edbc9cade7716a))
+
 ## [10.14.2](https://github.com/MTES-MCT/monitor-ui/compare/v10.14.1...v10.14.2) (2023-12-18)
 
 
