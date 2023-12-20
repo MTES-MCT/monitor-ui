@@ -162,8 +162,8 @@ export function Select<OptionValue extends OptionValueType = string>({
   )
 
   const disabledItemValues = useMemo(
-    () => options.filter(option => option.isDisabled).map(option => option.value),
-    [options]
+    () => (controlledRsuiteData || rsuiteData).filter(option => option.isDisabled).map(option => option.value),
+    [controlledRsuiteData, rsuiteData]
   )
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
