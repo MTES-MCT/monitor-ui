@@ -1,3 +1,10 @@
+## [10.15.2](https://github.com/MTES-MCT/monitor-ui/compare/v10.15.1...v10.15.2) (2023-12-20)
+
+
+### Bug Fixes
+
+* **MultiSelect:** fix for long labels in virtualized mode ([ba2902a](https://github.com/MTES-MCT/monitor-ui/commit/ba2902ac63780a76d884f2c6fedbb469436f143d))
+
 ## [10.15.1](https://github.com/MTES-MCT/monitor-ui/compare/v10.15.0...v10.15.1) (2023-12-19)
 
 
