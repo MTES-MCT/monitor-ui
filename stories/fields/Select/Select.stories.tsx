@@ -17,10 +17,10 @@ const args: SelectProps = {
   label: 'A select',
   name: 'mySelect',
   options: [
-    { label: 'First Option', value: 'FIRST_OPTION' },
-    { label: 'Second Option', value: 'SECOND_OPTION' },
-    { label: 'Third Option', value: 'THIRD_OPTION' },
-    { label: LOREM_IPSUM, value: 'LOREM_IPSUM' }
+    { label: 'First Option', value: 'FIRST_OPTION', isDisabled: true },
+    { label: 'Second Option', value: 'SECOND_OPTION', isDisabled: false },
+    { label: 'Third Option', value: 'THIRD_OPTION', isDisabled: false },
+    { label: LOREM_IPSUM, value: 'LOREM_IPSUM', isDisabled: false }
   ],
   placeholder: 'Pick an option',
   searchable: false,

@@ -161,6 +161,11 @@ export function Select<OptionValue extends OptionValueType = string>({
     [isOpen, disabled]
   )
 
+  const disabledItemValues = useMemo(
+    () => options.filter(option => option.isDisabled).map(option => option.value),
+    [options]
+  )
+
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
   useClickOutsideEffect(boxRef, close, baseContainer)
@@ -186,6 +191,7 @@ export function Select<OptionValue extends OptionValueType = string>({
             // when we don't, we don't need to control that and just pass the non-internally-controlled `rsuiteData`
             data={controlledRsuiteData || rsuiteData}
             disabled={disabled}
+            disabledItemValues={disabledItemValues}
             id={originalProps.name}
             onClean={handleClean}
             onSearch={handleSearch}
