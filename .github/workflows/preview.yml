@@ -24,7 +24,7 @@ jobs:
         run: yarn
       - name: Publish
         id: publish
-        uses: chromaui/action@v1
+        uses: chromaui/action@v10
         with:
           buildScriptName: 'build:storybook'
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
