@@ -118,7 +118,7 @@
     "http-server": "14.1.1",
     "husky": "8.0.3",
     "jest": "29.5.0",
-    "jest-environment-jsdom": "29.5.0",
+    "jest-environment-jsdom": "29.7.0",
     "jest-environment-node": "29.6.1",
     "json-stringify-deterministic": "1.0.12",
     "ky": "0.33.3",
