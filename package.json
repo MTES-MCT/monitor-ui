@@ -150,7 +150,7 @@
     "typescript": "5.1.6",
     "use-debounce": "9.0.4",
     "webpack": "5.88.1",
-    "yup": "1.1.1"
+    "yup": "1.3.3"
   },
   "peerDependencies": {
     "@sentry/react": "^7.0.0",
