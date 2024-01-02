@@ -35,7 +35,7 @@ export function CalendarPicker({ isHistorical, isOpen, onChange, value }: Calend
   const utcTodayAsDayjs = useMemo(() => customDayjs().utc().endOf('day'), [])
   const controlledValue = useMemo(() => (value ? getLocalizedDayjs(value).toDate() : undefined), [value])
   const shouldDisableDate = useMemo(
-    () => (date?: Date) => date && isHistorical ? getUtcizedDayjs(date).isAfter(utcTodayAsDayjs) : false,
+    () => (date?: Date) => (date && isHistorical ? getUtcizedDayjs(date).isAfter(utcTodayAsDayjs) : false),
     [isHistorical, utcTodayAsDayjs]
   )
 
