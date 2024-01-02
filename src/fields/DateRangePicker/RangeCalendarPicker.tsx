@@ -53,7 +53,7 @@ export function RangeCalendarPicker({
   )
   const utcTodayAsDayjs = useMemo(() => customDayjs().utc().endOf('day'), [])
   const shouldDisableDate = useMemo(
-    () => (date: Date) => isHistorical ? getUtcizedDayjs(date).isAfter(utcTodayAsDayjs) : false,
+    () => (date: Date) => (isHistorical ? getUtcizedDayjs(date).isAfter(utcTodayAsDayjs) : false),
     [isHistorical, utcTodayAsDayjs]
   )
 

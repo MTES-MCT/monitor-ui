@@ -23,6 +23,7 @@
         "docs",
         "feat",
         "fix",
+        "lint",
         "perf",
         "refactor",
         "revert",
