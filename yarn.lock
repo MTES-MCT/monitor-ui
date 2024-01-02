@@ -3838,7 +3838,7 @@ __metadata:
     eslint: "npm:8.43.0"
     eslint-config-airbnb: "npm:19.0.4"
     eslint-config-airbnb-typescript: "npm:17.0.0"
-    eslint-config-prettier: "npm:9.0.0"
+    eslint-config-prettier: "npm:9.1.0"
     eslint-plugin-cypress: "npm:2.13.3"
     eslint-plugin-import: "npm:2.29.0"
     eslint-plugin-jest: "npm:27.2.3"
@@ -3867,7 +3867,7 @@ __metadata:
     lodash: "npm:4.17.21"
     ol: "npm:7.1.0"
     postcss: "npm:8.4.31"
-    prettier: "npm:2.8.4"
+    prettier: "npm:3.1.1"
     prop-types: "npm:15.8.1"
     ramda: "npm:0.29.1"
     react: "npm:18.2.0"
@@ -12372,14 +12372,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-prettier@npm:9.0.0":
-  version: 9.0.0
-  resolution: "eslint-config-prettier@npm:9.0.0"
+"eslint-config-prettier@npm:9.1.0":
+  version: 9.1.0
+  resolution: "eslint-config-prettier@npm:9.1.0"
   peerDependencies:
     eslint: ">=7.0.0"
   bin:
     eslint-config-prettier: bin/cli.js
-  checksum: bc1f661915845c631824178942e5d02f858fe6d0ea796f0050d63e0f681927b92696e81139dd04714c08c3e7de580fd079c66162e40070155ba79eaee78ab5d0
+  checksum: 6d332694b36bc9ac6fdb18d3ca2f6ac42afa2ad61f0493e89226950a7091e38981b66bac2b47ba39d15b73fff2cd32c78b850a9cf9eed9ca9a96bfb2f3a2f10d
   languageName: node
   linkType: hard
 
@@ -19914,12 +19914,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:2.8.4":
-  version: 2.8.4
-  resolution: "prettier@npm:2.8.4"
+"prettier@npm:3.1.1":
+  version: 3.1.1
+  resolution: "prettier@npm:3.1.1"
   bin:
-    prettier: bin-prettier.js
-  checksum: d272cbd842d466fbd10e7efc22fd99ebdbfb78c06c0fe8ffdaa86d50883e7b3d3fba822a86fd8a1c851ca91ec5dfc867e612071c9c54d0e29954f20954262dcb
+    prettier: bin/prettier.cjs
+  checksum: facc944ba20e194ff4db765e830ffbcb642803381f0d2033ed397e79904fa4ccc877dc25ad68f42d36985c01d051c990ca1b905fb83d2d7d65fe69e4386fa1a3
   languageName: node
   linkType: hard
 
