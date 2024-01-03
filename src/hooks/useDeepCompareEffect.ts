@@ -1,6 +1,7 @@
-import { usePrevious } from '@mtes-mct/monitor-ui'
 import { isEqual } from 'lodash/fp'
 import { useEffect, type DependencyList, type EffectCallback } from 'react'
+
+import { usePrevious } from './usePrevious'
 
 export function useDeepCompareEffect(effect: EffectCallback, deps: DependencyList): void {
   const previousValue = usePrevious(deps)
