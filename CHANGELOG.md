@@ -1,3 +1,16 @@
+## [10.17.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.16.1...v10.17.0) (2024-01-03)
+
+
+### Features
+
+* **cypress:** add waitForLastRequest ([2739040](https://github.com/MTES-MCT/monitor-ui/commit/2739040cf1f6f74a6a38d9902dc485be5003b21d))
+* **hooks:** add useDeepCompareEffect ([d74f87a](https://github.com/MTES-MCT/monitor-ui/commit/d74f87ac390b636b50ab44d027aff13618a711bd))
+
+
+### Bug Fixes
+
+* **hooks:** fix import ([bd0449f](https://github.com/MTES-MCT/monitor-ui/commit/bd0449ff7bca816cb1570e2c46aec7bb05a64664))
+
 ## [10.16.1](https://github.com/MTES-MCT/monitor-ui/compare/v10.16.0...v10.16.1) (2023-12-20)
 
 
