@@ -88,6 +88,7 @@ export type { Station } from './entities/Station'
 */
 
 export { useClickOutsideEffect } from './hooks/useClickOutsideEffect'
+export { useDeepCompareEffect } from './hooks/useDeepCompareEffect'
 export { useFieldControl } from './hooks/useFieldControl'
 export { useForceUpdate } from './hooks/useForceUpdate'
 export { useKey } from './hooks/useKey'
