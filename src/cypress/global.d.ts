@@ -85,6 +85,24 @@ declare namespace Cypress {
      * ```
      */
     getTableRowByText(text: string): Chainable<JQuery<HTMLElement>>
+
+    /**
+     * @description Assert the request payload when a form is auto-saving and the requests number is not determinist
+     *
+     * @example
+     * ```ts
+     *    cy.waitForLastRequest('@updateMissionAction',
+     *    {
+     *       body: {
+     *         property: 'VALUE',
+     *       }
+     *    }, 5)
+     *    .its('response.statusCode')
+     *    .should('eq', 201)
+     *    })
+     * ```
+     */
+    waitForLastRequest(alias: string, partialRequest, maxRequests: number, level?)
   }
 
   type DateTuple = [number, number, number]

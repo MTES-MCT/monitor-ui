@@ -10,14 +10,14 @@ import type { NativeAny, NativeArray, NativeObject } from '../types'
 type Undefine<T> = T extends null
   ? undefined
   : T extends Array<any>
-    ? {
-        [K in keyof T]: T[K] extends (infer U)[] ? Undefine<U>[] : Undefine<T[K]>
-      }
-    : T extends Record<string, any>
-      ? {
-          [K in keyof T]: T[K] extends (infer U)[] ? Undefine<U>[] : Undefine<T[K]>
-        }
-      : T
+  ? {
+      [K in keyof T]: T[K] extends (infer U)[] ? Undefine<U>[] : Undefine<T[K]>
+    }
+  : T extends Record<string, any>
+  ? {
+      [K in keyof T]: T[K] extends (infer U)[] ? Undefine<U>[] : Undefine<T[K]>
+    }
+  : T
 
 const undefineArrayValues = <T extends NativeArray>(list: T): Undefine<T> => list.map(undefine as any) as any
 
