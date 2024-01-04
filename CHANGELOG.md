@@ -1,3 +1,10 @@
+## [10.17.1](https://github.com/MTES-MCT/monitor-ui/compare/v10.17.0...v10.17.1) (2024-01-04)
+
+
+### Bug Fixes
+
+* **components:** truncate long titles in MapMenuDialog ([ce25040](https://github.com/MTES-MCT/monitor-ui/commit/ce250400ddd8c955783e1aed5c0253ed14eb3972))
+
 ## [10.17.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.16.1...v10.17.0) (2024-01-03)
 
 
