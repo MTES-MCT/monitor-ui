@@ -19,8 +19,8 @@ export default meta
 
 export function _MapMenuDialog() {
   return (
-    <StyledContainer>
-      <StyledFirstLine>
+    <Box>
+      <Row>
         <MapMenuDialog.Container>
           <MapMenuDialog.Header>
             <MapMenuDialog.CloseButton Icon={Icon.Close} />
@@ -97,38 +97,51 @@ export function _MapMenuDialog() {
             </Button>
           </MapMenuDialog.Footer>
         </MapMenuDialog.Container>
-      </StyledFirstLine>
-      <MapMenuDialog.Container>
-        <MapMenuDialog.Header>
-          <MapMenuDialog.CloseButton Icon={Icon.Close} />
-          <MapMenuDialog.Title>With buttons only</MapMenuDialog.Title>
-          <MapMenuDialog.VisibilityButton accent={Accent.SECONDARY} Icon={Icon.Display} />
-        </MapMenuDialog.Header>
-        <MapMenuDialog.Body>
-          <StyledButtonsContainer>
-            <Button Icon={Icon.Plus} isFullWidth>
-              Ajouter une nouvelle mission
-            </Button>
-            <Button accent={Accent.SECONDARY} Icon={Icon.Expand} isFullWidth>
-              Voir la vue détaillée des missions
-            </Button>
-          </StyledButtonsContainer>
-        </MapMenuDialog.Body>
-      </MapMenuDialog.Container>
-    </StyledContainer>
+      </Row>
+
+      <Row>
+        <MapMenuDialog.Container>
+          <MapMenuDialog.Header>
+            <MapMenuDialog.CloseButton Icon={Icon.Close} />
+            <MapMenuDialog.Title>With buttons only</MapMenuDialog.Title>
+            <MapMenuDialog.VisibilityButton accent={Accent.SECONDARY} Icon={Icon.Display} />
+          </MapMenuDialog.Header>
+          <MapMenuDialog.Body>
+            <StyledButtonsContainer>
+              <Button Icon={Icon.Plus} isFullWidth>
+                Ajouter une nouvelle mission
+              </Button>
+              <Button accent={Accent.SECONDARY} Icon={Icon.Expand} isFullWidth>
+                Voir la vue détaillée des missions
+              </Button>
+            </StyledButtonsContainer>
+          </MapMenuDialog.Body>
+        </MapMenuDialog.Container>
+
+        <MapMenuDialog.Container>
+          <MapMenuDialog.Header>
+            <MapMenuDialog.CloseButton Icon={Icon.Close} />
+            <MapMenuDialog.Title>A way too long title that cannot fit</MapMenuDialog.Title>
+            <MapMenuDialog.VisibilityButton accent={Accent.SECONDARY} Icon={Icon.Display} />
+          </MapMenuDialog.Header>
+        </MapMenuDialog.Container>
+      </Row>
+    </Box>
   )
 }
 
-const StyledContainer = styled.div`
+const Box = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
 `
-const StyledFirstLine = styled.div`
+
+const Row = styled.div`
   display: flex;
   flex-direction: row;
 `
+
 const StyledButtonsContainer = styled.div`
   display: flex;
   flex-direction: column;
