@@ -96,13 +96,15 @@ declare namespace Cypress {
      *       body: {
      *         property: 'VALUE',
      *       }
-     *    }, 5)
+     *    }, 5, response => {
+     *      console.log('After response', response)
+     *    })
      *    .its('response.statusCode')
      *    .should('eq', 201)
      *    })
      * ```
      */
-    waitForLastRequest(alias: string, partialRequest, maxRequests: number, level?)
+    waitForLastRequest(alias: string, partialRequest, maxRequests: number, level?, callback?: (response) => void)
   }
 
   type DateTuple = [number, number, number]
