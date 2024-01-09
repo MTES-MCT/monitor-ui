@@ -1,3 +1,15 @@
+## [10.18.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.17.1...v10.18.0) (2024-01-09)
+
+
+### Features
+
+* **cypress:** add callback to waitForLastRequest command ([aaded2d](https://github.com/MTES-MCT/monitor-ui/commit/aaded2d43f462a6bbcffc8fa32cad526da4e7413))
+
+
+### Bug Fixes
+
+* **e2e:** fix test with border effect ([97c82c9](https://github.com/MTES-MCT/monitor-ui/commit/97c82c9b64dfd72a95bda104bb077d78b216b81a))
+
 ## [10.17.1](https://github.com/MTES-MCT/monitor-ui/compare/v10.17.0...v10.17.1) (2024-01-04)
 
 
