@@ -3,12 +3,14 @@ import { type FunctionComponent, useCallback, useMemo } from 'react'
 import { Input } from 'rsuite'
 import styled from 'styled-components'
 
-import { Size } from '../constants'
+import { Accent, Size } from '../constants'
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
+import { IconButton } from '../elements/IconButton'
 import { Label } from '../elements/Label'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useKey } from '../hooks/useKey'
+import { Close, Search } from '../icons'
 import { THEME } from '../theme'
 import { normalizeString } from '../utils/normalizeString'
 
@@ -22,6 +24,7 @@ export type TextInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'on
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isSearchInput?: boolean
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
@@ -36,6 +39,7 @@ export function TextInput({
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
+  isSearchInput = false,
   isUndefinedWhenDisabled = false,
   label,
   onChange,
@@ -49,6 +53,13 @@ export function TextInput({
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([originalProps.disabled, originalProps.name])
+
+  const clean = useCallback(() => {
+    if (!onChange) {
+      return
+    }
+    onChange(undefined)
+  }, [onChange])
 
   const handleChange = useCallback(
     (nextValue: string | null) => {
@@ -89,6 +100,24 @@ export function TextInput({
           value={value || ''}
           {...originalProps}
         />
+        {isSearchInput && !Icon && (
+          <IconsContainer $size={size}>
+            {value && (
+              <>
+                <IconButton
+                  accent={Accent.TERTIARY}
+                  color={THEME.color.slateGray}
+                  Icon={Close}
+                  onClick={clean}
+                  size={Size.SMALL}
+                />
+                <Separator />
+              </>
+            )}
+
+            <Search color={THEME.color.slateGray} />
+          </IconsContainer>
+        )}
 
         {Icon && <Icon color={THEME.color.slateGray} />}
       </InputBox>
@@ -108,6 +137,25 @@ const PADDING_WITH_ICON: Record<Size, string> = {
   [Size.NORMAL]: '3px 38px 6px 8px',
   [Size.SMALL]: '3px 38px 6px 8px'
 }
+
+const IconsContainer = styled.div<{
+  $size: Size
+}>`
+  align-items: center;
+  display: flex;
+  position: absolute;
+  right: 5px;
+  top: ${p => (p.$size === Size.LARGE ? '10px' : '5px')};
+`
+
+const Separator = styled.div`
+  border-right: 1px solid ${p => p.theme.color.lightGray};
+  height: 20px;
+  margin-left: 4px;
+  margin-right: 6px;
+  padding-top: 3px;
+`
+
 const StyledInput = styled(Input as any)<{
   $hasError: boolean
   $hasIcon: boolean
@@ -144,7 +192,6 @@ const InputBox = styled.div<{
 }>`
   position: relative;
   width: 100%;
-
   > .Element-IconBox {
     position: absolute;
     right: 10px;

@@ -6,6 +6,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { Icon, Size, TextInput, useFieldControl } from '../../src'
 
 import type { TextInputProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: TextInputProps = {
   disabled: false,
@@ -13,17 +14,26 @@ const args: TextInputProps = {
   isErrorMessageHidden: false,
   isLabelHidden: false,
   isLight: false,
+  isUndefinedWhenDisabled: false,
+  isSearchInput: false,
   label: 'A text input',
   name: 'myTextInput',
   placeholder: 'A text input placeholder',
+  size: Size.NORMAL,
   value: undefined
 }
 
-export default {
+const meta: Meta<TextInputProps> = {
   title: 'Fields/TextInput',
   component: TextInput,
 
   argTypes: {
+    isUndefinedWhenDisabled: {
+      control: 'boolean'
+    },
+    isSearchInput: {
+      control: 'boolean'
+    },
     size: {
       control: 'inline-radio',
       options: Size
@@ -41,15 +51,29 @@ export default {
     })
   ]
 }
+export default meta
 
 export function _TextInput(props: TextInputProps) {
   const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
 
   const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue, '')
+  const { controlledOnChange: controlledOnChangeBis, controlledValue: controlledValueBis } = useFieldControl(
+    props.value,
+    setOutputValue,
+    ''
+  )
 
   return (
     <>
       <TextInput {...props} onChange={controlledOnChange} value={controlledValue} />
+
+      <TextInput
+        {...props}
+        isSearchInput
+        label="A search text input"
+        onChange={controlledOnChangeBis}
+        value={controlledValueBis}
+      />
 
       {outputValue !== '∅' && <Output value={outputValue} />}
 
@@ -58,6 +82,7 @@ export function _TextInput(props: TextInputProps) {
           Icon={Icon.Search}
           label="A text input with an icon"
           name="myTextInputWithAnIcon"
+          onChange={controlledOnChange}
           placeholder="A text input placeholder"
           size={Size.LARGE}
         />
