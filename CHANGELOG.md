@@ -1,3 +1,10 @@
+## [10.19.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.18.0...v10.19.0) (2024-01-10)
+
+
+### Features
+
+* **field:** add isSearchInput prop to display Search and close icons ([27e14b0](https://github.com/MTES-MCT/monitor-ui/commit/27e14b0852acd82898dc435a138dbf53e3ce061c))
+
 ## [10.18.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.17.1...v10.18.0) (2024-01-09)
 
 
