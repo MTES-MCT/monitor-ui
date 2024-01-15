@@ -1,3 +1,10 @@
+## [10.19.1](https://github.com/MTES-MCT/monitor-ui/compare/v10.19.0...v10.19.1) (2024-01-15)
+
+
+### Bug Fixes
+
+* **table:** update padding in row and add prop isHighlight ([b129bd1](https://github.com/MTES-MCT/monitor-ui/commit/b129bd1f96a8bee776358d2b6977b284c6e3849f))
+
 ## [10.19.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.18.0...v10.19.0) (2024-01-10)
 
 
