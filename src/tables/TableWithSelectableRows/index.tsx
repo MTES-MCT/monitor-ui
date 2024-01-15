@@ -24,21 +24,29 @@ const Th = styled(SimpleTable.Th)`
   border-top: 1px solid ${p => p.theme.color.lightGray};
   border-bottom: 1px solid ${p => p.theme.color.lightGray};
   border-right: none;
-  padding: 2px 10px;
+  padding: 2px 16px;
 `
 
-const BodyTr = styled(SimpleTable.BodyTr)`
+const BodyTr = styled(SimpleTable.BodyTr)<{ $isHighlighted?: boolean }>`
+  td:first-child {
+    border-left: ${p =>
+      p.$isHighlighted ? `2px solid ${p.theme.color.blueGray}` : `1px solid ${p.theme.color.lightGray}`};
+  }
   td:last-child {
-    border-right: 1px solid ${p => p.theme.color.lightGray};
+    border-right: ${p =>
+      p.$isHighlighted ? `2px solid ${p.theme.color.blueGray}` : `1px solid ${p.theme.color.lightGray}`};
     overflow: visible;
   }
 `
 
-const Td = styled(SimpleTable.Td)<{ $hasRightBorder: boolean }>`
+const Td = styled(SimpleTable.Td)<{ $hasRightBorder: boolean; $isHighlighted?: boolean }>`
   background-color: ${p => p.theme.color.cultured};
-  border-top: 1px solid ${p => p.theme.color.lightGray};
+  border-top: ${p =>
+    p.$isHighlighted ? `2px solid ${p.theme.color.blueGray}` : `1px solid ${p.theme.color.lightGray}`};
+  border-bottom: ${p =>
+    p.$isHighlighted ? `2px solid ${p.theme.color.blueGray}` : `1px solid ${p.theme.color.lightGray}`};
   border-right: none;
-  padding: 4px 10px;
+  padding: 4px 16px;
   border-right: ${p => (p.$hasRightBorder ? `1px solid ${p.theme.color.lightGray}` : '')};
 `
 

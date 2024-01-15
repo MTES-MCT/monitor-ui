@@ -337,11 +337,11 @@ export function _TableWithSelectableRows() {
                 <td style={{ height: `${paddingTop}px` }} />
               </tr>
             )}
-            {virtualRows.map(virtualRow => {
+            {virtualRows.map((virtualRow, index) => {
               const row = rows[virtualRow.index]
 
               return (
-                <TableWithSelectableRows.BodyTr key={virtualRow.key}>
+                <TableWithSelectableRows.BodyTr key={virtualRow.key} $isHighlighted={index % 2 === 0}>
                   {row?.getVisibleCells().map(cell => (
                     <TableWithSelectableRows.Td
                       {...{
@@ -352,7 +352,8 @@ export function _TableWithSelectableRows() {
                           width: cell.column.getSize()
                         },
                         $isCenter: !!(cell.column.id === 'geom' || cell.column.id === 'id'),
-                        $hasRightBorder: !!(cell.column.id === 'geom')
+                        $hasRightBorder: !!(cell.column.id === 'geom'),
+                        $isHighlighted: index % 2 === 0
                       }}
                     >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
