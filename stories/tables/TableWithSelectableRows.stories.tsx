@@ -6,7 +6,8 @@ import { useCallback, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { Accent, Dropdown, Icon, IconButton, TableWithSelectableRows } from '../../src'
+import { Accent, Dropdown, Icon, IconButton, THEME, TableWithSelectableRows, Tag } from '../../src'
+import { Link } from '../../src/icons'
 
 import type { Meta } from '@storybook/react'
 
@@ -122,28 +123,22 @@ export function _TableWithSelectableRows() {
     () => [
       {
         id: 'select',
-        size: 50,
+        size: 25,
         enableSorting: false,
         accessorFn: row => row.reportingId,
         header: ({ table }) => (
           <TableWithSelectableRows.RowCheckbox
-            {...{
-              isChecked: table.getIsAllRowsSelected(),
-              isIndeterminate: table.getIsSomeRowsSelected(),
-              onChange: table.getToggleAllRowsSelectedHandler()
-            }}
+            isChecked={table.getIsAllRowsSelected()}
+            isIndeterminate={table.getIsSomeRowsSelected()}
+            onChange={table.getToggleAllRowsSelectedHandler()}
           />
         ),
         cell: ({ row }) => (
-          <div className="px-1">
-            <TableWithSelectableRows.RowCheckbox
-              {...{
-                isChecked: row.getIsSelected(),
-                disabled: !row.getCanSelect(),
-                onChange: row.getToggleSelectedHandler(row)
-              }}
-            />
-          </div>
+          <TableWithSelectableRows.RowCheckbox
+            disabled={!row.getCanSelect()}
+            isChecked={row.getIsSelected()}
+            onChange={row.getToggleSelectedHandler(row)}
+          />
         )
       },
       {
@@ -152,7 +147,7 @@ export function _TableWithSelectableRows() {
         enableSorting: false,
         header: () => '',
         id: 'reportingId',
-        size: 90
+        size: 80
       },
       {
         accessorFn: row => row.createdAt,
@@ -160,7 +155,7 @@ export function _TableWithSelectableRows() {
         enableSorting: true,
         header: () => 'Ouverture',
         id: 'createdAt',
-        size: 150
+        size: 105
       },
       {
         accessorFn: row => row.validityTime,
@@ -168,7 +163,7 @@ export function _TableWithSelectableRows() {
         enableSorting: true,
         header: () => 'Fin dans',
         id: 'validityTime',
-        size: 90
+        size: 75
       },
       {
         accessorFn: row => row.displayedSource,
@@ -176,8 +171,7 @@ export function _TableWithSelectableRows() {
         enableSorting: true,
         header: () => 'Source',
         id: 'displayedSource',
-        maxSize: 280,
-        minSize: 230
+        size: 180
       },
       {
         accessorFn: row => row.reportType,
@@ -185,7 +179,7 @@ export function _TableWithSelectableRows() {
         enableSorting: true,
         header: () => 'Type',
         id: 'reportType',
-        size: 150
+        size: 120
       },
       {
         accessorFn: row => row,
@@ -197,8 +191,7 @@ export function _TableWithSelectableRows() {
         enableSorting: true,
         header: () => 'Thématique',
         id: 'theme',
-        maxSize: 280,
-        minSize: 230
+        size: 165
       },
       {
         accessorFn: row => row.seaFront,
@@ -206,7 +199,7 @@ export function _TableWithSelectableRows() {
         enableSorting: true,
         header: () => 'Façade',
         id: 'seaFront',
-        size: 100
+        size: 90
       },
       {
         accessorFn: row => row.status,
@@ -214,7 +207,31 @@ export function _TableWithSelectableRows() {
         enableSorting: true,
         header: () => 'Statut',
         id: 'isArchived',
-        size: 110
+        size: 70
+      },
+      {
+        accessorFn: row => row.missionId,
+        cell: () => (
+          <Tag backgroundColor={THEME.color.mediumSeaGreen} color={THEME.color.white} Icon={Link}>
+            Mission
+          </Tag>
+        ),
+        enableSorting: false,
+        header: () => '',
+        id: 'missionId',
+        size: 85
+      },
+      {
+        accessorFn: row => row.geom,
+        cell: () => (
+          <Tag backgroundColor={THEME.color.gainsboro} iconColor={THEME.color.goldenPoppy} withBullet>
+            Ctl fait
+          </Tag>
+        ),
+        enableSorting: false,
+        header: () => '',
+        id: 'actionStatus',
+        size: 85
       },
       {
         accessorFn: row => row.geom,
@@ -224,9 +241,7 @@ export function _TableWithSelectableRows() {
         enableSorting: false,
         header: () => '',
         id: 'geom',
-        maxSize: 50,
-        minSize: 50,
-        size: 50
+        size: 55
       },
       {
         accessorFn: row => row.id,
@@ -249,6 +264,7 @@ export function _TableWithSelectableRows() {
     },
     enableRowSelection: true,
     enableSortingRemoval: false,
+    enableColumnResizing: false,
     onRowSelectionChange: rowId => {
       setRowSelection(rowId)
     },
@@ -295,28 +311,17 @@ export function _TableWithSelectableRows() {
       <div>
         <IconButton accent={Accent.SECONDARY} Icon={Icon.Archive} onClick={archiveReportings} />
       </div>
-      <div ref={tableContainerRef}>
+      <div ref={tableContainerRef} style={{ width: 1776 }}>
         <TableWithSelectableRows.Table>
           <TableWithSelectableRows.Head>
             {table.getHeaderGroups().map(headerGroup => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
-                  <TableWithSelectableRows.Th
-                    key={header.id}
-                    {...{
-                      style: {
-                        maxWidth: header.column.getSize(),
-                        minWidth: header.column.getSize(),
-                        width: header.column.getSize()
-                      }
-                    }}
-                  >
+                  <TableWithSelectableRows.Th key={header.id} $width={header.column.getSize()}>
                     {header.isPlaceholder ? undefined : (
                       <TableWithSelectableRows.SortContainer
-                        {...{
-                          className: header.column.getCanSort() ? 'cursor-pointer' : '',
-                          onClick: header.column.getToggleSortingHandler()
-                        }}
+                        className={header.column.getCanSort() ? 'cursor-pointer' : ''}
+                        onClick={header.column.getToggleSortingHandler()}
                       >
                         {flexRender(header.column.columnDef.header, header.getContext())}
                         {header.column.getCanSort() &&
@@ -344,17 +349,11 @@ export function _TableWithSelectableRows() {
                 <TableWithSelectableRows.BodyTr key={virtualRow.key} $isHighlighted={index % 2 === 0}>
                   {row?.getVisibleCells().map(cell => (
                     <TableWithSelectableRows.Td
-                      {...{
-                        key: cell.id,
-                        style: {
-                          maxWidth: cell.column.getSize(),
-                          minWidth: cell.column.getSize(),
-                          width: cell.column.getSize()
-                        },
-                        $isCenter: !!(cell.column.id === 'geom' || cell.column.id === 'id'),
-                        $hasRightBorder: !!(cell.column.id === 'geom'),
-                        $isHighlighted: index % 2 === 0
-                      }}
+                      key={cell.id}
+                      $hasRightBorder={!!(cell.column.id === 'geom')}
+                      $isCenter={!!(cell.column.id === 'geom' || cell.column.id === 'id')}
+                      $isHighlighted={index % 2 === 0}
+                      $width={cell.column.getSize()}
                     >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableWithSelectableRows.Td>

@@ -8,6 +8,7 @@ export { RowCheckbox }
 const Table = styled(SimpleTable.Table)`
   border-collapse: separate;
   border-spacing: 0 5px;
+  table-layout: fixed;
 `
 const Head = styled(SimpleTable.Head)`
   th:last-child {
@@ -19,12 +20,13 @@ const SortContainer = styled(SimpleTable.SortContainer)`
   justify-content: start;
   gap: 8px;
 `
-const Th = styled(SimpleTable.Th)`
+const Th = styled(SimpleTable.Th)<{ $width: number }>`
   background-color: ${p => p.theme.color.white};
   border-top: 1px solid ${p => p.theme.color.lightGray};
   border-bottom: 1px solid ${p => p.theme.color.lightGray};
   border-right: none;
   padding: 2px 16px;
+  width: ${p => p.$width}px;
 `
 
 const BodyTr = styled(SimpleTable.BodyTr)<{ $isHighlighted?: boolean }>`
@@ -39,7 +41,7 @@ const BodyTr = styled(SimpleTable.BodyTr)<{ $isHighlighted?: boolean }>`
   }
 `
 
-const Td = styled(SimpleTable.Td)<{ $hasRightBorder: boolean; $isHighlighted?: boolean }>`
+const Td = styled(SimpleTable.Td)<{ $hasRightBorder: boolean; $isHighlighted?: boolean; $width: number }>`
   background-color: ${p => p.theme.color.cultured};
   border-top: ${p =>
     p.$isHighlighted ? `2px solid ${p.theme.color.blueGray}` : `1px solid ${p.theme.color.lightGray}`};
@@ -48,6 +50,7 @@ const Td = styled(SimpleTable.Td)<{ $hasRightBorder: boolean; $isHighlighted?: b
   border-right: none;
   padding: 4px 16px;
   border-right: ${p => (p.$hasRightBorder ? `1px solid ${p.theme.color.lightGray}` : '')};
+  width: ${p => p.$width}px;
 `
 
 export const TableWithSelectableRows = {
