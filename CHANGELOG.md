@@ -1,3 +1,20 @@
+## [11.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.19.1...v11.0.0) (2024-01-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **tables:** Add width prop in TableWithSelectableRows.Td to have fixed columns size.
+* **table:** add width prop in TableWithSelectableRows.Td and update table-layout to fixed
+
+### Features
+
+* **tables:** add width prop in TableWithSelectableRows.Td & update table-layout to fixed ([e80f88f](https://github.com/MTES-MCT/monitor-ui/commit/e80f88fb36f5a1210b36e1ef114249c1c1a3586d))
+
+
+### Bug Fixes
+
+* **table:** add width prop in TableWithSelectableRows.Td and update table-layout to fixed ([38a9d3e](https://github.com/MTES-MCT/monitor-ui/commit/38a9d3ef2f8b756b43dc43ebce89f10965c60fd4))
+
 ## [10.19.1](https://github.com/MTES-MCT/monitor-ui/compare/v10.19.0...v10.19.1) (2024-01-15)
 
 ### Bug Fixes
