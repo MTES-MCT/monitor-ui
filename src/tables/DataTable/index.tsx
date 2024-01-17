@@ -23,7 +23,7 @@ export function DataTable<T extends CollectionItem>({ columns, data, initialSort
 
   const table = useReactTable({
     columns,
-    data: data || [],
+    data: data ?? [],
     // eslint-disable-next-line @typescript-eslint/naming-convention
     enableSortingRemoval: false,
     getCoreRowModel: getCoreRowModel(),

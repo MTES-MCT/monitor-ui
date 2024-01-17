@@ -2,14 +2,15 @@ import styled from 'styled-components'
 
 import type { HTMLAttributes } from 'react'
 
+// TODO Use `$` prefix for these props.
 export type ExclamationPointProps = HTMLAttributes<HTMLSpanElement> & {
   backgroundColor?: string | undefined
   color?: string | undefined
 }
 export const ExclamationPoint = styled.span<ExclamationPointProps>`
-  background: ${p => p.backgroundColor || p.theme.color.goldenPoppy};
+  background: ${p => p.backgroundColor ?? p.theme.color.goldenPoppy};
   border-radius: 15px;
-  color: ${p => p.color || p.theme.color.white};
+  color: ${p => p.color ?? p.theme.color.white};
   display: inline-block;
   font-size: 11px;
   font-weight: 700;

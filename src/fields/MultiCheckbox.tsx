@@ -57,8 +57,8 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
       }
 
       const nextCheckedOptionValues = isChecked
-        ? [...(value || []), nextOptionValue]
-        : reject(equals(nextOptionValue))(value || [])
+        ? [...(value ?? []), nextOptionValue]
+        : reject(equals(nextOptionValue))(value ?? [])
 
       const normalizedNextValue = nextCheckedOptionValues.length ? nextCheckedOptionValues : undefined
 
@@ -83,8 +83,8 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
         {options.map((option, index) => (
           <Checkbox
             key={JSON.stringify(option.value)}
-            checked={includes(option.value, value || [])}
-            disabled={option.isDisabled || disabled}
+            checked={includes(option.value, value ?? [])}
+            disabled={option.isDisabled ?? disabled}
             label={option.label}
             name={`${name}${index}`}
             onChange={(isChecked: boolean) => handleChange(option.value, isChecked)}

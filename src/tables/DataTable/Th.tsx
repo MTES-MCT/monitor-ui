@@ -12,7 +12,7 @@ export type ThProps = {
 }
 export function Th({ children, header }: ThProps) {
   const controlledChildren =
-    children || !header.isPlaceholder ? (
+    children ?? !header.isPlaceholder ? (
       <SimpleTable.SortContainer
         className={header.column.getCanSort() ? 'cursor-pointer select-none' : ''}
         onClick={header.column.getToggleSortingHandler()}

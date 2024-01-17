@@ -162,7 +162,7 @@ export function Select<OptionValue extends OptionValueType = string>({
   )
 
   const disabledItemValues = useMemo(
-    () => (controlledRsuiteData || rsuiteData).filter(option => option.isDisabled).map(option => option.value),
+    () => (controlledRsuiteData ?? rsuiteData).filter(option => option.isDisabled).map(option => option.value),
     [controlledRsuiteData, rsuiteData]
   )
 
@@ -189,7 +189,7 @@ export function Select<OptionValue extends OptionValueType = string>({
             container={boxRef.current}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
             // when we don't, we don't need to control that and just pass the non-internally-controlled `rsuiteData`
-            data={controlledRsuiteData || rsuiteData}
+            data={controlledRsuiteData ?? rsuiteData}
             disabled={disabled}
             disabledItemValues={disabledItemValues}
             id={originalProps.name}
