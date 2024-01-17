@@ -22,7 +22,7 @@ const Header = styled.div`
 `
 
 const Title = styled.span.attrs(props => ({
-  title: String(props.children)
+  title: props.title ?? String(props.children)
 }))`
   color: ${p => p.theme.color.white};
   font-size: 16px;
