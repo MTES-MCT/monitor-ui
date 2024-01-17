@@ -97,7 +97,7 @@ export function TextInput({
           id={originalProps.name}
           onChange={handleChange}
           type={type}
-          value={value || ''}
+          value={value ?? ''}
           {...originalProps}
         />
         {isSearchInput && !Icon && (

@@ -52,7 +52,7 @@ export function IconButton({
   )
 
   const commonChildren = useMemo(
-    () => <Icon color={color} size={iconSize || ICON_SIZE_IN_PX[size]} />,
+    () => <Icon color={color} size={iconSize ?? ICON_SIZE_IN_PX[size]} />,
     [color, Icon, iconSize, size]
   )
 

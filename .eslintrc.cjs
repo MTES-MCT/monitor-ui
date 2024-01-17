@@ -112,6 +112,7 @@ module.exports = {
       }
     ],
     '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/prefer-nullish-coalescing': 'error',
 
     'import/no-default-export': 'error',
     'import/no-extraneous-dependencies': ['error', { devDependencies: true, peerDependencies: true }],

@@ -109,7 +109,7 @@ export function NumberInput({
         onChange={handleChange}
         onFocus={handleFocus}
         type="number"
-        value={value || ''}
+        value={value ?? ''}
         {...originalProps}
       />
 

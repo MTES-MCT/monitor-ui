@@ -324,7 +324,7 @@ export function DatePicker({
         <Field>
           <DateInput
             ref={dateInputRef}
-            baseContainer={baseContainer || undefined}
+            baseContainer={baseContainer ?? undefined}
             disabled={disabled}
             isCompact={isCompact}
             isEndDate={isEndDate}
@@ -342,7 +342,7 @@ export function DatePicker({
           <Field $isTimeField>
             <TimeInput
               ref={timeInputRef}
-              baseContainer={baseContainer || undefined}
+              baseContainer={baseContainer ?? undefined}
               disabled={disabled}
               isCompact={isCompact}
               isLight={isLight}

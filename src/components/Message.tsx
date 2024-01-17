@@ -37,8 +37,8 @@ const Box = styled.span<{
   backgroundColor?: string | undefined
   color?: string | undefined
 }>`
-  background: ${p => p.backgroundColor || p.theme.color.goldenPoppy25};
-  color: ${p => p.color || p.theme.color.slateGray};
+  background: ${p => p.backgroundColor ?? p.theme.color.goldenPoppy25};
+  color: ${p => p.color ?? p.theme.color.slateGray};
   padding: 8px 16px 16px 8px;
   display: flex;
   border-radius: 2px;

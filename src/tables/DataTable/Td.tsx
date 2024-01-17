@@ -9,7 +9,7 @@ export type TdProps = {
   children?: ReactNode
 }
 export function Td({ cell, children }: TdProps) {
-  const controlledChildren = children || flexRender(cell.column.columnDef.cell, cell.getContext())
+  const controlledChildren = children ?? flexRender(cell.column.columnDef.cell, cell.getContext())
 
   return (
     <SimpleTable.Td

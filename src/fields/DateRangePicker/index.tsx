@@ -414,8 +414,8 @@ export function DateRangePicker({
     }
 
     if (
-      (defaultValue &&
-        previousDefaultValue &&
+      (!!defaultValue &&
+        !!previousDefaultValue &&
         defaultValue[0] instanceof Date &&
         defaultValue[1] instanceof Date &&
         previousDefaultValue[0] instanceof Date &&
@@ -451,7 +451,7 @@ export function DateRangePicker({
         <Field>
           <DateInput
             ref={startDateInputRef}
-            baseContainer={baseContainer || undefined}
+            baseContainer={baseContainer ?? undefined}
             disabled={disabled}
             isCompact={isCompact}
             isForcedFocused={isRangeCalendarPickerOpen}
@@ -472,7 +472,7 @@ export function DateRangePicker({
           <Field isTimeField>
             <TimeInput
               ref={startTimeInputRef}
-              baseContainer={baseContainer || undefined}
+              baseContainer={baseContainer ?? undefined}
               disabled={disabled}
               isCompact={isCompact}
               isLight={isLight}
@@ -492,7 +492,7 @@ export function DateRangePicker({
         <Field isEndDateField>
           <DateInput
             ref={endDateInputRef}
-            baseContainer={baseContainer || undefined}
+            baseContainer={baseContainer ?? undefined}
             disabled={disabled}
             isCompact={isCompact}
             isEndDate
@@ -515,7 +515,7 @@ export function DateRangePicker({
           <Field isTimeField>
             <TimeInput
               ref={endTimeInputRef}
-              baseContainer={baseContainer || undefined}
+              baseContainer={baseContainer ?? undefined}
               disabled={disabled}
               isCompact={isCompact}
               isEndDate

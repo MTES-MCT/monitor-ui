@@ -141,7 +141,7 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
             container={boxRef.current}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
             // when we don't, we don't need to control that and just pass the non-internally-controlled `rsuiteData`
-            data={controlledRsuiteData || rsuiteData}
+            data={controlledRsuiteData ?? rsuiteData}
             disabled={disabled}
             id={originalProps.name}
             onChange={handleChange}
@@ -151,7 +151,7 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
             // that's why we send this "always true" filter to disable Rsuite CheckPicker internal search filtering
             searchBy={(customSearch ? () => true : undefined) as any}
-            size={originalProps.size || 'sm'}
+            size={originalProps.size ?? 'sm'}
             value={selectedRsuiteValue}
             {...originalProps}
           />

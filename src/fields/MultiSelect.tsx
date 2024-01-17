@@ -70,7 +70,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([disabled, originalProps.name, value])
   const selectedRsuiteValue = useMemo(
-    () => (value || []).map(valueItem => getRsuiteValueFromOptionValue(valueItem, optionValueKey)),
+    () => (value ?? []).map(valueItem => getRsuiteValueFromOptionValue(valueItem, optionValueKey)),
     [optionValueKey, value]
   )
 
@@ -177,7 +177,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
             container={boxRef.current}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
             // when we don't, we don't need to control that and just pass the non-internally-controlled `rsuiteData`
-            data={controlledRsuiteData || rsuiteData}
+            data={controlledRsuiteData ?? rsuiteData}
             disabled={disabled}
             id={originalProps.name}
             onChange={handleChange}
@@ -185,7 +185,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
             onSearch={handleSearch}
             open={isOpen}
             renderMenuItem={renderMenuItem}
-            searchable={!!customSearch || searchable}
+            searchable={!!customSearch ?? searchable}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
             // that's why we send this "always true" filter to disable Rsuite TagPicker internal search filtering
             searchBy={(customSearch ? () => true : undefined) as any}

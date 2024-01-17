@@ -40,11 +40,11 @@ export function Tag({
   const withDot = useMemo(() => (bullet === TagBullet.DISK || withBullet) && !Icon, [bullet, Icon, withBullet])
 
   const commonChildren = useMemo(() => {
-    const defaultColor = color || THEME.color.gunMetal
+    const defaultColor = color ?? THEME.color.gunMetal
 
     const cutomIconColor =
-      bulletColor ||
-      iconColor ||
+      bulletColor ??
+      iconColor ??
       (accent
         ? {
             [Accent.PRIMARY]: THEME.color.gunMetal,

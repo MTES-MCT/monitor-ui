@@ -58,7 +58,7 @@ function getDDCoordinates(transformedCoordinates: number[], isForPrint: boolean)
     return []
   }
   let longitude = longitudeInteger.toString().trim().replace(/-/g, '')
-  const decimals = longitudeDecimals?.substring(0, precision) || '000000'
+  const decimals = longitudeDecimals?.substring(0, precision) ?? '000000'
   longitude = `${isNegative ? '-' : ''}${getPaddedDegrees(longitude, CoordinateLatLon.LONGITUDE)}.${decimals}`
 
   return [`${transformedCoordinates[1].toFixed(precision)}°`, `${longitude}°`]
