@@ -2410,6 +2410,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource-variable/open-sans@npm:5.0.23":
+  version: 5.0.23
+  resolution: "@fontsource-variable/open-sans@npm:5.0.23"
+  checksum: d6c3e8981d91f20102f8b8c25b76ee9259496c31e3003b78e2330b1b6c90fdd73151e09e7a8e9431bda840786cd68c6948b4fc3e99f57b1959690ad1eabd8013
+  languageName: node
+  linkType: hard
+
 "@hapi/hoek@npm:^9.0.0":
   version: 9.3.0
   resolution: "@hapi/hoek@npm:9.3.0"
@@ -3100,6 +3107,7 @@ __metadata:
     "@chrisneedham/rollup-plugin-peer-deps-external": "npm:2.3.1"
     "@commitlint/cli": "npm:18.4.3"
     "@commitlint/config-conventional": "npm:17.6.7"
+    "@fontsource-variable/open-sans": "npm:5.0.23"
     "@jest/globals": "npm:29.7.0"
     "@rollup/plugin-commonjs": "npm:25.0.3"
     "@rollup/plugin-node-resolve": "npm:15.2.3"

@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import '@fontsource-variable/open-sans'
 
 // @ts-ignore
 import MarianneBold from './assets/fonts/Marianne-Bold.woff2'
