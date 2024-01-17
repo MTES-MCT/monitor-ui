@@ -84,7 +84,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
           <Checkbox
             key={JSON.stringify(option.value)}
             checked={includes(option.value, value ?? [])}
-            disabled={option.isDisabled ?? disabled}
+            disabled={!!option.isDisabled || disabled}
             label={option.label}
             name={`${name}${index}`}
             onChange={(isChecked: boolean) => handleChange(option.value, isChecked)}
