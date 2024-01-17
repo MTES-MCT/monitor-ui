@@ -1,3 +1,10 @@
+## [11.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.0.1...v11.1.0) (2024-01-17)
+
+
+### Features
+
+* **components:** allow title prop on MapMenuDialog.Title ([70e03b3](https://github.com/MTES-MCT/monitor-ui/commit/70e03b39e90b591c3723ac851c4b4745c518ebae))
+
 ## [11.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v11.0.0...v11.0.1) (2024-01-17)
 
 
