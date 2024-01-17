@@ -1,6 +1,7 @@
 /* eslint-disable import/no-default-export, @typescript-eslint/naming-convention */
 
 import commonjs from '@rollup/plugin-commonjs'
+import css from 'rollup-plugin-import-css'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import url from '@rollup/plugin-url'
 // import peerDepsExternal from 'rollup-plugin-peer-deps-external'
@@ -31,8 +32,9 @@ export default [
       }),
       // Convert CommonJS to ES6:
       commonjs(),
+      css(),
       nodeResolve({
-        extensions: ['.css', '.cjs', '.js', '.json', '.jsx', '.mjs', '.ts', '.tson', '.tsx'],
+        extensions: ['.cjs', '.js', '.json', '.jsx', '.mjs', '.ts', '.tson', '.tsx'],
         preferBuiltins: true
       }),
       // Transpile TS & TSX to JS:
