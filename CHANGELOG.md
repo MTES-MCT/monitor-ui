@@ -1,3 +1,10 @@
+## [11.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v11.0.0...v11.0.1) (2024-01-17)
+
+
+### Bug Fixes
+
+* **icon:** fix Attention icon ([72f0161](https://github.com/MTES-MCT/monitor-ui/commit/72f016188dbe016842a693e441ce8a22532354f5))
+
 ## [11.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.19.1...v11.0.0) (2024-01-16)
 
 
