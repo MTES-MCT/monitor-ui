@@ -8,5 +8,5 @@ export type FigureProps = HTMLAttributes<HTMLSpanElement>
  * <Figure /> uses the Open Sans font to render fixed-width digits.
  */
 export const Figure = styled.span`
-  font-family: 'Open Sans Variable', monospace;
+  font-family: 'Open Sans', monospace;
 `

@@ -51,7 +51,6 @@
     "@chrisneedham/rollup-plugin-peer-deps-external": "2.3.1",
     "@commitlint/cli": "18.4.3",
     "@commitlint/config-conventional": "17.6.7",
-    "@fontsource-variable/open-sans": "5.0.23",
     "@jest/globals": "29.7.0",
     "@rollup/plugin-commonjs": "25.0.3",
     "@rollup/plugin-node-resolve": "15.2.3",

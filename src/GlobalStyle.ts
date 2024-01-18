@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components'
-import '@fontsource-variable/open-sans'
 
 // @ts-ignore
 import MarianneBold from './assets/fonts/Marianne-Bold.woff2'
@@ -17,58 +16,69 @@ import MarianneMediumItalic from './assets/fonts/Marianne-Medium_Italic.woff2'
 import MarianneRegular from './assets/fonts/Marianne-Regular.woff2'
 // @ts-ignore
 import MarianneItalic from './assets/fonts/Marianne-Regular_Italic.woff2'
+// @ts-ignore
+import OpenSansRegular from './assets/fonts/OpenSans-Regular.woff2'
 
 export const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: Marianne;
-    src: local('Marianne'), local('Marianne-Regular'), url(${MarianneRegular}) format('woff2');
     font-weight: normal;
+    src: local('Marianne'), local('Marianne-Regular'), url(${MarianneRegular}) format('woff2');
   }
 
-    @font-face {
+  @font-face {
     font-family: Marianne;
-    src: local('Marianne-Thin'), url(${MarianneLight}) format('woff2');
     font-weight: 300;
+    src: local('Marianne-Thin'), url(${MarianneLight}) format('woff2');
   }
 
   @font-face {
     font-family: Marianne;
-    src:local('Marianne-Medium'), url(${MarianneMedium}) format('woff2');
     font-weight: 500;
+    src:local('Marianne-Medium'), url(${MarianneMedium}) format('woff2');
   }
 
   @font-face {
     font-family: Marianne;
-    src: local('Marianne-Medium_Italic'), url(${MarianneMediumItalic}) format('woff2');
     font-weight: 500;
     font-style: italic;
+    src: local('Marianne-Medium_Italic'), url(${MarianneMediumItalic}) format('woff2');
   }
 
   @font-face {
     font-family: Marianne;
-    src: local('Marianne-Thin_Italic'), url(${MarianneLightItalic}) format('woff2');
     font-weight: lighter;
     font-style: italic;
+    src: local('Marianne-Thin_Italic'), url(${MarianneLightItalic}) format('woff2');
   }
 
   @font-face {
     font-family: Marianne;
-    src:local('Marianne-Regular_Italic'), url(${MarianneItalic}) format('woff2');
     font-weight: normal;
     font-style: italic;
+    src:local('Marianne-Regular_Italic'), url(${MarianneItalic}) format('woff2');
   }
 
-    @font-face {
+  @font-face {
     font-family: Marianne;
-    src: local('Marianne-Bold'), url(${MarianneBold}) format('woff2');
     font-weight: 700;
+    src: local('Marianne-Bold'), url(${MarianneBold}) format('woff2');
   }
 
-    @font-face {
+  @font-face {
     font-family: Marianne;
-    src: local('Marianne-Bold_Italic'), url(${MarianneBoldItalic}) format('woff2');
     font-style: italic;
     font-weight: 700;
+    src: local('Marianne-Bold_Italic'), url(${MarianneBoldItalic}) format('woff2');
+  }
+
+  @font-face {
+    font-display: swap;
+    font-family: 'Open Sans';
+    font-stretch: 100%;
+    font-style: normal;
+    font-weight: 400;
+    src: url(${OpenSansRegular}) format('woff2');
   }
 
   body {
