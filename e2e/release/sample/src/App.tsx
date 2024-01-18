@@ -1,4 +1,4 @@
-import { DatePicker, DateRangePicker } from '@mtes-mct/monitor-ui'
+import { DatePicker, DateRangePicker, Figure } from '@mtes-mct/monitor-ui'
 import { useState } from 'react'
 
 function App() {
@@ -26,6 +26,11 @@ function App() {
         withTime
       />
       <pre data-cy="fields-daterangepicker-output">{JSON.stringify(dateRangePickerOutut)}</pre>
+
+      <h2>Figure</h2>
+      <p>
+        This number should be in Open Sans: <Figure>1234</Figure>.
+      </p>
     </>
   )
 }
