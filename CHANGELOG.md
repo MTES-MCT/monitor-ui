@@ -1,3 +1,16 @@
+## [11.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.1.0...v11.2.0) (2024-01-18)
+
+
+### Features
+
+* add Open Sans Variable font ([c2049c5](https://github.com/MTES-MCT/monitor-ui/commit/c2049c5acca76c71b1de39176871314db5599cc0))
+* **elements:** add Figure ([0e5a3dc](https://github.com/MTES-MCT/monitor-ui/commit/0e5a3dc04df50bc1940607ed6b394a1ba6ffd010))
+
+
+### Bug Fixes
+
+* use local Open Sans font from assets instead of dependency ([88e7f2e](https://github.com/MTES-MCT/monitor-ui/commit/88e7f2ec04d338314d51512013902466542d28fa))
+
 ## [11.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.0.1...v11.1.0) (2024-01-17)
 
 
