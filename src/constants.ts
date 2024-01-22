@@ -1,7 +1,8 @@
 export enum Accent {
   PRIMARY = 'PRIMARY',
   SECONDARY = 'SECONDARY',
-  TERTIARY = 'TERTIARY'
+  TERTIARY = 'TERTIARY',
+  WARNING = 'WARNING'
 }
 
 export enum Level {
