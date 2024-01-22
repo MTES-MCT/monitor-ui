@@ -2,7 +2,10 @@ import { sortBy } from 'lodash/fp'
 
 import type { Option } from '../types'
 
-export function getOptionsFromLabelledEnum(labelledEnum: Record<string, string>, mustSort: boolean = false): Option[] {
+export function getOptionsFromLabelledEnum<T extends Record<string, string> = Record<string, string>>(
+  labelledEnum: T,
+  mustSort: boolean = false
+): Option<keyof T>[] {
   const formattedOptions = Object.entries(labelledEnum).map(([value, label]) => ({
     label,
     value

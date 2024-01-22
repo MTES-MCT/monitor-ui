@@ -24,7 +24,8 @@ export type Option<OptionValue extends OptionValueType = string> = Omit<ItemData
   label: string
   value: OptionValue
 }
-export type OptionValueType = boolean | number | string | Record<string, any>
+// `symbol` should never happen, we add it here to simplify other declarations related this type
+export type OptionValueType = boolean | number | string | symbol | Record<string, any>
 
 export type Filter<T> = (collection: T[]) => T[]
 
