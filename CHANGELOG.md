@@ -1,3 +1,16 @@
+## [11.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.2.0...v11.3.0) (2024-01-22)
+
+
+### Features
+
+* **components:** add warning accent for Buttons ([dbe77d2](https://github.com/MTES-MCT/monitor-ui/commit/dbe77d2e543781d5962e032eab84483707babd21))
+* **entities:** add ControlUnitResourceCategory enum ([29a007b](https://github.com/MTES-MCT/monitor-ui/commit/29a007b2cc8958e29731a26602aa15cb7b2015b7))
+
+
+### Bug Fixes
+
+* **utils:** add missing generic type in getOptionsFromLabelledEnum() ([c1f0a5a](https://github.com/MTES-MCT/monitor-ui/commit/c1f0a5aecc68235eb4a40a2913753879cbe4c47b))
+
 ## [11.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.1.0...v11.2.0) (2024-01-18)
 
 
