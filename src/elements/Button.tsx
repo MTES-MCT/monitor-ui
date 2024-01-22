@@ -77,6 +77,8 @@ export function Button({
     case Accent.TERTIARY:
       return <TertiaryButton {...commonProps} />
 
+    case Accent.WARNING:
+      return <WarningButton {...commonProps} />
     default:
       return <PrimaryButton {...commonProps} />
   }
@@ -124,21 +126,21 @@ export const PrimaryButton = styled.button`
   border: 1px solid ${p => p.theme.color.charcoal};
   color: ${p => p.theme.color.gainsboro};
 
-  :hover,
+  &:hover,
   &._hover {
     background-color: ${p => p.theme.color.blueYonder};
     border: 1px solid ${p => p.theme.color.blueYonder};
     color: ${p => p.theme.color.white};
   }
 
-  :active,
+  &:active,
   &._active {
     background-color: ${p => p.theme.color.blueGray};
     border: 1px solid ${p => p.theme.color.blueGray};
     color: ${p => p.theme.color.white};
   }
 
-  :disabled,
+  &:disabled,
   &._disabled {
     background-color: ${p => p.theme.color.lightGray};
     border: 1px solid ${p => p.theme.color.lightGray};
@@ -151,21 +153,21 @@ export const SecondaryButton = styled.button`
   border: 1px solid ${p => p.theme.color.charcoal};
   color: ${p => p.theme.color.charcoal};
 
-  :hover,
+  &:hover,
   &._hover {
     background-color: ${p => p.theme.color.blueYonder25};
     border: 1px solid ${p => p.theme.color.blueYonder};
     color: ${p => p.theme.color.blueYonder};
   }
 
-  :active,
+  &:active,
   &._active {
     background-color: ${p => p.theme.color.blueGray25};
     border: 1px solid ${p => p.theme.color.blueGray};
     color: ${p => p.theme.color.blueGray};
   }
 
-  :disabled,
+  &:disabled,
   &._disabled {
     background-color: transparent;
     border: 1px solid ${p => p.theme.color.lightGray};
@@ -178,23 +180,49 @@ export const TertiaryButton = styled.button`
   border: 1px solid ${p => p.theme.color.white};
   color: ${p => p.theme.color.charcoal};
 
-  :hover,
+  &:hover,
   &._hover {
     background-color: ${p => p.theme.color.blueYonder25};
     border: 1px solid ${p => p.theme.color.blueYonder25};
     color: ${p => p.theme.color.blueYonder};
   }
 
-  :active,
+  &:active,
   &._active {
     background-color: ${p => p.theme.color.blueGray25};
     border: 1px solid ${p => p.theme.color.blueGray};
     color: ${p => p.theme.color.blueGray};
   }
 
-  :disabled,
+  &:disabled,
   &._disabled {
     background-color: ${p => p.theme.color.white};
+    border: 1px solid ${p => p.theme.color.lightGray};
+    color: ${p => p.theme.color.lightGray};
+  }
+`
+export const WarningButton = styled.button`
+  background-color: transparent;
+  border: 1px solid ${p => p.theme.color.goldenPoppy};
+  color: ${p => p.theme.color.charcoal};
+
+  &:hover,
+  &._hover {
+    background-color: ${p => p.theme.color.wheat};
+    border: 1px solid ${p => p.theme.color.wheat};
+    color: ${p => p.theme.color.charcoal};
+  }
+
+  &:active,
+  &._active {
+    background-color: ${p => p.theme.color.goldenPoppy25};
+    border: 1px solid ${p => p.theme.color.goldenPoppy};
+    color: ${p => p.theme.color.charcoal};
+  }
+
+  &:disabled,
+  &._disabled {
+    background-color: transparent;
     border: 1px solid ${p => p.theme.color.lightGray};
     color: ${p => p.theme.color.lightGray};
   }
