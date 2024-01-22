@@ -78,6 +78,17 @@ export namespace ControlUnit {
     UNKNOWN = 'Nom de contact à renseigner'
   }
 
+  export enum ControlUnitResourceCategory {
+    AIR = 'AIR',
+    LAND = 'LAND',
+    SEA = 'SEA'
+  }
+  export const ControlUnitResourceCategoryLabel: Record<ControlUnitResourceCategory, string> = {
+    [ControlUnitResourceCategory.AIR]: 'Aérien',
+    [ControlUnitResourceCategory.LAND]: 'Terrestre',
+    [ControlUnitResourceCategory.SEA]: 'Maritime'
+  }
+
   // Don't forget to mirror any update here in both Postgre & Backend enums.
   export enum ControlUnitResourceType {
     AIRPLANE = 'AIRPLANE',
@@ -106,32 +117,32 @@ export namespace ControlUnit {
     TRAINING_SHIP = 'TRAINING_SHIP',
     TUGBOAT = 'TUGBOAT'
   }
-  export enum ControlUnitResourceTypeLabel {
-    AIRPLANE = 'Avion',
-    BARGE = 'Barge',
-    CAR = 'Voiture',
-    DRONE = 'Drône',
-    EQUESTRIAN = 'Équestre',
-    FAST_BOAT = 'Vedette',
-    FRIGATE = 'Frégate',
-    HELICOPTER = 'Hélicoptère',
-    HYDROGRAPHIC_SHIP = 'Bâtiment hydrographique',
-    KAYAK = 'Kayak',
-    LIGHT_FAST_BOAT = 'Vedette légère',
-    MINE_DIVER = 'Plongeur démineur',
-    MOTORCYCLE = 'Moto',
-    NET_LIFTER = 'Remonte-filets',
-    NO_RESOURCE = 'Aucun moyen',
-    OTHER = 'Autre',
-    PATROL_BOAT = 'Patrouilleur',
-    PEDESTRIAN = 'Piéton',
-    PIROGUE = 'Pirogue',
-    RIGID_HULL = 'Coque rigide',
-    SEA_SCOOTER = 'Scooter de mer',
-    SEMI_RIGID = 'Semi-rigide',
-    SUPPORT_SHIP = 'Bâtiment de soutien',
-    TRAINING_SHIP = 'Bâtiment-école',
-    TUGBOAT = 'Remorqueur'
+  export const ControlUnitResourceTypeLabel: Record<ControlUnitResourceType, string> = {
+    [ControlUnitResourceType.AIRPLANE]: 'Avion',
+    [ControlUnitResourceType.BARGE]: 'Barge',
+    [ControlUnitResourceType.CAR]: 'Voiture',
+    [ControlUnitResourceType.DRONE]: 'Drône',
+    [ControlUnitResourceType.EQUESTRIAN]: 'Équestre',
+    [ControlUnitResourceType.FAST_BOAT]: 'Vedette',
+    [ControlUnitResourceType.FRIGATE]: 'Frégate',
+    [ControlUnitResourceType.HELICOPTER]: 'Hélicoptère',
+    [ControlUnitResourceType.HYDROGRAPHIC_SHIP]: 'Bâtiment hydrographique',
+    [ControlUnitResourceType.KAYAK]: 'Kayak',
+    [ControlUnitResourceType.LIGHT_FAST_BOAT]: 'Vedette légère',
+    [ControlUnitResourceType.MINE_DIVER]: 'Plongeur démineur',
+    [ControlUnitResourceType.MOTORCYCLE]: 'Moto',
+    [ControlUnitResourceType.NET_LIFTER]: 'Remonte-filets',
+    [ControlUnitResourceType.NO_RESOURCE]: 'Aucun moyen',
+    [ControlUnitResourceType.OTHER]: 'Autre',
+    [ControlUnitResourceType.PATROL_BOAT]: 'Patrouilleur',
+    [ControlUnitResourceType.PEDESTRIAN]: 'Piéton',
+    [ControlUnitResourceType.PIROGUE]: 'Pirogue',
+    [ControlUnitResourceType.RIGID_HULL]: 'Coque rigide',
+    [ControlUnitResourceType.SEA_SCOOTER]: 'Scooter de mer',
+    [ControlUnitResourceType.SEMI_RIGID]: 'Semi-rigide',
+    [ControlUnitResourceType.SUPPORT_SHIP]: 'Bâtiment de soutien',
+    [ControlUnitResourceType.TRAINING_SHIP]: 'Bâtiment-école',
+    [ControlUnitResourceType.TUGBOAT]: 'Remorqueur'
   }
 
   // List of PAM units identifiers
