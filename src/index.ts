@@ -79,7 +79,8 @@ export { ExclamationPoint } from './symbols/ExclamationPoint'
 */
 
 export type { Administration } from './entities/Administration'
-export { ControlUnit } from './entities/ControlUnit'
+export { ControlUnit } from './entities/ControlUnit/types'
+export { getControlUnitResourceCategoryFromType } from './entities/ControlUnit/utils'
 export type { DepartmentArea } from './entities/DepartmentArea'
 export { Mission } from './entities/Mission'
 export type { Station } from './entities/Station'

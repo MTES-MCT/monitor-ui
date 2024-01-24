@@ -1,4 +1,4 @@
-import type { ControlUnit } from './ControlUnit'
+import type { ControlUnit } from './ControlUnit/types'
 
 export namespace Station {
   export interface Station {
