@@ -1,8 +1,8 @@
-import { Mission } from './Mission'
+import { Mission } from '../Mission'
 
-import type { Administration } from './Administration'
-import type { DepartmentArea } from './DepartmentArea'
-import type { Station } from './Station'
+import type { Administration } from '../Administration'
+import type { DepartmentArea } from '../DepartmentArea'
+import type { Station } from '../Station'
 
 export namespace ControlUnit {
   export interface ControlUnit {
