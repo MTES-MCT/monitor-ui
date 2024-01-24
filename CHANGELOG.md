@@ -1,3 +1,10 @@
+## [11.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.3.0...v11.4.0) (2024-01-24)
+
+
+### Features
+
+* **entities:** add getControlUnitResourceCategoryFromType() util ([c9a8545](https://github.com/MTES-MCT/monitor-ui/commit/c9a854554ac900794d3bce18f8a539013c8397c8))
+
 ## [11.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.2.0...v11.3.0) (2024-01-22)
 
 
