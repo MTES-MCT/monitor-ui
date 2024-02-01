@@ -60,7 +60,7 @@
     "@semantic-release/commit-analyzer": "11.1.0",
     "@semantic-release/exec": "6.0.3",
     "@semantic-release/github": "9.0.4",
-    "@semantic-release/npm": "11.0.1",
+    "@semantic-release/npm": "11.0.2",
     "@semantic-release/release-notes-generator": "11.0.4",
     "@sentry/react": "7.54.0",
     "@storybook/addon-a11y": "7.0.27",
