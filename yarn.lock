@@ -3109,7 +3109,7 @@ __metadata:
     "@semantic-release/commit-analyzer": "npm:10.0.1"
     "@semantic-release/exec": "npm:6.0.3"
     "@semantic-release/github": "npm:9.0.4"
-    "@semantic-release/npm": "npm:11.0.1"
+    "@semantic-release/npm": "npm:11.0.2"
     "@semantic-release/release-notes-generator": "npm:11.0.4"
     "@sentry/react": "npm:7.54.0"
     "@storybook/addon-a11y": "npm:7.0.27"
@@ -4729,7 +4729,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/npm@npm:11.0.1, @semantic-release/npm@npm:^11.0.0":
+"@semantic-release/npm@npm:11.0.2":
+  version: 11.0.2
+  resolution: "@semantic-release/npm@npm:11.0.2"
+  dependencies:
+    "@semantic-release/error": "npm:^4.0.0"
+    aggregate-error: "npm:^5.0.0"
+    execa: "npm:^8.0.0"
+    fs-extra: "npm:^11.0.0"
+    lodash-es: "npm:^4.17.21"
+    nerf-dart: "npm:^1.0.0"
+    normalize-url: "npm:^8.0.0"
+    npm: "npm:^10.0.0"
+    rc: "npm:^1.2.8"
+    read-pkg: "npm:^9.0.0"
+    registry-auth-token: "npm:^5.0.0"
+    semver: "npm:^7.1.2"
+    tempy: "npm:^3.0.0"
+  peerDependencies:
+    semantic-release: ">=20.1.0"
+  checksum: ffd29adf44b051c1e0973b7fc5b99996ae4c5f2dd80079d50787eb1a4cdbbbd4c5b609c7b00dab4c566678ed2c620118014044f5e2f5b19c9d7d6961dfd57bc4
+  languageName: node
+  linkType: hard
+
+"@semantic-release/npm@npm:^11.0.0":
   version: 11.0.1
   resolution: "@semantic-release/npm@npm:11.0.1"
   dependencies:
