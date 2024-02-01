@@ -3106,7 +3106,7 @@ __metadata:
     "@rollup/plugin-replace": "npm:5.0.5"
     "@rollup/plugin-url": "npm:8.0.1"
     "@semantic-release/changelog": "npm:6.0.3"
-    "@semantic-release/commit-analyzer": "npm:10.0.1"
+    "@semantic-release/commit-analyzer": "npm:11.1.0"
     "@semantic-release/exec": "npm:6.0.3"
     "@semantic-release/github": "npm:9.0.4"
     "@semantic-release/npm": "npm:11.0.1"
@@ -4613,24 +4613,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/commit-analyzer@npm:10.0.1":
-  version: 10.0.1
-  resolution: "@semantic-release/commit-analyzer@npm:10.0.1"
-  dependencies:
-    conventional-changelog-angular: "npm:^6.0.0"
-    conventional-commits-filter: "npm:^3.0.0"
-    conventional-commits-parser: "npm:^4.0.0"
-    debug: "npm:^4.0.0"
-    import-from: "npm:^4.0.0"
-    lodash-es: "npm:^4.17.21"
-    micromatch: "npm:^4.0.2"
-  peerDependencies:
-    semantic-release: ">=20.1.0"
-  checksum: 0cde7126eaabc4829f8d0131d9e82f7b1ad00ed35e267f3a1fae6ec734cdcf09061fb28d3db28aa9cad037411b73f17da46bc162b9032281aa49db3bfa9aabdc
-  languageName: node
-  linkType: hard
-
-"@semantic-release/commit-analyzer@npm:^11.0.0":
+"@semantic-release/commit-analyzer@npm:11.1.0, @semantic-release/commit-analyzer@npm:^11.0.0":
   version: 11.1.0
   resolution: "@semantic-release/commit-analyzer@npm:11.1.0"
   dependencies:
