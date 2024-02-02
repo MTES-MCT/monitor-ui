@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import { MultiCheckbox } from '../fields/MultiCheckbox'
 
 import type { MultiCheckboxProps } from '../fields/MultiCheckbox'
-import type { OptionValueType } from '../types'
+import type { OptionValueType } from '../types/definitions'
 
 export type FormikMultiCheckboxProps<OptionValue extends OptionValueType = string> = Omit<
   MultiCheckboxProps<OptionValue>,

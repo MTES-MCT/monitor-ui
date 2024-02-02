@@ -13,7 +13,7 @@ import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { normalizeString } from '../../utils/normalizeString'
 
 import type { FieldsetProps } from '../../elements/Fieldset'
-import type { Coordinates } from '../../types'
+import type { Coordinates } from '../../types/definitions'
 import type { Promisable } from 'type-fest'
 
 export type CoordinatesInputProps = FieldsetProps & {

@@ -1,4 +1,4 @@
-import type { OptionValueType } from '../types'
+import type { OptionValueType } from '../types/definitions'
 
 export function getRsuiteValuesFromOptionValues<OptionValue extends OptionValueType = string>(
   optionValues: OptionValue[] | undefined,

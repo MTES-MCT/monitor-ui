@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { THEME } from '../../theme'
 
 import type { CoordinatesFormat } from '../../constants'
-import type { Coordinates } from '../../types'
+import type { Coordinates } from '../../types/definitions'
 
 type DMSCoordinatesInputProps = {
   coordinates: Coordinates | undefined

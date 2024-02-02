@@ -10,7 +10,7 @@ import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
 
-import type { Option, OptionValueType } from '../types'
+import type { Option, OptionValueType } from '../types/definitions'
 import type { Promisable } from 'type-fest'
 
 export type MultiCheckboxProps<OptionValue extends OptionValueType = string> = {

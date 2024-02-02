@@ -1,6 +1,6 @@
 import { IconBox } from '../elements/IconBox'
 
-import type { IconProps } from '../types'
+import type { IconProps } from '../types/definitions'
 
 export function Infringement({ color, size, ...nativeProps }: IconProps) {
   return (

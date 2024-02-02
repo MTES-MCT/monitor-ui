@@ -3,7 +3,7 @@ import { useCallback, useMemo, type MouseEvent, type ButtonHTMLAttributes, type 
 import styled from 'styled-components'
 
 import { Accent, Size } from '../constants'
-import { type IconProps } from '../types'
+import { type IconProps } from '../types/definitions'
 import { stopMouseEventPropagation } from '../utils/stopMouseEventPropagation'
 
 const ICON_SIZE: Record<Size, number> = {

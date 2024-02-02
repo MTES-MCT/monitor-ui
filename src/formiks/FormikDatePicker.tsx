@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import { DatePicker } from '../fields/DatePicker'
 
 import type { DatePickerProps, DatePickerWithDateDateProps, DatePickerWithStringDateProps } from '../fields/DatePicker'
-import type { DateRange } from '../types'
+import type { DateRange } from '../types/definitions'
 
 const UntypedDatePicker: any = DatePicker
 

@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import { Select } from '../fields/Select'
 
 import type { SelectProps } from '../fields/Select'
-import type { OptionValueType } from '../types'
+import type { OptionValueType } from '../types/definitions'
 
 export type FormikSelectProps<OptionValue extends OptionValueType = string> = Omit<
   SelectProps<OptionValue>,

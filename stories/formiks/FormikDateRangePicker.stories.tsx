@@ -7,7 +7,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { FormikEffect, FormikDateRangePicker } from '../../src'
 
 import type { FormikDateRangePickerWithDateDateProps, FormikDateRangePickerWithStringDateProps } from '../../src'
-import type { DateRange } from '../../src/types'
+import type { DateRange } from '../../src/types/definitions'
 
 const args: FormikDateRangePickerWithDateDateProps | FormikDateRangePickerWithStringDateProps = {
   baseContainer: undefined,

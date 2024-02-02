@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { IconButton, type IconButtonProps } from '../../elements/IconButton'
 
-import type { IconProps } from '../../types'
+import type { IconProps } from '../../types/definitions'
 import type { FunctionComponent } from 'react'
 
 type SideMenuButtonProps = IconButtonProps & {

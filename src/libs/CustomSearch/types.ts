@@ -1,11 +1,11 @@
-import type { AnyCollection } from '../../types'
+import type { AnyObject } from '../../types/definitions'
 import type Fuse from 'fuse.js'
 
 export type CustomSearchCache = Record<string, CustomSearchCacheRecord>
 export type CustomSearchCacheRecord = {
   fuseSearchIndex: any
-  normalizedCollection: AnyCollection
-  originalCollection: AnyCollection
+  normalizedCollection: AnyObject[]
+  originalCollection: AnyObject[]
   originalCollectionHash: string
 }
 

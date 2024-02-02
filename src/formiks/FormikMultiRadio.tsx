@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import { MultiRadio } from '../fields/MultiRadio'
 
 import type { MultiRadioProps } from '../fields/MultiRadio'
-import type { OptionValueType } from '../types'
+import type { OptionValueType } from '../types/definitions'
 
 export type FormikMultiRadioProps<OptionValue extends OptionValueType = string> = Omit<
   MultiRadioProps<OptionValue>,

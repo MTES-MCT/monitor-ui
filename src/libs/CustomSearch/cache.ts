@@ -1,7 +1,7 @@
 import { getHashFromCollection } from '../../utils/getHashFromCollection'
 
 import type { CustomSearchCache, CustomSearchCacheRecord } from './types'
-import type { AnyCollection } from '../../types'
+import type { AnyObject } from '../../types/definitions'
 
 /**
  * We take advantage of the global JS scope to use this constant as a "singleton" cache
@@ -12,7 +12,7 @@ import type { AnyCollection } from '../../types'
 const FUSE_SEARCH_CACHE: CustomSearchCache = {}
 
 export function findCacheRecord(
-  currentCollection: AnyCollection,
+  currentCollection: AnyObject[],
   cacheKey: string | undefined,
   withCacheInvalidation: boolean
 ): CustomSearchCacheRecord | undefined {

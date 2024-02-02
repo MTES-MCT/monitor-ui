@@ -1,6 +1,6 @@
 import { sortBy } from 'lodash/fp'
 
-import type { Option } from '../types'
+import type { Option } from '../types/definitions'
 
 export function getOptionsFromLabelledEnum<T extends Record<string, string> = Record<string, string>>(
   labelledEnum: T,

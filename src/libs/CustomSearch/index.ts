@@ -8,7 +8,7 @@ import { cleanCollectionDiacritics } from '../../utils/cleanCollectionDiacritics
 import { getHashFromCollection } from '../../utils/getHashFromCollection'
 
 import type { CustomSearchCacheRecord, CustomSearchKey, CustomSearchOptions } from './types'
-import type { AnyObject } from '../../types'
+import type { AnyObject } from '../../types/definitions'
 
 export class CustomSearch<T extends AnyObject = AnyObject> {
   #originalCollection: T[]
