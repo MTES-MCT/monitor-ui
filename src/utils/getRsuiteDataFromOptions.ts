@@ -7,9 +7,18 @@ export function getRsuiteDataFromOptions<OptionValue extends OptionValueType = s
   options: Array<Option<OptionValue>>,
   optionValueKey?: keyof OptionValue | undefined
 ): Array<OptionAsRsuiteItemDataType<OptionValue>> {
-  return options.map(({ value, ...rest }) => ({
-    ...rest,
-    optionValue: value,
-    value: getRsuiteValueFromOptionValue(value, optionValueKey) as string
-  }))
+  return options.map(({ children, value, ...rest }) =>
+    children
+      ? {
+          ...rest,
+          children: getRsuiteDataFromOptions(children, optionValueKey),
+          optionValue: value,
+          value: getRsuiteValueFromOptionValue(value, optionValueKey) as string
+        }
+      : {
+          ...rest,
+          optionValue: value,
+          value: getRsuiteValueFromOptionValue(value, optionValueKey) as string
+        }
+  )
 }
