@@ -4,7 +4,7 @@
 // https://www.npmjs.com/package/json-stringify-deterministic#json-stringify-deterministic
 import jsonStringifyDeterministic from 'json-stringify-deterministic'
 
-import type { AnyObject } from '../types'
+import type { AnyObject } from '../types/definitions'
 
 /**
  * Generates a deterministic hash from a collection, regardless of items and props order.

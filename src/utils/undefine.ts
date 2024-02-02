@@ -5,7 +5,7 @@ import { fromPairs, map, pipe, toPairs } from 'ramda'
 import { isArray } from './isArray'
 import { isObject } from './isObject'
 
-import type { NativeAny, NativeArray, NativeObject } from '../types'
+import type { NativeAny, NativeArray, NativeObject } from '../types/definitions'
 
 type Undefine<T> = T extends null
   ? undefined

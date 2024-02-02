@@ -3,7 +3,7 @@
 import { PureComponent, type ReactNode } from 'react'
 import ReactDOM from 'react-dom'
 
-import type { Define } from '../types'
+import type { Define } from '../types/utilities'
 import type { Promisable } from 'type-fest'
 
 export type NewWindowProps = {

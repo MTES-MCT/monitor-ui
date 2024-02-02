@@ -49,7 +49,7 @@ import { usePrevious } from '../../hooks/usePrevious'
 import { customDayjs } from '../../utils/customDayjs'
 import { normalizeString } from '../../utils/normalizeString'
 
-import type { DateAsStringRange, DateRange } from '../../types'
+import type { DateAsStringRange, DateRange } from '../../types/definitions'
 import type { HTMLAttributes } from 'react'
 import type { Promisable } from 'type-fest'
 

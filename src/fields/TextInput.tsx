@@ -14,7 +14,7 @@ import { Close, Search } from '../icons'
 import { THEME } from '../theme'
 import { normalizeString } from '../utils/normalizeString'
 
-import type { IconProps } from '../types'
+import type { IconProps } from '../types/definitions'
 import type { InputProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
 

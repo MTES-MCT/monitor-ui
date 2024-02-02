@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 
 import { PrimaryButton, SecondaryButton } from './Button'
 import { Accent, Size } from '../constants'
-import { type IconProps } from '../types'
+import { type IconProps } from '../types/definitions'
 import { stopMouseEventPropagation } from '../utils/stopMouseEventPropagation'
 
 const ICON_SIZE_IN_PX: Record<Size, number> = {

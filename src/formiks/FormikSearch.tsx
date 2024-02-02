@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import { Search } from '../fields/Search'
 
 import type { SearchProps } from '../fields/Search'
-import type { OptionValueType } from '../types'
+import type { OptionValueType } from '../types/definitions'
 
 export type FormikSearchProps<OptionValue extends OptionValueType = string> = Omit<
   SearchProps<OptionValue>,

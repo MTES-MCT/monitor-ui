@@ -11,7 +11,7 @@ import { sortDates } from '../../utils/sortDates'
 import { stopMouseEventPropagation } from '../../utils/stopMouseEventPropagation'
 
 import type { DateTupleRange } from './types'
-import type { DateRange } from '../../types'
+import type { DateRange } from '../../types/definitions'
 import type { Promisable } from 'type-fest'
 
 type RangeCalendarPickerProps = {

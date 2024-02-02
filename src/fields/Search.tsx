@@ -19,7 +19,8 @@ import { getRsuiteValueFromOptionValue } from '../utils/getRsuiteValueFromOption
 import { normalizeString } from '../utils/normalizeString'
 
 import type { CustomSearch } from '../libs/CustomSearch'
-import type { Option, OptionAsRsuiteItemDataType, OptionValueType } from '../types'
+import type { Option, OptionValueType } from '../types/definitions'
+import type { OptionAsRsuiteItemDataType } from '../types/internals'
 import type { AutoCompleteProps as RsuiteAutoCompleteProps } from 'rsuite'
 import type { ItemDataType } from 'rsuite/esm/@types/common'
 import type { Promisable } from 'type-fest'

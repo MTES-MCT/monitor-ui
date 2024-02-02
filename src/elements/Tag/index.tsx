@@ -6,7 +6,7 @@ import { Accent, TagBullet } from '../../constants'
 import { DotFilled } from '../../icons'
 import { THEME } from '../../theme'
 
-import type { IconProps } from '../../types'
+import type { IconProps } from '../../types/definitions'
 
 export type TagProps = HTMLAttributes<HTMLSpanElement> & {
   Icon?: FunctionComponent<IconProps> | undefined

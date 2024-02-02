@@ -1,6 +1,6 @@
 import { property } from 'lodash/fp'
 
-import type { AnyObject } from '../types'
+import type { AnyObject } from '../types/definitions'
 
 /**
  * Same as Lodash `sortBy()` but for collections of objects with localized properties.

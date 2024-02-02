@@ -2,7 +2,7 @@ import diacritics from 'diacritics'
 import { flow, get, update } from 'lodash/fp'
 
 import type { CustomSearchKey } from '../libs/CustomSearch/types'
-import type { AnyObject } from '../types'
+import type { AnyObject } from '../types/definitions'
 
 /**
  * Replace all the diacritics with unaccented letters in a collection, targetting the provided keys.

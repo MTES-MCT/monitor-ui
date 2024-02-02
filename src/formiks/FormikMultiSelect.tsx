@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import { MultiSelect } from '../fields/MultiSelect'
 
 import type { MultiSelectProps } from '../fields/MultiSelect'
-import type { OptionValueType } from '../types'
+import type { OptionValueType } from '../types/definitions'
 
 export type FormikMultiSelectProps<OptionValue extends OptionValueType = string> = Omit<
   MultiSelectProps<OptionValue>,

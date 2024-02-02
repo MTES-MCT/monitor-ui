@@ -8,7 +8,7 @@ import { THEME } from '../../theme'
 import { getCoordinates } from '../../utils/coordinates'
 import { isNumeric } from '../../utils/isNumeric'
 
-import type { Coordinates } from '../../types'
+import type { Coordinates } from '../../types/definitions'
 
 // TODO Remove that once the fix is added and released.
 // Open issue: https://github.com/uNmAnNeR/imaskjs/issues/761

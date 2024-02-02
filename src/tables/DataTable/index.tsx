@@ -11,7 +11,7 @@ import { Td } from './Td'
 import { Th } from './Th'
 import { SimpleTable } from '../SimpleTable'
 
-import type { CollectionItem } from '../../types'
+import type { CollectionItem } from '../../types/definitions'
 
 export type DataTableProps<T extends CollectionItem> = {
   columns: Array<ColumnDef<T>>

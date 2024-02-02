@@ -1,7 +1,7 @@
 import { customDayjs } from '../../utils/customDayjs'
 
 import type { DateTuple, TimeTuple } from './types'
-import type { Option } from '../../types'
+import type { Option } from '../../types/definitions'
 import type { Dayjs } from 'dayjs'
 
 export function formatNumberAsDoubleDigit(numberLike: number | string): string {

@@ -143,18 +143,21 @@ export { undefine } from './utils/undefine'
 
 export type { PartialTheme, Theme } from './theme'
 export type {
+  AnyObject,
   CollectionItem,
   Coordinates,
   DateAsStringRange,
   DateRange,
-  Defined,
   Filter,
   IconProps,
+  Native,
+  NativeAny,
+  NativeArray,
+  NativeObject,
   Option,
-  OptionValueType,
-  Undefine,
-  UndefineExceptArrays
-} from './types'
+  OptionValueType
+} from './types/definitions'
+export type { Defined, Undefine, UndefineExceptArrays } from './types/utilities'
 
 export type { DialogProps } from './components/Dialog'
 export type { DropdownProps, DropdownItemProps } from './components/Dropdown'

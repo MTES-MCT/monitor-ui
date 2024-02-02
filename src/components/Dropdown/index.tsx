@@ -7,7 +7,7 @@ import { Item } from './Item'
 import { Accent } from '../../constants'
 
 import type { DropdownItemProps } from './Item'
-import type { IconProps } from '../../types'
+import type { IconProps } from '../../types/definitions'
 import type { FunctionComponent } from 'react'
 import type { DropdownProps as RsuiteDropdownProps } from 'rsuite'
 

@@ -5,7 +5,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { DateRangePicker } from '../../src'
 
 import type { DateRangePickerWithDateDateProps, DateRangePickerWithStringDateProps } from '../../src'
-import type { DateAsStringRange, DateRange } from '../../src/types'
+import type { DateAsStringRange, DateRange } from '../../src/types/definitions'
 
 const args: DateRangePickerWithDateDateProps | DateRangePickerWithStringDateProps = {
   baseContainer: undefined,

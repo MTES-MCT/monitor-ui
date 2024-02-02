@@ -1,6 +1,7 @@
 import { getRsuiteValueFromOptionValue } from './getRsuiteValueFromOptionValue'
 
-import type { Option, OptionAsRsuiteItemDataType, OptionValueType } from '../types'
+import type { Option, OptionValueType } from '../types/definitions'
+import type { OptionAsRsuiteItemDataType } from '../types/internals'
 
 export function getRsuiteDataFromOptions<OptionValue extends OptionValueType = string>(
   options: Array<Option<OptionValue>>,

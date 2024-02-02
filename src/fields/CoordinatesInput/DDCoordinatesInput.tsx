@@ -5,7 +5,7 @@ import { useDebouncedCallback } from 'use-debounce'
 import { THEME } from '../../theme'
 import { isNumeric } from '../../utils/isNumeric'
 
-import type { Coordinates } from '../../types'
+import type { Coordinates } from '../../types/definitions'
 
 type DDCoordinatesInputProps = {
   coordinates: Coordinates | undefined

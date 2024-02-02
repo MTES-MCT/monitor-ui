@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { Accent } from '../../constants'
 
-import type { IconProps } from '../../types'
+import type { IconProps } from '../../types/definitions'
 import type { FunctionComponent } from 'react'
 import type { DropdownMenuItemProps as RsuiteDropdownMenuItemProps } from 'rsuite'
 
