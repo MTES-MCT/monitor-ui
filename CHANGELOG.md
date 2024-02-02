@@ -1,3 +1,17 @@
+## [11.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.4.0...v11.5.0) (2024-02-02)
+
+
+### Features
+
+* **types:** add optional children prop to Option ([0a2a934](https://github.com/MTES-MCT/monitor-ui/commit/0a2a934475b75dc9c81f7057a383bd1e5635653c))
+* **types:** add PartialExcept & UndefineExcept ([c33afe1](https://github.com/MTES-MCT/monitor-ui/commit/c33afe1c7745d1e3e0c18eea6a8663748be29a86))
+* **types:** expose AnyObject & Native* types ([e9d267f](https://github.com/MTES-MCT/monitor-ui/commit/e9d267f358285a2ee96e36c87d584930465337c7))
+
+
+### Bug Fixes
+
+* **types:** expose missing PartialExcept & UndefineExcept ([0d59087](https://github.com/MTES-MCT/monitor-ui/commit/0d590876c1df7498347a26a5ee3439cc335bbdc3))
+
 ## [11.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.3.0...v11.4.0) (2024-01-24)
 
 
