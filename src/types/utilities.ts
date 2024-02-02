@@ -3,6 +3,66 @@
  */
 
 /**
+ * Allow all props to be ommitted except some.
+ *
+ * @example
+ * ```
+ * // Given:
+ * type MyType = {
+ *   aRequiredProp: string
+ *   anOptionalProp: string
+ *   aNecessaryProp: string
+ *   anotherNecessaryProp: string
+ * }
+ *
+ * // Writing:
+ * type MyPartiallyPartialType = PartialExcept<MyType, 'aNecessaryProp' | 'anotherNecessaryProp'>
+ *
+ * // Is equivalent to:
+ * type MyPartiallyPartialType = {
+ *   aRequiredProp?: string
+ *   anOptionalProp?: string
+ *   aNecessaryProp: string
+ *   anotherNecessaryProp: string
+ * }
+ * ```
+ */
+export type PartialExcept<T extends Record<string, any>, RequiredKeys extends keyof T> = Partial<
+  Omit<T, RequiredKeys>
+> &
+  Pick<T, RequiredKeys>
+
+/**
+ * Allow all props of a type to be `undefined` except some.
+ *
+ * @example
+ * ```
+ * // Given:
+ * type MyType = {
+ *   aRequiredProp: string
+ *   anOptionalProp?: string
+ *   aNecessaryProp: string
+ *   anotherNecessaryProp: string
+ * }
+ *
+ * // Writing:
+ * type MyPartiallyUndefinedType = UndefineExcept<MyType, 'aNecessaryProp' | 'anotherNecessaryProp'>
+ *
+ * // Is equivalent to:
+ * type MyPartiallyUndefinedType = {
+ *   aRequiredProp: string | undefined
+ *   anOptionalProp?: string | undefined
+ *   aNecessaryProp: string
+ *   anotherNecessaryProp: string
+ * }
+ * ```
+ */
+export type UndefineExcept<T extends Record<string, any>, RequiredKeys extends keyof T> = Undefine<
+  Omit<T, RequiredKeys>
+> &
+  Pick<T, RequiredKeys>
+
+/**
  * Force a type to be defined.
  *
  * @example
@@ -20,7 +80,7 @@
 export type Defined<T> = T extends undefined ? never : T
 
 /**
- * Force all prop of an interface/type to be defined.
+ * Forbids all props of a type from being `undefined`.
  *
  * Opposite of `Undefine<T>`.
  *
@@ -47,7 +107,7 @@ export type Define<T> = {
 }
 
 /**
- * Mark all the prop types of an interface/type as `| undefined`
+ * Allow all props of a type to be `undefined`.
  *
  * Opposite of `Defined<T>`.
  *
