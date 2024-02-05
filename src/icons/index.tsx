@@ -83,6 +83,7 @@ import { Unlock } from './Unlock'
 import { Vessel } from './Vessel'
 import { ViewOnMap } from './ViewOnMap'
 import { Vms } from './Vms'
+import { Warning } from './Warning'
 
 export {
   ActivityFeed,
@@ -169,5 +170,6 @@ export {
   Unlock,
   Vessel,
   ViewOnMap,
-  Vms
+  Vms,
+  Warning
 }

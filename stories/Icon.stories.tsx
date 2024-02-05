@@ -544,6 +544,12 @@ export function _Icon(props: IconProps) {
         </IconBox>
         <Code>Vms</Code>
       </Cell>
+      <Cell>
+        <IconBox>
+          <Icon.Warning {...props} />
+        </IconBox>
+        <Code>Warning</Code>
+      </Cell>
     </Box>
   )
 }
