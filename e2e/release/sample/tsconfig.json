@@ -1,26 +1,37 @@
 {
+  "extends": "@tsconfig/vite-react/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "alwaysStrict": true,
+    "checkJs": false,
+    // Override inherited value for CommonJS > ESM compatibility purpose
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "esnext",
-    "moduleResolution": "node",
+    "exactOptionalPropertyTypes": true,
+    "incremental": true,
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "moduleResolution": "Node",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
-    "paths": {
-      "@mtes-mct/monitor-ui": ["node_modules/@mtes-mct/monitor-ui/src"],
-      "@mtes-mct/monitor-ui/*": ["node_modules/@mtes-mct/monitor-ui/src/*"]
-    },
-    "resolveJsonModule": true,
-    "rootDir": ".",
+    "noImplicitAny": false,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es5"
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "target": "ES2022",
+    "types": ["vite/client", "vite-plugin-svgr/client"],
+    "useUnknownInCatchVariables": true,
+    "verbatimModuleSyntax": true
   },
-  "include": ["src"]
+  "include": ["**/*.js", "**/*.jsx", "**/*.mjs", "**/*.ts", "**/*.tsx", "src/ui/styled.d.ts"],
+  "exclude": ["node_modules/*"]
 }

@@ -1,61 +1,67 @@
 # Contributing
 
-- [Development](#development)
+- [Getting Started: Backend \& Frontend](#getting-started-backend--frontend)
+  - [Requirements](#requirements)
   - [First Setup](#first-setup)
-  - [Run locally](#run-locally)
+  - [Local Development](#local-development)
   - [Run E2E tests](#run-e2e-tests)
-  - [Conventions](#conventions)
-  - [Release](#release)
-    - [Versionning](#versionning)
-      - [Breaking changes](#breaking-changes)
-  - [Maintenance](#maintenance)
-    - [Updating icons](#updating-icons)
-    - [Updating caniuse browserlist](#updating-caniuse-browserlist)
+  - [Run Release E2E tests](#run-release-e2e-tests)
+- [Conventions](#conventions)
+- [Release](#release)
+  - [Versionning](#versionning)
+    - [Breaking changes](#breaking-changes)
+- [Maintenance](#maintenance)
+  - [Updating icons](#updating-icons)
+  - [Updating caniuse browserlist](#updating-caniuse-browserlist)
 - [Notes](#notes)
 
-## Development
+## Getting Started: Backend & Frontend
+
+### Requirements
+
+- Debian-based Linux or macOS
+- Node.js v20 (with npm v10)
+- [Yarn 2+ (Yarn Modern)](https://yarnpkg.com/getting-started/install)
 
 ### First Setup
 
-You need [Node.js v18](https://nodejs.org/en/).
-
-1. Install Yarn Berry:
-
 ```sh
-corepack enable
-```
-
-2. Install dependencies:
-
-```sh
+git clone https://github.com/MTES-MCT/monitor-ui.git
+cd monitor-ui
 yarn
+yarn dev:setup # Install Git hooks
 ```
 
-3. Install Git hooks and Plyawright browser:
+### Local Development
 
 ```sh
-yarn dev:setup
-```
-
-### Run locally
-
-```sh
-yarn start # or `yarn dev` if you don't want to auto-open the browser
+yarn dev
 ```
 
 ### Run E2E tests
 
+You must have the Storybook running locally to run the E2E tests (`yarn dev`). You can then run the E2E tests with:
+
 ```sh
-make serve-e2e
-yarn test:e2e # in another tab/terminal
+yarn test:e2e:open
 ```
 
-### Conventions
+### Run Release E2E tests
+
+In order to test that the final package is working as expected when imported in another project, you can run the release
+E2E tests:
+
+```sh
+make test:e2e:release:setup # Build, install the package and start the sample React with Vite project
+yarn test:e2e:release # In another tab/terminal
+```
+
+## Conventions
 
 Please respect [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/) messages as defined by Angular in
 [their contributing documentation](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#commit).
 
-### Release
+## Release
 
 The release process is automated, including versionning and release notes generation, using
 [semantic-release](https://github.com/semantic-release/semantic-release).
@@ -67,11 +73,11 @@ The release process is automated, including versionning and release notes genera
    _Why? Because this PR include both the release notes and the new version from which later versions will be
    calculated._
 
-#### Versionning
+### Versionning
 
 In short, 'feat(...):' will generated minor versions and 'fix(...):' will generate patch versions.
 
-##### Breaking changes
+#### Breaking changes
 
 If you have to release a BREAKING CHANGE, you should look at the
 [official documentation](https://www.conventionalcommits.org/en/v1.0.0/#commit-message-with-description-and-breaking-change-footer)
@@ -87,9 +93,9 @@ git commit -m "feat!: all theses component props are now strings instead of numb
 
 And **don't forget** the `BREAKING CHANGE: ...` in the commit message body.
 
-### Maintenance
+## Maintenance
 
-#### Updating icons
+### Updating icons
 
 1. Copy the new SVG icons in `src/assets/icons` folder
 2. Run
@@ -100,7 +106,7 @@ yarn icons
 
 to generate React components from the SVG icons.
 
-#### Updating caniuse browserlist
+### Updating caniuse browserlist
 
 We
 [should regularly update `browserlist` database](https://github.com/browserslist/browserslist#browsers-data-updating):
