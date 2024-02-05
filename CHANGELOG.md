@@ -1,3 +1,10 @@
+## [11.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.5.1...v11.6.0) (2024-02-05)
+
+
+### Features
+
+* **icons:** add warning icon ([1d7cc3f](https://github.com/MTES-MCT/monitor-ui/commit/1d7cc3fc20716454ae4dbb80571959eb8e48f166))
+
 ## [11.5.1](https://github.com/MTES-MCT/monitor-ui/compare/v11.5.0...v11.5.1) (2024-02-05)
 
 
