@@ -5,10 +5,9 @@
     "npm": "10"
   },
   "scripts": {
-    "dev": "rm -Rf node_modules/.cache && BROWSER=none PORT=3000 react-scripts start",
-    "build": "NODE_ENV=production react-scripts build",
-    "eject": "react-scripts eject",
-    "start": "PORT=3000 react-scripts start"
+    "dev": "rm -Rf ./build && vite",
+    "build": "vite build",
+    "start": "vite preview"
   },
   "dependencies": {
     "@sentry/react": "7.91.0",
@@ -16,16 +15,19 @@
     "formik": "2.4.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-scripts": "5.0.1",
     "rsuite": "5.46.0",
     "styled-components": "6.1.1"
   },
   "devDependencies": {
+    "@tsconfig/vite-react": "3.0.0",
     "@types/node": "20.10.3",
     "@types/react": "18.2.46",
     "@types/react-dom": "18.2.18",
+    "@vitejs/plugin-react": "4.2.1",
     "prettier": "3.1.1",
-    "typescript": "4.9.5"
+    "typescript": "4.9.5",
+    "vite": "5.0.12",
+    "vite-tsconfig-paths": "4.3.1"
   },
   "browserslist": {
     "production": [
