@@ -1,3 +1,10 @@
+## [11.5.1](https://github.com/MTES-MCT/monitor-ui/compare/v11.5.0...v11.5.1) (2024-02-05)
+
+
+### Bug Fixes
+
+* **build:** force rsuite version to 5.45.0 before fixing cy.fill() command ([949e6ed](https://github.com/MTES-MCT/monitor-ui/commit/949e6ed04b6f922eaf8cd6118b2aa10e9780ab24))
+
 ## [11.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.4.0...v11.5.0) (2024-02-02)
 
 
