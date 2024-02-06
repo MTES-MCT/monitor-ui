@@ -39,5 +39,15 @@ export type Option<OptionValue extends OptionValueType = string> = Omit<ItemData
   label: string
   value: OptionValue
 }
+
+export type MultiRadioOption<OptionValue extends OptionValueType = string> = Omit<
+  ItemDataType<string>,
+  'label' | 'value'
+> & {
+  children?: Array<Option<OptionValue>>
+  isDisabled?: boolean
+  label: string | JSX.Element
+  value: OptionValue
+}
 // `symbol` should never happen, we add it here to simplify other declarations related this type
 export type OptionValueType = boolean | number | string | symbol | Record<string, any>

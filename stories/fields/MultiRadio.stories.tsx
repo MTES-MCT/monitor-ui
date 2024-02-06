@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { MultiRadio, useFieldControl } from '../../src'
+import { Icon, MultiRadio, useFieldControl } from '../../src'
 
 import type { MultiRadioProps } from '../../src'
 import type { Meta } from '@storybook/react'
@@ -25,6 +25,35 @@ const args: MultiRadioProps = {
   value: undefined
 }
 
+const OPTIONS_WITH_ICONS = [
+  {
+    label: (
+      <>
+        <Icon.ControlUnit size={14} />
+        Moyen de contrôle
+      </>
+    ),
+    value: 'CONTROL_ENTITY'
+  },
+  {
+    label: (
+      <>
+        <Icon.FleetSegment size={14} />
+        Navire de pêche
+      </>
+    ),
+    value: 'FISHING_VESSEL'
+  },
+  {
+    label: (
+      <>
+        <Icon.Info size={15} />
+        Autre point
+      </>
+    ),
+    value: 'OTHER'
+  }
+]
 const meta: Meta<MultiRadioProps> = {
   title: 'Fields/MultiRadio',
   component: MultiRadio,
@@ -51,6 +80,8 @@ export function _MultiRadio(props: MultiRadioProps) {
 
   const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
 
+  const [outputValueWithIcon, setOutputValueWithIcons] = useState<string | undefined>('OTHER')
+
   return (
     <>
       <div style={{ marginBottom: '32px' }}>
@@ -65,6 +96,15 @@ export function _MultiRadio(props: MultiRadioProps) {
         onChange={controlledOnChange}
         value="FIRST_OPTION"
       />
+      <div style={{ marginTop: '32px' }}>
+        <MultiRadio
+          {...props}
+          label="Multiradio with icons"
+          onChange={setOutputValueWithIcons}
+          options={OPTIONS_WITH_ICONS}
+          value={outputValueWithIcon}
+        />
+      </div>
     </>
   )
 }
