@@ -9,7 +9,11 @@ import type { Meta } from '@storybook/react'
 const args: ToggleProps = {
   isChecked: false,
   onChange: () => {},
-  hasError: false
+  error: undefined,
+  isLabelHidden: false,
+  isErrorMessageHidden: false,
+  label: 'A toggle',
+  name: 'toggle'
 }
 
 const meta: Meta<ToggleProps> = {
@@ -17,10 +21,13 @@ const meta: Meta<ToggleProps> = {
   component: Toggle,
 
   argTypes: {
-    hasError: {
-      control: 'boolean'
+    error: {
+      control: 'text'
     },
     isChecked: {
+      control: 'boolean'
+    },
+    isErrorMessageHidden: {
       control: 'boolean'
     },
     onChange: {
@@ -40,7 +47,7 @@ const meta: Meta<ToggleProps> = {
 export default meta
 
 export function _Toggle(props: ToggleProps) {
-  const [outputValue1, setOutputValue1] = useState<boolean>(false)
+  const [, setOutputValue1] = useState<boolean | '∅'>(false)
   const { controlledOnChange, controlledValue: controlledChecked } = useFieldControl(
     props.isChecked,
     setOutputValue1 as any
@@ -52,22 +59,19 @@ export function _Toggle(props: ToggleProps) {
     <>
       <ToggleContainer>
         <div>
-          <Toggle hasError={props.hasError} isChecked={!!controlledChecked} onChange={controlledOnChange} />
-          <span>{`Le toggle est sur : ${outputValue1 ? 'ON' : 'OFF'}`}</span>
+          <Toggle {...props} error={props.error} isChecked={!!controlledChecked} onChange={controlledOnChange} />
+          <span>{`Toggle is : ${controlledChecked ? 'ON' : 'OFF'}`}</span>
         </div>
         <div>
-          <Toggle isChecked={false} onChange={() => {}} readOnly />
-          <span>Le toggle est en mode readOnly</span>
-        </div>
-
-        <div>
-          <Toggle disabled isChecked onChange={() => {}} />
-          <span>Le toggle est en mode disabled</span>
+          <Toggle {...props} isChecked={false} label="Read only toggle" onChange={() => {}} readOnly />
         </div>
 
         <div>
-          <Toggle hasError isChecked={outputValue2} onChange={setOutputValue2} />
-          <span>Le toggle est en mode erreur</span>
+          <Toggle {...props} disabled isChecked label="Disabled toggle" onChange={() => {}} />
+        </div>
+
+        <div>
+          <Toggle {...props} error="Toggle with an error" isChecked={outputValue2} onChange={setOutputValue2} />
         </div>
       </ToggleContainer>
     </>
@@ -78,7 +82,4 @@ const ToggleContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  > div > span {
-    margin-left: 16px;
-  }
 `
