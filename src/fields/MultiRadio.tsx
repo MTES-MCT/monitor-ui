@@ -106,7 +106,6 @@ const Box = styled.div<{
   display: flex;
   flex-direction: ${p => (p.$isInline ? 'row' : 'column')};
   font-weight: 500;
-  outline: ${p => (p.$hasError ? `1px solid ${p.theme.color.maximumRed}` : 0)};
 
   > .rs-radio {
     * {
@@ -121,6 +120,12 @@ const Box = styled.div<{
       .rs-radio-wrapper {
         left: 2px;
         top: 3px !important;
+      }
+      .rs-radio-inner:before {
+        border-color: ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.gunMetal)};
+      }
+      .rs-radio-inner:after {
+        border-color: ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.gunMetal)};
       }
     }
   }
