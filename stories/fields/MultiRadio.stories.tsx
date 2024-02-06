@@ -27,31 +27,34 @@ const args: MultiRadioProps = {
 
 const OPTIONS_WITH_ICONS = [
   {
-    label: (
+    label: 'Moyen de contrôle',
+    value: 'CONTROL_ENTITY',
+    renderMenuItem: (
       <>
         <Icon.ControlUnit size={14} />
         Moyen de contrôle
       </>
-    ),
-    value: 'CONTROL_ENTITY'
+    )
   },
   {
-    label: (
+    label: 'Navire de pêche',
+    value: 'FISHING_VESSEL',
+    renderMenuItem: (
       <>
         <Icon.FleetSegment size={14} />
         Navire de pêche
       </>
-    ),
-    value: 'FISHING_VESSEL'
+    )
   },
   {
-    label: (
+    label: 'Autre point',
+    value: 'OTHER',
+    renderMenuItem: (
       <>
         <Icon.Info size={15} />
         Autre point
       </>
-    ),
-    value: 'OTHER'
+    )
   }
 ]
 const meta: Meta<MultiRadioProps> = {

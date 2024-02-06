@@ -10,7 +10,7 @@ import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
 
-import type { MultiRadioOption, OptionValueType } from '../types/definitions'
+import type { Option, OptionValueType } from '../types/definitions'
 import type { Promisable } from 'type-fest'
 
 export type MultiRadioProps<OptionValue extends OptionValueType = string> = {
@@ -26,7 +26,7 @@ export type MultiRadioProps<OptionValue extends OptionValueType = string> = {
   label: string
   name: string
   onChange?: ((nextValue: OptionValue | undefined) => Promisable<void>) | undefined
-  options: MultiRadioOption<OptionValue>[]
+  options: Option<OptionValue>[]
   style?: CSSProperties | undefined
   value?: OptionValue | undefined
 }
@@ -87,7 +87,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
             onChange={(_: any, isChecked: boolean) => handleChange(option.value, isChecked)}
             readOnly={isReadOnly}
           >
-            {option.label}
+            {option.renderMenuItem ?? option.label}
           </Radio>
         ))}
       </Box>
