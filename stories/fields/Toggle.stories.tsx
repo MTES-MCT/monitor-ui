@@ -47,7 +47,7 @@ const meta: Meta<ToggleProps> = {
 export default meta
 
 export function _Toggle(props: ToggleProps) {
-  const [, setOutputValue1] = useState<boolean | '∅'>(false)
+  const [, setOutputValue1] = useState<boolean>(false)
   const { controlledOnChange, controlledValue: controlledChecked } = useFieldControl(
     props.isChecked,
     setOutputValue1 as any

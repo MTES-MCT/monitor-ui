@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useState, type FunctionComponent } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { Icon, MultiRadio, useFieldControl } from '../../src'
+import { Icon as MonitorUiIcon, MultiRadio, useFieldControl } from '../../src'
 
-import type { MultiRadioProps } from '../../src'
+import type { IconProps, MultiRadioProps, Option } from '../../src'
 import type { Meta } from '@storybook/react'
 
 const args: MultiRadioProps = {
@@ -25,36 +25,32 @@ const args: MultiRadioProps = {
   value: undefined
 }
 
-const OPTIONS_WITH_ICONS = [
+type InterestPointOptionValueType = {
+  Icon: FunctionComponent<IconProps>
+  value: string
+}
+
+const OPTIONS_WITH_ICONS: Array<Option<InterestPointOptionValueType>> = [
   {
     label: 'Moyen de contrôle',
-    value: 'CONTROL_ENTITY',
-    renderMenuItem: (
-      <>
-        <Icon.ControlUnit size={14} />
-        Moyen de contrôle
-      </>
-    )
+    value: {
+      value: 'CONTROL_ENTITY',
+      Icon: MonitorUiIcon.ControlUnit
+    }
   },
   {
     label: 'Navire de pêche',
-    value: 'FISHING_VESSEL',
-    renderMenuItem: (
-      <>
-        <Icon.FleetSegment size={14} />
-        Navire de pêche
-      </>
-    )
+    value: {
+      value: 'FISHING_VESSEL',
+      Icon: MonitorUiIcon.FleetSegment
+    }
   },
   {
     label: 'Autre point',
-    value: 'OTHER',
-    renderMenuItem: (
-      <>
-        <Icon.Info size={15} />
-        Autre point
-      </>
-    )
+    value: {
+      value: 'OTHER',
+      Icon: MonitorUiIcon.Info
+    }
   }
 ]
 const meta: Meta<MultiRadioProps> = {
@@ -83,7 +79,9 @@ export function _MultiRadio(props: MultiRadioProps) {
 
   const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
 
-  const [outputValueWithIcon, setOutputValueWithIcons] = useState<string | undefined>('OTHER')
+  const [outputValueWithIcon, setOutputValueWithIcons] = useState<InterestPointOptionValueType | undefined>(
+    OPTIONS_WITH_ICONS[2]?.value
+  )
 
   return (
     <>
@@ -103,8 +101,15 @@ export function _MultiRadio(props: MultiRadioProps) {
         <MultiRadio
           {...props}
           label="Multiradio with icons"
-          onChange={setOutputValueWithIcons}
+          onChange={nextOptionValue => setOutputValueWithIcons(nextOptionValue)}
           options={OPTIONS_WITH_ICONS}
+          optionValueKey="value"
+          renderMenuItem={(label, value) => (
+            <>
+              <value.Icon />
+              {label}
+            </>
+          )}
           value={outputValueWithIcon}
         />
       </div>
