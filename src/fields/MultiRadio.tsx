@@ -127,15 +127,47 @@ const Box = styled.div<{
       padding: 0 0 0 28px;
       user-select: none;
 
+      > label {
+        color: ${p => p.theme.color.charcoal};
+        font-weight: 500;
+        line-height: 17px;
+      }
+
       .rs-radio-wrapper {
         left: 2px;
         top: 3px !important;
+
+        .rs-radio-inner:before {
+          background: ${p => p.theme.color.white};
+          border: 2px solid ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.lightGray)};
+          &:hover {
+            border-color: 2px solid ${p => p.theme.color.blueYonder};
+          }
+        }
+        .rs-radio-inner:after {
+          background: ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.charcoal)};
+        }
       }
-      .rs-radio-inner:before {
-        border-color: ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.gunMetal)};
+    }
+  }
+  > .rs-radio-checked {
+    > .rs-radio-checker {
+      .rs-radio-wrapper {
+        .rs-radio-inner:before {
+          border: 2px solid ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.charcoal)};
+        }
       }
-      .rs-radio-inner:after {
-        border-color: ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.gunMetal)};
+    }
+  }
+  > .rs-radio-disabled {
+    > .rs-radio-checker {
+      > label {
+        color: ${p => p.theme.color.lightGray};
+      }
+      .rs-radio-wrapper {
+        .rs-radio-inner:after {
+          background: ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.lightGray)};
+        }
       }
     }
   }
