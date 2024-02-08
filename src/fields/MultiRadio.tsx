@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { equals } from 'ramda'
-import { useCallback, useMemo, type CSSProperties } from 'react'
+import { useCallback, useMemo, type CSSProperties, type ReactNode } from 'react'
 import { Radio } from 'rsuite'
 import styled, { css } from 'styled-components'
 
@@ -8,6 +8,8 @@ import { FieldError } from '../elements/FieldError'
 import { Fieldset } from '../elements/Fieldset'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useKey } from '../hooks/useKey'
+import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
+import { getRsuiteValueFromOptionValue } from '../utils/getRsuiteValueFromOptionValue'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Option, OptionValueType } from '../types/definitions'
@@ -26,7 +28,9 @@ export type MultiRadioProps<OptionValue extends OptionValueType = string> = {
   label: string
   name: string
   onChange?: ((nextValue: OptionValue | undefined) => Promisable<void>) | undefined
+  optionValueKey?: keyof OptionValue | undefined
   options: Option<OptionValue>[]
+  renderMenuItem?: (label: string, value: OptionValue) => ReactNode
   style?: CSSProperties | undefined
   value?: OptionValue | undefined
 }
@@ -44,6 +48,8 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   name,
   onChange,
   options,
+  optionValueKey,
+  renderMenuItem,
   style,
   value
 }: MultiRadioProps<OptionValue>) {
@@ -52,15 +58,18 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([value, disabled, name])
 
+  const rsuiteData = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
+  const selectedRsuiteValue = useMemo(
+    () => getRsuiteValueFromOptionValue(value, optionValueKey) ?? '',
+    [value, optionValueKey]
+  )
+
   const handleChange = useCallback(
-    (nextOptionValue: OptionValue, isChecked: boolean) => {
+    (nextValue: OptionValue) => {
       if (!onChange) {
         return
       }
-
-      const nextCheckedOptionValue = isChecked ? nextOptionValue : undefined
-
-      onChange(nextCheckedOptionValue)
+      onChange(nextValue)
     },
     [onChange]
   )
@@ -78,16 +87,17 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
       style={style}
     >
       <Box key={key} $hasError={hasError} $isInline={isInline} $isReadOnly={isReadOnly}>
-        {options.map(option => (
+        {rsuiteData.map(rsuiteDataItem => (
           <Radio
-            key={JSON.stringify(option.value)}
-            checked={equals(option.value, value)}
-            disabled={!!option.isDisabled || disabled}
+            key={JSON.stringify(rsuiteDataItem.value)}
+            checked={equals(rsuiteDataItem.value, selectedRsuiteValue)}
+            disabled={!!rsuiteDataItem.isDisabled || disabled}
             name={name}
-            onChange={(_: any, isChecked: boolean) => handleChange(option.value, isChecked)}
+            onChange={() => handleChange(rsuiteDataItem.optionValue)}
             readOnly={isReadOnly}
+            value={selectedRsuiteValue}
           >
-            {option.renderMenuItem ?? option.label}
+            {renderMenuItem ? renderMenuItem(rsuiteDataItem.label, rsuiteDataItem.optionValue) : rsuiteDataItem.label}
           </Radio>
         ))}
       </Box>
