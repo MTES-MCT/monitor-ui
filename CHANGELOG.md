@@ -1,3 +1,19 @@
+## [11.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.6.0...v11.7.0) (2024-02-08)
+
+
+### Features
+
+* **fields:** accept JSX Elements for multiradio label ([5776236](https://github.com/MTES-MCT/monitor-ui/commit/577623600d3588733c111b73fe0b341625d03f25))
+* **fields:** add field and label to Toggle component ([1ef21e3](https://github.com/MTES-MCT/monitor-ui/commit/1ef21e34d262e56d21a2bd2eac87a7401d34bf1d))
+* **fields:** can display custom items for MultiRadio component ([5e75fff](https://github.com/MTES-MCT/monitor-ui/commit/5e75fffdcef9fd47926e2f699e702d024f9c5fe7))
+* **fields:** can display custom items for MultiRadio component ([86080d7](https://github.com/MTES-MCT/monitor-ui/commit/86080d755c429ae604ae4ab9c70998dca3ac2389))
+* **fields:** create Toggle component ([6a649cd](https://github.com/MTES-MCT/monitor-ui/commit/6a649cd2733055f9b13ebc988e61a2138cfeb637))
+
+
+### Bug Fixes
+
+* **fields:** update error mode for MultiRadio component ([b7babe9](https://github.com/MTES-MCT/monitor-ui/commit/b7babe98124929cd707ce67e80f710351181eca1))
+
 ## [11.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.5.1...v11.6.0) (2024-02-05)
 
 
