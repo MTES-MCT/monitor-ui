@@ -1,3 +1,10 @@
+## [11.7.1](https://github.com/MTES-MCT/monitor-ui/compare/v11.7.0...v11.7.1) (2024-02-08)
+
+
+### Bug Fixes
+
+* **fields:** fix MultiRadio colors ([42d87c7](https://github.com/MTES-MCT/monitor-ui/commit/42d87c7fc15eb3af9a602242d4f5f8c3f3e683a6))
+
 ## [11.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.6.0...v11.7.0) (2024-02-08)
 
 
