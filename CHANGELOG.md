@@ -1,3 +1,10 @@
+## [11.7.2](https://github.com/MTES-MCT/monitor-ui/compare/v11.7.1...v11.7.2) (2024-02-12)
+
+
+### Bug Fixes
+
+* **fields:** update background color for MultiRadio component ([3d2108b](https://github.com/MTES-MCT/monitor-ui/commit/3d2108be10f551d2dc7e188755f6f551eed21483))
+
 ## [11.7.1](https://github.com/MTES-MCT/monitor-ui/compare/v11.7.0...v11.7.1) (2024-02-08)
 
 
