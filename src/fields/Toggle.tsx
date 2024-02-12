@@ -17,7 +17,7 @@ export type ToggleProps = Omit<RSuiteToggleProps, 'onChange'> & {
   isLabelHidden?: boolean | undefined
   label: string
   name: string
-  onChange: (isChecked: boolean) => void
+  onChange?: (isChecked: boolean) => void
 }
 export function Toggle({
   className,

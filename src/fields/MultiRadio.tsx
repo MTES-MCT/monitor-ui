@@ -138,11 +138,8 @@ const Box = styled.div<{
         top: 3px !important;
 
         .rs-radio-inner:before {
-          background: ${p => p.theme.color.white};
+          background: ${p => p.theme.color.gainsboro};
           border: 2px solid ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.lightGray)};
-          &:hover {
-            border-color: 2px solid ${p => p.theme.color.blueYonder};
-          }
         }
         .rs-radio-inner:after {
           background: ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.charcoal)};
@@ -165,6 +162,9 @@ const Box = styled.div<{
         color: ${p => p.theme.color.lightGray};
       }
       .rs-radio-wrapper {
+        .rs-radio-inner:before {
+          background: ${p => p.theme.color.white};
+        }
         .rs-radio-inner:after {
           background: ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.lightGray)};
         }
