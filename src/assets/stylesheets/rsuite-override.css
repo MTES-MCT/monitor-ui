@@ -311,53 +311,6 @@ label:hover .rs-checkbox-wrapper .rs-checkbox-inner:before {
   position: inherit;
 }
 
-/* radio */
-
-.rs-radio-wrapper::before,
-.rs-radio-wrapper .rs-radio-inner::before,
-.rs-radio-wrapper {
-  width: 14px;
-  height: 14px;
-}
-
-.rs-radio-wrapper .rs-radio-inner::before {
-  background: var(--gainsboro);
-  border-width: 2px;
-}
-
-.rs-radio-checked .rs-radio-wrapper .rs-radio-inner::before {
-  background: var(--gainsboro);
-  border-color: var(--charcoal);
-}
-
-/* center of radio button when checked */
-.rs-radio-wrapper .rs-radio-inner::after {
-  background: var(--charcoal);
-  width: 6px;
-  height: 6px;
-  margin-top: 4px;
-  margin-left: 4px;
-}
-
-.rs-radio.rs-radio-disabled .rs-radio-wrapper .rs-radio-inner::after {
-  background: var(--lightGray);
-}
-
-.rs-radio.rs-radio-disabled .rs-radio-inner:before {
-  background: var(--white);
-  border-color: var(--lightGray);
-}
-
-.rs-radio-checker > label {
-  color: var(--charcoal);
-  font-weight: 500;
-  line-height: 17px;
-}
-
-.rs-radio:hover .rs-radio-inner:before {
-  border-color: var(--charcoal);
-}
-
 /* form */
 .rs-form:not(.rs-form-inline) .rs-form-group:not(:last-child) {
   margin-bottom: 32px;
