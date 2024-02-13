@@ -18,6 +18,12 @@ export enum CoordinatesFormat {
   DEGREES_MINUTES_SECONDS = 'DMS'
 }
 
+export enum RichBoolean {
+  BOTH = 'BOTH',
+  FALSE = 'FALSE',
+  TRUE = 'TRUE'
+}
+
 export enum Size {
   LARGE = 'LARGE',
   NORMAL = 'NORMAL',

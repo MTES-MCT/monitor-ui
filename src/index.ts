@@ -8,7 +8,6 @@ import 'dayjs/plugin/timezone'
 import 'dayjs/plugin/updateLocale'
 import 'dayjs/plugin/utc'
 
-export { Accent, Level, CoordinatesFormat, Size, OPENLAYERS_PROJECTION, TagBullet, WSG84_PROJECTION } from './constants'
 export { GlobalStyle } from './GlobalStyle'
 export { OnlyFontGlobalStyle } from './OnlyFontGlobalStyle'
 export { THEME } from './theme'
@@ -49,6 +48,7 @@ export { MultiRadio } from './fields/MultiRadio'
 export { MultiZoneEditor } from './fields/MultiZoneEditor'
 export { NumberInput } from './fields/NumberInput'
 export { CoordinatesInput } from './fields/CoordinatesInput'
+export { RichBooleanCheckbox } from './fields/RichBooleanCheckbox'
 export { Select } from './fields/Select'
 export { Textarea } from './fields/Textarea'
 export { TextInput } from './fields/TextInput'
@@ -64,6 +64,7 @@ export { FormikMultiCheckbox } from './formiks/FormikMultiCheckbox'
 export { FormikMultiSelect } from './formiks/FormikMultiSelect'
 export { FormikMultiRadio } from './formiks/FormikMultiRadio'
 export { FormikNumberInput } from './formiks/FormikNumberInput'
+export { FormikRichBooleanCheckbox } from './formiks/FormikRichBooleanCheckbox'
 export { FormikSelect } from './formiks/FormikSelect'
 export { FormikTextarea } from './formiks/FormikTextarea'
 export { FormikTextInput } from './formiks/FormikTextInput'
@@ -71,6 +72,21 @@ export { FormikTextInput } from './formiks/FormikTextInput'
 export * as Icon from './icons'
 
 export { ExclamationPoint } from './symbols/ExclamationPoint'
+
+/* -----------------------------------------------------------------------------
+  Constants
+*/
+
+export {
+  Accent,
+  Level,
+  CoordinatesFormat,
+  Size,
+  OPENLAYERS_PROJECTION,
+  RichBoolean,
+  TagBullet,
+  WSG84_PROJECTION
+} from './constants'
 
 /* -----------------------------------------------------------------------------
   Entities
@@ -191,6 +207,7 @@ export type { MultiRadioProps } from './fields/MultiRadio'
 export type { MultiZoneEditorProps } from './fields/MultiZoneEditor'
 export type { NumberInputProps } from './fields/NumberInput'
 export type { CoordinatesInputProps } from './fields/CoordinatesInput'
+export type { RichBooleanCheckboxProps } from './fields/RichBooleanCheckbox'
 export type { SelectProps } from './fields/Select'
 export type { TextareaProps } from './fields/Textarea'
 export type { TextInputProps } from './fields/TextInput'
@@ -209,6 +226,7 @@ export type { FormikMultiCheckboxProps } from './formiks/FormikMultiCheckbox'
 export type { FormikMultiSelectProps } from './formiks/FormikMultiSelect'
 export type { FormikMultiRadioProps } from './formiks/FormikMultiRadio'
 export type { FormikNumberInputProps } from './formiks/FormikNumberInput'
+export type { FormikRichBooleanCheckboxProps } from './formiks/FormikRichBooleanCheckbox'
 export type { FormikSelectProps } from './formiks/FormikSelect'
 export type { FormikTextareaProps } from './formiks/FormikTextarea'
 export type { FormikTextInputProps } from './formiks/FormikTextInput'
