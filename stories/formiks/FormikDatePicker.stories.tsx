@@ -7,6 +7,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { FormikEffect, FormikDatePicker } from '../../src'
 
 import type { FormikDatePickerWithDateDateProps, FormikDatePickerWithStringDateProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: FormikDatePickerWithDateDateProps | FormikDatePickerWithStringDateProps = {
   baseContainer: undefined,
@@ -22,10 +23,9 @@ const args: FormikDatePickerWithDateDateProps | FormikDatePickerWithStringDatePr
   withTime: true
 }
 
-export default {
+const meta: Meta<FormikDatePickerWithDateDateProps | FormikDatePickerWithStringDateProps> = {
   title: 'Formiks/FormikDatePicker',
   component: FormikDatePicker,
-  args,
 
   argTypes: {
     isStringDate: {
@@ -35,12 +35,15 @@ export default {
     }
   },
 
+  args,
+
   decorators: [
     generateStoryDecorator({
       hasDarkMode: true
     })
   ]
 }
+export default meta
 
 export function _FormikDatePicker(props: any) {
   const [outputValue, setOutputValue] = useState<

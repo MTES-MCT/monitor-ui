@@ -7,6 +7,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { FormikEffect, FormikCheckbox } from '../../src'
 
 import type { FormikCheckboxProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: FormikCheckboxProps = {
   disabled: false,
@@ -15,7 +16,7 @@ const args: FormikCheckboxProps = {
   name: 'myCheckbox'
 }
 
-export default {
+const meta: Meta<FormikCheckboxProps> = {
   title: 'Formiks/FormikCheckbox',
   component: FormikCheckbox,
 
@@ -25,6 +26,7 @@ export default {
 
   decorators: [generateStoryDecorator()]
 }
+export default meta
 
 export function _FormikCheckbox(props: FormikCheckboxProps) {
   const [outputValue, setOutputValue] = useState<

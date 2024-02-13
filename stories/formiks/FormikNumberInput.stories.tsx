@@ -7,6 +7,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { FormikEffect, FormikNumberInput } from '../../src'
 
 import type { FormikNumberInputProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: FormikNumberInputProps = {
   disabled: false,
@@ -17,7 +18,7 @@ const args: FormikNumberInputProps = {
   label: 'A number input'
 }
 
-export default {
+const meta: Meta<FormikNumberInputProps> = {
   title: 'Formiks/FormikNumberInput',
   component: FormikNumberInput,
 
@@ -31,6 +32,7 @@ export default {
     })
   ]
 }
+export default meta
 
 export function _FormikNumberInput(props: FormikNumberInputProps) {
   const [outputValue, setOutputValue] = useState<

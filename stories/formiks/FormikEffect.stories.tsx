@@ -7,12 +7,13 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { FormikEffect } from '../../src'
 
 import type { FormikEffectProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: FormikEffectProps = {
   onChange: noop
 }
 
-export default {
+const meta: Meta<FormikEffectProps> = {
   title: 'Formiks/FormikEffect',
   component: FormikEffect,
 
@@ -22,6 +23,7 @@ export default {
 
   decorators: [generateStoryDecorator()]
 }
+export default meta
 
 export function _FormikEffect() {
   const [outputValue, setOutputValue] = useState<

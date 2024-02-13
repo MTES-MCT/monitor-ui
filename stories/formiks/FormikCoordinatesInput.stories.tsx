@@ -7,6 +7,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { FormikEffect, FormikCoordinatesInput, CoordinatesFormat } from '../../src'
 
 import type { FormikCoordinatesInputProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: FormikCoordinatesInputProps = {
   coordinatesFormat: CoordinatesFormat.DECIMAL_DEGREES,
@@ -15,17 +16,18 @@ const args: FormikCoordinatesInputProps = {
   name: 'myCoordinates'
 }
 
-export default {
+const meta: Meta<FormikCoordinatesInputProps> = {
   title: 'Formiks/FormikCoordinatesInput',
   component: FormikCoordinatesInput,
-  args,
 
   argTypes: {
-    accent: {
+    coordinatesFormat: {
       control: 'inline-radio',
       options: CoordinatesFormat
     }
   },
+
+  args,
 
   decorators: [
     generateStoryDecorator({
@@ -33,6 +35,7 @@ export default {
     })
   ]
 }
+export default meta
 
 export function _FormikCoordinatesInput(props: FormikCoordinatesInputProps) {
   const [outputValue, setOutputValue] = useState<

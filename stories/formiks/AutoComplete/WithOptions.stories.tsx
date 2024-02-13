@@ -7,6 +7,7 @@ import { generateStoryDecorator } from '../../../.storybook/components/StoryDeco
 import { FormikEffect, FormikSearch } from '../../../src'
 
 import type { FormikSearchProps } from '../../../src'
+import type { Meta } from '@storybook/react'
 
 const args: FormikSearchProps = {
   isLabelHidden: false,
@@ -22,7 +23,7 @@ const args: FormikSearchProps = {
   placeholder: 'Type "first"'
 }
 
-export default {
+const meta: Meta<FormikSearchProps> = {
   title: 'Formiks/FormikSearch',
   component: FormikSearch,
 
@@ -36,6 +37,7 @@ export default {
     })
   ]
 }
+export default meta
 
 export const WithOptions = (props: FormikSearchProps) => {
   const [outputValue, setOutputValue] = useState<
