@@ -5,6 +5,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { DatePicker } from '../../src'
 
 import type { DatePickerWithDateDateProps, DatePickerWithStringDateProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: DatePickerWithDateDateProps | DatePickerWithStringDateProps = {
   baseContainer: undefined,
@@ -22,10 +23,9 @@ const args: DatePickerWithDateDateProps | DatePickerWithStringDateProps = {
   withTime: true
 }
 
-export default {
+const meta: Meta<DatePickerWithDateDateProps | DatePickerWithStringDateProps> = {
   title: 'Fields/DatePicker',
   component: DatePicker,
-  args,
 
   argTypes: {
     defaultValue: {
@@ -45,12 +45,15 @@ export default {
     }
   },
 
+  args,
+
   decorators: [
     generateStoryDecorator({
       hasDarkMode: true
     })
   ]
 }
+export default meta
 
 export function _DatePicker(props: any) {
   const [outputValue, setOutputValue] = useState<Date | string>()

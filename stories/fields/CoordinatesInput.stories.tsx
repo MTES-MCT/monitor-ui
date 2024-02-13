@@ -5,6 +5,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { CoordinatesFormat, CoordinatesInput } from '../../src'
 
 import type { CoordinatesInputProps } from '../../src/fields/CoordinatesInput'
+import type { Meta } from '@storybook/react'
 
 const args: CoordinatesInputProps = {
   defaultValue: undefined,
@@ -16,11 +17,15 @@ const args: CoordinatesInputProps = {
   label: 'Some coordinates'
 }
 
-export default {
+const meta: Meta<CoordinatesInputProps> = {
   title: 'Fields/CoordinatesInput',
   component: CoordinatesInput,
 
   argTypes: {
+    coordinatesFormat: {
+      control: 'inline-radio',
+      options: CoordinatesFormat
+    },
     defaultValue: {
       control: 'string'
     }
@@ -34,6 +39,7 @@ export default {
     })
   ]
 }
+export default meta
 
 export function _CoordinatesInput(props: CoordinatesInputProps) {
   const [outputValue, setOutputValue] = useState<number[] | undefined | '∅'>('∅')

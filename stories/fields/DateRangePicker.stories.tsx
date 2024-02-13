@@ -6,6 +6,7 @@ import { DateRangePicker } from '../../src'
 
 import type { DateRangePickerWithDateDateProps, DateRangePickerWithStringDateProps } from '../../src'
 import type { DateAsStringRange, DateRange } from '../../src/types/definitions'
+import type { Meta } from '@storybook/react'
 
 const args: DateRangePickerWithDateDateProps | DateRangePickerWithStringDateProps = {
   baseContainer: undefined,
@@ -23,10 +24,9 @@ const args: DateRangePickerWithDateDateProps | DateRangePickerWithStringDateProp
   hasSingleCalendar: false
 }
 
-export default {
+const meta: Meta<DateRangePickerWithDateDateProps | DateRangePickerWithStringDateProps> = {
   title: 'Fields/DateRangePicker',
   component: DateRangePicker,
-  args,
 
   argTypes: {
     isStringDate: {
@@ -36,12 +36,15 @@ export default {
     }
   },
 
+  args,
+
   decorators: [
     generateStoryDecorator({
       hasDarkMode: true
     })
   ]
 }
+export default meta
 
 export function _DateRangePicker(props: any) {
   const [outputValue, setOutputValue] = useState<DateRange | DateAsStringRange>()

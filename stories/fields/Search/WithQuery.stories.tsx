@@ -6,6 +6,7 @@ import { generateStoryDecorator } from '../../../.storybook/components/StoryDeco
 import { Search } from '../../../src'
 
 import type { SearchProps } from '../../../src'
+import type { Meta } from '@storybook/react'
 
 const args: SearchProps = {
   error: '',
@@ -16,7 +17,7 @@ const args: SearchProps = {
   placeholder: 'Type "brew"'
 }
 
-export default {
+const meta: Meta<SearchProps> = {
   title: 'Fields/Search',
   component: Search,
 
@@ -30,6 +31,7 @@ export default {
     })
   ]
 }
+export default meta
 
 export function WithQuery(props: SearchProps) {
   const [outputValue, setOutputValue] = useState<any | undefined | '∅'>('∅')
