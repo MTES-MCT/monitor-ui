@@ -7,6 +7,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { FormikEffect, FormikSelect } from '../../src'
 
 import type { FormikSelectProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: FormikSelectProps = {
   disabled: false,
@@ -24,7 +25,7 @@ const args: FormikSelectProps = {
   placeholder: 'Pick an option'
 }
 
-export default {
+const meta: Meta<FormikSelectProps> = {
   title: 'Formiks/FormikSelect',
   component: FormikSelect,
 
@@ -38,6 +39,7 @@ export default {
     })
   ]
 }
+export default meta
 
 export function _FormikSelect(props: FormikSelectProps) {
   const [outputValue, setOutputValue] = useState<

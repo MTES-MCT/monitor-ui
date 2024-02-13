@@ -7,6 +7,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { FormikEffect, FormikMultiRadio } from '../../src'
 
 import type { FormikMultiRadioProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: FormikMultiRadioProps = {
   disabled: false,
@@ -24,7 +25,7 @@ const args: FormikMultiRadioProps = {
   ]
 }
 
-export default {
+const meta: Meta<FormikMultiRadioProps> = {
   title: 'Formiks/FormikMultiRadio',
   component: FormikMultiRadio,
 
@@ -38,6 +39,7 @@ export default {
     })
   ]
 }
+export default meta
 
 export function _FormikMultiRadio(props: FormikMultiRadioProps) {
   const [outputValue, setOutputValue] = useState<

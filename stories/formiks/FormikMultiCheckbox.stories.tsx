@@ -7,6 +7,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { FormikEffect, FormikMultiCheckbox } from '../../src'
 
 import type { FormikMultiCheckboxProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: FormikMultiCheckboxProps = {
   disabled: false,
@@ -24,7 +25,7 @@ const args: FormikMultiCheckboxProps = {
   label: 'Pick some options'
 }
 
-export default {
+const meta: Meta<FormikMultiCheckboxProps> = {
   title: 'Formiks/FormikMultiCheckbox',
   component: FormikMultiCheckbox,
 
@@ -38,6 +39,7 @@ export default {
     })
   ]
 }
+export default meta
 
 export function _FormikMultiCheckbox(props: FormikMultiCheckboxProps) {
   const [outputValue, setOutputValue] = useState<

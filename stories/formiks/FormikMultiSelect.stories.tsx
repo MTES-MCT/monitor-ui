@@ -7,6 +7,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { FormikEffect, FormikMultiSelect } from '../../src'
 
 import type { FormikMultiSelectProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: FormikMultiSelectProps = {
   disabled: false,
@@ -24,7 +25,7 @@ const args: FormikMultiSelectProps = {
   placeholder: 'Pick some options'
 }
 
-export default {
+const meta: Meta<FormikMultiSelectProps> = {
   title: 'Formiks/FormikMultiSelect',
   component: FormikMultiSelect,
 
@@ -38,14 +39,10 @@ export default {
     })
   ]
 }
+export default meta
 
 export function _FormikMultiSelect(props: FormikMultiSelectProps) {
-  const [outputValue, setOutputValue] = useState<
-    | {
-        myMultiSelect?: string[]
-      }
-    | '∅'
-  >('∅')
+  const [outputValue, setOutputValue] = useState<{ myMultiSelect?: string[] } | '∅'>('∅')
 
   const key = useMemo(() => props.name, [props.name])
 

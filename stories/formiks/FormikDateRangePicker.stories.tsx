@@ -8,6 +8,7 @@ import { FormikEffect, FormikDateRangePicker } from '../../src'
 
 import type { FormikDateRangePickerWithDateDateProps, FormikDateRangePickerWithStringDateProps } from '../../src'
 import type { DateRange } from '../../src/types/definitions'
+import type { Meta } from '@storybook/react'
 
 const args: FormikDateRangePickerWithDateDateProps | FormikDateRangePickerWithStringDateProps = {
   baseContainer: undefined,
@@ -23,10 +24,9 @@ const args: FormikDateRangePickerWithDateDateProps | FormikDateRangePickerWithSt
   withTime: true
 }
 
-export default {
+const meta: Meta<FormikDateRangePickerWithDateDateProps | FormikDateRangePickerWithStringDateProps> = {
   title: 'Formiks/FormikDateRangePicker',
   component: FormikDateRangePicker,
-  args,
 
   argTypes: {
     isStringDate: {
@@ -36,12 +36,15 @@ export default {
     }
   },
 
+  args,
+
   decorators: [
     generateStoryDecorator({
       hasDarkMode: true
     })
   ]
 }
+export default meta
 
 export function _FormikDateRangePicker(props: any) {
   const [outputValue, setOutputValue] = useState<

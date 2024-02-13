@@ -8,6 +8,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { FormikEffect, FormikTextarea } from '../../src'
 
 import type { FormikTextareaProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: FormikTextareaProps = {
   disabled: false,
@@ -18,7 +19,7 @@ const args: FormikTextareaProps = {
   label: 'A textarea'
 }
 
-export default {
+const meta: Meta<FormikTextareaProps> = {
   title: 'Formiks/FormikTextarea',
   component: FormikTextarea,
 
@@ -32,6 +33,7 @@ export default {
     })
   ]
 }
+export default meta
 
 export function _FormikTextarea(props: FormikTextareaProps) {
   const [outputValue, setOutputValue] = useState<
