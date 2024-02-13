@@ -8,7 +8,7 @@ import type { OptionValueType } from '../types/definitions'
 
 export type FormikMultiCheckboxProps<OptionValue extends OptionValueType = string> = Omit<
   MultiCheckboxProps<OptionValue>,
-  'defaultValue' | 'error' | 'onChange'
+  'error' | 'onChange' | 'value'
 >
 export function FormikMultiCheckbox<OptionValue extends OptionValueType = string>({
   name,
