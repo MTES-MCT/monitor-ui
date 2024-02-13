@@ -5,6 +5,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { MultiZoneEditor } from '../../src'
 
 import type { MultiZoneEditorProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: MultiZoneEditorProps = {
   addButtonLabel: 'Add a zone',
@@ -20,7 +21,7 @@ const args: MultiZoneEditorProps = {
   labelPropName: 'name'
 }
 
-export default {
+const meta: Meta<MultiZoneEditorProps> = {
   title: 'Fields/MultiZoneEditor',
   component: MultiZoneEditor,
 
@@ -39,6 +40,7 @@ export default {
     })
   ]
 }
+export default meta
 
 export function _MultiZoneEditor(props: MultiZoneEditorProps) {
   const [outputValue, setOutputValue] = useState<Record<string, any>[] | undefined | '∅'>('∅')

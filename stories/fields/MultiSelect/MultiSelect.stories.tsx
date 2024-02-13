@@ -28,7 +28,7 @@ const args: MultiSelectProps = {
   virtualized: false
 }
 
-const meta: Meta<{}> = {
+const meta: Meta<MultiSelectProps> = {
   title: 'Fields/MultiSelect',
   component: MultiSelect,
 

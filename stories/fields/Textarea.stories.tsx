@@ -5,6 +5,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { Textarea, useFieldControl } from '../../src'
 
 import type { TextareaProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: TextareaProps = {
   disabled: false,
@@ -18,7 +19,7 @@ const args: TextareaProps = {
   value: undefined
 }
 
-export default {
+const meta: Meta<TextareaProps> = {
   title: 'Fields/Textarea',
   component: Textarea,
 
@@ -36,6 +37,7 @@ export default {
     })
   ]
 }
+export default meta
 
 export function _Textarea(props: TextareaProps) {
   const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')

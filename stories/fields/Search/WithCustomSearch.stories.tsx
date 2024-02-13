@@ -5,6 +5,8 @@ import { generateStoryDecorator } from '../../../.storybook/components/StoryDeco
 import SPECIES from '../../../.storybook/data/species.json'
 import { CustomSearch, Search, type SearchProps } from '../../../src'
 
+import type { Meta } from '@storybook/react'
+
 type Specy = {
   code: string
   name: string
@@ -19,7 +21,7 @@ const args: SearchProps = {
   placeholder: 'Type what you want'
 }
 
-export default {
+const meta: Meta<SearchProps> = {
   title: 'Fields/Search',
   component: Search,
 
@@ -33,6 +35,7 @@ export default {
     })
   ]
 }
+export default meta
 
 export function WithCustomSearch(props: SearchProps) {
   const [outputValue, setOutputValue] = useState<any | undefined | '∅'>('∅')

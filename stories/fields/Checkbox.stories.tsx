@@ -5,6 +5,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { Checkbox, useFieldControl } from '../../src'
 
 import type { CheckboxProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: CheckboxProps = {
   checked: false,
@@ -15,7 +16,7 @@ const args: CheckboxProps = {
   readOnly: false
 }
 
-export default {
+const meta: Meta<CheckboxProps> = {
   title: 'Fields/Checkbox',
   component: Checkbox,
 
@@ -25,6 +26,7 @@ export default {
 
   decorators: [generateStoryDecorator()]
 }
+export default meta
 
 export function _Checkbox(props: CheckboxProps) {
   const [outputValue, setOutputValue] = useState<boolean | '∅'>('∅')

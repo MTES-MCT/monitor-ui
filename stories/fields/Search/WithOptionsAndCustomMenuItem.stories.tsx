@@ -5,6 +5,7 @@ import { generateStoryDecorator } from '../../../.storybook/components/StoryDeco
 import { Search } from '../../../src'
 
 import type { SearchProps } from '../../../src'
+import type { Meta } from '@storybook/react'
 
 type Value = {
   name: string
@@ -42,12 +43,12 @@ const args: SearchProps<Value> = {
   ]
 }
 
-export default {
+const meta: Meta<SearchProps<Value>> = {
   title: 'Fields/Search',
   component: Search,
 
   argTypes: {
-    defaultValue: {
+    value: {
       control: 'text'
     }
   },
@@ -60,6 +61,7 @@ export default {
     })
   ]
 }
+export default meta
 
 export function WithOptionsAndCustomMenuItem(props: SearchProps<Value>) {
   const [outputValue, setOutputValue] = useState<any | undefined | '∅'>('∅')

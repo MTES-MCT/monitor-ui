@@ -33,7 +33,7 @@ const args: CheckPickerProps<{}> = {
   virtualized: false
 }
 
-const meta: Meta<{}> = {
+const meta: Meta<CheckPickerProps<{}>> = {
   title: 'Fields/CheckPicker',
   component: CheckPicker as any,
 

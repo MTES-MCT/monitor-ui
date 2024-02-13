@@ -5,6 +5,8 @@ import { generateStoryDecorator } from '../../../.storybook/components/StoryDeco
 import SPECIES from '../../../.storybook/data/species.json'
 import { CustomSearch, Select, useFieldControl, type SelectProps } from '../../../src'
 
+import type { Meta } from '@storybook/react'
+
 type Specy = {
   code: string
   name: string
@@ -26,7 +28,7 @@ const args: SelectProps<Specy> = {
   virtualized: true
 }
 
-export default {
+const meta: Meta<SelectProps<Specy>> = {
   title: 'Fields/Select',
   component: Select,
 
@@ -45,6 +47,7 @@ export default {
     })
   ]
 }
+export default meta
 
 export function SelectWithCustomSearch(props: SelectProps<Specy>) {
   const optionsRef = useRef(

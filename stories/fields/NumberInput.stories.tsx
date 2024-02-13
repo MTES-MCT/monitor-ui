@@ -5,6 +5,7 @@ import { generateStoryDecorator } from '../../.storybook/components/StoryDecorat
 import { NumberInput, useFieldControl } from '../../src'
 
 import type { NumberInputProps } from '../../src'
+import type { Meta } from '@storybook/react'
 
 const args: NumberInputProps = {
   disabled: false,
@@ -17,7 +18,7 @@ const args: NumberInputProps = {
   value: undefined
 }
 
-export default {
+const meta: Meta<NumberInputProps> = {
   title: 'Fields/NumberInput',
   component: NumberInput,
 
@@ -35,6 +36,7 @@ export default {
     })
   ]
 }
+export default meta
 
 export function _NumberInput(props: NumberInputProps) {
   const [outputValue, setOutputValue] = useState<number | undefined | '∅'>('∅')
