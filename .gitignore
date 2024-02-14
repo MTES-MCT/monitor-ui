@@ -143,6 +143,9 @@ dist
 ################################################################################
 # Custom
 
+# Cypress
+/cypress/screenshots/
+
 # Rollup
 /.rollup.cache/
 
