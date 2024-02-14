@@ -4,6 +4,7 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "alwaysStrict": true,
+    "baseUrl": "./src",
     "checkJs": true,
     "esModuleInterop": true,
     "declaration": true,
@@ -27,6 +28,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "./dist",
+    "paths": {
+      "@elements/*": ["elements/*"],
+      "@hooks/*": ["hooks/*"],
+      "@types_/*": ["types/*"],
+      "@utils/*": ["utils/*"]
+    },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
