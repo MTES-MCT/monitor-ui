@@ -23,7 +23,7 @@ const args: DatePickerWithDateDateProps | DatePickerWithStringDateProps = {
   withTime: true
 }
 
-const meta: Meta<DatePickerWithDateDateProps | DatePickerWithStringDateProps> = {
+const meta: Meta<any> = {
   title: 'Fields/DatePicker',
   component: DatePicker,
 

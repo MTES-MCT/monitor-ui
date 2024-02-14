@@ -3,17 +3,14 @@
 import { defineConfig } from 'cypress'
 import { platform } from 'os'
 
-import { config as webpackConfig } from './config/webpack.config'
-
 const DOMAIN = platform() === 'darwin' ? '0.0.0.0' : 'localhost'
 
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({
   component: {
     devServer: {
-      bundler: 'webpack',
-      framework: 'react',
-      webpackConfig
+      bundler: 'vite',
+      framework: 'react'
     },
     indexHtmlFile: `config/cypress/support/component-index.html`,
     specPattern: 'e2e/base/**/*.spec.tsx',

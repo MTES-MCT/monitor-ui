@@ -24,7 +24,7 @@ const args: DateRangePickerWithDateDateProps | DateRangePickerWithStringDateProp
   hasSingleCalendar: false
 }
 
-const meta: Meta<DateRangePickerWithDateDateProps | DateRangePickerWithStringDateProps> = {
+const meta: Meta<any> = {
   title: 'Fields/DateRangePicker',
   component: DateRangePicker,
 

@@ -23,7 +23,7 @@ const args: FormikDatePickerWithDateDateProps | FormikDatePickerWithStringDatePr
   withTime: true
 }
 
-const meta: Meta<FormikDatePickerWithDateDateProps | FormikDatePickerWithStringDateProps> = {
+const meta: Meta<any> = {
   title: 'Formiks/FormikDatePicker',
   component: FormikDatePicker,
 
