@@ -25,7 +25,10 @@ export default defineConfig({
   projectId: 'monitor-ui',
   retries: {
     openMode: 0,
-    runMode: 0
+    // Normally all e2e tests are perfectly non-flaky.
+    // However there are some failures on the first run for a few e2e tests because of this Cypress issue:
+    // https://github.com/cypress-io/cypress/issues/25913
+    runMode: 10
   },
   screenshotOnRunFailure: true,
   scrollBehavior: false,
