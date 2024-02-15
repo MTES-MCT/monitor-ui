@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 import type { StorybookConfig } from '@storybook/react-vite'
 
 const config: StorybookConfig = {
   addons: ['@storybook/addon-essentials', 'storybook-addon-performance', '@storybook/addon-a11y'],
   docs: {
-    autodocs: 'tag'
+    autodocs: true
   },
   framework: {
     name: '@storybook/react-vite',
