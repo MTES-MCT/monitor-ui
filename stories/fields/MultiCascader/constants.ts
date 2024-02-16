@@ -14,13 +14,11 @@ export type FakeCity = {
 // =============================================================================
 // 2 levels deep fake tree options
 
-// 2 levels deep
 export type FakeCountryWithCities = {
   cities: FakeCity[]
   name: string
 }
 
-// 3 levels deep
 export type FakeCountryWithStatesWithCities = {
   name: string
   states: FakeState[]
