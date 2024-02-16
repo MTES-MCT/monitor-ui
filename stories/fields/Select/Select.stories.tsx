@@ -23,7 +23,7 @@ const args: SelectProps = {
     { label: LOREM_IPSUM, value: 'LOREM_IPSUM', isDisabled: false }
   ],
   placeholder: 'Pick an option',
-  searchable: false,
+  searchable: true,
   value: undefined,
   virtualized: false
 }

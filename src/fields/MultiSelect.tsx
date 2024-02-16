@@ -1,29 +1,29 @@
+import { getSelectedOptionValuesFromSelectedRsuiteDataItemValues } from '@utils/getSelectedOptionValuesFromSelectedRsuiteDataItemValues'
 import classnames from 'classnames'
-import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react'
+import { StyledRsuitePickerBox } from 'fields/shared/StyledRsuitePickerBox'
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { TagPicker, type TagPickerProps } from 'rsuite'
 import styled from 'styled-components'
 
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
-import { useClickOutsideEffect } from '../hooks/useClickOutsideEffect'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
 import { type CustomSearch } from '../libs/CustomSearch'
 import { type Option, type OptionValueType } from '../types/definitions'
-import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
-import { getRsuiteValueFromOptionValue } from '../utils/getRsuiteValueFromOptionValue'
+import { getRsuiteDataItemsFromOptions } from '../utils/getRsuiteDataItemsFromOptions'
+import { getRsuiteDataItemValueFromOptionValue } from '../utils/getRsuiteDataItemValueFromOptionValue'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Promisable } from 'type-fest'
 
 export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omit<
   TagPickerProps,
-  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'open' | 'renderMenuItem' | 'value'
+  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderMenuItem' | 'value' | 'valueKey'
 > & {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
-  baseContainer?: Document | HTMLDivElement | null | undefined
   customSearch?: CustomSearch<Option<OptionValue>> | undefined
   /** Minimum search query length required to trigger custom search filtering. */
   customSearchMinQueryLength?: number | undefined
@@ -40,7 +40,6 @@ export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omi
   value?: OptionValue[] | undefined
 }
 export function MultiSelect<OptionValue extends OptionValueType = string>({
-  baseContainer,
   className,
   customSearch,
   customSearchMinQueryLength = 1,
@@ -66,35 +65,18 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 
   const controlledClassName = useMemo(() => classnames('Field-MultiSelect', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
-  const rsuiteData = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([disabled, originalProps.name, value])
-  const selectedRsuiteValue = useMemo(
-    () => (value ?? []).map(valueItem => getRsuiteValueFromOptionValue(valueItem, optionValueKey)),
+  const key = useKey([disabled, originalProps.name])
+  const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
+  const selectedRsuiteDataItemValues = useMemo(
+    () => (value ? value.map(valueItem => getRsuiteDataItemValueFromOptionValue(valueItem, optionValueKey)) : []),
     [optionValueKey, value]
   )
 
   // Only used when `customSearch` prop is set
   const [controlledRsuiteData, setControlledRsuiteData] = useState(customSearch ? rsuiteData : undefined)
-  const [isOpen, setIsOpen] = useState(false)
 
   const { forceUpdate } = useForceUpdate()
-
-  const close = useCallback(() => {
-    setIsOpen(false)
-  }, [])
-
-  const getOptionValuesFromRsuiteDataValues = useCallback(
-    (rsuiteValues: string[]) =>
-      rsuiteData.reduce((optionsValues, rsuiteDataItem) => {
-        if (!rsuiteValues.includes(rsuiteDataItem.value)) {
-          return optionsValues
-        }
-
-        return [...optionsValues, rsuiteDataItem.optionValue]
-      }, [] as OptionValue[]),
-    [rsuiteData]
-  )
 
   const handleChange = useCallback(
     (nextOptionRsuiteValues: string[] | null) => {
@@ -102,14 +84,14 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
         return
       }
 
-      const nextValue = nextOptionRsuiteValues ? getOptionValuesFromRsuiteDataValues(nextOptionRsuiteValues) : []
+      const nextValue = nextOptionRsuiteValues
+        ? getSelectedOptionValuesFromSelectedRsuiteDataItemValues(rsuiteData, nextOptionRsuiteValues)
+        : []
       const normalizedNextValue = nextValue.length > 0 ? nextValue : undefined
-
-      setControlledRsuiteData(rsuiteData)
 
       onChange(normalizedNextValue)
     },
-    [getOptionValuesFromRsuiteDataValues, onChange, rsuiteData]
+    [onChange, rsuiteData]
   )
 
   const handleSearch = useCallback(
@@ -122,7 +104,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 
       const nextControlledRsuiteData =
         nextQuery.trim().length >= customSearchMinQueryLength
-          ? getRsuiteDataFromOptions(customSearchRef.current.find(nextQuery), optionValueKey)
+          ? getRsuiteDataItemsFromOptions(customSearchRef.current.find(nextQuery), optionValueKey)
           : rsuiteData
 
       setControlledRsuiteData(nextControlledRsuiteData)
@@ -132,33 +114,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 
   const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
 
-  const toggle = useCallback(
-    (event: MouseEvent<HTMLElement>) => {
-      if (disabled) {
-        return
-      }
-      let targetElement = event.target as HTMLElement
-
-      if (targetElement.tagName === 'path') {
-        if (targetElement.parentElement) {
-          targetElement = targetElement.parentElement
-        }
-      }
-
-      if (
-        targetElement.classList.contains('rs-picker-toggle') ||
-        targetElement.classList.contains('rs-picker-tag-wrapper') ||
-        targetElement.classList.contains('rs-picker-toggle-caret')
-      ) {
-        setIsOpen(!isOpen)
-      }
-    },
-    [isOpen, disabled]
-  )
-
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
-
-  useClickOutsideEffect(boxRef, close, baseContainer)
 
   useEffect(() => {
     forceUpdate()
@@ -170,7 +126,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
         {label}
       </Label>
 
-      <Box ref={boxRef} $hasError={hasError} $isActive={isOpen} $isLight={isLight} onClick={toggle}>
+      <Box ref={boxRef} $hasError={hasError} $isLight={isLight}>
         {boxRef.current && (
           <TagPicker
             key={key}
@@ -181,15 +137,13 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
             disabled={disabled}
             id={originalProps.name}
             onChange={handleChange}
-            onClick={toggle}
             onSearch={handleSearch}
-            open={isOpen}
             renderMenuItem={renderMenuItem}
-            searchable={!!customSearch ?? searchable}
+            searchable={!!customSearch || searchable}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
             // that's why we send this "always true" filter to disable Rsuite TagPicker internal search filtering
             searchBy={(customSearch ? () => true : undefined) as any}
-            value={selectedRsuiteValue}
+            value={selectedRsuiteDataItemValues}
             {...originalProps}
           />
         )}
@@ -200,126 +154,84 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   )
 }
 
-const Box = styled.div<{
-  $hasError: boolean
-  $isActive: boolean
-  $isLight: boolean
-}>`
-  position: relative;
-  user-select: none;
-  width: 100%;
-
-  > .rs-picker-input {
-    background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
-    border: solid 1px
-      ${p => {
-        if (p.$hasError) {
-          return p.theme.color.maximumRed
-        }
-        if (p.$isActive) {
-          return p.theme.color.blueGray
-        }
-
-        return p.theme.color.gainsboro
-      }} !important;
-    cursor: pointer;
-    width: 100%;
-
-    :hover {
-      border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueYonder)} !important;
-    }
-
-    :active,
-    :focus {
-      border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray)} !important;
-    }
-
+const Box = styled(StyledRsuitePickerBox)`
+  /* StyledRsuitePickerBox Overrides */
+  > .rs-picker-toggle-wrapper {
     > .rs-picker-toggle {
-      background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
-      border: 0;
-      bottom: 0;
-      cursor: inherit;
-      font-size: 13px;
-      height: 30px;
-      line-height: 1.3846;
-      padding: 5px 40px 0 8px !important;
-      top: 0;
+      padding: 4px 40px 0 8px !important;
 
       > .rs-stack {
         > .rs-stack-item {
-          > .rs-picker-toggle-placeholder {
-            font-size: 13px;
-            line-height: 1;
-            vertical-align: 1px;
+          > .rs-picker-caret-icon {
+            cursor: pointer;
+            top: 4.5px;
           }
 
-          .rs-picker-toggle-caret {
-            right: 10px;
-          }
-          .rs-picker-toggle-clean,
-          .rs-picker-toggle-caret {
-            padding: 0;
-            top: 5px;
-          }
-        }
-      }
-    }
-
-    > .rs-picker-tag-wrapper {
-      min-height: 30px;
-      padding: 0 !important;
-
-      > .rs-tag {
-        background-color: ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
-        font-size: 11px;
-        line-height: 1.3636; // = 15px
-
-        > .rs-tag-icon-close {
-          bottom: 0;
-          padding: 3px 6px;
-
-          > svg {
-            height: 10px;
-            width: 10px;
-          }
-        }
-      }
-
-      > .rs-picker-search {
-        > .rs-picker-search-input {
-          padding: 0 8px !important;
-
-          > input {
-            font-size: 13px;
-            line-height: 1.3846;
+          > .rs-picker-clean {
+            top: 3.5px;
           }
         }
       }
     }
   }
 
-  > .rs-picker-menu {
-    max-width: 100%;
+  /* Custom Styles */
+  > .rs-picker-toggle-wrapper {
+    border: 0 !important;
 
-    > .rs-picker-check-menu {
-      margin: 0;
+    > [role='combobox'] {
+      height: 100%;
+      min-height: 30px;
 
-      div[role='option'] {
-        > .rs-check-item {
-          > .rs-checkbox-checker {
-            > label {
-              font-size: 13px;
-              line-height: 1.3846;
-              overflow: hidden;
-              padding: 8px 12px 8px 38px;
-              text-overflow: ellipsis;
-              white-space: nowrap;
+      > .rs-stack {
+        > .rs-stack-item {
+          > .rs-picker-toggle-textbox {
+            background-color: transparent;
+          }
+        }
+      }
+    }
 
-              > .rs-checkbox-wrapper {
-                left: 12px;
-                top: 10px !important;
-              }
+    &:hover {
+      > [role='combobox']:not(.rs-picker-toggle-active) {
+        border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueYonder)} !important;
+      }
+    }
+
+    > .rs-picker-textbox {
+      cursor: text;
+      min-height: 30px;
+      padding: 0 !important;
+
+      /* Selected tags */
+      > [role='listbox'] {
+        > [role='option'] {
+          background-color: ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
+          font-size: 11px;
+          line-height: 1.3636; // = 15px
+          margin: 6px 0 0 6px;
+
+          > .rs-tag-icon-close {
+            bottom: 1px;
+            padding: 3px 6px;
+
+            > svg {
+              height: 10px;
+              width: 10px;
             }
+          }
+        }
+      }
+
+      /* Combobox search input (within) */
+      > .rs-picker-search {
+        > .rs-picker-search-input {
+          margin: 3px 0 0;
+          padding: 0 8px 5px 9px !important;
+
+          > input {
+            font-size: 13px;
+            line-height: 1;
           }
         }
       }

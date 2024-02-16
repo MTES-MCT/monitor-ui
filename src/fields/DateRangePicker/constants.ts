@@ -6,13 +6,17 @@ export const HOURS_AS_OPTIONS = new Array(24).fill(undefined).map((_, index) => 
 }))
 
 export const RSUITE_CALENDAR_LOCALE: DateRangePickerLocale = {
+  clear: 'Effacer',
+  emptyMessage: 'Aucun message',
   formattedDayPattern: 'dd/MM/yyyy',
   formattedMonthPattern: 'MMMM yyyy',
   friday: 'V',
   hours: 'Heures',
+  loading: 'Chargement en cours...',
   minutes: 'Minutes',
   monday: 'L',
   ok: 'Valider',
+  remove: 'Supprimer',
   saturday: 'S',
   seconds: 'Secondes',
   sunday: 'D',

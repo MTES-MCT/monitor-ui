@@ -43,6 +43,7 @@ export { CheckPicker } from './fields/CheckPicker'
 export { DatePicker } from './fields/DatePicker'
 export { DateRangePicker } from './fields/DateRangePicker'
 export { MultiCheckbox } from './fields/MultiCheckbox'
+export { MultiCascader } from './fields/MultiCascader'
 export { MultiSelect } from './fields/MultiSelect'
 export { MultiRadio } from './fields/MultiRadio'
 export { MultiZoneEditor } from './fields/MultiZoneEditor'
@@ -61,6 +62,7 @@ export { FormikDatePicker } from './formiks/FormikDatePicker'
 export { FormikDateRangePicker } from './formiks/FormikDateRangePicker'
 export { FormikEffect } from './formiks/FormikEffect'
 export { FormikMultiCheckbox } from './formiks/FormikMultiCheckbox'
+// export { FormikMultiCascader } from './formiks/FormikMultiCascader'
 export { FormikMultiSelect } from './formiks/FormikMultiSelect'
 export { FormikMultiRadio } from './formiks/FormikMultiRadio'
 export { FormikNumberInput } from './formiks/FormikNumberInput'
@@ -173,7 +175,10 @@ export type {
   NativeArray,
   NativeObject,
   Option,
-  OptionValueType
+  OptionValueType,
+  TreeBranchOption,
+  TreeLeafOption,
+  TreeOption
 } from './types/definitions'
 export type { Defined, PartialExcept, Undefine, UndefineExcept, UndefineExceptArrays } from './types/utilities'
 
@@ -203,6 +208,7 @@ export type { CheckPickerProps } from './fields/CheckPicker'
 export type { DatePickerWithDateDateProps, DatePickerWithStringDateProps } from './fields/DatePicker'
 export type { DateRangePickerWithDateDateProps, DateRangePickerWithStringDateProps } from './fields/DateRangePicker'
 export type { MultiCheckboxProps } from './fields/MultiCheckbox'
+export type { MultiCascaderProps } from './fields/MultiCascader'
 export type { MultiSelectProps } from './fields/MultiSelect'
 export type { MultiRadioProps } from './fields/MultiRadio'
 export type { MultiZoneEditorProps } from './fields/MultiZoneEditor'
@@ -224,6 +230,7 @@ export type {
 } from './formiks/FormikDateRangePicker'
 export type { FormikEffectProps } from './formiks/FormikEffect'
 export type { FormikMultiCheckboxProps } from './formiks/FormikMultiCheckbox'
+// export type { FormikMultiCascaderProps } from './formiks/FormikMultiCascader'
 export type { FormikMultiSelectProps } from './formiks/FormikMultiSelect'
 export type { FormikMultiRadioProps } from './formiks/FormikMultiRadio'
 export type { FormikNumberInputProps } from './formiks/FormikNumberInput'

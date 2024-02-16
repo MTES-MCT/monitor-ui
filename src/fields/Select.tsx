@@ -1,40 +1,37 @@
 import classnames from 'classnames'
-import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react'
-import { SelectPicker, type SelectPickerProps } from 'rsuite'
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { SelectPicker as RsuiteSelectPicker, type SelectPickerProps as RsuiteSelectPickerProps } from 'rsuite'
 import styled from 'styled-components'
 
+import { StyledRsuitePickerBox } from './shared/StyledRsuitePickerBox'
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
-import { useClickOutsideEffect } from '../hooks/useClickOutsideEffect'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
 import { type CustomSearch } from '../libs/CustomSearch'
 import { type Option, type OptionValueType } from '../types/definitions'
-import { type OptionAsRsuiteItemDataType } from '../types/internals'
-import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
-import { getRsuiteValueFromOptionValue } from '../utils/getRsuiteValueFromOptionValue'
+import { type RsuiteDataItem } from '../types/internals'
+import { getRsuiteDataItemsFromOptions } from '../utils/getRsuiteDataItemsFromOptions'
+import { getRsuiteDataItemValueFromOptionValue } from '../utils/getRsuiteDataItemValueFromOptionValue'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Promisable } from 'type-fest'
 
 export type SelectProps<OptionValue extends OptionValueType = string> = Omit<
-  SelectPickerProps<any>,
+  RsuiteSelectPickerProps<any>,
   | 'as'
   | 'container'
   | 'data'
   | 'defaultValue'
   | 'id'
   | 'onChange'
-  | 'open'
   | 'renderMenuItem'
   | 'renderValue'
   | 'value'
   | 'valueKey'
 > & {
-  /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
-  baseContainer?: Document | HTMLDivElement | null | undefined
   customSearch?: CustomSearch<Option<OptionValue>> | undefined
   /** Minimum search query length required to trigger custom search filtering. */
   customSearchMinQueryLength?: number | undefined
@@ -52,7 +49,6 @@ export type SelectProps<OptionValue extends OptionValueType = string> = Omit<
   value?: OptionValue | undefined
 }
 export function Select<OptionValue extends OptionValueType = string>({
-  baseContainer,
   className,
   customSearch,
   customSearchMinQueryLength = 1,
@@ -81,21 +77,16 @@ export function Select<OptionValue extends OptionValueType = string>({
 
   const controlledClassname = useMemo(() => classnames('Field-Select', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
-  const rsuiteData = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
+  const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([disabled, originalProps.name, value])
+  const key = useKey([disabled, originalProps.name])
   const selectedRsuiteValue = useMemo(
-    () => getRsuiteValueFromOptionValue(value, optionValueKey),
+    () => (value ? getRsuiteDataItemValueFromOptionValue(value, optionValueKey) : undefined),
     [value, optionValueKey]
   )
 
   // Only used when `customSearch` prop is set
   const [controlledRsuiteData, setControlledRsuiteData] = useState(customSearch ? rsuiteData : undefined)
-  const [isOpen, setIsOpen] = useState(false)
-
-  const close = useCallback(() => {
-    setIsOpen(false)
-  }, [])
 
   const handleClean = useCallback(() => {
     if (!onChange) {
@@ -115,7 +106,7 @@ export function Select<OptionValue extends OptionValueType = string>({
 
       const nextControlledRsuiteData =
         nextQuery.trim().length >= customSearchMinQueryLength
-          ? getRsuiteDataFromOptions(customSearchRef.current.find(nextQuery), optionValueKey)
+          ? getRsuiteDataItemsFromOptions(customSearchRef.current.find(nextQuery), optionValueKey)
           : rsuiteData
 
       setControlledRsuiteData(nextControlledRsuiteData)
@@ -124,43 +115,15 @@ export function Select<OptionValue extends OptionValueType = string>({
   )
 
   const handleSelect = useCallback(
-    (_: string, selectedItem: OptionAsRsuiteItemDataType<OptionValue>) => {
-      close()
-
+    (_: string, selectedItem: RsuiteDataItem<OptionValue>) => {
       if (onChange) {
         onChange(selectedItem.optionValue)
       }
     },
-    [close, onChange]
+    [onChange]
   )
 
   const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
-
-  const toggle = useCallback(
-    (event: MouseEvent<HTMLElement>) => {
-      if (disabled) {
-        return
-      }
-      let targetElement = event.target as HTMLElement
-
-      if (targetElement.tagName === 'path') {
-        if (targetElement.parentElement) {
-          targetElement = targetElement.parentElement
-        }
-      }
-
-      if (
-        targetElement.classList.contains('rs-picker-toggle') ||
-        targetElement.classList.contains('rs-picker-toggle-value') ||
-        targetElement.classList.contains('rs-stack-item') ||
-        targetElement.classList.contains('rs-picker-toggle-caret') ||
-        targetElement.classList.contains('rs-picker-toggle-placeholder')
-      ) {
-        setIsOpen(!isOpen)
-      }
-    },
-    [isOpen, disabled]
-  )
 
   const disabledItemValues = useMemo(
     () => (controlledRsuiteData ?? rsuiteData).filter(option => option.isDisabled).map(option => option.value),
@@ -168,8 +131,6 @@ export function Select<OptionValue extends OptionValueType = string>({
   )
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
-
-  useClickOutsideEffect(boxRef, close, baseContainer)
 
   useEffect(() => {
     forceUpdate()
@@ -181,11 +142,10 @@ export function Select<OptionValue extends OptionValueType = string>({
         {label}
       </Label>
 
-      <Box ref={boxRef} $hasError={hasError} onClick={toggle}>
+      <Box ref={boxRef} $hasError={hasError} $isLight={isLight}>
         {boxRef.current && (
-          <StyledSelectPicker
+          <RsuiteSelectPicker
             key={key}
-            $isLight={isLight}
             cleanable={isCleanable}
             container={boxRef.current}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
@@ -199,7 +159,6 @@ export function Select<OptionValue extends OptionValueType = string>({
             // `as any` because we customized `ItemDataType` type by adding `optionValue`,
             // which generates an optional vs required type conflict
             onSelect={handleSelect as any}
-            open={isOpen}
             renderMenuItem={renderMenuItem}
             searchable={!!customSearch || searchable}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
@@ -216,89 +175,4 @@ export function Select<OptionValue extends OptionValueType = string>({
   )
 }
 
-const StyledSelectPicker = styled(SelectPicker as any)<{
-  $isLight: boolean
-}>`
-  > .rs-picker-toggle {
-    background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
-    border: 0;
-  }
-`
-
-const Box = styled.div<{
-  $hasError: boolean
-}>`
-  position: relative;
-  user-select: none;
-  width: 100%;
-
-  > .rs-picker-select {
-    width: 100%;
-
-    > .rs-picker-toggle {
-      border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.gainsboro)} !important;
-      font-size: 13px;
-      line-height: 1.3846;
-      padding: 4px 40px 6px 8px;
-
-      :hover {
-        border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueYonder)} !important;
-      }
-
-      :active,
-      :focus {
-        border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray)} !important;
-      }
-
-      > .rs-stack {
-        > .rs-stack-item {
-          > .rs-picker-toggle-placeholder {
-            font-size: 13px;
-            line-height: 1.3846;
-          }
-
-          > .rs-picker-toggle-clean.rs-btn-close {
-            top: 4px !important;
-          }
-
-          > svg {
-            height: 18px;
-            margin-top: -2px;
-          }
-        }
-      }
-    }
-  }
-
-  > .rs-picker-menu {
-    max-width: 100%;
-
-    > .rs-picker-search-bar {
-      > .rs-picker-search-bar-input {
-        background-color: ${p => p.theme.color.white};
-        border: solid 1px ${p => p.theme.color.lightGray};
-        border-radius: 0;
-        font-size: 13px;
-        padding: 4px 8px 6px 8px;
-      }
-
-      > svg {
-        color: ${p => p.theme.color.lightGray};
-        top: 11px;
-      }
-    }
-
-    > .rs-picker-select-menu {
-      > div[role='option'] {
-        > .rs-picker-select-menu-item {
-          font-size: 13px;
-          line-height: 1.3846;
-          overflow: hidden;
-          padding: 6px 12px 10px 12px;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
-      }
-    }
-  }
-`
+const Box = styled(StyledRsuitePickerBox)``
