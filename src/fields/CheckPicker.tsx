@@ -1,8 +1,10 @@
+import { getSelectedOptionValuesFromSelectedRsuiteDataItemValues } from '@utils/getSelectedOptionValuesFromSelectedRsuiteDataItemValues'
 import classnames from 'classnames'
 import { useCallback, useMemo, useRef, useState, type ReactNode, useEffect } from 'react'
 import { CheckPicker as RsuiteCheckPicker, type CheckPickerProps as RsuiteCheckPickerProps } from 'rsuite'
 import styled from 'styled-components'
 
+import { StyledRsuitePickerBox } from './shared/StyledRsuitePickerBox'
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
@@ -11,15 +13,15 @@ import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
 import { type CustomSearch } from '../libs/CustomSearch'
 import { type Option, type OptionValueType } from '../types/definitions'
-import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
-import { getRsuiteValuesFromOptionValues } from '../utils/getRsuiteValuesFromOptionValues'
+import { getRsuiteDataItemsFromOptions } from '../utils/getRsuiteDataItemsFromOptions'
+import { getRsuiteDataItemValuesFromOptionValues } from '../utils/getRsuiteDataItemValuesFromOptionValues'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Promisable } from 'type-fest'
 
 export type CheckPickerProps<OptionValue extends OptionValueType = string> = Omit<
   RsuiteCheckPickerProps<string>,
-  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'open' | 'renderMenuItem' | 'value'
+  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderMenuItem' | 'value' | 'valueKey'
 > & {
   customSearch?: CustomSearch<Option<OptionValue>> | undefined
   /** Minimum search query length required to trigger custom search filtering. */
@@ -62,11 +64,11 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
 
   const controlledClassName = useMemo(() => classnames('Field-CheckPicker', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
-  const rsuiteData = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([disabled, originalProps.name])
+  const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
   const selectedRsuiteValue = useMemo(
-    () => getRsuiteValuesFromOptionValues(value, optionValueKey),
+    () => getRsuiteDataItemValuesFromOptionValues(value, optionValueKey),
     [optionValueKey, value]
   )
 
@@ -75,32 +77,22 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
   // Only used when `customSearch` prop is set
   const [controlledRsuiteData, setControlledRsuiteData] = useState(customSearch ? rsuiteData : undefined)
 
-  const getOptionValuesFromRsuiteDataValues = useCallback(
-    (rsuiteValues: string[]) =>
-      rsuiteData.reduce((optionsValues, rsuiteDataItem) => {
-        if (!rsuiteValues.includes(rsuiteDataItem.value)) {
-          return optionsValues
-        }
-
-        return [...optionsValues, rsuiteDataItem.optionValue]
-      }, [] as OptionValue[]),
-    [rsuiteData]
-  )
-
   const handleChange = useCallback(
     (nextOptionRsuiteValues: string[]) => {
       if (!onChange) {
         return
       }
 
-      const nextValue = nextOptionRsuiteValues ? getOptionValuesFromRsuiteDataValues(nextOptionRsuiteValues) : []
+      const nextValue = nextOptionRsuiteValues
+        ? getSelectedOptionValuesFromSelectedRsuiteDataItemValues(rsuiteData, nextOptionRsuiteValues)
+        : []
       const normalizedNextValue = nextValue.length > 0 ? nextValue : undefined
 
       setControlledRsuiteData(rsuiteData)
 
       onChange(normalizedNextValue)
     },
-    [getOptionValuesFromRsuiteDataValues, onChange, rsuiteData]
+    [onChange, rsuiteData]
   )
 
   const handleSearch = useCallback(
@@ -113,7 +105,7 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
 
       const nextControlledRsuiteData =
         nextQuery.trim().length >= customSearchMinQueryLength
-          ? getRsuiteDataFromOptions(customSearchRef.current.find(nextQuery), optionValueKey)
+          ? getRsuiteDataItemsFromOptions(customSearchRef.current.find(nextQuery), optionValueKey)
           : rsuiteData
 
       setControlledRsuiteData(nextControlledRsuiteData)
@@ -162,96 +154,26 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
   )
 }
 
-const Box = styled.div<{
-  $hasError: boolean
-  $isLight: boolean
-}>`
-  position: relative;
-  user-select: none;
-  width: 100%;
-
-  > .rs-picker {
-    background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
-    cursor: pointer;
-    width: 100%;
-    height: 30px;
-
+const Box = styled(StyledRsuitePickerBox)`
+  /* StyledRsuitePickerBox Overrides */
+  > .rs-picker-toggle-wrapper {
     > .rs-picker-toggle {
-      background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
-      border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.gainsboro)} !important;
-      cursor: inherit;
-      font-size: 13px;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      :hover {
-        border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.slateGray)} !important;
-      }
-
-      :active,
-      :focus {
-        border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray)} !important;
-      }
-
-      > .rs-stack {
-        > .rs-stack-item {
-          > .rs-picker-toggle-placeholder {
-            font-size: 13px;
-            line-height: 1;
-            vertical-align: 1px;
-          }
-          .rs-picker-value-count {
-            background-color: ${p => p.theme.color.charcoal} !important;
-            line-height: 18px !important;
-          }
-
-          .rs-picker-toggle-caret {
-            right: 10px;
-          }
-          .rs-picker-toggle-clean,
-          .rs-picker-toggle-caret {
-            top: 5px;
-          }
-        }
-      }
+      padding: 5px 40px 0 8px !important;
     }
   }
-  > .rs-picker-menu {
-    max-width: 100%;
-    > .rs-picker-search-bar {
-      > .rs-picker-search-bar-input {
-        background-color: ${p => p.theme.color.white};
-        border: solid 1px ${p => p.theme.color.lightGray};
-        border-radius: 0;
-        font-size: 13px;
-        padding: 4px 8px 6px 8px;
-      }
-      > svg {
-        color: ${p => p.theme.color.lightGray};
-        top: 11px;
-      }
-    }
 
-    > .rs-picker-check-menu {
-      padding-top: 6px;
-      margin: 0;
-
-      > div[role='option'] {
-        > .rs-check-item {
-          > .rs-checkbox-checker {
-            > label {
-              font-size: 13px;
-              line-height: 1.3846;
-              overflow: hidden;
-              padding: 8px 12px 8px 38px;
-              text-overflow: ellipsis;
-              white-space: nowrap;
-              > .rs-checkbox-wrapper {
-                left: 12px;
-                top: 10px !important;
-              }
+  /* Custom Styles */
+  > .rs-picker-toggle-wrapper {
+    > .rs-picker-toggle {
+      > .rs-stack {
+        > .rs-stack-item {
+          > .rs-picker-toggle-value {
+            > .rs-picker-value-count {
+              background-color: ${p => p.theme.color.charcoal} !important;
+              border-radius: 50%;
+              line-height: 1;
+              margin: 0.5px 0 0 4px;
+              padding: 2px 6px 4px !important;
             }
           }
         }
