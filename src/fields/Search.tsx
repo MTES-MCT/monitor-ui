@@ -14,20 +14,20 @@ import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
 import { Close, Search as SearchIcon } from '../icons'
 import { THEME } from '../theme'
-import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
-import { getRsuiteValueFromOptionValue } from '../utils/getRsuiteValueFromOptionValue'
+import { getRsuiteDataItemsFromOptions } from '../utils/getRsuiteDataItemsFromOptions'
+import { getRsuiteDataItemValueFromOptionValue } from '../utils/getRsuiteDataItemValueFromOptionValue'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { CustomSearch } from '../libs/CustomSearch'
 import type { Option, OptionValueType } from '../types/definitions'
-import type { OptionAsRsuiteItemDataType } from '../types/internals'
+import type { RsuiteDataItem } from '../types/internals'
 import type { AutoCompleteProps as RsuiteAutoCompleteProps } from 'rsuite'
 import type { ItemDataType } from 'rsuite/esm/@types/common'
 import type { Promisable } from 'type-fest'
 
 export type SearchProps<OptionValue extends OptionValueType = string> = Omit<
   RsuiteAutoCompleteProps,
-  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'open' | 'onSelect' | 'value'
+  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'open' | 'onSelect' | 'value' | 'valueKey'
 > & {
   MenuItem?: ElementType | undefined
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
@@ -75,7 +75,7 @@ export function Search<OptionValue extends OptionValueType = string>({
 
   const queryRef = useRef<string | undefined>(undefined)
 
-  const data = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
+  const data = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -87,13 +87,16 @@ export function Search<OptionValue extends OptionValueType = string>({
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([value, originalProps.disabled, originalProps.name])
 
-  const rsuiteValue = useMemo(() => getRsuiteValueFromOptionValue(value, optionValueKey), [value, optionValueKey])
+  const rsuiteValue = useMemo(
+    () => (value ? getRsuiteDataItemValueFromOptionValue(value, optionValueKey) : undefined),
+    [value, optionValueKey]
+  )
   const [inputValue, setInputValue] = useState<string | undefined>(rsuiteValue)
 
   // Only used when `customSearch` prop is set
-  const [controlledRsuiteData, setControlledRsuiteData] = useState<
-    OptionAsRsuiteItemDataType<OptionValue>[] | undefined
-  >(customSearch ? [] : undefined)
+  const [controlledRsuiteData, setControlledRsuiteData] = useState<RsuiteDataItem<OptionValue>[] | undefined>(
+    customSearch ? [] : undefined
+  )
 
   const close = useCallback(() => {
     setIsOpen(false)
@@ -113,7 +116,7 @@ export function Search<OptionValue extends OptionValueType = string>({
       if (customSearch && customSearchRef.current) {
         const nextControlledRsuiteData =
           nextQuery.trim().length >= customSearchMinQueryLength
-            ? getRsuiteDataFromOptions(customSearchRef.current.find(nextQuery), optionValueKey)
+            ? getRsuiteDataItemsFromOptions(customSearchRef.current.find(nextQuery), optionValueKey)
             : []
         setControlledRsuiteData(nextControlledRsuiteData)
       }

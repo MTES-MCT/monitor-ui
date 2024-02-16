@@ -2361,6 +2361,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@faker-js/faker@npm:8.4.1":
+  version: 8.4.1
+  resolution: "@faker-js/faker@npm:8.4.1"
+  checksum: 4f2aecddcfdc2cc8b50b2d15d1e37302a7c7a5bbd184ae910a9d271bc11248533ca74dcdd4a9ccbe20410553e7af0f6a4d334c5b955635e09a32ddf4a64942d4
+  languageName: node
+  linkType: hard
+
 "@fal-works/esbuild-plugin-global-externals@npm:^2.1.2":
   version: 2.1.2
   resolution: "@fal-works/esbuild-plugin-global-externals@npm:2.1.2"
@@ -2889,6 +2896,7 @@ __metadata:
     "@chrisneedham/rollup-plugin-peer-deps-external": "npm:2.3.1"
     "@commitlint/cli": "npm:18.4.3"
     "@commitlint/config-conventional": "npm:17.6.7"
+    "@faker-js/faker": "npm:8.4.1"
     "@jest/globals": "npm:29.7.0"
     "@rollup/plugin-commonjs": "npm:25.0.3"
     "@rollup/plugin-node-resolve": "npm:15.2.3"
@@ -2978,13 +2986,13 @@ __metadata:
     rollup-plugin-postcss: "npm:4.0.2"
     rollup-plugin-sizes: "npm:1.0.5"
     rollup-plugin-swc3: "npm:0.10.3"
-    rsuite: "npm:5.45.0"
+    rsuite: "npm:5.53.2"
     semantic-release: "npm:23.0.0"
     storybook: "npm:7.6.15"
     storybook-addon-performance: "npm:0.17.3"
     styled-components: "npm:5.3.10"
     tslib: "npm:2.6.2"
-    type-fest: "npm:4.7.1"
+    type-fest: "npm:4.10.2"
     typescript: "npm:5.1.6"
     use-debounce: "npm:9.0.4"
     vite: "npm:5.1.2"
@@ -2996,7 +3004,7 @@ __metadata:
     formik: ^2.0.0
     react: ^18.0.0
     react-router-dom: ^6.0.0
-    rsuite: 5.45.0
+    rsuite: ^5.53.2
     styled-components: ^5.0.0 || ^6.0.0
   languageName: unknown
   linkType: soft
@@ -18415,7 +18423,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rsuite-table@npm:^5.17.0":
+"rsuite-table@npm:^5.18.2":
   version: 5.18.2
   resolution: "rsuite-table@npm:5.18.2"
   dependencies:
@@ -18434,9 +18442,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rsuite@npm:5.45.0":
-  version: 5.45.0
-  resolution: "rsuite@npm:5.45.0"
+"rsuite@npm:5.53.2":
+  version: 5.53.2
+  resolution: "rsuite@npm:5.53.2"
   dependencies:
     "@babel/runtime": "npm:^7.20.1"
     "@juggle/resize-observer": "npm:^3.4.0"
@@ -18452,12 +18460,12 @@ __metadata:
     prop-types: "npm:^15.8.1"
     react-use-set: "npm:^1.0.0"
     react-window: "npm:^1.8.8"
-    rsuite-table: "npm:^5.17.0"
+    rsuite-table: "npm:^5.18.2"
     schema-typed: "npm:^2.1.3"
   peerDependencies:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: 8336a72dd50645709365d88f3f739bf23e6a62e4fcbfb3f3c0f12edfd5fc595ec3a77d72c9303dd4177f904759a10938684b0a3890dd08f5d560a685de8ffb20
+  checksum: 4a9c332b032dc212b1592ca95bb90ac0ffc755345bbc3c301b818bb9f466ad2ce39336c8645735079a76890ccfe9fae2148510adf1b37f43193d990b93f6e950
   languageName: node
   linkType: hard
 
@@ -20005,10 +20013,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:4.7.1":
-  version: 4.7.1
-  resolution: "type-fest@npm:4.7.1"
-  checksum: e2cae05a6a5be98e5e5cfecee8782db1eb74594ceb1d85b5bfdb9b9ca5e236342f97435d3ff9edddd8eb92898af7f13555f85d1a53a69c362b0f56f2cceb8151
+"type-fest@npm:4.10.2, type-fest@npm:^4.2.0, type-fest@npm:^4.6.0, type-fest@npm:^4.7.1":
+  version: 4.10.2
+  resolution: "type-fest@npm:4.10.2"
+  checksum: 740f7d30da742ff413e8690ec10a24df054bfd87575cf92691b77f5a6b8185c582da529b84ceb13771482599e085712beec51492feaef2a1adc8661c0a47ecba
   languageName: node
   linkType: hard
 
@@ -20072,13 +20080,6 @@ __metadata:
   version: 3.13.1
   resolution: "type-fest@npm:3.13.1"
   checksum: 547d22186f73a8c04590b70dcf63baff390078c75ea8acd366bbd510fd0646e348bd1970e47ecf795b7cff0b41d26e9c475c1fedd6ef5c45c82075fbf916b629
-  languageName: node
-  linkType: hard
-
-"type-fest@npm:^4.2.0, type-fest@npm:^4.6.0, type-fest@npm:^4.7.1":
-  version: 4.10.2
-  resolution: "type-fest@npm:4.10.2"
-  checksum: 740f7d30da742ff413e8690ec10a24df054bfd87575cf92691b77f5a6b8185c582da529b84ceb13771482599e085712beec51492feaef2a1adc8661c0a47ecba
   languageName: node
   linkType: hard
 

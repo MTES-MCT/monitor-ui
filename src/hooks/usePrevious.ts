@@ -5,7 +5,7 @@ export function usePrevious<T = any>(value: T): T | undefined {
 
   useEffect(() => {
     ref.current = value
-  }, [value]) // Only re-run if value changes
+  }, [value])
 
   return ref.current
 }

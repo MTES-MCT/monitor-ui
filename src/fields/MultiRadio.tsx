@@ -8,8 +8,8 @@ import { FieldError } from '../elements/FieldError'
 import { Fieldset } from '../elements/Fieldset'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useKey } from '../hooks/useKey'
-import { getRsuiteDataFromOptions } from '../utils/getRsuiteDataFromOptions'
-import { getRsuiteValueFromOptionValue } from '../utils/getRsuiteValueFromOptionValue'
+import { getRsuiteDataItemsFromOptions } from '../utils/getRsuiteDataItemsFromOptions'
+import { getRsuiteDataItemValueFromOptionValue } from '../utils/getRsuiteDataItemValueFromOptionValue'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Option, OptionValueType } from '../types/definitions'
@@ -58,9 +58,9 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([value, disabled, name])
 
-  const rsuiteData = useMemo(() => getRsuiteDataFromOptions(options, optionValueKey), [options, optionValueKey])
+  const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
   const selectedRsuiteValue = useMemo(
-    () => getRsuiteValueFromOptionValue(value, optionValueKey) ?? '',
+    () => (value ? getRsuiteDataItemValueFromOptionValue(value, optionValueKey) : undefined),
     [value, optionValueKey]
   )
 
@@ -95,7 +95,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
             name={name}
             onChange={() => handleChange(rsuiteDataItem.optionValue)}
             readOnly={isReadOnly}
-            value={selectedRsuiteValue}
+            value={rsuiteDataItem.value}
           >
             {renderMenuItem ? renderMenuItem(rsuiteDataItem.label, rsuiteDataItem.optionValue) : rsuiteDataItem.label}
           </Radio>
