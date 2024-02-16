@@ -8,22 +8,35 @@ jobs:
     name: E2E Test
     if: ${{ !startsWith(github.ref, 'refs/heads/ci-release-v') }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [1, 2, 3, 4]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Firefox
         uses: browser-actions/setup-firefox@latest
         with:
-          firefox-version: 104.0.2
+          firefox-version: 119.0.1
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           cache: yarn
           node-version: 20
-      - name: Install
-        run: yarn
       - name: Test
-        run: yarn test:e2e
+        uses: cypress-io/github-action@v6
+        with:
+          browser: firefox
+          component: true
+          config-file: config/cypress.config.ts
+          record: true
+          parallel: true
+          install: true
+          install-command: yarn
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
   # Release build sanity check with Playwright
   test_e2e_release:
