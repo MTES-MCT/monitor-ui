@@ -12,6 +12,14 @@ export default {
       '@swc/jest',
       {
         jsc: {
+          baseUrl: './src',
+          paths: {
+            '@elements/*': ['elements/*'],
+            '@hooks/*': ['hooks/*'],
+            '@libs/*': ['libs/*'],
+            '@types_/*': ['types/*'],
+            '@utils/*': ['utils/*']
+          },
           transform: {
             react: {
               runtime: 'automatic'
