@@ -1,7 +1,5 @@
 /* eslint-disable cypress/no-assigning-return-values */
 
-import { assertStringArrayOrUndefined } from 'cypress/utils/assertStringArrayOrUndefined'
-import { assertStringOrUndefined } from 'cypress/utils/assertStringOrUndefined'
 import { findElementParentBySelector } from 'cypress/utils/findElementParentBySelector'
 import { isEmpty } from 'ramda'
 
@@ -15,6 +13,7 @@ import { fillTextInput } from './fillTextInput'
 import { pickCheckPickerOptions } from './pickCheckPickerOptions'
 import { pickMultiSelectOptions } from './pickMultiSelectOptions'
 import { pickSelectOption } from './pickSelectOption'
+import { assertStringArrayOrUndefined, assertStringOrUndefined } from './utils'
 import { findElementBySelector } from '../../utils/findElementBySelector'
 import { findElementBytext } from '../../utils/findElementBytext'
 import { throwError } from '../../utils/throwError'
@@ -98,21 +97,23 @@ export function fill(
       }
 
       // -----------------------------------------------------------------------
-      // TextInput, NumberInput, Textarea
+      // NumberInput, TextInput, Textarea
 
       switch (htmlForElement.tagName) {
         // ---------------------------------------------------------------------
-        // Text/Number Input
+        // NumberInput, TextInput
 
         case 'INPUT':
-          fillTextInput(htmlForElement as HTMLInputElement, value !== undefined ? String(value) : value)
+          assertStringOrUndefined(value, 'TextInput')
+          fillTextInput(htmlForElement as HTMLInputElement, value)
           break
 
         // ---------------------------------------------------------------------
         // Textarea
 
         case 'TEXTAREA':
-          fillTextarea(htmlForElement as unknown as HTMLTextAreaElement, value !== undefined ? String(value) : value)
+          assertStringOrUndefined(value, 'Textarea')
+          fillTextarea(htmlForElement as unknown as HTMLTextAreaElement, value)
           break
 
         default:
