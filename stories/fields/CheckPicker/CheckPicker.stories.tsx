@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import styled from 'styled-components'
 
 import { Output } from '../../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
@@ -53,30 +52,14 @@ export default meta
 
 export function _CheckPicker(props: CheckPickerProps<string>) {
   const [outputValue, setOutputValue] = useState<string[] | undefined | '∅'>('∅')
-  const [outputValue2, setOutputValue2] = useState<string[]>()
+
   const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
 
   return (
     <>
-      <Container>
-        <CheckPicker {...props} onChange={controlledOnChange} style={{ width: '300px' }} value={controlledValue} />
-        <CheckPicker
-          {...props}
-          label="A second check picker with custom renderValue"
-          name="myCheckPicker2"
-          onChange={setOutputValue2}
-          renderValue={value => <div>{`Items (${value.length})`}</div>}
-          style={{ width: '300px' }}
-          value={outputValue2}
-        />
-      </Container>
+      <CheckPicker {...props} onChange={controlledOnChange} style={{ width: '300px' }} value={controlledValue} />
+
       {outputValue !== '∅' && <Output value={outputValue} />}
     </>
   )
 }
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-`
