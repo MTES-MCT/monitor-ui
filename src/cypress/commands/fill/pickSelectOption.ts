@@ -1,43 +1,36 @@
-export function pickSelectOption(
-  cypressSelectInputElement: Cypress.Chainable<JQuery<HTMLElement>>,
-  value: string | undefined
-) {
-  cypressSelectInputElement
-    .parents('.Field-Select')
-    .scrollIntoView()
-    .then(([fieldElement]) => {
-      if (!fieldElement) {
-        throw new Error('`fieldElement` is undefined.')
+import { throwError } from 'cypress/utils/throwError'
+
+export function pickSelectOption(fieldElement: HTMLDivElement, value: string | undefined, fieldLabel: string) {
+  cy.wrap(fieldElement).scrollIntoView({ offset: { left: 0, top: -100 } })
+
+  // Clear the field if there is a clear button
+  const clearButton = fieldElement.querySelector('.rs-stack > .rs-stack-item > .rs-picker-clean')
+  if (clearButton) {
+    cy.wrap(fieldElement).find('.rs-stack > .rs-stack-item > .rs-picker-clean').click({ force: true }).wait(250)
+  }
+
+  // If the value is undefined, we don't need to select anything
+  if (!value) {
+    return
+  }
+
+  // Open the picker
+  cy.wrap(fieldElement).find('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').forceClick().wait(250)
+
+  // Wait for the picker to open
+  cy.wrap(fieldElement)
+    .get('.rs-picker-popup')
+    .then(([rsuitePickerPopupElement]) => {
+      if (!rsuitePickerPopupElement) {
+        throwError(`Could not find '.rs-picker-popup' in in field with label "${fieldLabel}". Did the picker open?`)
       }
 
-      cy.wrap(fieldElement).scrollIntoView()
-
-      const maybeCleanButton = fieldElement.querySelector('.rs-picker-toggle-clean')
-      if (maybeCleanButton) {
-        cy.wrap(fieldElement).find('.rs-picker-toggle-clean').scrollIntoView().forceClick().wait(250)
+      // Search for the value if there is a search input
+      const searchInput = rsuitePickerPopupElement.querySelector('input[role="searchbox"]')
+      if (searchInput) {
+        cy.wrap(rsuitePickerPopupElement).find('input[role="searchbox"]').type(value).wait(250)
       }
 
-      if (!value) {
-        return
-      }
-
-      cy.wrap(fieldElement).find('.rs-picker-toggle').forceClick()
-
-      cy.get('.rs-picker-select-menu').then(([selectMenuElement]) => {
-        if (!selectMenuElement) {
-          throw new Error('`selectMenuElement` is undefined.')
-        }
-
-        const maybeSearchInput = selectMenuElement.querySelector('.rs-picker-search-bar-input')
-        if (maybeSearchInput) {
-          cy.wrap(selectMenuElement).find('.rs-picker-search-bar-input').type(value)
-        }
-
-        cy.wrap(selectMenuElement)
-          .get('.rs-picker-select-menu-item')
-          .contains(value)
-          .scrollIntoView()
-          .click({ force: true })
-      })
+      cy.wrap(rsuitePickerPopupElement).find('[role="option"]').contains(value).scrollIntoView().forceClick()
     })
 }

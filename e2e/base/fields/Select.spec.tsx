@@ -148,30 +148,31 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
       outputShouldNotBe()
 
-      cy.get('.rs-picker-select').click()
-      cy.get('.rs-picker-search-bar-input').type('la remie')
-      cy.get('.rs-picker-select-menu > div[role="option"]:first-child').click()
+      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('la remie')
+      cy.get('.rs-picker-popup').find('div[role="option"]').first().click()
 
       outputShouldBe(options[0].value)
 
-      // Reset the Select
+      // Clear the Select
       cy.fill('A select', undefined)
 
-      cy.get('.rs-picker-select').click()
-      cy.get('.rs-picker-search-bar-input').type('la option')
-      cy.get('.rs-picker-select-menu > div[role="option"]:first-child').click()
+      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('la option')
+      cy.get('.rs-picker-popup').find('div[role="option"]').first().click()
 
       outputShouldBe(options[0].value)
 
-      // Reset the Select
+      // Clear the Select
       cy.fill('A select', undefined)
 
-      cy.get('.rs-picker-select').click()
-      cy.get('.rs-picker-search-bar-input').type('sêcôndÈ')
-      cy.get('.rs-picker-select-menu > div[role="option"]:first-child').click()
+      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('sêcôndÈ')
+      cy.get('.rs-picker-popup').find('div[role="option"]').first().click()
 
       outputShouldBe(options[1].value)
     })
+
     it('Should fill, clear and get all list', () => {
       const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
       mountAndWait(
@@ -182,11 +183,11 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
       outputShouldNotBe()
 
-      cy.get('.rs-picker-select').click()
-      cy.get('.rs-picker-search-bar-input').type('sêc')
-      cy.get('.rs-picker-search-bar-input').type('{backspace}{backspace}{backspace}')
+      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('sêc')
+      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('{backspace}{backspace}{backspace}')
 
-      cy.get('.rs-picker-select-menu').find('[role="option"]').should('have.length', 3)
+      cy.get('.rs-picker-popup').find('[role="option"]').should('have.length', 3)
     })
   })
 })
