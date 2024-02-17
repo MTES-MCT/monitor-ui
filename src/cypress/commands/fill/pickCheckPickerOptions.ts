@@ -1,19 +1,22 @@
 import { throwError } from 'cypress/utils/throwError'
 
 export function pickCheckPickerOptions(fieldElement: HTMLDivElement, values: string[] | undefined, fieldLabel: string) {
-  cy.wrap(fieldElement).scrollIntoView()
+  cy.wrap(fieldElement).scrollIntoView({ offset: { left: 0, top: -100 } })
 
-  const maybeCleanButton = fieldElement.querySelector('.rs-picker-toggle-clean')
-  if (maybeCleanButton) {
-    cy.wrap(fieldElement).find('.rs-picker-toggle-clean').forceClick().wait(250)
+  // Clear the field if there is a clear button
+  const maybeClearButton = fieldElement.querySelector('.rs-stack > .rs-stack-item > .rs-picker-clean')
+  if (maybeClearButton) {
+    cy.wrap(fieldElement).find('.rs-stack > .rs-stack-item > .rs-picker-clean').click({ force: true }).wait(250)
   }
 
+  // If `values` is undefined, we don't need to select anything
   if (!values) {
     return
   }
 
   cy.wrap(fieldElement).find('.rs-picker-toggle').forceClick()
 
+  // Wait for the picker to open
   cy.wrap(fieldElement)
     .find('.rs-picker-popup')
     .then(([rsuitePickerPopupElement]) => {
@@ -21,15 +24,18 @@ export function pickCheckPickerOptions(fieldElement: HTMLDivElement, values: str
         throwError(`Could not find '.rs-picker-popup' in in field with label "${fieldLabel}". Did the picker open?`)
       }
 
-      const maybeSearchInput = rsuitePickerPopupElement.querySelector('.rs-picker-search-bar-input')
+      // Search for the value if there is a search input
+      const maybeSearchInput = rsuitePickerPopupElement.querySelector('input[role="searchbox"]')
       values.forEach(value => {
         if (maybeSearchInput) {
-          cy.get('.rs-picker-popup').find('.rs-picker-search-bar-input').type(value)
+          cy.wrap(rsuitePickerPopupElement).find('input[role="searchbox"]').type(value).wait(250)
         }
 
-        cy.get('.rs-picker-popup').find('[role="option"]').contains(value).scrollIntoView().forceClick()
+        cy.wrap(rsuitePickerPopupElement).find('[role="option"]').contains(value).scrollIntoView().forceClick()
       })
 
+      // Close the picker popup by pressing the escape key
+      cy.get('body').wait(250).type('{esc}')
       cy.wrap(fieldElement).find('.rs-picker-popup').should('not.exist')
     })
 }

@@ -148,28 +148,29 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
       outputShouldNotBe()
 
-      cy.get('.rs-picker-toggle').first().click()
-      cy.get('.rs-picker-search-bar-input').type('la remie')
-      cy.get('.rs-picker-check-menu > div[role="option"]:first-child').click()
-      cy.clickOutside()
-      outputShouldBe([options[0].value])
-
-      // Reset the CheckPicker
-      cy.fill('A check picker', undefined)
-
-      cy.get('.rs-picker-toggle').first().click()
-      cy.get('.rs-picker-search-bar-input').type('la option')
-      cy.get('.rs-picker-check-menu > div[role="option"]:first-child').click()
+      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('la remie')
+      cy.get('.rs-picker-popup').find('[role="option"]').first().click()
       cy.clickOutside()
 
       outputShouldBe([options[0].value])
 
-      // Reset the CheckPicker
+      // Clear the CheckPicker
       cy.fill('A check picker', undefined)
 
-      cy.get('.rs-picker-toggle').first().click()
-      cy.get('.rs-picker-search-bar-input').type('sêcôndÈ')
-      cy.get('.rs-picker-check-menu > div[role="option"]:first-child').click()
+      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('la option')
+      cy.get('.rs-picker-popup').find('[role="option"]').first().click()
+      cy.clickOutside()
+
+      outputShouldBe([options[0].value])
+
+      // Clear the CheckPicker
+      cy.fill('A check picker', undefined)
+
+      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('sêcôndÈ')
+      cy.get('.rs-picker-popup').find('[role="option"]').first().click()
       cy.clickOutside()
 
       outputShouldBe([options[1].value])
@@ -184,9 +185,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
       outputShouldNotBe()
 
-      cy.get('.rs-picker-toggle').first().click()
-      cy.get('.rs-picker-search-bar-input').type('sêc')
-      cy.get('.rs-picker-search-bar-input').type('{backspace}{backspace}{backspace}')
+      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('sêc')
+      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('{backspace}{backspace}{backspace}')
 
       cy.get('.rs-picker-check-menu').find('[role="option"]').should('have.length', 3)
     })

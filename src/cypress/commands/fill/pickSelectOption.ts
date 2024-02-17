@@ -4,8 +4,8 @@ export function pickSelectOption(fieldElement: HTMLDivElement, value: string | u
   cy.wrap(fieldElement).scrollIntoView({ offset: { left: 0, top: -100 } })
 
   // Clear the field if there is a clear button
-  const clearButton = fieldElement.querySelector('.rs-stack > .rs-stack-item > .rs-picker-clean')
-  if (clearButton) {
+  const maybeClearButton = fieldElement.querySelector('.rs-stack > .rs-stack-item > .rs-picker-clean')
+  if (maybeClearButton) {
     cy.wrap(fieldElement).find('.rs-stack > .rs-stack-item > .rs-picker-clean').click({ force: true }).wait(250)
   }
 
@@ -26,8 +26,8 @@ export function pickSelectOption(fieldElement: HTMLDivElement, value: string | u
       }
 
       // Search for the value if there is a search input
-      const searchInput = rsuitePickerPopupElement.querySelector('input[role="searchbox"]')
-      if (searchInput) {
+      const maybeSearchInput = rsuitePickerPopupElement.querySelector('input[role="searchbox"]')
+      if (maybeSearchInput) {
         cy.wrap(rsuitePickerPopupElement).find('input[role="searchbox"]').type(value).wait(250)
       }
 
