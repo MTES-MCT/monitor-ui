@@ -150,33 +150,34 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
       outputShouldNotBe()
 
-      cy.get('.rs-picker-input').click()
-      cy.get('.rs-picker-search-input > input').type('la remie')
-      cy.get('.rs-picker-check-menu > div[role="option"]:first-child').click()
+      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+      cy.get('.rs-picker-search-input').find('input').type('la remie')
+      cy.get('.rs-picker-popup').find('[role="option"]').first().click()
       cy.clickOutside()
 
       outputShouldBe([options[0].value])
 
-      // Reset the MultiSelect
+      // Clear the MultiSelect
       cy.fill('A multiple select', undefined)
 
-      cy.get('.rs-picker-input').click()
-      cy.get('.rs-picker-search-input > input').type('la option')
-      cy.get('.rs-picker-check-menu > div[role="option"]:first-child').click()
+      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+      cy.get('.rs-picker-search-input').find('input').type('la option')
+      cy.get('.rs-picker-popup').find('[role="option"]').first().click()
       cy.clickOutside()
 
       outputShouldBe([options[0].value])
 
-      // Reset the MultiSelect
+      // Clear the MultiSelect
       cy.fill('A multiple select', undefined)
 
-      cy.get('.rs-picker-input').click()
-      cy.get('.rs-picker-search-input > input').type('sêcôndÈ')
-      cy.get('.rs-picker-check-menu > div[role="option"]:first-child').click()
+      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+      cy.get('.rs-picker-search-input').find('input').type('sêcôndÈ')
+      cy.get('.rs-picker-popup').find('[role="option"]').first().click()
       cy.clickOutside()
 
       outputShouldBe([options[1].value])
     })
+
     it('Should fill, clear and get all list', () => {
       const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
       mountAndWait(
@@ -187,11 +188,11 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
       outputShouldNotBe()
 
-      cy.get('.rs-picker-input').click()
-      cy.get('.rs-picker-search-input > input').type('sêc')
-      cy.get('.rs-picker-search-input > input').type('{backspace}{backspace}{backspace}')
+      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+      cy.get('.rs-picker-search-input').find('input').type('sêc')
+      cy.get('.rs-picker-search-input').find('input').type('{backspace}{backspace}{backspace}')
 
-      cy.get('.rs-picker-check-menu').find('[role="option"]').should('have.length', 3)
+      cy.get('.rs-picker-popup').find('[role="option"]').should('have.length', 3)
     })
   })
 })

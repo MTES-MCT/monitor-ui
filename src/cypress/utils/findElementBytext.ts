@@ -2,7 +2,7 @@
 // instead of using a cleaner FP `.filter()`
 // but real experience made me think it greatly improves results stability.
 
-export function findElementBytext(
+export function findElementBytext<T extends HTMLElement = HTMLElement>(
   selector: string,
   text: string,
   {
@@ -14,7 +14,7 @@ export function findElementBytext(
     inElement: HTMLElement | undefined
     index: number
   }> = {}
-) {
+): T | undefined {
   const trimmedText = text.trim()
 
   if (inElement) {
@@ -40,10 +40,10 @@ export function findElementBytext(
 
       const foundElementByFallbackSelector = Cypress.$(inElement).find(fallbackSelector)
 
-      return foundElementByFallbackSelector
+      return foundElementByFallbackSelector as unknown as T | undefined
     }
 
-    return foundElement
+    return foundElement as unknown as T | undefined
   }
 
   let foundElement
@@ -66,8 +66,8 @@ export function findElementBytext(
 
     const foundElementByFallbackSelector = Cypress.$(fallbackSelector)
 
-    return foundElementByFallbackSelector
+    return foundElementByFallbackSelector as unknown as T | undefined
   }
 
-  return foundElement
+  return foundElement as unknown as T | undefined
 }

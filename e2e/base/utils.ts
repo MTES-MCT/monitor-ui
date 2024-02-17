@@ -26,7 +26,7 @@ export const outputShouldBe = (value: any, label: string = 'Output') => {
         }
       }
 
-      cy.get('.mui-output').contains(expected)
+      cy.get('.mui-output').should('contain.text', expected)
     })
 }
 
