@@ -1,3 +1,4 @@
+import { getSelectedOptionValueFromSelectedRsuiteDataItemValue } from '@utils/getSelectedOptionValueFromSelectedRsuiteDataItemValue'
 import classnames from 'classnames'
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { SelectPicker as RsuiteSelectPicker, type SelectPickerProps as RsuiteSelectPickerProps } from 'rsuite'
@@ -12,7 +13,6 @@ import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
 import { type CustomSearch } from '../libs/CustomSearch'
 import { type Option, type OptionValueType } from '../types/definitions'
-import { type RsuiteDataItem } from '../types/internals'
 import { getRsuiteDataItemsFromOptions } from '../utils/getRsuiteDataItemsFromOptions'
 import { getRsuiteDataItemValueFromOptionValue } from '../utils/getRsuiteDataItemValueFromOptionValue'
 import { normalizeString } from '../utils/normalizeString'
@@ -81,20 +81,26 @@ export function Select<OptionValue extends OptionValueType = string>({
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([disabled, originalProps.name])
   const selectedRsuiteValue = useMemo(
-    () => (value ? getRsuiteDataItemValueFromOptionValue(value, optionValueKey) : undefined),
+    // eslint-disable-next-line no-null/no-null
+    () => (value ? getRsuiteDataItemValueFromOptionValue(value, optionValueKey) : null),
     [value, optionValueKey]
   )
 
   // Only used when `customSearch` prop is set
   const [controlledRsuiteData, setControlledRsuiteData] = useState(customSearch ? rsuiteData : undefined)
 
-  const handleClean = useCallback(() => {
-    if (!onChange) {
-      return
-    }
+  const handleChange = useCallback(
+    (nextRsuiteDataItemValue: string | null) => {
+      if (!onChange) {
+        return
+      }
 
-    onChange(undefined)
-  }, [onChange])
+      const nextOptionValue = getSelectedOptionValueFromSelectedRsuiteDataItemValue(rsuiteData, nextRsuiteDataItemValue)
+
+      onChange(nextOptionValue)
+    },
+    [onChange, rsuiteData]
+  )
 
   const handleSearch = useCallback(
     (nextQuery: string) => {
@@ -112,15 +118,6 @@ export function Select<OptionValue extends OptionValueType = string>({
       setControlledRsuiteData(nextControlledRsuiteData)
     },
     [customSearchMinQueryLength, optionValueKey, rsuiteData]
-  )
-
-  const handleSelect = useCallback(
-    (_: string, selectedItem: RsuiteDataItem<OptionValue>) => {
-      if (onChange) {
-        onChange(selectedItem.optionValue)
-      }
-    },
-    [onChange]
   )
 
   const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
@@ -154,11 +151,10 @@ export function Select<OptionValue extends OptionValueType = string>({
             disabled={disabled}
             disabledItemValues={disabledItemValues}
             id={originalProps.name}
-            onClean={handleClean}
+            onChange={handleChange}
             onSearch={handleSearch}
             // `as any` because we customized `ItemDataType` type by adding `optionValue`,
             // which generates an optional vs required type conflict
-            onSelect={handleSelect as any}
             renderMenuItem={renderMenuItem}
             searchable={!!customSearch || searchable}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
