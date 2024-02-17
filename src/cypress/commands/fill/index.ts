@@ -1,8 +1,11 @@
 /* eslint-disable cypress/no-assigning-return-values */
 
+import { assertStringArrayOrUndefined } from 'cypress/utils/assertStringArrayOrUndefined'
+import { assertStringOrUndefined } from 'cypress/utils/assertStringOrUndefined'
+import { findElementParentBySelector } from 'cypress/utils/findElementParentBySelector'
 import { isEmpty } from 'ramda'
 
-import { checkCheckbox } from './checkCheckbox'
+// import { checkCheckbox } from './checkCheckbox'
 import { checkMultiCheckboxOptions } from './checkMultiCheckboxOptions'
 import { checkMultiRadioOption } from './checkMultiRadioOption'
 import { fillDatePicker } from './fillDatePicker'
@@ -14,12 +17,13 @@ import { pickMultiSelectOptions } from './pickMultiSelectOptions'
 import { pickSelectOption } from './pickSelectOption'
 import { findElementBySelector } from '../../utils/findElementBySelector'
 import { findElementBytext } from '../../utils/findElementBytext'
+import { throwError } from '../../utils/throwError'
 import { waitFor } from '../../utils/waitFor'
 
 const RETRIES = 5
 
 export function fill(
-  label: string | undefined,
+  label: string,
   value:
     | boolean
     | number
@@ -31,114 +35,94 @@ export function fill(
   leftRetries: number = RETRIES
 ): void {
   try {
-    // -------------------------------------------------------------------------
+    // =========================================================================
     // If this is a `<label />` element
 
-    const labelElement = findElementBytext('label', label as string) as HTMLLabelElement | undefined
+    const labelElement = findElementBytext<HTMLLabelElement>('label', label)
     if (labelElement) {
-      // -------------------------------------------------------------------------
-      // If the label has a `for` attribute
+      if (isEmpty(labelElement.htmlFor)) {
+        throwError(`Could not find a \`for\` attribute on <label> with content "${label}".`)
+      }
 
-      if (!isEmpty(labelElement.htmlFor)) {
-        const htmlforElement = findElementBySelector(`[id="${labelElement.htmlFor}"]`)
-        if (!htmlforElement) {
-          throw new Error(
-            `Could not find the element with [id="${labelElement.htmlFor}"] targetted by label "${label}" (via its \`for\` attribute).`
-          )
+      const htmlForElement = findElementBySelector<HTMLDivElement>(`[id="${labelElement.htmlFor}"]`)
+      if (!htmlForElement) {
+        throwError(`Could not find '[id="${labelElement.htmlFor}"]' "for=" target in field with label "${label}".`)
+      }
+
+      // -----------------------------------------------------------------------
+      // CheckPicker, MultiCascader, MultiSelect, Select
+
+      if (htmlForElement.classList.contains('rs-picker-toggle')) {
+        const fieldElement = findElementParentBySelector<HTMLDivElement>(htmlForElement, '.Element-Field')
+        if (!fieldElement) {
+          throwError(`Could not find '.Element-Field' in field with label "${label}".`)
         }
 
-        const cypressHtmlforElement = cy.get(`[id="${labelElement.htmlFor}"]`)
-        cypressHtmlforElement.then((() => {
-          if (htmlforElement.classList.contains('rs-picker-toggle-textbox')) {
-            const rsuitePickerElement =
-              htmlforElement.parentElement &&
-              htmlforElement.parentElement.parentElement &&
-              htmlforElement.parentElement.parentElement.parentElement
-                ? htmlforElement.parentElement.parentElement.parentElement.parentElement
-                : undefined
-            if (!rsuitePickerElement) {
-              throw new Error('This should never happen.')
-            }
+        const rsuitePickerElement = findElementParentBySelector<HTMLDivElement>(htmlForElement, '.rs-picker')
+        if (!rsuitePickerElement) {
+          throwError(`Could not find '.rs-picker' in field with label "${label}".`)
+        }
 
-            switch (true) {
-              // Select
-              case rsuitePickerElement.classList.contains('rs-picker-select'):
-                pickSelectOption(cypressHtmlforElement, value !== undefined ? String(value) : value)
-                break
+        switch (true) {
+          // -------------------------------------------------------------------
+          // CheckPicker
 
-              // Multi Select
-              case rsuitePickerElement.classList.contains('rs-picker-tag'):
-                pickMultiSelectOptions(
-                  cypressHtmlforElement,
-                  Array.isArray(value) && value.length > 0 ? (value as string[]) : undefined
-                )
-                break
+          case rsuitePickerElement.classList.contains('rs-picker-check'):
+            assertStringArrayOrUndefined(value, 'CheckPicker')
+            pickCheckPickerOptions(fieldElement, value, label)
+            break
 
-              // Check Picker
-              case rsuitePickerElement.classList.contains('rs-picker-check'):
-                pickCheckPickerOptions(
-                  cypressHtmlforElement,
-                  Array.isArray(value) && value.length > 0 ? (value as string[]) : undefined
-                )
-                break
+          // -------------------------------------------------------------------
+          // MultiSelect
 
-              default:
-                throw new Error(
-                  `\`cy.fill()\` can't handle Rsuite picker with class "${rsuitePickerElement.className}" elements.`
-                )
-            }
+          case rsuitePickerElement.classList.contains('rs-picker-tag'):
+            assertStringArrayOrUndefined(value, 'MultiSelect')
+            pickMultiSelectOptions(fieldElement, value, label)
+            break
 
-            return
-          }
+          // -------------------------------------------------------------------
+          // Select
 
-          switch (htmlforElement.tagName) {
-            // Text/Number Input
-            case 'INPUT':
-              fillTextInput(htmlforElement as HTMLInputElement, value !== undefined ? String(value) : value)
-              break
+          case rsuitePickerElement.classList.contains('rs-picker-select'):
+            assertStringOrUndefined(value, 'Select')
+            pickSelectOption(fieldElement, value, label)
+            break
 
-            // Textarea
-            case 'TEXTAREA':
-              fillTextarea(htmlforElement as HTMLTextAreaElement, value !== undefined ? String(value) : value)
-              break
-
-            default:
-              throw new Error(`\`cy.fill()\` doesn't handle "${htmlforElement.tagName}" elements.`)
-          }
-        }) as any)
+          default:
+            throwError(
+              `\`cy.fill()\` can't handle Rsuite picker components with class "${rsuitePickerElement.className}".`
+            )
+        }
 
         return
       }
 
-      // -------------------------------------------------------------------------
-      // If the label doesn't have a `for` attribute
+      // -----------------------------------------------------------------------
+      // TextInput, NumberInput, Textarea
 
-      // Checkbox Input
-      const checkboxInputElement = labelElement.querySelector('input[type="checkbox"]') as HTMLInputElement | null
-      if (checkboxInputElement) {
-        checkCheckbox(checkboxInputElement, Boolean(value))
+      switch (htmlForElement.tagName) {
+        // ---------------------------------------------------------------------
+        // Text/Number Input
 
-        return
+        case 'INPUT':
+          fillTextInput(htmlForElement as HTMLInputElement, value !== undefined ? String(value) : value)
+          break
+
+        // ---------------------------------------------------------------------
+        // Textarea
+
+        case 'TEXTAREA':
+          fillTextarea(htmlForElement as unknown as HTMLTextAreaElement, value !== undefined ? String(value) : value)
+          break
+
+        default:
+          throwError(`\`cy.fill()\` doesn't handle "${htmlForElement.tagName}" elements.`)
       }
 
-      // Text Input
-      const textInputElement = labelElement.querySelector('input[type="text"]') as HTMLInputElement | null
-      if (textInputElement) {
-        fillTextInput(textInputElement, String(value))
-
-        return
-      }
-
-      // Textarea
-      const textareaElement = labelElement.querySelector('textarea')
-      if (textareaElement) {
-        fillTextarea(textareaElement, String(value))
-
-        return
-      }
-
-      throw new Error(`Could find neither a checkbox, an input nor a textarea with the label "${label}".`)
+      return
     }
+
+    // -------------------------------------------------------------------------
 
     // -------------------------------------------------------------------------
     // If this is a `<legend />` element
@@ -152,7 +136,7 @@ export function fill(
 
         const fieldsetElement = legendElement.parentElement
         if (!fieldsetElement || fieldsetElement.tagName !== 'FIELDSET') {
-          throw new Error(`Could not find parent fieldset of legend element with text "${label}".`)
+          throwError(`Could not find parent fieldset of legend element with text "${label}".`)
         }
 
         if (fieldsetElement.classList.contains('Field-DatePicker')) {
@@ -160,7 +144,7 @@ export function fill(
             (!Array.isArray(value) || (value.length !== 3 && value.length !== 5) || typeof value[0] !== 'number') &&
             value !== undefined
           ) {
-            throw new Error(
+            throwError(
               '`value` should be of type `[number, number, number]`, `[number, number, number, number, number]` or `undefined`.'
             )
           }
@@ -179,7 +163,7 @@ export function fill(
               (value[1].length !== 3 && value[1].length !== 5)) &&
             value !== undefined
           ) {
-            throw new Error(
+            throwError(
               '`value` should be of type `[[number, number, number], [number, number, number]]` or ``[[number, number, number, number, number], [number, number, number, number, number]]`` or `undefined`.'
             )
           }
@@ -213,17 +197,17 @@ export function fill(
           return
         }
 
-        throw new Error(`\`cy.fill()\` can't handle the field with legend "${label}".`)
+        throwError(`\`cy.fill()\` can't handle the field with legend "${label}".`)
       })
 
       return
     }
 
-    throw new Error(`Could not find label or legend element with text "${label}".`)
-  } catch (err) {
+    throwError(`Could not find label or legend element with text "${label}".`)
+  } catch (err: any) {
     if (leftRetries > 0) {
       cy.wait(250).then(() => {
-        cy.log(`Retrying (${RETRIES - leftRetries + 1} / ${RETRIES})...`)
+        cy.log(`[monitor-ui > Cypress] Retrying (${RETRIES - leftRetries + 1} / ${RETRIES})...`)
 
         fill(label, value, leftRetries - 1)
       })
@@ -231,6 +215,27 @@ export function fill(
       return
     }
 
-    throw new Error(`Could not find label or legend element with text "${label}" after ${RETRIES} attempts.`)
+    const normalizedError = err instanceof Error ? err : new Error(String(err))
+
+    Cypress.log({
+      consoleProps: () => ({
+        err,
+        label,
+        value
+      }),
+      displayName: 'ERROR',
+      message: String(normalizedError.message),
+      name: 'fill'
+    })
+      .error(normalizedError)
+      .end()
+
+    throwError(
+      [
+        `Could not find or fill field with label or legend "${label}" after ${RETRIES} attempts.`,
+        `This error was thrown: “${normalizedError.message}”`,
+        `Please check the Cypress "- ERROR" log above for more details.`
+      ].join('\n')
+    )
   }
 }

@@ -1,62 +1,40 @@
-export function pickMultiSelectOptions(
-  cypressMultiSelectInputElement: Cypress.Chainable<JQuery<HTMLElement>>,
-  values: string[] | undefined
-) {
-  cypressMultiSelectInputElement.parents('.Field-MultiSelect').then(([fieldElement]) => {
-    if (!fieldElement) {
-      throw new Error('`fieldElement` is undefined.')
-    }
+import { throwError } from 'cypress/utils/throwError'
 
-    const fieldElementOffsetLeft = fieldElement.offsetLeft
-      ? fieldElement.offsetLeft
-      : (() => {
-          if (!fieldElement.offsetParent) {
-            throw new Error('`fieldElement.offsetParent` is undefined.')
-          }
+export function pickMultiSelectOptions(fieldElement: HTMLDivElement, values: string[] | undefined, fieldLabel: string) {
+  cy.wrap(fieldElement).scrollIntoView()
 
-          return (fieldElement.offsetParent as HTMLBodyElement).offsetLeft
-        })()
-    const fieldElementOffsetTop =
-      fieldElement.offsetTop !== 0
-        ? fieldElement.offsetTop
-        : (() => {
-            if (!fieldElement.offsetParent) {
-              throw new Error('`fieldElement.offsetParent` is undefined.')
-            }
+  // Clear the field if there is a clear button
+  const clearButton = fieldElement.querySelector('.rs-stack > .rs-stack-item > .rs-picker-clean')
+  if (clearButton) {
+    cy.wrap(fieldElement).find('.rs-stack > .rs-stack-item > .rs-picker-clean').click({ force: true }).wait(250)
+  }
 
-            return (fieldElement.offsetParent as HTMLBodyElement).offsetTop
-          })()
+  // If the value is undefined, we don't need to select anything
+  if (!values) {
+    return
+  }
 
-    cy.wrap(fieldElement).scrollIntoView()
+  cy.wrap(fieldElement).find('.rs-picker-toggle').forceClick()
 
-    const maybeCleanButton = fieldElement.querySelector('.rs-picker-toggle-clean')
-    if (maybeCleanButton) {
-      cy.wrap(fieldElement).find('.rs-picker-toggle-clean').forceClick().wait(250)
-    }
-
-    if (!values) {
-      return
-    }
-
-    cy.wrap(fieldElement).find('.rs-picker-toggle').forceClick()
-
-    cy.get('.rs-picker-check-menu').then(([multiSelectMenuElement]) => {
-      if (!multiSelectMenuElement) {
-        throw new Error('`multiSelectMenuElement` is undefined.')
+  // Wait for the picker to open
+  cy.wrap(fieldElement)
+    .get('.rs-picker-popup')
+    .then(([rsuitePickerPopupElement]) => {
+      if (!rsuitePickerPopupElement) {
+        throwError(`Could not find '.rs-picker-popup' in in field with label "${fieldLabel}". Did the picker open?`)
       }
 
-      const maybeSearchInput = multiSelectMenuElement.querySelector('.rs-picker-search-bar-input')
+      const maybeSearchInput = rsuitePickerPopupElement.querySelector('input[role="searchbox"]')
       values.forEach(value => {
+        // Search for the value if there is a search input
         if (maybeSearchInput) {
-          cy.get('.rs-picker-check-menu').find('.rs-picker-search-bar-input').type(value)
+          cy.wrap(rsuitePickerPopupElement).find('input[role="searchbox"]').type(value).wait(250)
         }
 
-        cy.get('.rs-picker-check-menu').find('.rs-checkbox-checker').contains(value).scrollIntoView().forceClick()
+        cy.wrap(rsuitePickerPopupElement).find('[role="option"]').contains(value).scrollIntoView().forceClick()
       })
 
-      // TODO Investigate that (this should be -1).
-      cy.clickOutside(fieldElementOffsetLeft, fieldElementOffsetTop - 16)
-      cy.wait(250)
+      cy.get('body').wait(250).type('{esc}')
+      cy.wrap(fieldElement).find('.rs-picker-popup').should('not.exist')
     })
-  })
 }
