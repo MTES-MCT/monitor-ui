@@ -1,15 +1,15 @@
 import { throwError } from 'cypress/utils/throwError'
 
 export function pickMultiSelectOptions(fieldElement: HTMLDivElement, values: string[] | undefined, fieldLabel: string) {
-  cy.wrap(fieldElement).scrollIntoView()
+  cy.wrap(fieldElement).scrollIntoView({ offset: { left: 0, top: -100 } })
 
   // Clear the field if there is a clear button
-  const clearButton = fieldElement.querySelector('.rs-stack > .rs-stack-item > .rs-picker-clean')
-  if (clearButton) {
+  const maybeClearButton = fieldElement.querySelector('.rs-stack > .rs-stack-item > .rs-picker-clean')
+  if (maybeClearButton) {
     cy.wrap(fieldElement).find('.rs-stack > .rs-stack-item > .rs-picker-clean').click({ force: true }).wait(250)
   }
 
-  // If the value is undefined, we don't need to select anything
+  // If `values` is undefined, we don't need to select anything
   if (!values) {
     return
   }
@@ -34,6 +34,7 @@ export function pickMultiSelectOptions(fieldElement: HTMLDivElement, values: str
         cy.wrap(rsuitePickerPopupElement).find('[role="option"]').contains(value).scrollIntoView().forceClick()
       })
 
+      // Close the picker popup by pressing the escape key
       cy.get('body').wait(250).type('{esc}')
       cy.wrap(fieldElement).find('.rs-picker-popup').should('not.exist')
     })
