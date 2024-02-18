@@ -1,8 +1,9 @@
-import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
-import { _MultiRadio as MultiRadioStory } from '../../../stories/fields/MultiRadio.stories'
-import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
+import { useState } from 'react'
 
-import type { MultiRadioProps } from '../../../src'
+import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
+import { Output } from '../../../.storybook/components/Output'
+import { MultiRadio, useFieldControl, type MultiRadioProps } from '../../../src'
+import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const OPTIONS_TYPES = {
@@ -23,6 +24,20 @@ const OPTIONS_TYPES = {
   ]
 }
 /* eslint-enable sort-keys-fix/sort-keys-fix */
+
+function MultiRadioStory({ value, ...otherProps }: MultiRadioProps) {
+  const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
+
+  const { controlledOnChange, controlledValue } = useFieldControl(value, setOutputValue)
+
+  return (
+    <>
+      <MultiRadio {...otherProps} onChange={controlledOnChange} value={controlledValue} />
+
+      {outputValue !== '∅' && <Output value={outputValue} />}
+    </>
+  )
+}
 
 Object.keys(OPTIONS_TYPES).forEach(optionType => {
   context(`Story (${optionType} options)`, () => {

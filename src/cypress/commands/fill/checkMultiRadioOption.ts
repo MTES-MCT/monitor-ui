@@ -1,10 +1,10 @@
-export function checkMultiRadioOption(fieldsetElement: HTMLElement, value: string) {
+export function checkMultiRadioOption(fieldsetElement: HTMLFieldSetElement, value: string) {
   cy.wrap(fieldsetElement)
+    .scrollIntoView({ offset: { left: 0, top: -100 } })
     .find('label')
     .contains(value)
-    .find('input[type="radio"]')
-    .scrollIntoView()
-    .check({ force: true })
+    .forceClick()
+    .wait(250)
 
   return fieldsetElement
 }

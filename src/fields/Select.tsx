@@ -73,11 +73,8 @@ export function Select<OptionValue extends OptionValueType = string>({
   /** Instance of `CustomSearch` */
   const customSearchRef = useRef(customSearch)
 
-  const { forceUpdate } = useForceUpdate()
-
   const controlledClassname = useMemo(() => classnames('Field-Select', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
-  const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([disabled, originalProps.name])
   const selectedRsuiteValue = useMemo(
@@ -85,9 +82,12 @@ export function Select<OptionValue extends OptionValueType = string>({
     () => (value ? getRsuiteDataItemValueFromOptionValue(value, optionValueKey) : null),
     [value, optionValueKey]
   )
+  const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
 
   // Only used when `customSearch` prop is set
   const [controlledRsuiteData, setControlledRsuiteData] = useState(customSearch ? rsuiteData : undefined)
+
+  const { forceUpdate } = useForceUpdate()
 
   const handleChange = useCallback(
     (nextRsuiteDataItemValue: string | null) => {

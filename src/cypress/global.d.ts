@@ -50,7 +50,7 @@ declare namespace Cypress {
         | string
         | string[]
         | (DateTuple | DateWithTimeTuple)
-        | ([Cypress.DateTuple, Cypress.DateTuple] | [Cypress.DateWithTimeTuple, Cypress.DateWithTimeTuple])
+        | ([DateTuple, DateTuple] | [DateWithTimeTuple, DateWithTimeTuple])
         | undefined
     ): Chainable<Element>
 
@@ -109,4 +109,7 @@ declare namespace Cypress {
 
   type DateTuple = [number, number, number]
   type DateWithTimeTuple = [number, number, number, number, number]
+
+  type DateRangeTuple = [DateTuple, DateTuple]
+  type DateWithTimeRangeTuple = [DateWithTimeTuple, DateWithTimeTuple]
 }

@@ -67,11 +67,11 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([disabled, originalProps.name])
-  const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
   const selectedRsuiteDataItemValues = useMemo(
     () => (value ? value.map(valueItem => getRsuiteDataItemValueFromOptionValue(valueItem, optionValueKey)) : []),
     [optionValueKey, value]
   )
+  const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
 
   // Only used when `customSearch` prop is set
   const [controlledRsuiteData, setControlledRsuiteData] = useState(customSearch ? rsuiteData : undefined)

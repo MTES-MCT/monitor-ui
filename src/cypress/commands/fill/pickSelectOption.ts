@@ -31,6 +31,6 @@ export function pickSelectOption(fieldElement: HTMLDivElement, value: string | u
         cy.wrap(rsuitePickerPopupElement).find('input[role="searchbox"]').type(value).wait(250)
       }
 
-      cy.wrap(rsuitePickerPopupElement).find('[role="option"]').contains(value).scrollIntoView().forceClick()
+      cy.wrap(rsuitePickerPopupElement).find('[role="option"]').contains(value).scrollIntoView().forceClick().wait(250)
     })
 }

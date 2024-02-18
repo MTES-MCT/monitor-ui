@@ -59,9 +59,9 @@ export function MultiCascader<OptionValue extends OptionValueType = string>({
 
   const controlledClassName = useMemo(() => classnames('Field-MultiCascader', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
-  const rsuiteTreeItems = useMemo(() => getRsuiteTreeItemsFromTreeOptions<OptionValue>(options), [options])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([disabled, originalProps.name])
+  const rsuiteTreeItems = useMemo(() => getRsuiteTreeItemsFromTreeOptions<OptionValue>(options), [options])
   const selectedTreePositions = useMemo(
     () => (value ? getSelectedTreePositionsFromSelectedOptionValues(rsuiteTreeItems, value) : []),
     [rsuiteTreeItems, value]
