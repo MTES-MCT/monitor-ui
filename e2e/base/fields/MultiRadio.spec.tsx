@@ -40,7 +40,7 @@ function MultiRadioStory({ value, ...otherProps }: MultiRadioProps) {
 }
 
 Object.keys(OPTIONS_TYPES).forEach(optionType => {
-  context(`Story (${optionType} options)`, () => {
+  context(`With ${optionType} options`, () => {
     const options = OPTIONS_TYPES[optionType]
     const commonProps: MultiRadioProps = {
       label: 'A multiple radio',

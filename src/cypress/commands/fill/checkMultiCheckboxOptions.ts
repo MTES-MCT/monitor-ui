@@ -1,27 +1,16 @@
-const RETRIES = 5
-
-export function checkMultiCheckboxOptions(
-  fieldsetElement: HTMLElement,
-  values: string[] | undefined,
-  leftRetries: number = RETRIES
-) {
-  cy.wrap(fieldsetElement).scrollIntoView()
+export function checkMultiCheckboxOptions(fieldsetElement: HTMLElement, values: string[] | undefined, _label: string) {
+  cy.wrap(fieldsetElement).scrollIntoView({ offset: { left: 0, top: -100 } })
 
   cy.wrap(fieldsetElement).find('input[type="checkbox"]').uncheck({ force: true }).wait(250)
 
-  if (fieldsetElement.querySelector('[aria-checked="true"]') && leftRetries > 0) {
-    cy.wait(250).then(() => {
-      cy.log(`Retrying (${RETRIES - leftRetries + 1} / ${RETRIES})...`)
-
-      checkMultiCheckboxOptions(fieldsetElement, values, leftRetries - 1)
-    })
-
+  // If `values` is undefined, we don't need to check anything
+  if (!values) {
     return
   }
 
-  if (values) {
-    values.forEach(value => {
-      cy.wrap(fieldsetElement).find('label').contains(value).find('input[type="checkbox"]').check({ force: true })
-    })
-  }
+  values.forEach(value => {
+    cy.wrap(fieldsetElement).find('label').contains(value).find('input[type="checkbox"]').check({ force: true })
+  })
+
+  cy.wait(250)
 }

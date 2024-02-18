@@ -24,7 +24,7 @@ const OPTIONS_TYPES = {
 /* eslint-enable sort-keys-fix/sort-keys-fix */
 
 Object.keys(OPTIONS_TYPES).forEach(optionType => {
-  context(`Story (${optionType} options)`, () => {
+  context(`With ${optionType} options`, () => {
     const options = OPTIONS_TYPES[optionType]
     const commonProps: CheckPickerProps = {
       label: 'A check picker',
