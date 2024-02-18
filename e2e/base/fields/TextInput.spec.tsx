@@ -1,10 +1,25 @@
+import { useState } from 'react'
+
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
-import { _TextInput as TextInputStory } from '../../../stories/fields/TextInput.stories'
+import { Output } from '../../../.storybook/components/Output'
+import { useFieldControl, type TextInputProps, TextInput } from '../../../src'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
-import type { TextInputProps } from '../../../src'
+function TextInputStory({ value, ...otherProps }: TextInputProps) {
+  const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
 
-context('Story', () => {
+  const { controlledOnChange, controlledValue } = useFieldControl(value, setOutputValue)
+
+  return (
+    <>
+      <TextInput {...otherProps} onChange={controlledOnChange} value={controlledValue} />
+
+      {outputValue !== '∅' && <Output value={outputValue} />}
+    </>
+  )
+}
+
+context('Base', () => {
   const commonProps: TextInputProps = {
     label: 'A text input',
     name: 'myTextInput'

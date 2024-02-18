@@ -1,10 +1,25 @@
+import { useState } from 'react'
+
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
-import { _Textarea as TextareaStory } from '../../../stories/fields/Textarea.stories'
+import { Output } from '../../../.storybook/components/Output'
+import { useFieldControl, type TextareaProps, Textarea } from '../../../src'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
-import type { TextareaProps } from '../../../src'
+function TextareaStory({ value, ...otherProps }: TextareaProps) {
+  const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
 
-context('Story', () => {
+  const { controlledOnChange, controlledValue } = useFieldControl(value, setOutputValue)
+
+  return (
+    <>
+      <Textarea {...otherProps} onChange={controlledOnChange} value={controlledValue} />
+
+      {outputValue !== '∅' && <Output value={outputValue} />}
+    </>
+  )
+}
+
+context('Base', () => {
   const commonProps: TextareaProps = {
     label: 'A textarea',
     name: 'myTextarea'

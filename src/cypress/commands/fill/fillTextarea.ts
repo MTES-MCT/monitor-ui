@@ -1,7 +1,12 @@
-export function fillTextarea(textareaElement: HTMLTextAreaElement, value: string | undefined) {
-  cy.wrap(textareaElement).scrollIntoView().clear({ force: true })
+export function fillTextarea(fieldElement: HTMLDivElement, value: string | undefined, _label: string) {
+  cy.wrap(fieldElement).scrollIntoView({ offset: { left: 0, top: -100 } })
 
-  if (value) {
-    cy.wrap(textareaElement).scrollIntoView().type(value, { delay: 1, force: true })
+  cy.wrap(fieldElement).find('textarea').clear({ force: true }).wait(250)
+
+  // If `value` is undefined, we don't need to input anything
+  if (!value) {
+    return
   }
+
+  cy.wrap(fieldElement).find('textarea').type(value, { force: true }).wait(250)
 }

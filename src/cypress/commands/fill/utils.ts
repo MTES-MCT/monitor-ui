@@ -1,8 +1,21 @@
 import { throwError } from '../../utils/throwError'
 
+const throwAssertionError = (expectedType: string, component: string) =>
+  throwError(
+    `\`value\` should be of type \`${expectedType}\` in \`cy.fill(label, value)\` when used on a <${component} />.`
+  )
+
+export function assertBooleanOrUndefined(value: any, component: string): asserts value is boolean | undefined {
+  if (value === undefined || typeof value === 'boolean') {
+    return
+  }
+
+  throwAssertionError('boolean | undefined', component)
+}
+
 export function assertDateTupleOrDateWithTimeTupleOrUndefined(
   value: any,
-  element: string
+  component: string
 ): asserts value is Cypress.DateTuple | Cypress.DateWithTimeTuple | undefined {
   if (value === undefined) {
     return
@@ -16,14 +29,12 @@ export function assertDateTupleOrDateWithTimeTupleOrUndefined(
     return
   }
 
-  throwError(
-    `\`value\` should be of type \`DateTuple | DateWithTimeTuple | undefined\` in \`cy.fill(label, value)\` when used on a <${element} />.`
-  )
+  throwAssertionError('DateTuple | DateWithTimeTuple | undefined', component)
 }
 
 export function assertDateRangeTupleOrDateWithTimeRangeTupleOrUndefined(
   value: any,
-  element: string
+  component: string
 ): asserts value is Cypress.DateRangeTuple | Cypress.DateWithTimeRangeTuple | undefined {
   if (value === undefined) {
     return
@@ -41,37 +52,41 @@ export function assertDateRangeTupleOrDateWithTimeRangeTupleOrUndefined(
     return
   }
 
-  throwError(
-    `\`value\` should be of type \`DateRangeTuple | DateWithTimeRangeTuple | undefined\` in \`cy.fill(label, value)\` when used on a <${element} />.`
-  )
+  throwAssertionError('DateRangeTuple | DateWithTimeRangeTuple | undefined', component)
 }
 
-export function assertStringArrayOrUndefined(value: any, element: string): asserts value is string[] | undefined {
+export function assertNumberOrUndefined(value: any, component: string): asserts value is number | undefined {
+  if (value === undefined || typeof value === 'number') {
+    return
+  }
+
+  throwAssertionError('number | undefined', component)
+}
+
+export function assertString(value: any, component: string): asserts value is string {
+  if (typeof value === 'string') {
+    return
+  }
+
+  throwAssertionError('string', component)
+}
+
+export function assertStringOrUndefined(value: any, component: string): asserts value is string | undefined {
+  if (value === undefined || typeof value === 'string') {
+    return
+  }
+
+  throwAssertionError('string | undefined', component)
+}
+
+export function assertStringArrayOrUndefined(value: any, component: string): asserts value is string[] | undefined {
   if (value === undefined) {
     return
   }
 
-  if (!!value && Array.isArray(value) && value.every(valueItem => typeof valueItem === 'string')) {
+  if (Array.isArray(value) && value.every(valueItem => typeof valueItem === 'string')) {
     return
   }
 
-  throwError(
-    `\`value\` should be of type \`string[] | undefined\` in \`cy.fill(label. value)\` when used on a \`<${element} />\`.`
-  )
-}
-
-export function assertNumberOrUndefined(value: any, element: string): asserts value is number | undefined {
-  if (typeof value !== 'number' && value !== undefined) {
-    throwError(
-      `\`value\` should be of type \`number | undefined\` in \`cy.fill(label, value)\` when used on a <${element} />.`
-    )
-  }
-}
-
-export function assertStringOrUndefined(value: any, element: string): asserts value is string | undefined {
-  if (typeof value !== 'string' && value !== undefined) {
-    throwError(
-      `\`value\` should be of type \`string | undefined\` in \`cy.fill(label, value)\` when used on a <${element} />.`
-    )
-  }
+  throwAssertionError('string[] | undefined', component)
 }

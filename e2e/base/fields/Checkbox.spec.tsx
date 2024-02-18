@@ -1,10 +1,25 @@
+import { useState } from 'react'
+
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
-import { _Checkbox as CheckboxStory } from '../../../stories/fields/Checkbox.stories'
+import { Output } from '../../../.storybook/components/Output'
+import { Checkbox, useFieldControl, type CheckboxProps } from '../../../src'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
-import type { CheckboxProps } from '../../../src'
+function CheckboxStory({ checked, ...otherProps }: CheckboxProps) {
+  const [outputValue, setOutputValue] = useState<boolean | undefined | '∅'>('∅')
 
-context('Story', () => {
+  const { controlledOnChange, controlledValue: controlledChecked } = useFieldControl(checked, setOutputValue)
+
+  return (
+    <>
+      <Checkbox {...otherProps} checked={controlledChecked} onChange={controlledOnChange} />
+
+      {outputValue !== '∅' && <Output value={outputValue} />}
+    </>
+  )
+}
+
+context('Base', () => {
   const commonProps: CheckboxProps = {
     label: 'A checkbox',
     name: 'myCheckbox'

@@ -1,8 +1,23 @@
+import { useState } from 'react'
+
 import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
-import { _NumberInput as NumberInputStory } from '../../../stories/fields/NumberInput.stories'
+import { Output } from '../../../.storybook/components/Output'
+import { useFieldControl, type NumberInputProps, NumberInput } from '../../../src'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
-import type { NumberInputProps } from '../../../src'
+function NumberInputStory({ value, ...otherProps }: NumberInputProps) {
+  const [outputValue, setOutputValue] = useState<number | undefined | '∅'>('∅')
+
+  const { controlledOnChange, controlledValue } = useFieldControl(value, setOutputValue)
+
+  return (
+    <>
+      <NumberInput {...otherProps} onChange={controlledOnChange} value={controlledValue} />
+
+      {outputValue !== '∅' && <Output value={outputValue} />}
+    </>
+  )
+}
 
 context('Story', () => {
   const commonProps: NumberInputProps = {
