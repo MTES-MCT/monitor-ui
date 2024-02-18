@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
+import { useKey } from '@hooks/useKey'
 import classnames from 'classnames'
 import { useCallback, useMemo, type CSSProperties } from 'react'
 import { Checkbox as RsuiteCheckbox } from 'rsuite'
@@ -8,7 +9,6 @@ import styled from 'styled-components'
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
-import { getPseudoRandomString } from '../utils/getPseudoRandomString'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { CheckboxProps as RsuiteCheckboxProps } from 'rsuite'
@@ -40,10 +40,10 @@ export function Checkbox({
   const controlledClassName = useMemo(() => classnames('Field-Checkbox', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = getPseudoRandomString()
+  const key = useKey([originalProps.disabled, originalProps.name])
 
   const handleChange = useCallback(
-    (_: ValueType | undefined, isChecked: boolean) => {
+    (_nextValue: ValueType | undefined, isChecked: boolean) => {
       if (!onChange) {
         return
       }
@@ -66,7 +66,7 @@ export function Checkbox({
   )
 }
 
-const StyledCheckbox = styled(RsuiteCheckbox as any)`
+const StyledCheckbox = styled(RsuiteCheckbox)`
   > .rs-checkbox-checker {
     min-height: 0;
     padding-left: 28px;
