@@ -25,34 +25,26 @@ declare namespace Cypress {
     clickOutside(xPosition?: number, yPosition?: number): void
 
     /**
+     * @description
+     * You can set the `retries` parameter to a number greater than 5 (default) to retry the action in case of failure.
+     *
      * @example
      * ```ts
-     *   cy.fill('Text', 'Hello World')
-     *   cy.fill('Number', 42)
-     *   cy.fill('Checkbox', true)
-     *   cy.fill('Select / Radio', 'First Option')
-     *   cy.fill('Multiple Select', ['First Option', 'Second Option'])
-     *   cy.fill('Date', [2020, 12, 31])
-     *   cy.fill('Date Range', [[2020, 12, 31], [2021, 1, 1]])
+     *   cy.fill('My TextInput / Textarea', 'Hello World')
+     *   cy.fill('My NumberInput', 42)
+     *   cy.fill('My Checkbox', true) // or `false` to uncheck
+     *   cy.fill('My MultiRadio / Select', 'First Option')
+     *   cy.fill('My CheckPicker / MultiCheckbox / MultiSelect', ['First Option', 'Second Option'])
+     *   cy.fill('My DatePicker', [2020, 12, 31])
+     *   cy.fill('My DatePicker', [2020, 12, 31, 23, 59])
+     *   cy.fill('My DateRangePicker', [[2020, 12, 31], [2021, 1, 1]])
+     *   cy.fill('My DateRangePicker', [[2020, 12, 31, 23, 59], [2021, 1, 1, 23, 59]])
      *
-     *   // Empty the field
-     *   cy.fill('Date Range', undefined)
-     *
-     *   // Uncheck a checkbox
-     *   cy.fill('Date Range', false)
+     *   // Clear any field except the `<MultiRadio />` which can't be cleared
+     *   cy.fill('My Field', undefined)
      * ```
      */
-    fill(
-      label: string,
-      value:
-        | boolean
-        | number
-        | string
-        | string[]
-        | (DateTuple | DateWithTimeTuple)
-        | ([DateTuple, DateTuple] | [DateWithTimeTuple, DateWithTimeTuple])
-        | undefined
-    ): Chainable<Element>
+    fill(label: string, value: any, retries?: number): Chainable<Element>
 
     forceClick(): Chainable<JQuery<HTMLElement>>
 
