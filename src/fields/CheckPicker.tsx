@@ -66,11 +66,11 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([disabled, originalProps.name])
-  const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
   const selectedRsuiteValue = useMemo(
     () => getRsuiteDataItemValuesFromOptionValues(value, optionValueKey),
     [optionValueKey, value]
   )
+  const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
 
   const { forceUpdate } = useForceUpdate()
 
