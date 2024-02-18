@@ -1,7 +1,7 @@
+import { getSelectedOptionValueFromSelectedRsuiteDataItemValue } from '@utils/getSelectedOptionValueFromSelectedRsuiteDataItemValue'
 import classnames from 'classnames'
-import { equals } from 'ramda'
 import { useCallback, useMemo, type CSSProperties, type ReactNode } from 'react'
-import { Radio } from 'rsuite'
+import { Radio as RsuiteRadio, RadioGroup as RsuiteRadioGroup } from 'rsuite'
 import styled, { css } from 'styled-components'
 
 import { FieldError } from '../elements/FieldError'
@@ -56,22 +56,24 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   const controlledClassName = useMemo(() => classnames('Field-MultiRadio', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([value, disabled, name])
-
-  const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
+  const key = useKey([disabled, name])
   const selectedRsuiteValue = useMemo(
     () => (value ? getRsuiteDataItemValueFromOptionValue(value, optionValueKey) : undefined),
     [value, optionValueKey]
   )
+  const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
 
   const handleChange = useCallback(
-    (nextValue: OptionValue) => {
+    (nextRsuiteDataItemValue: string | null) => {
       if (!onChange) {
         return
       }
-      onChange(nextValue)
+
+      const nextOptionValue = getSelectedOptionValueFromSelectedRsuiteDataItemValue(rsuiteData, nextRsuiteDataItemValue)
+
+      onChange(nextOptionValue)
     },
-    [onChange]
+    [onChange, rsuiteData]
   )
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled && !isReadOnly, onChange)
@@ -86,28 +88,32 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
       legend={label}
       style={style}
     >
-      <Box key={key} $hasError={hasError} $isInline={isInline} $isReadOnly={isReadOnly}>
+      <StyledRsuiteRadioGroup
+        key={key}
+        $hasError={hasError}
+        $isInline={isInline}
+        $isReadOnly={isReadOnly}
+        name={name}
+        onChange={handleChange}
+        value={selectedRsuiteValue}
+      >
         {rsuiteData.map(rsuiteDataItem => (
-          <Radio
-            key={JSON.stringify(rsuiteDataItem.value)}
-            checked={equals(rsuiteDataItem.value, selectedRsuiteValue)}
+          <RsuiteRadio
             disabled={!!rsuiteDataItem.isDisabled || disabled}
-            name={name}
-            onChange={() => handleChange(rsuiteDataItem.optionValue)}
             readOnly={isReadOnly}
             value={rsuiteDataItem.value}
           >
             {renderMenuItem ? renderMenuItem(rsuiteDataItem.label, rsuiteDataItem.optionValue) : rsuiteDataItem.label}
-          </Radio>
+          </RsuiteRadio>
         ))}
-      </Box>
+      </StyledRsuiteRadioGroup>
 
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
     </Fieldset>
   )
 }
 
-const Box = styled.div<{
+const StyledRsuiteRadioGroup = styled(RsuiteRadioGroup)<{
   $hasError: boolean
   $isInline: boolean
   $isReadOnly: boolean
