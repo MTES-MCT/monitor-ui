@@ -1,6 +1,7 @@
 export function fillDatePicker(
   fieldsetElement: HTMLElement,
-  dateOrDateWithTimeTuple: Cypress.DateTuple | Cypress.DateWithTimeTuple | undefined
+  dateOrDateWithTimeTuple: Cypress.DateTuple | Cypress.DateWithTimeTuple | undefined,
+  _label: string
 ): void {
   const inputElements = fieldsetElement.querySelectorAll('input')
   if (inputElements.length !== 4 && inputElements.length !== 6) {

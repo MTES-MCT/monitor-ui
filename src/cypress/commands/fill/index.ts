@@ -1,25 +1,25 @@
-/* eslint-disable cypress/no-assigning-return-values */
-
 import { findElementParentBySelector } from 'cypress/utils/findElementParentBySelector'
-import { isEmpty } from 'ramda'
 
-// import { checkCheckbox } from './checkCheckbox'
+import { checkCheckbox } from './checkCheckbox'
 import { checkMultiCheckboxOptions } from './checkMultiCheckboxOptions'
 import { checkMultiRadioOption } from './checkMultiRadioOption'
 import { fillDatePicker } from './fillDatePicker'
 import { fillDateRangePicker } from './fillDateRangePicker'
+import { fillNumberInput } from './fillNumberInput'
 import { fillTextarea } from './fillTextarea'
 import { fillTextInput } from './fillTextInput'
 import { pickCheckPickerOptions } from './pickCheckPickerOptions'
 import { pickMultiSelectOptions } from './pickMultiSelectOptions'
 import { pickSelectOption } from './pickSelectOption'
 import {
+  assertBooleanOrUndefined,
   assertDateRangeTupleOrDateWithTimeRangeTupleOrUndefined,
   assertDateTupleOrDateWithTimeTupleOrUndefined,
+  assertNumberOrUndefined,
+  assertString,
   assertStringArrayOrUndefined,
   assertStringOrUndefined
 } from './utils'
-import { findElementBySelector } from '../../utils/findElementBySelector'
 import { findElementBytext } from '../../utils/findElementBytext'
 import { throwError } from '../../utils/throwError'
 
@@ -32,105 +32,81 @@ export function fill(label: string, value: any, leftRetries: number = RETRIES): 
 
     const labelElement = findElementBytext<HTMLLabelElement>('label', label)
     if (labelElement) {
-      if (isEmpty(labelElement.htmlFor)) {
-        throwError(`Could not find a \`for\` attribute on \`<label />\` "${label}".`)
+      const fieldElement = findElementParentBySelector<HTMLDivElement>(labelElement, '.Element-Field')
+      if (!fieldElement) {
+        throwError(`Could not find '.Element-Field' in field with label "${label}".`)
       }
 
-      const htmlForElement = findElementBySelector<HTMLDivElement>(`[id="${labelElement.htmlFor}"]`)
-      if (!htmlForElement) {
-        throwError(
-          [
-            `Could not find '[id="${labelElement.htmlFor}"]'`,
-            `which should match the \`for\` attribute value in field with \`<label />\` "${label}".`
-          ].join(' ')
-        )
-      }
-
-      // -----------------------------------------------------------------------
-      // CheckPicker, MultiCascader, MultiSelect, Select
-
-      if (htmlForElement.classList.contains('rs-picker-toggle')) {
-        const fieldElement = findElementParentBySelector<HTMLDivElement>(htmlForElement, '.Element-Field')
-        if (!fieldElement) {
-          throwError(`Could not find '.Element-Field' in field with label "${label}".`)
-        }
-
-        const rsuitePickerElement = findElementParentBySelector<HTMLDivElement>(htmlForElement, '.rs-picker')
-        if (!rsuitePickerElement) {
-          throwError(`Could not find '.rs-picker' in field with label "${label}".`)
-        }
-
-        switch (true) {
-          // -------------------------------------------------------------------
-          // CheckPicker
-
-          case rsuitePickerElement.classList.contains('rs-picker-check'):
-            assertStringArrayOrUndefined(value, 'CheckPicker')
-            pickCheckPickerOptions(fieldElement, value, label)
-
-            return
-
-          // -------------------------------------------------------------------
-          // MultiSelect
-
-          case rsuitePickerElement.classList.contains('rs-picker-tag'):
-            assertStringArrayOrUndefined(value, 'MultiSelect')
-            pickMultiSelectOptions(fieldElement, value, label)
-
-            return
-
-          // -------------------------------------------------------------------
-          // Select
-
-          case rsuitePickerElement.classList.contains('rs-picker-select'):
-            assertStringOrUndefined(value, 'Select')
-            pickSelectOption(fieldElement, value, label)
-
-            return
-
-          default:
-            throwError(
-              [
-                `\`cy.fill()\` can't handle Rsuite picker components with class "${rsuitePickerElement.className}"`,
-                `in field with \`<label>\` "${label}".`
-              ].join('\n')
-            )
-        }
-      }
-
-      // -----------------------------------------------------------------------
-      // NumberInput, TextInput, Textarea
-
-      switch (htmlForElement.tagName) {
+      switch (true) {
         // ---------------------------------------------------------------------
-        // NumberInput, TextInput
+        // Checkbox
 
-        case 'INPUT':
-          assertStringOrUndefined(value, 'TextInput')
-          fillTextInput(htmlForElement as HTMLInputElement, value)
+        case fieldElement.classList.contains('Field-Checkbox'):
+          assertBooleanOrUndefined(value, 'Checkbox')
+          checkCheckbox(fieldElement, value, label)
+
+          return
+
+        // ---------------------------------------------------------------------
+        // CheckPicker
+
+        case fieldElement.classList.contains('Field-CheckPicker'):
+          assertStringArrayOrUndefined(value, 'CheckPicker')
+          pickCheckPickerOptions(fieldElement, value, label)
+
+          return
+
+        // ---------------------------------------------------------------------
+        // MultiSelect
+
+        case fieldElement.classList.contains('Field-MultiSelect'):
+          assertStringArrayOrUndefined(value, 'MultiSelect')
+          pickMultiSelectOptions(fieldElement, value, label)
+
+          return
+
+        // ---------------------------------------------------------------------
+        // Select
+
+        case fieldElement.classList.contains('Field-Select'):
+          assertStringOrUndefined(value, 'Select')
+          pickSelectOption(fieldElement, value, label)
+
+          return
+
+        // ---------------------------------------------------------------------
+        // NumberInput
+
+        case fieldElement.classList.contains('Field-NumberInput'):
+          assertNumberOrUndefined(value, 'TextInput')
+          fillNumberInput(fieldElement, value, label)
 
           return
 
         // ---------------------------------------------------------------------
         // Textarea
 
-        case 'TEXTAREA':
+        case fieldElement.classList.contains('Field-Textarea'):
           assertStringOrUndefined(value, 'Textarea')
-          fillTextarea(htmlForElement as unknown as HTMLTextAreaElement, value)
+          fillTextarea(fieldElement, value, label)
+
+          return
+
+        // ---------------------------------------------------------------------
+        //  TextInput
+
+        case fieldElement.classList.contains('Field-TextInput'):
+          assertStringOrUndefined(value, 'TextInput')
+          fillTextInput(fieldElement, value, label)
 
           return
 
         default:
-          throwError(
-            [
-              `\`cy.fill()\` can't handle the input element with class "${htmlForElement.className}"`,
-              `in field with \`<label>\` "${label}".`
-            ].join(' ')
-          )
+          throwError(`\`cy.fill()\` can't handle field with \`<label>\` "${label}".`)
       }
     }
 
-    // -------------------------------------------------------------------------
+    // =========================================================================
     // If it's a field labelled by a `<legend />` element
 
     const legendElement = findElementBytext<HTMLLegendElement>('legend', label)
@@ -141,39 +117,39 @@ export function fill(label: string, value: any, leftRetries: number = RETRIES): 
       }
 
       switch (true) {
-        // -----------------------------------------------------------------------
+        // ---------------------------------------------------------------------
         // DatePicker
 
         case fieldsetElement.classList.contains('Field-DatePicker'):
           assertDateTupleOrDateWithTimeTupleOrUndefined(value, 'DatePicker')
-          fillDatePicker(fieldsetElement, value)
+          fillDatePicker(fieldsetElement, value, label)
 
           return
 
-        // -----------------------------------------------------------------------
+        // ---------------------------------------------------------------------
         // DateRangePicker
 
         case fieldsetElement.classList.contains('Field-DateRangePicker'):
           assertDateRangeTupleOrDateWithTimeRangeTupleOrUndefined(value, 'DateRangePicker')
-          fillDateRangePicker(fieldsetElement, value)
+          fillDateRangePicker(fieldsetElement, value, label)
 
           return
 
-        // -----------------------------------------------------------------------
+        // ---------------------------------------------------------------------
         // MultiCheckbox
 
         case fieldsetElement.classList.contains('Field-MultiCheckbox'):
           assertStringArrayOrUndefined(value, 'MultiCheckbox')
-          checkMultiCheckboxOptions(fieldsetElement, value)
+          checkMultiCheckboxOptions(fieldsetElement, value, label)
 
           return
 
-        // -----------------------------------------------------------------------
+        // ---------------------------------------------------------------------
         // MultiRadio
 
         case fieldsetElement.classList.contains('Field-MultiRadio'):
-          assertStringOrUndefined(value, 'MultiRadio')
-          checkMultiRadioOption(fieldsetElement, String(value))
+          assertString(value, 'MultiRadio')
+          checkMultiRadioOption(fieldsetElement, value, label)
 
           return
 
