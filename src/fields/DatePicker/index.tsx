@@ -284,9 +284,8 @@ export function DatePicker({
     setIsRangeCalendarPickerOpen(true)
   }, [])
 
-  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange, handleDisable)
-
   useClickOutsideEffect(boxRef, closeCalendarPicker, baseContainer)
+  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange, handleDisable)
   usePressEscapeEffect(closeCalendarPicker, baseContainer)
 
   useEffect(() => {
