@@ -18,6 +18,7 @@
  * (we return `.000Z` rather than `.999Z` because the backend does not handle milliseconds as expected).
  */
 
+import { usePressEscapeEffect } from '@hooks/usePressEscapeEffect'
 import classnames from 'classnames'
 import { isEqual } from 'lodash'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -402,9 +403,9 @@ export function DateRangePicker({
     setIsRangeCalendarPickerOpen(true)
   }, [])
 
-  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange, handleDisable)
-
   useClickOutsideEffect([endDateInputRef, startDateInputRef], closeRangeCalendarPicker, baseContainer)
+  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange, handleDisable)
+  usePressEscapeEffect(closeRangeCalendarPicker, baseContainer)
 
   useEffect(() => {
     if (!hasMountedRef.current) {
