@@ -1,3 +1,5 @@
+import { throwError } from '../../utils/throwError'
+
 export function fillDatePicker(
   fieldsetElement: HTMLElement,
   dateOrDateWithTimeTuple: Cypress.DateTuple | Cypress.DateWithTimeTuple | undefined,
@@ -5,57 +7,44 @@ export function fillDatePicker(
 ): void {
   const inputElements = fieldsetElement.querySelectorAll('input')
   if (inputElements.length !== 4 && inputElements.length !== 6) {
-    throw new Error(`Expected to find 4 or 6 inputs within in DatePicker but found ${inputElements.length}.`)
+    throwError(`Expected to find 4 or 6 inputs within in DatePicker but found ${inputElements.length}.`)
   }
+  const hasTimeInputs = inputElements.length === 6
 
-  const hasTimeInput = inputElements.length !== 4
-  const fieldsetElementOffsetLeft = fieldsetElement.offsetLeft
-    ? fieldsetElement.offsetLeft
-    : (() => {
-        if (!fieldsetElement.offsetParent) {
-          throw new Error('`fieldsetElement.offsetParent` is undefined.')
-        }
-
-        return (fieldsetElement.offsetParent as HTMLBodyElement).offsetLeft
-      })()
-  const fieldsetElementOffsetTop =
-    fieldsetElement.offsetTop !== 0
-      ? fieldsetElement.offsetTop
-      : (() => {
-          if (!fieldsetElement.offsetParent) {
-            throw new Error('`fieldsetElement.offsetParent` is undefined.')
-          }
-
-          return (fieldsetElement.offsetParent as HTMLBodyElement).offsetTop
-        })()
-
+  // Empty the inputs if `dateOrDateWithTimeTuple` is undefined
   if (!dateOrDateWithTimeTuple) {
+    // -------------------------------------------------------------------------
+    // Date without time
+
     cy.wrap(fieldsetElement).find('[aria-label="Jour"]').clear({ force: true })
     cy.wrap(fieldsetElement).find('[aria-label="Mois"]').clear({ force: true })
     cy.wrap(fieldsetElement).find('[aria-label="Année"]').clear({ force: true })
 
-    if (hasTimeInput) {
+    if (hasTimeInputs) {
       cy.wrap(fieldsetElement).find('[aria-label="Heure"]').clear({ force: true })
       cy.wrap(fieldsetElement).find('[aria-label="Minute"]').clear({ force: true })
     }
-
-    cy.clickOutside(fieldsetElementOffsetLeft, fieldsetElementOffsetTop - 1)
-    cy.wait(250)
-
-    return
   }
 
-  const [year, month, day, hour, minute] = dateOrDateWithTimeTuple
+  // Fill the inputs if `dateOrDateWithTimeTuple` is defined
+  else {
+    const [year, month, day] = dateOrDateWithTimeTuple
 
-  cy.wrap(fieldsetElement).find('[aria-label="Jour"]').type(String(day).padStart(2, '0'))
-  cy.wrap(fieldsetElement).find('[aria-label="Mois"]').type(String(month).padStart(2, '0'))
-  cy.wrap(fieldsetElement).find('[aria-label="Année"]').type(String(year))
+    cy.wrap(fieldsetElement).find('[aria-label="Jour"]').type(String(day).padStart(2, '0'))
+    cy.wrap(fieldsetElement).find('[aria-label="Mois"]').type(String(month).padStart(2, '0'))
+    cy.wrap(fieldsetElement).find('[aria-label="Année"]').type(String(year))
 
-  if (hasTimeInput) {
-    cy.wrap(fieldsetElement).find('[aria-label="Heure"]').type(String(hour).padStart(2, '0'))
-    cy.wrap(fieldsetElement).find('[aria-label="Minute"]').type(String(minute).padStart(2, '0'))
+    if (hasTimeInputs) {
+      const [hour, minute] = dateOrDateWithTimeTuple.slice(3)
+
+      cy.wrap(fieldsetElement).find('[aria-label="Heure"]').type(String(hour).padStart(2, '0'))
+      cy.wrap(fieldsetElement).find('[aria-label="Minute"]').type(String(minute).padStart(2, '0'))
+    }
   }
 
-  cy.clickOutside(fieldsetElementOffsetLeft, fieldsetElementOffsetTop - 1)
   cy.wait(250)
+
+  // Close the picker popup by pressing the escape key
+  cy.get('body').type('{esc}')
+  cy.wrap(fieldsetElement).find('.Field-DatePicker__CalendarPicker').should('not.be.visible')
 }
