@@ -35,7 +35,7 @@ export function pickMultiSelectOptions(fieldElement: HTMLDivElement, values: str
       })
 
       // Close the picker popup by pressing the escape key
-      cy.get('body').wait(250).type('{esc}')
+      cy.get('body').type('{esc}')
       cy.wrap(fieldElement).find('.rs-picker-popup').should('not.exist')
     })
 }
