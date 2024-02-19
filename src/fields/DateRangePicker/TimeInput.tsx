@@ -1,3 +1,4 @@
+import { usePressEscapeEffect } from '@hooks/usePressEscapeEffect'
 import { isEqual } from 'lodash'
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
@@ -169,6 +170,7 @@ function TimeInputWithRef(
   }, [baseDocument, closeRangedTimePicker, onChange])
 
   useClickOutsideEffect(boxRef, closeRangedTimePicker, baseContainer)
+  usePressEscapeEffect(closeRangedTimePicker, baseContainer)
 
   useEffect(() => {
     if (isEqual(value, previousValue) || isFocused) {

@@ -20,6 +20,7 @@ import { Fieldset } from '@elements/Fieldset'
 import { useClickOutsideEffect } from '@hooks/useClickOutsideEffect'
 import { useFieldUndefineEffect } from '@hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '@hooks/useForceUpdate'
+import { usePressEscapeEffect } from '@hooks/usePressEscapeEffect'
 import { usePrevious } from '@hooks/usePrevious'
 import { customDayjs } from '@utils/customDayjs'
 import { normalizeString } from '@utils/normalizeString'
@@ -117,9 +118,9 @@ export function DatePicker({
   ...nativeProps
 }: DatePickerProps) {
   /* eslint-disable no-null/no-null */
-  const boxRef = useRef<HTMLDivElement>(null)
-  const dateInputRef = useRef<DateInputRef>(null)
-  const timeInputRef = useRef<TimeInputRef>(null)
+  const boxRef = useRef<HTMLDivElement | null>(null)
+  const dateInputRef = useRef<DateInputRef | null>(null)
+  const timeInputRef = useRef<TimeInputRef | null>(null)
   /* eslint-enable no-null/no-null */
 
   const hasMountedRef = useRef(false)
@@ -286,6 +287,7 @@ export function DatePicker({
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange, handleDisable)
 
   useClickOutsideEffect(boxRef, closeCalendarPicker, baseContainer)
+  usePressEscapeEffect(closeCalendarPicker, baseContainer)
 
   useEffect(() => {
     if (!hasMountedRef.current) {
