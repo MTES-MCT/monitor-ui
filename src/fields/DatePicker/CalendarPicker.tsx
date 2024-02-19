@@ -90,6 +90,7 @@ export const Box = styled.div`
     border-radius: 0;
     font-size: 13px;
     left: 0 !important;
+    top: 2px !important;
     line-height: 1;
     padding: 0;
 
