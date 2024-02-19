@@ -44,7 +44,8 @@ export function fillDatePicker(
 
   cy.wait(250)
 
-  // Close the picker popup by pressing the escape key
+  // Close the calendar & ranged time picker popup by pressing the escape key
   cy.get('body').type('{esc}')
   cy.wrap(fieldsetElement).find('.Field-DatePicker__CalendarPicker').should('not.be.visible')
+  cy.wrap(fieldsetElement).find('.Field-DateRangePicker__RangedTimePicker').should('not.exist')
 }

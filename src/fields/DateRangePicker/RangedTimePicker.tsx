@@ -92,7 +92,7 @@ export function RangedTimePicker({ filter, minutesRange, onChange }: RangedTimeP
   }
 
   return (
-    <Box onClick={stopMouseEventPropagation} role="listbox">
+    <Box className="Field-DateRangePicker__RangedTimePicker" onClick={stopMouseEventPropagation} role="listbox">
       {filteredRangedTimeOptions.map(({ label, value }, index) => (
         <Option
           key={label}

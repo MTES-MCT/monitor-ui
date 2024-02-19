@@ -38,7 +38,8 @@ export function RangeCalendarPicker({
   isOpen,
   onChange
 }: RangeCalendarPickerProps) {
-  const boxRef = useRef<HTMLDivElement>()
+  // eslint-disable-next-line no-null/no-null
+  const boxRef = useRef<HTMLDivElement | null>(null)
   // It's called "first" and "second" because the calendar can also be picked from right to left,
   // that's why we sort these first and second dates before calling `onChange()`
   // in order to distinguish the start date from the end date
@@ -89,7 +90,7 @@ export function RangeCalendarPicker({
   }, [forceUpdate])
 
   return (
-    <Box ref={boxRef as any} onClick={stopMouseEventPropagation}>
+    <Box ref={boxRef} className="Field-DateRangePicker__RangeCalendarPicker" onClick={stopMouseEventPropagation}>
       {boxRef.current && (
         <RsuiteDateRangePicker
           container={boxRef.current}
