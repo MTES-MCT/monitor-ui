@@ -1,6 +1,6 @@
 import { throwError } from 'cypress/utils/throwError'
 
-export function pickMultiSelectOptions(fieldElement: HTMLDivElement, values: string[] | undefined, fieldLabel: string) {
+export function pickMultiSelectOptions(fieldElement: HTMLDivElement, values: string[] | undefined, label: string) {
   cy.wrap(fieldElement).scrollIntoView({ offset: { left: 0, top: -100 } })
 
   // Clear the field if there is a clear button
@@ -21,7 +21,7 @@ export function pickMultiSelectOptions(fieldElement: HTMLDivElement, values: str
     .get('.rs-picker-popup')
     .then(([rsuitePickerPopupElement]) => {
       if (!rsuitePickerPopupElement) {
-        throwError(`Could not find '.rs-picker-popup' in in field with label "${fieldLabel}". Did the picker open?`)
+        throwError(`Could not find '.rs-picker-popup' in in field with label "${label}". Did the picker open?`)
       }
 
       const maybeSearchInput = rsuitePickerPopupElement.querySelector('input[role="searchbox"]')
