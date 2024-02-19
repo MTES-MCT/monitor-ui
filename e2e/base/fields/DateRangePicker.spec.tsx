@@ -2,7 +2,7 @@ import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDec
 import Meta, { _DateRangePicker as DateRangePickerStory } from '../../../stories/fields/DateRangePicker.stories'
 import { mountAndWait, outputShouldBe } from '../utils'
 
-context('Base', () => {
+context('Without time inputs', () => {
   beforeEach(() => {
     mountAndWait(
       <GlobalDecoratorWrapper>
@@ -88,8 +88,8 @@ context('Base', () => {
     outputShouldBe(['2024-01-01T00:00:00.000Z', '2024-04-03T23:59:59.000Z'])
 
     cy.get('button[aria-label="Previous month"]').first().click()
-    cy.get('div[role="button"][title="11/12/2023"]').click()
-    cy.get('div[role="button"][title="08/01/2024"]').click()
+    cy.get('div[role="gridcell"][title="11/12/2023"]').click()
+    cy.get('div[role="gridcell"][title="08/01/2024"]').click()
 
     cy.get('input[aria-label="Jour de début"]').should('have.value', '11')
     cy.get('input[aria-label="Mois de début"]').should('have.value', '12')
@@ -101,7 +101,7 @@ context('Base', () => {
   })
 })
 
-context('Base (with time)', () => {
+context('With time inputs', () => {
   beforeEach(() => {
     mountAndWait(
       <GlobalDecoratorWrapper>
@@ -214,8 +214,8 @@ context('Base (with time)', () => {
     outputShouldBe(['2024-01-01T13:34:00.000Z', '2024-04-03T23:56:59.000Z'])
 
     cy.get('button[aria-label="Previous month"]').first().click()
-    cy.get('div[role="button"][title="11/12/2023"]').click()
-    cy.get('div[role="button"][title="08/01/2024"]').click()
+    cy.get('div[role="gridcell"][title="11/12/2023"]').click()
+    cy.get('div[role="gridcell"][title="08/01/2024"]').click()
 
     cy.get('input[aria-label="Heure de début"]').should('have.focus')
     cy.get('input[aria-label="Jour de début"]').should('have.value', '11')
