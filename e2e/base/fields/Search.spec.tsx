@@ -22,11 +22,10 @@ const OPTIONS_TYPES = {
     { label: 'Third Option', value: { id: 2, name: 'Third Option Name' } }
   ]
 }
-
 /* eslint-enable sort-keys-fix/sort-keys-fix */
 
 Object.keys(OPTIONS_TYPES).forEach(optionType => {
-  context(`Story (${optionType} options)`, () => {
+  context(`With (${optionType} options`, () => {
     const options = OPTIONS_TYPES[optionType]
     const commonProps: SearchProps = {
       label: 'A search',
@@ -49,9 +48,12 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       outputShouldNotBe()
 
       cy.fill('A search', 'first')
-      cy.get('div[role="option"] > span').contains('First Option').click()
 
       outputShouldBe(options[0].value)
+
+      cy.fill('A search', 'second')
+
+      outputShouldBe(options[1].value)
     })
   })
 })

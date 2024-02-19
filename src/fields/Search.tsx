@@ -195,6 +195,7 @@ export function Search<OptionValue extends OptionValueType = string>({
           <>
             <StyledCloseButton
               accent={Accent.TERTIARY}
+              className="Field-Search__ClearButton"
               color={THEME.color.slateGray}
               Icon={Close}
               isSearchIconVisible={isSearchIconVisible}

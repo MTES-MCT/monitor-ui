@@ -10,6 +10,7 @@ import { fillTextarea } from './fillTextarea'
 import { fillTextInput } from './fillTextInput'
 import { pickCheckPickerOptions } from './pickCheckPickerOptions'
 import { pickMultiSelectOptions } from './pickMultiSelectOptions'
+import { pickSearchOption } from './pickSearchOption'
 import { pickSelectOption } from './pickSelectOption'
 import {
   assertBooleanOrUndefined,
@@ -62,6 +63,15 @@ export function fill(label: string, value: any, leftRetries: number = RETRIES): 
         case fieldElement.classList.contains('Field-MultiSelect'):
           assertStringArrayOrUndefined(value, 'MultiSelect')
           pickMultiSelectOptions(fieldElement, value, label)
+
+          return
+
+        // ---------------------------------------------------------------------
+        // Search
+
+        case fieldElement.classList.contains('Field-Search'):
+          assertStringOrUndefined(value, 'Search')
+          pickSearchOption(fieldElement, value, label)
 
           return
 
