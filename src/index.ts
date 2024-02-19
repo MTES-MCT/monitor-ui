@@ -113,6 +113,7 @@ export { useFieldControl } from './hooks/useFieldControl'
 export { useForceUpdate } from './hooks/useForceUpdate'
 export { useKey } from './hooks/useKey'
 export { NewWindowContext, useNewWindow } from './hooks/useNewWindow'
+export { usePressEscapeEffect } from './hooks/usePressEscapeEffect'
 export { usePrevious } from './hooks/usePrevious'
 
 /* -----------------------------------------------------------------------------
