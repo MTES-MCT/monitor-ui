@@ -173,8 +173,8 @@ export namespace ControlUnit {
   export type ControlUnitResourceData = Omit<ControlUnitResource, 'controlUnit' | 'station'>
   export type NewControlUnitResourceData = Omit<ControlUnitResourceData, 'id'>
 
-  export type EngagedControlUnits = {
+  export type EngagedControlUnit = {
     controlUnit: ControlUnit
     missionSources: Mission.MissionSourceEnum[]
-  }[]
+  }
 }
