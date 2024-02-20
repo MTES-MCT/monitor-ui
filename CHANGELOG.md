@@ -1,3 +1,15 @@
+## [11.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.7.2...v11.8.0) (2024-02-20)
+
+
+### Features
+
+* **fields:** add RichBooleanCheckbox ([ac36b4b](https://github.com/MTES-MCT/monitor-ui/commit/ac36b4b9914eba55d412685e3ea79f06e64a44ab))
+
+
+### Bug Fixes
+
+* **type:** update EngagedControlUnit type ([6bc3cac](https://github.com/MTES-MCT/monitor-ui/commit/6bc3cacc6046aad0e9aafdcaaf352e170a7966e6))
+
 ## [11.7.2](https://github.com/MTES-MCT/monitor-ui/compare/v11.7.1...v11.7.2) (2024-02-12)
 
 
