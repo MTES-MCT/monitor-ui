@@ -14,6 +14,7 @@
     [
       "@semantic-release/commit-analyzer",
       {
+        "preset": "conventionalcommits",
         "releaseRules": [
           {
             "type": "build",
@@ -26,12 +27,25 @@
             "release": "patch"
           },
           {
+            "type": "build",
+            "scope": "peer-deps",
+            "release": "major"
+          },
+          {
+            "type": "ci",
+            "release": false
+          },
+          {
             "type": "docs",
             "release": "patch"
           },
           {
             "type": "feat",
             "release": "minor"
+          },
+          {
+            "type": "lint",
+            "release": false
           },
           {
             "type": "perf",
@@ -42,8 +56,16 @@
             "release": "patch"
           },
           {
+            "type": "revert",
+            "release": "patch"
+          },
+          {
             "type": "style",
             "release": "patch"
+          },
+          {
+            "type": "test",
+            "release": false
           }
         ]
       }
@@ -58,39 +80,62 @@
       "@semantic-release/release-notes-generator",
       {
         "preset": "conventionalcommits",
-        "writerOpts": {
+        "presetConfig": {
           "types": [
             {
-              "type": "feat",
-              "section": "Features"
+              "type": "build",
+              "section": "Buid System & Dependencies",
+              "hidden": false
             },
             {
-              "type": "perf",
-              "section": "Performance Improvements"
-            },
-            {
-              "type": "fix",
-              "section": "Bug Fixes"
-            },
-            {
-              "type": "revert",
-              "section": "Reverts"
+              "type": "ci",
+              "section": "Continuous Integration",
+              "hidden": true
             },
             {
               "type": "docs",
-              "section": "Documentation"
+              "section": "Documentation",
+              "hidden": false
             },
             {
-              "type": "style",
-              "section": "Styles"
+              "type": "feat",
+              "section": "Features",
+              "hidden": false
+            },
+            {
+              "type": "fix",
+              "section": "Bug Fixes",
+              "hidden": false
+            },
+            {
+              "type": "lint",
+              "section": "Linting",
+              "hidden": true
+            },
+            {
+              "type": "perf",
+              "section": "Performance Improvements",
+              "hidden": false
             },
             {
               "type": "refactor",
-              "section": "Code Refactoring"
+              "section": "Code Refactoring",
+              "hidden": false
             },
             {
-              "type": "build",
-              "section": "Dependencies Upgrades"
+              "type": "revert",
+              "section": "Reverts",
+              "hidden": false
+            },
+            {
+              "type": "style",
+              "section": "Styles",
+              "hidden": false
+            },
+            {
+              "type": "test",
+              "section": "Tests",
+              "hidden": true
             }
           ]
         }
