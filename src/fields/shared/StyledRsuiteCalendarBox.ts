@@ -54,6 +54,8 @@ export const StyledRsuiteCalendarBox = styled.div`
             padding: 0;
 
             > .rs-calendar-header-month-toolbar {
+              padding: 0 6px;
+
               > .rs-calendar-header-backward {
                 color: ${p => p.theme.color.slateGray};
                 padding: 5.5px 6px 6.5px;
@@ -84,7 +86,7 @@ export const StyledRsuiteCalendarBox = styled.div`
 
           /* Calendar table */
           > .rs-calendar-body {
-            padding: 0;
+            padding: 8px;
 
             > [role='grid'] {
               width: unset;
