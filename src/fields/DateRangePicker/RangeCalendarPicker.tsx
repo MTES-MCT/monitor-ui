@@ -1,6 +1,6 @@
+import { StyledRsuiteCalendarBox } from 'fields/shared/StyledRsuiteCalendarBox'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { DateRangePicker as RsuiteDateRangePicker } from 'rsuite'
-import styled from 'styled-components'
 
 import { RSUITE_CALENDAR_LOCALE } from './constants'
 import { getDateTupleFromUtcDate } from './utils'
@@ -90,7 +90,11 @@ export function RangeCalendarPicker({
   }, [forceUpdate])
 
   return (
-    <Box ref={boxRef} className="Field-DateRangePicker__RangeCalendarPicker" onClick={stopMouseEventPropagation}>
+    <StyledRsuiteCalendarBox
+      ref={boxRef}
+      className="Field-DateRangePicker__RangeCalendarPicker"
+      onClick={stopMouseEventPropagation}
+    >
       {boxRef.current && (
         <RsuiteDateRangePicker
           container={boxRef.current}
@@ -106,172 +110,6 @@ export function RangeCalendarPicker({
           value={controlledValue ?? null}
         />
       )}
-    </Box>
+    </StyledRsuiteCalendarBox>
   )
 }
-
-const Box = styled.div`
-  position: relative;
-  user-select: none;
-
-  > .rs-picker {
-    display: none;
-  }
-
-  > .rs-picker-popup {
-    border: solid 1px ${p => p.theme.color.lightGray};
-    border-radius: 0;
-    font-size: 13px;
-    left: 0 !important;
-    top: 2px !important;
-    line-height: 1;
-    padding: 0;
-
-    > .rs-picker-daterange-panel {
-      > .rs-stack {
-        > .rs-stack-item {
-          > .rs-picker-daterange-content {
-            .rs-picker-daterange-header,
-            .rs-calendar-header-time-toolbar,
-            .rs-picker-toolbar {
-              display: none;
-            }
-            .rs-picker-daterange-calendar-group {
-              min-width: 528px;
-            }
-            .rs-picker-daterange-calendar-group,
-            .rs-picker-daterange-calendar-single {
-              height: auto;
-
-              > .rs-calendar {
-                height: auto !important;
-                line-height: 1.3846;
-                padding: 0;
-
-                &:first-child {
-                  border-right: solid 1px ${p => p.theme.color.lightGray};
-                }
-
-                > .rs-calendar-header {
-                  border-bottom: solid 1px ${p => p.theme.color.lightGray};
-                  padding: 8px;
-
-                  > .rs-calendar-header-month-toolbar {
-                    align-items: center;
-                    color: ${p => p.theme.color.slateGray};
-                    display: flex;
-                    justify-content: space-between;
-
-                    > .rs-calendar-header-backward {
-                      color: ${p => p.theme.color.slateGray};
-                    }
-
-                    > .rs-calendar-header-title {
-                      color: ${p => p.theme.color.slateGray};
-                      font-size: 13px;
-                      font-weight: 500;
-                      padding: 5px 8px 6px;
-                      text-transform: uppercase;
-
-                      &.rs-calendar-header-error {
-                        color: ${p => p.theme.color.slateGray};
-
-                        &:hover {
-                          color: ${p => p.theme.color.slateGray};
-                        }
-                      }
-                    }
-
-                    > .rs-calendar-header-forward {
-                      color: ${p => p.theme.color.slateGray};
-                    }
-                  }
-                }
-
-                > .rs-calendar-body {
-                  padding: 12px 8px 0;
-
-                  .rs-calendar-table-cell {
-                    padding: 0 0 4px 0;
-                    width: 33px;
-
-                    &.rs-calendar-table-cell-in-range:before {
-                      background-color: ${p => p.theme.color.blueGray25};
-                      height: 33px;
-                      margin-top: 0;
-                    }
-
-                    > .rs-calendar-table-cell-content {
-                      border-radius: 0 !important;
-                      display: inline-flex;
-                      height: 33px;
-                      justify-content: center;
-                      line-height: 1;
-                      padding: 7px 0 0;
-                      width: 33px;
-                    }
-                    &:hover .rs-calendar-table-cell-content {
-                      background-color: ${p => p.theme.color.blueYonder25};
-                      color: ${p => p.theme.color.blueYonder};
-                    }
-                    &[role='columnheader'] .rs-calendar-table-cell-content,
-                    &[role='columnheader']:hover .rs-calendar-table-cell-content {
-                      background-color: transparent;
-                      color: ${p => p.theme.color.slateGray};
-                    }
-                    &.rs-calendar-table-cell-disabled .rs-calendar-table-cell-content {
-                      background-color: transparent;
-                      color: ${p => p.theme.color.lightGray};
-                    }
-                    &.rs-calendar-table-cell-selected > .rs-calendar-table-cell-content {
-                      background-color: ${p => p.theme.color.blueGray};
-                    }
-                  }
-                }
-
-                > .rs-calendar-month-dropdown {
-                  border: 0;
-                  margin-top: 3px;
-
-                  .rs-calendar-month-dropdown-year {
-                    color: ${p => p.theme.color.slateGray};
-
-                    &.rs-calendar-month-dropdown-year-active {
-                      color: ${p => p.theme.color.blueYonder};
-                    }
-                  }
-
-                  .rs-calendar-month-dropdown-cell {
-                    > .rs-calendar-month-dropdown-cell-content {
-                      border-radius: 0 !important;
-                      color: ${p => p.theme.color.gunMetal};
-                      display: inline-flex;
-                      height: 33px;
-                      justify-content: center;
-                      line-height: 1;
-                      padding: 8px 0 0;
-                      width: 33px;
-                    }
-                    &:hover > .rs-calendar-month-dropdown-cell-content {
-                      background-color: ${p => p.theme.color.blueYonder25};
-                      color: ${p => p.theme.color.blueYonder};
-                    }
-                    &.rs-calendar-month-dropdown-cell-active > .rs-calendar-month-dropdown-cell-content {
-                      background-color: ${p => p.theme.color.blueGray};
-                      color: ${p => p.theme.color.white};
-                    }
-                  }
-                }
-              }
-            }
-          }
-
-          /* Submit button (below tables) */
-          .rs-picker-toolbar {
-            display: none;
-          }
-        }
-      }
-    }
-  }
-`
