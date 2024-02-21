@@ -122,21 +122,21 @@ const Box = styled.div`
   /* Non-WebKit Firefox Compatibility */
   scrollbar-color: ${p => p.theme.color.lightGray};
   scrollbar-width: thin;
-  top: 32px;
+  top: 30px;
   width: 100%;
   z-index: 9999;
 
-  ::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     -webkit-appearance: none;
   }
-  ::-webkit-scrollbar:vertical {
+  &::-webkit-scrollbar:vertical {
     width: 5px;
   }
-  ::-webkit-scrollbar-thumb {
+  &::-webkit-scrollbar-thumb {
     border: 0;
     background-color: ${p => p.theme.color.lightGray};
   }
-  ::-webkit-scrollbar-track {
+  &::-webkit-scrollbar-track {
     background-color: ${p => p.theme.color.gainsboro};
   }
 `
@@ -148,9 +148,9 @@ const Option = styled.div<{
   color: ${p => (p.isSelected ? p.theme.color.white : p.theme.color.gunMetal)};
   cursor: pointer;
   line-height: 1;
-  padding: 5px 0 7px 6.5px;
+  padding: 8.5px 0 10.5px 8px;
 
-  :hover {
+  &:hover {
     background-color: ${p => (p.isSelected ? p.theme.color.blueGray : p.theme.color.blueYonder25)};
   }
 
