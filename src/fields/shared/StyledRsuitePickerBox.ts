@@ -16,9 +16,9 @@ export const StyledRsuitePickerBox = styled.div<{
       background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
       border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.lightGray)} !important;
       font-size: 13px;
-      height: 32px;
+      height: 30px;
       line-height: 1.3846;
-      padding: 5px 40px 0 8px !important;
+      padding: 3.5px 40px 0 8px !important;
 
       &:hover {
         border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueYonder)} !important;
@@ -40,11 +40,11 @@ export const StyledRsuitePickerBox = styled.div<{
           > .rs-picker-caret-icon {
             cursor: pointer;
             height: 18px;
-            top: 5.5px;
+            top: 4px;
           }
 
           > .rs-picker-clean {
-            top: 4.5px;
+            top: 3.5px;
           }
         }
       }
