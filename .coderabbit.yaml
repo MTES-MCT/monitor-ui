@@ -1,0 +1,27 @@
+language: 'fr'
+early_access: true
+reviews:
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  review_status: false
+  collapse_walkthrough: false
+  path_filters:
+    - '!**/.xml'
+  path_instructions:
+    - path: '**/*.[jt]sx?'
+      instructions: |
+        - Keep your comments short.
+        - Check for typos and bad English naming.
+        - Avoid general concepts and focus on the code.
+        - Suggest code change with concrete code.
+  auto_review:
+    drafts: false
+    enabled: true
+    labels:
+      - coderabbit
+    base_branches:
+      - 'main'
+
+chat:
+  auto_reply: true
