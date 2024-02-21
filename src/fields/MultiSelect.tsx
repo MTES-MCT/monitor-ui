@@ -155,26 +155,6 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 }
 
 const Box = styled(StyledRsuitePickerBox)`
-  /* StyledRsuitePickerBox Overrides */
-  > .rs-picker-toggle-wrapper {
-    > .rs-picker-toggle {
-      padding: 4px 40px 0 8px !important;
-
-      > .rs-stack {
-        > .rs-stack-item {
-          > .rs-picker-caret-icon {
-            cursor: pointer;
-            top: 4.5px;
-          }
-
-          > .rs-picker-clean {
-            top: 3.5px;
-          }
-        }
-      }
-    }
-  }
-
   /* Custom Styles */
   > .rs-picker-toggle-wrapper {
     border: 0 !important;
@@ -209,7 +189,7 @@ const Box = styled(StyledRsuitePickerBox)`
           background-color: ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
           font-size: 11px;
           line-height: 1.3636; // = 15px
-          margin: 6px 0 0 6px;
+          margin: 5px 0 0 5px;
 
           > .rs-tag-icon-close {
             bottom: 1px;

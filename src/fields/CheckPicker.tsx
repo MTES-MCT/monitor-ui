@@ -155,16 +155,9 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
 }
 
 const Box = styled(StyledRsuitePickerBox)`
-  /* StyledRsuitePickerBox Overrides */
-  > .rs-picker-toggle-wrapper {
-    > .rs-picker-toggle {
-      padding: 5px 40px 0 8px !important;
-    }
-  }
-
   /* Custom Styles */
   > .rs-picker-toggle-wrapper {
-    > .rs-picker-toggle {
+    > [role='combobox'] {
       > .rs-stack {
         > .rs-stack-item {
           > .rs-picker-toggle-value {
@@ -172,8 +165,8 @@ const Box = styled(StyledRsuitePickerBox)`
               background-color: ${p => p.theme.color.charcoal} !important;
               border-radius: 50%;
               line-height: 1;
-              margin: 0.5px 0 0 4px;
-              padding: 2px 6px 4px !important;
+              margin: 1.5px 0 0 4px;
+              padding: 1.5px 6px 3.5px !important;
             }
           }
         }
