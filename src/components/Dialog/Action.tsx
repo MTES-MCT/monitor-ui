@@ -20,7 +20,10 @@ export const Action = styled.div`
   @media (min-width: 740px) {
     > button {
       margin-bottom: 0;
-      margin-right: 2px;
+
+      &:first-child {
+        margin-right: 8px;
+      }
     }
   }
 `
