@@ -200,6 +200,10 @@ export const StyledRsuitePickerBox = styled.div<{
             }
           }
 
+          &.rs-check-item-focus {
+            background-color: transparent;
+          }
+
           &.rs-checkbox-checked {
             background-color: transparent;
 
