@@ -32,7 +32,7 @@ const meta: Meta<FormikCoordinatesInputProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

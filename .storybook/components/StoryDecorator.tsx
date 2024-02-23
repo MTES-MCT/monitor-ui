@@ -9,12 +9,14 @@ import type { StoryContext, StoryFn, StrictArgs } from '@storybook/react'
 import type { ForwardedRef, MutableRefObject } from 'react'
 
 export function generateStoryDecorator({
-  fixedWidth,
-  hasDarkMode = false,
+  box,
+  hasLightMode = false,
   withNewWindowButton = false
 }: {
-  fixedWidth?: number
-  hasDarkMode?: boolean
+  box?: {
+    width: number
+  }
+  hasLightMode?: boolean
   withNewWindowButton?: boolean
 } = {}) {
   return function StoryDecorator(Story: StoryFn, { args }: StoryContext) {
@@ -24,12 +26,14 @@ export function generateStoryDecorator({
 
     const style = useMemo(
       () => ({
-        ...(fixedWidth
+        ...(box
           ? {
-              width: `${fixedWidth}px`
+              borderRight: `1px solid ${THEME.color.cultured}`,
+              paddingRight: 16,
+              width: box.width + 16
             }
           : {}),
-        ...(hasDarkMode
+        ...(hasLightMode
           ? {
               backgroundColor: args.isLight ? THEME.color.gainsboro : THEME.color.white
             }
@@ -126,8 +130,9 @@ const StoryBox = styled.div`
 const NewWindowButtonBox = styled.div`
   position: fixed;
   right: 16px;
-  top: 16px;
+  bottom: 16px;
 `
+
 const NewWindowStoryBox = styled.div`
   height: 100%;
   padding: 16px;

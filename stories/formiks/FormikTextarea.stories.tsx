@@ -30,7 +30,7 @@ const meta: Meta<FormikTextareaProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

@@ -1,23 +1,26 @@
 import { noop } from 'lodash/fp'
 
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
 import { Accent, Button, Dialog } from '../../src'
 
 import type { DialogProps } from '../../src'
 import type { Meta } from '@storybook/react'
 
-const args: DialogProps = {
-  isAbsolute: false
-}
-
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<DialogProps> = {
+  ...META_DEFAULTS,
+
   title: 'Components/Dialog',
   component: Dialog,
 
-  argTypes: {},
+  argTypes: {
+    isAbsolute: ARG_TYPE.OPTIONAL_BOOLEAN
+  },
 
-  args,
+  args: {
+    isAbsolute: false
+  },
 
   decorators: [generateStoryDecorator()]
 }

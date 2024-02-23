@@ -37,7 +37,7 @@ const meta: Meta<RichBooleanCheckboxProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

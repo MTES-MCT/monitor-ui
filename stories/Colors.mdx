@@ -1,0 +1,15 @@
+import { sortBy } from 'lodash'
+import { Box, ColorCell } from '../.storybook/components/ColorsDocs'
+import { THEME } from '../src'
+
+# Colors
+
+<Box>
+  {sortBy(Object.entries(THEME.color), [
+    ([key]) => {
+      return key
+    }
+  ]).map(([key, value]) => (
+    <ColorCell key={key} name={key} value={value} />
+  ))}
+</Box>

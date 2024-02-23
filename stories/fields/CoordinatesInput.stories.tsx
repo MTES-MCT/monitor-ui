@@ -36,7 +36,7 @@ const meta: Meta<CoordinatesInputProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

@@ -40,7 +40,7 @@ const meta: Meta<ToggleProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

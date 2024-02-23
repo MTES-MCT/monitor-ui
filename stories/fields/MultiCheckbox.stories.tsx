@@ -85,7 +85,7 @@ const meta: Meta<MultiCheckboxProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

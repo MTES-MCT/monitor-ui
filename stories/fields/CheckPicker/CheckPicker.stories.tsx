@@ -48,7 +48,7 @@ const meta: Meta<CheckPickerProps<string>> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true,
+      hasLightMode: true,
       withNewWindowButton: true
     })
   ]

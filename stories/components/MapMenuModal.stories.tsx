@@ -13,6 +13,8 @@ const meta: Meta<{}> = {
 
   argTypes: {},
 
+  args: {},
+
   decorators: [generateStoryDecorator()]
 }
 /* eslint-enable sort-keys-fix/sort-keys-fix */

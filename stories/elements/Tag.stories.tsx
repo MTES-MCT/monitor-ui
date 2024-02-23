@@ -63,7 +63,7 @@ const meta: Meta<TagProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

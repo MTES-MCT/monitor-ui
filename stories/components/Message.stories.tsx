@@ -1,66 +1,69 @@
 import styled from 'styled-components'
 
+import { Showcase } from '../../.storybook/components/Showcase'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { ARG_TYPE, LOREM_IPSUM, META_DEFAULTS } from '../../.storybook/constants'
 import { Accent, Button, Level, Message } from '../../src'
 
 import type { MessageProps } from '../../src'
 import type { Meta } from '@storybook/react'
 
-const args: MessageProps = {
-  children: 'A warning message'
-}
-
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<MessageProps> = {
+  ...META_DEFAULTS,
+
   title: 'Components/Message',
   component: Message,
 
-  argTypes: {},
+  argTypes: {
+    children: ARG_TYPE.REACT_NODE,
+    level: ARG_TYPE.OPTIONAL_LEVEL
+  },
 
-  args,
+  args: {
+    children: 'A warning message'
+  },
 
-  decorators: [generateStoryDecorator()]
+  decorators: [
+    generateStoryDecorator({
+      box: { width: 640 }
+    })
+  ]
 }
 /* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 
-const childrenComponent = () => (
-  <>
-    <div>
-      <span>Une autre mission est encours avec cette unité.</span>
-      <br />
-      <span>Voulez-vous quand même conserver cette mission ?</span>
-    </div>
-
-    <ButtonsContainer>
-      <Button accent={Accent.WARNING}>Oui, la conserver</Button>
-      <Button accent={Accent.WARNING}>Non, l&apos;abandonner</Button>
-    </ButtonsContainer>
-  </>
-)
-
 export function _Message(props: MessageProps) {
   return (
-    <StyledContainer>
-      <Message level={Level.WARNING} {...props} />
-      <Message {...props}>
-        A very very very very very very very very very very very very very very very long text
-      </Message>
-      <Message level={Level.WARNING}>{childrenComponent()}</Message>
-    </StyledContainer>
+    <>
+      <Message {...props} />
+
+      <Showcase>
+        <Showcase.Subtitle>With a long text</Showcase.Subtitle>
+
+        <Message>{LOREM_IPSUM}</Message>
+
+        <Showcase.Subtitle>With actions</Showcase.Subtitle>
+
+        <Message level={Level.WARNING}>
+          <div>
+            <span>Une autre mission est encours avec cette unité.</span>
+            <br />
+            <span>Voulez-vous quand même conserver cette mission ?</span>
+          </div>
+
+          <ActionBox>
+            <Button accent={Accent.WARNING}>Oui, la conserver</Button>
+            <Button accent={Accent.WARNING}>Non, l&apos;abandonner</Button>
+          </ActionBox>
+        </Message>
+      </Showcase>
+    </>
   )
 }
 
-const StyledContainer = styled.div`
-  width: 450px;
-  display: flex;
-  gap: 16px;
-  flex-direction: column;
-  padding: 16px;
-  border: 1px solid ${p => p.theme.color.slateGray};
-`
-const ButtonsContainer = styled.div`
+const ActionBox = styled.div`
   margin-top: 16px;
   display: flex;
   justify-content: space-between;
