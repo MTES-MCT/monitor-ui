@@ -2,7 +2,6 @@ import { getSelectedOptionValueFromSelectedRsuiteDataItemValue } from '@utils/ge
 import classnames from 'classnames'
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { SelectPicker as RsuiteSelectPicker, type SelectPickerProps as RsuiteSelectPickerProps } from 'rsuite'
-import styled from 'styled-components'
 
 import { StyledRsuitePickerBox } from './shared/StyledRsuitePickerBox'
 import { Field } from '../elements/Field'
@@ -139,7 +138,7 @@ export function Select<OptionValue extends OptionValueType = string>({
         {label}
       </Label>
 
-      <Box ref={boxRef} $hasError={hasError} $isLight={isLight}>
+      <StyledRsuitePickerBox ref={boxRef} $hasError={hasError} $isLight={isLight}>
         {boxRef.current && (
           <RsuiteSelectPicker
             key={key}
@@ -164,11 +163,9 @@ export function Select<OptionValue extends OptionValueType = string>({
             {...originalProps}
           />
         )}
-      </Box>
+      </StyledRsuitePickerBox>
 
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
     </Field>
   )
 }
-
-const Box = styled(StyledRsuitePickerBox)``

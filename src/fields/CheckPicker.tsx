@@ -161,9 +161,6 @@ const Box = styled(StyledRsuitePickerBox)`
       > .rs-stack {
         > .rs-stack-item {
           > .rs-picker-toggle-value {
-            color: ${p => p.theme.color.gunMetal};
-            font-weight: 500;
-
             > .rs-picker-value-count {
               background-color: ${p => p.theme.color.charcoal} !important;
               border-radius: 50%;

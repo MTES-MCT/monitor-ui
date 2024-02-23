@@ -34,19 +34,26 @@ export const StyledRsuitePickerBox = styled.div<{
 
       > .rs-stack {
         > .rs-stack-item {
-          > .rs-picker-toggle-placeholder {
-            font-size: 13px;
-            line-height: 1.3846;
+          > .rs-picker-toggle-value {
+            color: ${p => p.theme.color.gunMetal};
+            font-weight: 500;
           }
 
-          > .rs-picker-caret-icon {
-            cursor: pointer;
-            height: 18px;
-            top: 4px;
-          }
+          &.rs-picker-toggle-indicator {
+            > .rs-picker-toggle-placeholder {
+              font-size: 13px;
+              line-height: 1.3846;
+            }
 
-          > .rs-picker-clean {
-            top: 3.5px;
+            > .rs-picker-caret-icon {
+              cursor: pointer;
+              height: 18px;
+              top: 4px;
+            }
+
+            > .rs-picker-clean {
+              top: 3.5px;
+            }
           }
         }
       }
@@ -99,12 +106,32 @@ export const StyledRsuitePickerBox = styled.div<{
       [role='option'],
       [role='treeitem'] {
         > .rs-picker-select-menu-item {
-          font-size: 13px;
+          color: ${p => p.theme.color.gunMetal};
+          font-weight: 500;
           line-height: 1;
           overflow: hidden;
           padding: 8px 8px 11px 8px;
           text-overflow: ellipsis;
           white-space: nowrap;
+
+          &:hover {
+            background-color: ${p => p.theme.color.blueYonder25};
+            color: ${p => p.theme.color.blueYonder};
+          }
+
+          &.rs-picker-select-menu-item-active {
+            background-color: transparent;
+            font-weight: 700;
+
+            &:hover {
+              background-color: ${p => p.theme.color.blueYonder25};
+            }
+          }
+
+          &.rs-picker-select-menu-item-disabled {
+            background-color: transparent;
+            color: ${p => p.theme.color.lightGray};
+          }
         }
 
         > .rs-check-item {
@@ -175,7 +202,7 @@ export const StyledRsuitePickerBox = styled.div<{
             }
 
             &:hover {
-              background-color: ${p => p.theme.color.lightGray};
+              background-color: ${p => p.theme.color.blueYonder25};
 
               > .rs-checkbox-checker {
                 > label {
