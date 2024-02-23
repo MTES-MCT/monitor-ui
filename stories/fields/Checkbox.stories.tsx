@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
 import { Checkbox, useFieldControl } from '../../src'
 
 import type { CheckboxProps } from '../../src'
@@ -21,46 +22,22 @@ const args: CheckboxProps = {
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<CheckboxProps> = {
+  ...META_DEFAULTS,
+
   title: 'Fields/Checkbox',
   component: Checkbox,
 
   argTypes: {
-    checked: {
-      control: 'boolean'
-    },
-    className: {
-      table: {
-        disable: true
-      }
-    },
-    disabled: {
-      control: 'boolean'
-    },
-    error: {
-      control: 'text'
-    },
-    isErrorMessageHidden: {
-      control: 'boolean'
-    },
-    isLight: {
-      control: 'boolean'
-    },
-    isUndefinedWhenDisabled: {
-      control: 'boolean'
-    },
-    onChange: {
-      table: {
-        disable: true
-      }
-    },
-    style: {
-      table: {
-        disable: true
-      }
-    },
-    readOnly: {
-      control: 'boolean'
-    }
+    checked: ARG_TYPE.OPTIONAL_BOOLEAN,
+    className: ARG_TYPE.NO_CONTROL,
+    disabled: ARG_TYPE.OPTIONAL_BOOLEAN,
+    error: ARG_TYPE.OPTIONAL_STRING,
+    hasError: ARG_TYPE.NO_CONTROL,
+    isErrorMessageHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isLight: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
+    readOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
+    style: ARG_TYPE.NO_CONTROL
   },
 
   args,

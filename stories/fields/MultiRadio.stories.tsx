@@ -2,6 +2,7 @@ import { useState, type FunctionComponent } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
 import { Icon as MonitorUiIcon, MultiRadio, useFieldControl } from '../../src'
 
 import type { IconProps, MultiRadioProps, Option } from '../../src'
@@ -14,6 +15,8 @@ const args: MultiRadioProps = {
   isInline: false,
   isLabelHidden: false,
   isLight: false,
+  isReadOnly: false,
+  isUndefinedWhenDisabled: false,
   label: 'Pick an option',
   name: 'myMultiRadio',
   options: [
@@ -53,24 +56,40 @@ const OPTIONS_WITH_ICONS: Array<Option<InterestPointOptionValueType>> = [
     }
   }
 ]
+
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<MultiRadioProps> = {
-  args,
+  ...META_DEFAULTS,
+
+  title: 'Fields/MultiRadio',
+  component: MultiRadio,
+
   argTypes: {
+    className: ARG_TYPE.NO_CONTROL,
+    disabled: ARG_TYPE.OPTIONAL_BOOLEAN,
+    error: ARG_TYPE.OPTIONAL_STRING,
+    isErrorMessageHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isInline: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isLabelHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isLight: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isReadOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
+    optionValueKey: ARG_TYPE.OPTIONAL_OPTION_VALUE_KEY,
+    options: ARG_TYPE.NO_CONTROL_INPUT,
+    style: ARG_TYPE.NO_CONTROL,
     value: {
-      control: 'inline-radio',
+      ...ARG_TYPE.OPTIONAL_OPTION_VALUE,
       options: ['FIRST_OPTION', 'SECOND_OPTION', 'THIRD_OPTION', 'A_VERY_VERY_LONG_OPTION']
     }
   },
 
-  component: MultiRadio,
+  args,
 
   decorators: [
     generateStoryDecorator({
       hasDarkMode: true
     })
-  ],
-
-  title: 'Fields/MultiRadio'
+  ]
 }
 /* eslint-enable sort-keys-fix/sort-keys-fix */
 
@@ -92,17 +111,20 @@ export function _MultiRadio(props: MultiRadioProps) {
 
         {outputValue !== '∅' && <Output value={outputValue} />}
       </div>
+
       <MultiRadio
-        {...props}
         isReadOnly
         label="Multiradio in readOnly mode"
+        name="myMultiRadioReadOnly"
         onChange={controlledOnChange}
+        options={props.options}
         value="FIRST_OPTION"
       />
+
       <div style={{ marginTop: '32px' }}>
         <MultiRadio
-          {...props}
           label="Multiradio with icons"
+          name="myMultiRadioWithIcons"
           onChange={nextOptionValue => setOutputValueWithIcons(nextOptionValue)}
           options={OPTIONS_WITH_ICONS}
           optionValueKey="value"
