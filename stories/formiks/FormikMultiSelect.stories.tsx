@@ -25,6 +25,7 @@ const args: FormikMultiSelectProps = {
   placeholder: 'Pick some options'
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikMultiSelectProps> = {
   title: 'Formiks/FormikMultiSelect',
   component: FormikMultiSelect,
@@ -39,6 +40,8 @@ const meta: Meta<FormikMultiSelectProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _FormikMultiSelect(props: FormikMultiSelectProps) {

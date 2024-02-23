@@ -27,11 +27,13 @@ const ColorSample = styled.div<{ color }>`
   border: ${p => `1px solid ${p.theme.color.lightGray}`};
 `
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<typeof ColorSample> = {
   title: 'Colors',
   component: ColorSample,
   decorators: [generateStoryDecorator({ fixedWidth: 1000 })]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

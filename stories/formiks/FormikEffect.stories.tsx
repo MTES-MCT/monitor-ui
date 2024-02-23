@@ -13,6 +13,7 @@ const args: FormikEffectProps = {
   onChange: noop
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikEffectProps> = {
   title: 'Formiks/FormikEffect',
   component: FormikEffect,
@@ -23,6 +24,8 @@ const meta: Meta<FormikEffectProps> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _FormikEffect() {

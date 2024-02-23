@@ -5,10 +5,11 @@ import type { ExclamationPointProps } from '../../src'
 import type { Meta } from '@storybook/react'
 
 const args: ExclamationPointProps = {
-  color: THEME.color.white,
-  backgroundColor: THEME.color.goldenPoppy
+  backgroundColor: THEME.color.goldenPoppy,
+  color: THEME.color.white
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<ExclamationPointProps> = {
   title: 'Symbols/ExclamationPoint',
   component: ExclamationPoint,
@@ -19,6 +20,7 @@ const meta: Meta<ExclamationPointProps> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

@@ -10,6 +10,7 @@ const args: LabelProps = {
   isHidden: false
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<LabelProps> = {
   title: 'Elements/Label',
   component: Label,
@@ -20,6 +21,7 @@ const meta: Meta<LabelProps> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

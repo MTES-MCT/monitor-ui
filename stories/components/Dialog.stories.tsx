@@ -10,6 +10,7 @@ const args: DialogProps = {
   isAbsolute: false
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<DialogProps> = {
   title: 'Components/Dialog',
   component: Dialog,
@@ -20,6 +21,7 @@ const meta: Meta<DialogProps> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

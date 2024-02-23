@@ -21,6 +21,7 @@ const args: MultiZoneEditorProps = {
   labelPropName: 'name'
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<MultiZoneEditorProps> = {
   title: 'Fields/MultiZoneEditor',
   component: MultiZoneEditor,
@@ -40,6 +41,8 @@ const meta: Meta<MultiZoneEditorProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _MultiZoneEditor(props: MultiZoneEditorProps) {

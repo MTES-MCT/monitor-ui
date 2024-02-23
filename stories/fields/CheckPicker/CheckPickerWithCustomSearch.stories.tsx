@@ -33,6 +33,7 @@ const args: CheckPickerProps<{}> = {
   virtualized: false
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<CheckPickerProps<{}>> = {
   title: 'Fields/CheckPicker',
   component: CheckPicker as any,
@@ -52,10 +53,11 @@ const meta: Meta<CheckPickerProps<{}>> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 
-export function CheckPickerWithCustomSearch(props: CheckPickerProps<Specy>) {
+export function _CheckPickerWithCustomSearch(props: CheckPickerProps<Specy>) {
   const optionsRef = useRef(
     (SPECIES as Specy[]).map(specy => ({
       label: `${specy.code} - ${specy.name}`,

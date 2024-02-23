@@ -9,6 +9,7 @@ import type { Meta } from '@storybook/react'
 
 const args: DatePickerWithDateDateProps | DatePickerWithStringDateProps = {
   baseContainer: undefined,
+  defaultValue: undefined,
   disabled: false,
   error: '',
   isCompact: false,
@@ -20,18 +21,18 @@ const args: DatePickerWithDateDateProps | DatePickerWithStringDateProps = {
   isStringDate: false,
   isUndefinedWhenDisabled: false,
   label: 'A date',
+  minutesRange: undefined,
   withTime: true
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<any> = {
   title: 'Fields/DatePicker',
   component: DatePicker,
 
   argTypes: {
     defaultValue: {
-      control: {
-        type: 'date'
-      }
+      control: 'date'
     },
     isEndDate: {
       control: {
@@ -39,9 +40,7 @@ const meta: Meta<any> = {
       }
     },
     isStringDate: {
-      control: {
-        type: 'boolean'
-      }
+      control: 'boolean'
     }
   },
 
@@ -54,6 +53,8 @@ const meta: Meta<any> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _DatePicker(props: any) {

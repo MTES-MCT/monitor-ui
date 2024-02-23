@@ -28,6 +28,7 @@ const args: MultiSelectProps<Specy> = {
   virtualized: true
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<MultiSelectProps<Specy>> = {
   title: 'Fields/MultiSelect',
   component: MultiSelect,
@@ -47,6 +48,8 @@ const meta: Meta<MultiSelectProps<Specy>> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function MultiSelectWithCustomSearch(props: MultiSelectProps<Specy>) {

@@ -15,10 +15,11 @@ const args: FormikTextareaProps = {
   isErrorMessageHidden: false,
   isLabelHidden: false,
   isLight: false,
-  name: 'myTextarea',
-  label: 'A textarea'
+  label: 'A textarea',
+  name: 'myTextarea'
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikTextareaProps> = {
   title: 'Formiks/FormikTextarea',
   component: FormikTextarea,
@@ -33,6 +34,8 @@ const meta: Meta<FormikTextareaProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _FormikTextarea(props: FormikTextareaProps) {

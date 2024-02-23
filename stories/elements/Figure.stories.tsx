@@ -5,6 +5,7 @@ import type { Meta } from '@storybook/react'
 
 const args: FigureProps = {}
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FigureProps> = {
   title: 'Elements/Figure',
   component: Figure,
@@ -15,6 +16,7 @@ const meta: Meta<FigureProps> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

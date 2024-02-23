@@ -6,6 +6,7 @@ import { MapMenuDialog } from '../../src/components/MapMenuDialog'
 
 import type { Meta } from '@storybook/react'
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<{}> = {
   title: 'Components/MapMenuDialog',
   component: MapMenuDialog as any,
@@ -14,6 +15,7 @@ const meta: Meta<{}> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

@@ -7,29 +7,35 @@ import { CheckPicker, useFieldControl, type CheckPickerProps } from '../../../sr
 
 import type { Meta } from '@storybook/react'
 
-const args: CheckPickerProps<{}> = {
+const args: CheckPickerProps<string> = {
+  customSearch: undefined,
+  customSearchMinQueryLength: undefined,
   disabled: false,
   error: '',
   isErrorMessageHidden: false,
   isLabelHidden: false,
   isLight: false,
+  isUndefinedWhenDisabled: false,
   label: 'A check picker',
   name: 'myCheckPicker',
+  onChange: undefined,
   options: [
     { label: 'First Option', value: 'FIRST_OPTION' },
     { label: 'Second Option', value: 'SECOND_OPTION' },
     { label: 'Third Option', value: 'THIRD_OPTION' },
     { label: LOREM_IPSUM, value: 'LOREM_IPSUM' }
   ],
+  optionValueKey: undefined,
   placeholder: 'Pick some options',
   searchable: true,
   value: [],
   virtualized: false
 }
 
-const meta: Meta<CheckPickerProps<{}>> = {
+/* eslint-disable sort-keys-fix/sort-keys-fix */
+const meta: Meta<CheckPickerProps<string>> = {
   title: 'Fields/CheckPicker',
-  component: CheckPicker as any,
+  component: CheckPicker,
 
   argTypes: {
     value: {
@@ -47,6 +53,7 @@ const meta: Meta<CheckPickerProps<{}>> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

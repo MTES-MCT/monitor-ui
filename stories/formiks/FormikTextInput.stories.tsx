@@ -14,10 +14,11 @@ const args: FormikTextInputProps = {
   isErrorMessageHidden: false,
   isLabelHidden: false,
   isLight: false,
-  name: 'myTextInput',
-  label: 'A text input'
+  label: 'A text input',
+  name: 'myTextInput'
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikTextInputProps> = {
   title: 'Formiks/FormikTextInput',
   component: FormikTextInput,
@@ -32,6 +33,8 @@ const meta: Meta<FormikTextInputProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _FormikTextInput(props: FormikTextInputProps) {

@@ -12,6 +12,7 @@ const args: FieldsetProps = {
   legend: 'A fieldset legend'
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FieldsetProps> = {
   title: 'Elements/Fieldset',
   component: Fieldset,
@@ -26,6 +27,7 @@ const meta: Meta<FieldsetProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

@@ -23,6 +23,7 @@ const args: FormikSearchProps = {
   placeholder: 'Type "first"'
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikSearchProps> = {
   title: 'Formiks/FormikSearch',
   component: FormikSearch,
@@ -37,6 +38,8 @@ const meta: Meta<FormikSearchProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export const WithOptions = (props: FormikSearchProps) => {

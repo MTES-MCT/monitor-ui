@@ -6,6 +6,7 @@ import type { Meta } from '@storybook/react'
 
 const args: FieldProps = {}
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FieldProps> = {
   title: 'Elements/Field',
   component: Field,
@@ -16,6 +17,7 @@ const meta: Meta<FieldProps> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

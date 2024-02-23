@@ -26,16 +26,16 @@ const COLUMNS: Array<ColumnDef<(typeof DATA)[0]>> = [
 ]
 
 export const DATA = [
-  { id: 1, firstName: 'Alice', lastName: 'Smith' },
-  { id: 2, firstName: 'Bob', lastName: 'Johnson' },
-  { id: 3, firstName: 'Charlie', lastName: 'Williams' },
-  { id: 4, firstName: 'David', lastName: 'Brown' },
-  { id: 5, firstName: 'Emily', lastName: 'Jones' },
-  { id: 6, firstName: 'Fiona', lastName: 'Garcia' },
-  { id: 7, firstName: 'George', lastName: 'Miller' },
-  { id: 8, firstName: 'Hannah', lastName: 'Davis' },
-  { id: 9, firstName: 'Ivan', lastName: 'Rodriguez' },
-  { id: 10, firstName: 'Jenny', lastName: 'Martinez' }
+  { firstName: 'Alice', id: 1, lastName: 'Smith' },
+  { firstName: 'Bob', id: 2, lastName: 'Johnson' },
+  { firstName: 'Charlie', id: 3, lastName: 'Williams' },
+  { firstName: 'David', id: 4, lastName: 'Brown' },
+  { firstName: 'Emily', id: 5, lastName: 'Jones' },
+  { firstName: 'Fiona', id: 6, lastName: 'Garcia' },
+  { firstName: 'George', id: 7, lastName: 'Miller' },
+  { firstName: 'Hannah', id: 8, lastName: 'Davis' },
+  { firstName: 'Ivan', id: 9, lastName: 'Rodriguez' },
+  { firstName: 'Jenny', id: 10, lastName: 'Martinez' }
 ]
 
 export const args: DataTableProps<(typeof DATA)[0]> = {
@@ -50,6 +50,7 @@ export const args: DataTableProps<(typeof DATA)[0]> = {
   ]
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<DataTableProps<(typeof DATA)[0]>> = {
   title: 'Tables/DataTable',
   component: DataTable,
@@ -60,6 +61,7 @@ const meta: Meta<DataTableProps<(typeof DATA)[0]>> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

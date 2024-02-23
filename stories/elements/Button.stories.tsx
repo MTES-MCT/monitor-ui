@@ -1,5 +1,6 @@
 import { Showcase } from '../../.storybook/components/Showcase'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { ACCENTS_AS_ARRAY, SIZE_AS_ARRAY } from '../../.storybook/constants'
 import { Accent, Button, Icon, Size } from '../../src'
 
 import type { ButtonProps } from '../../src'
@@ -8,24 +9,25 @@ import type { Meta } from '@storybook/react'
 const args: ButtonProps = {
   accent: Accent.PRIMARY,
   children: 'A label',
-  isFullWidth: false,
   Icon: undefined,
+  isFullWidth: false,
   size: Size.NORMAL,
   withUnpropagatedClick: false
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<ButtonProps> = {
   title: 'Elements/Button',
   component: Button,
 
   argTypes: {
     accent: {
-      control: 'inline-radio',
-      options: Accent
+      control: 'radio',
+      options: ACCENTS_AS_ARRAY
     },
     size: {
       control: 'inline-radio',
-      options: Size
+      options: SIZE_AS_ARRAY
     }
   },
 
@@ -33,6 +35,7 @@ const meta: Meta<ButtonProps> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

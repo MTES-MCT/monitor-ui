@@ -11,6 +11,7 @@ const args: IconProps = {
   size: 32
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<IconProps> = {
   title: 'Icon',
   component: Icon as any,
@@ -28,6 +29,7 @@ const meta: Meta<IconProps> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 
