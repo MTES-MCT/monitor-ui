@@ -1,3 +1,12 @@
+## [11.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.8.0...v11.9.0) (2024-02-23)
+
+
+### Features
+
+* **utils:** changes after code review ([8073a81](https://github.com/MTES-MCT/monitor-ui/commit/8073a817581ae418e8dab7551ccc7024574293d6))
+* **utils:** create a function to get the formatted mission update date ([9c161b0](https://github.com/MTES-MCT/monitor-ui/commit/9c161b0ffe4d092fb581a885ac795a5f48afb7db))
+* **utils:** update name of test ([4f0711d](https://github.com/MTES-MCT/monitor-ui/commit/4f0711d0d686f0d0755c71356ca1cade72702435))
+
 ## [11.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.7.2...v11.8.0) (2024-02-20)
 
 
