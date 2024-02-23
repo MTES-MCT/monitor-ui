@@ -36,7 +36,7 @@ const meta: Meta<FormikMultiRadioProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

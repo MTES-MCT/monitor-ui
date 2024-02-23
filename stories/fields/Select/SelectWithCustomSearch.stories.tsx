@@ -44,7 +44,7 @@ const meta: Meta<SelectProps<Specy>> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

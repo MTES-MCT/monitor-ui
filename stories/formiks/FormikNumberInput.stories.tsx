@@ -29,7 +29,7 @@ const meta: Meta<FormikNumberInputProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

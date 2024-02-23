@@ -48,7 +48,7 @@ const meta: Meta<TextInputProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

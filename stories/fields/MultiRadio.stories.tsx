@@ -87,7 +87,7 @@ const meta: Meta<MultiRadioProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

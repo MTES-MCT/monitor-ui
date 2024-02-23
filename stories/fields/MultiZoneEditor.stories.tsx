@@ -37,7 +37,7 @@ const meta: Meta<MultiZoneEditorProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

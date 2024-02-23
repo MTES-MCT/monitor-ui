@@ -9,7 +9,7 @@ import { stopMouseEventPropagation } from '../../utils/stopMouseEventPropagation
 import type { HTMLAttributes } from 'react'
 
 export type DialogProps = HTMLAttributes<HTMLDivElement> & {
-  isAbsolute?: boolean
+  isAbsolute?: boolean | undefined
 }
 export function RawDialog({ children, className, isAbsolute = false, ...nativeProps }: DialogProps) {
   const controlledClassName = classnames('Component-Dialog', className)

@@ -53,7 +53,7 @@ const meta: Meta<DateRangePickerWithDateDateProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

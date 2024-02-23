@@ -23,7 +23,7 @@ const meta: Meta<FieldsetProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

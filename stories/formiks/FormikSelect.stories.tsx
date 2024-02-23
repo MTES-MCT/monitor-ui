@@ -36,7 +36,7 @@ const meta: Meta<FormikSelectProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

@@ -6,7 +6,7 @@ import { Title } from './Title'
 
 import type { HTMLAttributes } from 'react'
 
-export type RawShowcaseProps = HTMLAttributes<HTMLDivElement>
+type RawShowcaseProps = HTMLAttributes<HTMLDivElement>
 function RawShowcase(nativeProps: RawShowcaseProps) {
   return (
     <>

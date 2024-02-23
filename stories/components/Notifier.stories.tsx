@@ -1,14 +1,21 @@
 import dayjs from 'dayjs'
 
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
 import { Button, Notifier, logSoftError, type NotifierProps } from '../../src'
 
 import type { Meta } from '@storybook/react'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<NotifierProps> = {
+  ...META_DEFAULTS,
+
   title: 'Components/Notifier',
   component: Notifier,
+
+  argTypes: {
+    isSideWindow: ARG_TYPE.OPTIONAL_BOOLEAN
+  },
 
   args: {
     isSideWindow: false
@@ -16,7 +23,7 @@ const meta: Meta<NotifierProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true,
+      hasLightMode: true,
       withNewWindowButton: true
     })
   ]

@@ -7,7 +7,7 @@ import { NotificationEvent } from './NotificationEvent'
 export { NotificationEvent }
 
 export type NotifierProps = {
-  isSideWindow?: boolean
+  isSideWindow?: boolean | undefined
 }
 export function Notifier({ isSideWindow = false }: NotifierProps) {
   const push = useCallback(

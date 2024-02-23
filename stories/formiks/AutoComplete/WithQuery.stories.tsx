@@ -29,7 +29,7 @@ const meta: Meta<FormikSearchProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

@@ -44,7 +44,7 @@ const meta: Meta<MultiCascaderProps<FakeCity>> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true,
+      hasLightMode: true,
       withNewWindowButton: true
     })
   ]
