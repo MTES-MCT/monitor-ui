@@ -1,12 +1,11 @@
 import { customDayjs } from './customDayjs'
 
-export function getFormattedMissionUpdateDate(missionUpdatedAtUtc: string): string {
+export function humanizePastDate(missionUpdatedAtUtc: string): string {
   const updatedDate = customDayjs(missionUpdatedAtUtc).utc()
-  const updatedHour = updatedDate.format('HH')
-  const updatedMinutes = updatedDate.format('mm')
-  const updatedTime = `${updatedHour}h${updatedMinutes}`
+  const updatedTime = updatedDate.format('HH[h]mm')
 
-  if (updatedDate.isSame(customDayjs().utc(), 'day')) {
+  const today = customDayjs().utc()
+  if (updatedDate.isSame(today, 'day')) {
     return `aujourdhui à ${updatedTime} (UTC)`
   }
 
