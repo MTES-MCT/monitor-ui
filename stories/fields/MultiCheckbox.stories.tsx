@@ -23,6 +23,7 @@ const args: MultiCheckboxProps = {
     { isDisabled: false, label: 'Third Option', value: 'THIRD_OPTION' },
     { isDisabled: false, label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
   ],
+  readOnly: false,
   value: undefined
 }
 
@@ -62,6 +63,9 @@ const meta: Meta<MultiCheckboxProps> = {
       table: {
         disable: true
       }
+    },
+    readOnly: {
+      control: 'boolean'
     },
     style: {
       table: {
