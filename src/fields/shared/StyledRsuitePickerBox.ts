@@ -4,6 +4,7 @@ export const StyledRsuitePickerBox = styled.div<{
   $hasError: boolean
   $isLight: boolean
 }>`
+  font-size: 13px;
   position: relative;
   user-select: none;
   width: 100%;
@@ -15,6 +16,7 @@ export const StyledRsuitePickerBox = styled.div<{
     > [role='combobox'] {
       background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
       border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.lightGray)} !important;
+      border-radius: 0;
       font-size: 13px;
       height: 30px;
       line-height: 1.3846;
@@ -54,7 +56,6 @@ export const StyledRsuitePickerBox = styled.div<{
   > .rs-picker-popup {
     border: solid 1px ${p => p.theme.color.gainsboro};
     border-radius: 0;
-    /* margin-top: 6px; */
     padding: 0;
     width: 100%;
 
@@ -111,9 +112,11 @@ export const StyledRsuitePickerBox = styled.div<{
             min-height: auto;
 
             > label {
+              color: ${p => p.theme.color.gunMetal};
+              font-weight: 500;
               line-height: 1;
               overflow: hidden;
-              padding: 8px 8px 11px 36px;
+              padding: 8.5px 8px 10.5px 36px;
               text-overflow: ellipsis;
               white-space: nowrap;
 
@@ -121,6 +124,72 @@ export const StyledRsuitePickerBox = styled.div<{
                 height: auto;
                 left: 8px;
                 top: 8px !important;
+
+                > .rs-checkbox-inner {
+                  &:before {
+                    background-color: ${p => p.theme.color.gainsboro};
+                    border: solid 2px ${p => p.theme.color.lightGray};
+                    border-radius: 0;
+                  }
+                }
+              }
+            }
+          }
+
+          &:hover {
+            background-color: ${p => p.theme.color.lightGray};
+
+            > .rs-checkbox-checker {
+              > label {
+                color: ${p => p.theme.color.blueYonder};
+
+                > .rs-checkbox-wrapper {
+                  > .rs-checkbox-inner {
+                    &:before {
+                      background-color: ${p => p.theme.color.blueYonder25};
+                      border: solid 2px ${p => p.theme.color.blueYonder};
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          &.rs-checkbox-checked {
+            background-color: transparent;
+
+            > .rs-checkbox-checker {
+              > label {
+                color: ${p => p.theme.color.gunMetal};
+                font-weight: 700;
+
+                > .rs-checkbox-wrapper {
+                  > .rs-checkbox-inner {
+                    &:before {
+                      background-color: ${p => p.theme.color.charcoal};
+                      border: solid 2px ${p => p.theme.color.charcoal};
+                    }
+                  }
+                }
+              }
+            }
+
+            &:hover {
+              background-color: ${p => p.theme.color.lightGray};
+
+              > .rs-checkbox-checker {
+                > label {
+                  color: ${p => p.theme.color.blueYonder};
+
+                  > .rs-checkbox-wrapper {
+                    > .rs-checkbox-inner {
+                      &:before {
+                        background-color: ${p => p.theme.color.blueYonder};
+                        border: solid 2px ${p => p.theme.color.blueYonder};
+                      }
+                    }
+                  }
+                }
               }
             }
           }
