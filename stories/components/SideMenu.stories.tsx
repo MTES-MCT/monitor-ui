@@ -5,6 +5,7 @@ import { Icon, SideMenu } from '../../src'
 
 import type { Meta } from '@storybook/react'
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<{}> = {
   title: 'Components/SideMenu',
   component: SideMenu,
@@ -13,6 +14,7 @@ const meta: Meta<{}> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

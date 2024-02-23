@@ -7,15 +7,16 @@ import { Toggle, useFieldControl, type ToggleProps } from '../../src'
 import type { Meta } from '@storybook/react'
 
 const args: ToggleProps = {
-  isChecked: false,
-  onChange: () => {},
   error: undefined,
-  isLabelHidden: false,
+  isChecked: false,
   isErrorMessageHidden: false,
+  isLabelHidden: false,
   label: 'A toggle',
-  name: 'toggle'
+  name: 'toggle',
+  onChange: () => {}
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<ToggleProps> = {
   title: 'Fields/Toggle',
   component: Toggle,
@@ -43,6 +44,7 @@ const meta: Meta<ToggleProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

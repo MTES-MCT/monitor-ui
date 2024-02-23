@@ -20,6 +20,7 @@ const args: FormikRichBooleanCheckboxProps = {
   trueOptionLabel: 'With something'
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikRichBooleanCheckboxProps> = {
   title: 'Formiks/FormikRichBooleanCheckbox',
   component: FormikRichBooleanCheckbox,
@@ -34,6 +35,8 @@ const meta: Meta<FormikRichBooleanCheckboxProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _FormikRichBooleanCheckbox(props: FormikRichBooleanCheckboxProps) {

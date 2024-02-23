@@ -10,6 +10,7 @@ const args: MessageProps = {
   children: 'A warning message'
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<MessageProps> = {
   title: 'Components/Message',
   component: Message,
@@ -20,6 +21,7 @@ const meta: Meta<MessageProps> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

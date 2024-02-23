@@ -8,8 +8,8 @@ import type { CoordinatesInputProps } from '../../src/fields/CoordinatesInput'
 import type { Meta } from '@storybook/react'
 
 const args: CoordinatesInputProps = {
-  defaultValue: undefined,
   coordinatesFormat: CoordinatesFormat.DEGREES_MINUTES_SECONDS,
+  defaultValue: undefined,
   disabled: false,
   error: '',
   isLabelHidden: false,
@@ -17,6 +17,7 @@ const args: CoordinatesInputProps = {
   label: 'Some coordinates'
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<CoordinatesInputProps> = {
   title: 'Fields/CoordinatesInput',
   component: CoordinatesInput,
@@ -39,6 +40,8 @@ const meta: Meta<CoordinatesInputProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _CoordinatesInput(props: CoordinatesInputProps) {

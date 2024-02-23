@@ -26,7 +26,7 @@ const fakeData1 = Array(100).fill({
       actionStartDateTimeUtc: undefined,
       actionTargetType: 'COMPANY',
       actionType: 'CONTROL',
-      geom: { type: 'MultiPoint', coordinates: [[-2.63708273, 48.17060427]] },
+      geom: { coordinates: [[-2.63708273, 48.17060427]], type: 'MultiPoint' },
       id: 'f3e90d3a-6ba4-4bb3-805e-d391508aa46d',
       infractions: [],
       observations: undefined,
@@ -73,7 +73,7 @@ const fakeData2 = Array(100).fill({
       actionStartDateTimeUtc: undefined,
       actionTargetType: 'COMPANY',
       actionType: 'CONTROL',
-      geom: { type: 'MultiPoint', coordinates: [[-2.63708273, 48.17060427]] },
+      geom: { coordinates: [[-2.63708273, 48.17060427]], type: 'MultiPoint' },
       id: 'f3e90d3a-6ba4-4bb3-805e-d391508aa46d',
       infractions: [],
       observations: undefined,
@@ -104,104 +104,105 @@ const fakeData2 = Array(100).fill({
 
 const data = [...fakeData1, ...fakeData2]
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<{}> = {
   title: 'Tables/SimpleTable',
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 
 export function _SimpleTable() {
-  const [sorting, setSorting] = useState<SortingState>([{ id: 'dateDebut', desc: false }])
+  const [sorting, setSorting] = useState<SortingState>([{ desc: false, id: 'dateDebut' }])
 
   const columns = useMemo(
     () => [
       {
         accessorFn: row => row.startDateTimeUtc,
-        id: 'dateDebut',
         cell: info => info.getValue(),
-        header: () => 'Début',
         enableResizing: true,
+        header: () => 'Début',
+        id: 'dateDebut',
         size: 180
       },
       {
         accessorFn: row => row.endDateTimeUtc,
-        id: 'dateFin',
         cell: info => info.getValue(),
-        header: () => 'Fin',
         enableResizing: true,
+        header: () => 'Fin',
+        id: 'dateFin',
         size: 180
       },
       {
         accessorFn: row => row.missionSource,
-        id: 'missionSource',
         cell: info => info.getValue(),
-        header: () => 'Origine',
         enableResizing: true,
+        header: () => 'Origine',
+        id: 'missionSource',
         size: 90
       },
       {
         accessorFn: row =>
           row?.controlUnits?.map(controlUnit => `${controlUnit.name} (${controlUnit.administration})`).join(' / '),
-        id: 'Unit and Administration',
         cell: info => info.getValue(),
-        header: () => 'Unité (Administration)',
-        enableSorting: false,
         enableResizing: true,
+        enableSorting: false,
+        header: () => 'Unité (Administration)',
+        id: 'Unit and Administration',
         maxSize: 280,
         minSize: 100,
         size: 200
       },
       {
         accessorFn: row => row.missionTypes,
-        id: 'type',
         cell: info => info.getValue(),
-        header: () => 'Type',
-        enableSorting: false,
         enableResizing: true,
+        enableSorting: false,
+        header: () => 'Type',
+        id: 'type',
         size: 100
       },
       {
         accessorFn: row => row.facade,
-        id: 'seaFront',
         cell: info => info.getValue(),
-        header: () => 'Facade',
         enableResizing: true,
+        header: () => 'Facade',
+        id: 'seaFront',
         size: 100
       },
       {
         accessorFn: row => row.observationsCacem,
-        id: 'observationsCacem',
         cell: info => info.getValue(),
-        header: () => 'Thématiques',
-        enableSorting: false,
         enableResizing: true,
+        enableSorting: false,
+        header: () => 'Thématiques',
+        id: 'observationsCacem',
         maxSize: 280,
         minSize: 100,
         size: 200
       },
       {
         accessorFn: row => row.controlUnits.length,
-        id: 'controls',
         cell: info => info.getValue(),
-        header: () => 'Nbre contrôles',
-        enableSorting: false,
         enableResizing: true,
+        enableSorting: false,
+        header: () => 'Nbre contrôles',
+        id: 'controls',
         size: 100
       },
       {
         accessorFn: row => row.status,
-        id: 'status',
         cell: info => info.getValue(),
-        header: () => 'Statut',
-        enableSorting: false,
         enableResizing: true,
+        enableSorting: false,
+        header: () => 'Statut',
+        id: 'status',
         size: 100
       },
       {
         accessorFn: row => row.geom,
-        id: 'geom',
         cell: info => (
           <IconButton
             accent={Accent.SECONDARY}
@@ -211,23 +212,24 @@ export function _SimpleTable() {
             size={Size.SMALL}
           />
         ),
-        header: () => '',
-        enableSorting: false,
         enableResizing: true,
+        enableSorting: false,
+        header: () => '',
+        id: 'geom',
         size: 60
       },
       {
         accessorFn: row => row.id,
-        id: 'edit',
         cell: info => (
           // eslint-disable-next-line no-console
           <Button Icon={Icon.Edit} onClick={() => console.log(info.getValue())} size={Size.SMALL}>
             Editer
           </Button>
         ),
-        header: () => '',
-        enableSorting: false,
         enableResizing: true,
+        enableSorting: false,
+        header: () => '',
+        id: 'edit',
         size: 160
       }
     ],
@@ -237,13 +239,13 @@ export function _SimpleTable() {
   const table = useReactTable({
     columns,
     data,
+    enableSortingRemoval: false,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    onSortingChange: setSorting,
     state: {
       sorting
-    },
-    enableSortingRemoval: false,
-    onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel()
+    }
   })
 
   // eslint-disable-next-line no-null/no-null
@@ -252,11 +254,13 @@ export function _SimpleTable() {
   const { rows } = table.getRowModel()
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
-    getScrollElement: () => tableContainerRef.current,
     estimateSize: () => 10,
-    overscan: 10,
     // Pass correct keys to virtualizer it's important when rows change position
-    getItemKey: useCallback((index: number) => `${rows[index]?.id}`, [rows])
+    getItemKey: useCallback((index: number) => `${rows[index]?.id}`, [rows]),
+
+    getScrollElement: () => tableContainerRef.current,
+
+    overscan: 10
   })
 
   const virtualRows = rowVirtualizer.getVirtualItems()
@@ -319,13 +323,13 @@ export function _SimpleTable() {
                 {row?.getVisibleCells().map(cell => (
                   <SimpleTable.Td
                     {...{
+                      $isCenter: !!(cell.column.id === 'geom' || cell.column.id === 'edit'),
                       key: cell.id,
                       style: {
                         maxWidth: cell.column.getSize(),
                         minWidth: cell.column.getSize(),
                         width: cell.column.getSize()
-                      },
-                      $isCenter: !!(cell.column.id === 'geom' || cell.column.id === 'edit')
+                      }
                     }}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

@@ -16,6 +16,7 @@ const args: FormikCheckboxProps = {
   name: 'myCheckbox'
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikCheckboxProps> = {
   title: 'Formiks/FormikCheckbox',
   component: FormikCheckbox,
@@ -26,6 +27,8 @@ const meta: Meta<FormikCheckboxProps> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _FormikCheckbox(props: FormikCheckboxProps) {

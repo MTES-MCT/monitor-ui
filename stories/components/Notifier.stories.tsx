@@ -5,6 +5,7 @@ import { Button, Notifier, logSoftError, type NotifierProps } from '../../src'
 
 import type { Meta } from '@storybook/react'
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<NotifierProps> = {
   title: 'Components/Notifier',
   component: Notifier,
@@ -20,6 +21,7 @@ const meta: Meta<NotifierProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

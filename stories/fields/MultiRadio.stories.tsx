@@ -18,7 +18,7 @@ const args: MultiRadioProps = {
   name: 'myMultiRadio',
   options: [
     { label: 'First Option', value: 'FIRST_OPTION' },
-    { label: 'Second Option', value: 'SECOND_OPTION', isDisabled: true },
+    { isDisabled: true, label: 'Second Option', value: 'SECOND_OPTION' },
     { label: 'Third Option', value: 'THIRD_OPTION' },
     { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
   ],
@@ -34,29 +34,27 @@ const OPTIONS_WITH_ICONS: Array<Option<InterestPointOptionValueType>> = [
   {
     label: 'Moyen de contrôle',
     value: {
-      value: 'CONTROL_ENTITY',
-      Icon: MonitorUiIcon.ControlUnit
+      Icon: MonitorUiIcon.ControlUnit,
+      value: 'CONTROL_ENTITY'
     }
   },
   {
     label: 'Navire de pêche',
     value: {
-      value: 'FISHING_VESSEL',
-      Icon: MonitorUiIcon.FleetSegment
+      Icon: MonitorUiIcon.FleetSegment,
+      value: 'FISHING_VESSEL'
     }
   },
   {
     label: 'Autre point',
     value: {
-      value: 'OTHER',
-      Icon: MonitorUiIcon.Info
+      Icon: MonitorUiIcon.Info,
+      value: 'OTHER'
     }
   }
 ]
 const meta: Meta<MultiRadioProps> = {
-  title: 'Fields/MultiRadio',
-  component: MultiRadio,
-
+  args,
   argTypes: {
     value: {
       control: 'inline-radio',
@@ -64,14 +62,18 @@ const meta: Meta<MultiRadioProps> = {
     }
   },
 
-  args,
+  component: MultiRadio,
 
   decorators: [
     generateStoryDecorator({
       hasDarkMode: true
     })
-  ]
+  ],
+
+  title: 'Fields/MultiRadio'
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _MultiRadio(props: MultiRadioProps) {

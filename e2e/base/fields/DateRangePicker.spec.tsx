@@ -6,7 +6,7 @@ context('Without time inputs', () => {
   beforeEach(() => {
     mountAndWait(
       <GlobalDecoratorWrapper>
-        <DateRangePickerStory {...Meta.args} withTime={false} />
+        <DateRangePickerStory {...(Meta.args as any)} withTime={false} />
       </GlobalDecoratorWrapper>
     )
   })
@@ -105,7 +105,7 @@ context('With time inputs', () => {
   beforeEach(() => {
     mountAndWait(
       <GlobalDecoratorWrapper>
-        <DateRangePickerStory {...Meta.args} withTime />
+        <DateRangePickerStory {...(Meta.args as any)} withTime />
       </GlobalDecoratorWrapper>
     )
   })

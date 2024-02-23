@@ -12,18 +12,12 @@ import { Link } from '../../src/icons'
 import type { Meta } from '@storybook/react'
 
 const fakeData1 = Array(100).fill({
-  id: 4,
-  reportingId: 2300004,
-  sourceType: 'SEMAPHORE',
-  semaphoreId: 33,
+  actionTaken: null,
   controlUnitId: null,
-  sourceName: null,
+  createdAt: '2023-08-04T15:13:43.296Z',
+  description: null,
   displayedSource: 'Sémaphore de Boulogne sur mer',
-  targetType: null,
-  vehicleType: null,
-  targetDetails: [],
   geom: {
-    type: 'MultiPolygon',
     coordinates: [
       [
         [
@@ -33,66 +27,74 @@ const fakeData1 = Array(100).fill({
           [-19.00097037, 49.57813235]
         ]
       ]
-    ]
+    ],
+    type: 'MultiPolygon'
   },
-  seaFront: 'MED',
-  description: null,
-  reportType: 'INFRACTION_SUSPICION',
-  theme: null,
-  subThemes: [],
-  actionTaken: null,
-  isInfractionProven: false,
+  id: 4,
+  isArchived: false,
   isControlRequired: false,
+  isInfractionProven: false,
   isUnitAvailable: null,
-  createdAt: '2023-08-04T15:13:43.296Z',
+  reportingId: 2300004,
+  reportType: 'INFRACTION_SUSPICION',
+  seaFront: 'MED',
+  semaphoreId: 33,
+  sourceName: null,
+  sourceType: 'SEMAPHORE',
+  subThemes: [],
+  targetDetails: [],
+  targetType: null,
+  theme: null,
   validityTime: 1,
-  isArchived: false
+  vehicleType: null
 })
 const fakeData2 = Array(100).fill({
-  id: 1,
-  reportingId: 2300001,
-  sourceType: 'SEMAPHORE',
-  semaphoreId: 21,
+  actionTaken: 'ACTION TAKEN',
   controlUnitId: null,
-  sourceName: null,
+  createdAt: '2023-08-01T15:13:01.073587Z',
+  description: 'Description 1',
   displayedSource: 'SEMAPHORE LE TOULINGUET',
-  targetType: 'VEHICLE',
-  vehicleType: 'VESSEL',
+  geom: {
+    coordinates: [[-4.93888188, 48.41495669]],
+    type: 'MultiPoint'
+  },
+  id: 1,
+  isArchived: true,
+  isControlRequired: true,
+  isInfractionProven: true,
+  isUnitAvailable: true,
+  reportingId: 2300001,
+  reportType: 'OBSERVATION',
+  seaFront: 'NAMO',
+  semaphoreId: 21,
+  sourceName: null,
+  sourceType: 'SEMAPHORE',
+  subThemes: ['Jet de déchet', 'Carénage sauvage'],
   targetDetails: [
     {
-      mmsi: '012314231343',
-      imo: null,
       externalReferenceNumber: null,
-      vesselName: 'Vessel 1',
+      imo: null,
+      mmsi: '012314231343',
       operatorName: null,
-      size: null
+      size: null,
+      vesselName: 'Vessel 1'
     }
   ],
-  geom: {
-    type: 'MultiPoint',
-    coordinates: [[-4.93888188, 48.41495669]]
-  },
-  seaFront: 'NAMO',
-  description: 'Description 1',
-  reportType: 'OBSERVATION',
+  targetType: 'VEHICLE',
   theme: 'Rejets illicites',
-  subThemes: ['Jet de déchet', 'Carénage sauvage'],
-  actionTaken: 'ACTION TAKEN',
-  isInfractionProven: true,
-  isControlRequired: true,
-  isUnitAvailable: true,
-  createdAt: '2023-08-01T15:13:01.073587Z',
   validityTime: 24,
-  isArchived: true
+  vehicleType: 'VESSEL'
 })
 
 const data = [...fakeData1, ...fakeData2]
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<{}> = {
   title: 'Tables/TableWithSelectableRows',
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 
@@ -110,7 +112,7 @@ const ButtonsGroupRow = ({ id, onSelect }) => (
 
 export function _TableWithSelectableRows() {
   const [rowSelection, setRowSelection] = useState({})
-  const [sorting, setSorting] = useState<SortingState>([{ id: 'createdAt', desc: false }])
+  const [sorting, setSorting] = useState<SortingState>([{ desc: false, id: 'createdAt' }])
 
   const doAction = (key, id) => {
     if (key === 'ARCHIVE') {
@@ -122,10 +124,15 @@ export function _TableWithSelectableRows() {
   const columns = useMemo(
     () => [
       {
-        id: 'select',
-        size: 25,
-        enableSorting: false,
         accessorFn: row => row.reportingId,
+        cell: ({ row }) => (
+          <TableWithSelectableRows.RowCheckbox
+            disabled={!row.getCanSelect()}
+            isChecked={row.getIsSelected()}
+            onChange={row.getToggleSelectedHandler(row)}
+          />
+        ),
+        enableSorting: false,
         header: ({ table }) => (
           <TableWithSelectableRows.RowCheckbox
             isChecked={table.getIsAllRowsSelected()}
@@ -133,13 +140,8 @@ export function _TableWithSelectableRows() {
             onChange={table.getToggleAllRowsSelectedHandler()}
           />
         ),
-        cell: ({ row }) => (
-          <TableWithSelectableRows.RowCheckbox
-            disabled={!row.getCanSelect()}
-            isChecked={row.getIsSelected()}
-            onChange={row.getToggleSelectedHandler(row)}
-          />
-        )
+        id: 'select',
+        size: 25
       },
       {
         accessorFn: row => row.reportingId,
@@ -258,19 +260,19 @@ export function _TableWithSelectableRows() {
   const table = useReactTable({
     columns,
     data,
-    state: {
-      sorting,
-      rowSelection
-    },
+    enableColumnResizing: false,
     enableRowSelection: true,
     enableSortingRemoval: false,
-    enableColumnResizing: false,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
     onRowSelectionChange: rowId => {
       setRowSelection(rowId)
     },
     onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel()
+    state: {
+      rowSelection,
+      sorting
+    }
   })
 
   const selectedIds = useMemo(
@@ -285,11 +287,13 @@ export function _TableWithSelectableRows() {
   const { rows } = table.getRowModel()
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
-    getScrollElement: () => tableContainerRef.current,
     estimateSize: () => 10,
-    overscan: 10,
     // Pass correct keys to virtualizer it's important when rows change position
-    getItemKey: useCallback((index: number) => `${rows[index]?.id}`, [rows])
+    getItemKey: useCallback((index: number) => `${rows[index]?.id}`, [rows]),
+
+    getScrollElement: () => tableContainerRef.current,
+
+    overscan: 10
   })
 
   const virtualRows = rowVirtualizer.getVirtualItems()

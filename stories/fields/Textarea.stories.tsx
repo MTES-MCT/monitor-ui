@@ -19,6 +19,7 @@ const args: TextareaProps = {
   value: undefined
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<TextareaProps> = {
   title: 'Fields/Textarea',
   component: Textarea,
@@ -37,6 +38,8 @@ const meta: Meta<TextareaProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _Textarea(props: TextareaProps) {

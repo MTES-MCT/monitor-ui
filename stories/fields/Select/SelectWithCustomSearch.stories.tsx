@@ -28,6 +28,7 @@ const args: SelectProps<Specy> = {
   virtualized: true
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<SelectProps<Specy>> = {
   title: 'Fields/Select',
   component: Select,
@@ -47,6 +48,8 @@ const meta: Meta<SelectProps<Specy>> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function SelectWithCustomSearch(props: SelectProps<Specy>) {

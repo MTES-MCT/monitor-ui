@@ -21,6 +21,7 @@ const args: RichBooleanCheckboxProps = {
   value: undefined
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<RichBooleanCheckboxProps> = {
   title: 'Fields/RichBooleanCheckbox',
   component: RichBooleanCheckbox,
@@ -40,6 +41,8 @@ const meta: Meta<RichBooleanCheckboxProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _RichBooleanCheckbox(props: RichBooleanCheckboxProps) {

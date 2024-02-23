@@ -1,3 +1,10 @@
+import { getArrayFromEnum } from './utils/getArrayFromEnum'
+import { Accent, Size, TagBullet } from '../src'
+
+export const ACCENTS_AS_ARRAY = getArrayFromEnum(Accent)
+export const SIZE_AS_ARRAY = getArrayFromEnum(Size)
+export const TAG_BULLETS_AS_ARRAY = getArrayFromEnum(TagBullet)
+
 export const LOREM_IPSUM = [
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   'Vivamus sit amet purus justo.',

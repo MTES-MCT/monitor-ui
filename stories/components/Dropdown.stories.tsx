@@ -12,6 +12,7 @@ const args: DropdownProps = {
   title: 'A dropdow menu'
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<DropdownProps> = {
   title: 'Components/Dropdown',
   component: Dropdown,
@@ -22,6 +23,7 @@ const meta: Meta<DropdownProps> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

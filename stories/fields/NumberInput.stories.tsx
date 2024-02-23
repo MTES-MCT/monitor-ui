@@ -13,11 +13,12 @@ const args: NumberInputProps = {
   isErrorMessageHidden: false,
   isLabelHidden: false,
   isLight: false,
-  name: 'myNumberInput',
   label: 'A number input',
+  name: 'myNumberInput',
   value: undefined
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<NumberInputProps> = {
   title: 'Fields/NumberInput',
   component: NumberInput,
@@ -36,6 +37,8 @@ const meta: Meta<NumberInputProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _NumberInput(props: NumberInputProps) {

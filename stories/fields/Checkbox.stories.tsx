@@ -16,6 +16,7 @@ const args: CheckboxProps = {
   readOnly: false
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<CheckboxProps> = {
   title: 'Fields/Checkbox',
   component: Checkbox,
@@ -26,6 +27,8 @@ const meta: Meta<CheckboxProps> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _Checkbox(props: CheckboxProps) {
