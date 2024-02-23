@@ -24,7 +24,7 @@ export type MultiCheckboxProps<OptionValue extends OptionValueType = string> = {
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
-  onChange?: ((nextValue: OptionValue[] | undefined) => Promisable<void>) | undefined
+  onChange?: (nextValue: OptionValue[] | undefined) => Promisable<void>
   options: Option<OptionValue>[]
   readOnly?: boolean | undefined
   style?: CSSProperties | undefined
@@ -81,7 +81,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
       legend={label}
       style={style}
     >
-      <ChecboxesBox key={key} $hasError={hasError} $isInline={isInline}>
+      <ChecboxesBox key={key} $isInline={isInline}>
         {options.map((option, index) => (
           <Checkbox
             key={JSON.stringify(option.value)}
@@ -91,7 +91,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
             isLight={isLight}
             label={option.label}
             name={`${name}${index}`}
-            onChange={(isChecked: boolean) => handleChange(option.value, isChecked)}
+            onChange={(isChecked: boolean = false) => handleChange(option.value, isChecked)}
             readOnly={readOnly}
           />
         ))}
@@ -103,7 +103,6 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
 }
 
 const ChecboxesBox = styled.div<{
-  $hasError: boolean
   $isInline: boolean
 }>`
   color: ${p => p.theme.color.gunMetal};

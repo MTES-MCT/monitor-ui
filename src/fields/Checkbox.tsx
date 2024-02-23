@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-
 import { useKey } from '@hooks/useKey'
 import classnames from 'classnames'
 import { useCallback, useMemo, type CSSProperties } from 'react'
@@ -33,10 +31,11 @@ export type CheckboxProps = Omit<RsuiteCheckboxProps, 'as' | 'checked' | 'defaul
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
-  onChange?: ((isChecked: boolean) => Promisable<void>) | undefined
+  onChange?: (isChecked: boolean | undefined) => Promisable<void>
   style?: CSSProperties | undefined
 }
 export function Checkbox({
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   checked = false,
   className,
   error,
@@ -68,6 +67,7 @@ export function Checkbox({
   const commonProps = {
     ...originalProps,
     $isLight: isLight,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     checked,
     id: originalProps.name,
     key,
@@ -152,8 +152,7 @@ const StyledCheckbox = styled(StyledCheckboxBase)<{
       }
     }
 
-    &:hover,
-    &:focus {
+    &:hover {
       > label {
         color: ${p => p.theme.color.blueYonder};
 
@@ -168,12 +167,13 @@ const StyledCheckbox = styled(StyledCheckboxBase)<{
       }
     }
 
-    &:active {
+    &:active,
+    &:focus {
       > label {
         > .rs-checkbox-wrapper {
           > .rs-checkbox-inner {
             &:before {
-              background-color: ${p => p.theme.color.blueGray};
+              background-color: ${p => p.theme.color.blueGray25};
               border: solid 2px ${p => p.theme.color.blueGray};
             }
           }
@@ -195,8 +195,7 @@ const StyledCheckbox = styled(StyledCheckboxBase)<{
         }
       }
 
-      &:hover,
-      &:focus {
+      &:hover {
         > label {
           color: ${p => p.theme.color.blueYonder};
 
@@ -211,7 +210,8 @@ const StyledCheckbox = styled(StyledCheckboxBase)<{
         }
       }
 
-      &:active {
+      &:active,
+      &:focus {
         > label {
           > .rs-checkbox-wrapper {
             > .rs-checkbox-inner {
@@ -233,6 +233,10 @@ const StyledCheckboxWhenDisabled = styled(StyledCheckboxBase)`
       color: ${p => p.theme.color.lightGray};
 
       > .rs-checkbox-wrapper {
+        &:before {
+          opacity: 1;
+        }
+
         > .rs-checkbox-inner {
           &:before {
             background-color: transparent !important;
@@ -247,10 +251,6 @@ const StyledCheckboxWhenDisabled = styled(StyledCheckboxBase)`
     > .rs-checkbox-checker {
       > label {
         > .rs-checkbox-wrapper {
-          &:before {
-            opacity: 1;
-          }
-
           > .rs-checkbox-inner {
             &:before {
               background-color: ${p => p.theme.color.lightGray} !important;
