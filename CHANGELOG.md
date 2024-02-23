@@ -1,3 +1,10 @@
+## [11.9.1](https://github.com/MTES-MCT/monitor-ui/compare/v11.9.0...v11.9.1) (2024-02-23)
+
+
+### Bug Fixes
+
+* **utils:** export humanizePastDate function ([2dafd68](https://github.com/MTES-MCT/monitor-ui/commit/2dafd6883131865c97a4692bd2d93f2c521cf4e0))
+
 ## [11.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.8.0...v11.9.0) (2024-02-23)
 
 
