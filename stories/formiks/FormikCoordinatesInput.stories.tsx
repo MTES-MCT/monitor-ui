@@ -16,6 +16,7 @@ const args: FormikCoordinatesInputProps = {
   name: 'myCoordinates'
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikCoordinatesInputProps> = {
   title: 'Formiks/FormikCoordinatesInput',
   component: FormikCoordinatesInput,
@@ -35,6 +36,8 @@ const meta: Meta<FormikCoordinatesInputProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _FormikCoordinatesInput(props: FormikCoordinatesInputProps) {

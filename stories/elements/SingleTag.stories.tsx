@@ -12,6 +12,7 @@ const args: SingleTagProps = {
   onDelete: noop
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<SingleTagProps> = {
   title: 'Elements/SingleTag',
   component: SingleTag,
@@ -22,6 +23,7 @@ const meta: Meta<SingleTagProps> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

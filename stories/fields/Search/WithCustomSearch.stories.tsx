@@ -21,6 +21,7 @@ const args: SearchProps = {
   placeholder: 'Type what you want'
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<SearchProps> = {
   title: 'Fields/Search',
   component: Search,
@@ -35,6 +36,8 @@ const meta: Meta<SearchProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function WithCustomSearch(props: SearchProps) {

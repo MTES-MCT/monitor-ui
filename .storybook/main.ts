@@ -3,15 +3,27 @@
 import type { StorybookConfig } from '@storybook/react-vite'
 
 const config: StorybookConfig = {
-  addons: ['@storybook/addon-essentials', 'storybook-addon-performance', '@storybook/addon-a11y'],
+  addons: [
+    {
+      name: '@storybook/addon-essentials',
+      options: {
+        backgrounds: false,
+        measure: false,
+        outline: false
+      }
+    },
+    '@storybook/addon-storysource',
+    'storybook-addon-performance',
+    '@storybook/addon-a11y'
+  ],
   docs: {
-    autodocs: true
+    autodocs: false
   },
   framework: {
     name: '@storybook/react-vite',
     options: {}
   },
-  stories: ['../stories/**/*.stories.@(mdx|ts|tsx)']
+  stories: ['../stories/**/*.mdx', '../stories/**/*.stories.tsx']
 }
 
 // eslint-disable-next-line import/no-default-export

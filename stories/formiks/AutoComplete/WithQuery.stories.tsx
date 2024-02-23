@@ -18,6 +18,7 @@ const args: FormikSearchProps = {
   placeholder: 'Type "brew"'
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikSearchProps> = {
   title: 'Formiks/FormikSearch',
   component: FormikSearch,
@@ -32,6 +33,8 @@ const meta: Meta<FormikSearchProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export const WithQuery = (props: FormikSearchProps) => {

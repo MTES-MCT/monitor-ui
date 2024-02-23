@@ -10,6 +10,7 @@ const args: LegendProps = {
   isHidden: false
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<LegendProps> = {
   title: 'Elements/Legend',
   component: Legend,
@@ -20,6 +21,7 @@ const meta: Meta<LegendProps> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

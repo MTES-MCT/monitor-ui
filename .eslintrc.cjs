@@ -224,9 +224,7 @@ module.exports = {
         'jsx-a11y/control-has-associated-label': 'off',
 
         'react/destructuring-assignment': 'off',
-        'react/function-component-definition': 'off',
-
-        'sort-keys-fix/sort-keys-fix': 'off'
+        'react/function-component-definition': 'off'
       }
     }
   ]

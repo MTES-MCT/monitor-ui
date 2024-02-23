@@ -26,12 +26,10 @@ const args: SearchProps<Value> = {
   error: '',
   isLabelHidden: false,
   isLight: false,
-  label: 'An autocompletable select',
-  name: 'autoComplete',
-  placeholder: 'Type "first"',
-  optionValueKey: 'name' as any,
   isSearchIconVisible: false,
+  label: 'An autocompletable select',
   MenuItem,
+  name: 'autoComplete',
   options: [
     { label: 'First Option', value: { name: 'First Option', subValue: 'FIRST_OPTION' } },
     { label: 'Second Option', value: { name: 'Second Option', subValue: 'SECOND_OPTION' } },
@@ -40,9 +38,12 @@ const args: SearchProps<Value> = {
       label: 'A Very Very Long Option',
       value: { name: 'A Very Very Long  Option', subValue: 'A_VERY_VERY_LONG_OPTION' }
     }
-  ]
+  ],
+  optionValueKey: 'name' as any,
+  placeholder: 'Type "first"'
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<SearchProps<Value>> = {
   title: 'Fields/Search',
   component: Search,
@@ -61,6 +62,8 @@ const meta: Meta<SearchProps<Value>> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function WithOptionsAndCustomMenuItem(props: SearchProps<Value>) {

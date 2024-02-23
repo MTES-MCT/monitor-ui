@@ -14,8 +14,8 @@ const args: TextInputProps = {
   isErrorMessageHidden: false,
   isLabelHidden: false,
   isLight: false,
-  isUndefinedWhenDisabled: false,
   isSearchInput: false,
+  isUndefinedWhenDisabled: false,
   label: 'A text input',
   name: 'myTextInput',
   placeholder: 'A text input placeholder',
@@ -23,6 +23,7 @@ const args: TextInputProps = {
   value: undefined
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<TextInputProps> = {
   title: 'Fields/TextInput',
   component: TextInput,
@@ -51,6 +52,8 @@ const meta: Meta<TextInputProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _TextInput(props: TextInputProps) {

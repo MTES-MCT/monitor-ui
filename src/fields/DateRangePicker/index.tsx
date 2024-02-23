@@ -84,7 +84,7 @@ export interface DateRangePickerProps
    * @example
    * `15` would produce a list with `..., 10:45, 11:00, 11:15, ...`.
    */
-  minutesRange?: number
+  minutesRange?: number | undefined
   /**
    * Called each time the date range picker is changed to a new valid value.
    *

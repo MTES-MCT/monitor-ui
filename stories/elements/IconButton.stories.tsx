@@ -1,7 +1,6 @@
-import { values } from 'ramda'
-
 import { Showcase } from '../../.storybook/components/Showcase'
 import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { ACCENTS_AS_ARRAY, SIZE_AS_ARRAY } from '../../.storybook/constants'
 import { Accent, IconButton, Icon, Size, THEME } from '../../src'
 
 import type { IconButtonProps } from '../../src'
@@ -9,21 +8,22 @@ import type { Meta } from '@storybook/react'
 
 const args: IconButtonProps = {
   accent: Accent.PRIMARY,
+  Icon: Icon.Close,
   iconSize: undefined,
   isCompact: false,
-  Icon: Icon.Close,
   size: Size.NORMAL,
   withUnpropagatedClick: false
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<IconButtonProps> = {
   title: 'Elements/IconButton',
   component: IconButton,
 
   argTypes: {
     accent: {
-      control: 'inline-radio',
-      options: values(Accent)
+      control: 'radio',
+      options: ACCENTS_AS_ARRAY
     },
     color: {
       control: {
@@ -35,8 +35,8 @@ const meta: Meta<IconButtonProps> = {
       control: 'number'
     },
     size: {
-      control: 'inline-radio',
-      options: values(Size)
+      control: 'radio',
+      options: SIZE_AS_ARRAY
     }
   },
 
@@ -44,6 +44,7 @@ const meta: Meta<IconButtonProps> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

@@ -15,16 +15,17 @@ const args: FormikMultiCheckboxProps = {
   isInline: false,
   isLabelHidden: false,
   isLight: false,
+  label: 'Pick some options',
   name: 'myMultiCheckbox',
   options: [
     { label: 'First Option', value: 'FIRST_OPTION' },
     { label: 'Second Option', value: 'SECOND_OPTION' },
     { label: 'Third Option', value: 'THIRD_OPTION' },
     { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
-  ],
-  label: 'Pick some options'
+  ]
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikMultiCheckboxProps> = {
   title: 'Formiks/FormikMultiCheckbox',
   component: FormikMultiCheckbox,
@@ -39,6 +40,8 @@ const meta: Meta<FormikMultiCheckboxProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _FormikMultiCheckbox(props: FormikMultiCheckboxProps) {

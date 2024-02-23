@@ -25,6 +25,7 @@ const args: FormikMultiRadioProps = {
   ]
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikMultiRadioProps> = {
   title: 'Formiks/FormikMultiRadio',
   component: FormikMultiRadio,
@@ -39,6 +40,8 @@ const meta: Meta<FormikMultiRadioProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _FormikMultiRadio(props: FormikMultiRadioProps) {

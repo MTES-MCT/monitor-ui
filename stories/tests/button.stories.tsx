@@ -1,9 +1,12 @@
 import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import { Button } from '../../src'
+import { Button, type ButtonProps } from '../../src'
 
-export default {
+import type { Meta } from '@storybook/react'
+
+/* eslint-disable sort-keys-fix/sort-keys-fix */
+const meta: Meta<ButtonProps> = {
   title: 'Tests/Button',
 
   parameters: {
@@ -12,6 +15,9 @@ export default {
     }
   }
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
+export default meta
 
 export function Template() {
   const [outputValue, setOutputValue] = useState<any>('∅')

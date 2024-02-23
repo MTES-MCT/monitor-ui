@@ -18,17 +18,18 @@ const args: SearchProps<Value> = {
   isLight: false,
   label: 'An autocompletable select',
   name: 'autoComplete',
-  placeholder: 'Type "first"',
-  optionValueKey: 'name' as any,
   options: [
     { label: 'First Option', value: { id: 1, name: 'First Option' } },
     { label: 'Second Option', value: { id: 2, name: 'Second Option' } },
     { label: 'Third Option', value: { id: 3, name: 'Third Option' } },
     { label: 'A Very Very Long Option', value: { id: 4, name: 'A Very Very Long Option' } }
   ],
+  optionValueKey: 'name' as any,
+  placeholder: 'Type "first"',
   value: undefined
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<SearchProps<Value>> = {
   title: 'Fields/Search',
   component: Search,
@@ -47,6 +48,8 @@ const meta: Meta<SearchProps<Value>> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function WithOptions(props: SearchProps) {

@@ -6,6 +6,7 @@ import type { Meta } from '@storybook/react'
 
 const args: TagGroupProps = {}
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<TagGroupProps> = {
   title: 'Elements/TagGroup',
   component: TagGroup,
@@ -16,6 +17,7 @@ const meta: Meta<TagGroupProps> = {
 
   decorators: [generateStoryDecorator()]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

@@ -27,6 +27,7 @@ const args: MultiCascaderProps<FakeCity> = {
   value: undefined
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<MultiCascaderProps<FakeCity>> = {
   title: 'Fields/MultiCascader',
   component: MultiCascaderWithThreeColumns,
@@ -48,6 +49,8 @@ const meta: Meta<MultiCascaderProps<FakeCity>> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function MultiCascaderWithThreeColumns(props: MultiCascaderProps<FakeCity>) {

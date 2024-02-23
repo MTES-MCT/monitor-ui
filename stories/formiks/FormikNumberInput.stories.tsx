@@ -14,10 +14,11 @@ const args: FormikNumberInputProps = {
   isErrorMessageHidden: false,
   isLabelHidden: false,
   isLight: false,
-  name: 'myNumberInput',
-  label: 'A number input'
+  label: 'A number input',
+  name: 'myNumberInput'
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikNumberInputProps> = {
   title: 'Formiks/FormikNumberInput',
   component: FormikNumberInput,
@@ -32,6 +33,8 @@ const meta: Meta<FormikNumberInputProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _FormikNumberInput(props: FormikNumberInputProps) {

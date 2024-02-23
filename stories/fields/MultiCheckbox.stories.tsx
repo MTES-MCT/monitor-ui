@@ -17,14 +17,15 @@ const args: MultiCheckboxProps = {
   label: 'Pick some options',
   name: 'myMultiCheckbox',
   options: [
-    { label: 'First Option', value: 'FIRST_OPTION', isDisabled: false },
-    { label: 'Second Option', value: 'SECOND_OPTION', isDisabled: true },
-    { label: 'Third Option', value: 'THIRD_OPTION', isDisabled: false },
-    { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION', isDisabled: false }
+    { isDisabled: false, label: 'First Option', value: 'FIRST_OPTION' },
+    { isDisabled: true, label: 'Second Option', value: 'SECOND_OPTION' },
+    { isDisabled: false, label: 'Third Option', value: 'THIRD_OPTION' },
+    { isDisabled: false, label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
   ],
   value: undefined
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<MultiCheckboxProps> = {
   title: 'Fields/MultiCheckbox',
   component: MultiCheckbox,
@@ -44,6 +45,8 @@ const meta: Meta<MultiCheckboxProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _MultiCheckbox(props: MultiCheckboxProps) {

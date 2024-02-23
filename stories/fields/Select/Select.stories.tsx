@@ -17,10 +17,10 @@ const args: SelectProps = {
   label: 'A select',
   name: 'mySelect',
   options: [
-    { label: 'First Option', value: 'FIRST_OPTION', isDisabled: true },
-    { label: 'Second Option', value: 'SECOND_OPTION', isDisabled: false },
-    { label: 'Third Option', value: 'THIRD_OPTION', isDisabled: false },
-    { label: LOREM_IPSUM, value: 'LOREM_IPSUM', isDisabled: false }
+    { isDisabled: true, label: 'First Option', value: 'FIRST_OPTION' },
+    { isDisabled: false, label: 'Second Option', value: 'SECOND_OPTION' },
+    { isDisabled: false, label: 'Third Option', value: 'THIRD_OPTION' },
+    { isDisabled: false, label: LOREM_IPSUM, value: 'LOREM_IPSUM' }
   ],
   placeholder: 'Pick an option',
   searchable: true,
@@ -28,6 +28,7 @@ const args: SelectProps = {
   virtualized: false
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<SelectProps> = {
   title: 'Fields/Select',
   component: Select,
@@ -48,6 +49,7 @@ const meta: Meta<SelectProps> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 

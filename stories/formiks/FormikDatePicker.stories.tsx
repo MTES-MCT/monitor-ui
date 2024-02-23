@@ -23,6 +23,7 @@ const args: FormikDatePickerWithDateDateProps | FormikDatePickerWithStringDatePr
   withTime: true
 }
 
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<any> = {
   title: 'Formiks/FormikDatePicker',
   component: FormikDatePicker,
@@ -43,6 +44,8 @@ const meta: Meta<any> = {
     })
   ]
 }
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
 export default meta
 
 export function _FormikDatePicker(props: any) {
