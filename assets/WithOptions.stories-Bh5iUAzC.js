@@ -1,8 +1,0 @@
-import{b9 as u,a as p,aJ as l,j as o}from"./index-DOn5IH5D.js";import{r as m}from"./index-CBqU2yxZ.js";import{O as c}from"./Output-o7hVPfWS.js";import{g as d}from"./StoryDecorator-CIMcLWSk.js";import"./isPlainObject-ByolnvGK.js";import"./_commonjsHelpers-BosuxZz1.js";import"./mapValues-y2Dgfp-9.js";import"./index-Ch9hqOxJ.js";import"./debounce-S-gaweFD.js";import"./_arrayIncludesWith-DoLrk8sb.js";import"./GlobalDecorator-DCTCzM4b.js";const O={error:"",isLabelHidden:!1,isLight:!1,label:"An autocompletable select",name:"autoComplete",placeholder:'Type "first"',optionValueKey:"name",options:[{label:"First Option",value:{id:1,name:"First Option"}},{label:"Second Option",value:{id:2,name:"Second Option"}},{label:"Third Option",value:{id:3,name:"Third Option"}},{label:"A Very Very Long Option",value:{id:4,name:"A Very Very Long Option"}}],value:void 0},T={title:"Fields/Search",component:u,argTypes:{value:{control:"text"}},args:O,decorators:[d({hasDarkMode:!0})]};function e(s){const[t,i]=m.useState("∅");return p(l,{children:[o(u,{...s,MenuItem:void 0,onChange:i}),t!=="∅"&&o(c,{value:t})]})}var a,r,n;e.parameters={...e.parameters,docs:{...(a=e.parameters)==null?void 0:a.docs,source:{originalSource:`function WithOptions(props: SearchProps) {
-  const [outputValue, setOutputValue] = useState<any | undefined | '∅'>('∅');
-  return <>
-      <Search {...props} MenuItem={undefined} onChange={setOutputValue} />
-
-      {outputValue !== '∅' && <Output value={outputValue} />}
-    </>;
-}`,...(n=(r=e.parameters)==null?void 0:r.docs)==null?void 0:n.source}}};const j=["WithOptions"];export{e as WithOptions,j as __namedExportsOrder,T as default};

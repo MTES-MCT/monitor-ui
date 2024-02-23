@@ -1,0 +1,8 @@
+import{b6 as s,a as l,aJ as p,j as r}from"./index-BnGWIf5W.js";import{r as d}from"./index-CBqU2yxZ.js";import{O as m}from"./Output-yz5BznoM.js";import{g as c}from"./StoryDecorator-BYfjGXyr.js";import"./isPlainObject-ByolnvGK.js";import"./_commonjsHelpers-BosuxZz1.js";import"./mapValues-y2Dgfp-9.js";import"./index-Ch9hqOxJ.js";import"./debounce-S-gaweFD.js";import"./_arrayIncludesWith-DoLrk8sb.js";import"./GlobalDecorator-DIeY2T5W.js";const O={addButtonLabel:"Add a zone",defaultValue:void 0,disabled:!1,error:"",initialZone:{name:"Polygone dessiné"},isLabelHidden:!1,isLight:!1,label:"Some zones",labelPropName:"name"},b={title:"Fields/MultiZoneEditor",component:s,argTypes:{defaultValue:{control:"inline-radio",options:["FIRST_OPTION","SECOND_OPTION","THIRD_OPTION","A_VERY_VERY_LONG_OPTION"]}},args:O,decorators:[c({hasDarkMode:!0})]};function t(i){const[o,e]=d.useState("∅");return l(p,{children:[r(s,{...i,onAdd:e,onChange:e,onDelete:e}),o!=="∅"&&r(m,{value:o})]})}var a,u,n;t.parameters={...t.parameters,docs:{...(a=t.parameters)==null?void 0:a.docs,source:{originalSource:`function _MultiZoneEditor(props: MultiZoneEditorProps) {
+  const [outputValue, setOutputValue] = useState<Record<string, any>[] | undefined | '∅'>('∅');
+  return <>
+      <MultiZoneEditor {...props} onAdd={setOutputValue} onChange={setOutputValue} onDelete={setOutputValue} />
+
+      {outputValue !== '∅' && <Output value={outputValue} />}
+    </>;
+}`,...(n=(u=t.parameters)==null?void 0:u.docs)==null?void 0:n.source}}};const D=["_MultiZoneEditor"];export{t as _MultiZoneEditor,D as __namedExportsOrder,b as default};
