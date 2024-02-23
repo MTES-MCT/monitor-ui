@@ -43,6 +43,10 @@ export function Radio({
           return <StyledRadioWhenDisabled {...commonProps} />
         }
 
+        if (originalProps.readOnly) {
+          return <StyledRadioWhenReadOnly {...commonProps} />
+        }
+
         return <StyledRadio $hasError={hasError} {...commonProps} />
       })()}
     </Field>
@@ -219,6 +223,42 @@ const StyledRadioWhenDisabled = styled(StyledRadioBase)`
 
             &:after {
               background-color: ${p => p.theme.color.lightGray} !important;
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+const StyledRadioWhenReadOnly = styled(StyledRadioBase)`
+  > .rs-radio-checker {
+    > label {
+      color: ${p => p.theme.color.lightGray};
+
+      > .rs-radio-wrapper {
+        > .rs-radio-inner {
+          &:before {
+            background-color: transparent;
+            border: solid 2px ${p => p.theme.color.lightGray};
+          }
+        }
+      }
+    }
+  }
+
+  &.rs-radio-checked {
+    > .rs-radio-checker {
+      > label {
+        > .rs-radio-wrapper {
+          > .rs-radio-inner {
+            &:before {
+              background-color: transparent;
+              border: solid 2px ${p => p.theme.color.lightGray};
+            }
+
+            &:after {
+              background-color: ${p => p.theme.color.charcoal};
             }
           }
         }

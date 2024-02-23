@@ -24,13 +24,13 @@ export type MultiRadioProps<OptionValue extends OptionValueType = string> = {
   isInline?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
-  isReadOnly?: boolean
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
   onChange?: (nextValue: OptionValue | undefined) => Promisable<void>
   optionValueKey?: keyof OptionValue
   options: Option<OptionValue>[]
+  readOnly?: boolean | undefined
   renderMenuItem?: (label: string, value: OptionValue) => ReactNode
   style?: CSSProperties | undefined
   value?: OptionValue | undefined
@@ -43,13 +43,14 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   isInline = false,
   isLabelHidden = false,
   isLight = false,
-  isReadOnly = false,
   isUndefinedWhenDisabled = false,
   label,
   name,
   onChange,
   options,
   optionValueKey,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  readOnly = false,
   renderMenuItem,
   style,
   value
@@ -78,7 +79,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
     [onChange, rsuiteData]
   )
 
-  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled && !isReadOnly, onChange)
+  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled && !readOnly, onChange)
 
   return (
     <Fieldset
@@ -91,9 +92,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
     >
       <StyledRsuiteRadioGroup
         key={key}
-        $hasError={hasError}
         $isInline={isInline}
-        $isReadOnly={isReadOnly}
         name={name}
         onChange={handleChange}
         value={selectedRsuiteValue}
@@ -104,7 +103,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
             disabled={!!rsuiteDataItem.isDisabled || disabled}
             hasError={hasError}
             isLight={isLight}
-            readOnly={isReadOnly}
+            readOnly={readOnly}
             value={rsuiteDataItem.value}
           >
             {renderMenuItem ? renderMenuItem(rsuiteDataItem.label, rsuiteDataItem.optionValue) : rsuiteDataItem.label}
