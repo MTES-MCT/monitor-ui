@@ -36,7 +36,7 @@ const meta: Meta<FormikMultiCheckboxProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

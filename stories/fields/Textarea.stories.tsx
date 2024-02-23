@@ -34,7 +34,7 @@ const meta: Meta<TextareaProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

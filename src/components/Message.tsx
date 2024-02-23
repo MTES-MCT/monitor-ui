@@ -6,7 +6,7 @@ import { ExclamationPoint } from '../symbols/ExclamationPoint'
 import { THEME } from '../theme'
 
 export type MessageProps = HTMLAttributes<HTMLDivElement> & {
-  children?: ReactNode | string | undefined
+  children: ReactNode | string
   level?: Level | undefined
 }
 export function Message({ children, level = Level.WARNING, ...nativeProps }: MessageProps) {

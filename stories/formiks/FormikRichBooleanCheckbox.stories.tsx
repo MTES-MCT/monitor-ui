@@ -31,7 +31,7 @@ const meta: Meta<FormikRichBooleanCheckboxProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

@@ -58,7 +58,7 @@ const meta: Meta<SearchProps<Value>> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

@@ -44,7 +44,7 @@ const meta: Meta<SelectProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true,
+      hasLightMode: true,
       withNewWindowButton: true
     })
   ]

@@ -11,6 +11,10 @@ const UntypedGlobalStyle = GlobalStyle as any
 const UntypedThemeProvider = ThemeProvider as any
 
 const CustomGlobalStyle: any = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+  }
+
   html,
   body {
     height: 100%;

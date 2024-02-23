@@ -33,7 +33,7 @@ const meta: Meta<NumberInputProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true
+      hasLightMode: true
     })
   ]
 }

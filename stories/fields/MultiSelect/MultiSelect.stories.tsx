@@ -44,7 +44,7 @@ const meta: Meta<MultiSelectProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasDarkMode: true,
+      hasLightMode: true,
       withNewWindowButton: true
     })
   ]
