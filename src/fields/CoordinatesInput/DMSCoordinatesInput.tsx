@@ -64,6 +64,5 @@ const CoordinatesType = styled.span`
 `
 
 const Box = styled.div`
-  font-size: 13px;
   text-align: left;
 `

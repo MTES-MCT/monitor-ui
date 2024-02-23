@@ -95,11 +95,34 @@ export function CoordinatesInput({
 }
 
 const StyledFieldset = styled(Fieldset as any)`
+  * {
+    box-sizing: border-box;
+  }
+
   input {
     background-color: ${p => (p.isLight ? p.theme.color.white : p.theme.color.gainsboro)};
-    border: ${p => (p.isLight ? `1px solid ${p.theme.color.lightGray}` : 'none')};
+    border: 1px solid ${p => (p.isLight ? p.theme.color.white : p.theme.color.gainsboro)};
     color: ${p => p.theme.color.gunMetal};
-    height: 33px;
-    padding: 7px 11px;
+    font-size: 13px;
+    font-weight: 500;
+    height: 30px;
+    padding: 4.5px 8px 7.5px;
+
+    &:hover {
+      border-color: ${p => p.theme.color.blueYonder};
+    }
+
+    &:active,
+    &:focus {
+      border-color: ${p => p.theme.color.blueGray};
+    }
+    &:focus-visible {
+      outline: 0;
+    }
+
+    &:disabled {
+      border-color: ${p => p.theme.color.cultured};
+      background-color: ${p => p.theme.color.cultured} !important;
+    }
   }
 `
