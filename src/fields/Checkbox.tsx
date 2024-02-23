@@ -19,7 +19,17 @@ export type CheckboxProps = Omit<RsuiteCheckboxProps, 'as' | 'checked' | 'defaul
   checked?: boolean | undefined
   className?: string | undefined
   error?: string | undefined
+  /**
+   * Used internally to pass the error state from other monitor-ui components using this checkbox.
+   *
+   * @description
+   * ⚠️ Don't use this prop directly. Use `error` instead.
+   *
+   * @internal
+   */
+  hasError?: boolean | undefined
   isErrorMessageHidden?: boolean | undefined
+  isLight?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
@@ -30,7 +40,9 @@ export function Checkbox({
   checked = false,
   className,
   error,
+  hasError = false,
   isErrorMessageHidden = false,
+  isLight = false,
   isUndefinedWhenDisabled = false,
   label,
   onChange,
@@ -39,7 +51,7 @@ export function Checkbox({
 }: CheckboxProps) {
   const controlledClassName = useMemo(() => classnames('Field-Checkbox', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
-  const hasError = useMemo(() => Boolean(controlledError), [controlledError])
+  const hasControlledError = useMemo(() => hasError || Boolean(controlledError), [controlledError, hasError])
   const key = useKey([originalProps.disabled, originalProps.name])
 
   const handleChange = useCallback(
@@ -53,56 +65,229 @@ export function Checkbox({
     [onChange]
   )
 
+  const commonProps = {
+    ...originalProps,
+    $isLight: isLight,
+    checked,
+    id: originalProps.name,
+    key,
+    onChange: handleChange
+  }
+
   useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
 
   return (
     <Field className={controlledClassName} style={style}>
-      <StyledCheckbox key={key} checked={checked} id={originalProps.name} onChange={handleChange} {...originalProps}>
-        {label}
-      </StyledCheckbox>
+      {(() => {
+        if (originalProps.disabled) {
+          return <StyledCheckboxWhenDisabled {...commonProps}>{label}</StyledCheckboxWhenDisabled>
+        }
 
-      {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
+        if (originalProps.readOnly) {
+          return <StyledCheckboxWhenReadOnly {...commonProps}>{label}</StyledCheckboxWhenReadOnly>
+        }
+
+        return (
+          <StyledCheckbox $hasError={hasControlledError} {...commonProps}>
+            {label}
+          </StyledCheckbox>
+        )
+      })()}
+
+      {!isErrorMessageHidden && hasControlledError && <FieldError>{controlledError}</FieldError>}
     </Field>
   )
 }
 
-const StyledCheckbox = styled(RsuiteCheckbox)`
-  > .rs-checkbox-checker {
-    min-height: 0;
-    padding-left: 28px;
-    padding-top: 0;
-
-    * {
-      user-select: none;
-    }
-
-    .rs-checkbox-wrapper {
-      left: 2px;
-      top: 2px !important;
-    }
+const StyledCheckboxBase = styled(RsuiteCheckbox)<{
+  $isLight: boolean
+}>`
+  * {
+    user-select: none;
   }
 
-  // in readOnly, override hover effects and change cursor
-  ${props =>
-    props.readOnly &&
-    `
-      > .rs-checkbox-checker:hover {
-        label {
-          cursor: not-allowed;
-        }
-        .rs-checkbox-wrapper .rs-checkbox-inner::before {
-          border-color: ${props.theme.color.lightGray};
-          background-color: ${props.theme.color.gainsboro};
-        }
-      }
+  > .rs-checkbox-checker {
+    min-height: unset;
+    padding: 0 0 0 24px;
 
-      &.rs-checkbox-checked {
-        > .rs-checkbox-checker:hover {
-          .rs-checkbox-wrapper .rs-checkbox-inner::before {
-            border-color: ${props.theme.color.charcoal};
-            background-color: ${props.theme.color.charcoal};
+    > label {
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1;
+      transition: color 0.2s linear;
+
+      > .rs-checkbox-wrapper {
+        left: 0;
+        top: 2px;
+
+        > .rs-checkbox-inner {
+          &:before {
+            border-radius: 0;
+          }
+
+          &:after {
+            bottom: 0;
+            left: 0;
+            right: 0;
+            top: 0;
           }
         }
       }
-    `}
+    }
+  }
+`
+
+const StyledCheckbox = styled(StyledCheckboxBase)<{
+  $hasError: boolean
+}>`
+  > .rs-checkbox-checker {
+    > label {
+      > .rs-checkbox-wrapper {
+        > .rs-checkbox-inner {
+          &:before {
+            background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
+            border: solid 2px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.lightGray)};
+          }
+        }
+      }
+    }
+
+    &:hover,
+    &:focus {
+      > label {
+        color: ${p => p.theme.color.blueYonder};
+
+        > .rs-checkbox-wrapper {
+          > .rs-checkbox-inner {
+            &:before {
+              background-color: ${p => p.theme.color.blueYonder25};
+              border: solid 2px ${p => p.theme.color.blueYonder};
+            }
+          }
+        }
+      }
+    }
+
+    &:active {
+      > label {
+        > .rs-checkbox-wrapper {
+          > .rs-checkbox-inner {
+            &:before {
+              background-color: ${p => p.theme.color.blueGray};
+              border: solid 2px ${p => p.theme.color.blueGray};
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.rs-checkbox-checked {
+    > .rs-checkbox-checker {
+      > label {
+        > .rs-checkbox-wrapper {
+          > .rs-checkbox-inner {
+            &:before {
+              background-color: ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.charcoal)};
+              border: solid 2px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.charcoal)};
+            }
+          }
+        }
+      }
+
+      &:hover,
+      &:focus {
+        > label {
+          color: ${p => p.theme.color.blueYonder};
+
+          > .rs-checkbox-wrapper {
+            > .rs-checkbox-inner {
+              &:before {
+                background-color: ${p => p.theme.color.blueYonder};
+                border: solid 2px ${p => p.theme.color.blueYonder};
+              }
+            }
+          }
+        }
+      }
+
+      &:active {
+        > label {
+          > .rs-checkbox-wrapper {
+            > .rs-checkbox-inner {
+              &:before {
+                background-color: ${p => p.theme.color.blueGray};
+                border: solid 2px ${p => p.theme.color.blueGray};
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+const StyledCheckboxWhenDisabled = styled(StyledCheckboxBase)`
+  > .rs-checkbox-checker {
+    > label {
+      color: ${p => p.theme.color.lightGray};
+
+      > .rs-checkbox-wrapper {
+        > .rs-checkbox-inner {
+          &:before {
+            background-color: transparent !important;
+            border: solid 2px ${p => p.theme.color.lightGray} !important;
+          }
+        }
+      }
+    }
+  }
+
+  &.rs-checkbox-checked {
+    > .rs-checkbox-checker {
+      > label {
+        > .rs-checkbox-wrapper {
+          &:before {
+            opacity: 1;
+          }
+
+          > .rs-checkbox-inner {
+            &:before {
+              background-color: ${p => p.theme.color.lightGray} !important;
+              border: solid 2px ${p => p.theme.color.lightGray} !important;
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+const StyledCheckboxWhenReadOnly = styled(StyledCheckboxBase)`
+  > .rs-checkbox-checker {
+    > label {
+      > .rs-checkbox-wrapper {
+        > .rs-checkbox-inner {
+          &:before {
+            background-color: transparent;
+            border: solid 2px ${p => p.theme.color.lightGray};
+          }
+        }
+      }
+    }
+  }
+
+  &.rs-checkbox-checked {
+    > .rs-checkbox-checker {
+      > label {
+        > .rs-checkbox-wrapper {
+          > .rs-checkbox-inner {
+            &:after {
+              border-color: ${p => p.theme.color.charcoal};
+            }
+          }
+        }
+      }
+    }
+  }
 `

@@ -14,6 +14,7 @@ const args: MultiCheckboxProps = {
   isInline: false,
   isLabelHidden: false,
   isLight: false,
+  isUndefinedWhenDisabled: false,
   label: 'Pick some options',
   name: 'myMultiCheckbox',
   options: [
@@ -31,6 +32,42 @@ const meta: Meta<MultiCheckboxProps> = {
   component: MultiCheckbox,
 
   argTypes: {
+    className: {
+      table: {
+        disable: true
+      }
+    },
+    disabled: {
+      control: 'boolean'
+    },
+    error: {
+      control: 'text'
+    },
+    isErrorMessageHidden: {
+      control: 'boolean'
+    },
+    isInline: {
+      control: 'boolean'
+    },
+    isLabelHidden: {
+      control: 'boolean'
+    },
+    isLight: {
+      control: 'boolean'
+    },
+    isUndefinedWhenDisabled: {
+      control: 'boolean'
+    },
+    onChange: {
+      table: {
+        disable: true
+      }
+    },
+    style: {
+      table: {
+        disable: true
+      }
+    },
     value: {
       control: 'inline-check',
       options: ['FIRST_OPTION', 'SECOND_OPTION', 'THIRD_OPTION', 'A_VERY_VERY_LONG_OPTION']
