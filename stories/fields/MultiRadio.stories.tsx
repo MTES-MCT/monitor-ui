@@ -15,7 +15,6 @@ const args: MultiRadioProps = {
   isInline: false,
   isLabelHidden: false,
   isLight: false,
-  isReadOnly: false,
   isUndefinedWhenDisabled: false,
   label: 'Pick an option',
   name: 'myMultiRadio',
@@ -25,6 +24,7 @@ const args: MultiRadioProps = {
     { label: 'Third Option', value: 'THIRD_OPTION' },
     { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
   ],
+  readOnly: false,
   value: undefined
 }
 
@@ -72,10 +72,10 @@ const meta: Meta<MultiRadioProps> = {
     isInline: ARG_TYPE.OPTIONAL_BOOLEAN,
     isLabelHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
     isLight: ARG_TYPE.OPTIONAL_BOOLEAN,
-    isReadOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
     isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
     optionValueKey: ARG_TYPE.OPTIONAL_OPTION_VALUE_KEY,
     options: ARG_TYPE.NO_CONTROL_INPUT,
+    readOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
     style: ARG_TYPE.NO_CONTROL,
     value: {
       ...ARG_TYPE.OPTIONAL_OPTION_VALUE,
@@ -113,11 +113,11 @@ export function _MultiRadio(props: MultiRadioProps) {
       </div>
 
       <MultiRadio
-        isReadOnly
         label="Multiradio in readOnly mode"
         name="myMultiRadioReadOnly"
         onChange={controlledOnChange}
         options={props.options}
+        readOnly
         value="FIRST_OPTION"
       />
 
