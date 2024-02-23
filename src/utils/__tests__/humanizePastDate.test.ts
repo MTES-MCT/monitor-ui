@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 
 import { humanizePastDate } from '../humanizePastDate'
 
-describe('utils/getFormattedMissionUpdateDate()', () => {
+describe('utils/humanizePastDate()', () => {
   it('should return the expected message when the date is today', () => {
     const missionUpdatedAtUtc = dayjs().subtract(3, 'hour').utc()
     const result = humanizePastDate(missionUpdatedAtUtc.format('YYYY-MM-DDTHH:mm:ssZ'))
