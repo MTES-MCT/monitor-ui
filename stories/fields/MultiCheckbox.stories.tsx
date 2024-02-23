@@ -61,8 +61,11 @@ const meta: Meta<MultiCheckboxProps> = {
     },
     onChange: {
       table: {
-        disable: true
-      }
+        type: {
+          detail: '(nextValue: OptionValue[] | undefined) => Promisable<void>'
+        }
+      },
+      type: 'function'
     },
     readOnly: {
       control: 'boolean'
