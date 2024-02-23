@@ -26,6 +26,7 @@ export type MultiCheckboxProps<OptionValue extends OptionValueType = string> = {
   name: string
   onChange?: ((nextValue: OptionValue[] | undefined) => Promisable<void>) | undefined
   options: Option<OptionValue>[]
+  readOnly?: boolean | undefined
   style?: CSSProperties | undefined
   value?: OptionValue[] | undefined
 }
@@ -42,6 +43,8 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
   name,
   onChange,
   options,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  readOnly = false,
   style,
   value
 }: MultiCheckboxProps<OptionValue>) {
@@ -89,6 +92,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
             label={option.label}
             name={`${name}${index}`}
             onChange={(isChecked: boolean) => handleChange(option.value, isChecked)}
+            readOnly={readOnly}
           />
         ))}
       </ChecboxesBox>
