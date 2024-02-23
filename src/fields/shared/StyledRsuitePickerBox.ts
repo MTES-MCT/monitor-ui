@@ -34,9 +34,27 @@ export const StyledRsuitePickerBox = styled.div<{
 
       > .rs-stack {
         > .rs-stack-item {
+          /* Selected value(s) */
           > .rs-picker-toggle-value {
             color: ${p => p.theme.color.gunMetal};
             font-weight: 500;
+
+            /* Counter badge, if any */
+            > .rs-picker-value-count {
+              align-items: center;
+              background-color: ${p => p.theme.color.charcoal};
+              border-radius: 50%;
+              display: flex;
+              font-family: 'Open Sans', sans-serif;
+              font-size: 12px;
+              font-weight: 600;
+              min-height: 21px;
+              justify-content: center;
+              line-height: 1;
+              margin: 0 0 0 4px;
+              padding: 0;
+              min-width: 21px;
+            }
           }
 
           &.rs-picker-toggle-indicator {

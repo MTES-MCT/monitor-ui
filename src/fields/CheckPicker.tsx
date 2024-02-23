@@ -2,7 +2,6 @@ import { getSelectedOptionValuesFromSelectedRsuiteDataItemValues } from '@utils/
 import classnames from 'classnames'
 import { useCallback, useMemo, useRef, useState, type ReactNode, useEffect } from 'react'
 import { CheckPicker as RsuiteCheckPicker, type CheckPickerProps as RsuiteCheckPickerProps } from 'rsuite'
-import styled from 'styled-components'
 
 import { StyledRsuitePickerBox } from './shared/StyledRsuitePickerBox'
 import { Field } from '../elements/Field'
@@ -126,7 +125,7 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
       <Label disabled={disabled} hasError={hasError} htmlFor={originalProps.name} isHidden={isLabelHidden}>
         {label}
       </Label>
-      <Box ref={boxRef} $hasError={hasError} $isLight={isLight}>
+      <StyledRsuitePickerBox ref={boxRef} $hasError={hasError} $isLight={isLight}>
         {boxRef.current && (
           <RsuiteCheckPicker
             key={key}
@@ -148,29 +147,8 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
             {...originalProps}
           />
         )}
-      </Box>
+      </StyledRsuitePickerBox>
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
     </Field>
   )
 }
-
-const Box = styled(StyledRsuitePickerBox)`
-  /* Custom Styles */
-  > .rs-picker-toggle-wrapper {
-    > [role='combobox'] {
-      > .rs-stack {
-        > .rs-stack-item {
-          > .rs-picker-toggle-value {
-            > .rs-picker-value-count {
-              background-color: ${p => p.theme.color.charcoal} !important;
-              border-radius: 50%;
-              line-height: 1;
-              margin: 1.5px 0 0 4px;
-              padding: 1.5px 6px 3.5px !important;
-            }
-          }
-        }
-      }
-    }
-  }
-`
