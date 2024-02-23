@@ -12,10 +12,9 @@ const UntypedThemeProvider = ThemeProvider as any
 
 const CustomGlobalStyle: any = createGlobalStyle`
   html,
-  body.sb-show-main.sb-main-padded {
+  body {
     height: 100%;
     padding: 0;
-    width: 640px;
   }
 
   code {
@@ -26,7 +25,7 @@ const CustomGlobalStyle: any = createGlobalStyle`
     vertical-align: 1px;
   }
 
-  #root {
+  #storybook-root {
     height: 100%;
     width: 100%;
   }

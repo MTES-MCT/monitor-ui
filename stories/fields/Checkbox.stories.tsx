@@ -11,6 +11,9 @@ const args: CheckboxProps = {
   checked: false,
   disabled: false,
   error: '',
+  isErrorMessageHidden: false,
+  isLight: false,
+  isUndefinedWhenDisabled: false,
   label: 'Check me',
   name: 'myCheckbox',
   readOnly: false
@@ -21,11 +24,52 @@ const meta: Meta<CheckboxProps> = {
   title: 'Fields/Checkbox',
   component: Checkbox,
 
-  argTypes: {},
+  argTypes: {
+    checked: {
+      control: 'boolean'
+    },
+    className: {
+      table: {
+        disable: true
+      }
+    },
+    disabled: {
+      control: 'boolean'
+    },
+    error: {
+      control: 'text'
+    },
+    isErrorMessageHidden: {
+      control: 'boolean'
+    },
+    isLight: {
+      control: 'boolean'
+    },
+    isUndefinedWhenDisabled: {
+      control: 'boolean'
+    },
+    onChange: {
+      table: {
+        disable: true
+      }
+    },
+    style: {
+      table: {
+        disable: true
+      }
+    },
+    readOnly: {
+      control: 'boolean'
+    }
+  },
 
   args,
 
-  decorators: [generateStoryDecorator()]
+  decorators: [
+    generateStoryDecorator({
+      hasDarkMode: true
+    })
+  ]
 }
 /* eslint-enable sort-keys-fix/sort-keys-fix */
 

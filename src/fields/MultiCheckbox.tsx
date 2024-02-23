@@ -75,7 +75,6 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
       disabled={disabled}
       hasError={hasError}
       isLegendHidden={isLabelHidden}
-      isLight={isLight}
       legend={label}
       style={style}
     >
@@ -85,6 +84,8 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
             key={JSON.stringify(option.value)}
             checked={includes(option.value, value ?? [])}
             disabled={!!option.isDisabled || disabled}
+            hasError={hasError}
+            isLight={isLight}
             label={option.label}
             name={`${name}${index}`}
             onChange={(isChecked: boolean) => handleChange(option.value, isChecked)}
@@ -105,35 +106,12 @@ const ChecboxesBox = styled.div<{
   display: flex;
   flex-direction: ${p => (p.$isInline ? 'row' : 'column')};
 
-  > div {
-    > .rs-checkbox {
-      user-select: none;
-    }
-  }
-  ${p =>
-    p.$hasError &&
-    css`
-      .rs-checkbox-wrapper .rs-checkbox-inner::before {
-        border-color: ${p.theme.color.maximumRed} !important;
-      }
-    `}
-
   ${p =>
     !p.$isInline &&
     css`
       > div:not(:first-child) {
         > .rs-checkbox {
-          margin-top: 8px;
-        }
-      }
-    `}
-
-  ${p =>
-    p.$isInline &&
-    css`
-      > div:not(:first-child) {
-        .rs-checkbox {
-          margin-left: 12px;
+          margin: 8px 0 0 0;
         }
       }
     `}
