@@ -1,42 +1,29 @@
+import { action } from '@storybook/addon-actions'
 import { Formik } from 'formik'
-import { noop } from 'lodash/fp'
+import { omit } from 'lodash'
 import { useMemo, useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { FormikEffect, FormikSelect } from '../../src'
+import SelectStoryMeta from '../fields/Select.stories'
 
 import type { FormikSelectProps } from '../../src'
 import type { Meta } from '@storybook/react'
-
-const args: FormikSelectProps = {
-  disabled: false,
-  isErrorMessageHidden: false,
-  isLabelHidden: false,
-  isLight: false,
-  label: 'A select',
-  name: 'mySelect',
-  options: [
-    { label: 'First Option', value: 'FIRST_OPTION' },
-    { label: 'Second Option', value: 'SECOND_OPTION' },
-    { label: 'Third Option', value: 'THIRD_OPTION' },
-    { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
-  ],
-  placeholder: 'Pick an option'
-}
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikSelectProps> = {
   title: 'Formiks/FormikSelect',
   component: FormikSelect,
 
-  argTypes: {},
+  argTypes: omit(SelectStoryMeta.argTypes, ['error', 'onChange', 'value']),
 
-  args,
+  args: omit(SelectStoryMeta.args, ['error', 'onChange', 'value']),
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      box: { width: 640 },
+      withBackgroundButton: true
     })
   ]
 }
@@ -56,7 +43,7 @@ export function _FormikSelect(props: FormikSelectProps) {
 
   return (
     <>
-      <Formik key={key} initialValues={{}} onSubmit={noop}>
+      <Formik key={key} initialValues={{}} onSubmit={action('onSubmit')}>
         <>
           <FormikEffect onChange={setOutputValue} />
 

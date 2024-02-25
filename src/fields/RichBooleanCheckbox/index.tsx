@@ -12,7 +12,7 @@ export type RichBooleanCheckboxProps = Omit<
   'onChange' | 'options' | 'value'
 > & {
   falseOptionLabel: string
-  onChange?: ((nextValue: RichBoolean | undefined) => Promisable<void>) | undefined
+  onChange?: (nextValue: RichBoolean | undefined) => Promisable<void>
   trueOptionLabel: string
   value?: RichBoolean | undefined
 }

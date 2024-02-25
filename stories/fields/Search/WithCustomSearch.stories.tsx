@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
 import SPECIES from '../../../.storybook/data/species.json'
+import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
 import { CustomSearch, Search, type SearchProps } from '../../../src'
 
 import type { Meta } from '@storybook/react'
@@ -23,7 +23,7 @@ const args: SearchProps = {
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<SearchProps> = {
-  title: 'Fields/Search',
+  title: 'Fields/Search (variations)',
   component: Search,
 
   argTypes: {},
@@ -32,7 +32,7 @@ const meta: Meta<SearchProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      withBackgroundButton: true
     })
   ]
 }

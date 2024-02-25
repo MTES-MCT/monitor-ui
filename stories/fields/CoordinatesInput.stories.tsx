@@ -1,24 +1,17 @@
 import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { CoordinatesFormat, CoordinatesInput } from '../../src'
 
 import type { CoordinatesInputProps } from '../../src/fields/CoordinatesInput'
 import type { Meta } from '@storybook/react'
 
-const args: CoordinatesInputProps = {
-  coordinatesFormat: CoordinatesFormat.DEGREES_MINUTES_SECONDS,
-  defaultValue: undefined,
-  disabled: false,
-  error: '',
-  isLabelHidden: false,
-  isLight: false,
-  label: 'Some coordinates'
-}
-
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<CoordinatesInputProps> = {
+  ...META_DEFAULTS,
+
   title: 'Fields/CoordinatesInput',
   component: CoordinatesInput,
 
@@ -27,16 +20,35 @@ const meta: Meta<CoordinatesInputProps> = {
       control: 'inline-radio',
       options: CoordinatesFormat
     },
-    defaultValue: {
-      control: 'string'
-    }
+    disabled: ARG_TYPE.OPTIONAL_BOOLEAN,
+    error: ARG_TYPE.OPTIONAL_STRING,
+    isErrorMessageHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isLabelHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isLight: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isTransparent: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
+    readOnly: ARG_TYPE.OPTIONAL_BOOLEAN
   },
 
-  args,
+  args: {
+    coordinatesFormat: CoordinatesFormat.DEGREES_MINUTES_SECONDS,
+    defaultValue: undefined,
+    disabled: false,
+    error: '',
+    isErrorMessageHidden: false,
+    isLabelHidden: false,
+    isLight: false,
+    isTransparent: false,
+    isUndefinedWhenDisabled: false,
+    label: 'A coordinates input',
+    name: 'myCoordinatesInput',
+    readOnly: false
+  },
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      box: { width: 640 },
+      withBackgroundButton: true
     })
   ]
 }

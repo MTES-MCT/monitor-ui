@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const StyledRsuiteCalendarBox = styled.div`
+  font-size: 13px !important;
   position: relative;
   user-select: none;
 
@@ -59,13 +60,18 @@ export const StyledRsuiteCalendarBox = styled.div`
               > .rs-calendar-header-backward {
                 color: ${p => p.theme.color.slateGray};
                 padding: 5.5px 6px 6.5px;
+
+                > svg {
+                  height: 20px;
+                  width: 20px;
+                }
               }
 
               > .rs-calendar-header-title {
                 color: ${p => p.theme.color.slateGray};
                 font-size: 13px;
                 font-weight: 500;
-                padding: 6.5px 0 7.5px;
+                padding: 5.5px 0 6.5px;
                 text-transform: uppercase;
 
                 &.rs-calendar-header-error {
@@ -80,6 +86,11 @@ export const StyledRsuiteCalendarBox = styled.div`
               > .rs-calendar-header-forward {
                 color: ${p => p.theme.color.slateGray};
                 padding: 5.5px 6px 6.5px;
+
+                > svg {
+                  height: 20px;
+                  width: 20px;
+                }
               }
             }
           }

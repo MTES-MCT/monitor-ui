@@ -1,4 +1,4 @@
-import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
 import { CoordinatesFormat } from '../../../src'
 import { _CoordinatesInput as CoordinatesInputStory } from '../../../stories/fields/CoordinatesInput.stories'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
@@ -9,13 +9,14 @@ context('Story', () => {
   it('Should fill the DMD coordinates and not round the result', () => {
     const props: CoordinatesInputProps = {
       coordinatesFormat: CoordinatesFormat.DEGREES_MINUTES_DECIMALS,
-      label: 'Coordinates'
+      label: 'Coordinates',
+      name: 'myCoordinatesInput'
     }
 
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <CoordinatesInputStory {...props} />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldNotBe()
@@ -28,13 +29,14 @@ context('Story', () => {
   it('Should fill the DMD coordinates with lowercase N/W and two minutes decimals', () => {
     const props: CoordinatesInputProps = {
       coordinatesFormat: CoordinatesFormat.DEGREES_MINUTES_DECIMALS,
-      label: 'Coordinates'
+      label: 'Coordinates',
+      name: 'myCoordinatesInput'
     }
 
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <CoordinatesInputStory {...props} />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldNotBe()
@@ -48,13 +50,14 @@ context('Story', () => {
   it('Should fill the DMS coordinates with lowercase N/W', () => {
     const props: CoordinatesInputProps = {
       coordinatesFormat: CoordinatesFormat.DEGREES_MINUTES_SECONDS,
-      label: 'Coordinates'
+      label: 'Coordinates',
+      name: 'myCoordinatesInput'
     }
 
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <CoordinatesInputStory {...props} />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldNotBe()

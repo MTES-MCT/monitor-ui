@@ -1,43 +1,95 @@
 import styled from 'styled-components'
 
-export const StyledRsuitePickerBox = styled.div<{
+import {
+  getFieldBackgroundColorFactory,
+  getFieldMainColorFactoryForState,
+  getFieldPlaceholderColorFactoryForState
+} from './utils'
+
+type StyledRsuitePickerBoxProps = {
   $hasError: boolean
+  $isDisabled: boolean
   $isLight: boolean
-}>`
-  font-size: 13px;
+  $isReadOnly: boolean
+  $isTransparent: boolean
+}
+export const StyledRsuitePickerBox = styled.div<StyledRsuitePickerBoxProps>`
+  font-size: 13px !important;
   position: relative;
   user-select: none;
   width: 100%;
 
+  * {
+    ${p => p.$isReadOnly && `cursor: default !important;`}
+  }
+
   > .rs-picker-toggle-wrapper {
+    background-color: transparent;
     border: 0;
+    /* Remove focus ring (TagPicker) */
+    box-shadow: none;
     width: 100%;
 
+    &.rs-picker-disabled {
+      opacity: 1;
+    }
+
     > [role='combobox'] {
-      background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)} !important;
-      border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.lightGray)} !important;
+      background-color: ${getFieldBackgroundColorFactory()} !important;
+      border: solid 1px ${getFieldMainColorFactoryForState('default')} !important;
       border-radius: 0;
+      /* Remove focus ring (Select) */
+      box-shadow: none;
       font-size: 13px;
       height: 30px;
       line-height: 1.3846;
       padding: 3.5px 40px 0 8px !important;
 
       &:hover {
-        border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueYonder)} !important;
+        border: solid 1px ${getFieldMainColorFactoryForState('hover')} !important;
+
+        > .rs-stack {
+          > .rs-stack-item {
+            /* Placeholder */
+            > .rs-picker-toggle-placeholder {
+              color: ${getFieldPlaceholderColorFactoryForState('hover')};
+            }
+          }
+        }
       }
 
       &:active,
       &:focus,
       &.rs-picker-toggle-active {
-        border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray)} !important;
+        border: solid 1px ${getFieldMainColorFactoryForState('focus')} !important;
+
+        > .rs-stack {
+          > .rs-stack-item {
+            /* Placeholder */
+            > .rs-picker-toggle-placeholder {
+              color: ${getFieldPlaceholderColorFactoryForState('focus')};
+            }
+          }
+        }
       }
 
       > .rs-stack {
         > .rs-stack-item {
+          /* Placeholder */
+          > .rs-picker-toggle-placeholder {
+            color: ${getFieldPlaceholderColorFactoryForState('default')};
+          }
+
           /* Selected value(s) */
           > .rs-picker-toggle-value {
             color: ${p => p.theme.color.gunMetal};
             font-weight: 500;
+
+            > .rs-picker-value-list {
+              > .rs-picker-value-separator {
+                margin: 0 4px 0 0 !important;
+              }
+            }
 
             /* Counter badge, if any */
             > .rs-picker-value-count {
@@ -45,8 +97,8 @@ export const StyledRsuitePickerBox = styled.div<{
               background-color: ${p => p.theme.color.charcoal};
               border-radius: 50%;
               display: flex;
-              font-family: 'Open Sans', sans-serif;
-              font-size: 12px;
+              font-family: 'Open Sans', sans-serif !important;
+              font-size: 12px !important;
               font-weight: 600;
               min-height: 21px;
               justify-content: center;
@@ -64,7 +116,6 @@ export const StyledRsuitePickerBox = styled.div<{
             }
 
             > .rs-picker-caret-icon {
-              cursor: pointer;
               height: 18px;
               top: 4px;
             }
@@ -125,7 +176,6 @@ export const StyledRsuitePickerBox = styled.div<{
       [role='treeitem'] {
         > .rs-picker-select-menu-item {
           color: ${p => p.theme.color.gunMetal};
-          font-weight: 500;
           line-height: 1;
           overflow: hidden;
           padding: 8px 8px 11px 8px;
@@ -139,7 +189,7 @@ export const StyledRsuitePickerBox = styled.div<{
 
           &.rs-picker-select-menu-item-active {
             background-color: transparent;
-            font-weight: 700;
+            font-weight: 500;
 
             &:hover {
               background-color: ${p => p.theme.color.blueYonder25};
@@ -158,7 +208,7 @@ export const StyledRsuitePickerBox = styled.div<{
 
             > label {
               color: ${p => p.theme.color.gunMetal};
-              font-weight: 500;
+              font-size: 13px !important;
               line-height: 1;
               overflow: hidden;
               padding: 8.5px 8px 10.5px 36px;
@@ -182,7 +232,7 @@ export const StyledRsuitePickerBox = styled.div<{
           }
 
           &:hover {
-            background-color: ${p => p.theme.color.lightGray};
+            background-color: ${p => p.theme.color.blueYonder25};
 
             > .rs-checkbox-checker {
               > label {
@@ -201,16 +251,26 @@ export const StyledRsuitePickerBox = styled.div<{
           }
 
           &.rs-check-item-focus {
-            background-color: transparent;
+            background-color: ${p => p.theme.color.blueYonder25};
+
+            > .rs-checkbox-checker {
+              > label {
+                font-weight: 400;
+              }
+            }
           }
 
           &.rs-checkbox-checked {
             background-color: transparent;
 
+            &.rs-check-item-focus {
+              background-color: ${p => p.theme.color.blueYonder25};
+            }
+
             > .rs-checkbox-checker {
               > label {
                 color: ${p => p.theme.color.gunMetal};
-                font-weight: 700;
+                font-weight: 500;
 
                 > .rs-checkbox-wrapper {
                   > .rs-checkbox-inner {

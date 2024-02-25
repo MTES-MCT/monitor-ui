@@ -1,6 +1,6 @@
 import { composeStories } from '@storybook/testing-react'
 
-import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
 import * as baseStories from '../../../stories/formiks/FormikSelect.stories'
 import { mountAndWait, outputShouldBe } from '../utils'
 
@@ -9,9 +9,9 @@ const { _FormikSelect: BaseStory } = composeStories(baseStories as any) as any
 context('Story', () => {
   beforeEach(() => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <BaseStory />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
   })
 

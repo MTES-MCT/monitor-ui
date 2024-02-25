@@ -12,8 +12,9 @@ export function FormikCheckbox({ name, ...originalProps }: FormikCheckboxProps) 
   const isChecked = Boolean(field.value)
 
   const handleChange = useMemo(
-    () => value => {
-      helpers.setValue(value)
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    () => (nextValue: boolean | undefined) => {
+      helpers.setValue(nextValue)
     },
 
     // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
@@ -33,5 +34,5 @@ export function FormikCheckbox({ name, ...originalProps }: FormikCheckboxProps) 
     []
   )
 
-  return <Checkbox checked={isChecked} error={meta.error} name={name} onChange={handleChange} {...originalProps} />
+  return <Checkbox {...originalProps} checked={isChecked} error={meta.error} name={name} onChange={handleChange} />
 }

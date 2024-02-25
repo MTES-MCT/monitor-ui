@@ -1,4 +1,4 @@
-import { isEqual } from 'lodash/fp'
+import { isEqual } from 'lodash'
 import { useEffect, type DependencyList, type EffectCallback } from 'react'
 
 import { usePrevious } from './usePrevious'

@@ -15,6 +15,7 @@
     "build:package": "node ./scripts/build/generatePackageJson.js",
     "build:storybook": "storybook build --quiet",
     "build:type": "tsc -p ./tsconfig.dist.json",
+    "clean": "yarn build:clean && rm -Rf ./node_modules/.cache",
     "dev": "storybook dev --no-open -p 6006",
     "dev:setup": "sh ./scripts/dev/setup.sh",
     "serve": "http-server ./storybook-static --port 3000 --silent",

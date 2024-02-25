@@ -1,17 +1,13 @@
+import { action } from '@storybook/addon-actions'
 import { Field, Formik } from 'formik'
-import { noop } from 'lodash/fp'
 import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { FormikEffect } from '../../src'
 
 import type { FormikEffectProps } from '../../src'
 import type { Meta } from '@storybook/react'
-
-const args: FormikEffectProps = {
-  onChange: noop
-}
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikEffectProps> = {
@@ -20,7 +16,9 @@ const meta: Meta<FormikEffectProps> = {
 
   argTypes: {},
 
-  args,
+  args: {
+    onChange: action('onChange')
+  },
 
   decorators: [generateStoryDecorator()]
 }
@@ -38,18 +36,18 @@ export function _FormikEffect() {
 
   return (
     <>
-      <Formik initialValues={{}} onSubmit={noop}>
+      <Formik initialValues={{}} onSubmit={action('onSubmit')}>
         <>
           <FormikEffect onChange={setOutputValue} />
 
           <p>
-            <code>{`<FormikEffect />`}</code> doesn’t show anything. It’s an inner <code>{`<Formik />`}</code> listener
-            component allowing us to get form values outside of Formik context.
+            <code>{`<FormikEffect />`}</code> doesn’t render anything. It’s an inner <code>{`<Formik />`}</code>{' '}
+            listener component allowing us to get form values outside of Formik context.
           </p>
           <p>
             Here is an example with a simple <code>{`<Formik.Field />`}</code> input:
           </p>
-          <Field name="aFormikField" placeholder="Fill me!" type="text" />
+          <Field name="aFormikField" placeholder="Fill me!" style={{ marginTop: 16 }} type="text" />
         </>
       </Formik>
 

@@ -2,7 +2,7 @@ import ky from 'ky'
 import { useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
 import { Search } from '../../../src'
 
 import type { SearchProps } from '../../../src'
@@ -19,7 +19,7 @@ const args: SearchProps = {
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<SearchProps> = {
-  title: 'Fields/Search',
+  title: 'Fields/Search (variations)',
   component: Search,
 
   argTypes: {},
@@ -28,7 +28,7 @@ const meta: Meta<SearchProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      withBackgroundButton: true
     })
   ]
 }

@@ -1,22 +1,12 @@
 import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { ARG_TYPE } from '../../.storybook/constants'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { NumberInput, useFieldControl } from '../../src'
 
 import type { NumberInputProps } from '../../src'
 import type { Meta } from '@storybook/react'
-
-const args: NumberInputProps = {
-  disabled: false,
-  error: '',
-  isErrorMessageHidden: false,
-  isLabelHidden: false,
-  isLight: false,
-  label: 'A number input',
-  name: 'myNumberInput',
-  value: undefined
-}
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<NumberInputProps> = {
@@ -24,16 +14,36 @@ const meta: Meta<NumberInputProps> = {
   component: NumberInput,
 
   argTypes: {
-    value: {
-      control: 'number'
-    }
+    disabled: ARG_TYPE.OPTIONAL_BOOLEAN,
+    error: ARG_TYPE.OPTIONAL_STRING,
+    isErrorMessageHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isLabelHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isLight: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isTransparent: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
+    onChange: ARG_TYPE.NO_CONTROL_INPUT,
+    readOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
+    value: ARG_TYPE.OPTIONAL_NUMBER
   },
 
-  args,
+  args: {
+    disabled: false,
+    error: '',
+    isErrorMessageHidden: false,
+    isLabelHidden: false,
+    isLight: false,
+    isTransparent: false,
+    isUndefinedWhenDisabled: false,
+    label: 'A number input',
+    name: 'myNumberInput',
+    placeholder: 'Pick a number',
+    readOnly: false
+  },
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      box: { width: 640 },
+      withBackgroundButton: true
     })
   ]
 }

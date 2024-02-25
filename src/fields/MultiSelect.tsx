@@ -24,17 +24,18 @@ export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omi
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderMenuItem' | 'value' | 'valueKey'
 > & {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
-  customSearch?: CustomSearch<Option<OptionValue>> | undefined
+  customSearch?: CustomSearch<Option<OptionValue>>
   /** Minimum search query length required to trigger custom search filtering. */
   customSearchMinQueryLength?: number | undefined
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
-  onChange?: ((nextValue: OptionValue[] | undefined) => Promisable<void>) | undefined
+  onChange?: (nextValue: OptionValue[] | undefined) => Promisable<void>
   optionValueKey?: keyof OptionValue | undefined
   options: Option<OptionValue>[]
   value?: OptionValue[] | undefined
@@ -48,11 +49,13 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
+  isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
   onChange,
   options,
   optionValueKey,
+  readOnly = false,
   searchable = false,
   style,
   value,
@@ -126,7 +129,14 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
         {label}
       </Label>
 
-      <Box ref={boxRef} $hasError={hasError} $isLight={isLight}>
+      <Box
+        ref={boxRef}
+        $hasError={hasError}
+        $isDisabled={disabled}
+        $isLight={isLight}
+        $isReadOnly={readOnly}
+        $isTransparent={isTransparent}
+      >
         {boxRef.current && (
           <TagPicker
             key={key}
@@ -138,6 +148,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
             id={originalProps.name}
             onChange={handleChange}
             onSearch={handleSearch}
+            readOnly={readOnly}
             renderMenuItem={renderMenuItem}
             searchable={!!customSearch || searchable}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
@@ -156,9 +167,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 
 const Box = styled(StyledRsuitePickerBox)`
   /* Custom Styles */
-  > .rs-picker-toggle-wrapper {
-    border: 0 !important;
-
+  > .rs-picker-toggle-wrapper:not(.rs-picker-disabled) {
     > [role='combobox'] {
       height: 100%;
       min-height: 30px;
@@ -172,12 +181,6 @@ const Box = styled(StyledRsuitePickerBox)`
       }
     }
 
-    &:hover {
-      > [role='combobox']:not(.rs-picker-toggle-active) {
-        border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueYonder)} !important;
-      }
-    }
-
     > .rs-picker-textbox {
       cursor: text;
       min-height: 30px;
@@ -186,14 +189,15 @@ const Box = styled(StyledRsuitePickerBox)`
       /* Selected tags */
       > [role='listbox'] {
         > [role='option'] {
-          background-color: ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
+          background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
           font-size: 11px;
           line-height: 1.3636; // = 15px
           margin: 5px 0 0 5px;
 
           > .rs-tag-icon-close {
+            border-left: solid 1px ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
             bottom: 1px;
-            padding: 3px 6px;
+            padding: 3px 4px 3px 4px;
 
             > svg {
               height: 10px;

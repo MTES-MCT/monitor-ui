@@ -1,59 +1,78 @@
 import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { DateRangePicker } from '../../src'
 
 import type { DateRangePickerWithDateDateProps } from '../../src'
 import type { DateAsStringRange, DateRange } from '../../src/types/definitions'
 import type { Meta } from '@storybook/react'
 
-const args: DateRangePickerWithDateDateProps = {
-  baseContainer: undefined,
-  defaultValue: undefined,
-  disabled: false,
-  error: '',
-  hasSingleCalendar: false,
-  isCompact: false,
-  isErrorMessageHidden: false,
-  isHistorical: false,
-  isLabelHidden: false,
-  isLight: false,
-  isStringDate: false,
-  isUndefinedWhenDisabled: false,
-  label: 'A date range',
-  minutesRange: undefined,
-  withTime: true
-}
-
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<DateRangePickerWithDateDateProps> = {
+  ...META_DEFAULTS,
+
   title: 'Fields/DateRangePicker',
   component: DateRangePicker,
 
   argTypes: {
-    disabled: {
-      control: 'boolean'
+    defaultValue: {
+      ...ARG_TYPE.NO_CONTROL_INPUT,
+      table: {
+        type: { summary: '[Date, Date] | [string, string] | undefined' }
+      }
     },
-    isLight: {
-      control: 'boolean'
+    disabled: ARG_TYPE.OPTIONAL_BOOLEAN,
+    error: ARG_TYPE.OPTIONAL_STRING,
+    hasSingleCalendar: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isCompact: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isErrorMessageHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isHistorical: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isLabelHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isLight: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isStringDate: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isTransparent: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
+    minutesRange: ARG_TYPE.OPTIONAL_NUMBER,
+    onChange: {
+      ...ARG_TYPE.NO_CONTROL_INPUT,
+      table: {
+        type: {
+          detail: 'If `isStringDate` is `true`, `[string, string] | undefined`, otherwise `[Date, Date] | undefined.`.',
+          summary: '(nextValue: [Date, Date] | undefined) => void | (nextValue: [string, string] | undefined) => void'
+        }
+      }
     },
-    isLabelHidden: {
-      control: 'boolean'
-    },
-    isStringDate: {
-      control: 'boolean'
-    },
-    isUndefinedWhenDisabled: {
-      control: 'boolean'
-    }
+    readOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
+    withTime: ARG_TYPE.OPTIONAL_BOOLEAN
   },
 
-  args,
+  args: {
+    baseContainer: undefined,
+    defaultValue: undefined,
+    disabled: false,
+    error: '',
+    hasSingleCalendar: false,
+    isCompact: false,
+    isErrorMessageHidden: false,
+    isHistorical: false,
+    isLabelHidden: false,
+    isLight: false,
+    isStringDate: false,
+    isTransparent: false,
+    isUndefinedWhenDisabled: false,
+    label: 'A date range picker (always picked and displayed in UTC, bypassing your local timezone)',
+    name: 'myDateRangePicker',
+    minutesRange: undefined,
+    readOnly: false,
+    withTime: true
+  },
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      box: { width: 640 },
+      withBackgroundButton: true
     })
   ]
 }

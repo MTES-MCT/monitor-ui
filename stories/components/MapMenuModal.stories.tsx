@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Accent, Button, Icon } from '../../src'
 import { MapMenuDialog } from '../../src/components/MapMenuDialog'
 

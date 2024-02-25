@@ -1,0 +1,245 @@
+import { DocumentationBox } from '../../../.storybook/components/DocumentationBox'
+import {
+  FormikCheckbox,
+  FormikCheckPicker,
+  FormikCoordinatesInput,
+  FormikDatePicker,
+  FormikDateRangePicker,
+  FormikMultiCascader,
+  FormikMultiCheckbox,
+  FormikMultiRadio,
+  FormikMultiSelect,
+  FormikNumberInput,
+  FormikRichBooleanCheckbox,
+  FormikSearch,
+  FormikSelect,
+  FormikTextarea,
+  FormikTextInput,
+  FormikToggle
+} from '../../../src'
+import FormikCheckboxStoryMeta from '../../formiks/FormikCheckbox.stories'
+import FormikCheckPickerStoryMeta from '../../formiks/FormikCheckPicker.stories'
+import FormikCoordinatesInputStoryMeta from '../../formiks/FormikCoordinatesInput.stories'
+import FormikDatePickerStoryMeta from '../../formiks/FormikDatePicker.stories'
+import FormikDateRangePickerStoryMeta from '../../formiks/FormikDateRangePicker.stories'
+import FormikMultiCascaderStoryMeta from '../../formiks/FormikMultiCascader.stories'
+import FormikMultiCheckboxStoryMeta from '../../formiks/FormikMultiCheckbox.stories'
+import FormikMultiRadioStoryMeta from '../../formiks/FormikMultiRadio.stories'
+import FormikMultiSelectStoryMeta from '../../formiks/FormikMultiSelect.stories'
+import FormikNumberInputStoryMeta from '../../formiks/FormikNumberInput.stories'
+import FormikRichBooleanCheckboxStoryMeta from '../../formiks/FormikRichBooleanCheckbox.stories'
+import FormikSearchStoryMeta from '../../formiks/FormikSearch.stories'
+import FormikSelectStoryMeta from '../../formiks/FormikSelect.stories'
+import FormikTextareaStoryMeta from '../../formiks/FormikTextarea.stories'
+import FormikTextInputStoryMeta from '../../formiks/FormikTextInput.stories'
+import FormikToggleStoryMeta from '../../formiks/FormikToggle.stories'
+import { Form } from './Form'
+import { DarkBox, LightBox } from './styles'
+
+<DocumentationBox>
+  # Fields Showcase
+
+  ## White Background
+
+  ### Default Fields
+
+  `<MyField />`
+
+  <Form>
+    <LightBox>
+      <FormikCheckbox {...FormikCheckboxStoryMeta.args} />
+      <FormikCheckPicker {...FormikCheckPickerStoryMeta.args} />
+      <FormikCoordinatesInput {...FormikCoordinatesInputStoryMeta.args} />
+      <FormikDatePicker {...FormikDatePickerStoryMeta.args} />
+      <FormikDateRangePicker {...FormikDateRangePickerStoryMeta.args} />
+      <FormikMultiCascader {...FormikMultiCascaderStoryMeta.args} />
+      <FormikMultiCheckbox {...FormikMultiCheckboxStoryMeta.args} />
+      <FormikMultiRadio {...FormikMultiRadioStoryMeta.args} />
+      <FormikMultiSelect {...FormikMultiSelectStoryMeta.args} />
+      <FormikNumberInput {...FormikNumberInputStoryMeta.args} />
+      <FormikRichBooleanCheckbox {...FormikRichBooleanCheckboxStoryMeta.args} />
+      <FormikSearch {...FormikSearchStoryMeta.args} />
+      <FormikSelect {...FormikSelectStoryMeta.args} />
+      <FormikTextarea {...FormikTextareaStoryMeta.args} />
+      <FormikTextInput {...FormikTextInputStoryMeta.args} />
+      <FormikToggle {...FormikToggleStoryMeta.args} />
+    </LightBox>
+  </Form>
+
+  ### Transparent Fields
+
+  `<MyField isTransparent />`
+
+  <Form>
+    <LightBox>
+      <FormikCheckbox {...FormikCheckboxStoryMeta.args} isTransparent />
+      <FormikCheckPicker {...FormikCheckPickerStoryMeta.args} isTransparent />
+      <FormikCoordinatesInput {...FormikCoordinatesInputStoryMeta.args} isTransparent />
+      <FormikDatePicker {...FormikDatePickerStoryMeta.args} isTransparent />
+      <FormikDateRangePicker {...FormikDateRangePickerStoryMeta.args} isTransparent />
+      <FormikMultiCascader {...FormikMultiCascaderStoryMeta.args} isTransparent />
+      <FormikMultiCheckbox {...FormikMultiCheckboxStoryMeta.args} isTransparent />
+      <FormikMultiRadio {...FormikMultiRadioStoryMeta.args} isTransparent />
+      <FormikMultiSelect {...FormikMultiSelectStoryMeta.args} isTransparent />
+      <FormikNumberInput {...FormikNumberInputStoryMeta.args} isTransparent />
+      <FormikRichBooleanCheckbox {...FormikRichBooleanCheckboxStoryMeta.args} isTransparent />
+      <FormikSearch {...FormikSearchStoryMeta.args} isTransparent />
+      <FormikSelect {...FormikSelectStoryMeta.args} isTransparent />
+      <FormikTextarea {...FormikTextareaStoryMeta.args} isTransparent />
+      <FormikTextInput {...FormikTextInputStoryMeta.args} isTransparent />
+      <FormikToggle {...FormikToggleStoryMeta.args} isTransparent />
+    </LightBox>
+  </Form>
+
+  ### Disabled Fields
+
+  `<MyField disabled />`
+
+  <Form>
+    <LightBox>
+      <FormikCheckbox {...FormikCheckboxStoryMeta.args} disabled />
+      <FormikCheckPicker {...FormikCheckPickerStoryMeta.args} disabled />
+      <FormikCoordinatesInput {...FormikCoordinatesInputStoryMeta.args} disabled />
+      <FormikDatePicker {...FormikDatePickerStoryMeta.args} disabled />
+      <FormikDateRangePicker {...FormikDateRangePickerStoryMeta.args} disabled />
+      <FormikMultiCascader {...FormikMultiCascaderStoryMeta.args} disabled />
+      <FormikMultiCheckbox {...FormikMultiCheckboxStoryMeta.args} disabled />
+      <FormikMultiRadio {...FormikMultiRadioStoryMeta.args} disabled />
+      <FormikMultiSelect {...FormikMultiSelectStoryMeta.args} disabled />
+      <FormikNumberInput {...FormikNumberInputStoryMeta.args} disabled />
+      <FormikRichBooleanCheckbox {...FormikRichBooleanCheckboxStoryMeta.args} disabled />
+      <FormikSearch {...FormikSearchStoryMeta.args} disabled />
+      <FormikSelect {...FormikSelectStoryMeta.args} disabled />
+      <FormikTextarea {...FormikTextareaStoryMeta.args} disabled />
+      <FormikTextInput {...FormikTextInputStoryMeta.args} disabled />
+      <FormikToggle {...FormikToggleStoryMeta.args} disabled />
+    </LightBox>
+  </Form>
+
+  ### Read Only Fields
+
+  `<MyField readOnly />`
+
+  <Form>
+    <LightBox>
+      <FormikCheckbox {...FormikCheckboxStoryMeta.args} readOnly />
+      <FormikCheckPicker {...FormikCheckPickerStoryMeta.args} readOnly />
+      <FormikCoordinatesInput {...FormikCoordinatesInputStoryMeta.args} readOnly />
+      <FormikDatePicker {...FormikDatePickerStoryMeta.args} readOnly />
+      <FormikDateRangePicker {...FormikDateRangePickerStoryMeta.args} readOnly />
+      <FormikMultiCascader {...FormikMultiCascaderStoryMeta.args} readOnly />
+      <FormikMultiCheckbox {...FormikMultiCheckboxStoryMeta.args} readOnly />
+      <FormikMultiRadio {...FormikMultiRadioStoryMeta.args} readOnly />
+      <FormikMultiSelect {...FormikMultiSelectStoryMeta.args} readOnly />
+      <FormikNumberInput {...FormikNumberInputStoryMeta.args} readOnly />
+      <FormikRichBooleanCheckbox {...FormikRichBooleanCheckboxStoryMeta.args} readOnly />
+      <FormikSearch {...FormikSearchStoryMeta.args} readOnly />
+      <FormikSelect {...FormikSelectStoryMeta.args} readOnly />
+      <FormikTextarea {...FormikTextareaStoryMeta.args} readOnly />
+      <FormikTextInput {...FormikTextInputStoryMeta.args} readOnly />
+      <FormikToggle {...FormikToggleStoryMeta.args} readOnly />
+    </LightBox>
+  </Form>
+
+  ## Gainsboro Background
+
+  ### Default Fields
+
+  `<MyField isLight />`
+
+  <Form>
+    <DarkBox>
+      <FormikCheckbox {...FormikCheckboxStoryMeta.args} isLight />
+      <FormikCheckPicker {...FormikCheckPickerStoryMeta.args} isLight />
+      <FormikCoordinatesInput {...FormikCoordinatesInputStoryMeta.args} isLight />
+      <FormikDatePicker {...FormikDatePickerStoryMeta.args} isLight />
+      <FormikDateRangePicker {...FormikDateRangePickerStoryMeta.args} isLight />
+      <FormikMultiCascader {...FormikMultiCascaderStoryMeta.args} isLight />
+      <FormikMultiCheckbox {...FormikMultiCheckboxStoryMeta.args} isLight />
+      <FormikMultiRadio {...FormikMultiRadioStoryMeta.args} isLight />
+      <FormikMultiSelect {...FormikMultiSelectStoryMeta.args} isLight />
+      <FormikNumberInput {...FormikNumberInputStoryMeta.args} isLight />
+      <FormikRichBooleanCheckbox {...FormikRichBooleanCheckboxStoryMeta.args} isLight />
+      <FormikSearch {...FormikSearchStoryMeta.args} isLight />
+      <FormikSelect {...FormikSelectStoryMeta.args} isLight />
+      <FormikTextarea {...FormikTextareaStoryMeta.args} isLight />
+      <FormikTextInput {...FormikTextInputStoryMeta.args} isLight />
+      <FormikToggle {...FormikToggleStoryMeta.args} isLight />
+    </DarkBox>
+  </Form>
+
+  ### Transparent Fields
+
+  `<MyField isLight isTransparent />`
+
+  <Form>
+    <DarkBox>
+      <FormikCheckbox {...FormikCheckboxStoryMeta.args} isLight isTransparent />
+      <FormikCheckPicker {...FormikCheckPickerStoryMeta.args} isLight isTransparent />
+      <FormikCoordinatesInput {...FormikCoordinatesInputStoryMeta.args} isLight isTransparent />
+      <FormikDatePicker {...FormikDatePickerStoryMeta.args} isLight isTransparent />
+      <FormikDateRangePicker {...FormikDateRangePickerStoryMeta.args} isLight isTransparent />
+      <FormikMultiCascader {...FormikMultiCascaderStoryMeta.args} isLight isTransparent />
+      <FormikMultiCheckbox {...FormikMultiCheckboxStoryMeta.args} isLight isTransparent />
+      <FormikMultiRadio {...FormikMultiRadioStoryMeta.args} isLight isTransparent />
+      <FormikMultiSelect {...FormikMultiSelectStoryMeta.args} isLight isTransparent />
+      <FormikNumberInput {...FormikNumberInputStoryMeta.args} isLight isTransparent />
+      <FormikRichBooleanCheckbox {...FormikRichBooleanCheckboxStoryMeta.args} isLight isTransparent />
+      <FormikSearch {...FormikSearchStoryMeta.args} isLight isTransparent />
+      <FormikSelect {...FormikSelectStoryMeta.args} isLight isTransparent />
+      <FormikTextarea {...FormikTextareaStoryMeta.args} isLight isTransparent />
+      <FormikTextInput {...FormikTextInputStoryMeta.args} isLight isTransparent />
+      <FormikToggle {...FormikToggleStoryMeta.args} isLight isTransparent />
+    </DarkBox>
+  </Form>
+
+  ### Disabled Fields
+
+  `<MyField disabled isLight />`
+
+  <Form>
+    <DarkBox>
+      <FormikCheckbox {...FormikCheckboxStoryMeta.args} disabled isLight />
+      <FormikCheckPicker {...FormikCheckPickerStoryMeta.args} disabled isLight />
+      <FormikCoordinatesInput {...FormikCoordinatesInputStoryMeta.args} disabled isLight />
+      <FormikDatePicker {...FormikDatePickerStoryMeta.args} disabled isLight />
+      <FormikDateRangePicker {...FormikDateRangePickerStoryMeta.args} disabled isLight />
+      <FormikMultiCascader {...FormikMultiCascaderStoryMeta.args} disabled isLight />
+      <FormikMultiCheckbox {...FormikMultiCheckboxStoryMeta.args} disabled isLight />
+      <FormikMultiRadio {...FormikMultiRadioStoryMeta.args} disabled isLight />
+      <FormikMultiSelect {...FormikMultiSelectStoryMeta.args} disabled isLight />
+      <FormikNumberInput {...FormikNumberInputStoryMeta.args} disabled isLight />
+      <FormikRichBooleanCheckbox {...FormikRichBooleanCheckboxStoryMeta.args} disabled isLight />
+      <FormikSearch {...FormikSearchStoryMeta.args} disabled isLight />
+      <FormikSelect {...FormikSelectStoryMeta.args} disabled isLight />
+      <FormikTextarea {...FormikTextareaStoryMeta.args} disabled isLight />
+      <FormikTextInput {...FormikTextInputStoryMeta.args} disabled isLight />
+      <FormikToggle {...FormikToggleStoryMeta.args} disabled isLight />
+    </DarkBox>
+  </Form>
+
+  ### Read Only Fields
+
+  `<MyField isLight readOnly />`
+
+  <Form>
+    <DarkBox>
+      <FormikCheckbox {...FormikCheckboxStoryMeta.args} isLight readOnly />
+      <FormikCheckPicker {...FormikCheckPickerStoryMeta.args} isLight readOnly />
+      <FormikCoordinatesInput {...FormikCoordinatesInputStoryMeta.args} isLight readOnly />
+      <FormikDatePicker {...FormikDatePickerStoryMeta.args} isLight readOnly />
+      <FormikDateRangePicker {...FormikDateRangePickerStoryMeta.args} isLight readOnly />
+      <FormikMultiCascader {...FormikMultiCascaderStoryMeta.args} isLight readOnly />
+      <FormikMultiCheckbox {...FormikMultiCheckboxStoryMeta.args} isLight readOnly />
+      <FormikMultiRadio {...FormikMultiRadioStoryMeta.args} isLight readOnly />
+      <FormikMultiSelect {...FormikMultiSelectStoryMeta.args} isLight readOnly />
+      <FormikNumberInput {...FormikNumberInputStoryMeta.args} isLight readOnly />
+      <FormikRichBooleanCheckbox {...FormikRichBooleanCheckboxStoryMeta.args} isLight readOnly />
+      <FormikSearch {...FormikSearchStoryMeta.args} isLight readOnly />
+      <FormikSelect {...FormikSelectStoryMeta.args} isLight readOnly />
+      <FormikTextarea {...FormikTextareaStoryMeta.args} isLight readOnly />
+      <FormikTextInput {...FormikTextInputStoryMeta.args} isLight readOnly />
+      <FormikToggle {...FormikToggleStoryMeta.args} isLight readOnly />
+    </DarkBox>
+  </Form>
+</DocumentationBox>

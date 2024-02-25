@@ -1,46 +1,48 @@
 import { useState } from 'react'
-import styled from 'styled-components'
 
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { Output } from '../../.storybook/components/Output'
+import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Toggle, useFieldControl, type ToggleProps } from '../../src'
 
 import type { Meta } from '@storybook/react'
 
-const args: ToggleProps = {
-  error: undefined,
-  isChecked: false,
-  isErrorMessageHidden: false,
-  isLabelHidden: false,
-  label: 'A toggle',
-  name: 'toggle',
-  onChange: () => {}
-}
-
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<ToggleProps> = {
+  ...META_DEFAULTS,
+
   title: 'Fields/Toggle',
   component: Toggle,
 
   argTypes: {
-    error: {
-      control: 'text'
-    },
-    isChecked: {
-      control: 'boolean'
-    },
-    isErrorMessageHidden: {
-      control: 'boolean'
-    },
-    onChange: {
-      action: 'onChange'
-    }
+    disabled: ARG_TYPE.OPTIONAL_BOOLEAN,
+    error: ARG_TYPE.OPTIONAL_STRING,
+    isErrorMessageHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isLabelHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isLight: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isTransparent: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
+    readOnly: ARG_TYPE.OPTIONAL_BOOLEAN
   },
 
-  args,
+  args: {
+    disabled: false,
+    error: '',
+    isErrorMessageHidden: false,
+    isLabelHidden: false,
+    isLight: false,
+    isTransparent: false,
+    isUndefinedWhenDisabled: false,
+    label: 'A toggle',
+    name: 'myToggle',
+    readOnly: false
+  },
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      box: { width: 640 },
+      withBackgroundButton: true,
+      withPseudoStateButtons: { targetSelector: '.rs-toggle-presentation' }
     })
   ]
 }
@@ -49,39 +51,15 @@ const meta: Meta<ToggleProps> = {
 export default meta
 
 export function _Toggle(props: ToggleProps) {
-  const [, setOutputValue1] = useState<boolean>(false)
-  const { controlledOnChange, controlledValue: controlledChecked } = useFieldControl(
-    props.isChecked,
-    setOutputValue1 as any
-  )
+  const [outputValue, setOutputValue] = useState<boolean | undefined | '∅'>('∅')
 
-  const [outputValue2, setOutputValue2] = useState<boolean>(false)
+  const { controlledOnChange, controlledValue: controlledChecked } = useFieldControl(props.checked, setOutputValue)
 
   return (
     <>
-      <ToggleContainer>
-        <div>
-          <Toggle {...props} error={props.error} isChecked={!!controlledChecked} onChange={controlledOnChange} />
-          <span>{`Toggle is : ${controlledChecked ? 'ON' : 'OFF'}`}</span>
-        </div>
-        <div>
-          <Toggle {...props} isChecked={false} label="Read only toggle" onChange={() => {}} readOnly />
-        </div>
+      <Toggle {...props} checked={!!controlledChecked} error={props.error} onChange={controlledOnChange} />
 
-        <div>
-          <Toggle {...props} disabled isChecked label="Disabled toggle" onChange={() => {}} />
-        </div>
-
-        <div>
-          <Toggle {...props} error="Toggle with an error" isChecked={outputValue2} onChange={setOutputValue2} />
-        </div>
-      </ToggleContainer>
+      {outputValue !== '∅' && <Output value={outputValue} />}
     </>
   )
 }
-
-const ToggleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-`

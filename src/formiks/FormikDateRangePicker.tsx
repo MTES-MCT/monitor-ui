@@ -8,6 +8,7 @@ import type {
   DateRangePickerWithDateDateProps,
   DateRangePickerWithStringDateProps
 } from '../fields/DateRangePicker'
+import type { DateAsStringRange, DateRange } from '@types_/definitions'
 
 const UntypedDateRangePicker: any = DateRangePicker
 
@@ -26,11 +27,11 @@ export interface FormikDateRangePickerWithStringDateProps
 export function FormikDateRangePicker(props: FormikDateRangePickerWithDateDateProps): JSX.Element
 export function FormikDateRangePicker(props: FormikDateRangePickerWithStringDateProps): JSX.Element
 export function FormikDateRangePicker({ name, ...originalProps }: FormikDateRangePickerProps) {
-  const [field, meta, helpers] = useField(name)
+  const [field, meta, helpers] = useField<DateRange | DateAsStringRange | undefined>(name)
 
   const handleChange = useMemo(
-    () => value => {
-      helpers.setValue(value)
+    () => (nextValue: DateRange | DateAsStringRange | undefined) => {
+      helpers.setValue(nextValue)
     },
 
     // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
@@ -39,6 +40,12 @@ export function FormikDateRangePicker({ name, ...originalProps }: FormikDateRang
   )
 
   return (
-    <UntypedDateRangePicker defaultValue={field.value} error={meta.error} onChange={handleChange} {...originalProps} />
+    <UntypedDateRangePicker
+      {...originalProps}
+      defaultValue={field.value}
+      error={meta.error}
+      name={name}
+      onChange={handleChange}
+    />
   )
 }

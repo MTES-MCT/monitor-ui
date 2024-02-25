@@ -1,4 +1,4 @@
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { ExclamationPoint, THEME } from '../../src'
 
 import type { ExclamationPointProps } from '../../src'

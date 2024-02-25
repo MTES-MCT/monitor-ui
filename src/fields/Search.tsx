@@ -3,6 +3,11 @@ import { type ElementType, type SyntheticEvent, useCallback, useEffect, useMemo,
 import { AutoComplete as RsuiteAutoComplete } from 'rsuite'
 import styled from 'styled-components'
 
+import {
+  getFieldBackgroundColorFactory,
+  getFieldMainColorFactoryForState,
+  getFieldPlaceholderColorFactoryForState
+} from './shared/utils'
 import { Accent, Size } from '../constants'
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
@@ -35,17 +40,21 @@ export type SearchProps<OptionValue extends OptionValueType = string> = Omit<
   customSearch?: CustomSearch<Option<OptionValue>> | undefined
   /** Minimum search query length required to trigger custom search filtering. */
   customSearchMinQueryLength?: number | undefined
+  disabled?: boolean | undefined
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
-  isSearchIconVisible?: boolean | undefined
+  isSearchIconHidden?: boolean | undefined
+  isTransparent?: boolean | undefined
+  isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
-  onChange?: ((nextValue: OptionValue | undefined) => Promisable<void>) | undefined
-  onQuery?: ((nextQuery: string | undefined) => Promisable<void>) | undefined
+  onChange?: (nextValue: OptionValue | undefined) => Promisable<void>
+  onQuery?: (nextQuery: string | undefined) => Promisable<void>
   optionValueKey?: keyof OptionValue | undefined
   options?: Option<OptionValue>[]
+  readOnly?: boolean | undefined
   value?: OptionValue | undefined
 }
 export function Search<OptionValue extends OptionValueType = string>({
@@ -53,17 +62,21 @@ export function Search<OptionValue extends OptionValueType = string>({
   className,
   customSearch = undefined,
   customSearchMinQueryLength = 1,
+  disabled = false,
   error,
   isErrorMessageHidden = false,
   isLabelHidden,
   isLight = false,
-  isSearchIconVisible = true,
+  isSearchIconHidden = true,
+  isTransparent = false,
+  isUndefinedWhenDisabled = false,
   label,
   MenuItem,
   onChange,
   onQuery,
   options = [],
   optionValueKey,
+  readOnly = false,
   style,
   value,
   ...originalProps
@@ -85,7 +98,7 @@ export function Search<OptionValue extends OptionValueType = string>({
   const controlledError = useMemo(() => normalizeString(error), [error])
 
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([value, originalProps.disabled, originalProps.name])
+  const key = useKey([value, disabled, originalProps.name])
 
   const rsuiteValue = useMemo(
     () => (value ? getRsuiteDataItemValueFromOptionValue(value, optionValueKey) : undefined),
@@ -149,7 +162,7 @@ export function Search<OptionValue extends OptionValueType = string>({
     [onChange]
   )
 
-  useFieldUndefineEffect(originalProps.disabled, onChange)
+  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
   useClickOutsideEffect(boxRef, close, baseContainer)
 
@@ -159,31 +172,32 @@ export function Search<OptionValue extends OptionValueType = string>({
 
   return (
     <Field className={controlledClassName} style={style}>
-      <Label
-        disabled={originalProps.disabled}
-        hasError={hasError}
-        htmlFor={originalProps.name}
-        isHidden={isLabelHidden}
-      >
+      <Label disabled={disabled} hasError={hasError} htmlFor={originalProps.name} isHidden={isLabelHidden}>
         {label}
       </Label>
 
-      <Box ref={boxRef} isLight={isLight}>
+      <Box ref={boxRef} $isDisabled={disabled} $isLight={isLight} $isReadOnly={readOnly} $isTransparent={isTransparent}>
         {boxRef.current && (
           <StyledAutoComplete
             key={key}
+            $hasError={hasError}
+            $isDisabled={disabled}
             $isLight={isLight}
+            $isReadOnly={readOnly}
+            $isTransparent={isTransparent}
             container={boxRef.current}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
             // when we don't, we don't need to control that and just pass the non-internally-controlled `rsuiteData`
             data={controlledRsuiteData ?? data}
+            disabled={disabled}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
             // that's why we send this "always true" filter to disable Rsuite SelectPicker internal search filtering
-            filterBy={(customSearch ? () => true : undefined) as any}
+            filterBy={customSearch ? () => true : undefined}
             id={originalProps.name}
             onChange={handleChange}
             onSelect={handleSelect}
             open={isOpen}
+            readOnly={readOnly}
             renderMenuItem={(itemLabel, item: ItemDataType<OptionValue>) =>
               MenuItem ? <MenuItem item={item.value} /> : itemLabel
             }
@@ -194,18 +208,18 @@ export function Search<OptionValue extends OptionValueType = string>({
         {inputValue && (
           <>
             <StyledCloseButton
+              $isSearchIconHidden={isSearchIconHidden}
               accent={Accent.TERTIARY}
               className="Field-Search__ClearButton"
               color={THEME.color.slateGray}
               Icon={Close}
-              isSearchIconVisible={isSearchIconVisible}
               onClick={clean}
               size={Size.SMALL}
             />
-            {isSearchIconVisible && <Separator>|</Separator>}
+            {!isSearchIconHidden && <Separator>|</Separator>}
           </>
         )}
-        {isSearchIconVisible && <StyledIconSearch color={THEME.color.slateGray} size={20} />}
+        {!isSearchIconHidden && <StyledIconSearch color={THEME.color.slateGray} size={20} />}
       </Box>
 
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
@@ -213,17 +227,17 @@ export function Search<OptionValue extends OptionValueType = string>({
   )
 }
 
-const StyledCloseButton = styled(IconButton as any)<{
-  isSearchIconVisible: boolean
+const StyledCloseButton = styled(IconButton)<{
+  $isSearchIconHidden: boolean
 }>`
   cursor: pointer;
   height: 30px;
-  margin: 5px ${p => (p.isSearchIconVisible ? 0 : 5)}px 5px 5px;
+  margin: 5px ${p => (p.$isSearchIconHidden ? 5 : 0)}px 5px 5px;
   padding: 8px;
   width: 30px;
 `
 
-const StyledIconSearch = styled(SearchIcon as any)`
+const StyledIconSearch = styled(SearchIcon)`
   margin: 10px 10px 10px 8px;
 `
 
@@ -235,37 +249,72 @@ const Separator = styled.div`
   font-size: 20.5px;
 `
 
-const StyledAutoComplete = styled(RsuiteAutoComplete as any)<{
+const StyledAutoComplete = styled(RsuiteAutoComplete)<{
+  $hasError: boolean
+  $isDisabled: boolean
   $isLight: boolean
+  $isReadOnly: boolean
+  $isTransparent: boolean
 }>`
   font-size: 13px;
-  flex-grow: 1;
+  width: 100%;
 
-  .rs-input {
+  > [role='combobox'] {
+    background-color: ${getFieldBackgroundColorFactory()};
+    border: solid 1px ${getFieldMainColorFactoryForState('default')};
+    border-radius: 0;
+    outline: 0;
+
+    &::placeholder {
+      color: ${getFieldPlaceholderColorFactoryForState('default')};
+    }
+
+    &:hover {
+      border: solid 1px ${getFieldMainColorFactoryForState('hover')};
+
+      &::placeholder {
+        color: ${getFieldPlaceholderColorFactoryForState('hover')};
+      }
+    }
+
+    &:active,
+    &:focus {
+      border: solid 1px ${getFieldMainColorFactoryForState('focus')};
+
+      &::placeholder {
+        color: ${getFieldPlaceholderColorFactoryForState('focus')};
+      }
+    }
+  }
+
+  /* .rs-input {
     background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
     border-width: 0 0 1px;
     border-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
 
-    font-size: 13px;
     width: 100%;
     height: 40px;
     padding: 11px 16px;
 
-    :focus {
+    &:focus {
       outline: unset;
       border-color: transparent;
     }
-    :hover {
+
+    &:hover {
       outline: unset;
       border-color: transparent;
     }
-  }
+  } */
 `
 
 const Box = styled.div<{
-  isLight: boolean
+  $isDisabled: boolean
+  $isLight: boolean
+  $isReadOnly: boolean
+  $isTransparent: boolean
 }>`
-  background-color: ${p => (p.isLight ? p.theme.color.white : p.theme.color.gainsboro)};
+  /* background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)}; */
   position: relative;
   width: 100%;
   display: flex;

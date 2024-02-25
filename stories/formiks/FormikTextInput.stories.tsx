@@ -1,35 +1,29 @@
+import { action } from '@storybook/addon-actions'
 import { Formik } from 'formik'
-import { noop } from 'lodash/fp'
+import { omit } from 'lodash'
 import { useMemo, useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { FormikEffect, FormikTextInput } from '../../src'
+import TextInputStoryMeta from '../fields/TextInput.stories'
 
 import type { FormikTextInputProps } from '../../src'
 import type { Meta } from '@storybook/react'
-
-const args: FormikTextInputProps = {
-  disabled: false,
-  isErrorMessageHidden: false,
-  isLabelHidden: false,
-  isLight: false,
-  label: 'A text input',
-  name: 'myTextInput'
-}
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikTextInputProps> = {
   title: 'Formiks/FormikTextInput',
   component: FormikTextInput,
 
-  argTypes: {},
+  argTypes: omit(TextInputStoryMeta.argTypes, ['error', 'onChange', 'value']),
 
-  args,
+  args: omit(TextInputStoryMeta.args, ['error', 'onChange', 'value']),
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      box: { width: 640 },
+      withBackgroundButton: true
     })
   ]
 }
@@ -49,7 +43,7 @@ export function _FormikTextInput(props: FormikTextInputProps) {
 
   return (
     <>
-      <Formik key={key} initialValues={{}} onSubmit={noop}>
+      <Formik key={key} initialValues={{}} onSubmit={action('onSubmit')}>
         <>
           <FormikEffect onChange={setOutputValue} />
 

@@ -1,10 +1,10 @@
 import dayjs from 'dayjs'
 import { Formik } from 'formik'
-import { noop } from 'lodash/fp'
+import { noop } from 'lodash'
 import { useState } from 'react'
 
-import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
 import { Output } from '../../../.storybook/components/Output'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
 import { Button, FormikDateRangePicker, FormikEffect } from '../../../src'
 import Meta, {
   _FormikDateRangePicker as FormikDateRangePickerStory
@@ -14,9 +14,9 @@ import { mountAndWait, outputShouldBe } from '../utils'
 context('Story', () => {
   beforeEach(() => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
-        <FormikDateRangePickerStory {...Meta.args} withTime={false} />
-      </GlobalDecoratorWrapper>
+      <StoryBox>
+        <FormikDateRangePickerStory {...(Meta.args as any)} withTime={false} />
+      </StoryBox>
     )
   })
 
@@ -48,9 +48,9 @@ context('Story', () => {
 context('Story (`withTime={true}`)', () => {
   beforeEach(() => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
-        <FormikDateRangePickerStory {...Meta.args} withTime />
-      </GlobalDecoratorWrapper>
+      <StoryBox>
+        <FormikDateRangePickerStory {...(Meta.args as any)} withTime />
+      </StoryBox>
     )
   })
 
@@ -94,7 +94,7 @@ context('Custom (`withTime={true}`)', () => {
       }
 
       return (
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <Formik
             initialValues={{
               myDateRange: [initialStartDateAsString, initialEndDateAsString]
@@ -118,7 +118,7 @@ context('Custom (`withTime={true}`)', () => {
           </Formik>
 
           <Output value={outputValue} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
     }
 

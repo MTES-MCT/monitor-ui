@@ -3,6 +3,11 @@ import { useCallback, useMemo, useRef, type FocusEvent } from 'react'
 import { Input, type InputProps } from 'rsuite'
 import styled from 'styled-components'
 
+import {
+  getFieldBackgroundColorFactory,
+  getFieldMainColorFactoryForState,
+  getFieldPlaceholderColorFactoryForState
+} from './shared/utils'
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
@@ -11,30 +16,38 @@ import { useKey } from '../hooks/useKey'
 import { usePreventWheelEvent } from '../hooks/usePreventWheelEvent'
 import { normalizeString } from '../utils/normalizeString'
 
+import type { CommonFieldStyleProps } from './shared/types'
 import type { Promisable } from 'type-fest'
 
 export type NumberInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'onChange' | 'type' | 'value'> & {
+  disabled?: boolean | undefined
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
-  onChange?: ((nextValue: number | undefined) => Promisable<void>) | undefined
+  onChange?: (nextValue: number | undefined) => Promisable<void>
+  readOnly?: boolean | undefined
   value?: number | undefined
 }
 export function NumberInput({
   className,
+  disabled = false,
   error,
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
+  isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
+  name,
   onBlur,
   onChange,
   onFocus,
+  readOnly = false,
   style,
   value,
   ...originalProps
@@ -45,7 +58,7 @@ export function NumberInput({
   const controlledClassname = useMemo(() => classnames('Field-NumberInput', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([originalProps.disabled, originalProps.name])
+  const key = useKey([disabled, name])
 
   const preventWheelEvent = usePreventWheelEvent(inputRef)
 
@@ -86,16 +99,11 @@ export function NumberInput({
     [onFocus, preventWheelEvent]
   )
 
-  useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
+  useFieldUndefineEffect(isUndefinedWhenDisabled && !!disabled, onChange)
 
   return (
     <Field className={controlledClassname} style={style}>
-      <Label
-        disabled={originalProps.disabled}
-        hasError={hasError}
-        htmlFor={originalProps.name}
-        isHidden={isLabelHidden}
-      >
+      <Label disabled={disabled} hasError={hasError} htmlFor={name} isHidden={isLabelHidden}>
         {label}
       </Label>
 
@@ -103,11 +111,16 @@ export function NumberInput({
         key={key}
         ref={inputRef}
         $hasError={hasError}
+        $isDisabled={disabled}
         $isLight={isLight}
-        id={originalProps.name}
+        $isReadOnly={readOnly}
+        $isTransparent={isTransparent}
+        disabled={disabled}
+        id={name}
         onBlur={handleBlur}
         onChange={handleChange}
         onFocus={handleFocus}
+        readOnly={readOnly}
         type="number"
         value={value ?? ''}
         {...originalProps}
@@ -118,27 +131,40 @@ export function NumberInput({
   )
 }
 
-const StyledInput = styled(Input as any)<{
-  $hasError: boolean
-  $isLight: boolean
-}>`
-  background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
-  border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.gainsboro)};
+const StyledInput = styled(Input as any)<CommonFieldStyleProps>`
+  background-color: ${getFieldBackgroundColorFactory()};
+  border: solid 1px ${getFieldMainColorFactoryForState('default')};
   border-radius: 0;
+  color: ${p => p.theme.color.gunMetal};
+  ${p => p.$isReadOnly && `cursor: default;`}
   font-size: 13px;
-  /* TODO It should be 18px but computed line-height is stuck to min. 18.5px. Investigate that. */
+  font-weight: 500;
   line-height: 19px;
   padding: 3px 8px 6px;
   vertical-align: center;
   width: 100%;
 
-  :hover {
-    border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueYonder)} !important;
+  &::placeholder {
+    color: ${getFieldPlaceholderColorFactoryForState('default')};
   }
 
-  :active,
-  :focus {
-    border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray)} !important;
+  &:hover {
+    background-color: ${getFieldBackgroundColorFactory()};
+    border: solid 1px ${getFieldMainColorFactoryForState('hover')} !important;
+
+    &::placeholder {
+      color: ${getFieldPlaceholderColorFactoryForState('hover')};
+    }
+  }
+
+  &:active,
+  &:focus {
+    background-color: ${getFieldBackgroundColorFactory()};
+    border: solid 1px ${getFieldMainColorFactoryForState('focus')} !important;
     outline: 0;
+
+    &::placeholder {
+      color: ${getFieldPlaceholderColorFactoryForState('focus')};
+    }
   }
 `

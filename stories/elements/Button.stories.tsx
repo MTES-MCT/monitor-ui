@@ -1,6 +1,6 @@
 import { Showcase } from '../../.storybook/components/Showcase'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Accent, Button, Icon, Size } from '../../src'
 
 import type { ButtonProps } from '../../src'
@@ -18,7 +18,7 @@ const meta: Meta<ButtonProps> = {
     children: ARG_TYPE.OPTIONAL_STRING,
     isFullWidth: ARG_TYPE.OPTIONAL_BOOLEAN,
     size: ARG_TYPE.OPTIONAL_SIZE,
-    type: ARG_TYPE.OPTIONAL_TYPE,
+    type: ARG_TYPE.NO_CONTROL,
     withUnpropagatedClick: ARG_TYPE.OPTIONAL_BOOLEAN
   },
 

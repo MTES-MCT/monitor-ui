@@ -1,37 +1,29 @@
+import { action } from '@storybook/addon-actions'
 import { Formik } from 'formik'
-import { noop } from 'lodash/fp'
+import { omit } from 'lodash'
 import { useMemo, useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { FormikEffect, FormikRichBooleanCheckbox } from '../../src'
+import RichBooleanCheckboxStoryMeta from '../fields/RichBooleanCheckbox.stories'
 
 import type { FormikRichBooleanCheckboxProps } from '../../src'
 import type { Meta } from '@storybook/react'
-
-const args: FormikRichBooleanCheckboxProps = {
-  disabled: false,
-  falseOptionLabel: 'Without something',
-  isErrorMessageHidden: false,
-  isLabelHidden: false,
-  isLight: false,
-  label: 'Pick one, both or neither options:',
-  name: 'myRichBooleanCheckbox',
-  trueOptionLabel: 'With something'
-}
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikRichBooleanCheckboxProps> = {
   title: 'Formiks/FormikRichBooleanCheckbox',
   component: FormikRichBooleanCheckbox,
 
-  argTypes: {},
+  argTypes: omit(RichBooleanCheckboxStoryMeta.argTypes, ['error', 'onChange', 'value']),
 
-  args,
+  args: omit(RichBooleanCheckboxStoryMeta.args, ['error', 'onChange', 'value']),
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      box: { width: 640 },
+      withBackgroundButton: true
     })
   ]
 }
@@ -51,7 +43,7 @@ export function _FormikRichBooleanCheckbox(props: FormikRichBooleanCheckboxProps
 
   return (
     <>
-      <Formik key={key} initialValues={{}} onSubmit={noop}>
+      <Formik key={key} initialValues={{}} onSubmit={action('onSubmit')}>
         <>
           <FormikEffect onChange={setOutputValue} />
 

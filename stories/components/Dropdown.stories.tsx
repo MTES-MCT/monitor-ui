@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { Showcase } from '../../.storybook/components/Showcase'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Accent, Dropdown, Icon } from '../../src'
 
 import type { DropdownProps } from '../../src'

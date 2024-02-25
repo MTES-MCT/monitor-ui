@@ -32,6 +32,7 @@
       "@elements/*": ["elements/*"],
       "@hooks/*": ["hooks/*"],
       "@libs/*": ["libs/*"],
+      "@theme": ["theme.ts"],
       "@types_/*": ["types/*"],
       "@utils/*": ["utils/*"]
     },
@@ -46,7 +47,7 @@
     "useUnknownInCatchVariables": true,
     "verbatimModuleSyntax": true
   },
-  "include": ["**/*.js", "**/*.jsx", "**/*.mdx", "**/*.ts", "**/*.tsx", ".storybook/**/*.ts", ".storybook/**/*.tsx"],
+  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", ".storybook/**/*"],
   "exclude": [
     "config/*",
     "dist/*",

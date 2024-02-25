@@ -1,13 +1,13 @@
-import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
 import { _DataTable as DataTableStory, args as dataTableProps } from '../../../stories/tables/DataTable.stories'
 import { mountAndWait } from '../utils'
 
 context('Story', () => {
   it('Should find the matching first name using `cy.getTableRowById()`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <DataTableStory {...dataTableProps} />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     cy.getTableRowById(5).should('contain', 'Emily')
@@ -16,9 +16,9 @@ context('Story', () => {
 
   it('Should find the matching last name using `cy.getTableRowByText()`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <DataTableStory {...dataTableProps} />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     cy.getTableRowByText('Emily').should('contain', 'Jones')
@@ -27,9 +27,9 @@ context('Story', () => {
 
   it('Should find the matching first name using `cy.getTableRowById()` within a previous subject', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <DataTableStory {...dataTableProps} />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     cy.get('div[data-cy-root=""]').getTableRowById(5).should('contain', 'Emily')
@@ -38,9 +38,9 @@ context('Story', () => {
 
   it('Should find the matching last name using `cy.getTableRowByText()` within a previous subject', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <DataTableStory {...dataTableProps} />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     cy.get('div[data-cy-root=""]').getTableRowByText('Emily').should('contain', 'Jones')

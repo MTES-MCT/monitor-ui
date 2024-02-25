@@ -1,6 +1,6 @@
 import { Showcase } from '../../.storybook/components/Showcase'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { ACCENTS_AS_ARRAY, TAG_BULLETS_AS_ARRAY } from '../../.storybook/constants'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Accent, Icon, THEME, Tag, TagBullet } from '../../src'
 
 import type { TagProps } from '../../src'
@@ -63,7 +63,7 @@ const meta: Meta<TagProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      withBackgroundButton: true
     })
   ]
 }

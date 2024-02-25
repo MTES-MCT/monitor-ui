@@ -1,10 +1,9 @@
 import { useRef, useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
-import { LOREM_IPSUM } from '../../../.storybook/constants'
 import SPECIES from '../../../.storybook/data/species.json'
-import { useFieldControl, CustomSearch, CheckPicker, type CheckPickerProps } from '../../../src'
+import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
+import { MultiSelect, type MultiSelectProps, useFieldControl, CustomSearch } from '../../../src'
 
 import type { Meta } from '@storybook/react'
 
@@ -13,30 +12,26 @@ type Specy = {
   name: string
 }
 
-const args: CheckPickerProps<{}> = {
+const args: MultiSelectProps<Specy> = {
   disabled: false,
   error: '',
   isErrorMessageHidden: false,
   isLabelHidden: false,
   isLight: false,
-  label: 'A check picker',
-  name: 'myCheckPicker',
-  options: [
-    { label: 'First Option', value: 'FIRST_OPTION' },
-    { label: 'Second Option', value: 'SECOND_OPTION' },
-    { label: 'Third Option', value: 'THIRD_OPTION' },
-    { label: LOREM_IPSUM, value: 'LOREM_IPSUM' }
-  ],
+  label: 'A multiple select',
+  name: 'myMultiSelect',
+  options: [],
+  optionValueKey: 'code',
   placeholder: 'Pick some options',
   searchable: true,
-  value: [],
-  virtualized: false
+  value: undefined,
+  virtualized: true
 }
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-const meta: Meta<CheckPickerProps<{}>> = {
-  title: 'Fields/CheckPicker',
-  component: CheckPicker as any,
+const meta: Meta<MultiSelectProps<Specy>> = {
+  title: 'Fields/MultiSelect (variations)',
+  component: MultiSelect,
 
   argTypes: {
     value: {
@@ -49,7 +44,7 @@ const meta: Meta<CheckPickerProps<{}>> = {
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      withBackgroundButton: true
     })
   ]
 }
@@ -57,7 +52,7 @@ const meta: Meta<CheckPickerProps<{}>> = {
 
 export default meta
 
-export function _CheckPickerWithCustomSearch(props: CheckPickerProps<Specy>) {
+export function MultiSelectWithCustomSearch(props: MultiSelectProps<Specy>) {
   const optionsRef = useRef(
     (SPECIES as Specy[]).map(specy => ({
       label: `${specy.code} - ${specy.name}`,
@@ -87,14 +82,12 @@ export function _CheckPickerWithCustomSearch(props: CheckPickerProps<Specy>) {
 
   return (
     <>
-      <CheckPicker
+      <MultiSelect
         {...props}
         customSearch={customSearchRef.current}
         onChange={controlledOnChange}
         options={optionsRef.current}
-        optionValueKey="code"
         value={controlledValue}
-        virtualized
       />
       <div>
         <em>Loads a list of 10,000 users in order to check performances.</em>

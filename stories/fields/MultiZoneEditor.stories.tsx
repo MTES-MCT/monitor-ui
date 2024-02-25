@@ -1,43 +1,53 @@
 import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { MultiZoneEditor } from '../../src'
 
 import type { MultiZoneEditorProps } from '../../src'
 import type { Meta } from '@storybook/react'
 
-const args: MultiZoneEditorProps = {
-  addButtonLabel: 'Add a zone',
-  defaultValue: undefined,
-  disabled: false,
-  error: '',
-  initialZone: {
-    name: 'Polygone dessiné'
-  },
-  isLabelHidden: false,
-  isLight: false,
-  label: 'Some zones',
-  labelPropName: 'name'
-}
-
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<MultiZoneEditorProps> = {
+  ...META_DEFAULTS,
+
   title: 'Fields/MultiZoneEditor',
   component: MultiZoneEditor,
 
   argTypes: {
-    defaultValue: {
-      control: 'inline-radio',
-      options: ['FIRST_OPTION', 'SECOND_OPTION', 'THIRD_OPTION', 'A_VERY_VERY_LONG_OPTION']
-    }
+    disabled: ARG_TYPE.OPTIONAL_BOOLEAN,
+    error: ARG_TYPE.OPTIONAL_STRING,
+    isErrorMessageHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isLabelHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isLight: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isTransparent: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
+    readOnly: ARG_TYPE.OPTIONAL_BOOLEAN
   },
 
-  args,
+  args: {
+    addButtonLabel: 'Add a zone',
+    defaultValue: undefined,
+    disabled: false,
+    error: '',
+    initialZone: {
+      name: 'Polygone dessiné'
+    },
+    isErrorMessageHidden: false,
+    isLabelHidden: false,
+    isLight: false,
+    isTransparent: false,
+    isUndefinedWhenDisabled: false,
+    label: 'Some zones',
+    labelPropName: 'name',
+    readOnly: false
+  },
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      box: { width: 640 },
+      withBackgroundButton: true
     })
   ]
 }

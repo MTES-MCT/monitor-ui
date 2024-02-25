@@ -3,24 +3,24 @@ import { useCallback, useMemo } from 'react'
 import CoordinateInput from 'react-coordinate-input'
 import styled from 'styled-components'
 
-import { THEME } from '../../theme'
-
 import type { CoordinatesFormat } from '../../constants'
 import type { Coordinates } from '../../types/definitions'
 
 type DMSCoordinatesInputProps = {
   coordinates: Coordinates | undefined
   coordinatesFormat: CoordinatesFormat
-  disabled: boolean | undefined
-  isLight: boolean | undefined
+  disabled: boolean
+  name: string
   onChange: (nextCoordinates: Coordinates | undefined, coordinates: Coordinates | undefined) => void
+  readOnly: boolean
 }
 export function DMSCoordinatesInput({
   coordinates,
   coordinatesFormat,
-  disabled = false,
-  isLight,
-  onChange
+  disabled,
+  name,
+  onChange,
+  readOnly
 }: DMSCoordinatesInputProps) {
   /** Convert the coordinates to the [latitude, longitude] string format */
   const defaultValue = useMemo(() => {
@@ -46,10 +46,9 @@ export function DMSCoordinatesInput({
         data-cy="dms-coordinates-input"
         ddPrecision={6}
         disabled={disabled}
+        name={name}
         onChange={(_, { dd }) => update(dd)}
-        style={{
-          backgroundColor: isLight ? THEME.color.white : THEME.color.gainsboro
-        }}
+        readOnly={readOnly}
         // TODO Use `defaultValue` here.
         value={defaultValue}
       />
@@ -59,8 +58,9 @@ export function DMSCoordinatesInput({
 }
 
 const CoordinatesType = styled.span`
-  margin-left: 7px;
   color: ${p => p.theme.color.slateGray};
+  font-size: 13px !important;
+  margin-left: 7px !important;
 `
 
 const Box = styled.div`

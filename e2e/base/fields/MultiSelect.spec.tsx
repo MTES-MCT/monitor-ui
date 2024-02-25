@@ -1,6 +1,6 @@
-import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
 import { CustomSearch, type MultiSelectProps } from '../../../src'
-import { _MultiSelect as MultiSelectStory } from '../../../stories/fields/MultiSelect/MultiSelect.stories'
+import { _MultiSelect as MultiSelectStory } from '../../../stories/fields/MultiSelect.stories'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
@@ -39,9 +39,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should fill, change and clear the multiple select', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiSelectStory {...commonProps} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -63,9 +63,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       options[2].value
     )}]\``, () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiSelectStory {...commonProps} value={[options[2].value]} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -85,9 +85,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should fill the multiple select with `isLabelHidden`', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiSelectStory {...commonProps} isLabelHidden />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -99,9 +99,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should NOT call `onChange(undefined)` with `disabled`', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiSelectStory {...commonProps} disabled />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -109,9 +109,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it(`Should NOT call \`onChange(undefined)\` with \`disabled value={[${JSON.stringify(options[2].value)}]\``, () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiSelectStory {...commonProps} disabled value={[options[2].value]} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -119,9 +119,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiSelectStory {...commonProps} disabled isUndefinedWhenDisabled />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldBe(undefined)
@@ -131,9 +131,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       options[2].value
     )}]\``, () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiSelectStory {...commonProps} disabled isUndefinedWhenDisabled value={[options[2].value]} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldBe(undefined)
@@ -143,9 +143,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
 
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiSelectStory {...commonProps} customSearch={customSearch as any} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -181,9 +181,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     it('Should fill, clear and get all list', () => {
       const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiSelectStory {...commonProps} customSearch={customSearch as any} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()

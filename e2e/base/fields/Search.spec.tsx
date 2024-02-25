@@ -1,5 +1,5 @@
-import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
-import { WithOptions } from '../../../stories/fields/Search/WithOptions.stories'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
+import { _Search as SearchStory } from '../../../stories/fields/Search.stories'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
 import type { SearchProps } from '../../../src'
@@ -40,9 +40,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should fill, change and clear the select', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
-          <WithOptions {...commonProps} />
-        </GlobalDecoratorWrapper>
+        <StoryBox>
+          <SearchStory {...commonProps} />
+        </StoryBox>
       )
 
       outputShouldNotBe()
