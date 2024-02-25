@@ -1,0 +1,80 @@
+import { useState } from 'react'
+
+import { Output } from '../../.storybook/components/Output'
+import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
+import {
+  FAKE_STRING_OPTIONS,
+  FAKE_STRING_OPTIONS_AS_LABELS,
+  FAKE_STRING_OPTIONS_AS_MAPPING
+} from '../../__mocks__/fake_options'
+import { Search } from '../../src'
+
+import type { SearchProps } from '../../src'
+import type { Meta } from '@storybook/react'
+
+/* eslint-disable sort-keys-fix/sort-keys-fix */
+const meta: Meta<SearchProps> = {
+  ...META_DEFAULTS,
+
+  title: 'Fields/Search',
+  component: Search,
+
+  argTypes: {
+    disabled: ARG_TYPE.OPTIONAL_BOOLEAN,
+    error: ARG_TYPE.OPTIONAL_STRING,
+    isErrorMessageHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isLabelHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isLight: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isTransparent: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
+    options: ARG_TYPE.NO_CONTROL_INPUT,
+    readOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
+    value: {
+      ...ARG_TYPE.OPTIONAL_OPTION_VALUE,
+      options: [...FAKE_STRING_OPTIONS_AS_LABELS, undefined],
+      mapping: {
+        ...FAKE_STRING_OPTIONS_AS_MAPPING,
+        // eslint-disable-next-line object-shorthand
+        undefined: undefined
+      }
+    }
+  },
+
+  args: {
+    disabled: false,
+    error: '',
+    isErrorMessageHidden: false,
+    isLabelHidden: false,
+    isLight: false,
+    isTransparent: false,
+    isUndefinedWhenDisabled: false,
+    label: 'An autocomplete search input. Pick one option:',
+    name: 'mySearch',
+    options: FAKE_STRING_OPTIONS,
+    placeholder: 'Type "first"',
+    readOnly: false
+  },
+
+  decorators: [
+    generateStoryDecorator({
+      box: { width: 640 },
+      withBackgroundButton: true
+    })
+  ]
+}
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
+export default meta
+
+export function _Search(props: SearchProps) {
+  const [outputValue, setOutputValue] = useState<any | undefined | '∅'>('∅')
+
+  return (
+    <>
+      <Search {...props} MenuItem={undefined} onChange={setOutputValue} />
+
+      {outputValue !== '∅' && <Output value={outputValue} />}
+    </>
+  )
+}

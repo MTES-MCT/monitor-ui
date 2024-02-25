@@ -2,24 +2,19 @@ import { useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { useDebouncedCallback } from 'use-debounce'
 
-import { THEME } from '../../theme'
 import { isNumeric } from '../../utils/isNumeric'
 
 import type { Coordinates } from '../../types/definitions'
 
 type DDCoordinatesInputProps = {
   coordinates: Coordinates | undefined
-  disabled: boolean | undefined
-  isLight: boolean | undefined
+  disabled: boolean
+  name: string
   onChange: (nextCoordinates: Coordinates, coordinates: Coordinates | undefined) => void
+  readOnly: boolean
 }
 // TODO This field should return undefined when cleared (i.e.: Select all & Backspace/Delete)
-export function DDCoordinatesInput({
-  coordinates,
-  disabled = false,
-  isLight = false,
-  onChange
-}: DDCoordinatesInputProps) {
+export function DDCoordinatesInput({ coordinates, disabled, name, onChange, readOnly }: DDCoordinatesInputProps) {
   const latitudeInputRef = useRef<HTMLInputElement>()
   const longitudeInputRef = useRef<HTMLInputElement>()
 
@@ -82,24 +77,20 @@ export function DDCoordinatesInput({
         data-cy="coordinates-dd-input-lat"
         defaultValue={defaultValue ? defaultValue.latitude : undefined}
         disabled={disabled}
+        name={`${name}-latitude`}
         onChange={() => handleChange(coordinates)}
         placeholder="Latitude"
-        style={{
-          backgroundColor: isLight ? THEME.color.white : THEME.color.gainsboro,
-          border: latitudeError ? '1px solid red' : undefined
-        }}
+        readOnly={readOnly}
       />
       <DDInput
         ref={longitudeInputRef as any}
         data-cy="coordinates-dd-input-lon"
         defaultValue={defaultValue ? defaultValue.longitude : undefined}
         disabled={disabled}
+        name={`${name}-longitude`}
         onChange={() => handleChange(coordinates)}
         placeholder="Longitude"
-        style={{
-          backgroundColor: isLight ? THEME.color.white : THEME.color.gainsboro,
-          border: longitudeError ? '1px solid red' : undefined
-        }}
+        readOnly={readOnly}
       />
       <CoordinatesType>(DD)</CoordinatesType>
       <Error>{latitudeError}</Error>
@@ -114,8 +105,9 @@ const DDInput = styled.input`
 `
 
 const CoordinatesType = styled.span`
-  margin-left: 7px;
   color: ${p => p.theme.color.slateGray};
+  font-size: 13px !important;
+  margin-left: 7px !important;
 `
 
 const Error = styled.span`

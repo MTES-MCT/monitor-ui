@@ -1,38 +1,29 @@
+import { action } from '@storybook/addon-actions'
 import { Formik } from 'formik'
-import { noop } from 'lodash/fp'
+import { omit } from 'lodash'
 import { useMemo, useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { FormikEffect, FormikCoordinatesInput, CoordinatesFormat } from '../../src'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
+import { FormikEffect, FormikCoordinatesInput } from '../../src'
+import CoordinatesInputStoryMeta from '../fields/CoordinatesInput.stories'
 
 import type { FormikCoordinatesInputProps } from '../../src'
 import type { Meta } from '@storybook/react'
-
-const args: FormikCoordinatesInputProps = {
-  coordinatesFormat: CoordinatesFormat.DECIMAL_DEGREES,
-  isLight: false,
-  label: 'Some coordinates',
-  name: 'myCoordinates'
-}
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikCoordinatesInputProps> = {
   title: 'Formiks/FormikCoordinatesInput',
   component: FormikCoordinatesInput,
 
-  argTypes: {
-    coordinatesFormat: {
-      control: 'inline-radio',
-      options: CoordinatesFormat
-    }
-  },
+  argTypes: omit(CoordinatesInputStoryMeta.argTypes, ['defaultValue', 'error', 'onChange']),
 
-  args,
+  args: omit(CoordinatesInputStoryMeta.args, ['defaultValue', 'error', 'onChange']),
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      box: { width: 640 },
+      withBackgroundButton: true
     })
   ]
 }
@@ -43,7 +34,7 @@ export default meta
 export function _FormikCoordinatesInput(props: FormikCoordinatesInputProps) {
   const [outputValue, setOutputValue] = useState<
     | {
-        myCoordinates?: number[]
+        myCoordinatesInput?: number[]
       }
     | '∅'
   >('∅')
@@ -52,7 +43,7 @@ export function _FormikCoordinatesInput(props: FormikCoordinatesInputProps) {
 
   return (
     <>
-      <Formik key={key} initialValues={{}} onSubmit={noop}>
+      <Formik key={key} initialValues={{}} onSubmit={action('onSubmit')}>
         <>
           <FormikEffect onChange={setOutputValue} />
 

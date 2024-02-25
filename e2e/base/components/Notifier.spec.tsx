@@ -1,13 +1,13 @@
-import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
 import { _Notifier as NotifierStory } from '../../../stories/components/Notifier.stories'
 import { mountAndWait } from '../utils'
 
 context(`Story`, () => {
   it('Should show and hide the notification', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <NotifierStory />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     cy.clickButton('Log a soft error')

@@ -76,6 +76,7 @@ export interface DateRangePickerProps
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
   isStringDate?: boolean | undefined
+  isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   /**
@@ -85,23 +86,25 @@ export interface DateRangePickerProps
    * `15` would produce a list with `..., 10:45, 11:00, 11:15, ...`.
    */
   minutesRange?: number | undefined
+  name: string
   /**
    * Called each time the date range picker is changed to a new valid value.
    *
-   * @param nextUtcDateRange - A utcized date to be used as is to interact with the API.
+   * @param nextValue - A utcized date to be used as is to interact with the API.
    */
   onChange?:
-    | ((nextUtcDateRange: DateRange | undefined) => Promisable<void>)
-    | ((nextUtcDateRange: DateAsStringRange | undefined) => Promisable<void>)
+    | ((nextValue: DateRange | undefined) => Promisable<void>)
+    | ((nextValue: DateAsStringRange | undefined) => Promisable<void>)
+  readOnly?: boolean
   withTime?: boolean
 }
 export interface DateRangePickerWithDateDateProps extends DateRangePickerProps {
   isStringDate?: false
-  onChange?: (nextUtcDateRange: DateRange | undefined) => Promisable<void>
+  onChange?: (nextValue: DateRange | undefined) => Promisable<void>
 }
 export interface DateRangePickerWithStringDateProps extends DateRangePickerProps {
   isStringDate: true
-  onChange?: (nextUtcDateRange: DateAsStringRange | undefined) => Promisable<void>
+  onChange?: (nextValue: DateAsStringRange | undefined) => Promisable<void>
 }
 
 // TODO We should make this component both form- & a11y-compliant with a `name` and proper (aria-)labels.
@@ -120,10 +123,14 @@ export function DateRangePicker({
   isLabelHidden = false,
   isLight = false,
   isStringDate = false,
+  isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
   minutesRange = 15,
+  name,
   onChange,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  readOnly = false,
   style,
   withTime = false,
   ...nativeProps
@@ -400,8 +407,12 @@ export function DateRangePicker({
   )
 
   const openRangeCalendarPicker = useCallback(() => {
+    if (disabled || readOnly) {
+      return
+    }
+
     setIsRangeCalendarPickerOpen(true)
-  }, [])
+  }, [disabled, readOnly])
 
   useClickOutsideEffect([endDateInputRef, startDateInputRef], closeRangeCalendarPicker, baseContainer)
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange, handleDisable)
@@ -448,7 +459,7 @@ export function DateRangePicker({
       style={style}
       {...nativeProps}
     >
-      <Box $hasError={hasError} $isDisabled={disabled}>
+      <Box $hasError={hasError} $isDisabled={disabled} $isReadOnly={readOnly}>
         <Field>
           <DateInput
             ref={startDateInputRef}
@@ -459,12 +470,15 @@ export function DateRangePicker({
             isLight={isLight}
             isRange
             isStartDate
+            isTransparent={isTransparent}
+            name={`${name}Start`}
             onChange={(nextDateTuple, isFilled) =>
               handleDateInputChange(DateRangePosition.START, nextDateTuple, isFilled)
             }
             onClick={openRangeCalendarPicker}
             onInput={callOnChangeUndefinedIfInputsAreEmpty}
             onNext={handleStartDateInputNext}
+            readOnly={readOnly}
             value={selectedStartDateTupleRef.current}
           />
         </Field>
@@ -478,13 +492,16 @@ export function DateRangePicker({
               isCompact={isCompact}
               isLight={isLight}
               isStartDate
+              isTransparent={isTransparent}
               minutesRange={minutesRange}
+              name={`${name}Start`}
               onBack={() => startDateInputRef.current?.focus(true)}
               onChange={nextTimeTuple => handleTimeInputChange(DateRangePosition.START, nextTimeTuple)}
               onFocus={closeRangeCalendarPicker}
               onInput={callOnChangeUndefinedIfInputsAreEmpty}
               onNext={() => endDateInputRef.current?.focus()}
               onPrevious={() => startDateInputRef.current?.focus(true)}
+              readOnly={readOnly}
               value={selectedStartTimeTupleRef.current}
             />
           </Field>
@@ -500,6 +517,8 @@ export function DateRangePicker({
             isForcedFocused={isRangeCalendarPickerOpen}
             isLight={isLight}
             isRange
+            isTransparent={isTransparent}
+            name={`${name}End`}
             onBack={handleEndDateInputPrevious}
             onChange={(nextDateTuple, isFilled) =>
               handleDateInputChange(DateRangePosition.END, nextDateTuple, isFilled)
@@ -508,6 +527,7 @@ export function DateRangePicker({
             onInput={callOnChangeUndefinedIfInputsAreEmpty}
             onNext={handleEndDateInputNext}
             onPrevious={handleEndDateInputPrevious}
+            readOnly={readOnly}
             value={selectedEndDateTupleRef.current}
           />
         </Field>
@@ -521,12 +541,15 @@ export function DateRangePicker({
               isCompact={isCompact}
               isEndDate
               isLight={isLight}
+              isTransparent={isTransparent}
               minutesRange={minutesRange}
+              name={`${name}End`}
               onBack={() => endDateInputRef.current?.focus(true)}
               onChange={nextTimeTuple => handleTimeInputChange(DateRangePosition.END, nextTimeTuple)}
               onFocus={closeRangeCalendarPicker}
               onInput={callOnChangeUndefinedIfInputsAreEmpty}
               onPrevious={() => endDateInputRef.current?.focus(true)}
+              readOnly={readOnly}
               value={selectedEndTimeTupleRef.current}
             />
           </Field>
@@ -550,15 +573,17 @@ export function DateRangePicker({
 const Box = styled.div<{
   $hasError: boolean
   $isDisabled: boolean
+  $isReadOnly: boolean
 }>`
   * {
+    ${p => p.$isReadOnly && `cursor: default;`}
     font-weight: 500;
     line-height: 1;
   }
 
   color: ${p => p.theme.color.gunMetal};
   display: inline-flex;
-  font-size: 13px;
+  font-size: 13px !important;
   outline: ${p => (p.$hasError ? `1px solid ${p.theme.color.maximumRed}` : 0)};
   position: relative;
 
@@ -584,5 +609,5 @@ const Field = styled.span<{
     }
 
     return p.isTimeField ? '2px' : 0
-  }};
+  }} !important;
 `

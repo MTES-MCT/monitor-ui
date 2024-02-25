@@ -1,11 +1,11 @@
 /* eslint-disable react/destructuring-assignment */
 
 import { Formik } from 'formik'
-import { noop } from 'lodash/fp'
+import { noop } from 'lodash'
 import { useState } from 'react'
 
-import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
 import { Output } from '../../../.storybook/components/Output'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
 import {
   Button,
   FormikNumberInput,
@@ -31,7 +31,7 @@ function Template({
   }
 
   return (
-    <GlobalDecoratorWrapper>
+    <StoryBox>
       <Formik
         initialValues={
           initialValue
@@ -56,7 +56,7 @@ function Template({
       </Formik>
 
       <Output value={outputValue} />
-    </GlobalDecoratorWrapper>
+    </StoryBox>
   )
 }
 

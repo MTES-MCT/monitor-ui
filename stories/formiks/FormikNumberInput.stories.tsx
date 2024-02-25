@@ -1,35 +1,29 @@
+import { action } from '@storybook/addon-actions'
 import { Formik } from 'formik'
-import { noop } from 'lodash/fp'
+import { omit } from 'lodash'
 import { useMemo, useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { FormikEffect, FormikNumberInput } from '../../src'
+import NumberInputStoryMeta from '../fields/NumberInput.stories'
 
 import type { FormikNumberInputProps } from '../../src'
 import type { Meta } from '@storybook/react'
-
-const args: FormikNumberInputProps = {
-  disabled: false,
-  isErrorMessageHidden: false,
-  isLabelHidden: false,
-  isLight: false,
-  label: 'A number input',
-  name: 'myNumberInput'
-}
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikNumberInputProps> = {
   title: 'Formiks/FormikNumberInput',
   component: FormikNumberInput,
 
-  argTypes: {},
+  argTypes: omit(NumberInputStoryMeta.argTypes, ['error', 'onChange', 'value']),
 
-  args,
+  args: omit(NumberInputStoryMeta.args, ['error', 'onChange', 'value']),
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      box: { width: 640 },
+      withBackgroundButton: true
     })
   ]
 }
@@ -49,7 +43,7 @@ export function _FormikNumberInput(props: FormikNumberInputProps) {
 
   return (
     <>
-      <Formik key={key} initialValues={{}} onSubmit={noop}>
+      <Formik key={key} initialValues={{}} onSubmit={action('onSubmit')}>
         <>
           <FormikEffect onChange={setOutputValue} />
 

@@ -1,47 +1,30 @@
+import { action } from '@storybook/addon-actions'
 import { Formik } from 'formik'
-import { noop } from 'lodash/fp'
+import { omit } from 'lodash'
 import { useMemo, useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { FormikEffect, FormikDateRangePicker } from '../../src'
+import DateRangePickerStoryMeta from '../fields/DateRangePicker.stories'
 
-import type { FormikDateRangePickerWithDateDateProps, FormikDateRangePickerWithStringDateProps } from '../../src'
+import type { FormikDateRangePickerWithDateDateProps } from '../../src'
 import type { DateRange } from '../../src/types/definitions'
 import type { Meta } from '@storybook/react'
 
-const args: FormikDateRangePickerWithDateDateProps | FormikDateRangePickerWithStringDateProps = {
-  baseContainer: undefined,
-  disabled: false,
-  isErrorMessageHidden: false,
-  isHistorical: false,
-  isLabelHidden: false,
-  isLight: false,
-  isStringDate: false,
-  isUndefinedWhenDisabled: false,
-  label: 'A date range',
-  name: 'myDateRange',
-  withTime: true
-}
-
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-const meta: Meta<any> = {
+const meta: Meta<FormikDateRangePickerWithDateDateProps> = {
   title: 'Formiks/FormikDateRangePicker',
   component: FormikDateRangePicker,
 
-  argTypes: {
-    isStringDate: {
-      control: {
-        type: 'boolean'
-      }
-    }
-  },
+  argTypes: omit(DateRangePickerStoryMeta.argTypes, ['defaultValue', 'error', 'onChange']),
 
-  args,
+  args: omit(DateRangePickerStoryMeta.args, ['defaultValue', 'error', 'onChange']),
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      box: { width: 640 },
+      withBackgroundButton: true
     })
   ]
 }
@@ -49,10 +32,10 @@ const meta: Meta<any> = {
 
 export default meta
 
-export function _FormikDateRangePicker(props: any) {
+export function _FormikDateRangePicker(props: FormikDateRangePickerWithDateDateProps) {
   const [outputValue, setOutputValue] = useState<
     | {
-        myDateRange?: DateRange
+        myDateRangePicker?: DateRange
       }
     | '∅'
   >('∅')
@@ -61,7 +44,7 @@ export function _FormikDateRangePicker(props: any) {
 
   return (
     <>
-      <Formik key={key} initialValues={{}} onSubmit={noop}>
+      <Formik key={key} initialValues={{}} onSubmit={action('onSubmit')}>
         <>
           <FormikEffect onChange={setOutputValue} />
 

@@ -31,7 +31,7 @@ export type SelectProps<OptionValue extends OptionValueType = string> = Omit<
   | 'value'
   | 'valueKey'
 > & {
-  customSearch?: CustomSearch<Option<OptionValue>> | undefined
+  customSearch?: CustomSearch<Option<OptionValue>>
   /** Minimum search query length required to trigger custom search filtering. */
   customSearchMinQueryLength?: number | undefined
   error?: string | undefined
@@ -39,10 +39,11 @@ export type SelectProps<OptionValue extends OptionValueType = string> = Omit<
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
-  onChange?: ((nextValue: OptionValue | undefined) => Promisable<void>) | undefined
+  onChange?: (nextValue: OptionValue | undefined) => Promisable<void>
   optionValueKey?: keyof OptionValue | undefined
   options: Option<OptionValue>[]
   value?: OptionValue | undefined
@@ -57,11 +58,13 @@ export function Select<OptionValue extends OptionValueType = string>({
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
+  isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
   onChange,
   options,
   optionValueKey,
+  readOnly = false,
   searchable = false,
   style,
   value,
@@ -138,7 +141,14 @@ export function Select<OptionValue extends OptionValueType = string>({
         {label}
       </Label>
 
-      <StyledRsuitePickerBox ref={boxRef} $hasError={hasError} $isLight={isLight}>
+      <StyledRsuitePickerBox
+        ref={boxRef}
+        $hasError={hasError}
+        $isDisabled={disabled}
+        $isLight={isLight}
+        $isReadOnly={readOnly}
+        $isTransparent={isTransparent}
+      >
         {boxRef.current && (
           <RsuiteSelectPicker
             key={key}
@@ -154,6 +164,7 @@ export function Select<OptionValue extends OptionValueType = string>({
             onSearch={handleSearch}
             // `as any` because we customized `ItemDataType` type by adding `optionValue`,
             // which generates an optional vs required type conflict
+            readOnly={readOnly}
             renderMenuItem={renderMenuItem}
             searchable={!!customSearch || searchable}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),

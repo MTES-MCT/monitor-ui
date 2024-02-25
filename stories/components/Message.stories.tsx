@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 import { Showcase } from '../../.storybook/components/Showcase'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { ARG_TYPE, LOREM_IPSUM, META_DEFAULTS } from '../../.storybook/constants'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Accent, Button, Level, Message } from '../../src'
 
 import type { MessageProps } from '../../src'

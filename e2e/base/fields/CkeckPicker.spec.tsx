@@ -1,6 +1,6 @@
-import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
 import { CustomSearch, type CheckPickerProps } from '../../../src'
-import { _CheckPicker as CheckPickerStory } from '../../../stories/fields/CheckPicker/CheckPicker.stories'
+import { _CheckPicker as CheckPickerStory } from '../../../stories/fields/CheckPicker.stories'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
@@ -39,9 +39,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should fill, change and clear the check picker', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <CheckPickerStory {...commonProps} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -61,9 +61,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it(`Should fill, change and clear the check picker with \`value={[${JSON.stringify(options[2].value)}]\``, () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <CheckPickerStory {...commonProps} value={[options[2].value]} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -83,9 +83,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should fill the check picker with `isLabelHidden`', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <CheckPickerStory {...commonProps} isLabelHidden />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -97,9 +97,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should NOT call `onChange(undefined)` with `disabled`', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <CheckPickerStory {...commonProps} disabled />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -107,9 +107,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it(`Should NOT call \`onChange(undefined)\` with \`disabled value={[${JSON.stringify(options[2].value)}]\``, () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <CheckPickerStory {...commonProps} disabled value={[options[2].value]} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -117,9 +117,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <CheckPickerStory {...commonProps} disabled isUndefinedWhenDisabled />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldBe(undefined)
@@ -129,9 +129,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       options[2].value
     )}]\``, () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <CheckPickerStory {...commonProps} disabled isUndefinedWhenDisabled value={[options[2].value]} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldBe(undefined)
@@ -141,9 +141,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
 
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <CheckPickerStory {...commonProps} customSearch={customSearch as any} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -178,9 +178,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     it('Should fill, clear and get all list', () => {
       const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <CheckPickerStory {...commonProps} customSearch={customSearch as any} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()

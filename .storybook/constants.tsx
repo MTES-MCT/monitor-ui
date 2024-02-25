@@ -7,6 +7,7 @@ import type { Meta } from '@storybook/react'
 
 export const ACCENTS_AS_ARRAY = getArrayFromEnum(Accent)
 export const ICONS_AS_ARRAY = Object.keys(Icon)
+export const ICONS_AS_LABELS = fromPairs(ICONS_AS_ARRAY.map(key => [key, `Icon.${key}`]))
 export const ICONS_AS_MAPPING = fromPairs(ICONS_AS_ARRAY.map(key => [key, Icon[key]]))
 export const LEVELS_AS_ARRAY = getArrayFromEnum(Level)
 export const SIZE_AS_ARRAY = getArrayFromEnum(Size)
@@ -27,6 +28,27 @@ export const LOREM_IPSUM = [
 ].join('')
 
 export const ARG_TYPE = {
+  BOOLEAN: {
+    control: 'boolean',
+    table: {
+      type: {
+        summary: 'boolean'
+      }
+    }
+  },
+  ICON: {
+    control: {
+      labels: ICONS_AS_LABELS,
+      type: 'select'
+    },
+    mapping: ICONS_AS_MAPPING,
+    options: [...ICONS_AS_ARRAY, undefined],
+    table: {
+      type: {
+        summary: 'Icon'
+      }
+    }
+  },
   NO_CONTROL: {
     table: {
       // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -47,6 +69,14 @@ export const ARG_TYPE = {
       }
     }
   },
+  OPTIONAL_BASE_CONTAINER: {
+    table: {
+      type: {
+        summary: 'Document | HTMLDivElement | null | undefined'
+      }
+    },
+    type: 'function' as 'function'
+  },
   OPTIONAL_BOOLEAN: {
     control: 'boolean',
     table: {
@@ -55,8 +85,28 @@ export const ARG_TYPE = {
       }
     }
   },
+  OPTIONAL_BUTTON_TYPE: {
+    control: 'radio',
+    options: ['button', 'submit', 'reset'],
+    table: {
+      type: {
+        summary: "'button' | 'submit' | 'reset'"
+      }
+    }
+  },
+  OPTIONAL_COLOR: {
+    control: 'color',
+    table: {
+      type: {
+        summary: 'string | undefined'
+      }
+    }
+  },
   OPTIONAL_ICON: {
-    control: 'select',
+    control: {
+      labels: ICONS_AS_LABELS,
+      type: 'select'
+    },
     mapping: {
       ...ICONS_AS_MAPPING,
       // eslint-disable-next-line object-shorthand
@@ -65,7 +115,7 @@ export const ARG_TYPE = {
     options: [...ICONS_AS_ARRAY, undefined],
     table: {
       type: {
-        summary: 'boolean | undefined'
+        summary: 'Icon | undefined'
       }
     }
   },
@@ -80,7 +130,24 @@ export const ARG_TYPE = {
       }
     }
   },
+  OPTIONAL_NUMBER: {
+    control: 'number',
+    table: {
+      type: {
+        summary: 'number | undefined'
+      }
+    }
+  },
+  OPTIONAL_NUMBER_NO_CONTROL_INPUT: {
+    table: {
+      type: {
+        summary: 'number | undefined'
+      }
+    },
+    type: 'function' as 'function'
+  },
   OPTIONAL_OPTION_VALUE: {
+    control: 'radio',
     table: {
       type: {
         summary: 'OptionValue | undefined'
@@ -129,15 +196,6 @@ export const ARG_TYPE = {
     table: {
       type: {
         summary: 'TagBullet | undefined'
-      }
-    }
-  },
-  OPTIONAL_TYPE: {
-    control: 'radio',
-    options: ['button', 'submit', 'reset'],
-    table: {
-      type: {
-        summary: "'button' | 'submit' | 'reset'"
       }
     }
   },

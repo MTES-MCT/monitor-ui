@@ -1,8 +1,13 @@
 import classnames from 'classnames'
 import { type FunctionComponent, useCallback, useMemo } from 'react'
-import { Input } from 'rsuite'
+import { Input as RsuiteInput } from 'rsuite'
 import styled from 'styled-components'
 
+import {
+  getFieldBackgroundColorFactory,
+  getFieldMainColorFactoryForState,
+  getFieldPlaceholderColorFactoryForState
+} from './shared/utils'
 import { Accent, Size } from '../constants'
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
@@ -14,6 +19,7 @@ import { Close, Search } from '../icons'
 import { THEME } from '../theme'
 import { normalizeString } from '../utils/normalizeString'
 
+import type { CommonFieldStyleProps } from './shared/types'
 import type { IconProps } from '../types/definitions'
 import type { InputProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
@@ -25,10 +31,11 @@ export type TextInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'on
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
   isSearchInput?: boolean
+  isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
-  onChange?: ((nextValue: string | undefined) => Promisable<void>) | undefined
+  onChange?: (nextValue: string | undefined) => Promisable<void>
   size?: Size | undefined
   value?: string | undefined
 }
@@ -40,6 +47,7 @@ export function TextInput({
   isLabelHidden = false,
   isLight = false,
   isSearchInput = false,
+  isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
   onChange,
@@ -74,7 +82,7 @@ export function TextInput({
     [onChange]
   )
 
-  useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
+  useFieldUndefineEffect(isUndefinedWhenDisabled && !!originalProps.disabled, onChange)
 
   return (
     <Field className={controlledClassname} style={style}>
@@ -88,11 +96,14 @@ export function TextInput({
       </Label>
 
       <InputBox $size={size}>
-        <StyledInput
+        <StyledRsuiteInput
           key={key}
           $hasError={hasError}
           $hasIcon={!!Icon}
+          $isDisabled={originalProps.disabled}
           $isLight={isLight}
+          $isReadOnly={originalProps.readOnly}
+          $isTransparent={isTransparent}
           $size={size}
           id={originalProps.name}
           onChange={handleChange}
@@ -129,7 +140,7 @@ export function TextInput({
 
 const PADDING: Record<Size, string> = {
   [Size.LARGE]: '8px 16px 11px',
-  [Size.NORMAL]: '3px 8px 6px',
+  [Size.NORMAL]: '3px 8px 7px',
   [Size.SMALL]: '3px 8px 6px'
 }
 const PADDING_WITH_ICON: Record<Size, string> = {
@@ -156,34 +167,45 @@ const Separator = styled.div`
   padding-top: 3px;
 `
 
-const StyledInput = styled(Input as any)<{
-  $hasError: boolean
-  $hasIcon: boolean
-  $isLight: boolean
-  $size: Size
-}>`
-  background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
-  border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.gainsboro)};
+const StyledRsuiteInput = styled(RsuiteInput)<
+  CommonFieldStyleProps & {
+    $size: Size
+  }
+>`
+  background-color: ${getFieldBackgroundColorFactory()};
+  border: solid 1px ${getFieldMainColorFactoryForState('default')};
   border-radius: 0;
+  color: ${p => p.theme.color.gunMetal};
+  ${p => p.$isReadOnly && `cursor: default;`}
   font-size: 13px;
-  /* TODO It should be 18px but computed line-height is stuck to min. 18.5px. Investigate that. */
-  line-height: 19px;
+  font-weight: 500;
+  line-height: 1;
   padding: ${p => (p.$hasIcon ? PADDING_WITH_ICON[p.$size] : PADDING[p.$size])};
   vertical-align: center;
   width: 100%;
 
-  ::placeholder {
-    color: ${p => (p.$isLight ? p.theme.color.slateGray : p.theme.color.slateGray)};
+  &::placeholder {
+    color: ${getFieldPlaceholderColorFactoryForState('default')};
   }
 
-  :hover {
-    border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueYonder)} !important;
+  &:hover {
+    background-color: ${getFieldBackgroundColorFactory()};
+    border: solid 1px ${getFieldMainColorFactoryForState('hover')} !important;
+
+    &::placeholder {
+      color: ${getFieldPlaceholderColorFactoryForState('hover')};
+    }
   }
 
-  :active,
-  :focus {
-    border: solid 1px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray)} !important;
+  &:active,
+  &:focus {
+    background-color: ${getFieldBackgroundColorFactory()};
+    border: solid 1px ${getFieldMainColorFactoryForState('focus')} !important;
     outline: 0;
+
+    &::placeholder {
+      color: ${getFieldPlaceholderColorFactoryForState('focus')};
+    }
   }
 `
 
@@ -192,6 +214,7 @@ const InputBox = styled.div<{
 }>`
   position: relative;
   width: 100%;
+
   > .Element-IconBox {
     position: absolute;
     right: 10px;

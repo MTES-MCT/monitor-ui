@@ -1,0 +1,21 @@
+
+import { Meta, Title, IconGallery, IconItem } from '@storybook/blocks';
+
+import { DocumentationBox } from '../.storybook/components/DocumentationBox'
+import { Icon, THEME } from '../src'
+
+# Icons
+
+<DocumentationBox>
+  <IconGallery>
+    {Object.keys(Icon).map(key => (
+      <IconItem key={key} name={key}>
+        {(() => {
+          const IconComponent = Icon[key]
+
+          return <IconComponent />
+        })()}
+      </IconItem>
+    ))}
+  </IconGallery>
+</DocumentationBox>

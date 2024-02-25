@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
 import { Output } from '../../../.storybook/components/Output'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
 import { Checkbox, useFieldControl, type CheckboxProps } from '../../../src'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
@@ -27,9 +27,9 @@ context('Base', () => {
 
   it('Should fill, change and clear the checkbox', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <CheckboxStory {...commonProps} />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldNotBe()
@@ -45,9 +45,9 @@ context('Base', () => {
 
   it('Should fill, change and clear the checkbox with `checked`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <CheckboxStory {...commonProps} checked />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldNotBe()
@@ -63,9 +63,9 @@ context('Base', () => {
 
   it('Should NOT call `onChange(undefined)` with `disabled`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <CheckboxStory {...commonProps} disabled />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldNotBe()
@@ -73,9 +73,9 @@ context('Base', () => {
 
   it('Should NOT call `onChange(undefined)` with `checked disabled`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <CheckboxStory {...commonProps} checked disabled />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldNotBe()
@@ -83,9 +83,9 @@ context('Base', () => {
 
   it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <CheckboxStory {...commonProps} disabled isUndefinedWhenDisabled />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldBe(undefined)
@@ -93,9 +93,9 @@ context('Base', () => {
 
   it('Should call `onChange(undefined)` with `checked disabled isUndefinedWhenDisabled`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <CheckboxStory {...commonProps} checked disabled isUndefinedWhenDisabled />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldBe(undefined)

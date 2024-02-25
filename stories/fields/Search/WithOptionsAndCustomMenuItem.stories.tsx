@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
 import { Search } from '../../../src'
 
 import type { SearchProps } from '../../../src'
@@ -22,30 +22,9 @@ function MenuItem({ item }) {
   )
 }
 
-const args: SearchProps<Value> = {
-  error: '',
-  isLabelHidden: false,
-  isLight: false,
-  isSearchIconVisible: false,
-  label: 'An autocompletable select',
-  MenuItem,
-  name: 'autoComplete',
-  options: [
-    { label: 'First Option', value: { name: 'First Option', subValue: 'FIRST_OPTION' } },
-    { label: 'Second Option', value: { name: 'Second Option', subValue: 'SECOND_OPTION' } },
-    { label: 'Third Option', value: { name: 'Third Option', subValue: 'THIRD_OPTION' } },
-    {
-      label: 'A Very Very Long Option',
-      value: { name: 'A Very Very Long  Option', subValue: 'A_VERY_VERY_LONG_OPTION' }
-    }
-  ],
-  optionValueKey: 'name' as any,
-  placeholder: 'Type "first"'
-}
-
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<SearchProps<Value>> = {
-  title: 'Fields/Search',
+  title: 'Fields/Search (variations)',
   component: Search,
 
   argTypes: {
@@ -54,11 +33,30 @@ const meta: Meta<SearchProps<Value>> = {
     }
   },
 
-  args,
+  args: {
+    error: '',
+    isLabelHidden: false,
+    isLight: false,
+    isSearchIconHidden: false,
+    label: 'An autocompletable select',
+    MenuItem,
+    name: 'autoComplete',
+    options: [
+      { label: 'First Option', value: { name: 'First Option', subValue: 'FIRST_OPTION' } },
+      { label: 'Second Option', value: { name: 'Second Option', subValue: 'SECOND_OPTION' } },
+      { label: 'Third Option', value: { name: 'Third Option', subValue: 'THIRD_OPTION' } },
+      {
+        label: 'A Very Very Long Option',
+        value: { name: 'A Very Very Long  Option', subValue: 'A_VERY_VERY_LONG_OPTION' }
+      }
+    ],
+    optionValueKey: 'name' as any,
+    placeholder: 'Type "first"'
+  },
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      withBackgroundButton: true
     })
   ]
 }

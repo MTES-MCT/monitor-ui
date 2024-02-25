@@ -1,4 +1,4 @@
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Label } from '../../src'
 
 import type { LabelProps } from '../../src'

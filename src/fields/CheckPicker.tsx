@@ -22,17 +22,18 @@ export type CheckPickerProps<OptionValue extends OptionValueType = string> = Omi
   RsuiteCheckPickerProps<string>,
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderMenuItem' | 'value' | 'valueKey'
 > & {
-  customSearch?: CustomSearch<Option<OptionValue>> | undefined
+  customSearch?: CustomSearch<Option<OptionValue>>
   /** Minimum search query length required to trigger custom search filtering. */
   customSearchMinQueryLength?: number | undefined
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
-  onChange?: ((nextValue: OptionValue[] | undefined) => Promisable<void>) | undefined
+  onChange?: (nextValue: OptionValue[] | undefined) => Promisable<void>
   optionValueKey?: keyof OptionValue | undefined
   options: Option<OptionValue>[]
   value?: OptionValue[] | undefined
@@ -46,11 +47,13 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
+  isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
   onChange,
   options,
   optionValueKey,
+  readOnly = false,
   searchable = false,
   style,
   value,
@@ -125,7 +128,14 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
       <Label disabled={disabled} hasError={hasError} htmlFor={originalProps.name} isHidden={isLabelHidden}>
         {label}
       </Label>
-      <StyledRsuitePickerBox ref={boxRef} $hasError={hasError} $isLight={isLight}>
+      <StyledRsuitePickerBox
+        ref={boxRef}
+        $hasError={hasError}
+        $isDisabled={disabled}
+        $isLight={isLight}
+        $isReadOnly={readOnly}
+        $isTransparent={isTransparent}
+      >
         {boxRef.current && (
           <RsuiteCheckPicker
             key={key}
@@ -137,6 +147,7 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
             id={originalProps.name}
             onChange={handleChange}
             onSearch={handleSearch}
+            readOnly={readOnly}
             renderMenuItem={renderMenuItem}
             searchable={!!customSearch || searchable}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),

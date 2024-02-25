@@ -4,7 +4,6 @@ import { IMaskInput } from 'react-imask'
 import styled from 'styled-components'
 
 import { CoordinatesFormat, WSG84_PROJECTION } from '../../constants'
-import { THEME } from '../../theme'
 import { getCoordinates } from '../../utils/coordinates'
 import { isNumeric } from '../../utils/isNumeric'
 
@@ -17,17 +16,19 @@ const UntypedIMaskInput: any = IMaskInput
 type DMDCoordinatesInputProps = {
   coordinates: Coordinates | undefined
   coordinatesFormat: CoordinatesFormat
-  disabled: boolean | undefined
-  isLight: boolean | undefined
+  disabled: boolean
+  name: string
   onChange: (nextCoordinates: Coordinates, coordinates: Coordinates | undefined) => void
+  readOnly: boolean
 }
 // TODO This field should return undefined when cleared (i.e.: Select all & Backspace/Delete)
 export function DMDCoordinatesInput({
   coordinates,
   coordinatesFormat,
-  disabled = false,
-  isLight,
-  onChange
+  disabled,
+  name,
+  onChange,
+  readOnly
 }: DMDCoordinatesInputProps) {
   const [error, setError] = useState('')
   const [value, setValue] = useState('')
@@ -102,15 +103,13 @@ export function DMDCoordinatesInput({
         disabled={disabled}
         lazy={false}
         mask="00° 00.00′ a 000° 00.00′ a"
+        name={name}
         // @ts-ignore
         onAccept={(_, mask) => setValue(mask.value)}
         onComplete={(_, mask) => completeCoordinates(mask)}
         placeholder="__° __.___′ _ ___° __.___′"
         radix="."
-        style={{
-          backgroundColor: isLight ? THEME.color.white : THEME.color.gainsboro,
-          border: error ? '1px solid red' : undefined
-        }}
+        readOnly={readOnly}
         // TODO Use `defaultValue` here.
         value={value}
       />
@@ -121,8 +120,9 @@ export function DMDCoordinatesInput({
 }
 
 const CoordinatesType = styled.span`
-  margin-left: 7px;
   color: ${p => p.theme.color.slateGray};
+  font-size: 13px !important;
+  margin-left: 7px !important;
 `
 
 const Error = styled.span`

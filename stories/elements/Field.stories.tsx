@@ -1,4 +1,4 @@
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Field } from '../../src'
 
 import type { FieldProps } from '../../src'

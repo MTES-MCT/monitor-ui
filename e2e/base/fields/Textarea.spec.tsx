@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
 import { Output } from '../../../.storybook/components/Output'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
 import { useFieldControl, type TextareaProps, Textarea } from '../../../src'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
@@ -27,9 +27,9 @@ context('Base', () => {
 
   it('Should fill, change and clear the textarea', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <TextareaStory {...commonProps} />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldNotBe()
@@ -49,9 +49,9 @@ context('Base', () => {
 
   it('Should fill, change and clear the textarea with `value="abc"`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <TextareaStory {...commonProps} value="abc" />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldNotBe()
@@ -71,9 +71,9 @@ context('Base', () => {
 
   it('Should fill the textarea with `isLabelHidden`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <TextareaStory {...commonProps} isLabelHidden />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldNotBe()
@@ -85,9 +85,9 @@ context('Base', () => {
 
   it('Should NOT call `onChange(undefined)` with `disabled`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <TextareaStory {...commonProps} disabled />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldNotBe()
@@ -95,9 +95,9 @@ context('Base', () => {
 
   it('Should NOT call `onChange(undefined)` with `disabled value="abc"`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <TextareaStory {...commonProps} disabled value="abc" />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldNotBe()
@@ -105,9 +105,9 @@ context('Base', () => {
 
   it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <TextareaStory {...commonProps} disabled isUndefinedWhenDisabled />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldBe(undefined)
@@ -115,9 +115,9 @@ context('Base', () => {
 
   it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled value="abc"`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <TextareaStory {...commonProps} disabled isUndefinedWhenDisabled value="abc" />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldBe(undefined)

@@ -4,11 +4,13 @@ import { useCallback, useMemo, type CSSProperties } from 'react'
 import { Checkbox as RsuiteCheckbox } from 'rsuite'
 import styled from 'styled-components'
 
+import { getChoiceFieldBackgroundColorFactoryForState, getChoiceFieldMainColorFactoryForState } from './shared/utils'
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { normalizeString } from '../utils/normalizeString'
 
+import type { CommonChoiceFieldStyleProps } from './shared/types'
 import type { CheckboxProps as RsuiteCheckboxProps } from 'rsuite'
 import type { ValueType } from 'rsuite/esm/Checkbox'
 import type { Promisable } from 'type-fest'
@@ -16,6 +18,7 @@ import type { Promisable } from 'type-fest'
 export type CheckboxProps = Omit<RsuiteCheckboxProps, 'as' | 'checked' | 'defaultChecked' | 'id' | 'onChange'> & {
   checked?: boolean | undefined
   className?: string | undefined
+  disabled?: boolean | undefined
   error?: string | undefined
   /**
    * Used internally to pass the error state from other monitor-ui components using this checkbox.
@@ -28,30 +31,35 @@ export type CheckboxProps = Omit<RsuiteCheckboxProps, 'as' | 'checked' | 'defaul
   hasError?: boolean | undefined
   isErrorMessageHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
   onChange?: (isChecked: boolean | undefined) => Promisable<void>
+  readOnly?: boolean | undefined
   style?: CSSProperties | undefined
 }
 export function Checkbox({
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   checked = false,
   className,
+  disabled = false,
   error,
   hasError = false,
   isErrorMessageHidden = false,
   isLight = false,
+  isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
+  name,
   onChange,
+  readOnly = false,
   style,
   ...originalProps
 }: CheckboxProps) {
   const controlledClassName = useMemo(() => classnames('Field-Checkbox', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasControlledError = useMemo(() => hasError || Boolean(controlledError), [controlledError, hasError])
-  const key = useKey([originalProps.disabled, originalProps.name])
+  const key = useKey([disabled, name])
 
   const handleChange = useCallback(
     (_nextValue: ValueType | undefined, isChecked: boolean) => {
@@ -64,45 +72,37 @@ export function Checkbox({
     [onChange]
   )
 
-  const commonProps = {
-    ...originalProps,
-    $isLight: isLight,
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    checked,
-    id: originalProps.name,
-    key,
-    onChange: handleChange
-  }
-
-  useFieldUndefineEffect(isUndefinedWhenDisabled && originalProps.disabled, onChange)
+  useFieldUndefineEffect(isUndefinedWhenDisabled && !!disabled, onChange)
 
   return (
     <Field className={controlledClassName} style={style}>
-      {(() => {
-        if (originalProps.disabled) {
-          return <StyledCheckboxWhenDisabled {...commonProps}>{label}</StyledCheckboxWhenDisabled>
-        }
-
-        if (originalProps.readOnly) {
-          return <StyledCheckboxWhenReadOnly {...commonProps}>{label}</StyledCheckboxWhenReadOnly>
-        }
-
-        return (
-          <StyledCheckbox $hasError={hasControlledError} {...commonProps}>
-            {label}
-          </StyledCheckbox>
-        )
-      })()}
+      <StyledRsuiteCheckbox
+        key={key}
+        $hasError={hasControlledError}
+        $isChecked={checked}
+        $isDisabled={disabled}
+        $isLight={isLight}
+        $isReadOnly={readOnly}
+        $isTransparent={isTransparent}
+        checked={checked}
+        disabled={disabled}
+        id={name}
+        name={name}
+        onChange={handleChange}
+        readOnly={readOnly}
+        {...originalProps}
+      >
+        {label}
+      </StyledRsuiteCheckbox>
 
       {!isErrorMessageHidden && hasControlledError && <FieldError>{controlledError}</FieldError>}
     </Field>
   )
 }
 
-const StyledCheckboxBase = styled(RsuiteCheckbox)<{
-  $isLight: boolean
-}>`
+const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyleProps>`
   * {
+    ${p => p.$isReadOnly && `cursor: default !important;`}
     user-select: none;
   }
 
@@ -111,6 +111,10 @@ const StyledCheckboxBase = styled(RsuiteCheckbox)<{
     padding: 0 0 0 24px;
 
     > label {
+      /* TODO Check that with Adeline. */
+      color: ${p =>
+        // eslint-disable-next-line no-nested-ternary
+        p.$isDisabled || p.$isReadOnly ? p.theme.color.lightGray : p.theme.color.gunMetal};
       font-size: 13px;
       font-weight: 500;
       line-height: 1;
@@ -120,12 +124,23 @@ const StyledCheckboxBase = styled(RsuiteCheckbox)<{
         left: 0;
         top: 2px;
 
+        &:before {
+          /* Remove focus ring */
+          border: 0;
+          opacity: 1;
+        }
+
         > .rs-checkbox-inner {
           &:before {
+            background-color: ${getChoiceFieldBackgroundColorFactoryForState('default')};
+            border: 2px solid ${getChoiceFieldMainColorFactoryForState('default')} !important;
             border-radius: 0;
+            opacity: 1;
           }
 
+          /* Checkmark */
           &:after {
+            border-color: ${p => (p.$isReadOnly ? p.theme.color.charcoal : p.theme.color.cultured)};
             bottom: 0;
             left: 0;
             right: 0;
@@ -134,33 +149,33 @@ const StyledCheckboxBase = styled(RsuiteCheckbox)<{
         }
       }
     }
-  }
-`
 
-const StyledCheckbox = styled(StyledCheckboxBase)<{
-  $hasError: boolean
-}>`
-  > .rs-checkbox-checker {
-    > label {
-      > .rs-checkbox-wrapper {
-        > .rs-checkbox-inner {
-          &:before {
-            background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
-            border: solid 2px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.lightGray)};
+    &:hover,
+    &._hover {
+      > label {
+        color: ${getChoiceFieldMainColorFactoryForState('hover')};
+
+        > .rs-checkbox-wrapper {
+          > .rs-checkbox-inner {
+            &:before {
+              background-color: ${getChoiceFieldBackgroundColorFactoryForState('hover')};
+              border: solid 2px ${getChoiceFieldMainColorFactoryForState('hover')} !important;
+            }
           }
         }
       }
     }
 
-    &:hover {
+    &:focus,
+    &._focus {
       > label {
-        color: ${p => p.theme.color.blueYonder};
+        color: ${getChoiceFieldMainColorFactoryForState('focus')};
 
         > .rs-checkbox-wrapper {
           > .rs-checkbox-inner {
             &:before {
-              background-color: ${p => p.theme.color.blueYonder25};
-              border: solid 2px ${p => p.theme.color.blueYonder};
+              background-color: ${getChoiceFieldBackgroundColorFactoryForState('focus')};
+              border: solid 2px ${getChoiceFieldMainColorFactoryForState('focus')} !important;
             }
           }
         }
@@ -168,122 +183,15 @@ const StyledCheckbox = styled(StyledCheckboxBase)<{
     }
 
     &:active,
-    &:focus {
+    &._active {
       > label {
+        color: ${getChoiceFieldMainColorFactoryForState('active')};
+
         > .rs-checkbox-wrapper {
           > .rs-checkbox-inner {
             &:before {
-              background-color: ${p => p.theme.color.blueGray25};
-              border: solid 2px ${p => p.theme.color.blueGray};
-            }
-          }
-        }
-      }
-    }
-  }
-
-  &.rs-checkbox-checked {
-    > .rs-checkbox-checker {
-      > label {
-        > .rs-checkbox-wrapper {
-          > .rs-checkbox-inner {
-            &:before {
-              background-color: ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.charcoal)};
-              border: solid 2px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.charcoal)};
-            }
-          }
-        }
-      }
-
-      &:hover {
-        > label {
-          color: ${p => p.theme.color.blueYonder};
-
-          > .rs-checkbox-wrapper {
-            > .rs-checkbox-inner {
-              &:before {
-                background-color: ${p => p.theme.color.blueYonder};
-                border: solid 2px ${p => p.theme.color.blueYonder};
-              }
-            }
-          }
-        }
-      }
-
-      &:active,
-      &:focus {
-        > label {
-          > .rs-checkbox-wrapper {
-            > .rs-checkbox-inner {
-              &:before {
-                background-color: ${p => p.theme.color.blueGray};
-                border: solid 2px ${p => p.theme.color.blueGray};
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
-
-const StyledCheckboxWhenDisabled = styled(StyledCheckboxBase)`
-  > .rs-checkbox-checker {
-    > label {
-      color: ${p => p.theme.color.lightGray};
-
-      > .rs-checkbox-wrapper {
-        &:before {
-          opacity: 1;
-        }
-
-        > .rs-checkbox-inner {
-          &:before {
-            background-color: transparent !important;
-            border: solid 2px ${p => p.theme.color.lightGray} !important;
-          }
-        }
-      }
-    }
-  }
-
-  &.rs-checkbox-checked {
-    > .rs-checkbox-checker {
-      > label {
-        > .rs-checkbox-wrapper {
-          > .rs-checkbox-inner {
-            &:before {
-              background-color: ${p => p.theme.color.lightGray} !important;
-              border: solid 2px ${p => p.theme.color.lightGray} !important;
-            }
-          }
-        }
-      }
-    }
-  }
-`
-
-const StyledCheckboxWhenReadOnly = styled(StyledCheckboxBase)`
-  > .rs-checkbox-checker {
-    > label {
-      > .rs-checkbox-wrapper {
-        > .rs-checkbox-inner {
-          &:before {
-            background-color: transparent;
-            border: solid 2px ${p => p.theme.color.lightGray};
-          }
-        }
-      }
-    }
-  }
-
-  &.rs-checkbox-checked {
-    > .rs-checkbox-checker {
-      > label {
-        > .rs-checkbox-wrapper {
-          > .rs-checkbox-inner {
-            &:after {
-              border-color: ${p => p.theme.color.charcoal};
+              background-color: ${getChoiceFieldBackgroundColorFactoryForState('active')};
+              border: solid 2px ${getChoiceFieldMainColorFactoryForState('active')} !important;
             }
           }
         }

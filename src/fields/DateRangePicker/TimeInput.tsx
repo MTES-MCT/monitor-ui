@@ -1,4 +1,9 @@
 import { usePressEscapeEffect } from '@hooks/usePressEscapeEffect'
+import {
+  getFieldBackgroundColorFactory,
+  getFieldMainColorFactoryForState,
+  getFieldPlaceholderColorFactoryForState
+} from 'fields/shared/utils'
 import { isEqual } from 'lodash'
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
@@ -23,7 +28,9 @@ export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
   isEndDate?: boolean | undefined
   isLight: boolean
   isStartDate?: boolean | undefined
+  isTransparent: boolean
   minutesRange?: number | undefined
+  name: string
   /** Called each time any time input is changed to a new valid value. */
   onChange: (nextTimeTuple: TimeTuple) => Promisable<void>
   onFocus?: (() => Promisable<void>) | undefined
@@ -31,23 +38,27 @@ export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
   onInput: () => Promisable<void>
   onNext?: (() => Promisable<void>) | undefined
   onPrevious?: (() => Promisable<void>) | undefined
+  readOnly: boolean
   value?: TimeTuple | undefined
 }
 function TimeInputWithRef(
   {
     baseContainer,
-    disabled = false,
+    disabled,
     isCompact,
     isEndDate = false,
     isLight,
     isStartDate = false,
+    isTransparent,
     minutesRange = 15,
+    name,
     onBack,
     onChange,
     onFocus,
     onInput,
     onNext,
     onPrevious,
+    readOnly,
     value
   }: TimeInputProps,
   ref: ForwardedRef<TimeInputRef>
@@ -141,8 +152,12 @@ function TimeInputWithRef(
   )
 
   const openRangedTimePicker = useCallback(() => {
+    if (disabled || readOnly) {
+      return
+    }
+
     setIsTimePickerOpen(true)
-  }, [])
+  }, [disabled, readOnly])
 
   const submit = useCallback(() => {
     if (!hourInputRef.current || !minuteInputRef.current) {
@@ -188,6 +203,8 @@ function TimeInputWithRef(
       $isDisabled={disabled}
       $isFocused={isFocused}
       $isLight={isLight}
+      $isReadOnly={readOnly}
+      $isTransparent={isTransparent}
     >
       <InputGroup>
         <div>
@@ -198,6 +215,7 @@ function TimeInputWithRef(
             isLight={isLight}
             max={23}
             min={0}
+            name={`${name}Hour`}
             onBack={handleBack}
             onBlur={handleBlur}
             onClick={openRangedTimePicker}
@@ -207,6 +225,7 @@ function TimeInputWithRef(
             onInput={handleHourInput}
             onNext={() => minuteInputRef.current?.focus()}
             onPrevious={onPrevious}
+            readOnly={readOnly}
             size={2}
             value={controlledValue && controlledValue[0]}
           />
@@ -218,6 +237,7 @@ function TimeInputWithRef(
             isLight={isLight}
             max={59}
             min={0}
+            name={`${name}Minute`}
             onBack={() => hourInputRef.current?.focus()}
             onBlur={handleBlur}
             onClick={openRangedTimePicker}
@@ -227,6 +247,7 @@ function TimeInputWithRef(
             onInput={onInput}
             onNext={onNext}
             onPrevious={() => hourInputRef.current?.focus()}
+            readOnly={readOnly}
             size={2}
             value={controlledValue && controlledValue[1]}
           />
@@ -250,26 +271,24 @@ const Box = styled.div<{
   $isDisabled: boolean
   $isFocused: boolean
   $isLight: boolean
+  $isReadOnly: boolean
+  $isTransparent: boolean
 }>`
-  background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
-  box-shadow: ${p =>
-    p.$hasError || p.$isFocused
-      ? `inset 0px 0px 0px 1px ${p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray}`
-      : 'none'};
-  color: ${p => (p.$isFocused ? p.theme.color.blueGray : p.theme.color.slateGray)};
+  background-color: ${getFieldBackgroundColorFactory()};
+  border: solid 1px ${getFieldMainColorFactoryForState('default')};
+  color: ${getFieldPlaceholderColorFactoryForState('default')};
   display: inline-block;
-  font-size: inherit;
-  padding: ${p => (p.$isCompact ? '4.5px 8px 7px' : '3px 8px 5px')};
+  font-size: 13px;
+  padding: ${p => (p.$isCompact ? '4px 8px 6px' : '2px 8px 4px')};
   position: relative;
   user-select: none;
 
   :hover {
-    box-shadow: ${p =>
-      `inset 0px 0px 0px 1px ${
-        // eslint-disable-next-line no-nested-ternary
-        p.$isDisabled ? p.theme.color.cultured : p.$isFocused ? p.theme.color.blueGray : p.theme.color.blueYonder
-      }`};
-    color: ${p => (p.$isFocused ? p.theme.color.blueGray : p.theme.color.blueYonder)};
+    border: solid 1px
+      ${p =>
+        p.$isFocused ? getFieldMainColorFactoryForState('focus')(p) : getFieldMainColorFactoryForState('hover')(p)};
+    color: ${p =>
+      p.$isFocused ? getFieldMainColorFactoryForState('focus')(p) : getFieldMainColorFactoryForState('hover')(p)};
   }
 `
 

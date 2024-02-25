@@ -1,7 +1,7 @@
-import { noop } from 'lodash/fp'
+import { noop } from 'lodash'
 
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Accent, Button, Dialog } from '../../src'
 
 import type { DialogProps } from '../../src'

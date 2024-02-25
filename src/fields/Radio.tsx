@@ -4,59 +4,65 @@ import { useMemo, type CSSProperties } from 'react'
 import { Radio as RsuiteRadio } from 'rsuite'
 import styled from 'styled-components'
 
+import {
+  getChoiceFieldBackgroundColorFactoryForState,
+  getChoiceFieldMainColorFactoryForState,
+  getFieldBackgroundColorFactory
+} from './shared/utils'
 import { Field } from '../elements/Field'
 
+import type { CommonChoiceFieldStyleProps } from './shared/types'
 import type { RadioProps as RsuiteRadioProps } from 'rsuite'
 
 export type RadioProps = Omit<RsuiteRadioProps, 'as' | 'checked' | 'defaultChecked' | 'id'> & {
   checked?: boolean | undefined
   className?: string | undefined
+  disabled?: boolean | undefined
   hasError?: boolean | undefined
   isLight?: boolean | undefined
-  name?: string | undefined
+  isTransparent?: boolean | undefined
+  name: string
+  readOnly?: boolean | undefined
   style?: CSSProperties | undefined
 }
 export function Radio({
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   checked = false,
   className,
+  disabled = false,
   hasError = false,
   isLight = false,
+  isTransparent = false,
+  name,
+  readOnly = false,
   style,
   ...originalProps
 }: RadioProps) {
   const controlledClassName = useMemo(() => classnames('Field-Radio', className), [className])
-  const key = useKey([originalProps.disabled, originalProps.name])
-
-  const commonProps = {
-    ...originalProps,
-    $isLight: isLight,
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    checked,
-    key
-  }
+  const key = useKey([disabled, name])
 
   return (
     <Field className={controlledClassName} style={style}>
-      {(() => {
-        if (originalProps.disabled) {
-          return <StyledRadioWhenDisabled {...commonProps} />
-        }
-
-        if (originalProps.readOnly) {
-          return <StyledRadioWhenReadOnly {...commonProps} />
-        }
-
-        return <StyledRadio $hasError={hasError} {...commonProps} />
-      })()}
+      <StyledRsuiteRadio
+        key={key}
+        $hasError={hasError}
+        $isChecked={checked}
+        $isDisabled={disabled}
+        $isLight={isLight}
+        $isReadOnly={readOnly}
+        $isTransparent={isTransparent}
+        checked={checked}
+        disabled={disabled}
+        name={name}
+        readOnly={readOnly}
+        {...originalProps}
+      />
     </Field>
   )
 }
 
-const StyledRadioBase = styled(RsuiteRadio)<{
-  $isLight: boolean
-}>`
+const StyledRsuiteRadio = styled(RsuiteRadio)<CommonChoiceFieldStyleProps>`
   * {
+    ${p => p.$isReadOnly && `cursor: default !important;`}
     user-select: none;
   }
 
@@ -65,6 +71,10 @@ const StyledRadioBase = styled(RsuiteRadio)<{
     padding: 0 0 0 24px;
 
     > label {
+      /* TODO Check that with Adeline. */
+      color: ${p =>
+        // eslint-disable-next-line no-nested-ternary
+        p.$isDisabled || p.$isReadOnly ? p.theme.color.lightGray : p.theme.color.gunMetal};
       font-size: 13px;
       font-weight: 500;
       line-height: 1;
@@ -74,8 +84,25 @@ const StyledRadioBase = styled(RsuiteRadio)<{
         left: 0;
         top: 2px;
 
+        &:before {
+          /* Remove focus ring */
+          border: 0;
+          opacity: 1;
+        }
+
         > .rs-radio-inner {
+          &:before {
+            background-color: ${p =>
+              p.$isChecked
+                ? getFieldBackgroundColorFactory()(p)
+                : getChoiceFieldBackgroundColorFactoryForState('default')(p)};
+            border: 2px solid ${getChoiceFieldMainColorFactoryForState('default')} !important;
+          }
+
+          /* Dot */
           &:after {
+            background-color: ${p =>
+              p.$isReadOnly ? p.theme.color.charcoal : getChoiceFieldMainColorFactoryForState('default')(p)};
             bottom: 0;
             left: 0;
             right: 0;
@@ -84,33 +111,39 @@ const StyledRadioBase = styled(RsuiteRadio)<{
         }
       }
     }
-  }
-`
 
-const StyledRadio = styled(StyledRadioBase)<{
-  $hasError: boolean
-}>`
-  > .rs-radio-checker {
-    > label {
-      > .rs-radio-wrapper {
-        > .rs-radio-inner {
-          &:before {
-            background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
-            border: solid 2px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.lightGray)};
+    &:hover,
+    &._hover {
+      > label {
+        color: ${getChoiceFieldMainColorFactoryForState('hover')};
+
+        > .rs-radio-wrapper {
+          > .rs-radio-inner {
+            &:before {
+              background-color: ${p =>
+                p.$isChecked
+                  ? getFieldBackgroundColorFactory()(p)
+                  : getChoiceFieldBackgroundColorFactoryForState('hover')(p)};
+              border: solid 2px ${getChoiceFieldMainColorFactoryForState('hover')} !important;
+            }
           }
         }
       }
     }
 
-    &:hover {
+    &:focus,
+    &._focus {
       > label {
-        color: ${p => p.theme.color.blueYonder};
+        color: ${getChoiceFieldMainColorFactoryForState('focus')};
 
         > .rs-radio-wrapper {
           > .rs-radio-inner {
             &:before {
-              background-color: ${p => p.theme.color.blueYonder25};
-              border: solid 2px ${p => p.theme.color.blueYonder};
+              background-color: ${p =>
+                p.$isChecked
+                  ? getFieldBackgroundColorFactory()(p)
+                  : getChoiceFieldBackgroundColorFactoryForState('focus')(p)};
+              border: solid 2px ${getChoiceFieldMainColorFactoryForState('focus')} !important;
             }
           }
         }
@@ -118,147 +151,18 @@ const StyledRadio = styled(StyledRadioBase)<{
     }
 
     &:active,
-    &:focus {
+    &._active {
       > label {
+        color: ${getChoiceFieldMainColorFactoryForState('active')};
+
         > .rs-radio-wrapper {
           > .rs-radio-inner {
             &:before {
-              background-color: ${p => p.theme.color.blueGray25};
-              border: solid 2px ${p => p.theme.color.blueGray};
-            }
-          }
-        }
-      }
-    }
-  }
-
-  &.rs-radio-checked {
-    > .rs-radio-checker {
-      > label {
-        > .rs-radio-wrapper {
-          > .rs-radio-inner {
-            &:before {
-              background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
-              border: solid 2px ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.charcoal)};
-            }
-
-            &:after {
-              background-color: ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.charcoal)};
-            }
-          }
-        }
-      }
-
-      &:hover {
-        > label {
-          color: ${p => p.theme.color.blueYonder};
-
-          > .rs-radio-wrapper {
-            > .rs-radio-inner {
-              &:before {
-                background-color: ${p => p.theme.color.blueYonder25};
-                border: solid 2px ${p => p.theme.color.blueYonder};
-              }
-
-              &:after {
-                background-color: ${p => p.theme.color.blueYonder};
-              }
-            }
-          }
-        }
-      }
-
-      &:active,
-      &:focus {
-        > label {
-          color: ${p => p.theme.color.blueYonder};
-
-          > .rs-radio-wrapper {
-            > .rs-radio-inner {
-              &:before {
-                background-color: ${p => p.theme.color.blueGray25};
-                border: solid 2px ${p => p.theme.color.blueGray};
-              }
-
-              &:after {
-                background-color: ${p => p.theme.color.blueGray};
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
-
-const StyledRadioWhenDisabled = styled(StyledRadioBase)`
-  > .rs-radio-checker {
-    > label {
-      color: ${p => p.theme.color.lightGray};
-
-      > .rs-radio-wrapper {
-        &:before {
-          opacity: 1;
-        }
-
-        > .rs-radio-inner {
-          &:before {
-            background-color: transparent !important;
-            border: solid 2px ${p => p.theme.color.lightGray} !important;
-          }
-        }
-      }
-    }
-  }
-
-  &.rs-radio-checked {
-    > .rs-radio-checker {
-      > label {
-        > .rs-radio-wrapper {
-          > .rs-radio-inner {
-            &:before {
-              background-color: transparent !important;
-              border: solid 2px ${p => p.theme.color.lightGray} !important;
-            }
-
-            &:after {
-              background-color: ${p => p.theme.color.lightGray} !important;
-            }
-          }
-        }
-      }
-    }
-  }
-`
-
-const StyledRadioWhenReadOnly = styled(StyledRadioBase)`
-  > .rs-radio-checker {
-    > label {
-      color: ${p => p.theme.color.lightGray};
-
-      > .rs-radio-wrapper {
-        > .rs-radio-inner {
-          &:before {
-            background-color: transparent;
-            border: solid 2px ${p => p.theme.color.lightGray};
-          }
-        }
-      }
-    }
-  }
-
-  &.rs-radio-checked {
-    > .rs-radio-checker {
-      > label {
-        > .rs-radio-wrapper {
-          > .rs-radio-inner {
-            &:before {
-              background-color: transparent;
-              border: solid 2px ${p => p.theme.color.lightGray};
-            }
-
-            &:after {
-              background-color: ${p => p.theme.color.charcoal};
+              background-color: ${p =>
+                p.$isChecked
+                  ? getFieldBackgroundColorFactory()(p)
+                  : getChoiceFieldBackgroundColorFactoryForState('active')(p)};
+              border: solid 2px ${getChoiceFieldMainColorFactoryForState('active')} !important;
             }
           }
         }

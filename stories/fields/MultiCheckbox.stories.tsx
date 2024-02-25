@@ -1,31 +1,17 @@
 import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { ARG_TYPE } from '../../.storybook/constants'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
+import {
+  FAKE_STRING_OPTIONS,
+  FAKE_STRING_OPTIONS_AS_LABELS,
+  FAKE_STRING_OPTIONS_AS_MAPPING
+} from '../../__mocks__/fake_options'
 import { MultiCheckbox, useFieldControl } from '../../src'
 
 import type { MultiCheckboxProps } from '../../src'
 import type { Meta } from '@storybook/react'
-
-const args: MultiCheckboxProps = {
-  disabled: false,
-  error: '',
-  isErrorMessageHidden: false,
-  isInline: false,
-  isLabelHidden: false,
-  isLight: false,
-  isUndefinedWhenDisabled: false,
-  label: 'Pick some options',
-  name: 'myMultiCheckbox',
-  options: [
-    { isDisabled: false, label: 'First Option', value: 'FIRST_OPTION' },
-    { isDisabled: true, label: 'Second Option', value: 'SECOND_OPTION' },
-    { isDisabled: false, label: 'Third Option', value: 'THIRD_OPTION' },
-    { isDisabled: false, label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
-  ],
-  readOnly: false,
-  value: undefined
-}
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<MultiCheckboxProps> = {
@@ -33,59 +19,50 @@ const meta: Meta<MultiCheckboxProps> = {
   component: MultiCheckbox,
 
   argTypes: {
-    className: {
-      table: {
-        disable: true
-      }
-    },
-    disabled: {
-      control: 'boolean'
-    },
+    className: ARG_TYPE.NO_CONTROL,
+    disabled: ARG_TYPE.OPTIONAL_BOOLEAN,
     error: {
       control: 'text'
     },
-    isErrorMessageHidden: {
-      control: 'boolean'
-    },
-    isInline: {
-      control: 'boolean'
-    },
-    isLabelHidden: {
-      control: 'boolean'
-    },
-    isLight: {
-      control: 'boolean'
-    },
-    isUndefinedWhenDisabled: {
-      control: 'boolean'
-    },
-    onChange: {
-      table: {
-        type: {
-          detail: '(nextValue: OptionValue[] | undefined) => Promisable<void>'
-        }
-      },
-      type: 'function'
-    },
-    readOnly: {
-      control: 'boolean'
-    },
-    style: {
-      table: {
-        disable: true
-      }
-    },
+    isErrorMessageHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isInline: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isLabelHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isLight: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isTransparent: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
+    readOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
+    style: ARG_TYPE.NO_CONTROL,
     value: {
-      control: 'inline-check',
-      options: ['FIRST_OPTION', 'SECOND_OPTION', 'THIRD_OPTION', 'A_VERY_VERY_LONG_OPTION']
+      ...ARG_TYPE.OPTIONAL_OPTION_VALUES,
+      options: [...FAKE_STRING_OPTIONS_AS_LABELS, undefined],
+      mapping: {
+        ...FAKE_STRING_OPTIONS_AS_MAPPING,
+        // eslint-disable-next-line object-shorthand
+        undefined: undefined
+      }
     }
   },
 
-  args,
+  args: {
+    disabled: false,
+    error: '',
+    isErrorMessageHidden: false,
+    isInline: false,
+    isLabelHidden: false,
+    isLight: false,
+    isTransparent: false,
+    isUndefinedWhenDisabled: false,
+    label: 'A multiple checkbox. Pick some options:',
+    name: 'myMultiCheckbox',
+    options: FAKE_STRING_OPTIONS,
+    readOnly: false,
+    value: undefined
+  },
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      box: { width: 640 },
+      withBackgroundButton: true
     })
   ]
 }

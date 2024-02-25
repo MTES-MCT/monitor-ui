@@ -1,42 +1,29 @@
+import { action } from '@storybook/addon-actions'
 import { Formik } from 'formik'
-import { noop } from 'lodash/fp'
+import { omit } from 'lodash'
 import { useMemo, useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { FormikEffect, FormikMultiCheckbox } from '../../src'
+import MultiCheckboxStoryMeta from '../fields/MultiCheckbox.stories'
 
 import type { FormikMultiCheckboxProps } from '../../src'
 import type { Meta } from '@storybook/react'
-
-const args: FormikMultiCheckboxProps = {
-  disabled: false,
-  isErrorMessageHidden: false,
-  isInline: false,
-  isLabelHidden: false,
-  isLight: false,
-  label: 'Pick some options',
-  name: 'myMultiCheckbox',
-  options: [
-    { label: 'First Option', value: 'FIRST_OPTION' },
-    { label: 'Second Option', value: 'SECOND_OPTION' },
-    { label: 'Third Option', value: 'THIRD_OPTION' },
-    { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
-  ]
-}
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikMultiCheckboxProps> = {
   title: 'Formiks/FormikMultiCheckbox',
   component: FormikMultiCheckbox,
 
-  argTypes: {},
+  argTypes: omit(MultiCheckboxStoryMeta.argTypes, ['error', 'onChange', 'value']),
 
-  args,
+  args: omit(MultiCheckboxStoryMeta.args, ['error', 'onChange', 'value']),
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      box: { width: 640 },
+      withBackgroundButton: true
     })
   ]
 }
@@ -56,7 +43,7 @@ export function _FormikMultiCheckbox(props: FormikMultiCheckboxProps) {
 
   return (
     <>
-      <Formik key={key} initialValues={{}} onSubmit={noop}>
+      <Formik key={key} initialValues={{}} onSubmit={action('onSubmit')}>
         <>
           <FormikEffect onChange={setOutputValue} />
 

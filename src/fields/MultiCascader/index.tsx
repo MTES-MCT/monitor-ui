@@ -31,11 +31,13 @@ export type MultiCascaderProps<OptionValue extends OptionValueType = string> = O
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
-  onChange?: ((nextValue: OptionValue[] | undefined) => Promisable<void>) | undefined
+  onChange?: (nextValue: OptionValue[] | undefined) => Promisable<void>
   options: TreeOption<OptionValue>[]
+  readonly?: boolean | undefined
   value?: OptionValue[] | undefined
 }
 export function MultiCascader<OptionValue extends OptionValueType = string>({
@@ -45,10 +47,12 @@ export function MultiCascader<OptionValue extends OptionValueType = string>({
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
+  isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
   onChange,
   options,
+  readOnly = false,
   searchable = false,
   style,
   value,
@@ -98,7 +102,15 @@ export function MultiCascader<OptionValue extends OptionValueType = string>({
         {label}
       </Label>
 
-      <Box ref={boxRef} $columnCount={treeDepth} $hasError={hasError} $isLight={isLight}>
+      <Box
+        ref={boxRef}
+        $columnCount={treeDepth}
+        $hasError={hasError}
+        $isDisabled={disabled}
+        $isLight={isLight}
+        $isReadOnly={readOnly}
+        $isTransparent={isTransparent}
+      >
         {boxRef.current && (
           <RsuiteMultiCascader
             key={key}
@@ -107,6 +119,7 @@ export function MultiCascader<OptionValue extends OptionValueType = string>({
             disabled={disabled}
             id={originalProps.name}
             onChange={handleChange as any}
+            readOnly={readOnly}
             renderMenuItem={renderMenuItem}
             searchable={searchable}
             value={selectedTreePositions}
@@ -125,10 +138,10 @@ const Box = styled(StyledRsuitePickerBox)<{
 }>`
   > .rs-picker-popup {
     > div[role='tree'] {
-      padding: 0;
       margin: 0;
       max-width: 100%;
       min-width: 100%;
+      padding: 0;
 
       > [role='group'] {
         max-width: ${p => Math.round(10000 / p.$columnCount) / 100}%;

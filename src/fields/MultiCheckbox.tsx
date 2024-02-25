@@ -21,6 +21,7 @@ export type MultiCheckboxProps<OptionValue extends OptionValueType = string> = {
   isInline?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
@@ -38,6 +39,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
   isInline = false,
   isLabelHidden = false,
   isLight = false,
+  isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
   name,
@@ -81,7 +83,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
       legend={label}
       style={style}
     >
-      <ChecboxesBox key={key} $isInline={isInline}>
+      <ChecboxesBox key={key} $isInline={isInline} $isReadOnly={readOnly}>
         {options.map((option, index) => (
           <Checkbox
             key={JSON.stringify(option.value)}
@@ -89,6 +91,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
             disabled={!!option.isDisabled || disabled}
             hasError={hasError}
             isLight={isLight}
+            isTransparent={isTransparent}
             label={option.label}
             name={`${name}${index}`}
             onChange={(isChecked: boolean = false) => handleChange(option.value, isChecked)}
@@ -104,6 +107,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
 
 const ChecboxesBox = styled.div<{
   $isInline: boolean
+  $isReadOnly: boolean
 }>`
   color: ${p => p.theme.color.gunMetal};
   display: flex;

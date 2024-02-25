@@ -1,4 +1,4 @@
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Accent, Tag, TagGroup } from '../../src'
 
 import type { TagGroupProps } from '../../src'

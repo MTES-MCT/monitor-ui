@@ -1,4 +1,4 @@
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Legend } from '../../src'
 
 import type { LegendProps } from '../../src'

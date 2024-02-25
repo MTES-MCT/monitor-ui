@@ -1,0 +1,57 @@
+import { action } from '@storybook/addon-actions'
+import { Formik } from 'formik'
+import { omit } from 'lodash'
+import { useMemo, useState } from 'react'
+
+import { Output } from '../../.storybook/components/Output'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
+import { FormikEffect, FormikSearch } from '../../src'
+import SearchStoryMeta from '../fields/Search.stories'
+
+import type { FormikSearchProps } from '../../src'
+import type { Meta } from '@storybook/react'
+
+/* eslint-disable sort-keys-fix/sort-keys-fix */
+const meta: Meta<FormikSearchProps> = {
+  title: 'Formiks/FormikSearch',
+  component: FormikSearch,
+
+  argTypes: omit(SearchStoryMeta.argTypes, ['error', 'onChange', 'value']),
+
+  args: omit(SearchStoryMeta.args, ['error', 'onChange', 'value']),
+
+  decorators: [
+    generateStoryDecorator({
+      box: { width: 640 },
+      withBackgroundButton: true
+    })
+  ]
+}
+/* eslint-enable sort-keys-fix/sort-keys-fix */
+
+export default meta
+
+export function _FormikSearch(props: FormikSearchProps) {
+  const [outputValue, setOutputValue] = useState<
+    | {
+        mySearch?: string
+      }
+    | '∅'
+  >('∅')
+
+  const key = useMemo(() => props.name, [props.name])
+
+  return (
+    <>
+      <Formik key={key} initialValues={{}} onSubmit={action('onSubmit')}>
+        <>
+          <FormikEffect onChange={setOutputValue} />
+
+          <FormikSearch {...props} />
+        </>
+      </Formik>
+
+      {outputValue !== '∅' && <Output value={outputValue} />}
+    </>
+  )
+}

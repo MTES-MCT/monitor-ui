@@ -1,4 +1,4 @@
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { DataTable, type DataTableProps } from '../../src'
 
 import type { Meta } from '@storybook/react'

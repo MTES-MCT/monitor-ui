@@ -1,8 +1,8 @@
 import { action } from '@storybook/addon-actions'
 import styled from 'styled-components'
 
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { SingleTag } from '../../src'
 
 import type { SingleTagProps } from '../../src'

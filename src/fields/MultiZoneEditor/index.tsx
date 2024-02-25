@@ -1,6 +1,7 @@
 // TODO Clean, split and finalize this component.
 
 import classnames from 'classnames'
+import { getFieldBackgroundColorFactory } from 'fields/shared/utils'
 import { equals, remove } from 'ramda'
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import styled from 'styled-components'
@@ -14,6 +15,7 @@ import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { Delete, Edit, Plus, SelectRectangle } from '../../icons'
 import { normalizeString } from '../../utils/normalizeString'
 
+import type { CommonFieldStyleProps } from 'fields/shared/types'
 import type { Promisable } from 'type-fest'
 
 export type MultiZoneEditorProps = {
@@ -24,15 +26,19 @@ export type MultiZoneEditorProps = {
   error?: string | undefined
   initialZone: Record<string, any>
   isAddButtonDisabled?: boolean | undefined
+  isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean
   isLight?: boolean | undefined
+  isTransparent?: boolean | undefined
+  isUndefinedWhenDisabled?: boolean | undefined
   label: string
   labelPropName: string
-  onAdd?: ((nextZones: Record<string, any>[], index: number) => Promisable<void>) | undefined
-  onCenter?: ((zone: Record<string, any>) => Promisable<void>) | undefined
-  onChange?: ((nextZones: Record<string, any>[] | undefined) => Promisable<void>) | undefined
-  onDelete?: ((nextZones: Record<string, any>[]) => Promisable<void>) | undefined
-  onEdit?: ((zone: Record<string, any>, index: number) => Promisable<void>) | undefined
+  onAdd?: (nextZones: Record<string, any>[], index: number) => Promisable<void>
+  onCenter?: (zone: Record<string, any>) => Promisable<void>
+  onChange?: (nextZones: Record<string, any>[] | undefined) => Promisable<void>
+  onDelete?: (nextZones: Record<string, any>[]) => Promisable<void>
+  onEdit?: (zone: Record<string, any>, index: number) => Promisable<void>
+  readOnly?: boolean | undefined
   style?: CSSProperties | undefined
 }
 export function MultiZoneEditor({
@@ -43,8 +49,11 @@ export function MultiZoneEditor({
   error,
   initialZone,
   isAddButtonDisabled = false,
+  isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
+  isTransparent = false,
+  isUndefinedWhenDisabled = false,
   label,
   labelPropName,
   onAdd,
@@ -52,6 +61,7 @@ export function MultiZoneEditor({
   onChange,
   onDelete,
   onEdit,
+  readOnly = false,
   style
 }: MultiZoneEditorProps) {
   const prevDefaultValueRef = useRef(defaultValue)
@@ -115,7 +125,7 @@ export function MultiZoneEditor({
     setZones(defaultValue)
   }, [defaultValue])
 
-  useFieldUndefineEffect(disabled, onChange, handleDisable)
+  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange, handleDisable)
 
   return (
     <Fieldset
@@ -139,7 +149,13 @@ export function MultiZoneEditor({
         {zones.map((zone, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <Row key={`zone-${index}`}>
-            <ZoneBox $isLight={isLight}>
+            <ZoneBox
+              $hasError={hasError}
+              $isDisabled={disabled}
+              $isLight={isLight}
+              $isReadOnly={readOnly}
+              $isTransparent={isTransparent}
+            >
               {zone[labelPropName]}
 
               {/* TODO Add `Accent.LINK` accent in @mtes-mct/monitor-ui and use it here. */}
@@ -161,7 +177,7 @@ export function MultiZoneEditor({
         ))}
       </>
 
-      {hasError && <FieldError>{controlledError}</FieldError>}
+      {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
     </Fieldset>
   )
 }
@@ -176,10 +192,8 @@ const Row = styled.div`
   }
 `
 
-const ZoneBox = styled.div<{
-  $isLight: boolean
-}>`
-  background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
+const ZoneBox = styled.div<CommonFieldStyleProps>`
+  background-color: ${getFieldBackgroundColorFactory()};
   display: flex;
   flex-grow: 1;
   font-size: 13px;

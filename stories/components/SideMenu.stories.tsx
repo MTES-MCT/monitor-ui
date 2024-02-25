@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Icon, SideMenu } from '../../src'
 
 import type { Meta } from '@storybook/react'
