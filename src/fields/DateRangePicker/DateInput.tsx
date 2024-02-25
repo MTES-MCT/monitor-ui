@@ -1,3 +1,8 @@
+import {
+  getFieldBackgroundColorFactory,
+  getFieldMainColorFactoryForState,
+  getFieldPlaceholderColorFactoryForState
+} from 'fields/shared/utils'
 import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 
@@ -26,11 +31,14 @@ export type DateInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
    */
   isRange?: boolean | undefined
   isStartDate?: boolean | undefined
+  isTransparent: boolean
+  name: string
   /** Called each time any date input is changed to a new valid value. */
   onChange: (nextDateTuple: DateTuple, isFilled: boolean) => Promisable<void>
   onClick: () => Promisable<void>
   /** Called each time any date input receive a keyboard-input change whether the value is valid or not. */
   onInput: () => Promisable<void>
+  readOnly: boolean
   value?: DateTuple | undefined
 }
 function DateInputWithRef(
@@ -43,12 +51,15 @@ function DateInputWithRef(
     isLight,
     isRange = false,
     isStartDate = false,
+    isTransparent,
+    name,
     onBack,
     onChange,
     onClick,
     onInput,
     onNext,
     onPrevious,
+    readOnly,
     value
   }: DateInputProps,
   ref: ForwardedRef<DateInputRef>
@@ -164,6 +175,8 @@ function DateInputWithRef(
       $isDisabled={disabled}
       $isFocused={isForcedFocused || isFocused}
       $isLight={isLight}
+      $isReadOnly={readOnly}
+      $isTransparent={isTransparent}
     >
       <div>
         {isRange && isStartDate && <span>Du </span>}
@@ -176,6 +189,7 @@ function DateInputWithRef(
           isLight={isLight}
           max={31}
           min={1}
+          name={`${name}Day`}
           onBack={onBack}
           onBlur={handleBlur}
           onClick={onClick}
@@ -185,6 +199,7 @@ function DateInputWithRef(
           onInput={onInput}
           onNext={() => monthInputRef.current?.focus()}
           onPrevious={onPrevious}
+          readOnly={readOnly}
           size={2}
           value={controlledValue && controlledValue[2]}
         />
@@ -197,6 +212,7 @@ function DateInputWithRef(
           isLight={isLight}
           max={12}
           min={1}
+          name={`${name}Month`}
           onBack={() => dayInputRef.current?.focus()}
           onBlur={handleBlur}
           onClick={onClick}
@@ -206,6 +222,7 @@ function DateInputWithRef(
           onInput={onInput}
           onNext={() => yearInputRef.current?.focus()}
           onPrevious={() => dayInputRef.current?.focus()}
+          readOnly={readOnly}
           size={2}
           value={controlledValue && controlledValue[1]}
         />
@@ -216,6 +233,7 @@ function DateInputWithRef(
           aria-label={`Année${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
           disabled={disabled}
           isLight={isLight}
+          name={`${name}Year`}
           onBack={() => monthInputRef.current?.focus()}
           onBlur={handleBlur}
           onClick={onClick}
@@ -225,6 +243,7 @@ function DateInputWithRef(
           onInput={onInput}
           onNext={onNext}
           onPrevious={() => monthInputRef.current?.focus()}
+          readOnly={readOnly}
           size={4}
           value={controlledValue && controlledValue[0]}
         />
@@ -243,27 +262,28 @@ const Box = styled.div<{
   $isDisabled: boolean
   $isFocused: boolean
   $isLight: boolean
+  $isReadOnly: boolean
+  $isTransparent: boolean
 }>`
   align-items: center;
-  background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
-  box-shadow: ${p =>
-    p.$hasError || p.$isFocused
-      ? `inset 0px 0px 0px 1px ${p.$hasError ? p.theme.color.maximumRed : p.theme.color.blueGray}`
-      : 'none'};
-  color: ${p => (p.$isFocused ? p.theme.color.blueGray : p.theme.color.slateGray)};
+  background-color: ${getFieldBackgroundColorFactory()};
+  border: solid 1px ${getFieldMainColorFactoryForState('default')};
+  color: ${getFieldPlaceholderColorFactoryForState('default')};
   display: inline-flex;
-  font-size: inherit;
+  font-size: 13px;
+  line-height: 1;
   justify-content: space-between;
-  padding: ${p => (p.$isCompact ? '4.5px 8px 7px' : '3px 8px 5px')};
+  padding: ${p => (p.$isCompact ? '4px 8px 6px' : '2px 8px 4px')};
   user-select: none;
 
-  :hover {
-    box-shadow: ${p =>
-      `inset 0px 0px 0px 1px ${
-        // eslint-disable-next-line no-nested-ternary
-        p.$isDisabled ? p.theme.color.cultured : p.$isFocused ? p.theme.color.blueGray : p.theme.color.blueYonder
-      }`};
-    color: ${p => (p.$isFocused ? p.theme.color.blueGray : p.theme.color.blueYonder)};
+  &:hover {
+    border: solid 1px
+      ${p =>
+        p.$isFocused ? getFieldMainColorFactoryForState('focus')(p) : getFieldMainColorFactoryForState('hover')(p)};
+    color: ${p =>
+      p.$isFocused
+        ? getFieldPlaceholderColorFactoryForState('focus')(p)
+        : getFieldPlaceholderColorFactoryForState('hover')(p)};
   }
 
   > div:nth-child(2) {

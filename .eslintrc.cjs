@@ -72,7 +72,7 @@ module.exports = {
         format: ['camelCase', 'PascalCase'],
         prefix: BOOLEAN_CAMEL_PREFIXES,
         filter: {
-          regex: '^(disabled|searchable)$',
+          regex: '^(checked|disabled|readOnly|searchable)$',
           match: false
         }
       },
@@ -82,7 +82,7 @@ module.exports = {
         format: ['camelCase', 'PascalCase'],
         prefix: BOOLEAN_CAMEL_PREFIXES,
         filter: {
-          regex: '^(disabled|searchable)$',
+          regex: '^(checked|disabled|readOnly|searchable)$',
           match: false
         }
       },

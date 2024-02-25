@@ -1,13 +1,13 @@
-import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
 import Meta, { _DatePicker as DatePickerStory } from '../../../stories/fields/DatePicker.stories'
 import { mountAndWait, outputShouldBe } from '../utils'
 
 context('Without time inputs', () => {
   beforeEach(() => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
-        <DatePickerStory {...Meta.args} withTime={false} />
-      </GlobalDecoratorWrapper>
+      <StoryBox>
+        <DatePickerStory {...(Meta.args as any)} withTime={false} />
+      </StoryBox>
     )
   })
 
@@ -87,9 +87,9 @@ context('Without time inputs', () => {
 context('With time inputs', () => {
   beforeEach(() => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
-        <DatePickerStory {...Meta.args} withTime />
-      </GlobalDecoratorWrapper>
+      <StoryBox>
+        <DatePickerStory {...(Meta.args as any)} withTime />
+      </StoryBox>
     )
   })
 

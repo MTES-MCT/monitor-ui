@@ -1,4 +1,4 @@
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Fieldset } from '../../src'
 
 import type { FieldsetProps } from '../../src'
@@ -23,7 +23,7 @@ const meta: Meta<FieldsetProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      withBackgroundButton: true
     })
   ]
 }

@@ -26,5 +26,5 @@ export function FormikMultiCascader<OptionValue extends OptionValueType = string
     []
   )
 
-  return <MultiCascader error={meta.error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
+  return <MultiCascader {...originalProps} error={meta.error} name={name} onChange={handleChange} value={field.value} />
 }

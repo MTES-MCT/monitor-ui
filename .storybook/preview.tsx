@@ -1,14 +1,16 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
-import { GlobalDecorator } from './components/GlobalDecorator'
+// import { DocumentationBox } from './components/DocumentationBox'
+import { withStoryBox } from './components/StoryBox'
+
+import type { Preview } from '@storybook/react'
 
 import 'react-toastify/dist/ReactToastify.css'
 import 'rsuite/dist/rsuite.min.css'
 import '../src/assets/stylesheets/rsuite-override.css'
-import type { Preview } from '@storybook/react'
 
 const preview: Preview = {
-  decorators: [GlobalDecorator],
+  decorators: [withStoryBox],
   parameters: {
     controls: {
       expanded: true,
@@ -17,13 +19,21 @@ const preview: Preview = {
         date: /Date$/
       }
     },
-    layout: 'fullscreen',
-    previewTabs: {
-      'storybook/docs/panel': {
-        hidden: false
+    docs: {
+      // TODO Error: `Cannot read properties of undefined (reading 'fonts')`.
+      // container: DocumentationBox,
+      toc: {
+        disable: false,
+        headingSelector: 'h1, h2, h3'
       }
     },
-    viewMode: 'docs'
+    layout: 'fullscreen',
+    options: {
+      storySort: {
+        method: 'alphabetical',
+        order: ['Introduction', 'Colors']
+      }
+    }
   }
 }
 

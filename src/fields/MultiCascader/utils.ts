@@ -1,5 +1,5 @@
 import { ensure } from '@utils/ensure'
-import { isEqual } from 'lodash/fp'
+import { isEqual } from 'lodash'
 
 import { assert } from '../../utils/assert'
 

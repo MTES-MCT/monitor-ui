@@ -82,8 +82,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    color: ${p => p.theme.color.gunMetal};
     font-family: Marianne, sans-serif;
     font-size: 16px;
     line-height: 1.3846;
   }
+
 `

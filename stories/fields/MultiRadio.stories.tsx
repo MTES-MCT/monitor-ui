@@ -1,32 +1,17 @@
 import { useState, type FunctionComponent } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
+import {
+  FAKE_STRING_OPTIONS,
+  FAKE_STRING_OPTIONS_AS_LABELS,
+  FAKE_STRING_OPTIONS_AS_MAPPING
+} from '../../__mocks__/fake_options'
 import { Icon as MonitorUiIcon, MultiRadio, useFieldControl } from '../../src'
 
 import type { IconProps, MultiRadioProps, Option } from '../../src'
 import type { Meta } from '@storybook/react'
-
-const args: MultiRadioProps = {
-  disabled: false,
-  error: '',
-  isErrorMessageHidden: false,
-  isInline: false,
-  isLabelHidden: false,
-  isLight: false,
-  isUndefinedWhenDisabled: false,
-  label: 'Pick an option',
-  name: 'myMultiRadio',
-  options: [
-    { label: 'First Option', value: 'FIRST_OPTION' },
-    { isDisabled: true, label: 'Second Option', value: 'SECOND_OPTION' },
-    { label: 'Third Option', value: 'THIRD_OPTION' },
-    { label: 'A Very Very Long Option', value: 'A_VERY_VERY_LONG_OPTION' }
-  ],
-  readOnly: false,
-  value: undefined
-}
 
 type InterestPointOptionValueType = {
   Icon: FunctionComponent<IconProps>
@@ -72,6 +57,7 @@ const meta: Meta<MultiRadioProps> = {
     isInline: ARG_TYPE.OPTIONAL_BOOLEAN,
     isLabelHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
     isLight: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isTransparent: ARG_TYPE.OPTIONAL_BOOLEAN,
     isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
     optionValueKey: ARG_TYPE.OPTIONAL_OPTION_VALUE_KEY,
     options: ARG_TYPE.NO_CONTROL_INPUT,
@@ -79,15 +65,35 @@ const meta: Meta<MultiRadioProps> = {
     style: ARG_TYPE.NO_CONTROL,
     value: {
       ...ARG_TYPE.OPTIONAL_OPTION_VALUE,
-      options: ['FIRST_OPTION', 'SECOND_OPTION', 'THIRD_OPTION', 'A_VERY_VERY_LONG_OPTION']
+      options: [...FAKE_STRING_OPTIONS_AS_LABELS, undefined],
+      mapping: {
+        ...FAKE_STRING_OPTIONS_AS_MAPPING,
+        // eslint-disable-next-line object-shorthand
+        undefined: undefined
+      }
     }
   },
 
-  args,
+  args: {
+    disabled: false,
+    error: '',
+    isErrorMessageHidden: false,
+    isInline: false,
+    isLabelHidden: false,
+    isLight: false,
+    isTransparent: false,
+    isUndefinedWhenDisabled: false,
+    label: 'A multiple radio. Pick one option:',
+    name: 'myMultiRadio',
+    options: FAKE_STRING_OPTIONS,
+    readOnly: false,
+    value: undefined
+  },
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      box: { width: 640 },
+      withBackgroundButton: true
     })
   ]
 }
@@ -111,15 +117,6 @@ export function _MultiRadio(props: MultiRadioProps) {
 
         {outputValue !== '∅' && <Output value={outputValue} />}
       </div>
-
-      <MultiRadio
-        label="Multiradio in readOnly mode"
-        name="myMultiRadioReadOnly"
-        onChange={controlledOnChange}
-        options={props.options}
-        readOnly
-        value="FIRST_OPTION"
-      />
 
       <div style={{ marginTop: '32px' }}>
         <MultiRadio

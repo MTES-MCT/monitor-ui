@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
 import { Output } from '../../../.storybook/components/Output'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
 import { useFieldControl, type NumberInputProps, NumberInput } from '../../../src'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
@@ -27,9 +27,9 @@ context('Story', () => {
 
   it('Should fill, change and clear the number input', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <NumberInputStory {...commonProps} />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldNotBe()
@@ -49,9 +49,9 @@ context('Story', () => {
 
   it('Should fill, change and clear the number input with `value={123}`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <NumberInputStory {...commonProps} value={123} />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldNotBe()
@@ -71,9 +71,9 @@ context('Story', () => {
 
   it('Should fill the number input with `isLabelHidden`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <NumberInputStory {...commonProps} isLabelHidden />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldNotBe()
@@ -85,9 +85,9 @@ context('Story', () => {
 
   it('Should NOT call `onChange(undefined)` with `disabled`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <NumberInputStory {...commonProps} disabled />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldNotBe()
@@ -95,9 +95,9 @@ context('Story', () => {
 
   it('Should NOT call `onChange(undefined)` with `disabled value={123}`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <NumberInputStory {...commonProps} disabled value={123} />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldNotBe()
@@ -105,9 +105,9 @@ context('Story', () => {
 
   it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <NumberInputStory {...commonProps} disabled isUndefinedWhenDisabled />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldBe(undefined)
@@ -115,9 +115,9 @@ context('Story', () => {
 
   it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled value={123}`', () => {
     mountAndWait(
-      <GlobalDecoratorWrapper>
+      <StoryBox>
         <NumberInputStory {...commonProps} disabled isUndefinedWhenDisabled value={123} />
-      </GlobalDecoratorWrapper>
+      </StoryBox>
     )
 
     outputShouldBe(undefined)

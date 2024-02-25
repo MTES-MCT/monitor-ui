@@ -17,8 +17,8 @@ export function FormikSearch<OptionValue extends OptionValueType = string>({
   const [field, meta, helpers] = useField(name)
 
   const handleChange = useMemo(
-    () => value => {
-      helpers.setValue(value)
+    () => (nextValue: OptionValue | undefined) => {
+      helpers.setValue(nextValue)
     },
 
     // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
@@ -26,5 +26,5 @@ export function FormikSearch<OptionValue extends OptionValueType = string>({
     []
   )
 
-  return <Search error={meta.error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
+  return <Search {...originalProps} error={meta.error} name={name} onChange={handleChange} value={field.value} />
 }

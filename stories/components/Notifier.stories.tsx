@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Button, Notifier, logSoftError, type NotifierProps } from '../../src'
 
 import type { Meta } from '@storybook/react'
@@ -23,7 +23,7 @@ const meta: Meta<NotifierProps> = {
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true,
+      withBackgroundButton: true,
       withNewWindowButton: true
     })
   ]

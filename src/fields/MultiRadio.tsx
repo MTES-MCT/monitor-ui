@@ -1,5 +1,6 @@
 import { getSelectedOptionValueFromSelectedRsuiteDataItemValue } from '@utils/getSelectedOptionValueFromSelectedRsuiteDataItemValue'
 import classnames from 'classnames'
+import { eq } from 'lodash'
 import { useCallback, useMemo, type CSSProperties, type ReactNode } from 'react'
 import { RadioGroup as RsuiteRadioGroup } from 'rsuite'
 import styled, { css } from 'styled-components'
@@ -24,6 +25,7 @@ export type MultiRadioProps<OptionValue extends OptionValueType = string> = {
   isInline?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
@@ -43,6 +45,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   isInline = false,
   isLabelHidden = false,
   isLight = false,
+  isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
   name,
@@ -68,7 +71,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
 
   const handleChange = useCallback(
     (nextRsuiteDataItemValue: string | null) => {
-      if (!onChange) {
+      if (!onChange || readOnly) {
         return
       }
 
@@ -76,7 +79,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
 
       onChange(nextOptionValue)
     },
-    [onChange, rsuiteData]
+    [onChange, readOnly, rsuiteData]
   )
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled && !readOnly, onChange)
@@ -100,9 +103,12 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
         {rsuiteData.map(rsuiteDataItem => (
           <Radio
             key={rsuiteDataItem.value}
+            checked={!!value && eq(rsuiteDataItem.value, value)}
             disabled={!!rsuiteDataItem.isDisabled || disabled}
             hasError={hasError}
             isLight={isLight}
+            isTransparent={isTransparent}
+            name={name}
             readOnly={readOnly}
             value={rsuiteDataItem.value}
           >

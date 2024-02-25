@@ -7,9 +7,6 @@ import { GlobalStyle, THEME } from '../../src'
 
 import type { StoryFn } from '@storybook/react'
 
-const UntypedGlobalStyle = GlobalStyle as any
-const UntypedThemeProvider = ThemeProvider as any
-
 const CustomGlobalStyle: any = createGlobalStyle`
   * {
     box-sizing: border-box;
@@ -35,23 +32,23 @@ const CustomGlobalStyle: any = createGlobalStyle`
   }
 `
 
-export function GlobalDecorator(Story: StoryFn<any>) {
-  return (
-    <GlobalDecoratorWrapper>
-      <Story />
-    </GlobalDecoratorWrapper>
-  )
-}
-
-export function GlobalDecoratorWrapper({ children }) {
+export function StoryBox({ children }) {
   return (
     <StrictMode>
-      <UntypedThemeProvider theme={THEME}>
-        <UntypedGlobalStyle />
+      <ThemeProvider theme={THEME}>
+        <GlobalStyle />
         <CustomGlobalStyle />
 
         <RsuiteCustomProvider locale={rsuiteFrFr}>{children}</RsuiteCustomProvider>
-      </UntypedThemeProvider>
+      </ThemeProvider>
     </StrictMode>
+  )
+}
+
+export function withStoryBox(Story: StoryFn<any>) {
+  return (
+    <StoryBox>
+      <Story />
+    </StoryBox>
   )
 }

@@ -10,8 +10,8 @@ export function FormikTextarea({ name, ...originalProps }: FormikTextareaProps) 
   const [field, meta, helpers] = useField(name)
 
   const handleChange = useMemo(
-    () => value => {
-      helpers.setValue(value)
+    () => (nextValue: string | undefined) => {
+      helpers.setValue(nextValue)
     },
 
     // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
@@ -19,5 +19,5 @@ export function FormikTextarea({ name, ...originalProps }: FormikTextareaProps) 
     []
   )
 
-  return <Textarea error={meta.error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
+  return <Textarea {...originalProps} error={meta.error} name={name} onChange={handleChange} value={field.value} />
 }

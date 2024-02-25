@@ -1,4 +1,4 @@
-import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
 import { _MultiCheckbox as MultiCheckboxStory } from '../../../stories/fields/MultiCheckbox.stories'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
@@ -40,9 +40,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should fill, change and clear the multiple checkbox', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiCheckboxStory {...commonProps} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -64,9 +64,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       options[2].value
     )}]\``, () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiCheckboxStory {...commonProps} value={[options[2].value]} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -86,9 +86,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should fill the multiple checkbox with `isLabelHidden`', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiCheckboxStory {...commonProps} isLabelHidden />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -100,9 +100,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should NOT call `onChange(undefined)` with `disabled`', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiCheckboxStory {...commonProps} disabled />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -110,9 +110,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it(`Should NOT call \`onChange(undefined)\` with \`disabled value={[${JSON.stringify(options[2].value)}]\``, () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiCheckboxStory {...commonProps} disabled value={[options[2].value]} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -120,9 +120,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiCheckboxStory {...commonProps} disabled isUndefinedWhenDisabled />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldBe(undefined)
@@ -132,9 +132,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       options[2].value
     )}]\``, () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiCheckboxStory {...commonProps} disabled isUndefinedWhenDisabled value={[options[2].value]} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldBe(undefined)

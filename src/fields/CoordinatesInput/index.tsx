@@ -1,6 +1,8 @@
+import { useKey } from '@hooks/useKey'
 import classnames from 'classnames'
-import { noop } from 'lodash/fp'
-import { useCallback, useMemo } from 'react'
+import { getFieldBackgroundColorFactory, getFieldMainColorFactoryForState } from 'fields/shared/utils'
+import { noop } from 'lodash'
+import { useCallback, useMemo, useState, type CSSProperties } from 'react'
 import styled from 'styled-components'
 
 import { DDCoordinatesInput } from './DDCoordinatesInput'
@@ -12,117 +14,151 @@ import { Fieldset } from '../../elements/Fieldset'
 import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { normalizeString } from '../../utils/normalizeString'
 
-import type { FieldsetProps } from '../../elements/Fieldset'
 import type { Coordinates } from '../../types/definitions'
+import type { CommonFieldStyleProps } from 'fields/shared/types'
 import type { Promisable } from 'type-fest'
 
-export type CoordinatesInputProps = FieldsetProps & {
+export type CoordinatesInputProps = {
+  className?: string | undefined
   coordinatesFormat: CoordinatesFormat
   defaultValue?: Coordinates | undefined
   disabled?: boolean | undefined
   error?: string | undefined
+  isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isTransparent?: boolean | undefined
+  isUndefinedWhenDisabled?: boolean | undefined
   label: string
-  onChange?:
-    | ((nextCoordinates: Coordinates | undefined, coordinates: Coordinates | undefined) => Promisable<void>)
-    | undefined
+  name: string
+  onChange?: (nextCoordinates: Coordinates | undefined, coordinates: Coordinates | undefined) => Promisable<void>
+  readOnly?: boolean | undefined
+  style?: CSSProperties | undefined
 }
 export function CoordinatesInput({
   className,
   coordinatesFormat,
   defaultValue,
+  disabled = false,
   error,
+  isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
+  isTransparent = false,
+  isUndefinedWhenDisabled = false,
   label,
+  name,
   onChange = noop,
-  ...nativeProps
+  readOnly = false,
+  style
 }: CoordinatesInputProps) {
-  const controlledClassName = classnames('Field-CoordinatesInput', className)
+  const [clearCounter, setClearCounter] = useState(0)
+
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
+  const key = useKey([clearCounter, name])
+
+  const controlledClassName = classnames('Field-CoordinatesInput', className)
 
   const getCoordinatesInput = useCallback(() => {
     switch (coordinatesFormat) {
       case CoordinatesFormat.DEGREES_MINUTES_SECONDS:
         return (
           <DMSCoordinatesInput
+            key={key}
             coordinates={defaultValue}
             coordinatesFormat={CoordinatesFormat.DEGREES_MINUTES_SECONDS}
-            disabled={nativeProps.disabled}
-            isLight={isLight}
+            disabled={disabled}
+            name={name}
             onChange={onChange}
+            readOnly={readOnly}
           />
         )
 
       case CoordinatesFormat.DEGREES_MINUTES_DECIMALS:
         return (
           <DMDCoordinatesInput
+            key={key}
             coordinates={defaultValue}
             coordinatesFormat={CoordinatesFormat.DEGREES_MINUTES_DECIMALS}
-            disabled={nativeProps.disabled}
-            isLight={isLight}
+            disabled={disabled}
+            name={name}
             onChange={onChange}
+            readOnly={readOnly}
           />
         )
 
       case CoordinatesFormat.DECIMAL_DEGREES:
         return (
           <DDCoordinatesInput
+            key={key}
             coordinates={defaultValue as [number, number]}
-            disabled={nativeProps.disabled}
-            isLight={isLight}
+            disabled={disabled}
+            name={name}
             onChange={onChange}
+            readOnly={readOnly}
           />
         )
 
       default:
         return undefined
     }
-  }, [defaultValue, nativeProps.disabled, onChange, coordinatesFormat, isLight])
+  }, [defaultValue, disabled, key, onChange, coordinatesFormat, name, readOnly])
 
-  // TODO We must add a `handleDisable()` callback here to effectively empty the inputs when disabling this field.
-  useFieldUndefineEffect(nativeProps.disabled, onChange /* , handleDisable */)
+  const clearField = useCallback(() => {
+    setClearCounter(count => count + 1)
+  }, [])
+
+  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange, clearField)
 
   return (
-    <StyledFieldset className={controlledClassName} isLegendHidden={isLabelHidden} legend={label} {...nativeProps}>
+    <StyledFieldset
+      $hasError={hasError}
+      $isDisabled={disabled}
+      $isLight={isLight}
+      $isReadOnly={readOnly}
+      $isTransparent={isTransparent}
+      className={controlledClassName}
+      hasError={hasError}
+      isLegendHidden={isLabelHidden}
+      legend={label}
+      style={style}
+    >
       {getCoordinatesInput()}
 
-      {hasError && <FieldError>{controlledError}</FieldError>}
+      {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
     </StyledFieldset>
   )
 }
 
-const StyledFieldset = styled(Fieldset as any)`
+const StyledFieldset = styled(Fieldset)<CommonFieldStyleProps>`
   * {
     box-sizing: border-box;
   }
 
   input {
-    background-color: ${p => (p.isLight ? p.theme.color.white : p.theme.color.gainsboro)};
-    border: 1px solid ${p => (p.isLight ? p.theme.color.white : p.theme.color.gainsboro)};
+    background-color: ${getFieldBackgroundColorFactory()};
+    border: 1px solid ${getFieldMainColorFactoryForState('default')};
     color: ${p => p.theme.color.gunMetal};
     font-size: 13px;
     font-weight: 500;
     height: 30px;
     padding: 4.5px 8px 7.5px;
 
-    &:hover {
-      border-color: ${p => p.theme.color.blueYonder};
+    &:hover,
+    &._hover {
+      border: 1px solid ${getFieldMainColorFactoryForState('hover')};
     }
 
     &:active,
-    &:focus {
-      border-color: ${p => p.theme.color.blueGray};
+    &._active,
+    &:focus,
+    &._focus {
+      background-color: ${getFieldBackgroundColorFactory()};
+      border: 1px solid ${getFieldMainColorFactoryForState('focus')};
     }
     &:focus-visible {
       outline: 0;
-    }
-
-    &:disabled {
-      border-color: ${p => p.theme.color.cultured};
-      background-color: ${p => p.theme.color.cultured} !important;
     }
   }
 `

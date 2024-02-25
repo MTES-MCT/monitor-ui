@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { generateStoryDecorator } from '../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../.storybook/utils/generateStoryDecorator'
 import { Icon, THEME } from '../src'
 
 import type { IconProps } from '../src'

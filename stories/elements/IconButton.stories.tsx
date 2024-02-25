@@ -1,46 +1,36 @@
 import { Showcase } from '../../.storybook/components/Showcase'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
-import { ACCENTS_AS_ARRAY, SIZE_AS_ARRAY } from '../../.storybook/constants'
-import { Accent, IconButton, Icon, Size, THEME } from '../../src'
+import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
+import { Accent, IconButton, Icon, Size } from '../../src'
 
 import type { IconButtonProps } from '../../src'
 import type { Meta } from '@storybook/react'
 
-const args: IconButtonProps = {
-  accent: Accent.PRIMARY,
-  Icon: Icon.Close,
-  iconSize: undefined,
-  isCompact: false,
-  size: Size.NORMAL,
-  withUnpropagatedClick: false
-}
-
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<IconButtonProps> = {
+  ...META_DEFAULTS,
+
   title: 'Elements/IconButton',
   component: IconButton,
 
   argTypes: {
-    accent: {
-      control: 'radio',
-      options: ACCENTS_AS_ARRAY
-    },
-    color: {
-      control: {
-        type: 'color',
-        presetColors: [THEME.color.charcoal, THEME.color.goldenPoppy, THEME.color.maximumRed]
-      }
-    },
-    iconSize: {
-      control: 'number'
-    },
-    size: {
-      control: 'radio',
-      options: SIZE_AS_ARRAY
-    }
+    accent: ARG_TYPE.OPTIONAL_ACCENT,
+    color: ARG_TYPE.OPTIONAL_COLOR,
+    Icon: ARG_TYPE.ICON,
+    iconSize: ARG_TYPE.OPTIONAL_NUMBER,
+    isCompact: ARG_TYPE.OPTIONAL_BOOLEAN,
+    size: ARG_TYPE.OPTIONAL_SIZE,
+    type: ARG_TYPE.NO_CONTROL,
+    withUnpropagatedClick: ARG_TYPE.OPTIONAL_BOOLEAN
   },
 
-  args,
+  args: {
+    accent: Accent.PRIMARY,
+    Icon: Icon.Close,
+    isCompact: false,
+    size: Size.NORMAL,
+    withUnpropagatedClick: false
+  },
 
   decorators: [generateStoryDecorator()]
 }

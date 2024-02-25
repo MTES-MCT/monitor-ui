@@ -7,7 +7,7 @@ import {
   type FakeCity
 } from './constants'
 import { Output } from '../../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
 import { MultiCascader, useFieldControl } from '../../../src'
 
 import type { MultiCascaderProps } from '../../../src'
@@ -29,7 +29,7 @@ const args: MultiCascaderProps<FakeCity> = {
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<MultiCascaderProps<FakeCity>> = {
-  title: 'Fields/MultiCascader',
+  title: 'Fields/MultiCascader (variations)',
   component: MultiCascaderWithThreeColumns,
 
   argTypes: {
@@ -44,7 +44,7 @@ const meta: Meta<MultiCascaderProps<FakeCity>> = {
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true,
+      withBackgroundButton: true,
       withNewWindowButton: true
     })
   ]

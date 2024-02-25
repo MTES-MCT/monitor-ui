@@ -1,36 +1,29 @@
+import { action } from '@storybook/addon-actions'
 import { Formik } from 'formik'
-import { noop } from 'lodash/fp'
+import { omit } from 'lodash'
 import { useMemo, useState } from 'react'
-import * as Yup from 'yup'
 
 import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { FormikEffect, FormikTextarea } from '../../src'
+import TextareaStoryMeta from '../fields/Textarea.stories'
 
 import type { FormikTextareaProps } from '../../src'
 import type { Meta } from '@storybook/react'
-
-const args: FormikTextareaProps = {
-  disabled: false,
-  isErrorMessageHidden: false,
-  isLabelHidden: false,
-  isLight: false,
-  label: 'A textarea',
-  name: 'myTextarea'
-}
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikTextareaProps> = {
   title: 'Formiks/FormikTextarea',
   component: FormikTextarea,
 
-  argTypes: {},
+  argTypes: omit(TextareaStoryMeta.argTypes, ['error', 'onChange', 'value']),
 
-  args,
+  args: omit(TextareaStoryMeta.args, ['error', 'onChange', 'value']),
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      box: { width: 640 },
+      withBackgroundButton: true
     })
   ]
 }
@@ -47,17 +40,10 @@ export function _FormikTextarea(props: FormikTextareaProps) {
   >('∅')
 
   const key = useMemo(() => props.name, [props.name])
-  const TextareaShema = useMemo(
-    () =>
-      Yup.object().shape({
-        [props.name]: Yup.string().required()
-      }),
-    [props.name]
-  )
 
   return (
     <>
-      <Formik key={key} initialValues={{}} onSubmit={noop} validationSchema={TextareaShema}>
+      <Formik key={key} initialValues={{}} onSubmit={action('onSubmit')}>
         <>
           <FormikEffect onChange={setOutputValue} />
 

@@ -1,12 +1,12 @@
 /* eslint-disable react/destructuring-assignment */
 
 import { Formik, type FormikConfig } from 'formik'
-import { noop } from 'lodash/fp'
+import { noop } from 'lodash'
 import { useState } from 'react'
 import * as yup from 'yup'
 
-import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
 import { Output } from '../../../.storybook/components/Output'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
 import { FormikEffect, type FormikTextInputProps, FormikTextInput } from '../../../src'
 import { mountAndWait, outputShouldBe } from '../utils'
 
@@ -21,7 +21,7 @@ function Template({
   const [outputValue, setOutputValue] = useState({})
 
   return (
-    <GlobalDecoratorWrapper>
+    <StoryBox>
       <Formik {...formikProps}>
         {() => (
           <>
@@ -34,7 +34,7 @@ function Template({
 
       <Output value={outputValue} />
       <Output label="Error" value={outputError} />
-    </GlobalDecoratorWrapper>
+    </StoryBox>
   )
 }
 

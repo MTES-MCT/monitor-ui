@@ -5,7 +5,7 @@ import { Toggle } from '../fields/Toggle'
 
 import type { ToggleProps } from '../fields/Toggle'
 
-export type FormikToggleProps = Omit<ToggleProps, 'error' | 'onChange' | 'value'>
+export type FormikToggleProps = Omit<ToggleProps, 'checked' | 'error' | 'onChange'>
 export function FormikToggle({ name, ...originalProps }: FormikToggleProps) {
   const [field, meta, helpers] = useField<boolean | undefined>(name)
 
@@ -34,5 +34,5 @@ export function FormikToggle({ name, ...originalProps }: FormikToggleProps) {
     []
   )
 
-  return <Toggle checked={isChecked} error={meta.error} name={name} onChange={handleChange} {...originalProps} />
+  return <Toggle {...originalProps} checked={isChecked} error={meta.error} name={name} onChange={handleChange} />
 }

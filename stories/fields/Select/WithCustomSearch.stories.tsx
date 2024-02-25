@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
 import SPECIES from '../../../.storybook/data/species.json'
-import { MultiSelect, type MultiSelectProps, useFieldControl, CustomSearch } from '../../../src'
+import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
+import { CustomSearch, Select, useFieldControl, type SelectProps } from '../../../src'
 
 import type { Meta } from '@storybook/react'
 
@@ -12,30 +12,29 @@ type Specy = {
   name: string
 }
 
-const args: MultiSelectProps<Specy> = {
+const args: SelectProps<Specy> = {
   disabled: false,
   error: '',
+  isCleanable: true,
   isErrorMessageHidden: false,
   isLabelHidden: false,
-  isLight: false,
-  label: 'A multiple select',
-  name: 'myMultiSelect',
+  label: 'A select',
+  name: 'mySelect',
   options: [],
   optionValueKey: 'code',
-  placeholder: 'Pick some options',
-  searchable: true,
+  placeholder: 'Pick an option',
   value: undefined,
   virtualized: true
 }
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-const meta: Meta<MultiSelectProps<Specy>> = {
-  title: 'Fields/MultiSelect',
-  component: MultiSelect,
+const meta: Meta<SelectProps<Specy>> = {
+  title: 'Fields/Select (variations)',
+  component: Select,
 
   argTypes: {
     value: {
-      control: 'inline-check',
+      control: 'inline-radio',
       options: ['FIRST_OPTION', 'SECOND_OPTION', 'THIRD_OPTION', 'LOREM_IPSUM']
     }
   },
@@ -44,7 +43,7 @@ const meta: Meta<MultiSelectProps<Specy>> = {
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      withBackgroundButton: true
     })
   ]
 }
@@ -52,7 +51,7 @@ const meta: Meta<MultiSelectProps<Specy>> = {
 
 export default meta
 
-export function MultiSelectWithCustomSearch(props: MultiSelectProps<Specy>) {
+export function SelectWithCustomSearch(props: SelectProps<Specy>) {
   const optionsRef = useRef(
     (SPECIES as Specy[]).map(specy => ({
       label: `${specy.code} - ${specy.name}`,
@@ -76,13 +75,13 @@ export function MultiSelectWithCustomSearch(props: MultiSelectProps<Specy>) {
     )
   )
 
-  const [outputValue, setOutputValue] = useState<Specy[] | undefined | '∅'>('∅')
+  const [outputValue, setOutputValue] = useState<Specy | undefined | '∅'>('∅')
 
   const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
 
   return (
     <>
-      <MultiSelect
+      <Select
         {...props}
         customSearch={customSearchRef.current}
         onChange={controlledOnChange}
@@ -90,7 +89,7 @@ export function MultiSelectWithCustomSearch(props: MultiSelectProps<Specy>) {
         value={controlledValue}
       />
       <div>
-        <em>Loads a list of 10,000 users in order to check performances.</em>
+        <em>Loads a pre-shuffled list of {optionsRef.current.length} species in order to check performances.</em>
       </div>
 
       {outputValue !== '∅' && <Output value={outputValue} />}

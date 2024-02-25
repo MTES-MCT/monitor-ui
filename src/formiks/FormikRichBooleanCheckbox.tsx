@@ -14,8 +14,8 @@ export function FormikRichBooleanCheckbox({ name, ...originalProps }: FormikRich
   const [field, meta, helpers] = useField<RichBoolean | undefined>(name)
 
   const handleChange = useMemo(
-    () => (value: RichBoolean | undefined) => {
-      helpers.setValue(value)
+    () => (nextValue: RichBoolean | undefined) => {
+      helpers.setValue(nextValue)
     },
 
     // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering

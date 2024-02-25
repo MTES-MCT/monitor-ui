@@ -22,6 +22,7 @@ export type NumberInputProps = Omit<
   isLight: boolean
   max?: number
   min?: number
+  name: string
   /** Called when the use press backspace key while the input is empty. */
   onBack?: (() => Promisable<void>) | undefined
   /** Called when the input value reaches the size property. */
@@ -39,6 +40,7 @@ function NumberInputWithRef(
     isLight,
     max,
     min,
+    name,
     onBack,
     onBlur,
     onFilled,
@@ -188,6 +190,7 @@ function NumberInputWithRef(
       $isLight={isLight}
       $size={size}
       defaultValue={value}
+      id={name}
       maxLength={size}
       onBlur={handleBlur}
       onFocus={handleFocus}
@@ -218,7 +221,8 @@ const StyledNumberInput = styled.input<{
   /* 1 digit = 8px */
   width: ${p => p.$size * 8}px;
 
-  ::placeholder {
+  &::placeholder {
+    /* TODO Update that, this is wrong. */
     color: ${p => (p.$isLight ? p.theme.color.slateGray : p.theme.color.slateGray)};
   }
 `

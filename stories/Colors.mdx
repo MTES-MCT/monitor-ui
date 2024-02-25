@@ -1,15 +1,43 @@
 import { sortBy } from 'lodash'
-import { Box, ColorCell } from '../.storybook/components/ColorsDocs'
+import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
+
+import { DocumentationBox } from '../.storybook/components/DocumentationBox'
 import { THEME } from '../src'
 
-# Colors
+<DocumentationBox>
+  # Colors
 
-<Box>
-  {sortBy(Object.entries(THEME.color), [
-    ([key]) => {
-      return key
-    }
-  ]).map(([key, value]) => (
-    <ColorCell key={key} name={key} value={value} />
-  ))}
-</Box>
+  ## Usage
+
+  You can use them in your components either within `styled-components`:
+
+  ```tsx
+  import styled from 'styled-components'
+
+  const MyComponent = styled.div`
+    background-color: ${p => p.theme.color.gainsboro};
+  `
+  ```
+
+  or by using the `THEME` constant directly:
+
+  ```tsx
+  import { THEME } from '@mtes-mct/monitor-ui'
+
+  const MyComponent = () => (
+    <div style={{ backgroundColor: THEME.color.gainsboro }} />
+  )
+  ```
+
+  ## List
+
+  <ColorPalette>
+    {sortBy(Object.entries(THEME.color), [
+      ([key]) => {
+        return key
+      }
+    ]).map(([key, value]) => (
+      <ColorItem key={key} colors={{ [key]: value }} subtitle='' title={key} />
+    ))}
+  </ColorPalette>
+</DocumentationBox>

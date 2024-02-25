@@ -64,6 +64,7 @@ export interface DatePickerProps
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
   isStringDate?: boolean | undefined
+  isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   /**
@@ -73,24 +74,23 @@ export interface DatePickerProps
    * `15` would produce a list with `..., 10:45, 11:00, 11:15, ...`.
    */
   minutesRange?: number | undefined
+  name: string
   /**
    * Called each time the date range picker is changed to a new valid value.
    *
-   * @param nextUtcDateRange - A utcized date to be used as is to interact with the API.
+   * @param nextValue - A utcized date to be used as is to interact with the API.
    */
-  onChange?:
-    | ((nextUtcDate: Date | undefined) => Promisable<void>)
-    | ((nextUtcDate: string | undefined) => Promisable<void>)
-    | undefined
+  onChange?: ((nextValue: Date | undefined) => Promisable<void>) | ((nextValue: string | undefined) => Promisable<void>)
+  readOnly?: boolean | undefined
   withTime?: boolean | undefined
 }
 export interface DatePickerWithDateDateProps extends DatePickerProps {
   isStringDate?: false | undefined
-  onChange?: (nextUtcDate: Date | undefined) => Promisable<void> | undefined
+  onChange?: (nextValue: Date | undefined) => Promisable<void>
 }
 export interface DatePickerWithStringDateProps extends DatePickerProps {
   isStringDate: true
-  onChange?: (nextUtcDate: string | undefined) => Promisable<void> | undefined
+  onChange?: (nextValue: string | undefined) => Promisable<void>
 }
 
 // TODO We should make this component both form- & a11y-compliant with a `name` and proper (aria-)labels.
@@ -109,10 +109,13 @@ export function DatePicker({
   isLabelHidden = false,
   isLight = false,
   isStringDate = false,
+  isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
   minutesRange = 15,
+  name,
   onChange,
+  readOnly = false,
   style,
   withTime = false,
   ...nativeProps
@@ -281,8 +284,12 @@ export function DatePicker({
   )
 
   const openCalendarPicker = useCallback(() => {
+    if (disabled || readOnly) {
+      return
+    }
+
     setIsRangeCalendarPickerOpen(true)
-  }, [])
+  }, [disabled, readOnly])
 
   useClickOutsideEffect(boxRef, closeCalendarPicker, baseContainer)
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange, handleDisable)
@@ -321,7 +328,7 @@ export function DatePicker({
       style={style}
       {...nativeProps}
     >
-      <Box ref={boxRef} $hasError={hasError} $isDisabled={disabled}>
+      <Box ref={boxRef} $hasError={hasError} $isDisabled={disabled} $isReadOnly={readOnly}>
         <Field>
           <DateInput
             ref={dateInputRef}
@@ -331,10 +338,13 @@ export function DatePicker({
             isEndDate={isEndDate}
             isForcedFocused={isRangeCalendarPickerOpen}
             isLight={isLight}
+            isTransparent={isTransparent}
+            name={name}
             onChange={handleDateInputChange}
             onClick={openCalendarPicker}
             onInput={callOnChangeUndefinedIfInputsAreEmpty}
             onNext={handleDateInputNext}
+            readOnly={readOnly}
             value={selectedUtcDateTupleRef.current}
           />
         </Field>
@@ -347,12 +357,15 @@ export function DatePicker({
               disabled={disabled}
               isCompact={isCompact}
               isLight={isLight}
+              isTransparent={isTransparent}
               minutesRange={minutesRange}
+              name={name}
               onBack={() => dateInputRef.current?.focus(true)}
               onChange={handleTimeInputChange}
               onFocus={closeCalendarPicker}
               onInput={callOnChangeUndefinedIfInputsAreEmpty}
               onPrevious={() => dateInputRef.current?.focus(true)}
+              readOnly={readOnly}
               value={selectedUtcTimeTupleRef.current}
             />
           </Field>
@@ -374,15 +387,17 @@ export function DatePicker({
 const Box = styled.div<{
   $hasError: boolean
   $isDisabled: boolean
+  $isReadOnly: boolean
 }>`
   * {
+    ${p => p.$isReadOnly && `cursor: default;`}
     font-weight: 500;
     line-height: 1;
   }
 
   color: ${p => p.theme.color.gunMetal};
   display: inline-flex;
-  font-size: 13px;
+  font-size: 13px !important;
   outline: ${p => (p.$hasError ? `1px solid ${p.theme.color.maximumRed}` : 0)};
   position: relative;
 
@@ -401,5 +416,5 @@ const Field = styled.span<{
   $isTimeField?: boolean
 }>`
   font-size: inherit;
-  margin-left: ${p => (p.$isTimeField ? '2px' : 0)};
+  margin-left: ${p => (p.$isTimeField ? '2px' : 0)} !important;
 `

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
 import { Output } from '../../../.storybook/components/Output'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
 import { MultiRadio, useFieldControl, type MultiRadioProps } from '../../../src'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
@@ -55,9 +55,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should fill and change the multiple radio', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiRadioStory {...commonProps} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -73,9 +73,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it(`Should fill and change the multiple radio with \`value={${JSON.stringify(options[2].value)}}\``, () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiRadioStory {...commonProps} value={options[2].value} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -91,9 +91,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should fill the multiple radio with `isLabelHidden`', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiRadioStory {...commonProps} isLabelHidden />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -105,9 +105,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should NOT call `onChange(undefined)` with `disabled`', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiRadioStory {...commonProps} disabled />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -115,9 +115,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it(`Should NOT call \`onChange(undefined)\` with \`disabled value={${JSON.stringify(options[2].value)}}\``, () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiRadioStory {...commonProps} disabled value={options[2].value} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -125,9 +125,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiRadioStory {...commonProps} disabled isUndefinedWhenDisabled />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldBe(undefined)
@@ -137,9 +137,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       options[2].value
     )}}\``, () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <MultiRadioStory {...commonProps} disabled isUndefinedWhenDisabled value={options[2].value} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldBe(undefined)

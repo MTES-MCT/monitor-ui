@@ -26,5 +26,5 @@ export function FormikCheckPicker<OptionValue extends OptionValueType = string>(
     []
   )
 
-  return <CheckPicker error={meta.error} name={name} onChange={handleChange} value={field.value} {...originalProps} />
+  return <CheckPicker {...originalProps} error={meta.error} name={name} onChange={handleChange} value={field.value} />
 }

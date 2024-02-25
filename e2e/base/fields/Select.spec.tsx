@@ -1,6 +1,6 @@
-import { GlobalDecoratorWrapper } from '../../../.storybook/components/GlobalDecorator'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
 import { CustomSearch, type SelectProps } from '../../../src'
-import { _Select as SelectStory } from '../../../stories/fields/Select/Select.stories'
+import { _Select as SelectStory } from '../../../stories/fields/Select.stories'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
@@ -39,9 +39,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should fill, change and clear the select', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <SelectStory {...commonProps} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -61,9 +61,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it(`Should fill, change and clear the select with \`value={${JSON.stringify(options[2].value)}}\``, () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <SelectStory {...commonProps} value={options[2].value} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -83,9 +83,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should fill the select with `isLabelHidden`', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <SelectStory {...commonProps} isLabelHidden />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -97,9 +97,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should NOT call `onChange(undefined)` with `disabled`', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <SelectStory {...commonProps} disabled />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -107,9 +107,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it(`Should NOT call \`onChange(undefined)\` with \`disabled value={${JSON.stringify(options[2].value)}}\``, () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <SelectStory {...commonProps} disabled value={options[2].value} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -117,9 +117,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <SelectStory {...commonProps} disabled isUndefinedWhenDisabled />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldBe(undefined)
@@ -129,9 +129,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       options[2].value
     )}}\``, () => {
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <SelectStory {...commonProps} disabled isUndefinedWhenDisabled value={options[2].value} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldBe(undefined)
@@ -141,9 +141,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
 
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <SelectStory {...commonProps} customSearch={customSearch as any} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()
@@ -176,9 +176,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     it('Should fill, clear and get all list', () => {
       const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
       mountAndWait(
-        <GlobalDecoratorWrapper>
+        <StoryBox>
           <SelectStory {...commonProps} customSearch={customSearch as any} />
-        </GlobalDecoratorWrapper>
+        </StoryBox>
       )
 
       outputShouldNotBe()

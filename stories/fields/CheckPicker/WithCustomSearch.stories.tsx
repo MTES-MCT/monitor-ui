@@ -1,9 +1,10 @@
 import { useRef, useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../../.storybook/components/StoryDecorator'
+import { LOREM_IPSUM } from '../../../.storybook/constants'
 import SPECIES from '../../../.storybook/data/species.json'
-import { CustomSearch, Select, useFieldControl, type SelectProps } from '../../../src'
+import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
+import { useFieldControl, CustomSearch, CheckPicker, type CheckPickerProps } from '../../../src'
 
 import type { Meta } from '@storybook/react'
 
@@ -12,30 +13,34 @@ type Specy = {
   name: string
 }
 
-const args: SelectProps<Specy> = {
+const args: CheckPickerProps<{}> = {
   disabled: false,
   error: '',
-  isCleanable: true,
   isErrorMessageHidden: false,
   isLabelHidden: false,
   isLight: false,
-  label: 'A select',
-  name: 'mySelect',
-  options: [],
-  optionValueKey: 'code',
-  placeholder: 'Pick an option',
-  value: undefined,
-  virtualized: true
+  label: 'A check picker',
+  name: 'myCheckPicker',
+  options: [
+    { label: 'First Option', value: 'FIRST_OPTION' },
+    { label: 'Second Option', value: 'SECOND_OPTION' },
+    { label: 'Third Option', value: 'THIRD_OPTION' },
+    { label: LOREM_IPSUM, value: 'LOREM_IPSUM' }
+  ],
+  placeholder: 'Pick some options',
+  searchable: true,
+  value: [],
+  virtualized: false
 }
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-const meta: Meta<SelectProps<Specy>> = {
-  title: 'Fields/Select',
-  component: Select,
+const meta: Meta<CheckPickerProps<{}>> = {
+  title: 'Fields/CheckPicker (variations)',
+  component: CheckPicker as any,
 
   argTypes: {
     value: {
-      control: 'inline-radio',
+      control: 'inline-check',
       options: ['FIRST_OPTION', 'SECOND_OPTION', 'THIRD_OPTION', 'LOREM_IPSUM']
     }
   },
@@ -44,7 +49,7 @@ const meta: Meta<SelectProps<Specy>> = {
 
   decorators: [
     generateStoryDecorator({
-      hasLightMode: true
+      withBackgroundButton: true
     })
   ]
 }
@@ -52,7 +57,7 @@ const meta: Meta<SelectProps<Specy>> = {
 
 export default meta
 
-export function SelectWithCustomSearch(props: SelectProps<Specy>) {
+export function _CheckPickerWithCustomSearch(props: CheckPickerProps<Specy>) {
   const optionsRef = useRef(
     (SPECIES as Specy[]).map(specy => ({
       label: `${specy.code} - ${specy.name}`,
@@ -76,21 +81,23 @@ export function SelectWithCustomSearch(props: SelectProps<Specy>) {
     )
   )
 
-  const [outputValue, setOutputValue] = useState<Specy | undefined | '∅'>('∅')
+  const [outputValue, setOutputValue] = useState<Specy[] | undefined | '∅'>('∅')
 
   const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
 
   return (
     <>
-      <Select
+      <CheckPicker
         {...props}
         customSearch={customSearchRef.current}
         onChange={controlledOnChange}
         options={optionsRef.current}
+        optionValueKey="code"
         value={controlledValue}
+        virtualized
       />
       <div>
-        <em>Loads a pre-shuffled list of {optionsRef.current.length} species in order to check performances.</em>
+        <em>Loads a list of 10,000 users in order to check performances.</em>
       </div>
 
       {outputValue !== '∅' && <Output value={outputValue} />}

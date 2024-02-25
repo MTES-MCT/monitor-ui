@@ -1,49 +1,44 @@
+import { action } from '@storybook/addon-actions'
 import { Formik } from 'formik'
-import { noop } from 'lodash/fp'
+import { omit } from 'lodash'
 import { useMemo, useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import { generateStoryDecorator } from '../../.storybook/components/StoryDecorator'
+import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { FormikEffect, FormikCheckbox } from '../../src'
+import CheckboxStoryMeta from '../fields/Checkbox.stories'
 
 import type { FormikCheckboxProps } from '../../src'
 import type { Meta } from '@storybook/react'
-
-const args: FormikCheckboxProps = {
-  disabled: false,
-  isErrorMessageHidden: false,
-  label: 'Check me',
-  name: 'myCheckbox'
-}
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<FormikCheckboxProps> = {
   title: 'Formiks/FormikCheckbox',
   component: FormikCheckbox,
 
-  argTypes: {},
+  argTypes: omit(CheckboxStoryMeta.argTypes, ['checked', 'error', 'onChange']),
 
-  args,
+  args: omit(CheckboxStoryMeta.args, ['checked', 'error', 'onChange']),
 
-  decorators: [generateStoryDecorator()]
+  decorators: [
+    generateStoryDecorator({
+      box: { width: 640 },
+      withBackgroundButton: true
+    })
+  ]
 }
 /* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 
 export function _FormikCheckbox(props: FormikCheckboxProps) {
-  const [outputValue, setOutputValue] = useState<
-    | {
-        myCheckbox?: boolean
-      }
-    | '∅'
-  >('∅')
+  const [outputValue, setOutputValue] = useState<{ myCheckbox?: boolean } | '∅'>('∅')
 
   const key = useMemo(() => props.name, [props.name])
 
   return (
     <>
-      <Formik key={key} initialValues={{}} onSubmit={noop}>
+      <Formik key={key} initialValues={{}} onSubmit={action('onSubmit')}>
         <>
           <FormikEffect onChange={setOutputValue} />
 
