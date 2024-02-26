@@ -19,19 +19,19 @@ context('Story', () => {
   })
 
   it('Should fill, change and clear the date', () => {
-    cy.fill('A date', [2021, 12, 31])
+    cy.fill('A date picker', [2021, 12, 31])
 
     outputShouldBe({
-      myDate: '2021-12-31T00:00:00.000Z'
+      myDatePicker: '2021-12-31T00:00:00.000Z'
     })
 
-    cy.fill('A date', [2024, 3, 4])
+    cy.fill('A date picker', [2024, 3, 4])
 
     outputShouldBe({
-      myDate: '2024-03-04T00:00:00.000Z'
+      myDatePicker: '2024-03-04T00:00:00.000Z'
     })
 
-    cy.fill('A date', undefined)
+    cy.fill('A date picker', undefined)
 
     outputShouldBe({})
   })
@@ -47,19 +47,19 @@ context('Story (`withTime={true}`)', () => {
   })
 
   it('Should fill, change and clear the date', () => {
-    cy.fill('A date', [2021, 12, 31, 4, 56])
+    cy.fill('A date picker', [2021, 12, 31, 4, 56])
 
     outputShouldBe({
-      myDate: '2021-12-31T04:56:00.000Z'
+      myDatePicker: '2021-12-31T04:56:00.000Z'
     })
 
-    cy.fill('A date', [2024, 3, 4, 23, 18])
+    cy.fill('A date picker', [2024, 3, 4, 23, 18])
 
     outputShouldBe({
-      myDate: '2024-03-04T23:18:00.000Z'
+      myDatePicker: '2024-03-04T23:18:00.000Z'
     })
 
-    cy.fill('A date', undefined)
+    cy.fill('A date picker', undefined)
 
     outputShouldBe({})
   })
@@ -81,7 +81,7 @@ context('Custom (`withTime={true}`)', () => {
         <StoryBox>
           <Formik
             initialValues={{
-              myDate: initialDateAsString
+              myDatePicker: initialDateAsString
             }}
             onSubmit={noop}
           >
@@ -89,10 +89,10 @@ context('Custom (`withTime={true}`)', () => {
               <>
                 <FormikEffect onChange={onChange} />
 
-                <FormikDatePicker isStringDate label="A date" name="myDate" withTime />
+                <FormikDatePicker isStringDate label="A date picker" name="myDatePicker" withTime />
 
-                <Button onClick={() => setFieldValue('myDate', updatedDateAsString)}>Update Date</Button>
-                <Button onClick={() => setFieldValue('myDate', undefined)}>Reset Date</Button>
+                <Button onClick={() => setFieldValue('myDatePicker', updatedDateAsString)}>Update Date</Button>
+                <Button onClick={() => setFieldValue('myDatePicker', undefined)}>Reset Date</Button>
               </>
             )}
           </Formik>
@@ -105,7 +105,7 @@ context('Custom (`withTime={true}`)', () => {
     mountAndWait(<Template />)
 
     outputShouldBe({
-      myDate: initialDateAsString
+      myDatePicker: initialDateAsString
     })
 
     const initialDateAsDayjs = dayjs(initialDateAsString)
@@ -118,7 +118,7 @@ context('Custom (`withTime={true}`)', () => {
     cy.clickButton('Update Date')
 
     outputShouldBe({
-      myDate: updatedDateAsString
+      myDatePicker: updatedDateAsString
     })
 
     const updatedDateAsDayjs = dayjs(updatedDateAsString)
