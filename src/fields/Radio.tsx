@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 import {
   getChoiceFieldBackgroundColorFactoryForState,
-  getChoiceFieldMainColorFactoryForState,
+  getChoiceFieldBorderColorFactoryForState,
   getFieldBackgroundColorFactory
 } from './shared/utils'
 import { Field } from '../elements/Field'
@@ -96,13 +96,13 @@ const StyledRsuiteRadio = styled(RsuiteRadio)<CommonChoiceFieldStyleProps>`
               p.$isChecked
                 ? getFieldBackgroundColorFactory()(p)
                 : getChoiceFieldBackgroundColorFactoryForState('default')(p)};
-            border: 2px solid ${getChoiceFieldMainColorFactoryForState('default')} !important;
+            border: 2px solid ${getChoiceFieldBorderColorFactoryForState('default')} !important;
           }
 
           /* Dot */
           &:after {
             background-color: ${p =>
-              p.$isReadOnly ? p.theme.color.charcoal : getChoiceFieldMainColorFactoryForState('default')(p)};
+              p.$isReadOnly ? p.theme.color.charcoal : getChoiceFieldBorderColorFactoryForState('default')(p)};
             bottom: 0;
             left: 0;
             right: 0;
@@ -115,7 +115,7 @@ const StyledRsuiteRadio = styled(RsuiteRadio)<CommonChoiceFieldStyleProps>`
     &:hover,
     &._hover {
       > label {
-        color: ${getChoiceFieldMainColorFactoryForState('hover')};
+        color: ${getChoiceFieldBorderColorFactoryForState('hover')};
 
         > .rs-radio-wrapper {
           > .rs-radio-inner {
@@ -124,7 +124,7 @@ const StyledRsuiteRadio = styled(RsuiteRadio)<CommonChoiceFieldStyleProps>`
                 p.$isChecked
                   ? getFieldBackgroundColorFactory()(p)
                   : getChoiceFieldBackgroundColorFactoryForState('hover')(p)};
-              border: solid 2px ${getChoiceFieldMainColorFactoryForState('hover')} !important;
+              border: solid 2px ${getChoiceFieldBorderColorFactoryForState('hover')} !important;
             }
           }
         }
@@ -134,7 +134,7 @@ const StyledRsuiteRadio = styled(RsuiteRadio)<CommonChoiceFieldStyleProps>`
     &:focus,
     &._focus {
       > label {
-        color: ${getChoiceFieldMainColorFactoryForState('focus')};
+        color: ${getChoiceFieldBorderColorFactoryForState('focus')};
 
         > .rs-radio-wrapper {
           > .rs-radio-inner {
@@ -143,7 +143,7 @@ const StyledRsuiteRadio = styled(RsuiteRadio)<CommonChoiceFieldStyleProps>`
                 p.$isChecked
                   ? getFieldBackgroundColorFactory()(p)
                   : getChoiceFieldBackgroundColorFactoryForState('focus')(p)};
-              border: solid 2px ${getChoiceFieldMainColorFactoryForState('focus')} !important;
+              border: solid 2px ${getChoiceFieldBorderColorFactoryForState('focus')} !important;
             }
           }
         }
@@ -153,7 +153,7 @@ const StyledRsuiteRadio = styled(RsuiteRadio)<CommonChoiceFieldStyleProps>`
     &:active,
     &._active {
       > label {
-        color: ${getChoiceFieldMainColorFactoryForState('active')};
+        color: ${getChoiceFieldBorderColorFactoryForState('active')};
 
         > .rs-radio-wrapper {
           > .rs-radio-inner {
@@ -162,7 +162,7 @@ const StyledRsuiteRadio = styled(RsuiteRadio)<CommonChoiceFieldStyleProps>`
                 p.$isChecked
                   ? getFieldBackgroundColorFactory()(p)
                   : getChoiceFieldBackgroundColorFactoryForState('active')(p)};
-              border: solid 2px ${getChoiceFieldMainColorFactoryForState('active')} !important;
+              border: solid 2px ${getChoiceFieldBorderColorFactoryForState('active')} !important;
             }
           }
         }

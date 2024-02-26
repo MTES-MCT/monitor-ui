@@ -4,7 +4,7 @@ import { useCallback, useMemo, type CSSProperties } from 'react'
 import { Checkbox as RsuiteCheckbox } from 'rsuite'
 import styled from 'styled-components'
 
-import { getChoiceFieldBackgroundColorFactoryForState, getChoiceFieldMainColorFactoryForState } from './shared/utils'
+import { getChoiceFieldBackgroundColorFactoryForState, getChoiceFieldBorderColorFactoryForState } from './shared/utils'
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
@@ -133,14 +133,14 @@ const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyleProps>
         > .rs-checkbox-inner {
           &:before {
             background-color: ${getChoiceFieldBackgroundColorFactoryForState('default')};
-            border: 2px solid ${getChoiceFieldMainColorFactoryForState('default')} !important;
+            border: 2px solid ${getChoiceFieldBorderColorFactoryForState('default')} !important;
             border-radius: 0;
             opacity: 1;
           }
 
           /* Checkmark */
           &:after {
-            border-color: ${p => (p.$isReadOnly ? p.theme.color.charcoal : p.theme.color.cultured)};
+            border-color: ${p => (p.$isReadOnly || p.$isTransparent ? p.theme.color.charcoal : p.theme.color.cultured)};
             bottom: 0;
             left: 0;
             right: 0;
@@ -153,13 +153,13 @@ const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyleProps>
     &:hover,
     &._hover {
       > label {
-        color: ${getChoiceFieldMainColorFactoryForState('hover')};
+        color: ${getChoiceFieldBorderColorFactoryForState('hover')};
 
         > .rs-checkbox-wrapper {
           > .rs-checkbox-inner {
             &:before {
               background-color: ${getChoiceFieldBackgroundColorFactoryForState('hover')};
-              border: solid 2px ${getChoiceFieldMainColorFactoryForState('hover')} !important;
+              border: solid 2px ${getChoiceFieldBorderColorFactoryForState('hover')} !important;
             }
           }
         }
@@ -169,13 +169,13 @@ const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyleProps>
     &:focus,
     &._focus {
       > label {
-        color: ${getChoiceFieldMainColorFactoryForState('focus')};
+        color: ${getChoiceFieldBorderColorFactoryForState('focus')};
 
         > .rs-checkbox-wrapper {
           > .rs-checkbox-inner {
             &:before {
               background-color: ${getChoiceFieldBackgroundColorFactoryForState('focus')};
-              border: solid 2px ${getChoiceFieldMainColorFactoryForState('focus')} !important;
+              border: solid 2px ${getChoiceFieldBorderColorFactoryForState('focus')} !important;
             }
           }
         }
@@ -185,13 +185,13 @@ const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyleProps>
     &:active,
     &._active {
       > label {
-        color: ${getChoiceFieldMainColorFactoryForState('active')};
+        color: ${getChoiceFieldBorderColorFactoryForState('active')};
 
         > .rs-checkbox-wrapper {
           > .rs-checkbox-inner {
             &:before {
               background-color: ${getChoiceFieldBackgroundColorFactoryForState('active')};
-              border: solid 2px ${getChoiceFieldMainColorFactoryForState('active')} !important;
+              border: solid 2px ${getChoiceFieldBorderColorFactoryForState('active')} !important;
             }
           }
         }
