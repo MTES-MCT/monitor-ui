@@ -9,11 +9,10 @@ import { FormikEffect, FormikMultiCascader } from '../../src'
 import MultiCascaderStoryMeta from '../fields/MultiCascader.stories'
 
 import type { FormikMultiCascaderProps } from '../../src'
-import type { FakeCity } from '../fields/MultiCascader/constants'
 import type { Meta } from '@storybook/react'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-const meta: Meta<FormikMultiCascaderProps<FakeCity>> = {
+const meta: Meta<FormikMultiCascaderProps<string>> = {
   title: 'Formiks/FormikMultiCascader',
   component: FormikMultiCascader,
 
@@ -32,7 +31,7 @@ const meta: Meta<FormikMultiCascaderProps<FakeCity>> = {
 
 export default meta
 
-export function _FormikMultiCascader(props: FormikMultiCascaderProps<FakeCity>) {
+export function _FormikMultiCascader(props: FormikMultiCascaderProps<string>) {
   const [outputValue, setOutputValue] = useState<{ myMultiCascader?: string[] } | '∅'>('∅')
 
   const key = useMemo(() => props.name, [props.name])

@@ -1,21 +1,20 @@
 import { useState } from 'react'
 
-import {
-  FAKE_CITIES_AS_LABELS_FOR_DEPTH_2_STORY,
-  FAKE_CITIES_AS_MAPPING_FOR_DEPTH_2_STORY,
-  FAKE_COUNTRIES_WITH_CITIES_AS_TREE_OPTIONS,
-  type FakeCity
-} from './MultiCascader/constants'
 import { Output } from '../../.storybook/components/Output'
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
+import {
+  FAKE_STRING_TREE_OPTIONS,
+  FAKE_STRING_TREE_OPTIONS_AS_LABELS,
+  FAKE_STRING_TREE_OPTIONS_AS_MAPPING
+} from '../../__mocks__/fake_tree_options'
 import { MultiCascader, useFieldControl } from '../../src'
 
 import type { MultiCascaderProps } from '../../src'
 import type { Meta } from '@storybook/react'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-const meta: Meta<MultiCascaderProps<FakeCity>> = {
+const meta: Meta<MultiCascaderProps<string>> = {
   ...META_DEFAULTS,
 
   title: 'Fields/MultiCascader',
@@ -33,8 +32,8 @@ const meta: Meta<MultiCascaderProps<FakeCity>> = {
     readOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
     value: {
       control: 'inline-check',
-      mapping: FAKE_CITIES_AS_MAPPING_FOR_DEPTH_2_STORY,
-      options: FAKE_CITIES_AS_LABELS_FOR_DEPTH_2_STORY
+      mapping: FAKE_STRING_TREE_OPTIONS_AS_MAPPING,
+      options: FAKE_STRING_TREE_OPTIONS_AS_LABELS
     }
   },
 
@@ -48,7 +47,7 @@ const meta: Meta<MultiCascaderProps<FakeCity>> = {
     isUndefinedWhenDisabled: false,
     label: 'A multiple cascader. Pick some options:',
     name: 'myMultiCascader',
-    options: FAKE_COUNTRIES_WITH_CITIES_AS_TREE_OPTIONS,
+    options: FAKE_STRING_TREE_OPTIONS,
     placeholder: 'Pick some options',
     readOnly: false,
     searchable: true,
@@ -67,8 +66,8 @@ const meta: Meta<MultiCascaderProps<FakeCity>> = {
 
 export default meta
 
-export function _MultiCascader(props: MultiCascaderProps<FakeCity>) {
-  const [outputValue, setOutputValue] = useState<FakeCity[] | undefined | '∅'>(props.value ?? '∅')
+export function _MultiCascader(props: MultiCascaderProps<string>) {
+  const [outputValue, setOutputValue] = useState<string[] | undefined | '∅'>(props.value ?? '∅')
 
   const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
 
