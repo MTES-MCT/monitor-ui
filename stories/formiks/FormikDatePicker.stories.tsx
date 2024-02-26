@@ -3,6 +3,7 @@ import { Formik } from 'formik'
 import { omit } from 'lodash'
 import { useMemo, useState } from 'react'
 
+import { Description } from '../../.storybook/components/Description'
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { FormikEffect, FormikDatePicker } from '../../src'
@@ -43,6 +44,10 @@ export function _FormikDatePicker(props: FormikDatePickerWithDateDateProps) {
 
   return (
     <>
+      <Description>
+        <p>Dates are always picked and displayed in UTC, ignoring you local time zone.</p>
+      </Description>
+
       <Formik key={key} initialValues={{}} onSubmit={action('onSubmit')}>
         <>
           <FormikEffect onChange={setOutputValue} />
