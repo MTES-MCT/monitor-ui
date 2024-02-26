@@ -4,12 +4,18 @@ import { useMemo } from 'react'
 import { Toggle as RsuiteToggle, type ToggleProps as RSuiteToggleProps } from 'rsuite'
 import styled from 'styled-components'
 
-import { getChoiceFieldBackgroundColorFactoryForState, getChoiceFieldMainColorFactoryForState } from './shared/utils'
-import { Field } from '../elements/Field'
-import { FieldError } from '../elements/FieldError'
-import { Label } from '../elements/Label'
-import { useKey } from '../hooks/useKey'
-import { normalizeString } from '../utils/normalizeString'
+import {
+  getToggleBackgroundColorFactoryForState,
+  getToggleBorderColorFactoryForState,
+  getToggleThumbColorFactoryForState
+} from './utils'
+import { Field } from '../../elements/Field'
+import { FieldError } from '../../elements/FieldError'
+import { Label } from '../../elements/Label'
+import { useKey } from '../../hooks/useKey'
+import { normalizeString } from '../../utils/normalizeString'
+
+import type { CommonChoiceFieldStyleProps } from 'fields/shared/types'
 
 export type ToggleProps = Omit<RSuiteToggleProps, 'as' | 'checked' | 'defaultChecked' | 'id' | 'onChange'> & {
   checked?: boolean | undefined
@@ -74,14 +80,7 @@ export function Toggle({
   )
 }
 
-const StyledToggle = styled(RsuiteToggle)<{
-  $hasError: boolean
-  $isChecked: boolean
-  $isDisabled: boolean
-  $isLight: boolean
-  $isReadOnly: boolean
-  $isTransparent: boolean
-}>`
+const StyledToggle = styled(RsuiteToggle)<CommonChoiceFieldStyleProps>`
   *,
   *:after {
     ${p => p.$isDisabled && `cursor: not-allowed !important;`}
@@ -89,55 +88,44 @@ const StyledToggle = styled(RsuiteToggle)<{
     user-select: none;
   }
 
-  .rs-toggle-presentation {
-    background-color: ${getChoiceFieldBackgroundColorFactoryForState('default')};
-    border: 1px solid ${getChoiceFieldMainColorFactoryForState('default')};
+  > .rs-toggle-presentation {
+    background-color: ${getToggleBackgroundColorFactoryForState('default')} !important;
+    border: 1px solid ${getToggleBorderColorFactoryForState('default')};
 
+    /* Thumb */
     &:after {
-      /* background-color: ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.charcoal)}; */
+      background-color: ${getToggleThumbColorFactoryForState('default')};
       top: 2px;
     }
 
-    &:hover {
-      /* border: 1px solid ${p => p.theme.color.blueYonder}; */
+    &:hover,
+    &._hover {
+      background-color: ${getToggleBackgroundColorFactoryForState('hover')};
+      border: 1px solid ${getToggleBorderColorFactoryForState('hover')};
 
       &:after {
-        /* background-color: ${p => p.theme.color.blueYonder}; */
+        background-color: ${getToggleThumbColorFactoryForState('hover')};
       }
     }
-  }
 
-  &.rs-toggle-disabled .rs-toggle-presentation {
-    /* background-color: ${p => p.theme.color.white};
-    border: 1px solid ${p => p.theme.color.lightGray}; */
-    box-shadow: none;
+    &:focus,
+    &._focus {
+      background-color: ${getToggleBackgroundColorFactoryForState('focus')};
+      border: 1px solid ${getToggleBorderColorFactoryForState('focus')};
 
-    &:after {
-      /* background-color: ${p => p.theme.color.lightGray}; */
-    }
-  }
-
-  &.rs-toggle-checked.rs-toggle-disabled .rs-toggle-presentation {
-    /* background-color: ${p => p.theme.color.lightGray};
-    border: 1px solid ${p => p.theme.color.lightGray}; */
-    box-shadow: none;
-
-    &:after {
-      /* background-color: ${p => p.theme.color.gainsboro}; */
-    }
-  }
-
-  &.rs-toggle-checked .rs-toggle-presentation {
-    /* background-color: ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.charcoal)}; */
-    /* border: 1px solid transparent; */
-
-    &:after {
-      /* background-color: ${p => p.theme.color.white}; */
+      &:after {
+        background-color: ${getToggleThumbColorFactoryForState('focus')};
+      }
     }
 
-    &:hover {
-      /* border: 1px solid transparent; */
-      /* background-color: ${p => p.theme.color.blueYonder}; */
+    &:active,
+    &._active {
+      background-color: ${getToggleBackgroundColorFactoryForState('active')};
+      border: 1px solid ${getToggleBorderColorFactoryForState('active')};
+
+      &:after {
+        background-color: ${getToggleThumbColorFactoryForState('active')};
+      }
     }
   }
 `
