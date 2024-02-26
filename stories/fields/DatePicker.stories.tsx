@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { Description } from '../../.storybook/components/Description'
 import { Output } from '../../.storybook/components/Output'
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
@@ -65,7 +66,7 @@ const meta: Meta<DatePickerWithDateDateProps> = {
     isStringDate: false,
     isTransparent: false,
     isUndefinedWhenDisabled: false,
-    label: 'A date picker (always picked and displayed in UTC, bypassing your local timezone)',
+    label: 'A date picker',
     name: 'myDatePicker',
     readOnly: false,
     withTime: true
@@ -88,6 +89,10 @@ export function _DatePicker(props: DatePickerWithDateDateProps) {
 
   return (
     <>
+      <Description>
+        <p>Dates are always picked and displayed in UTC, ignoring you local time zone.</p>
+      </Description>
+
       <DatePicker {...props} onChange={setOutputValue} />
 
       <Output value={outputValue} />

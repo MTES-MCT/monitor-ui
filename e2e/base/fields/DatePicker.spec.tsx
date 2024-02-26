@@ -14,15 +14,15 @@ context('Without time inputs', () => {
   it('Should fill, change and clear the date', () => {
     outputShouldBe(undefined)
 
-    cy.fill('A date', [2021, 12, 31])
+    cy.fill('A date picker', [2021, 12, 31])
 
     outputShouldBe('2021-12-31T00:00:00.000Z')
 
-    cy.fill('A date', [2024, 3, 4])
+    cy.fill('A date picker', [2024, 3, 4])
 
     outputShouldBe('2024-03-04T00:00:00.000Z')
 
-    cy.fill('A date', undefined)
+    cy.fill('A date picker', undefined)
 
     outputShouldBe(undefined)
   })
@@ -94,15 +94,15 @@ context('With time inputs', () => {
   })
 
   it('Should fill, change and clear the date & time', () => {
-    cy.fill('A date', [2021, 12, 31, 4, 56])
+    cy.fill('A date picker', [2021, 12, 31, 4, 56])
 
     outputShouldBe('2021-12-31T04:56:00.000Z')
 
-    cy.fill('A date', [2024, 3, 4, 23, 18])
+    cy.fill('A date picker', [2024, 3, 4, 23, 18])
 
     outputShouldBe('2024-03-04T23:18:00.000Z')
 
-    cy.fill('A date', undefined)
+    cy.fill('A date picker', undefined)
 
     outputShouldBe(undefined)
   })
