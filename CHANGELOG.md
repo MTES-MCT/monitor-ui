@@ -1,3 +1,84 @@
+## [11.10.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.9.1...v11.10.0) (2024-02-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **fields:** - Add mandatory `name` prop on `CoordinatesInput`.
+- Add mandatory `name` prop on `DatePicker`.
+- Add mandatory `name` prop on `DateRangePicker`.
+* **fields:** - `isReadOnly` has been renamed to `readOnly` in `MultiRadio`.
+* **fields:** - `.rs-picker*`, `.rs-tag*`, `.rs-btn*` & `label` styles have been removed from `rsuite-override.css`
+* **fields:** - Migrate to Rsuite v5.53.2 and enforce it as minimal version via `^5.53.2` in peer dependencies.
+- Remove `baseContainer` property from `MultiSelect` and `FormikMultiSelect`.
+- Remove `baseContainer` property from `Select` and `FormikSelect`.
+- Forbid Rsuite inherited property `valueKey` in `CheckPicker`.
+- Forbid Rsuite inherited property `valueKey` in `MultiSelect` and `FormikMultiSelect`.
+- Forbid Rsuite inherited property `valueKey` in `Search`.
+- The `Option` type now doesn't allow the `children` property, you need to use `TreeOption` for that instead.
+
+### Features
+
+* **cypress:** use Escape instead of click outside for fill() on DateRangePicker ([dad1dd4](https://github.com/MTES-MCT/monitor-ui/commit/dad1dd4861e6ad14a689140470280c921e7122d6))
+* **field:** add Radio ([90b0ec2](https://github.com/MTES-MCT/monitor-ui/commit/90b0ec2c8b38fe57ed3a76274a8cd13055a4b34c))
+* **fields:** add isLight prop to Checkbox ([970c33a](https://github.com/MTES-MCT/monitor-ui/commit/970c33a8547ef6a1e8b63251dd5190d1cd9598f8))
+* **fields:** add MultiCascader ([0fc86a8](https://github.com/MTES-MCT/monitor-ui/commit/0fc86a8e28c81ad100bdea51254a230b8e2d3ba6))
+* **fields:** add readOnly prop to MultiCheckbox ([b40bcf7](https://github.com/MTES-MCT/monitor-ui/commit/b40bcf72fe2ce1cc4320b713fa25ba07cb833481))
+* **fields:** close DatePicker calendar & time pickers on Escape ([8cafb0a](https://github.com/MTES-MCT/monitor-ui/commit/8cafb0a022c287a7c92ab8c7bf9937de999f73c7))
+* **fields:** close DateRangePicker calendar & time pickers on Escape ([1f443ef](https://github.com/MTES-MCT/monitor-ui/commit/1f443efc924d7be347b5b8fbcb9511be37ec343a))
+* **fields:** normalize disabled, isLight, isTransparent & readOnly props ([796ec4e](https://github.com/MTES-MCT/monitor-ui/commit/796ec4e42c0708a959cb5a6d86fdaabb62765bce))
+* **fields:** rename isReadOnly prop to readOnly in MultiRadio ([663a03b](https://github.com/MTES-MCT/monitor-ui/commit/663a03ba315e0112d3e8ec912eba894c45a21bd0))
+* **fields:** set CheckPicker, MultiCascader, MultiSelect & Select height to 30px ([f441fca](https://github.com/MTES-MCT/monitor-ui/commit/f441fca59aa1cc7a85eedb6cb3ff7e8892afbd07))
+* **formiks:** add FormikCheckPicker ([f796522](https://github.com/MTES-MCT/monitor-ui/commit/f796522cfbfcb0d5f31733bb4e21ca0ad9e8f2d8))
+* **formiks:** add FormikMultiCascader ([4788cb9](https://github.com/MTES-MCT/monitor-ui/commit/4788cb9340202160a76b3eee9c8b7d77596512cd))
+* **formiks:** add FormikToggle ([1ff5887](https://github.com/MTES-MCT/monitor-ui/commit/1ff58877acc3bb4af42158b8926fcc8a37120992))
+* **hooks:** add usePressEscapeEffect() ([f8999f9](https://github.com/MTES-MCT/monitor-ui/commit/f8999f99a45beb1ca07671b469a7e96f596d1287))
+
+
+### Bug Fixes
+
+* **cypress:** add dedicated function to fill() for Search field ([b04bf30](https://github.com/MTES-MCT/monitor-ui/commit/b04bf305f2e4af59bf9e73655a8ec756d7f5bced))
+* **cypress:** fix fill() command for CheckPicker after Rsuite upgrade ([ffdfa7d](https://github.com/MTES-MCT/monitor-ui/commit/ffdfa7d95565fd9c3c976f069ec322a658a6e7ac))
+* **cypress:** fix fill() command for Select & MultiSelect after Rsuite upgrade ([5c9ca63](https://github.com/MTES-MCT/monitor-ui/commit/5c9ca63b52e06bee5fae2e9d48eef245508028d6))
+* **field:** fix Checkbox after Rsuite upgrade ([06dfaf0](https://github.com/MTES-MCT/monitor-ui/commit/06dfaf0d60484e4f8717ea9c5ffb8536fa135ba8))
+* **field:** fix MultiRadio after Rsuite upgrade ([17134e9](https://github.com/MTES-MCT/monitor-ui/commit/17134e97267852a62487321e25aa6567180d5617))
+* **field:** set rsuite value to null when undefined in Select ([4f462d3](https://github.com/MTES-MCT/monitor-ui/commit/4f462d3cbac8ecfadeea4dc99bc1b7484ce558d9))
+* **fields:** finalize DatePicker & DateRangePicker style after Rsuite upgrade ([3018363](https://github.com/MTES-MCT/monitor-ui/commit/30183639d9f6b4511b8913c73ae39bc1518cead0))
+* **fields:** fix DateRangePicker basic styles after Rsuite upgrade ([e9c82cd](https://github.com/MTES-MCT/monitor-ui/commit/e9c82cdd05dfe00c802e9812382f6de3be38d5ea))
+
+
+### Code Refactoring
+
+* **cypress:** improve fill() command for Checkbox & basic fields ([e1322d1](https://github.com/MTES-MCT/monitor-ui/commit/e1322d1c89fc86a0d50567191cb4660402d07806))
+* **cypress:** improve fill() command for MultiRadio ([3d966f6](https://github.com/MTES-MCT/monitor-ui/commit/3d966f61bc47ad3fea8e4eb212d745927da864f7))
+* **cypress:** move fill() utils within fill/ folder ([b7e534d](https://github.com/MTES-MCT/monitor-ui/commit/b7e534d65a757d60f401eebb7fa12f596aa2dccb))
+
+
+### Buid System & Dependencies
+
+* **jest:** fix missing SWC paths ([2060f38](https://github.com/MTES-MCT/monitor-ui/commit/2060f381cbedb3d9d9c3a28142dfbcc47784b4b5))
+* **storybook:** migrate to v8 ([df090f2](https://github.com/MTES-MCT/monitor-ui/commit/df090f2727f5749412c65dd246310a19e01568dd))
+
+
+### Documentation
+
+* **components:** clean stories ([8fe5e37](https://github.com/MTES-MCT/monitor-ui/commit/8fe5e3736e5591d251b2fb450c88c346b5a1bd62))
+* **cypress:** update fill() command tsdoc ([a5ad73b](https://github.com/MTES-MCT/monitor-ui/commit/a5ad73b95f8b5cfd239432ef75c1895f4ab4486a))
+
+
+### Styles
+
+* **components:** set Dialog action buttons spacing to 8px ([2cf4fa8](https://github.com/MTES-MCT/monitor-ui/commit/2cf4fa889f04acb6056e1dba1469ede371aa9874))
+* **fields:** add 8px padding in DatePicker & DateRangePicker calendars ([b51093d](https://github.com/MTES-MCT/monitor-ui/commit/b51093d89a85aef24af3d26cf43ff62eb517f1c8))
+* **fields:** fix Checkbox checkmark color when transparent ([af5a6a2](https://github.com/MTES-MCT/monitor-ui/commit/af5a6a202760f3d1b18f65f966cf73b617e48115))
+* **fields:** fix CoordinatesInput states & height ([306f15e](https://github.com/MTES-MCT/monitor-ui/commit/306f15e3684d45abc6d41fe558b2578fefed3146))
+* **fields:** fix counter badge look in CheckPicker & MultiCascader ([d6784b2](https://github.com/MTES-MCT/monitor-ui/commit/d6784b22c930d68a2c26badacc8bcebf6ac2cdb3))
+* **fields:** fix option focus colors in CheckPicker, MultiCascader, MultiSelect & Select ([42e1094](https://github.com/MTES-MCT/monitor-ui/commit/42e1094771c2a02e58bf3b1fd0141d19de38ddb7))
+* **fields:** fix option hover color in CheckPicker, MultiCascader, MultiSelect & Select ([1ff1551](https://github.com/MTES-MCT/monitor-ui/commit/1ff155114d4bbeed8c17e9bc5046d0c57179f0e0))
+* **fields:** fix picker popup column border in MultiCascader ([39077fb](https://github.com/MTES-MCT/monitor-ui/commit/39077fb793ae50ab9f9fca50a30e5f9a29661f51))
+* **fields:** fix selected value(s) color in CheckPicker, MultiCascader & Select ([c9db451](https://github.com/MTES-MCT/monitor-ui/commit/c9db4514825394b68e2353718823560d1765270f))
+* **fields:** fix Toggle state colors ([6a3b609](https://github.com/MTES-MCT/monitor-ui/commit/6a3b60984b1cd881fb0439fb7479bf9af192d74d))
+* remove Rsuite table classes from rsuite-override.css ([72f0b51](https://github.com/MTES-MCT/monitor-ui/commit/72f0b51560b9a4892037d2d44c24d378440ed27e))
+
 ## [11.9.1](https://github.com/MTES-MCT/monitor-ui/compare/v11.9.0...v11.9.1) (2024-02-23)
 
 
