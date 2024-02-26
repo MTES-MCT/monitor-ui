@@ -147,6 +147,11 @@ const Box = styled(StyledRsuitePickerBox)<{
         max-width: ${p => Math.round(10000 / p.$columnCount) / 100}%;
         min-width: ${p => Math.round(10000 / p.$columnCount) / 100}%;
 
+        &:first-child,
+        &:not(:last-child) {
+          border-right: solid 1px ${p => p.theme.color.lightGray};
+        }
+
         > [role='treeitem'] {
           > .rs-check-item {
             > .rs-checkbox-checker {
