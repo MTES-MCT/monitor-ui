@@ -189,13 +189,13 @@ const Box = styled(StyledRsuitePickerBox)`
       /* Selected tags */
       > [role='listbox'] {
         > [role='option'] {
-          background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
+          background-color: ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
           font-size: 11px;
           line-height: 1.3636; // = 15px
           margin: 5px 0 0 5px;
 
           > .rs-tag-icon-close {
-            border-left: solid 1px ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
+            border-left: solid 1px ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
             bottom: 1px;
             padding: 3px 4px 3px 4px;
 
