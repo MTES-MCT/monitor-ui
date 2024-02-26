@@ -15,6 +15,7 @@ const meta: Meta<ToggleProps> = {
   component: Toggle,
 
   argTypes: {
+    checked: ARG_TYPE.OPTIONAL_BOOLEAN,
     disabled: ARG_TYPE.OPTIONAL_BOOLEAN,
     error: ARG_TYPE.OPTIONAL_STRING,
     isErrorMessageHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
@@ -26,6 +27,7 @@ const meta: Meta<ToggleProps> = {
   },
 
   args: {
+    checked: false,
     disabled: false,
     error: '',
     isErrorMessageHidden: false,
