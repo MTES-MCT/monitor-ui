@@ -41,7 +41,7 @@ export function getChoiceFieldBackgroundColorFactoryForState(pseudoState: Pseudo
   }
 }
 
-export function getChoiceFieldMainColorFactoryForState(pseudoState: PseudoState) {
+export function getChoiceFieldBorderColorFactoryForState(pseudoState: PseudoState) {
   return (props: CommonChoiceFieldStyleProps) => {
     switch (true) {
       case props.$hasError:
