@@ -1,1 +1,0 @@
-import{aZ as u,a_ as p}from"./index-ucqKeW45.js";import{r as s}from"./index-CBqU2yxZ.js";function E(o,r,t){const e=u(o),[i,a]=s.useState(o),l=i===void 0&&t!==void 0?t:i,n=s.useCallback(c=>{a(c),r&&r(c)},[r]);return s.useEffect(()=>{p.isEqual(o,e)||a(o)},[e,o]),{controlledOnChange:n,controlledValue:l}}export{E as u};
