@@ -5,6 +5,14 @@ export function fillDatePicker(
   dateOrDateWithTimeTuple: Cypress.DateTuple | Cypress.DateWithTimeTuple | undefined,
   _label: string
 ): void {
+  Cypress.log({
+    consoleProps: () => ({
+      'Applied to': fieldsetElement,
+      Elements: 1
+    }),
+    name: 'fillDatePicker'
+  })
+
   const inputElements = fieldsetElement.querySelectorAll('input')
   if (inputElements.length !== 4 && inputElements.length !== 6) {
     throwError(`Expected to find 4 or 6 inputs within in DatePicker but found ${inputElements.length}.`)
