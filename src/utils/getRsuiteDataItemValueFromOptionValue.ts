@@ -12,6 +12,7 @@ export function getRsuiteDataItemValueFromOptionValue<OptionValue extends Option
       throw new Error(
         [
           `You must provide a valid option value key when using objects as option values.`,
+          `The property value must exist and be a unique number or a string.`,
           `OptionValue: \`${JSON.stringify(optionValue)}\`.`,
           `OptionValueKey: \`${String(optionValueKey)}\`.`
         ].join(' ')
@@ -21,7 +22,7 @@ export function getRsuiteDataItemValueFromOptionValue<OptionValue extends Option
     return String(optionValue[optionValueKey])
   }
 
-  if (typeof optionValue !== 'number' && typeof optionValue !== 'string') {
+  if (typeof optionValue !== 'boolean' && typeof optionValue !== 'number' && typeof optionValue !== 'string') {
     throw new Error(
       [
         `You must provide an option value key when using objects as option values.`,
