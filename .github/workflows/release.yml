@@ -50,6 +50,6 @@ jobs:
         uses: bitovi/github-actions-storybook-to-github-pages@v1.0.2
         with:
           install_command: yarn install --frozen-lockfile
-          build_command: yarn build-storybook
+          build_command: yarn build:storybook
           path: storybook-static
           checkout: true
