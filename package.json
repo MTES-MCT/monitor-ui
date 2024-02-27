@@ -13,7 +13,7 @@
     "build:clean": "rm -Rf ./dist",
     "build:copy": "sh ./scripts/build/copyPublicFiles.sh",
     "build:package": "node ./scripts/build/generatePackageJson.js",
-    "build:storybook": "storybook build --quiet",
+    "build:storybook": "storybook build && touch ./storybook-static/.nojekyll",
     "build:type": "tsc -p ./tsconfig.dist.json",
     "clean": "yarn build:clean && rm -Rf ./node_modules/.cache",
     "dev": "storybook dev --no-open -p 6006",
