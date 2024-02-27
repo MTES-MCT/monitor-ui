@@ -21,7 +21,7 @@ jobs:
           cache: yarn
           node-version: 20
       - name: Install
-        run: yarn
+        run: yarn install --frozen-lockfile
       - name: Publish
         id: publish
         uses: chromaui/action@v10
