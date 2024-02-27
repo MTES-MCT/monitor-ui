@@ -1,3 +1,10 @@
+## [12.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v12.0.0...v12.0.1) (2024-02-27)
+
+
+### Bug Fixes
+
+* **fields:** handle missing boolean option value case in options fields ([966e17c](https://github.com/MTES-MCT/monitor-ui/commit/966e17c5dfea03a48a8387f03cbcbaeff5c68008))
+
 ## [12.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.9.1...v12.0.0) (2024-02-26)
 
 
