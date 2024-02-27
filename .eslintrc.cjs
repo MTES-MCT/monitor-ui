@@ -20,8 +20,6 @@ module.exports = {
     project: path.join(__dirname, 'tsconfig.json')
   },
   ignorePatterns: [
-    '!/.storybook/',
-    '/.storybook/main.js',
     '/config/',
     '/dist/',
     '/e2e/release/sample/',
