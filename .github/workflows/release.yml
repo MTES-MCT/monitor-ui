@@ -46,20 +46,10 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup
-        uses: actions/setup-node@v4
-        with:
-          cache: yarn
-          node-version: 20
-      - name: Install
-        run: yarn install --frozen-lockfile
-      - name: Build
-        run: yarn build:storybook
       - name: Deploy
-        run: |
-          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          npx gh-pages -d storybook-static -u "github-actions-bot <support+actions@github.com>"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.2
+        with:
+          install_command: yarn install --frozen-lockfile
+          build_command: yarn build-storybook
+          path: storybook-static
+          checkout: true
