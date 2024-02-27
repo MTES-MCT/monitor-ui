@@ -1,1 +1,0 @@
-import{l as u}from"./_baseClone-CBkhujLI.js";import{r as t}from"./index-CBqU2yxZ.js";import{aY as p}from"./index-0nDB5Zzz.js";function d(o,r,s){const i=p(o),[e,c]=t.useState(o),a=e===void 0&&s!==void 0?s:e,n=t.useCallback(l=>{c(l),r&&r(l)},[r]);return t.useEffect(()=>{u.isEqual(o,i)||c(o)},[i,o]),{controlledOnChange:n,controlledValue:a}}export{d as u};
