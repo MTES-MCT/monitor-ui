@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
+// https://github.com/storybookjs/storybook/issues/18641#issuecomment-1304197910
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// @ts-ignore
+import React from 'react'
+
 // import { DocumentationBox } from './components/DocumentationBox'
 import { withStoryBox } from './components/StoryBox'
 
