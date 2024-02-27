@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import { eq } from 'lodash'
 import { useCallback, useMemo, type CSSProperties, type ReactNode } from 'react'
 import { RadioGroup as RsuiteRadioGroup } from 'rsuite'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import { Radio } from './Radio'
 import { FieldError } from '../elements/FieldError'
@@ -128,11 +128,7 @@ const StyledRsuiteRadioGroup = styled(RsuiteRadioGroup)<{
   display: flex;
   flex-direction: ${p => (p.$isInline ? 'row' : 'column')};
 
-  ${p =>
-    !p.$isInline &&
-    css`
-      > .Field-Radio:not(:first-child) {
-        margin: 8px 0 0 0;
-      }
-    `}
+  > .Field-Radio:not(:first-child) {
+    margin: ${p => (p.$isInline ? '0 0 0 16px' : '8px 0 0 0')};
+  }
 `
