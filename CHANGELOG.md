@@ -1,3 +1,20 @@
+## [12.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v12.0.3...v12.1.0) (2024-02-27)
+
+
+### Features
+
+* **cypress:** add logs in fill() and all its subcommands ([f9b320f](https://github.com/MTES-MCT/monitor-ui/commit/f9b320fc335745bb562da34f00b98ef78bf5ef74))
+
+
+### Bug Fixes
+
+* **cypress:** replace picker popup closure check with a wait in fill() ([9b4108b](https://github.com/MTES-MCT/monitor-ui/commit/9b4108be9479fb25d99902ca451dc329192bdb18))
+
+
+### Buid System & Dependencies
+
+* **vite:** disable CSS minification for storybook build ([c98d7c9](https://github.com/MTES-MCT/monitor-ui/commit/c98d7c99c053f4084bec5c044a8ff1050e2029aa))
+
 ## [12.0.3](https://github.com/MTES-MCT/monitor-ui/compare/v12.0.2...v12.0.3) (2024-02-27)
 
 
