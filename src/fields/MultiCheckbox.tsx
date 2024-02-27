@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import { equals, includes, reject } from 'ramda'
 import { useCallback, useMemo, type CSSProperties } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import { Checkbox } from './Checkbox'
 import { FieldError } from '../elements/FieldError'
@@ -113,13 +113,7 @@ const ChecboxesBox = styled.div<{
   display: flex;
   flex-direction: ${p => (p.$isInline ? 'row' : 'column')};
 
-  ${p =>
-    !p.$isInline &&
-    css`
-      > div:not(:first-child) {
-        > .rs-checkbox {
-          margin: 8px 0 0 0;
-        }
-      }
-    `}
+  > .Field-Checkbox:not(:first-child) {
+    margin: ${p => (p.$isInline ? '0 0 0 16px' : '8px 0 0 0')};
+  }
 `
