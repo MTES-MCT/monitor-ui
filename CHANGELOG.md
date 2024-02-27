@@ -1,3 +1,10 @@
+## [12.0.3](https://github.com/MTES-MCT/monitor-ui/compare/v12.0.2...v12.0.3) (2024-02-27)
+
+
+### Styles
+
+* **fields:** fix MultiCheckbox options margin when isInline ([d98f1a5](https://github.com/MTES-MCT/monitor-ui/commit/d98f1a549ac2b7ffb0b82c67435c39f0a6fd9ea8))
+
 ## [12.0.2](https://github.com/MTES-MCT/monitor-ui/compare/v12.0.1...v12.0.2) (2024-02-27)
 
 
