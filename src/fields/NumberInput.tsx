@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import {
   getFieldBackgroundColorFactory,
-  getFieldMainColorFactoryForState,
+  getFieldBorderColorFactoryForState,
   getFieldPlaceholderColorFactoryForState
 } from './shared/utils'
 import { Field } from '../elements/Field'
@@ -133,7 +133,7 @@ export function NumberInput({
 
 const StyledInput = styled(Input as any)<CommonFieldStyleProps>`
   background-color: ${getFieldBackgroundColorFactory()};
-  border: solid 1px ${getFieldMainColorFactoryForState('default')};
+  border: solid 1px ${getFieldBorderColorFactoryForState('default')};
   border-radius: 0;
   color: ${p => p.theme.color.gunMetal};
   ${p => p.$isReadOnly && `cursor: default;`}
@@ -150,7 +150,7 @@ const StyledInput = styled(Input as any)<CommonFieldStyleProps>`
 
   &:hover {
     background-color: ${getFieldBackgroundColorFactory()};
-    border: solid 1px ${getFieldMainColorFactoryForState('hover')} !important;
+    border: solid 1px ${getFieldBorderColorFactoryForState('hover')} !important;
 
     &::placeholder {
       color: ${getFieldPlaceholderColorFactoryForState('hover')};
@@ -160,7 +160,7 @@ const StyledInput = styled(Input as any)<CommonFieldStyleProps>`
   &:active,
   &:focus {
     background-color: ${getFieldBackgroundColorFactory()};
-    border: solid 1px ${getFieldMainColorFactoryForState('focus')} !important;
+    border: solid 1px ${getFieldBorderColorFactoryForState('focus')} !important;
     outline: 0;
 
     &::placeholder {

@@ -65,6 +65,7 @@ const meta: Meta<CheckPickerProps<string>> = {
     generateStoryDecorator({
       box: { width: 640 },
       withBackgroundButton: true,
+      withPseudoStateButtons: { targetSelector: '[role="combobox"]' },
       withNewWindowButton: true
     })
   ]

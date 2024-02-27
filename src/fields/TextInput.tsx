@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import {
   getFieldBackgroundColorFactory,
-  getFieldMainColorFactoryForState,
+  getFieldBorderColorFactoryForState,
   getFieldPlaceholderColorFactoryForState
 } from './shared/utils'
 import { Accent, Size } from '../constants'
@@ -173,7 +173,7 @@ const StyledRsuiteInput = styled(RsuiteInput)<
   }
 >`
   background-color: ${getFieldBackgroundColorFactory()};
-  border: solid 1px ${getFieldMainColorFactoryForState('default')};
+  border: solid 1px ${getFieldBorderColorFactoryForState('default')};
   border-radius: 0;
   color: ${p => p.theme.color.gunMetal};
   ${p => p.$isReadOnly && `cursor: default;`}
@@ -190,7 +190,7 @@ const StyledRsuiteInput = styled(RsuiteInput)<
 
   &:hover {
     background-color: ${getFieldBackgroundColorFactory()};
-    border: solid 1px ${getFieldMainColorFactoryForState('hover')} !important;
+    border: solid 1px ${getFieldBorderColorFactoryForState('hover')} !important;
 
     &::placeholder {
       color: ${getFieldPlaceholderColorFactoryForState('hover')};
@@ -200,7 +200,7 @@ const StyledRsuiteInput = styled(RsuiteInput)<
   &:active,
   &:focus {
     background-color: ${getFieldBackgroundColorFactory()};
-    border: solid 1px ${getFieldMainColorFactoryForState('focus')} !important;
+    border: solid 1px ${getFieldBorderColorFactoryForState('focus')} !important;
     outline: 0;
 
     &::placeholder {

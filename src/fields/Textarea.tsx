@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import {
   getFieldBackgroundColorFactory,
-  getFieldMainColorFactoryForState,
+  getFieldBorderColorFactoryForState,
   getFieldPlaceholderColorFactoryForState
 } from './shared/utils'
 import { Field } from '../elements/Field'
@@ -105,7 +105,7 @@ export function Textarea({
 
 const StyledRsuiteInput = styled(RsuiteInput)<CommonFieldStyleProps>`
   background-color: ${getFieldBackgroundColorFactory()};
-  border: solid 1px ${getFieldMainColorFactoryForState('default')};
+  border: solid 1px ${getFieldBorderColorFactoryForState('default')};
   color: ${p => p.theme.color.gunMetal};
   ${p => p.$isReadOnly && `cursor: default;`}
   font-size: 13px;
@@ -119,7 +119,7 @@ const StyledRsuiteInput = styled(RsuiteInput)<CommonFieldStyleProps>`
 
   &:hover {
     background-color: ${getFieldBackgroundColorFactory()};
-    border: solid 1px ${getFieldMainColorFactoryForState('hover')};
+    border: solid 1px ${getFieldBorderColorFactoryForState('hover')};
 
     &::placeholder {
       color: ${getFieldPlaceholderColorFactoryForState('hover')};
@@ -129,7 +129,7 @@ const StyledRsuiteInput = styled(RsuiteInput)<CommonFieldStyleProps>`
   &:active,
   &:focus {
     background-color: ${getFieldBackgroundColorFactory()};
-    border: solid 1px ${getFieldMainColorFactoryForState('focus')};
+    border: solid 1px ${getFieldBorderColorFactoryForState('focus')};
     outline: 0;
 
     &::placeholder {

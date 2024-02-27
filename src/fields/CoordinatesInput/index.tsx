@@ -1,6 +1,6 @@
 import { useKey } from '@hooks/useKey'
 import classnames from 'classnames'
-import { getFieldBackgroundColorFactory, getFieldMainColorFactoryForState } from 'fields/shared/utils'
+import { getFieldBackgroundColorFactory, getFieldBorderColorFactoryForState } from 'fields/shared/utils'
 import { noop } from 'lodash'
 import { useCallback, useMemo, useState, type CSSProperties } from 'react'
 import styled from 'styled-components'
@@ -138,7 +138,7 @@ const StyledFieldset = styled(Fieldset)<CommonFieldStyleProps>`
 
   input {
     background-color: ${getFieldBackgroundColorFactory()};
-    border: 1px solid ${getFieldMainColorFactoryForState('default')};
+    border: 1px solid ${getFieldBorderColorFactoryForState('default')};
     color: ${p => p.theme.color.gunMetal};
     font-size: 13px;
     font-weight: 500;
@@ -147,7 +147,7 @@ const StyledFieldset = styled(Fieldset)<CommonFieldStyleProps>`
 
     &:hover,
     &._hover {
-      border: 1px solid ${getFieldMainColorFactoryForState('hover')};
+      border: 1px solid ${getFieldBorderColorFactoryForState('hover')};
     }
 
     &:active,
@@ -155,7 +155,7 @@ const StyledFieldset = styled(Fieldset)<CommonFieldStyleProps>`
     &:focus,
     &._focus {
       background-color: ${getFieldBackgroundColorFactory()};
-      border: 1px solid ${getFieldMainColorFactoryForState('focus')};
+      border: 1px solid ${getFieldBorderColorFactoryForState('focus')};
     }
     &:focus-visible {
       outline: 0;

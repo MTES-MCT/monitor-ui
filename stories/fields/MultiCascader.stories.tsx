@@ -58,6 +58,7 @@ const meta: Meta<MultiCascaderProps<string>> = {
     generateStoryDecorator({
       box: { width: 640 },
       withBackgroundButton: true,
+      withPseudoStateButtons: { targetSelector: '[role="combobox"]' },
       withNewWindowButton: true
     })
   ]

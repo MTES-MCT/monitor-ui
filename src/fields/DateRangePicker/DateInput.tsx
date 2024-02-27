@@ -1,6 +1,6 @@
 import {
   getFieldBackgroundColorFactory,
-  getFieldMainColorFactoryForState,
+  getFieldBorderColorFactoryForState,
   getFieldPlaceholderColorFactoryForState
 } from 'fields/shared/utils'
 import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react'
@@ -267,7 +267,7 @@ const Box = styled.div<{
 }>`
   align-items: center;
   background-color: ${getFieldBackgroundColorFactory()};
-  border: solid 1px ${getFieldMainColorFactoryForState('default')};
+  border: solid 1px ${getFieldBorderColorFactoryForState('default')};
   color: ${getFieldPlaceholderColorFactoryForState('default')};
   display: inline-flex;
   font-size: 13px;
@@ -279,7 +279,7 @@ const Box = styled.div<{
   &:hover {
     border: solid 1px
       ${p =>
-        p.$isFocused ? getFieldMainColorFactoryForState('focus')(p) : getFieldMainColorFactoryForState('hover')(p)};
+        p.$isFocused ? getFieldBorderColorFactoryForState('focus')(p) : getFieldBorderColorFactoryForState('hover')(p)};
     color: ${p =>
       p.$isFocused
         ? getFieldPlaceholderColorFactoryForState('focus')(p)

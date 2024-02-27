@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import {
   getFieldBackgroundColorFactory,
-  getFieldMainColorFactoryForState,
+  getFieldBorderColorFactoryForState,
   getFieldPlaceholderColorFactoryForState
 } from './shared/utils'
 import { Accent, Size } from '../constants'
@@ -261,7 +261,7 @@ const StyledAutoComplete = styled(RsuiteAutoComplete)<{
 
   > [role='combobox'] {
     background-color: ${getFieldBackgroundColorFactory()};
-    border: solid 1px ${getFieldMainColorFactoryForState('default')};
+    border: solid 1px ${getFieldBorderColorFactoryForState('default')};
     border-radius: 0;
     outline: 0;
 
@@ -270,7 +270,7 @@ const StyledAutoComplete = styled(RsuiteAutoComplete)<{
     }
 
     &:hover {
-      border: solid 1px ${getFieldMainColorFactoryForState('hover')};
+      border: solid 1px ${getFieldBorderColorFactoryForState('hover')};
 
       &::placeholder {
         color: ${getFieldPlaceholderColorFactoryForState('hover')};
@@ -279,7 +279,7 @@ const StyledAutoComplete = styled(RsuiteAutoComplete)<{
 
     &:active,
     &:focus {
-      border: solid 1px ${getFieldMainColorFactoryForState('focus')};
+      border: solid 1px ${getFieldBorderColorFactoryForState('focus')};
 
       &::placeholder {
         color: ${getFieldPlaceholderColorFactoryForState('focus')};
