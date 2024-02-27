@@ -1,4 +1,12 @@
 export function pickSearchOption(fieldElement: HTMLDivElement, value: string | undefined, _label: string) {
+  Cypress.log({
+    consoleProps: () => ({
+      'Applied to': fieldElement,
+      Elements: 1
+    }),
+    name: 'pickSearchOption'
+  })
+
   cy.wrap(fieldElement).scrollIntoView({ offset: { left: 0, top: -100 } })
 
   // Clear the field if there is a clear button

@@ -27,6 +27,14 @@ import { throwError } from '../../utils/throwError'
 const RETRIES = 5
 
 export function fill(label: string, value: any, leftRetries: number = RETRIES): void {
+  Cypress.log({
+    consoleProps: () => ({
+      'Left Retries': leftRetries
+    }),
+    message: `Filling field with label/legend "${label}" with value "${JSON.stringify(value)}".`,
+    name: 'fill'
+  })
+
   try {
     // =========================================================================
     // If it's a field labelled by a `<label />` element

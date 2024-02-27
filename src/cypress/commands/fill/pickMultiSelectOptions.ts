@@ -1,6 +1,14 @@
 import { throwError } from 'cypress/utils/throwError'
 
 export function pickMultiSelectOptions(fieldElement: HTMLDivElement, values: string[] | undefined, label: string) {
+  Cypress.log({
+    consoleProps: () => ({
+      'Applied to': fieldElement,
+      Elements: 1
+    }),
+    name: 'pickMultiSelectOptions'
+  })
+
   cy.wrap(fieldElement).scrollIntoView({ offset: { left: 0, top: -100 } })
 
   // Clear the field if there is a clear button

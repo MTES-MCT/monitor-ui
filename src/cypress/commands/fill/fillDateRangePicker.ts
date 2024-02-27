@@ -5,6 +5,14 @@ export function fillDateRangePicker(
   dateOrDateWithTimeTupleRange: Cypress.DateRangeTuple | Cypress.DateWithTimeRangeTuple | undefined,
   _label: string
 ): void {
+  Cypress.log({
+    consoleProps: () => ({
+      'Applied to': fieldsetElement,
+      Elements: 1
+    }),
+    name: 'fillDateRangePicker'
+  })
+
   const inputElements = fieldsetElement.querySelectorAll('input')
   if (inputElements.length !== 7 && inputElements.length !== 11) {
     throwError(`Expected to find 7 or 11 inputs within in DatePicker but found ${inputElements.length}.`)
