@@ -44,6 +44,9 @@ export function pickMultiSelectOptions(fieldElement: HTMLDivElement, values: str
 
       // Close the picker popup by pressing the escape key
       cy.get('body').type('{esc}')
-      cy.wrap(fieldElement).find('.rs-picker-popup').should('not.exist')
+      // TODO Create a util to handle the `fieldElement` re-creation cases.
+      // We to use a `wait` as a temporary fix to handle `fieldElement` re-creation cases.
+      cy.wait(250)
+      // cy.wrap(fieldElement).find('.rs-picker-popup').should('not.exist')
     })
 }

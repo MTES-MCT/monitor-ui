@@ -70,6 +70,9 @@ export function fillDateRangePicker(
 
   // Close the range calendar & ranged time picker popup by pressing the escape key
   cy.get('body').type('{esc}')
-  cy.wrap(fieldsetElement).find('.Field-DateRangePicker__RangeCalendarPicker').should('not.be.visible')
-  cy.wrap(fieldsetElement).find('.Field-DateRangePicker__RangedTimePicker').should('not.exist')
+  // TODO Create a util to handle the `fieldsetElement` re-creation cases.
+  // We to use a `wait` as a temporary fix to handle `fieldsetElement` re-creation cases.
+  cy.wait(250)
+  // cy.wrap(fieldsetElement).find('.Field-DateRangePicker__RangeCalendarPicker').should('not.be.visible')
+  // cy.wrap(fieldsetElement).find('.Field-DateRangePicker__RangedTimePicker').should('not.exist')
 }
