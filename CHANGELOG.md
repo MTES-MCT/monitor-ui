@@ -1,3 +1,11 @@
+## [12.0.2](https://github.com/MTES-MCT/monitor-ui/compare/v12.0.1...v12.0.2) (2024-02-27)
+
+
+### Styles
+
+* **fields:** fix MultiRadio options margin when isInline ([9c7e15b](https://github.com/MTES-MCT/monitor-ui/commit/9c7e15bdc8dac946d16e06cc7336e4cc2802cbb7))
+* **fields:** fix pickers border color when isTransparent ([b10ac28](https://github.com/MTES-MCT/monitor-ui/commit/b10ac286201610cba620291cb525167a01c0d659))
+
 ## [12.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v12.0.0...v12.0.1) (2024-02-27)
 
 
