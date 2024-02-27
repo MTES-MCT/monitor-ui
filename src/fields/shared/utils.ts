@@ -104,7 +104,7 @@ export function getFieldBackgroundColorFactory() {
   }
 }
 
-export function getFieldMainColorFactoryForState(pseudoState: PseudoState) {
+export function getFieldBorderColorFactoryForState(pseudoState: PseudoState) {
   return (props: CommonFieldStyleProps) => {
     switch (true) {
       case props.$hasError:
@@ -123,11 +123,11 @@ export function getFieldMainColorFactoryForState(pseudoState: PseudoState) {
 
       // When transparent on white background
       case props.$isTransparent && props.$isLight:
-        return props.theme.color.lightGray
+        return props.theme.color.slateGray
 
       // When transparent on gray/gainsboro background
       case props.$isTransparent:
-        return props.theme.color.slateGray
+        return props.theme.color.lightGray
 
       // When non-transparent on gray/gainsboro background
       case props.$isLight:

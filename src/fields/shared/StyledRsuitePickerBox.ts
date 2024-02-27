@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import {
   getFieldBackgroundColorFactory,
-  getFieldMainColorFactoryForState,
+  getFieldBorderColorFactoryForState,
   getFieldPlaceholderColorFactoryForState
 } from './utils'
 
@@ -36,7 +36,7 @@ export const StyledRsuitePickerBox = styled.div<StyledRsuitePickerBoxProps>`
 
     > [role='combobox'] {
       background-color: ${getFieldBackgroundColorFactory()} !important;
-      border: solid 1px ${getFieldMainColorFactoryForState('default')} !important;
+      border: solid 1px ${getFieldBorderColorFactoryForState('default')} !important;
       border-radius: 0;
       /* Remove focus ring (Select) */
       box-shadow: none;
@@ -45,8 +45,9 @@ export const StyledRsuitePickerBox = styled.div<StyledRsuitePickerBoxProps>`
       line-height: 1.3846;
       padding: 3.5px 40px 0 8px !important;
 
-      &:hover {
-        border: solid 1px ${getFieldMainColorFactoryForState('hover')} !important;
+      &:hover,
+      &._hover {
+        border: solid 1px ${getFieldBorderColorFactoryForState('hover')} !important;
 
         > .rs-stack {
           > .rs-stack-item {
@@ -59,9 +60,11 @@ export const StyledRsuitePickerBox = styled.div<StyledRsuitePickerBoxProps>`
       }
 
       &:active,
+      &._active,
       &:focus,
+      &._focus,
       &.rs-picker-toggle-active {
-        border: solid 1px ${getFieldMainColorFactoryForState('focus')} !important;
+        border: solid 1px ${getFieldBorderColorFactoryForState('focus')} !important;
 
         > .rs-stack {
           > .rs-stack-item {
@@ -283,7 +286,8 @@ export const StyledRsuitePickerBox = styled.div<StyledRsuitePickerBoxProps>`
               }
             }
 
-            &:hover {
+            &:hover,
+            &._hover {
               background-color: ${p => p.theme.color.blueYonder25};
 
               > .rs-checkbox-checker {
