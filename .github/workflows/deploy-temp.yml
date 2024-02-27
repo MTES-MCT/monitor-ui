@@ -6,6 +6,8 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     steps:
       - name: Deploy
         uses: bitovi/github-actions-storybook-to-github-pages@v1.0.2
