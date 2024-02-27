@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies, sort-keys-fix/sort-keys-fix */
+/* eslint-disable import/no-extraneous-dependencies, sort-keys-fix/sort-keys-fix, @typescript-eslint/naming-convention */
 
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
@@ -8,6 +8,7 @@ import viteTsconfigPaths from 'vite-tsconfig-paths'
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({
   build: {
+    cssMinify: false,
     outDir: './build'
   },
 
