@@ -2,6 +2,10 @@ name: E2E
 
 on: push
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   # Normal E2E testing with Cypress
   test_e2e:
