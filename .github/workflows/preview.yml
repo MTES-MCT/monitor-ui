@@ -20,10 +20,9 @@ jobs:
       - name: Setup
         uses: actions/setup-node@v4
         with:
-          cache: yarn
           node-version: 20
       - name: Install
-        run: yarn install --frozen-lockfile
+        uses: ./.github/actions/install
       - name: Publish
         id: publish
         uses: chromaui/action@v11
