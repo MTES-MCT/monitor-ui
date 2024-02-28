@@ -1,6 +1,6 @@
 name: E2E Next
 
-on: workflow_dispatch
+on: push
 
 jobs:
   # Release build sanity check with Playwright
