@@ -33,7 +33,7 @@ export function pickMultiSelectOptions(fieldElement: HTMLDivElement, values: str
       }
 
       values.forEach(value => {
-        cy.wrap(fieldElement).find('.rs-picker-toggle').click().wait(250).type(value).wait(250)
+        cy.wrap(fieldElement).find('.rs-picker-toggle').forceClick().wait(250).type(value).wait(250)
 
         cy.wrap(rsuitePickerPopupElement).find('[role="option"]').contains(value).scrollIntoView().forceClick()
       })
