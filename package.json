@@ -16,7 +16,7 @@
     "build:storybook": "storybook build",
     "build:storybook:deploy": "yarn build:storybook && touch ./storybook-static/.nojekyll",
     "build:type": "tsc -p ./tsconfig.dist.json",
-    "clean": "yarn build:clean && rm -Rf ./node_modules/.cache",
+    "clean": "yarn build:clean && rm -Rf ./node_modules/.cache && rm -Rf ./node_modules/.vite",
     "dev": "storybook dev --no-open -p 6006",
     "dev:setup": "sh ./scripts/dev/setup.sh",
     "serve": "http-server ./storybook-static --port 3000 --silent",
