@@ -1,6 +1,8 @@
+import { useState } from 'react'
+
+import { Output } from '../../../.storybook/components/Output'
 import { StoryBox } from '../../../.storybook/components/StoryBox'
-import { CustomSearch, type SelectProps } from '../../../src'
-import { _Select as SelectStory } from '../../../stories/fields/Select.stories'
+import { CustomSearch, Select, useFieldControl, type SelectProps } from '../../../src'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
@@ -23,6 +25,20 @@ const OPTIONS_TYPES = {
 }
 /* eslint-enable sort-keys-fix/sort-keys-fix */
 
+function SelectStory({ value, ...otherProps }: SelectProps) {
+  const [outputValue, setOutputValue] = useState<any>('∅')
+
+  const { controlledOnChange, controlledValue } = useFieldControl(value, setOutputValue)
+
+  return (
+    <StoryBox>
+      <Select onChange={controlledOnChange} value={controlledValue} {...otherProps} />
+
+      {outputValue !== '∅' && <Output value={outputValue} />}
+    </StoryBox>
+  )
+}
+
 Object.keys(OPTIONS_TYPES).forEach(optionType => {
   context(`Story (${optionType} options)`, () => {
     const options = OPTIONS_TYPES[optionType]
@@ -38,11 +54,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     }
 
     it('Should fill, change and clear the select', () => {
-      mountAndWait(
-        <StoryBox>
-          <SelectStory {...commonProps} />
-        </StoryBox>
-      )
+      mountAndWait(<SelectStory {...commonProps} />)
 
       outputShouldNotBe()
 
@@ -60,11 +72,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     })
 
     it(`Should fill, change and clear the select with \`value={${JSON.stringify(options[2].value)}}\``, () => {
-      mountAndWait(
-        <StoryBox>
-          <SelectStory {...commonProps} value={options[2].value} />
-        </StoryBox>
-      )
+      mountAndWait(<SelectStory {...commonProps} value={options[2].value} />)
 
       outputShouldNotBe()
 
@@ -82,11 +90,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     })
 
     it('Should fill the select with `isLabelHidden`', () => {
-      mountAndWait(
-        <StoryBox>
-          <SelectStory {...commonProps} isLabelHidden />
-        </StoryBox>
-      )
+      mountAndWait(<SelectStory {...commonProps} isLabelHidden />)
 
       outputShouldNotBe()
 
@@ -96,31 +100,19 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     })
 
     it('Should NOT call `onChange(undefined)` with `disabled`', () => {
-      mountAndWait(
-        <StoryBox>
-          <SelectStory {...commonProps} disabled />
-        </StoryBox>
-      )
+      mountAndWait(<SelectStory {...commonProps} disabled />)
 
       outputShouldNotBe()
     })
 
     it(`Should NOT call \`onChange(undefined)\` with \`disabled value={${JSON.stringify(options[2].value)}}\``, () => {
-      mountAndWait(
-        <StoryBox>
-          <SelectStory {...commonProps} disabled value={options[2].value} />
-        </StoryBox>
-      )
+      mountAndWait(<SelectStory {...commonProps} disabled value={options[2].value} />)
 
       outputShouldNotBe()
     })
 
     it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
-      mountAndWait(
-        <StoryBox>
-          <SelectStory {...commonProps} disabled isUndefinedWhenDisabled />
-        </StoryBox>
-      )
+      mountAndWait(<SelectStory {...commonProps} disabled isUndefinedWhenDisabled />)
 
       outputShouldBe(undefined)
     })
@@ -128,11 +120,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     it(`Should call \`onChange(undefined)\` with \`disabled isUndefinedWhenDisabled value={${JSON.stringify(
       options[2].value
     )}}\``, () => {
-      mountAndWait(
-        <StoryBox>
-          <SelectStory {...commonProps} disabled isUndefinedWhenDisabled value={options[2].value} />
-        </StoryBox>
-      )
+      mountAndWait(<SelectStory {...commonProps} disabled isUndefinedWhenDisabled value={options[2].value} />)
 
       outputShouldBe(undefined)
     })
@@ -140,15 +128,13 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     it('Should filter and select the expected options when using `customSearch`', () => {
       const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
 
-      mountAndWait(
-        <StoryBox>
-          <SelectStory {...commonProps} customSearch={customSearch as any} />
-        </StoryBox>
-      )
+      mountAndWait(<SelectStory {...commonProps} customSearch={customSearch as any} />)
 
       outputShouldNotBe()
 
-      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+      // TODO Investigate why we need to wait here (expecting the popup to be visible doesn't fix the failing case).
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click().wait(100)
       cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('la remie')
       cy.get('.rs-picker-popup').find('div[role="option"]').first().click()
 
@@ -157,7 +143,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       // Clear the Select
       cy.fill('A select', undefined)
 
-      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+      // TODO Investigate why we need to wait here (expecting the popup to be visible doesn't fix the failing case).
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click().wait(100)
       cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('la option')
       cy.get('.rs-picker-popup').find('div[role="option"]').first().click()
 
@@ -166,7 +154,9 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       // Clear the Select
       cy.fill('A select', undefined)
 
-      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+      // TODO Investigate why we need to wait here (expecting the popup to be visible doesn't fix the failing case).
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click().wait(100)
       cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('sêcôndÈ')
       cy.get('.rs-picker-popup').find('div[role="option"]').first().click()
 
@@ -175,15 +165,13 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
 
     it('Should fill, clear and get all list', () => {
       const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
-      mountAndWait(
-        <StoryBox>
-          <SelectStory {...commonProps} customSearch={customSearch as any} />
-        </StoryBox>
-      )
+      mountAndWait(<SelectStory {...commonProps} customSearch={customSearch as any} />)
 
       outputShouldNotBe()
 
-      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+      // TODO Investigate why we need to wait here (expecting the popup to be visible doesn't fix the failing case).
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click().wait(100)
       cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('sêc')
       cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('{backspace}{backspace}{backspace}')
 
