@@ -3,50 +3,32 @@ name: E2E
 on: push
 
 jobs:
-  # Normal E2E testing with Cypress
-  test_e2e:
-    name: E2E Test
-    if: ${{ !startsWith(github.ref, 'refs/heads/ci-release-v') }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Firefox
-        uses: browser-actions/setup-firefox@latest
-        with:
-          firefox-version: 119.0.1
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          cache: yarn
-          node-version: 20
-      - name: Install
-        run: yarn
-      - name: Test
-        run: yarn test:e2e
-
   # Release build sanity check with Playwright
   test_e2e_release:
     name: Release E2E Test
     if: ${{ !startsWith(github.ref, 'refs/heads/ci-release-v') }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Firefox
-        uses: browser-actions/setup-firefox@latest
-        with:
-          firefox-version: 104.0.2
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           cache: yarn
           node-version: 20
-      - name: Install
-        run: yarn
-      - name: Serve Release Sample
-        run: |
-          yarn test:e2e:release:setup &
-          bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:3000)" != "200" ]]; do sleep 5; done'
-      - name: Test
-        run: yarn test:e2e:release
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          component: true
+          config-file: config/cypress.config.ts
+          install: true
+          install-command: yarn install --frozen-lockfile
+          parallel: true
+          record: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
