@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 100
       - name: Setup
         uses: actions/setup-node@v4
         with:
@@ -28,8 +30,11 @@ jobs:
         uses: chromaui/action@v11
         with:
           buildScriptName: 'build:storybook'
+          externals: src/assets/**
+          onlyChanged: true
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GH_PAT }}
+          zip: true
 
   update_pull_request:
     name: Update Pull Request
