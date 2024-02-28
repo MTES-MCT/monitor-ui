@@ -4,6 +4,7 @@ import { defineConfig } from 'cypress'
 import { platform } from 'os'
 
 const DOMAIN = platform() === 'darwin' ? '0.0.0.0' : 'localhost'
+const IS_CI = !!process.env.CI
 
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({
@@ -28,7 +29,7 @@ export default defineConfig({
     // Normally all e2e tests are perfectly non-flaky.
     // However there are some failures on the first run for a few e2e tests because of this Cypress issue:
     // https://github.com/cypress-io/cypress/issues/25913
-    runMode: 10
+    runMode: IS_CI ? 25 : 0
   },
   screenshotOnRunFailure: true,
   scrollBehavior: false,
