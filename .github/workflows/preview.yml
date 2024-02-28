@@ -1,6 +1,10 @@
 name: Preview
 
-on: pull_request
+on:
+  pull_request:
+  push:
+    branches:
+      - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -41,7 +45,7 @@ jobs:
     name: Update Pull Request
     runs-on: ubuntu-latest
     needs: publish
-    if: ${{ !startsWith(github.ref, 'refs/heads/ci-release-v') }}
+    if: ${{ !startsWith(github.ref, 'refs/heads/ci-release-v') && github.event_name == 'pull_request'}}
     steps:
       - name: Update Pull Request Preview URL
         uses: ivangabriele/find-and-replace-pull-request-body@v1.1.5
