@@ -1,3 +1,23 @@
+## [12.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v12.1.0...v12.1.1) (2024-02-28)
+
+
+### Bug Fixes
+
+* **cypress:** fix inner findElementParentBySelector() util ([a2dc379](https://github.com/MTES-MCT/monitor-ui/commit/a2dc37935989c54f4151d5fc47fde6956707cdf0))
+* **cypress:** handle nested fieldsets in fill() command ([b5cb9f2](https://github.com/MTES-MCT/monitor-ui/commit/b5cb9f2ae1dff27e9d17d76022299ba36e9b2f19))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @commitlint/cli from 18.4.3 to 19.0.1 ([65e3b1c](https://github.com/MTES-MCT/monitor-ui/commit/65e3b1cbf6ff50ab61683e649638ca982074e993))
+* **dev-deps:** bump @storybook/addon-storysource ([e5de861](https://github.com/MTES-MCT/monitor-ui/commit/e5de861a5710c119a68d17ca4c1e077893f79aef))
+* **dev-deps:** bump @types/node in /e2e/release/sample ([e2f88b0](https://github.com/MTES-MCT/monitor-ui/commit/e2f88b0db3e73c9336c232e9e09f7b8cb614c729))
+* **dev-deps:** bump @types/react in /e2e/release/sample ([214db7a](https://github.com/MTES-MCT/monitor-ui/commit/214db7a3a0bcac96e329808fa46d297954e35ec9))
+* **dev-deps:** bump @types/react-dom in /e2e/release/sample ([8e74dd4](https://github.com/MTES-MCT/monitor-ui/commit/8e74dd4bf76753db7885244e7ebd2397faf186a1))
+* **dev-deps:** bump cypress in /e2e/release/sample ([16e73ad](https://github.com/MTES-MCT/monitor-ui/commit/16e73add39ef203ea48ed782414d4f13748fa35b))
+* **dev-deps:** bump prettier in /e2e/release/sample ([34d3b00](https://github.com/MTES-MCT/monitor-ui/commit/34d3b005e4a263fe6251a936282ab359c2cbb7ce))
+* **dev-deps:** bump rollup-plugin-import-css from 3.4.0 to 3.5.0 ([69351ea](https://github.com/MTES-MCT/monitor-ui/commit/69351eab749ac534f267abd0e3fe2bde16bb0b54))
+
 ## [12.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v12.0.3...v12.1.0) (2024-02-27)
 
 
