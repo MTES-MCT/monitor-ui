@@ -32,12 +32,8 @@ export function pickMultiSelectOptions(fieldElement: HTMLDivElement, values: str
         throwError(`Could not find '.rs-picker-popup' in in field with label "${label}". Did the picker open?`)
       }
 
-      const maybeSearchInput = rsuitePickerPopupElement.querySelector('input[role="searchbox"]')
       values.forEach(value => {
-        // Search for the value if there is a search input
-        if (maybeSearchInput) {
-          cy.wrap(rsuitePickerPopupElement).find('input[role="searchbox"]').type(value).wait(250)
-        }
+        cy.wrap(fieldElement).find('.rs-picker-toggle').click().wait(250).type(value).wait(250)
 
         cy.wrap(rsuitePickerPopupElement).find('[role="option"]').contains(value).scrollIntoView().forceClick()
       })
