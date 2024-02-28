@@ -19,10 +19,9 @@ jobs:
       - name: Setup
         uses: actions/setup-node@v4
         with:
-          cache: yarn
           node-version: 20
       - name: Install
-        run: yarn
+        uses: ./.github/actions/install
       - name: Lint commits (last 100)
         run: yarn commitlint --from HEAD~99 --to HEAD -V
       - name: Lint code
@@ -38,10 +37,9 @@ jobs:
       - name: Setup
         uses: actions/setup-node@v4
         with:
-          cache: yarn
           node-version: 20
       - name: Install
-        run: yarn
+        uses: ./.github/actions/install
       - name: Type
         run: yarn test:type
 
@@ -55,10 +53,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          cache: yarn
           node-version: 20
       - name: Install
-        run: yarn
+        uses: ./.github/actions/install
       - name: Test
         run: yarn test:unit
       - name: Upload coverage
