@@ -1,23 +1,28 @@
+const MAX_PARENT_INDEX = 100
+
 export function findElementParentBySelector<T extends HTMLElement = HTMLElement>(
   element: HTMLElement,
   parentSelector: string,
   index: number = 0
 ): T | undefined {
-  let foundElement: T | undefined
-  let foundElementIndex = 0
+  let lastFoundParentIndex: number = 0
+  let parentIndex = -1
+  while (parentIndex < MAX_PARENT_INDEX) {
+    parentIndex += 1
 
-  const potentialParents = Cypress.$(element).parents(parentSelector)
-  potentialParents
-    // eslint-disable-next-line func-names
-    .each(function (this: HTMLElement) {
-      if (foundElementIndex === index) {
-        foundElement = this as T
+    const { parentElement } = element
+    if (!parentElement) {
+      return undefined
+    }
 
-        return
+    if (parentElement.matches(parentSelector)) {
+      if (lastFoundParentIndex === index) {
+        return parentElement as T
       }
 
-      foundElementIndex += 1
-    })
+      lastFoundParentIndex += 1
+    }
+  }
 
-  return foundElement
+  return undefined
 }
