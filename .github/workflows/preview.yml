@@ -24,7 +24,7 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Publish
         id: publish
-        uses: chromaui/action@v10
+        uses: chromaui/action@v11
         with:
           buildScriptName: 'build:storybook'
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
