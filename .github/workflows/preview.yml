@@ -33,6 +33,7 @@ jobs:
           externals: src/assets/**
           onlyChanged: true
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          skip: 'dependabot/**'
           token: ${{ secrets.GH_PAT }}
           zip: true
 
