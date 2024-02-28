@@ -1,3 +1,10 @@
+## [12.1.2](https://github.com/MTES-MCT/monitor-ui/compare/v12.1.1...v12.1.2) (2024-02-28)
+
+
+### Bug Fixes
+
+* **cypress:** target right input during fill() search for MultiSelect ([1692c0b](https://github.com/MTES-MCT/monitor-ui/commit/1692c0bce324eeb172c58d77e0bb268d918226c8))
+
 ## [12.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v12.1.0...v12.1.1) (2024-02-28)
 
 
