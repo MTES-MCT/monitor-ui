@@ -1,14 +1,13 @@
 name: Merge Dependabot Pull Request
 
 on:
-  workflow_dispatch
-  # workflow_run:
-  # workflows: [Check, E2E, Preview]
-  # Because of https://github.com/orgs/community/discussions/16059
-  # workflows: [E2E]
-  # types: [completed]
-  # branches:
-  # - 'dependabot/**'
+  workflow_run:
+    # workflows: [Check, E2E, Preview]
+    # Because of https://github.com/orgs/community/discussions/16059
+    workflows: [E2E]
+    types: [completed]
+    branches:
+      - 'dependabot/**'
 
 jobs:
   merge:
@@ -23,3 +22,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           MERGE_LABELS: ''
           MERGE_METHOD: rebase
+          UPDATE_RETRIES: 6
+          UPDATE_RETRY_SLEEP: 10000
