@@ -24,13 +24,13 @@ export function fillDatePicker(
     // -------------------------------------------------------------------------
     // Date without time
 
-    cy.wrap(fieldsetElement).find('[aria-label="Jour"]').clear({ force: true })
-    cy.wrap(fieldsetElement).find('[aria-label="Mois"]').clear({ force: true })
-    cy.wrap(fieldsetElement).find('[aria-label="Année"]').clear({ force: true })
+    cy.wrap(fieldsetElement).find('[aria-label="Jour"]').forceClear()
+    cy.wrap(fieldsetElement).find('[aria-label="Mois"]').forceClear()
+    cy.wrap(fieldsetElement).find('[aria-label="Année"]').forceClear()
 
     if (hasTimeInputs) {
-      cy.wrap(fieldsetElement).find('[aria-label="Heure"]').clear({ force: true })
-      cy.wrap(fieldsetElement).find('[aria-label="Minute"]').clear({ force: true })
+      cy.wrap(fieldsetElement).find('[aria-label="Heure"]').forceClear()
+      cy.wrap(fieldsetElement).find('[aria-label="Minute"]').forceClear()
     }
   }
 
@@ -38,22 +38,22 @@ export function fillDatePicker(
   else {
     const [year, month, day] = dateOrDateWithTimeTuple
 
-    cy.wrap(fieldsetElement).find('[aria-label="Jour"]').type(String(day).padStart(2, '0'))
-    cy.wrap(fieldsetElement).find('[aria-label="Mois"]').type(String(month).padStart(2, '0'))
-    cy.wrap(fieldsetElement).find('[aria-label="Année"]').type(String(year))
+    cy.wrap(fieldsetElement).find('[aria-label="Jour"]').forceType(String(day).padStart(2, '0'))
+    cy.wrap(fieldsetElement).find('[aria-label="Mois"]').forceType(String(month).padStart(2, '0'))
+    cy.wrap(fieldsetElement).find('[aria-label="Année"]').forceType(String(year))
 
     if (hasTimeInputs) {
       const [hour, minute] = dateOrDateWithTimeTuple.slice(3)
 
-      cy.wrap(fieldsetElement).find('[aria-label="Heure"]').type(String(hour).padStart(2, '0'))
-      cy.wrap(fieldsetElement).find('[aria-label="Minute"]').type(String(minute).padStart(2, '0'))
+      cy.wrap(fieldsetElement).find('[aria-label="Heure"]').forceType(String(hour).padStart(2, '0'))
+      cy.wrap(fieldsetElement).find('[aria-label="Minute"]').forceType(String(minute).padStart(2, '0'))
     }
   }
 
   cy.wait(250)
 
   // Close the calendar & ranged time picker popup by pressing the escape key
-  cy.get('body').type('{esc}')
+  cy.get('body').forceType('{esc}')
   // TODO Create a util to handle the `fieldsetElement` re-creation cases.
   // We to use a `wait` as a temporary fix to handle `fieldsetElement` re-creation cases.
   cy.wait(250)

@@ -14,7 +14,7 @@ export function pickCheckPickerOptions(fieldElement: HTMLDivElement, values: str
   // Clear the field if there is a clear button
   const maybeClearButton = fieldElement.querySelector('.rs-stack > .rs-stack-item > .rs-picker-clean')
   if (maybeClearButton) {
-    cy.wrap(fieldElement).find('.rs-stack > .rs-stack-item > .rs-picker-clean').click({ force: true }).wait(250)
+    cy.wrap(fieldElement).find('.rs-stack > .rs-stack-item > .rs-picker-clean').forceClick().wait(250)
   }
 
   // If `values` is undefined, we don't need to select anything
@@ -36,14 +36,14 @@ export function pickCheckPickerOptions(fieldElement: HTMLDivElement, values: str
       const maybeSearchInput = rsuitePickerPopupElement.querySelector('input[role="searchbox"]')
       values.forEach(value => {
         if (maybeSearchInput) {
-          cy.wrap(rsuitePickerPopupElement).find('input[role="searchbox"]').type(value).wait(250)
+          cy.wrap(rsuitePickerPopupElement).find('input[role="searchbox"]').forceType(value).wait(250)
         }
 
         cy.wrap(rsuitePickerPopupElement).find('[role="option"]').contains(value).scrollIntoView().forceClick()
       })
 
       // Close the picker popup by pressing the escape key
-      cy.get('body').type('{esc}')
+      cy.get('body').forceType('{esc}')
       // TODO Create a util to handle the `fieldElement` re-creation cases.
       // We to use a `wait` as a temporary fix to handle `fieldElement` re-creation cases.
       cy.wait(250)
