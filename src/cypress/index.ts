@@ -5,6 +5,7 @@ import { fill } from './commands/fill'
 import { forceCheck } from './commands/forceCheck'
 import { forceClick } from './commands/forceClick'
 import { forceType } from './commands/forceType'
+import { forceUncheck } from './commands/forceUncheck'
 import { getDataCy } from './commands/getDataCy'
 import { getTableRowById } from './commands/getTableRowById'
 import { getTableRowByText } from './commands/getTableRowByText'
@@ -19,6 +20,7 @@ export const registerMonitorUiCustomCommands = () => {
   Cypress.Commands.add('forceCheck', { prevSubject: true }, forceCheck)
   Cypress.Commands.add('forceClick', { prevSubject: true }, forceClick)
   Cypress.Commands.add('forceType', { prevSubject: true }, forceType)
+  Cypress.Commands.add('forceUncheck', { prevSubject: true }, forceUncheck)
   Cypress.Commands.add('getDataCy', getDataCy)
   Cypress.Commands.add('getTableRowById', { prevSubject: 'optional' } as any, getTableRowById)
   Cypress.Commands.add('getTableRowByText', { prevSubject: 'optional' } as any, getTableRowByText)
