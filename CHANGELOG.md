@@ -1,3 +1,10 @@
+## [12.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v12.2.0...v12.2.1) (2024-02-29)
+
+
+### Bug Fixes
+
+* **cypress:** widen input type for fill() on TextInput ([e7f9984](https://github.com/MTES-MCT/monitor-ui/commit/e7f998474148d970cc81b9dee23740a991dc1d5b))
+
 ## [12.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v12.1.3...v12.2.0) (2024-02-29)
 
 
