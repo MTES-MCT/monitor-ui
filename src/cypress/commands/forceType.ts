@@ -1,14 +1,15 @@
-export function forceClick<Subject = any>(
+export function forceType<Subject = any>(
   this: Mocha.Context,
   subject: Subject,
-  options: Partial<Cypress.ClickOptions> = {}
+  text: string,
+  options: Partial<Cypress.TypeOptions> = {}
 ): Cypress.Chainable<Subject> {
   Cypress.log({
     consoleProps: () => ({
       'Applied to': subject,
       Elements: 1
     }),
-    name: 'forceClick'
+    name: 'forceType'
   })
 
   if (!subject) {
@@ -17,5 +18,5 @@ export function forceClick<Subject = any>(
 
   const wrappedSubject = cy.wrap<Subject>(subject)
 
-  return wrappedSubject.click({ ...options, force: true })
+  return wrappedSubject.type(text, { ...options, force: true })
 }
