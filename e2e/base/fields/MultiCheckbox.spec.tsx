@@ -1,8 +1,9 @@
-import { StoryBox } from '../../../.storybook/components/StoryBox'
-import { _MultiCheckbox as MultiCheckboxStory } from '../../../stories/fields/MultiCheckbox.stories'
-import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
+import { useState } from 'react'
 
-import type { MultiCheckboxProps } from '../../../src'
+import { Output } from '../../../.storybook/components/Output'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
+import { useFieldControl, type MultiCheckboxProps, MultiCheckbox } from '../../../src'
+import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const OPTIONS_TYPES = {
@@ -24,6 +25,20 @@ const OPTIONS_TYPES = {
 }
 /* eslint-enable sort-keys-fix/sort-keys-fix */
 
+function MultiCheckboxStory({ value, ...otherProps }: MultiCheckboxProps) {
+  const [outputValue, setOutputValue] = useState<any>('∅')
+
+  const { controlledOnChange, controlledValue } = useFieldControl(value, setOutputValue)
+
+  return (
+    <StoryBox>
+      <MultiCheckbox {...otherProps} onChange={controlledOnChange} value={controlledValue} />
+
+      {outputValue !== '∅' && <Output value={outputValue} />}
+    </StoryBox>
+  )
+}
+
 Object.keys(OPTIONS_TYPES).forEach(optionType => {
   context(`With ${optionType} options`, () => {
     const options = OPTIONS_TYPES[optionType]
@@ -39,11 +54,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     }
 
     it('Should fill, change and clear the multiple checkbox', () => {
-      mountAndWait(
-        <StoryBox>
-          <MultiCheckboxStory {...commonProps} />
-        </StoryBox>
-      )
+      mountAndWait(<MultiCheckboxStory {...commonProps} />)
 
       outputShouldNotBe()
 
@@ -63,11 +74,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     it(`Should fill, change and clear the multiple checkbox with \`value={[${JSON.stringify(
       options[2].value
     )}]\``, () => {
-      mountAndWait(
-        <StoryBox>
-          <MultiCheckboxStory {...commonProps} value={[options[2].value]} />
-        </StoryBox>
-      )
+      mountAndWait(<MultiCheckboxStory {...commonProps} value={[options[2].value]} />)
 
       outputShouldNotBe()
 
@@ -85,11 +92,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     })
 
     it('Should fill the multiple checkbox with `isLabelHidden`', () => {
-      mountAndWait(
-        <StoryBox>
-          <MultiCheckboxStory {...commonProps} isLabelHidden />
-        </StoryBox>
-      )
+      mountAndWait(<MultiCheckboxStory {...commonProps} isLabelHidden />)
 
       outputShouldNotBe()
 
@@ -99,31 +102,19 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     })
 
     it('Should NOT call `onChange(undefined)` with `disabled`', () => {
-      mountAndWait(
-        <StoryBox>
-          <MultiCheckboxStory {...commonProps} disabled />
-        </StoryBox>
-      )
+      mountAndWait(<MultiCheckboxStory {...commonProps} disabled />)
 
       outputShouldNotBe()
     })
 
     it(`Should NOT call \`onChange(undefined)\` with \`disabled value={[${JSON.stringify(options[2].value)}]\``, () => {
-      mountAndWait(
-        <StoryBox>
-          <MultiCheckboxStory {...commonProps} disabled value={[options[2].value]} />
-        </StoryBox>
-      )
+      mountAndWait(<MultiCheckboxStory {...commonProps} disabled value={[options[2].value]} />)
 
       outputShouldNotBe()
     })
 
     it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
-      mountAndWait(
-        <StoryBox>
-          <MultiCheckboxStory {...commonProps} disabled isUndefinedWhenDisabled />
-        </StoryBox>
-      )
+      mountAndWait(<MultiCheckboxStory {...commonProps} disabled isUndefinedWhenDisabled />)
 
       outputShouldBe(undefined)
     })
@@ -131,11 +122,7 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     it(`Should call \`onChange(undefined)\` with \`disabled isUndefinedWhenDisabled value={[${JSON.stringify(
       options[2].value
     )}]\``, () => {
-      mountAndWait(
-        <StoryBox>
-          <MultiCheckboxStory {...commonProps} disabled isUndefinedWhenDisabled value={[options[2].value]} />
-        </StoryBox>
-      )
+      mountAndWait(<MultiCheckboxStory {...commonProps} disabled isUndefinedWhenDisabled value={[options[2].value]} />)
 
       outputShouldBe(undefined)
     })
