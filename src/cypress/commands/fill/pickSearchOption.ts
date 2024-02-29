@@ -1,4 +1,9 @@
-export function pickSearchOption(fieldElement: HTMLDivElement, value: string | undefined, _label: string) {
+export function pickSearchOption(
+  fieldElement: HTMLDivElement,
+  value: string | undefined,
+  _label: string,
+  force: boolean
+) {
   Cypress.log({
     consoleProps: () => ({
       'Applied to': fieldElement,
@@ -12,7 +17,7 @@ export function pickSearchOption(fieldElement: HTMLDivElement, value: string | u
   // Clear the field if there is a clear button
   const maybeClearButton = fieldElement.querySelector('.Field-Search__ClearButton')
   if (maybeClearButton) {
-    cy.wrap(fieldElement).find('.Field-Search__ClearButton').forceClick().wait(250)
+    cy.wrap(fieldElement).find('.Field-Search__ClearButton').click({ force }).wait(250)
   }
 
   // If the value is undefined, we don't need to select anything
@@ -21,13 +26,13 @@ export function pickSearchOption(fieldElement: HTMLDivElement, value: string | u
   }
 
   // Search for the value
-  cy.wrap(fieldElement).find('input[role="combobox"]').forceType(value)
+  cy.wrap(fieldElement).find('input[role="combobox"]').type(value, { force })
 
   // Wait for the picker to open
   cy.wrap(fieldElement)
     .get('.rs-picker-popup')
     .then(([rsuitePickerPopupElement]) => {
       // Select the first picker option
-      cy.wrap(rsuitePickerPopupElement).find('[role="option"]').first().scrollIntoView().forceClick().wait(250)
+      cy.wrap(rsuitePickerPopupElement).find('[role="option"]').first().scrollIntoView().click({ force }).wait(250)
     })
 }

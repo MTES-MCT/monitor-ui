@@ -1,4 +1,9 @@
-export function checkMultiRadioOption(fieldsetElement: HTMLFieldSetElement, value: string, _label: string) {
+export function checkMultiRadioOption(
+  fieldsetElement: HTMLFieldSetElement,
+  value: string,
+  _label: string,
+  force: boolean
+) {
   Cypress.log({
     consoleProps: () => ({
       'Applied to': fieldsetElement,
@@ -11,6 +16,6 @@ export function checkMultiRadioOption(fieldsetElement: HTMLFieldSetElement, valu
     .scrollIntoView({ offset: { left: 0, top: -100 } })
     .find('label')
     .contains(value)
-    .forceClick()
+    .click({ force })
     .wait(250)
 }

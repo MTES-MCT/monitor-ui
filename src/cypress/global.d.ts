@@ -26,7 +26,10 @@ declare namespace Cypress {
 
     /**
      * @description
-     * You can set the `retries` parameter to a number greater than 5 (default) to retry the action in case of failure.
+     * You can set the `retries` option to a number greater than 5 (default) to retry the action in case of failure.
+     * You can also set the `forced` option to `true` to force the action without waiting for the element to be visible.
+     *
+     * ⚠️ In order to ensure backward compatibility, the `forced` option is set to `true` by default.
      *
      * @example
      * ```ts
@@ -44,13 +47,13 @@ declare namespace Cypress {
      *   cy.fill('My Field', undefined)
      * ```
      */
-    fill(label: string, value: any, retries?: number): Chainable<Element>
+    fill(label: string, value: any, options?: Partial<FillOptions>): Chainable<Element>
 
-    forceCheck(options?: Partial<Cypress.CheckOptions>): Chainable<JQuery<HTMLElement>>
-    forceClear(options?: Partial<Cypress.ClearOptions>): Chainable<JQuery<HTMLElement>>
-    forceClick(options?: Partial<Cypress.ClickOptions>): Chainable<JQuery<HTMLElement>>
-    forceType(text: string, options?: Partial<Cypress.TypeOption>): Chainable<JQuery<HTMLElement>>
-    forceUncheck(options?: Partial<Cypress.CheckOptions>): Chainable<JQuery<HTMLElement>>
+    forceCheck(options?: Partial<CheckOptions>): Chainable<JQuery<HTMLElement>>
+    forceClear(options?: Partial<ClearOptions>): Chainable<JQuery<HTMLElement>>
+    forceClick(options?: Partial<ClickOptions>): Chainable<JQuery<HTMLElement>>
+    forceType(text: string, options?: Partial<TypeOption>): Chainable<JQuery<HTMLElement>>
+    forceUncheck(options?: Partial<CheckOptions>): Chainable<JQuery<HTMLElement>>
 
     /**
      * @example
@@ -108,4 +111,8 @@ declare namespace Cypress {
 
   type DateRangeTuple = [DateTuple, DateTuple]
   type DateWithTimeRangeTuple = [DateWithTimeTuple, DateWithTimeTuple]
+
+  interface FillOptions extends Forceable {
+    retries: number
+  }
 }

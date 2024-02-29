@@ -1,6 +1,11 @@
 import { throwError } from 'cypress/utils/throwError'
 
-export function pickSelectOption(fieldElement: HTMLDivElement, value: string | undefined, label: string) {
+export function pickSelectOption(
+  fieldElement: HTMLDivElement,
+  value: string | undefined,
+  label: string,
+  force: boolean
+) {
   Cypress.log({
     consoleProps: () => ({
       'Applied to': fieldElement,
@@ -14,7 +19,7 @@ export function pickSelectOption(fieldElement: HTMLDivElement, value: string | u
   // Clear the field if there is a clear button
   const maybeClearButton = fieldElement.querySelector('.rs-stack > .rs-stack-item > .rs-picker-clean')
   if (maybeClearButton) {
-    cy.wrap(fieldElement).find('.rs-stack > .rs-stack-item > .rs-picker-clean').forceClick().wait(250)
+    cy.wrap(fieldElement).find('.rs-stack > .rs-stack-item > .rs-picker-clean').click({ force }).wait(250)
   }
 
   // If the value is undefined, we don't need to select anything
@@ -23,7 +28,7 @@ export function pickSelectOption(fieldElement: HTMLDivElement, value: string | u
   }
 
   // Open the picker
-  cy.wrap(fieldElement).find('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').forceClick().wait(250)
+  cy.wrap(fieldElement).find('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click({ force }).wait(250)
 
   // Wait for the picker to open
   cy.wrap(fieldElement)
@@ -36,9 +41,14 @@ export function pickSelectOption(fieldElement: HTMLDivElement, value: string | u
       // Search for the value if there is a search input
       const maybeSearchInput = rsuitePickerPopupElement.querySelector('input[role="searchbox"]')
       if (maybeSearchInput) {
-        cy.wrap(rsuitePickerPopupElement).find('input[role="searchbox"]').forceType(value).wait(250)
+        cy.wrap(rsuitePickerPopupElement).find('input[role="searchbox"]').type(value, { force }).wait(250)
       }
 
-      cy.wrap(rsuitePickerPopupElement).find('[role="option"]').contains(value).scrollIntoView().forceClick().wait(250)
+      cy.wrap(rsuitePickerPopupElement)
+        .find('[role="option"]')
+        .contains(value)
+        .scrollIntoView()
+        .click({ force })
+        .wait(250)
     })
 }

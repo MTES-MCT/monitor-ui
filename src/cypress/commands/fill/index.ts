@@ -3,6 +3,7 @@ import { findElementParentBySelector } from 'cypress/utils/findElementParentBySe
 import { checkCheckbox } from './checkCheckbox'
 import { checkMultiCheckboxOptions } from './checkMultiCheckboxOptions'
 import { checkMultiRadioOption } from './checkMultiRadioOption'
+import { DEFAULT_OPTIONS } from './constants'
 import { fillDatePicker } from './fillDatePicker'
 import { fillDateRangePicker } from './fillDateRangePicker'
 import { fillNumberInput } from './fillNumberInput'
@@ -24,12 +25,17 @@ import {
 import { findElementBytext } from '../../utils/findElementBytext'
 import { throwError } from '../../utils/throwError'
 
-const RETRIES = 5
+let TOTAL_RETRIES: number
 
-export function fill(label: string, value: any, leftRetries: number = RETRIES): void {
+export function fill(label: string, value: any, options: Partial<Cypress.FillOptions> = {}): void {
+  const controlledOptions = { ...DEFAULT_OPTIONS, ...options }
+  if (!TOTAL_RETRIES) {
+    TOTAL_RETRIES = controlledOptions.retries
+  }
+
   Cypress.log({
     consoleProps: () => ({
-      'Left Retries': leftRetries
+      'Left Retries': controlledOptions.retries
     }),
     message: `Filling field with label/legend "${label}" with value "${JSON.stringify(value)}".`,
     name: 'fill'
@@ -52,7 +58,7 @@ export function fill(label: string, value: any, leftRetries: number = RETRIES): 
 
         case fieldElement.classList.contains('Field-Checkbox'):
           assertBooleanOrUndefined(value, 'Checkbox')
-          checkCheckbox(fieldElement, value, label)
+          checkCheckbox(fieldElement, value, label, controlledOptions.force)
 
           return
 
@@ -61,7 +67,7 @@ export function fill(label: string, value: any, leftRetries: number = RETRIES): 
 
         case fieldElement.classList.contains('Field-CheckPicker'):
           assertStringArrayOrUndefined(value, 'CheckPicker')
-          pickCheckPickerOptions(fieldElement, value, label)
+          pickCheckPickerOptions(fieldElement, value, label, controlledOptions.force)
 
           return
 
@@ -70,7 +76,7 @@ export function fill(label: string, value: any, leftRetries: number = RETRIES): 
 
         case fieldElement.classList.contains('Field-MultiSelect'):
           assertStringArrayOrUndefined(value, 'MultiSelect')
-          pickMultiSelectOptions(fieldElement, value, label)
+          pickMultiSelectOptions(fieldElement, value, label, controlledOptions.force)
 
           return
 
@@ -79,7 +85,7 @@ export function fill(label: string, value: any, leftRetries: number = RETRIES): 
 
         case fieldElement.classList.contains('Field-Search'):
           assertStringOrUndefined(value, 'Search')
-          pickSearchOption(fieldElement, value, label)
+          pickSearchOption(fieldElement, value, label, controlledOptions.force)
 
           return
 
@@ -88,7 +94,7 @@ export function fill(label: string, value: any, leftRetries: number = RETRIES): 
 
         case fieldElement.classList.contains('Field-Select'):
           assertStringOrUndefined(value, 'Select')
-          pickSelectOption(fieldElement, value, label)
+          pickSelectOption(fieldElement, value, label, controlledOptions.force)
 
           return
 
@@ -97,7 +103,7 @@ export function fill(label: string, value: any, leftRetries: number = RETRIES): 
 
         case fieldElement.classList.contains('Field-NumberInput'):
           assertNumberOrUndefined(value, 'TextInput')
-          fillNumberInput(fieldElement, value, label)
+          fillNumberInput(fieldElement, value, label, controlledOptions.force)
 
           return
 
@@ -106,7 +112,7 @@ export function fill(label: string, value: any, leftRetries: number = RETRIES): 
 
         case fieldElement.classList.contains('Field-Textarea'):
           assertStringOrUndefined(value, 'Textarea')
-          fillTextarea(fieldElement, value, label)
+          fillTextarea(fieldElement, value, label, controlledOptions.force)
 
           return
 
@@ -115,7 +121,7 @@ export function fill(label: string, value: any, leftRetries: number = RETRIES): 
 
         case fieldElement.classList.contains('Field-TextInput'):
           assertStringOrUndefined(value, 'TextInput')
-          fillTextInput(fieldElement, value, label)
+          fillTextInput(fieldElement, value, label, controlledOptions.force)
 
           return
 
@@ -140,7 +146,7 @@ export function fill(label: string, value: any, leftRetries: number = RETRIES): 
 
         case fieldsetElement.classList.contains('Field-DatePicker'):
           assertDateTupleOrDateWithTimeTupleOrUndefined(value, 'DatePicker')
-          fillDatePicker(fieldsetElement, value, label)
+          fillDatePicker(fieldsetElement, value, label, controlledOptions.force)
 
           return
 
@@ -149,7 +155,7 @@ export function fill(label: string, value: any, leftRetries: number = RETRIES): 
 
         case fieldsetElement.classList.contains('Field-DateRangePicker'):
           assertDateRangeTupleOrDateWithTimeRangeTupleOrUndefined(value, 'DateRangePicker')
-          fillDateRangePicker(fieldsetElement, value, label)
+          fillDateRangePicker(fieldsetElement, value, label, controlledOptions.force)
 
           return
 
@@ -158,7 +164,7 @@ export function fill(label: string, value: any, leftRetries: number = RETRIES): 
 
         case fieldsetElement.classList.contains('Field-MultiCheckbox'):
           assertStringArrayOrUndefined(value, 'MultiCheckbox')
-          checkMultiCheckboxOptions(fieldsetElement, value, label)
+          checkMultiCheckboxOptions(fieldsetElement, value, label, controlledOptions.force)
 
           return
 
@@ -167,7 +173,7 @@ export function fill(label: string, value: any, leftRetries: number = RETRIES): 
 
         case fieldsetElement.classList.contains('Field-MultiRadio'):
           assertString(value, 'MultiRadio')
-          checkMultiRadioOption(fieldsetElement, value, label)
+          checkMultiRadioOption(fieldsetElement, value, label, controlledOptions.force)
 
           return
 
@@ -178,11 +184,16 @@ export function fill(label: string, value: any, leftRetries: number = RETRIES): 
 
     throwError(`Could not find a field labelled by a \`<label />\` or \`<legend />\` "${label}".`)
   } catch (err: any) {
-    if (leftRetries > 0) {
+    if (controlledOptions.retries > 0) {
       cy.wait(250).then(() => {
-        cy.log(`[monitor-ui > Cypress] Retrying (${RETRIES - leftRetries + 1} / ${RETRIES})...`)
+        cy.log(
+          `[monitor-ui > Cypress] Retrying (${TOTAL_RETRIES - controlledOptions.retries + 1} / ${TOTAL_RETRIES})...`
+        )
 
-        fill(label, value, leftRetries - 1)
+        fill(label, value, {
+          ...controlledOptions,
+          retries: controlledOptions.retries - 1
+        })
       })
 
       return
@@ -203,7 +214,7 @@ export function fill(label: string, value: any, leftRetries: number = RETRIES): 
 
     throwError(
       [
-        `Could not find or fill field with label or legend "${label}" after ${RETRIES} attempts.`,
+        `Could not find or fill field with label or legend "${label}" after ${TOTAL_RETRIES} attempts.`,
         `This error was thrown: “${normalizedError.message}”`,
         `Please check the Cypress "- ERROR" log above for more details.`
       ].join('\n')
