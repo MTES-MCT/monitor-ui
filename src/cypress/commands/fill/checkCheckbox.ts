@@ -1,4 +1,9 @@
-export function checkCheckbox(fieldElement: HTMLDivElement, value: boolean | undefined, _label: string) {
+export function checkCheckbox(
+  fieldElement: HTMLDivElement,
+  value: boolean | undefined,
+  _label: string,
+  force: boolean
+) {
   Cypress.log({
     consoleProps: () => ({
       'Applied to': fieldElement,
@@ -10,8 +15,8 @@ export function checkCheckbox(fieldElement: HTMLDivElement, value: boolean | und
   cy.wrap(fieldElement).scrollIntoView({ offset: { left: 0, top: -100 } })
 
   if (value) {
-    cy.wrap(fieldElement).find('input[type="checkbox"]').forceCheck().wait(250)
+    cy.wrap(fieldElement).find('input[type="checkbox"]').check({ force }).wait(250)
   } else {
-    cy.wrap(fieldElement).find('input[type="checkbox"]').forceUncheck().wait(250)
+    cy.wrap(fieldElement).find('input[type="checkbox"]').uncheck({ force }).wait(250)
   }
 }
