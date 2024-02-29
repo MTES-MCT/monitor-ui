@@ -1,3 +1,19 @@
+## [12.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v12.1.3...v12.2.0) (2024-02-29)
+
+
+### Features
+
+* **cypress:** add forceCheck() command ([ab382b7](https://github.com/MTES-MCT/monitor-ui/commit/ab382b76e6569e80f305c3abffe9133a2d5cac0c))
+* **cypress:** add forceClear() command ([ebd5ad8](https://github.com/MTES-MCT/monitor-ui/commit/ebd5ad86249aaf333ce088b06561b5827bd8a156))
+* **cypress:** add forceType() command ([c6017a1](https://github.com/MTES-MCT/monitor-ui/commit/c6017a1b3c0f480b5595563102ff1778d1961841))
+* **cypress:** add forceUncheck() command ([d75171a](https://github.com/MTES-MCT/monitor-ui/commit/d75171ab811bd7cbebd61efa617b4d67c2ea874b))
+
+
+### Bug Fixes
+
+* **cypress:** force all actions in fill() subcommands ([359b752](https://github.com/MTES-MCT/monitor-ui/commit/359b752fbc4186ebfb9e9d2d1a6ba7b8114a6249))
+* **cypress:** upse native uncheck for fill() on MultiCheckbox ([f9e2ef9](https://github.com/MTES-MCT/monitor-ui/commit/f9e2ef9a7b80834d28034f4f3303590ae1ee8e9d))
+
 ## [12.1.3](https://github.com/MTES-MCT/monitor-ui/compare/v12.1.2...v12.1.3) (2024-02-29)
 
 
