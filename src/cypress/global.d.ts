@@ -47,6 +47,7 @@ declare namespace Cypress {
     fill(label: string, value: any, retries?: number): Chainable<Element>
 
     forceCheck(options?: Partial<Cypress.CheckOptions>): Chainable<JQuery<HTMLElement>>
+    forceClear(options?: Partial<Cypress.ClearOptions>): Chainable<JQuery<HTMLElement>>
     forceClick(options?: Partial<Cypress.ClickOptions>): Chainable<JQuery<HTMLElement>>
     forceType(text: string, options?: Partial<Cypress.TypeOption>): Chainable<JQuery<HTMLElement>>
     forceUncheck(options?: Partial<Cypress.CheckOptions>): Chainable<JQuery<HTMLElement>>
