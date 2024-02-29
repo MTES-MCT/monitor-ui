@@ -1,3 +1,22 @@
+## [12.1.3](https://github.com/MTES-MCT/monitor-ui/compare/v12.1.2...v12.1.3) (2024-02-29)
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @commitlint/config-conventional ([45fcba7](https://github.com/MTES-MCT/monitor-ui/commit/45fcba7f342dc70c4e29b3cd3d3cb2b0b02cc69a))
+
+
+### Documentation
+
+* **readme:** add Cypress badge ([f580fb9](https://github.com/MTES-MCT/monitor-ui/commit/f580fb93db6c38d38a6260a22697780ab22c5757))
+* **readme:** add documentation badge ([5057133](https://github.com/MTES-MCT/monitor-ui/commit/5057133e7431edcbdd182ff1bbc6dc82aef7a991))
+
+
+### Bug Fixes
+
+* **cypress:** fix forceClick() ability to be properly chained with other commands ([ffc733c](https://github.com/MTES-MCT/monitor-ui/commit/ffc733c22999f47a65408bb45a6728df26828839))
+* **cypress:** use forced click instead of click in fill() on MultiSelect ([b14f63a](https://github.com/MTES-MCT/monitor-ui/commit/b14f63a890ce355ed66d3b64e22f65d2936c40cb))
+
 ## [12.1.2](https://github.com/MTES-MCT/monitor-ui/compare/v12.1.1...v12.1.2) (2024-02-28)
 
 
