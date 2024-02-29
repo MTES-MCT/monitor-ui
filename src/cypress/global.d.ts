@@ -46,7 +46,8 @@ declare namespace Cypress {
      */
     fill(label: string, value: any, retries?: number): Chainable<Element>
 
-    forceClick(): Chainable<JQuery<HTMLElement>>
+    forceClick(options?: Partial<Cypress.ClickOptions>): Chainable<JQuery<HTMLElement>>
+    forceType(text: string, options?: Partial<Cypress.TypeOption>): Chainable<JQuery<HTMLElement>>
 
     /**
      * @example
