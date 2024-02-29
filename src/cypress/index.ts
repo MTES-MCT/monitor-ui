@@ -2,6 +2,7 @@ import { clickButton } from './commands/clickButton'
 import { clickLink } from './commands/clickLink'
 import { clickOutside } from './commands/clickOutside'
 import { fill } from './commands/fill'
+import { forceCheck } from './commands/forceCheck'
 import { forceClick } from './commands/forceClick'
 import { forceType } from './commands/forceType'
 import { getDataCy } from './commands/getDataCy'
@@ -15,6 +16,7 @@ export const registerMonitorUiCustomCommands = () => {
   Cypress.Commands.add('waitForLastRequest', waitForLastRequest)
   Cypress.Commands.add('clickOutside', clickOutside)
   Cypress.Commands.add('fill', fill)
+  Cypress.Commands.add('forceCheck', { prevSubject: true }, forceCheck)
   Cypress.Commands.add('forceClick', { prevSubject: true }, forceClick)
   Cypress.Commands.add('forceType', { prevSubject: true }, forceType)
   Cypress.Commands.add('getDataCy', getDataCy)
