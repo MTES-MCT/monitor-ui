@@ -4,16 +4,13 @@ import { LOREM_IPSUM } from './fake_text'
 
 import type { Option } from 'index'
 
-export const FAKE_STRING_OPTIONS: Array<Option<string>> = [
-  { label: 'First Option', value: 'FIRST_OPTION' },
-  { label: 'Second Option', value: 'SECOND_OPTION' },
-  { label: 'Third Option', value: 'THIRD_OPTION' },
-  { label: LOREM_IPSUM, value: 'CHATTY_OPTION' },
-  { isDisabled: true, label: 'Disabled Option', value: 'DISABLED_OPTION' }
+export const FAKE_BOOLEAN_OPTIONS: Array<Option<boolean>> = [
+  { label: 'Yes', value: true },
+  { label: 'No', value: false }
 ]
-export const FAKE_STRING_OPTIONS_AS_LABELS: string[] = FAKE_STRING_OPTIONS.map(option => option.label)
-export const FAKE_STRING_OPTIONS_AS_MAPPING: Record<string, string> = fromPairs(
-  FAKE_STRING_OPTIONS.map(option => [option.label, option.value])
+export const FAKE_BOOLEAN_OPTIONS_AS_LABELS: string[] = FAKE_BOOLEAN_OPTIONS.map(option => option.label)
+export const FAKE_BOOLEAN_OPTIONS_AS_MAPPING: Record<string, string> = fromPairs(
+  FAKE_BOOLEAN_OPTIONS.map(option => [option.label, String(option.value).toUpperCase()])
 )
 
 export const FAKE_NUMBER_OPTIONS: Array<Option<number>> = [
@@ -42,4 +39,16 @@ export const FAKE_OBJECT_OPTIONS: Array<Option<FakeObjectOptionValue>> = [
 export const FAKE_OBJECT_OPTIONS_AS_LABELS: string[] = FAKE_OBJECT_OPTIONS.map(option => option.label)
 export const FAKE_OBJECT_OPTIONS_AS_MAPPING: Record<string, FakeObjectOptionValue> = fromPairs(
   FAKE_OBJECT_OPTIONS.map(option => [option.label, option.value])
+)
+
+export const FAKE_STRING_OPTIONS: Array<Option<string>> = [
+  { label: 'First Option', value: 'FIRST_OPTION' },
+  { label: 'Second Option', value: 'SECOND_OPTION' },
+  { label: 'Third Option', value: 'THIRD_OPTION' },
+  { label: LOREM_IPSUM, value: 'CHATTY_OPTION' },
+  { isDisabled: true, label: 'Disabled Option', value: 'DISABLED_OPTION' }
+]
+export const FAKE_STRING_OPTIONS_AS_LABELS: string[] = FAKE_STRING_OPTIONS.map(option => option.label)
+export const FAKE_STRING_OPTIONS_AS_MAPPING: Record<string, string> = fromPairs(
+  FAKE_STRING_OPTIONS.map(option => [option.label, option.value])
 )
