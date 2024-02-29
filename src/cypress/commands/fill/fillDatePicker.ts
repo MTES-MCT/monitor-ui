@@ -5,7 +5,7 @@ export function fillDatePicker(
   dateOrDateWithTimeTuple: Cypress.DateTuple | Cypress.DateWithTimeTuple | undefined,
   _label: string,
   force: boolean
-): void {
+) {
   Cypress.log({
     consoleProps: () => ({
       'Applied to': fieldsetElement,

@@ -27,9 +27,10 @@ declare namespace Cypress {
     /**
      * @description
      * You can set the `retries` option to a number greater than 5 (default) to retry the action in case of failure.
-     * You can also set the `forced` option to `true` to force the action without waiting for the element to be visible.
+     * You can also set the `force` option to `true` to force the action without waiting for the element to be visible.
      *
-     * ⚠️ In order to ensure backward compatibility, the `forced` option is set to `true` by default.
+     * ⚠️ In order to ensure backward compatibility, the `force` option is set to `true` by default.
+     * This will be changed to `false` in the next major version.
      *
      * @example
      * ```ts
@@ -47,7 +48,7 @@ declare namespace Cypress {
      *   cy.fill('My Field', undefined)
      * ```
      */
-    fill(label: string, value: any, options?: Partial<FillOptions>): Chainable<Element>
+    fill(label: string, value: any, options?: Partial<FillOptions>): void
 
     forceCheck(options?: Partial<CheckOptions>): Chainable<JQuery<HTMLElement>>
     forceClear(options?: Partial<ClearOptions>): Chainable<JQuery<HTMLElement>>

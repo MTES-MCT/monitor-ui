@@ -5,7 +5,7 @@ export function fillDateRangePicker(
   dateOrDateWithTimeTupleRange: Cypress.DateRangeTuple | Cypress.DateWithTimeRangeTuple | undefined,
   _label: string,
   force: boolean
-): void {
+) {
   Cypress.log({
     consoleProps: () => ({
       'Applied to': fieldsetElement,
