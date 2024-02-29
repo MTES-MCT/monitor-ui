@@ -27,7 +27,7 @@ import { throwError } from '../../utils/throwError'
 
 let TOTAL_RETRIES: number
 
-export function fill(label: string, value: any, options: Partial<Cypress.FillOptions> = {}): void {
+export function fill(label: string, value: any, options: Partial<Cypress.FillOptions> = {}) {
   const controlledOptions = { ...DEFAULT_OPTIONS, ...options }
   if (!TOTAL_RETRIES) {
     TOTAL_RETRIES = controlledOptions.retries
