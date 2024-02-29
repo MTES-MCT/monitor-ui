@@ -1,3 +1,15 @@
+## [12.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v12.2.1...v12.3.0) (2024-02-29)
+
+
+### Features
+
+* **cypress:** add force option to fill() command ([538615f](https://github.com/MTES-MCT/monitor-ui/commit/538615f64fbdbfce3cb4b71eabb4bea5c9c9b919))
+
+
+### Bug Fixes
+
+* **cypress:** type fill() command as non-chainable ([d4b5c35](https://github.com/MTES-MCT/monitor-ui/commit/d4b5c3568177b44f591462e2ecbf3ba9a39fdb64))
+
 ## [12.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v12.2.0...v12.2.1) (2024-02-29)
 
 
