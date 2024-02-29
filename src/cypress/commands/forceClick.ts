@@ -1,10 +1,4 @@
-export function forceClick([subject]: Cypress.Chainable<Cypress.JQueryWithSelector>[]): Cypress.Chainable<
-  JQuery<HTMLElement>
-> {
-  if (!subject) {
-    throw new Error(`Could not find subject.`)
-  }
-
+export function forceClick<Subject = any>(this: Mocha.Context, subject: Subject): Cypress.Chainable<Subject> {
   Cypress.log({
     consoleProps: () => ({
       'Applied to': subject,
@@ -13,9 +7,11 @@ export function forceClick([subject]: Cypress.Chainable<Cypress.JQueryWithSelect
     name: 'forceClick'
   })
 
-  try {
-    return subject.click({ force: true })
-  } catch (_) {
-    return cy.wrap(subject as any).click({ force: true })
+  if (!subject) {
+    throw new Error(`Could not find subject.`)
   }
+
+  const wrappedSubject = cy.wrap<Subject>(subject)
+
+  return wrappedSubject.click({ force: true })
 }
