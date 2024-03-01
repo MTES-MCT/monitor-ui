@@ -132,7 +132,17 @@ export const StyledRsuitePickerBox = styled.div<CommonPickerFieldStyleProps>`
     border: solid 1px ${p => p.theme.color.gainsboro};
     border-radius: 0;
     padding: 0;
-    width: 100%;
+
+    ${p =>
+      p.$popupWidth
+        ? `
+      max-width: ${p.$popupWidth}px;
+      min-width: ${p.$popupWidth}px !important;
+      width: ${p.$popupWidth}px;
+      `
+        : `
+      width: 100%;
+    `};
 
     > .rs-search-box {
       padding: 8px;

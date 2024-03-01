@@ -31,6 +31,8 @@ const meta: Meta<MultiSelectProps> = {
     isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
     options: ARG_TYPE.NO_CONTROL_INPUT,
     optionValueKey: ARG_TYPE.OPTIONAL_OPTION_VALUE_KEY,
+    placeholder: ARG_TYPE.OPTIONAL_STRING,
+    popupWidth: ARG_TYPE.OPTIONAL_NUMBER,
     readOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
     searchable: ARG_TYPE.BOOLEAN,
     value: {
@@ -56,6 +58,7 @@ const meta: Meta<MultiSelectProps> = {
     name: 'myMultiSelect',
     options: FAKE_STRING_OPTIONS,
     placeholder: 'A multiple select. Pick some options:',
+    popupWidth: undefined,
     readOnly: false,
     searchable: true,
     virtualized: false

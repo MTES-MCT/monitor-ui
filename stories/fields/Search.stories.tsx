@@ -31,6 +31,8 @@ const meta: Meta<SearchProps> = {
     isTransparent: ARG_TYPE.OPTIONAL_BOOLEAN,
     isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
     options: ARG_TYPE.NO_CONTROL_INPUT,
+    placeholder: ARG_TYPE.OPTIONAL_STRING,
+    popupWidth: ARG_TYPE.OPTIONAL_NUMBER,
     readOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
     value: {
       ...ARG_TYPE.OPTIONAL_OPTION_VALUE,
@@ -56,6 +58,7 @@ const meta: Meta<SearchProps> = {
     name: 'mySearch',
     options: FAKE_STRING_OPTIONS,
     placeholder: 'Type "first"',
+    popupWidth: undefined,
     readOnly: false,
     size: undefined
   },

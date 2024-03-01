@@ -14,7 +14,7 @@ export type CommonChoiceFieldStyleProps = CommonFieldStyleProps & {
 }
 
 export type CommonPickerFieldStyleProps = CommonFieldStyleProps & {
-  // $popupWidth: number | undefined
+  $popupWidth: number | undefined
 }
 
 export type PseudoState = 'default' | 'focus' | 'hover' | 'active'

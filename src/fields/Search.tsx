@@ -49,7 +49,7 @@ export type SearchProps<OptionValue extends OptionValueType = string> = Omit<
   onQuery?: (nextQuery: string | undefined) => Promisable<void>
   optionValueKey?: keyof OptionValue | undefined
   options?: Option<OptionValue>[]
-  // popupWidth?: number | undefined
+  popupWidth?: number | undefined
   readOnly?: boolean | undefined
   size?: Size | undefined
   value?: OptionValue | undefined
@@ -72,8 +72,8 @@ export function Search<OptionValue extends OptionValueType = string>({
   onQuery,
   options = [],
   optionValueKey,
+  popupWidth,
   readOnly = false,
-  // popupWidth,
   size = Size.NORMAL,
   style,
   value,
@@ -200,7 +200,6 @@ export function Search<OptionValue extends OptionValueType = string>({
         $isReadOnly={readOnly}
         $isTransparent={isTransparent}
         $size={size}
-        // $popupWidth={popupWidth}
       >
         {boxRef.current && (
           <RsuiteAutoComplete
@@ -249,7 +248,7 @@ export function Search<OptionValue extends OptionValueType = string>({
         $isLight={isLight}
         $isReadOnly={readOnly}
         $isTransparent={isTransparent}
-        // $popupWidth={popupWidth}
+        $popupWidth={popupWidth}
       />
 
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
