@@ -31,6 +31,10 @@
             "release": "major"
           },
           {
+            "type": "chore",
+            "release": false
+          },
+          {
             "type": "ci",
             "release": false
           },
@@ -82,43 +86,8 @@
         "presetConfig": {
           "types": [
             {
-              "type": "build",
-              "section": "Buid System & Dependencies",
-              "hidden": false
-            },
-            {
-              "type": "ci",
-              "section": "Continuous Integration",
-              "hidden": true
-            },
-            {
-              "type": "docs",
-              "section": "Documentation",
-              "hidden": false
-            },
-            {
               "type": "feat",
               "section": "Features",
-              "hidden": false
-            },
-            {
-              "type": "fix",
-              "section": "Bug Fixes",
-              "hidden": false
-            },
-            {
-              "type": "lint",
-              "section": "Linting",
-              "hidden": true
-            },
-            {
-              "type": "perf",
-              "section": "Performance Improvements",
-              "hidden": false
-            },
-            {
-              "type": "refactor",
-              "section": "Code Refactoring",
               "hidden": false
             },
             {
@@ -130,6 +99,46 @@
               "type": "style",
               "section": "Styles",
               "hidden": false
+            },
+            {
+              "type": "fix",
+              "section": "Bug Fixes",
+              "hidden": false
+            },
+            {
+              "type": "refactor",
+              "section": "Code Refactoring",
+              "hidden": false
+            },
+            {
+              "type": "perf",
+              "section": "Performance Improvements",
+              "hidden": false
+            },
+            {
+              "type": "build",
+              "section": "Buid System & Dependencies",
+              "hidden": false
+            },
+            {
+              "type": "docs",
+              "section": "Documentation",
+              "hidden": false
+            },
+            {
+              "type": "chore",
+              "section": "Chores",
+              "hidden": true
+            },
+            {
+              "type": "ci",
+              "section": "Continuous Integration",
+              "hidden": true
+            },
+            {
+              "type": "lint",
+              "section": "Linting",
+              "hidden": true
             },
             {
               "type": "test",
