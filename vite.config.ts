@@ -12,7 +12,12 @@ export default defineConfig({
     outDir: './build'
   },
 
-  plugins: [react(), viteTsconfigPaths()],
+  plugins: [
+    react(),
+    viteTsconfigPaths({
+      projects: ['./tsconfig.json']
+    })
+  ],
 
   server: {
     port: 3000
