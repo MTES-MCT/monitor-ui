@@ -94,7 +94,6 @@
     "browser-assert": "1.2.1",
     "chromatic": "6.19.9",
     "classnames": "2.3.2",
-    "codecov": "3.8.3",
     "cypress": "13.6.6",
     "date-fns": "2.30.0",
     "dayjs": "1.11.10",

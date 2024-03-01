@@ -2,7 +2,11 @@
 
 export default {
   clearMocks: true,
-  collectCoverageFrom: ['<rootDir>/src/utils/*.ts', '<rootDir>/src/**/utils.ts'],
+  collectCoverageFrom: [
+    '<rootDir>/src/**/hooks/*.{ts,tsx}',
+    '<rootDir>/src/utils/*.{ts,tsx}',
+    '<rootDir>/src/**/utils.{ts,tsx}'
+  ],
   maxWorkers: '50%',
   rootDir: '..',
   testEnvironment: 'jsdom',
