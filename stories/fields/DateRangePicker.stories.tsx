@@ -18,6 +18,7 @@ const meta: Meta<DateRangePickerWithDateDateProps> = {
   component: DateRangePicker,
 
   argTypes: {
+    baseContainer: ARG_TYPE.OPTIONAL_BASE_CONTAINER,
     defaultValue: {
       ...ARG_TYPE.NO_CONTROL_INPUT,
       table: {
