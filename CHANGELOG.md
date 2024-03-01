@@ -1,3 +1,24 @@
+## [13.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v12.4.0...v13.0.0) (2024-03-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **github:** - `baseContainer` prop has been removed in `MultiCascader`.
+- `baseContainer` prop has been removed in `MultiSelect`.
+- `baseContainer` prop has been removed in `Search`.
+
+### Buid System & Dependencies
+
+* **tsconfig:** exclude coverage/ directory ([f5a42a8](https://github.com/MTES-MCT/monitor-ui/commit/f5a42a87195b4a9181b48e2bbb4f81dc3531178f))
+* **tsconfig:** migrate to bundler module resolution & enable incremental compilation ([c677f77](https://github.com/MTES-MCT/monitor-ui/commit/c677f77cee788683a30681ed48659ab65fb09f9a))
+* **vite:** set projects in viteTsconfigPaths to silence e2e release sample errors ([dfa7bfa](https://github.com/MTES-MCT/monitor-ui/commit/dfa7bfae8f7004ca45ff6a06bf9b61e7d8a214f3))
+* **vite:** use ts extension instead of mts for config ([4eaaedc](https://github.com/MTES-MCT/monitor-ui/commit/4eaaedc923127dc5cf060bd383832361853598ab))
+
+
+### Continuous Integration
+
+* **github:** fix typo in E2E Test job ([26f4809](https://github.com/MTES-MCT/monitor-ui/commit/26f4809070878c7438ea7daaeb135de7cc0e89c3))
+
 ## [12.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v12.3.0...v12.4.0) (2024-03-01)
 
 
