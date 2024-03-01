@@ -8,7 +8,7 @@ import {
   FAKE_STRING_OPTIONS_AS_LABELS,
   FAKE_STRING_OPTIONS_AS_MAPPING
 } from '../../__mocks__/fake_options'
-import { Search } from '../../src'
+import { Search, useFieldControl } from '../../src'
 
 import type { SearchProps } from '../../src'
 import type { Meta } from '@storybook/react'
@@ -25,7 +25,9 @@ const meta: Meta<SearchProps> = {
     error: ARG_TYPE.OPTIONAL_STRING,
     isErrorMessageHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
     isLabelHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+    size: ARG_TYPE.OPTIONAL_SIZE,
     isLight: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isSearchIconHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
     isTransparent: ARG_TYPE.OPTIONAL_BOOLEAN,
     isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
     options: ARG_TYPE.NO_CONTROL_INPUT,
@@ -48,18 +50,21 @@ const meta: Meta<SearchProps> = {
     isLabelHidden: false,
     isLight: false,
     isTransparent: false,
+    isSearchIconHidden: false,
     isUndefinedWhenDisabled: false,
     label: 'An autocomplete search input. Pick one option:',
     name: 'mySearch',
     options: FAKE_STRING_OPTIONS,
     placeholder: 'Type "first"',
-    readOnly: false
+    readOnly: false,
+    size: undefined
   },
 
   decorators: [
     generateStoryDecorator({
       box: { width: 640 },
-      withBackgroundButton: true
+      withBackgroundButton: true,
+      withNewWindowButton: true
     })
   ]
 }
@@ -70,9 +75,11 @@ export default meta
 export function _Search(props: SearchProps) {
   const [outputValue, setOutputValue] = useState<any | undefined | '∅'>('∅')
 
+  const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
+
   return (
     <>
-      <Search {...props} MenuItem={undefined} onChange={setOutputValue} />
+      <Search {...props} MenuItem={undefined} onChange={controlledOnChange} value={controlledValue} />
 
       {outputValue !== '∅' && <Output value={outputValue} />}
     </>

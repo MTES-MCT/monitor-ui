@@ -44,6 +44,7 @@ const meta: Meta<TextInputProps> = {
     name: 'myTextInput',
     placeholder: 'A text input placeholder',
     readOnly: false,
+    size: undefined,
     value: ''
   },
 

@@ -39,6 +39,7 @@ import {
 } from '../DateRangePicker/utils'
 
 import type { DateInputRef, DateTuple, TimeInputRef, TimeTuple } from '../DateRangePicker/types'
+import type { CommonFieldStyleProps } from 'fields/shared/types'
 import type { HTMLAttributes } from 'react'
 import type { Promisable } from 'type-fest'
 
@@ -328,7 +329,14 @@ export function DatePicker({
       style={style}
       {...nativeProps}
     >
-      <Box ref={boxRef} $hasError={hasError} $isDisabled={disabled} $isReadOnly={readOnly}>
+      <Box
+        ref={boxRef}
+        $hasError={hasError}
+        $isDisabled={disabled}
+        $isLight={isLight}
+        $isReadOnly={readOnly}
+        $isTransparent={isTransparent}
+      >
         <Field>
           <DateInput
             ref={dateInputRef}
@@ -384,11 +392,7 @@ export function DatePicker({
   )
 }
 
-const Box = styled.div<{
-  $hasError: boolean
-  $isDisabled: boolean
-  $isReadOnly: boolean
-}>`
+const Box = styled.div<CommonFieldStyleProps>`
   * {
     ${p => p.$isReadOnly && `cursor: default;`}
     font-weight: 500;

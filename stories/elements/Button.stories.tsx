@@ -26,6 +26,7 @@ const meta: Meta<ButtonProps> = {
     children: 'A label',
     Icon: undefined,
     isFullWidth: false,
+    size: undefined,
     withUnpropagatedClick: false
   },
 

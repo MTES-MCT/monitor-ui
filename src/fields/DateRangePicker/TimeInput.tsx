@@ -17,6 +17,7 @@ import { Clock } from '../../icons'
 
 import type { NumberInputProps } from './NumberInput'
 import type { TimeInputRef, TimeTuple } from './types'
+import type { CommonFieldStyleProps } from 'fields/shared/types'
 import type { ForwardedRef } from 'react'
 import type { Promisable } from 'type-fest'
 
@@ -265,15 +266,12 @@ function TimeInputWithRef(
 
 export const TimeInput = forwardRef(TimeInputWithRef)
 
-const Box = styled.div<{
-  $hasError: boolean
-  $isCompact: boolean
-  $isDisabled: boolean
-  $isFocused: boolean
-  $isLight: boolean
-  $isReadOnly: boolean
-  $isTransparent: boolean
-}>`
+const Box = styled.div<
+  CommonFieldStyleProps & {
+    $isCompact: boolean
+    $isFocused: boolean
+  }
+>`
   background-color: ${getFieldBackgroundColorFactory()};
   border: solid 1px ${getFieldBorderColorFactoryForState('default')};
   color: ${getFieldPlaceholderColorFactoryForState('default')};

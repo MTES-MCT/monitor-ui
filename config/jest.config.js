@@ -14,9 +14,11 @@ export default {
         jsc: {
           baseUrl: './src',
           paths: {
+            '@constants': ['constants.ts'],
             '@elements/*': ['elements/*'],
             '@hooks/*': ['hooks/*'],
             '@libs/*': ['libs/*'],
+            '@theme': ['theme.ts'],
             '@types_/*': ['types/*'],
             '@utils/*': ['utils/*']
           },

@@ -51,6 +51,7 @@ import { customDayjs } from '../../utils/customDayjs'
 import { normalizeString } from '../../utils/normalizeString'
 
 import type { DateAsStringRange, DateRange } from '../../types/definitions'
+import type { CommonFieldStyleProps } from 'fields/shared/types'
 import type { HTMLAttributes } from 'react'
 import type { Promisable } from 'type-fest'
 
@@ -459,7 +460,13 @@ export function DateRangePicker({
       style={style}
       {...nativeProps}
     >
-      <Box $hasError={hasError} $isDisabled={disabled} $isReadOnly={readOnly}>
+      <Box
+        $hasError={hasError}
+        $isDisabled={disabled}
+        $isLight={isLight}
+        $isReadOnly={readOnly}
+        $isTransparent={isTransparent}
+      >
         <Field>
           <DateInput
             ref={startDateInputRef}
@@ -570,11 +577,7 @@ export function DateRangePicker({
   )
 }
 
-const Box = styled.div<{
-  $hasError: boolean
-  $isDisabled: boolean
-  $isReadOnly: boolean
-}>`
+const Box = styled.div<CommonFieldStyleProps>`
   * {
     ${p => p.$isReadOnly && `cursor: default;`}
     font-weight: 500;

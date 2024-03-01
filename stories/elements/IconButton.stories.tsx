@@ -28,7 +28,7 @@ const meta: Meta<IconButtonProps> = {
     accent: Accent.PRIMARY,
     Icon: Icon.Close,
     isCompact: false,
-    size: Size.NORMAL,
+    size: undefined,
     withUnpropagatedClick: false
   },
 

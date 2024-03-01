@@ -13,4 +13,8 @@ export type CommonChoiceFieldStyleProps = CommonFieldStyleProps & {
   $isChecked: boolean
 }
 
+export type CommonPickerFieldStyleProps = CommonFieldStyleProps & {
+  // $popupWidth: number | undefined
+}
+
 export type PseudoState = 'default' | 'focus' | 'hover' | 'active'

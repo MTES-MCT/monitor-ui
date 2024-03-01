@@ -6,14 +6,9 @@ import {
   getFieldPlaceholderColorFactoryForState
 } from './utils'
 
-type StyledRsuitePickerBoxProps = {
-  $hasError: boolean
-  $isDisabled: boolean
-  $isLight: boolean
-  $isReadOnly: boolean
-  $isTransparent: boolean
-}
-export const StyledRsuitePickerBox = styled.div<StyledRsuitePickerBoxProps>`
+import type { CommonPickerFieldStyleProps } from './types'
+
+export const StyledRsuitePickerBox = styled.div<CommonPickerFieldStyleProps>`
   font-size: 13px !important;
   position: relative;
   user-select: none;
@@ -23,7 +18,8 @@ export const StyledRsuitePickerBox = styled.div<StyledRsuitePickerBoxProps>`
     ${p => p.$isReadOnly && `cursor: default !important;`}
   }
 
-  > .rs-picker-toggle-wrapper {
+  > .rs-picker-toggle-wrapper,
+  > .rs-auto-complete {
     background-color: transparent;
     border: 0;
     /* Remove focus ring (TagPicker) */

@@ -37,6 +37,7 @@ export type MultiCascaderProps<OptionValue extends OptionValueType = string> = O
   name: string
   onChange?: (nextValue: OptionValue[] | undefined) => Promisable<void>
   options: TreeOption<OptionValue>[]
+  // popupWidth?: number | undefined
   readonly?: boolean | undefined
   value?: OptionValue[] | undefined
 }
@@ -52,6 +53,7 @@ export function MultiCascader<OptionValue extends OptionValueType = string>({
   label,
   onChange,
   options,
+  // popupWidth,
   readOnly = false,
   searchable = false,
   style,
@@ -110,6 +112,7 @@ export function MultiCascader<OptionValue extends OptionValueType = string>({
         $isLight={isLight}
         $isReadOnly={readOnly}
         $isTransparent={isTransparent}
+        // $popupWidth={popupWidth}
       >
         {boxRef.current && (
           <RsuiteMultiCascader

@@ -38,6 +38,7 @@ export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omi
   onChange?: (nextValue: OptionValue[] | undefined) => Promisable<void>
   optionValueKey?: keyof OptionValue | undefined
   options: Option<OptionValue>[]
+  // popupWidth?: number | undefined
   value?: OptionValue[] | undefined
 }
 export function MultiSelect<OptionValue extends OptionValueType = string>({
@@ -55,6 +56,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   onChange,
   options,
   optionValueKey,
+  // popupWidth,
   readOnly = false,
   searchable = false,
   style,
@@ -136,6 +138,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
         $isLight={isLight}
         $isReadOnly={readOnly}
         $isTransparent={isTransparent}
+        // $popupWidth={popupWidth}
       >
         {boxRef.current && (
           <TagPicker
@@ -192,6 +195,7 @@ const Box = styled(StyledRsuitePickerBox)`
           background-color: ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
           font-size: 11px;
           line-height: 1.3636; // = 15px
+          padding: 1px 27px 3px 8px;
           margin: 5px 0 0 5px;
 
           > .rs-tag-icon-close {

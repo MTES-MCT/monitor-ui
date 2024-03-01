@@ -14,6 +14,7 @@ export const INITIAL_VALUES = {
   myMultiSelect: ['FIRST_OPTION', 'SECOND_OPTION'],
   myNumberInput: 42,
   myRichBooleanCheckbox: RichBoolean.TRUE,
+  mySearch: 'FIRST_OPTION',
   mySelect: 'FIRST_OPTION',
   myTextarea: 'Some text',
   myTextInput: 'Some text',

@@ -83,7 +83,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
       legend={label}
       style={style}
     >
-      <ChecboxesBox key={key} $isInline={isInline} $isReadOnly={readOnly}>
+      <ChecboxesBox key={key} $isInline={isInline}>
         {options.map((option, index) => (
           <Checkbox
             key={JSON.stringify(option.value)}
@@ -107,7 +107,6 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
 
 const ChecboxesBox = styled.div<{
   $isInline: boolean
-  $isReadOnly: boolean
 }>`
   color: ${p => p.theme.color.gunMetal};
   display: flex;
