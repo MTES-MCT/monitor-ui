@@ -2871,7 +2871,6 @@ __metadata:
     "@types/jabber": "npm:1.2.0"
     "@types/jest": "npm:29.5.2"
     "@types/node": "npm:20.9.0"
-    "@types/ramda": "npm:0.28.23"
     "@types/react": "npm:18.2.37"
     "@types/react-dom": "npm:18.2.17"
     "@types/sha1": "npm:1.1.3"
@@ -2920,7 +2919,6 @@ __metadata:
     postcss: "npm:8.4.31"
     prettier: "npm:3.1.1"
     prop-types: "npm:15.8.1"
-    ramda: "npm:0.29.1"
     react: "npm:18.2.0"
     react-coordinate-input: "npm:1.0.0"
     react-dom: "npm:18.2.0"
@@ -5946,15 +5944,6 @@ __metadata:
   version: 6.9.11
   resolution: "@types/qs@npm:6.9.11"
   checksum: 657a50f05b694d6fd3916d24177cfa0f3b8b87d9deff4ffa4dddcb0b03583ebf7c47b424b8de400270fb9a5cc1e9cf790dd82c833c6935305851e7da8ede3ff5
-  languageName: node
-  linkType: hard
-
-"@types/ramda@npm:0.28.23":
-  version: 0.28.23
-  resolution: "@types/ramda@npm:0.28.23"
-  dependencies:
-    ts-toolbelt: "npm:^6.15.1"
-  checksum: a46f2c436718c601ccb6500e412dce38761d43855f7142d168499bbaa42c1e3cd1bcb8e4713611fded7e360f6855ef7a6d927651c8d95f383bca35507662d608
   languageName: node
   linkType: hard
 
@@ -17187,13 +17176,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ramda@npm:0.29.1":
-  version: 0.29.1
-  resolution: "ramda@npm:0.29.1"
-  checksum: 5de53a07400959c1a704c366ec52b1b8cd9a444dc1f9cdf17d607e0b9eeaa38cbaea309d43e59dbd7f36731ba977a64d40092555c0e7c2d4a41e8e922239c0ba
-  languageName: node
-  linkType: hard
-
 "range-parser@npm:~1.2.1":
   version: 1.2.1
   resolution: "range-parser@npm:1.2.1"
@@ -19603,13 +19585,6 @@ __metadata:
   version: 2.2.0
   resolution: "ts-dedent@npm:2.2.0"
   checksum: 175adea838468cc2ff7d5e97f970dcb798bbcb623f29c6088cb21aa2880d207c5784be81ab1741f56b9ac37840cbaba0c0d79f7f8b67ffe61c02634cafa5c303
-  languageName: node
-  linkType: hard
-
-"ts-toolbelt@npm:^6.15.1":
-  version: 6.15.5
-  resolution: "ts-toolbelt@npm:6.15.5"
-  checksum: c2c5cf77b006cbedb836abb260e9544aef268b0fc718e52db44600308ac6836c8c1824f57373ed72f920b92eb1daa78d1a9cec4c12368230a208e0723de9c2f0
   languageName: node
   linkType: hard
 

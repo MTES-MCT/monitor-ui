@@ -1,7 +1,5 @@
 /* eslint-disable no-null/no-null */
 
-import { fromPairs, map, pipe, toPairs } from 'ramda'
-
 import { isArray } from './isArray'
 import { isObject } from './isObject'
 
@@ -22,8 +20,7 @@ type Nullify<T> = T extends undefined
 const nullifyArrayValues = <T extends NativeArray>(list: T): Nullify<T> => list.map(nullify as any) as any
 
 const nullifyObjectProps = <T extends NativeObject>(record: T): Nullify<T> =>
-  pipe(toPairs as any, map(nullifyObjectPropPair), fromPairs as any)(record) as any
-const nullifyObjectPropPair = ([key, value]: [string, NativeAny]) => [key, nullify(value as any)]
+  Object.fromEntries(Object.entries(record).map(([key, value]) => [key, nullify(value as any)])) as any
 
 /**
  * Transform all `undefined` values into `null` ones in any type of value

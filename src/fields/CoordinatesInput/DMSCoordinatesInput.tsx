@@ -1,4 +1,4 @@
-import { isEmpty } from 'ramda'
+import { isEmpty } from 'lodash'
 import { useCallback, useMemo } from 'react'
 import CoordinateInput from 'react-coordinate-input'
 import styled from 'styled-components'
