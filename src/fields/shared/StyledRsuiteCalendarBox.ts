@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
-export const StyledRsuiteCalendarBox = styled.div`
+export const StyledRsuiteCalendarBox = styled.div<{
+  $isRightAligned?: boolean
+}>`
   font-size: 13px !important;
   position: relative;
   user-select: none;
@@ -13,7 +15,8 @@ export const StyledRsuiteCalendarBox = styled.div`
     border: solid 1px ${p => p.theme.color.lightGray};
     border-radius: 0;
     font-size: 13px;
-    left: 0 !important;
+    ${p => !p.$isRightAligned && `left: 0 !important;`}
+    ${p => !!p.$isRightAligned && `right: 0 !important;`}
     top: 0 !important;
     line-height: 1;
     padding: 0;

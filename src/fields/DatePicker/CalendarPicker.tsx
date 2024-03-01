@@ -16,6 +16,7 @@ import type { Promisable } from 'type-fest'
 type CalendarPickerProps = {
   isHistorical?: boolean | undefined
   isOpen: boolean
+  isRightAligned: boolean
   /**
    * @description
    * Note that `nextUtcDateTuple` is ALREADY utized from the user pick.
@@ -27,7 +28,7 @@ type CalendarPickerProps = {
    */
   value?: Date | undefined
 }
-export function CalendarPicker({ isHistorical, isOpen, onChange, value }: CalendarPickerProps) {
+export function CalendarPicker({ isHistorical, isOpen, isRightAligned, onChange, value }: CalendarPickerProps) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
 
@@ -60,6 +61,7 @@ export function CalendarPicker({ isHistorical, isOpen, onChange, value }: Calend
   return (
     <StyledRsuiteCalendarBox
       ref={boxRef}
+      $isRightAligned={isRightAligned}
       className="Field-DatePicker__CalendarPicker"
       onClick={stopMouseEventPropagation}
     >

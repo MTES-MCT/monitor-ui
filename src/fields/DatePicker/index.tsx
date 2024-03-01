@@ -64,6 +64,7 @@ export interface DatePickerProps
   isHistorical?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isRightAligned?: boolean | undefined
   isStringDate?: boolean | undefined
   isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
@@ -109,6 +110,7 @@ export function DatePicker({
   isHistorical = false,
   isLabelHidden = false,
   isLight = false,
+  isRightAligned = false,
   isStringDate = false,
   isTransparent = false,
   isUndefinedWhenDisabled = false,
@@ -320,7 +322,8 @@ export function DatePicker({
   }, [defaultValue, forceUpdate, previousDefaultValue])
 
   return (
-    <Fieldset
+    <StyledFieldset
+      $isRightAligned={isRightAligned}
       className={controlledClassName}
       disabled={disabled}
       hasError={hasError}
@@ -385,12 +388,21 @@ export function DatePicker({
       <CalendarPicker
         isHistorical={isHistorical}
         isOpen={isRangeCalendarPickerOpen}
+        isRightAligned={isRightAligned}
         onChange={handleCalendarPickerChange}
         value={calendarPickerDefaultValue}
       />
-    </Fieldset>
+    </StyledFieldset>
   )
 }
+
+const StyledFieldset = styled(Fieldset)<{
+  $isRightAligned: boolean
+}>`
+  > .Element-Fieldset__InnerBox {
+    width: ${p => (p.$isRightAligned ? 'auto' : '100%')};
+  }
+`
 
 const Box = styled.div<CommonFieldStyleProps>`
   * {
@@ -404,6 +416,7 @@ const Box = styled.div<CommonFieldStyleProps>`
   font-size: 13px !important;
   outline: ${p => (p.$hasError ? `1px solid ${p.theme.color.maximumRed}` : 0)};
   position: relative;
+  width: auto;
 
   ${p =>
     p.$isDisabled &&

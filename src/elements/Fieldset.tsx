@@ -31,7 +31,7 @@ export function Fieldset({
         </Legend>
       )}
 
-      <InnerBox $hasBorder={hasBorder} $hasLegend={hasLegend} $isLight={isLight}>
+      <InnerBox $hasBorder={hasBorder} $hasLegend={hasLegend} $isLight={isLight} className="Element-Fieldset__InnerBox">
         {children}
       </InnerBox>
     </Box>
