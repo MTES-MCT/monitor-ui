@@ -36,7 +36,7 @@ export type CheckPickerProps<OptionValue extends OptionValueType = string> = Omi
   onChange?: (nextValue: OptionValue[] | undefined) => Promisable<void>
   optionValueKey?: keyof OptionValue | undefined
   options: Option<OptionValue>[]
-  // popupWidth?: number | undefined
+  popupWidth?: number | undefined
   value?: OptionValue[] | undefined
 }
 export function CheckPicker<OptionValue extends OptionValueType = string>({
@@ -54,7 +54,7 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
   onChange,
   options,
   optionValueKey,
-  // popupWidth,
+  popupWidth,
   readOnly = false,
   searchable = false,
   style,
@@ -137,7 +137,7 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
         $isLight={isLight}
         $isReadOnly={readOnly}
         $isTransparent={isTransparent}
-        // $popupWidth={popupWidth}
+        $popupWidth={popupWidth}
       >
         {boxRef.current && (
           <RsuiteCheckPicker

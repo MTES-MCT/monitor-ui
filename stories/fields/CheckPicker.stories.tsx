@@ -30,6 +30,8 @@ const meta: Meta<CheckPickerProps<string>> = {
     isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
     options: ARG_TYPE.NO_CONTROL_INPUT,
     optionValueKey: ARG_TYPE.OPTIONAL_OPTION_VALUE_KEY,
+    placeholder: ARG_TYPE.OPTIONAL_STRING,
+    popupWidth: ARG_TYPE.OPTIONAL_NUMBER,
     readOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
     searchable: ARG_TYPE.BOOLEAN,
     value: {
@@ -56,6 +58,7 @@ const meta: Meta<CheckPickerProps<string>> = {
     options: FAKE_STRING_OPTIONS,
     optionValueKey: undefined,
     placeholder: 'Pick some options',
+    popupWidth: undefined,
     readOnly: false,
     searchable: true,
     virtualized: false

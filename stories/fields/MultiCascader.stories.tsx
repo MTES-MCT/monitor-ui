@@ -29,6 +29,8 @@ const meta: Meta<MultiCascaderProps<string>> = {
     isTransparent: ARG_TYPE.OPTIONAL_BOOLEAN,
     isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
     options: ARG_TYPE.NO_CONTROL_INPUT,
+    placeholder: ARG_TYPE.OPTIONAL_STRING,
+    popupWidth: ARG_TYPE.OPTIONAL_NUMBER,
     readOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
     value: {
       control: 'inline-check',
@@ -49,6 +51,7 @@ const meta: Meta<MultiCascaderProps<string>> = {
     name: 'myMultiCascader',
     options: FAKE_STRING_TREE_OPTIONS,
     placeholder: 'Pick some options',
+    popupWidth: undefined,
     readOnly: false,
     searchable: true,
     value: undefined

@@ -38,7 +38,7 @@ export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omi
   onChange?: (nextValue: OptionValue[] | undefined) => Promisable<void>
   optionValueKey?: keyof OptionValue | undefined
   options: Option<OptionValue>[]
-  // popupWidth?: number | undefined
+  popupWidth?: number | undefined
   value?: OptionValue[] | undefined
 }
 export function MultiSelect<OptionValue extends OptionValueType = string>({
@@ -56,7 +56,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   onChange,
   options,
   optionValueKey,
-  // popupWidth,
+  popupWidth,
   readOnly = false,
   searchable = false,
   style,
@@ -138,7 +138,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
         $isLight={isLight}
         $isReadOnly={readOnly}
         $isTransparent={isTransparent}
-        // $popupWidth={popupWidth}
+        $popupWidth={popupWidth}
       >
         {boxRef.current && (
           <TagPicker
