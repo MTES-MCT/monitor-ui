@@ -12,6 +12,7 @@ import { Calendar } from '../../icons'
 
 import type { NumberInputProps } from './NumberInput'
 import type { DateTuple, DateInputRef } from './types'
+import type { CommonFieldStyleProps } from 'fields/shared/types'
 import type { ForwardedRef } from 'react'
 import type { Promisable } from 'type-fest'
 
@@ -256,15 +257,12 @@ function DateInputWithRef(
 
 export const DateInput = forwardRef(DateInputWithRef)
 
-const Box = styled.div<{
-  $hasError: boolean
-  $isCompact: boolean
-  $isDisabled: boolean
-  $isFocused: boolean
-  $isLight: boolean
-  $isReadOnly: boolean
-  $isTransparent: boolean
-}>`
+const Box = styled.div<
+  CommonFieldStyleProps & {
+    $isCompact: boolean
+    $isFocused: boolean
+  }
+>`
   align-items: center;
   background-color: ${getFieldBackgroundColorFactory()};
   border: solid 1px ${getFieldBorderColorFactoryForState('default')};

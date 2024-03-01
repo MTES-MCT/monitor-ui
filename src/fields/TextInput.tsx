@@ -3,11 +3,7 @@ import { type FunctionComponent, useCallback, useMemo } from 'react'
 import { Input as RsuiteInput } from 'rsuite'
 import styled from 'styled-components'
 
-import {
-  getFieldBackgroundColorFactory,
-  getFieldBorderColorFactoryForState,
-  getFieldPlaceholderColorFactoryForState
-} from './shared/utils'
+import { StyledInputBox } from './shared/StyledInputBox'
 import { Accent, Size } from '../constants'
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
@@ -19,7 +15,6 @@ import { Close, Search } from '../icons'
 import { THEME } from '../theme'
 import { normalizeString } from '../utils/normalizeString'
 
-import type { CommonFieldStyleProps } from './shared/types'
 import type { IconProps } from '../types/definitions'
 import type { InputProps } from 'rsuite'
 import type { Promisable } from 'type-fest'
@@ -41,6 +36,7 @@ export type TextInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'on
 }
 export function TextInput({
   className,
+  disabled = false,
   error,
   Icon,
   isErrorMessageHidden = false,
@@ -50,7 +46,9 @@ export function TextInput({
   isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
+  name,
   onChange,
+  readOnly = false,
   size = Size.NORMAL,
   style,
   type = 'text',
@@ -60,7 +58,7 @@ export function TextInput({
   const controlledClassname = useMemo(() => classnames('Field-TextInput', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([originalProps.disabled, originalProps.name])
+  const key = useKey([disabled, name])
 
   const clean = useCallback(() => {
     if (!onChange) {
@@ -82,31 +80,30 @@ export function TextInput({
     [onChange]
   )
 
-  useFieldUndefineEffect(isUndefinedWhenDisabled && !!originalProps.disabled, onChange)
+  useFieldUndefineEffect(isUndefinedWhenDisabled && !!disabled, onChange)
 
   return (
     <Field className={controlledClassname} style={style}>
-      <Label
-        disabled={originalProps.disabled}
-        hasError={hasError}
-        htmlFor={originalProps.name}
-        isHidden={isLabelHidden}
-      >
+      <Label disabled={disabled} hasError={hasError} htmlFor={name} isHidden={isLabelHidden}>
         {label}
       </Label>
 
-      <InputBox $size={size}>
-        <StyledRsuiteInput
+      <StyledInputBox
+        $hasError={hasError}
+        $hasIcon={!!Icon}
+        $isDisabled={disabled}
+        $isLight={isLight}
+        $isReadOnly={readOnly}
+        $isTransparent={isTransparent}
+        $size={size}
+      >
+        <RsuiteInput
           key={key}
-          $hasError={hasError}
-          $hasIcon={!!Icon}
-          $isDisabled={originalProps.disabled}
-          $isLight={isLight}
-          $isReadOnly={originalProps.readOnly}
-          $isTransparent={isTransparent}
-          $size={size}
-          id={originalProps.name}
+          disabled={disabled}
+          id={name}
+          name={name}
           onChange={handleChange}
+          readOnly={readOnly}
           type={type}
           value={value ?? ''}
           {...originalProps}
@@ -131,22 +128,11 @@ export function TextInput({
         )}
 
         {Icon && <Icon color={THEME.color.slateGray} />}
-      </InputBox>
+      </StyledInputBox>
 
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
     </Field>
   )
-}
-
-const PADDING: Record<Size, string> = {
-  [Size.LARGE]: '8px 16px 11px',
-  [Size.NORMAL]: '3px 8px 7px',
-  [Size.SMALL]: '3px 8px 6px'
-}
-const PADDING_WITH_ICON: Record<Size, string> = {
-  [Size.LARGE]: '8px 40px 11px 16px',
-  [Size.NORMAL]: '3px 38px 6px 8px',
-  [Size.SMALL]: '3px 38px 6px 8px'
 }
 
 const IconsContainer = styled.div<{
@@ -165,59 +151,4 @@ const Separator = styled.div`
   margin-left: 4px;
   margin-right: 6px;
   padding-top: 3px;
-`
-
-const StyledRsuiteInput = styled(RsuiteInput)<
-  CommonFieldStyleProps & {
-    $size: Size
-  }
->`
-  background-color: ${getFieldBackgroundColorFactory()};
-  border: solid 1px ${getFieldBorderColorFactoryForState('default')};
-  border-radius: 0;
-  color: ${p => p.theme.color.gunMetal};
-  ${p => p.$isReadOnly && `cursor: default;`}
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1;
-  padding: ${p => (p.$hasIcon ? PADDING_WITH_ICON[p.$size] : PADDING[p.$size])};
-  vertical-align: center;
-  width: 100%;
-
-  &::placeholder {
-    color: ${getFieldPlaceholderColorFactoryForState('default')};
-  }
-
-  &:hover {
-    background-color: ${getFieldBackgroundColorFactory()};
-    border: solid 1px ${getFieldBorderColorFactoryForState('hover')} !important;
-
-    &::placeholder {
-      color: ${getFieldPlaceholderColorFactoryForState('hover')};
-    }
-  }
-
-  &:active,
-  &:focus {
-    background-color: ${getFieldBackgroundColorFactory()};
-    border: solid 1px ${getFieldBorderColorFactoryForState('focus')} !important;
-    outline: 0;
-
-    &::placeholder {
-      color: ${getFieldPlaceholderColorFactoryForState('focus')};
-    }
-  }
-`
-
-const InputBox = styled.div<{
-  $size: Size
-}>`
-  position: relative;
-  width: 100%;
-
-  > .Element-IconBox {
-    position: absolute;
-    right: 10px;
-    top: ${p => (p.$size === Size.LARGE ? '10px' : '5px')};
-  }
 `

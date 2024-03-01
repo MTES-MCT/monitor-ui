@@ -10,7 +10,7 @@ export const ICONS_AS_ARRAY = Object.keys(Icon)
 export const ICONS_AS_LABELS = fromPairs(ICONS_AS_ARRAY.map(key => [key, `Icon.${key}`]))
 export const ICONS_AS_MAPPING = fromPairs(ICONS_AS_ARRAY.map(key => [key, Icon[key]]))
 export const LEVELS_AS_ARRAY = getArrayFromEnum(Level)
-export const SIZE_AS_ARRAY = getArrayFromEnum(Size)
+export const SIZES_AS_ARRAY = getArrayFromEnum(Size)
 export const TAG_BULLETS_AS_ARRAY = getArrayFromEnum(TagBullet)
 
 export const LOREM_IPSUM = [
@@ -173,7 +173,7 @@ export const ARG_TYPE = {
     control: 'radio',
     // eslint-disable-next-line object-shorthand
     mappings: { undefined: undefined },
-    options: [...SIZE_AS_ARRAY, undefined],
+    options: [...SIZES_AS_ARRAY, undefined],
     table: {
       type: {
         summary: 'Size | undefined'

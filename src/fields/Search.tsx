@@ -1,38 +1,33 @@
+import { getSelectedOptionFromOptionValue } from '@utils/getSelectedOptionFromOptionValue'
 import classnames from 'classnames'
-import { type ElementType, type SyntheticEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Icon } from 'index'
+import { type ElementType, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { AutoComplete as RsuiteAutoComplete } from 'rsuite'
 import styled from 'styled-components'
 
-import {
-  getFieldBackgroundColorFactory,
-  getFieldBorderColorFactoryForState,
-  getFieldPlaceholderColorFactoryForState
-} from './shared/utils'
+import { StyledInputBox } from './shared/StyledInputBox'
+import { StyledRsuitePickerBox } from './shared/StyledRsuitePickerBox'
 import { Accent, Size } from '../constants'
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { IconButton } from '../elements/IconButton'
 import { Label } from '../elements/Label'
-import { useClickOutsideEffect } from '../hooks/useClickOutsideEffect'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { useKey } from '../hooks/useKey'
-import { Close, Search as SearchIcon } from '../icons'
 import { THEME } from '../theme'
 import { getRsuiteDataItemsFromOptions } from '../utils/getRsuiteDataItemsFromOptions'
-import { getRsuiteDataItemValueFromOptionValue } from '../utils/getRsuiteDataItemValueFromOptionValue'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { CustomSearch } from '../libs/CustomSearch'
 import type { Option, OptionValueType } from '../types/definitions'
-import type { RsuiteDataItem } from '../types/internals'
+import type { RsuiteDataItem } from '@types_/internals'
 import type { AutoCompleteProps as RsuiteAutoCompleteProps } from 'rsuite'
-import type { ItemDataType } from 'rsuite/esm/@types/common'
 import type { Promisable } from 'type-fest'
 
 export type SearchProps<OptionValue extends OptionValueType = string> = Omit<
   RsuiteAutoCompleteProps,
-  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'open' | 'onSelect' | 'value' | 'valueKey'
+  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'open' | 'onSelect' | 'size' | 'value' | 'valueKey'
 > & {
   MenuItem?: ElementType | undefined
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
@@ -54,11 +49,12 @@ export type SearchProps<OptionValue extends OptionValueType = string> = Omit<
   onQuery?: (nextQuery: string | undefined) => Promisable<void>
   optionValueKey?: keyof OptionValue | undefined
   options?: Option<OptionValue>[]
+  // popupWidth?: number | undefined
   readOnly?: boolean | undefined
+  size?: Size | undefined
   value?: OptionValue | undefined
 }
 export function Search<OptionValue extends OptionValueType = string>({
-  baseContainer,
   className,
   customSearch = undefined,
   customSearchMinQueryLength = 1,
@@ -77,94 +73,114 @@ export function Search<OptionValue extends OptionValueType = string>({
   options = [],
   optionValueKey,
   readOnly = false,
+  // popupWidth,
+  size = Size.NORMAL,
   style,
   value,
   ...originalProps
 }: SearchProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
+  const currentQueryRef = useRef('')
   /** Instance of `CustomSearch` */
   const customSearchRef = useRef(customSearch)
-
-  const queryRef = useRef<string | undefined>(undefined)
-
-  const data = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
-
-  const [isOpen, setIsOpen] = useState(false)
-
-  const { forceUpdate } = useForceUpdate()
+  const mustSkipNextChange = useRef(false)
 
   const controlledClassName = useMemo(() => classnames('Field-Search', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
-
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([value, disabled, originalProps.name])
-
-  const rsuiteValue = useMemo(
-    () => (value ? getRsuiteDataItemValueFromOptionValue(value, optionValueKey) : undefined),
-    [value, optionValueKey]
-  )
-  const [inputValue, setInputValue] = useState<string | undefined>(rsuiteValue)
+  const key = useKey([disabled, originalProps.name])
+  const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
 
   // Only used when `customSearch` prop is set
-  const [controlledRsuiteData, setControlledRsuiteData] = useState<RsuiteDataItem<OptionValue>[] | undefined>(
-    customSearch ? [] : undefined
+  const [controlledRsuiteData, setControlledRsuiteData] = useState(customSearch ? rsuiteData : undefined)
+
+  const { forceUpdate } = useForceUpdate()
+
+  const selectedOption = useMemo(
+    () => getSelectedOptionFromOptionValue<OptionValue>(options, value, optionValueKey),
+    [options, optionValueKey, value]
   )
+  const rsuiteValue = currentQueryRef.current.length > 0 ? currentQueryRef.current : selectedOption?.label ?? ''
 
-  const close = useCallback(() => {
-    setIsOpen(false)
-  }, [])
+  const clear = useCallback(() => {
+    if (onChange) {
+      onChange(undefined)
+    }
+    if (onQuery) {
+      onQuery(undefined)
+    }
 
-  const clean = useCallback(() => {
-    setInputValue('')
-    setIsOpen(false)
-  }, [])
+    currentQueryRef.current = ''
+
+    forceUpdate()
+  }, [forceUpdate, onChange, onQuery])
+
+  // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
+  // that's why we send this "always true" filter to disable Rsuite SelectPicker internal search filtering
+  const filterBy: any = customSearch ? () => true : undefined
 
   const handleChange = useCallback(
-    async (nextQuery: OptionValue, event: SyntheticEvent) => {
-      if (!(typeof nextQuery === 'string')) {
-        return
-      }
+    (nextQuery: string) => {
+      setTimeout(() => {
+        if (mustSkipNextChange.current) {
+          mustSkipNextChange.current = false
 
-      if (customSearch && customSearchRef.current) {
+          return
+        }
+
+        currentQueryRef.current = nextQuery
+
+        if (onQuery) {
+          onQuery(nextQuery.length > 0 ? nextQuery : undefined)
+        }
+
+        if (!customSearchRef.current || nextQuery.trim().length < customSearchMinQueryLength) {
+          setControlledRsuiteData(rsuiteData)
+
+          forceUpdate()
+
+          return
+        }
+
         const nextControlledRsuiteData =
           nextQuery.trim().length >= customSearchMinQueryLength
             ? getRsuiteDataItemsFromOptions(customSearchRef.current.find(nextQuery), optionValueKey)
-            : []
+            : rsuiteData
+
         setControlledRsuiteData(nextControlledRsuiteData)
-      }
 
-      queryRef.current = normalizeString(nextQuery)
-      if (event.type === 'change') {
-        setInputValue(nextQuery)
-        setIsOpen(Boolean(queryRef.current))
-      } else {
-        setIsOpen(false)
-      }
-
-      if (onChange && !queryRef.current) {
-        onChange(undefined)
-      }
-
-      if (onQuery) {
-        onQuery(queryRef.current)
-      }
+        forceUpdate()
+      }, 0)
     },
-    [customSearch, onChange, onQuery, customSearchMinQueryLength, optionValueKey]
+    [customSearchMinQueryLength, forceUpdate, onQuery, optionValueKey, rsuiteData]
   )
+
   const handleSelect = useCallback(
-    (_, item: Option<OptionValue>) => {
+    (_value: any, nextRsuiteDataItem: RsuiteDataItem<OptionValue>) => {
+      mustSkipNextChange.current = true
+
       if (onChange) {
-        onChange(item.optionValue)
+        onChange(nextRsuiteDataItem.optionValue)
       }
-      setInputValue(item.label)
+      if (onQuery) {
+        onQuery(undefined)
+      }
+
+      currentQueryRef.current = ''
+
+      forceUpdate()
     },
-    [onChange]
+    [forceUpdate, onChange, onQuery]
+  )
+
+  const renderMenuItem = useCallback(
+    (originalMenuItem: ReactNode, rsuiteDataItem: RsuiteDataItem<OptionValue>) =>
+      MenuItem ? <MenuItem item={rsuiteDataItem.value} /> : originalMenuItem,
+    [MenuItem]
   )
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
-
-  useClickOutsideEffect(boxRef, close, baseContainer)
 
   useEffect(() => {
     forceUpdate()
@@ -176,51 +192,65 @@ export function Search<OptionValue extends OptionValueType = string>({
         {label}
       </Label>
 
-      <Box ref={boxRef} $isDisabled={disabled} $isLight={isLight} $isReadOnly={readOnly} $isTransparent={isTransparent}>
+      <StyledInputBox
+        $hasError={hasError}
+        $hasIcon={!isSearchIconHidden}
+        $isDisabled={disabled}
+        $isLight={isLight}
+        $isReadOnly={readOnly}
+        $isTransparent={isTransparent}
+        $size={size}
+        // $popupWidth={popupWidth}
+      >
         {boxRef.current && (
-          <StyledAutoComplete
+          <RsuiteAutoComplete
             key={key}
-            $hasError={hasError}
-            $isDisabled={disabled}
-            $isLight={isLight}
-            $isReadOnly={readOnly}
-            $isTransparent={isTransparent}
             container={boxRef.current}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
             // when we don't, we don't need to control that and just pass the non-internally-controlled `rsuiteData`
-            data={controlledRsuiteData ?? data}
+            data={controlledRsuiteData ?? rsuiteData}
             disabled={disabled}
-            // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
-            // that's why we send this "always true" filter to disable Rsuite SelectPicker internal search filtering
-            filterBy={customSearch ? () => true : undefined}
+            filterBy={filterBy}
             id={originalProps.name}
             onChange={handleChange}
-            onSelect={handleSelect}
-            open={isOpen}
+            onSelect={handleSelect as any}
             readOnly={readOnly}
-            renderMenuItem={(itemLabel, item: ItemDataType<OptionValue>) =>
-              MenuItem ? <MenuItem item={item.value} /> : itemLabel
-            }
-            value={inputValue}
+            renderMenuItem={renderMenuItem as any}
+            value={rsuiteValue}
             {...originalProps}
           />
         )}
-        {inputValue && (
+
+        {rsuiteValue && (
           <>
             <StyledCloseButton
               $isSearchIconHidden={isSearchIconHidden}
+              $size={size}
               accent={Accent.TERTIARY}
               className="Field-Search__ClearButton"
               color={THEME.color.slateGray}
-              Icon={Close}
-              onClick={clean}
+              Icon={Icon.Close}
+              onClick={clear}
               size={Size.SMALL}
             />
-            {!isSearchIconHidden && <Separator>|</Separator>}
+            {!isSearchIconHidden && (
+              <Separator $isLight={isLight} $isTransparent={isTransparent} $size={size}>
+                |
+              </Separator>
+            )}
           </>
         )}
-        {!isSearchIconHidden && <StyledIconSearch color={THEME.color.slateGray} size={20} />}
-      </Box>
+        {!isSearchIconHidden && <Icon.Search color={THEME.color.slateGray} size={20} />}
+      </StyledInputBox>
+      <StyledRsuitePickerBox
+        ref={boxRef}
+        $hasError={hasError}
+        $isDisabled={disabled}
+        $isLight={isLight}
+        $isReadOnly={readOnly}
+        $isTransparent={isTransparent}
+        // $popupWidth={popupWidth}
+      />
 
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
     </Field>
@@ -229,107 +259,33 @@ export function Search<OptionValue extends OptionValueType = string>({
 
 const StyledCloseButton = styled(IconButton)<{
   $isSearchIconHidden: boolean
+  $size: Size
 }>`
-  cursor: pointer;
-  height: 30px;
-  margin: 5px ${p => (p.$isSearchIconHidden ? 5 : 0)}px 5px 5px;
-  padding: 8px;
-  width: 30px;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  ${p =>
+    !p.$isSearchIconHidden &&
+    `
+    margin: ${p.$size === Size.LARGE ? '8.5px 50px 0 0' : '4px 39px 0 0'};
+  `}
 `
 
-const StyledIconSearch = styled(SearchIcon)`
-  margin: 10px 10px 10px 8px;
-`
-
-const Separator = styled.div`
-  height: 40px;
+const Separator = styled.div<{
+  $isLight: boolean
+  $isTransparent: boolean
+  $size: Size
+}>`
+  color: ${p =>
+    // eslint-disable-next-line no-nested-ternary
+    p.$isTransparent ? (p.$isLight ? p.theme.color.charcoal : p.theme.color.lightGray) : p.theme.color.charcoal};
+  cursor: default;
+  font-size: ${p => (p.$size === Size.LARGE ? 20 : 14)}px;
   font-weight: 300;
-  color: ${p => p.theme.color.lightGray};
-  padding-top: 3px;
-  font-size: 20.5px;
-`
-
-const StyledAutoComplete = styled(RsuiteAutoComplete)<{
-  $hasError: boolean
-  $isDisabled: boolean
-  $isLight: boolean
-  $isReadOnly: boolean
-  $isTransparent: boolean
-}>`
-  font-size: 13px;
-  width: 100%;
-
-  > [role='combobox'] {
-    background-color: ${getFieldBackgroundColorFactory()};
-    border: solid 1px ${getFieldBorderColorFactoryForState('default')};
-    border-radius: 0;
-    outline: 0;
-
-    &::placeholder {
-      color: ${getFieldPlaceholderColorFactoryForState('default')};
-    }
-
-    &:hover {
-      border: solid 1px ${getFieldBorderColorFactoryForState('hover')};
-
-      &::placeholder {
-        color: ${getFieldPlaceholderColorFactoryForState('hover')};
-      }
-    }
-
-    &:active,
-    &:focus {
-      border: solid 1px ${getFieldBorderColorFactoryForState('focus')};
-
-      &::placeholder {
-        color: ${getFieldPlaceholderColorFactoryForState('focus')};
-      }
-    }
-  }
-
-  /* .rs-input {
-    background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
-    border-width: 0 0 1px;
-    border-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)};
-
-    width: 100%;
-    height: 40px;
-    padding: 11px 16px;
-
-    &:focus {
-      outline: unset;
-      border-color: transparent;
-    }
-
-    &:hover {
-      outline: unset;
-      border-color: transparent;
-    }
-  } */
-`
-
-const Box = styled.div<{
-  $isDisabled: boolean
-  $isLight: boolean
-  $isReadOnly: boolean
-  $isTransparent: boolean
-}>`
-  /* background-color: ${p => (p.$isLight ? p.theme.color.white : p.theme.color.gainsboro)}; */
-  position: relative;
-  width: 100%;
-  display: flex;
-
-  > .rs-picker-select {
-    > .rs-picker-toggle {
-      font-size: 13px;
-
-      > .rs-stack {
-        > .rs-stack-item {
-          > .rs-picker-toggle-placeholder {
-            font-size: 13px;
-          }
-        }
-      }
-    }
-  }
+  line-height: 1;
+  margin: ${p => (p.$size === Size.LARGE ? '7px 39px 0 0' : '5px 33px 0 0')} !important;
+  position: absolute;
+  right: 0;
+  top: 0;
 `
