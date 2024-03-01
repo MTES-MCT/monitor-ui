@@ -23,7 +23,6 @@ export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omi
   TagPickerProps,
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderMenuItem' | 'value' | 'valueKey'
 > & {
-  /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   customSearch?: CustomSearch<Option<OptionValue>>
   /** Minimum search query length required to trigger custom search filtering. */
   customSearchMinQueryLength?: number | undefined

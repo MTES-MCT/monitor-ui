@@ -29,8 +29,6 @@ export type SearchProps<OptionValue extends OptionValueType = string> = Omit<
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'open' | 'onSelect' | 'size' | 'value' | 'valueKey'
 > & {
   MenuItem?: ElementType | undefined
-  /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
-  baseContainer?: Document | HTMLDivElement | null | undefined
   customSearch?: CustomSearch<Option<OptionValue>> | undefined
   /** Minimum search query length required to trigger custom search filtering. */
   customSearchMinQueryLength?: number | undefined

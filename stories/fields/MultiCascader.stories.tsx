@@ -21,7 +21,6 @@ const meta: Meta<MultiCascaderProps<string>> = {
   component: MultiCascader,
 
   argTypes: {
-    baseContainer: ARG_TYPE.OPTIONAL_BASE_CONTAINER,
     error: ARG_TYPE.OPTIONAL_STRING,
     isErrorMessageHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
     isLabelHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
