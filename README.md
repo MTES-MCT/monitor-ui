@@ -1,8 +1,10 @@
 # Monitor UI
 
 [![License][img-license]][lnk-license] [![NPM Version][img-npm]][lnk-npm]
-[![Unit Tests][img-unit-tests]][lnk-unit-tests] [![E2E Tests][img-e2e-tests]][lnk-e2e-tests]
 [![Documentation][img-documentation]][lnk-documentation]
+
+[![Unit Tests][img-unit-tests]][lnk-unit-tests] [![Coverage][img-coverage]][lnk-coverage]
+[![E2E Tests][img-e2e-tests]][lnk-e2e-tests]
 
 > Common React components, hooks, utilities and CSS stylesheets for [MonitorFish][lnk-github-monitorfish],
 > [MonitorEnv][lnk-github-monitorenv] and [RapportNav][lnk-github-rapportnav].
@@ -58,6 +60,7 @@ Please read the [contributing document](CONTRIBUTING.md) for setup and contribut
 
 ---
 
+[img-coverage]: https://img.shields.io/codecov/c/github/MTES-MCT/monitor-ui?flag=unit&style=for-the-badge
 [img-documentation]: https://img.shields.io/badge/StoryBook-Docs-007ec6?logo=storybook&style=for-the-badge
 [img-e2e-tests]:
   https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/qnpjm2/main&label=E2E&logo=cypress&style=for-the-badge
@@ -65,6 +68,7 @@ Please read the [contributing document](CONTRIBUTING.md) for setup and contribut
 [img-npm]: https://img.shields.io/npm/v/@mtes-mct/monitor-ui?style=for-the-badge
 [img-unit-tests]:
   https://img.shields.io/github/actions/workflow/status/MTES-MCT/monitor-ui/check.yml?branch=main&label=Unit&style=for-the-badge
+[lnk-coverage]: https://app.codecov.io/gh/MTES-MCT/monitor-ui
 [lnk-documentation]: https://mtes-mct.github.io/monitor-ui/?path=/docs/introduction--documentation
 [lnk-e2e-tests]: https://cloud.cypress.io/projects/qnpjm2/runs
 [lnk-e2e-tests]: https://cloud.cypress.io/projects/qnpjm2/runs
