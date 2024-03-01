@@ -21,6 +21,7 @@ module.exports = {
   },
   ignorePatterns: [
     '/config/',
+    '/coverage/',
     '/dist/',
     '/e2e/release/sample/',
     '/scripts/',
