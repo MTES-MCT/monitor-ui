@@ -1,3 +1,32 @@
+## [12.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v12.3.0...v12.4.0) (2024-03-01)
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @semantic-release/github from 9.0.4 to 9.2.6 ([4a92e0f](https://github.com/MTES-MCT/monitor-ui/commit/4a92e0f9ffd2870bef0551e3286086d9416892b7))
+* **dev-deps:** bump @sentry/react in /e2e/release/sample ([0aa779b](https://github.com/MTES-MCT/monitor-ui/commit/0aa779b7cf001e6041c04674ba8c5aadccfc13ab))
+* **dev-deps:** bump @swc/core from 1.4.1 to 1.4.2 ([6a5334b](https://github.com/MTES-MCT/monitor-ui/commit/6a5334b9d0ea83ff80d2b3795be5547d2acd8ab4))
+* **dev-deps:** bump @types/node in /e2e/release/sample ([9c1d210](https://github.com/MTES-MCT/monitor-ui/commit/9c1d2106d810dd2bb7983e438d6351f248d6f04a))
+* **dev-deps:** bump @types/react in /e2e/release/sample ([d7aa8c6](https://github.com/MTES-MCT/monitor-ui/commit/d7aa8c6bd36c754530e5ab391a3a0ceca3294121))
+* **dev-deps:** bump date-fns from 2.30.0 to 3.3.1 ([eba1fae](https://github.com/MTES-MCT/monitor-ui/commit/eba1fae77336f59ed2afe65f599dcc42f5d5a735))
+* **dev-deps:** bump eslint-plugin-prettier from 5.1.2 to 5.1.3 ([e07c9ff](https://github.com/MTES-MCT/monitor-ui/commit/e07c9ff21112665014d47c2a6f7301f89489929d))
+* **dev-deps:** bump rsuite in /e2e/release/sample ([0c361fa](https://github.com/MTES-MCT/monitor-ui/commit/0c361fa39d968c02537a26702cd8fc49d9ea59e3))
+* **dev-deps:** bump vite from 5.0.12 to 5.1.4 in /e2e/release/sample ([ddcbb71](https://github.com/MTES-MCT/monitor-ui/commit/ddcbb71f3efc1d665cdcf7f42f71757501e14473))
+* **tsconfig:** remove direct index paths which break release build ([e65c08f](https://github.com/MTES-MCT/monitor-ui/commit/e65c08f08ccf9b07b6086ad160888aac0d262105))
+
+
+### Features
+
+* **field:** add size prop to Search ([d395e49](https://github.com/MTES-MCT/monitor-ui/commit/d395e499371ea20c6155b218a35f30cdcff6a6d1))
+* **fields:** add isRightAligned prop to DatePicker ([d80ce28](https://github.com/MTES-MCT/monitor-ui/commit/d80ce28c1766f55b6029656713520181d01da6e7))
+* **fields:** add popupWidth prop to pickers ([aa8b550](https://github.com/MTES-MCT/monitor-ui/commit/aa8b5501c1232d796371fbc93a21e3f9b505d832))
+* **utils:** add getSelectedOptionFromOptionValue() ([6a80172](https://github.com/MTES-MCT/monitor-ui/commit/6a801720423f6509954d1a174f26eebd858460ec))
+
+
+### Code Refactoring
+
+* remove ramda ([e3453a2](https://github.com/MTES-MCT/monitor-ui/commit/e3453a2958bf2d62461fb2d71fa1a5c74f4ebe8e))
+
 ## [12.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v12.2.1...v12.3.0) (2024-02-29)
 
 
