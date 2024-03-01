@@ -46,7 +46,7 @@
     "useUnknownInCatchVariables": true,
     "verbatimModuleSyntax": true
   },
-  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", ".storybook/**/*", "vite.config.mts"],
+  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", ".storybook/**/*", "vite.config.ts"],
   "exclude": [
     "config/*",
     "dist/*",
