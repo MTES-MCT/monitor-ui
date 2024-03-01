@@ -49,6 +49,7 @@
   "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", ".storybook/**/*", "vite.config.ts"],
   "exclude": [
     "config/*",
+    "coverage/*",
     "dist/*",
     "e2e/release/sample/*",
     "node_modules/*",
