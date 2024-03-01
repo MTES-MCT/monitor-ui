@@ -1,4 +1,3 @@
-import { Size } from '@constants'
 import styled from 'styled-components'
 
 import {
@@ -6,6 +5,7 @@ import {
   getFieldBorderColorFactoryForState,
   getFieldPlaceholderColorFactoryForState
 } from './utils'
+import { Size } from '../../constants'
 
 import type { CommonFieldStyleProps } from './types'
 
