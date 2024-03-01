@@ -114,6 +114,7 @@ const StyledRsuiteInput = styled(RsuiteInput)<CommonFieldStyleProps>`
   font-weight: 500;
   padding: 7px 8px;
   width: 100%;
+  max-width: 100%;
 
   &::placeholder {
     color: ${getFieldPlaceholderColorFactoryForState('default')};
