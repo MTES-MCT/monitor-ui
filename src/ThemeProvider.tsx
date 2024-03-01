@@ -1,4 +1,4 @@
-import { mergeDeepRight } from 'ramda'
+import { merge } from 'lodash'
 import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components'
 
 import { THEME, type Theme } from './theme'
@@ -12,7 +12,7 @@ export type ThemeProviderProps = {
   theme?: PartialDeep<Theme> | undefined
 }
 export function ThemeProvider({ children, theme = {} }: ThemeProviderProps) {
-  const finalTheme = mergeDeepRight(THEME, theme)
+  const finalTheme = merge(THEME, theme)
 
   return <UntypedStyledComponentsThemeProvider theme={finalTheme}>{children}</UntypedStyledComponentsThemeProvider>
 }

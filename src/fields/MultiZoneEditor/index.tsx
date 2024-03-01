@@ -1,8 +1,9 @@
 // TODO Clean, split and finalize this component.
 
+import { remove } from '@utils/remove'
 import classnames from 'classnames'
 import { getFieldBackgroundColorFactory } from 'fields/shared/utils'
-import { equals, remove } from 'ramda'
+import { isEqual } from 'lodash'
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import styled from 'styled-components'
 
@@ -118,7 +119,7 @@ export function MultiZoneEditor({
   }, [])
 
   useEffect(() => {
-    if (equals(defaultValue, prevDefaultValueRef.current)) {
+    if (isEqual(defaultValue, prevDefaultValueRef.current)) {
       return
     }
 

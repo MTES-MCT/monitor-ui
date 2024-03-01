@@ -1,5 +1,5 @@
 import { promises as fs } from 'fs'
-import { mergeLeft, omit, pipe } from 'ramda'
+import _ from 'lodash'
 
 const distPackageExtraProps = {
   bugs: {
@@ -28,8 +28,8 @@ const distPackageExtraProps = {
 ;(async () => {
   const rootPackageJson = await fs.readFile('./package.json', 'utf-8')
   const rootPackage = JSON.parse(rootPackageJson)
-  const distPackage = pipe(
-    omit([
+  const distPackage = {
+    ..._.omit(rootPackage, [
       '//',
       'devDependencies',
       'lint-staged',
@@ -41,8 +41,8 @@ const distPackageExtraProps = {
       'scripts',
       'workspaces'
     ]),
-    mergeLeft(distPackageExtraProps)
-  )(rootPackage)
+    ...distPackageExtraProps
+  }
   const distPackageJson = JSON.stringify(distPackage, null, 2)
 
   await fs.writeFile('./dist/package.json', distPackageJson, 'utf-8')

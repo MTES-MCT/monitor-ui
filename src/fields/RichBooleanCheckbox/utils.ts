@@ -1,4 +1,4 @@
-import { equals } from 'ramda'
+import { isEqual } from 'lodash'
 
 import { RichBoolean } from '../../constants'
 
@@ -8,17 +8,17 @@ export function getRichBooleanFromRichBooleanOptionValues(
   optionValues: RichBooleanOptionValue[] | undefined
 ): RichBoolean | undefined {
   switch (true) {
-    case equals(optionValues, [RichBoolean.FALSE, RichBoolean.TRUE]):
-    case equals(optionValues, [RichBoolean.TRUE, RichBoolean.FALSE]):
+    case isEqual(optionValues, [RichBoolean.FALSE, RichBoolean.TRUE]):
+    case isEqual(optionValues, [RichBoolean.TRUE, RichBoolean.FALSE]):
       return RichBoolean.BOTH
 
-    case equals(optionValues, [RichBoolean.FALSE]):
+    case isEqual(optionValues, [RichBoolean.FALSE]):
       return RichBoolean.FALSE
 
-    case equals(optionValues, [RichBoolean.TRUE]):
+    case isEqual(optionValues, [RichBoolean.TRUE]):
       return RichBoolean.TRUE
 
-    case equals(optionValues, undefined):
+    case isEqual(optionValues, undefined):
       return undefined
 
     default:

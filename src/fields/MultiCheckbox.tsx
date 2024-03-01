@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { equals, includes, reject } from 'ramda'
+import { isEqual } from 'lodash'
 import { useCallback, useMemo, type CSSProperties } from 'react'
 import styled from 'styled-components'
 
@@ -63,7 +63,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
 
       const nextCheckedOptionValues = isChecked
         ? [...(value ?? []), nextOptionValue]
-        : reject(equals(nextOptionValue))(value ?? [])
+        : value?.filter(optionValue => !isEqual(optionValue, nextOptionValue)) ?? []
 
       const normalizedNextValue = nextCheckedOptionValues.length ? nextCheckedOptionValues : undefined
 
@@ -87,7 +87,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
         {options.map((option, index) => (
           <Checkbox
             key={JSON.stringify(option.value)}
-            checked={includes(option.value, value ?? [])}
+            checked={!!value?.includes(option.value)}
             disabled={!!option.isDisabled || disabled}
             hasError={hasError}
             isLight={isLight}

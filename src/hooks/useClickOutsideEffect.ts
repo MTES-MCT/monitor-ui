@@ -1,4 +1,3 @@
-import { any, identity, map, pipe } from 'ramda'
 import { useCallback, useEffect } from 'react'
 
 import type { RefObject } from 'react'
@@ -16,13 +15,9 @@ export const useClickOutsideEffect = (
       const eventTarget = event.target as Node | null
       const zoneRefs = Array.isArray(zoneRefOrzoneRefs) ? zoneRefOrzoneRefs : [zoneRefOrzoneRefs]
 
-      const isEventTargetInZones = pipe(
-        map((zoneRef: RefObject<MinimalHtmlElement | null>) =>
-          zoneRef.current && eventTarget ? zoneRef.current.contains(eventTarget) : false
-        ),
-        any(identity)
-      )(zoneRefs)
-
+      const isEventTargetInZones = zoneRefs.some((zoneRef: RefObject<MinimalHtmlElement | null>) =>
+        zoneRef.current && eventTarget ? zoneRef.current.contains(eventTarget) : false
+      )
       if (isEventTargetInZones) {
         return
       }

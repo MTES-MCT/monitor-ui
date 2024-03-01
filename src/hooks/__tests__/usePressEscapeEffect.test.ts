@@ -3,7 +3,7 @@ import { renderHook } from '@testing-library/react'
 
 import { usePressEscapeEffect } from '../usePressEscapeEffect'
 
-describe('usePressEscapeEffect', () => {
+describe('hooks/usePressEscapeEffect()', () => {
   const mockCallback = jest.fn()
 
   it('calls callback when Escape key is pressed', () => {
