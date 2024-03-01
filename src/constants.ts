@@ -1,3 +1,5 @@
+export * as Icon from './icons'
+
 export enum Accent {
   PRIMARY = 'PRIMARY',
   SECONDARY = 'SECONDARY',

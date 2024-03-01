@@ -20,7 +20,7 @@ export default [
         dir: './dist',
         format: 'es',
         preserveModules: false,
-        sourcemap: true
+        sourcemap: false
       }
     ],
 
@@ -52,7 +52,7 @@ export default [
         dir: './dist/cypress',
         format: 'es',
         preserveModules: false,
-        sourcemap: true
+        sourcemap: false
       }
     ],
 

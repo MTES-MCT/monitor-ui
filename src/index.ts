@@ -74,8 +74,6 @@ export { FormikTextarea } from './formiks/FormikTextarea'
 export { FormikTextInput } from './formiks/FormikTextInput'
 export { FormikToggle } from './formiks/FormikToggle'
 
-export * as Icon from './icons'
-
 export { ExclamationPoint } from './symbols/ExclamationPoint'
 
 /* -----------------------------------------------------------------------------
@@ -84,6 +82,7 @@ export { ExclamationPoint } from './symbols/ExclamationPoint'
 
 export {
   Accent,
+  Icon,
   Level,
   CoordinatesFormat,
   Size,

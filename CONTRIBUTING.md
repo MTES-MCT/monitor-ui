@@ -52,7 +52,7 @@ In order to test that the final package is working as expected when imported in 
 E2E tests:
 
 ```sh
-make test:e2e:release:setup # Build, install the package and start the sample React with Vite project
+yarn test:e2e:release:setup # Build, install the package and start the sample React with Vite project
 yarn test:e2e:release # In another tab/terminal
 ```
 
