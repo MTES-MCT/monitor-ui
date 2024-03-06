@@ -25,6 +25,7 @@ export type MultiRadioProps<OptionValue extends OptionValueType = string> = {
   isInline?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isRequired?: boolean | undefined
   isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
@@ -45,6 +46,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   isInline = false,
   isLabelHidden = false,
   isLight = false,
+  isRequired = false,
   isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
@@ -88,8 +90,8 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
     <Fieldset
       className={controlledClassName}
       disabled={disabled}
-      hasError={hasError}
       isLegendHidden={isLabelHidden}
+      isRequired={isRequired}
       legend={label}
       style={style}
     >

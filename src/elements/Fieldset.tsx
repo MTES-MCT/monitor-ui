@@ -9,6 +9,7 @@ export type FieldsetProps = Omit<FieldsetHTMLAttributes<HTMLFieldSetElement>, 'd
   hasError?: boolean | undefined
   isLegendHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isRequired?: boolean | undefined
   legend?: string | undefined
 }
 export function Fieldset({
@@ -18,6 +19,7 @@ export function Fieldset({
   hasError = false,
   isLegendHidden = false,
   isLight = false,
+  isRequired = false,
   legend,
   ...nativeProps
 }: FieldsetProps) {
@@ -26,7 +28,7 @@ export function Fieldset({
   return (
     <Box className={classnames('Element-Fieldset', className)} {...nativeProps}>
       {legend && (
-        <Legend disabled={nativeProps.disabled} hasError={hasError} isHidden={isLegendHidden}>
+        <Legend $isRequired={isRequired} disabled={nativeProps.disabled} hasError={hasError} isHidden={isLegendHidden}>
           {legend}
         </Legend>
       )}

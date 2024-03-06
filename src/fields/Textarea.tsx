@@ -28,6 +28,7 @@ export type TextareaProps = Omit<
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isRequired?: boolean | undefined
   isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
@@ -43,6 +44,7 @@ export function Textarea({
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
+  isRequired = false,
   isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
@@ -75,7 +77,7 @@ export function Textarea({
 
   return (
     <Field className={controlledClassname} style={style}>
-      <Label disabled={disabled} hasError={hasError} htmlFor={originalProps.name} isHidden={isLabelHidden}>
+      <Label $isRequired={isRequired} disabled={disabled} htmlFor={originalProps.name} isHidden={isLabelHidden}>
         {label}
       </Label>
 

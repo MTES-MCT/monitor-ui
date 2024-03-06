@@ -25,6 +25,7 @@ export type TextInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'on
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isRequired?: boolean | undefined
   isSearchInput?: boolean
   isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
@@ -42,6 +43,7 @@ export function TextInput({
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
+  isRequired = false,
   isSearchInput = false,
   isTransparent = false,
   isUndefinedWhenDisabled = false,
@@ -84,7 +86,7 @@ export function TextInput({
 
   return (
     <Field className={controlledClassname} style={style}>
-      <Label disabled={disabled} hasError={hasError} htmlFor={name} isHidden={isLabelHidden}>
+      <Label $isRequired={isRequired} disabled={disabled} htmlFor={name} isHidden={isLabelHidden}>
         {label}
       </Label>
 

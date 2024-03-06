@@ -79,6 +79,8 @@ export function Button({
 
     case Accent.WARNING:
       return <WarningButton {...commonProps} />
+    case Accent.ERROR:
+      return <ErrorButton {...commonProps} />
     default:
       return <PrimaryButton {...commonProps} />
   }
@@ -208,14 +210,15 @@ export const WarningButton = styled.button`
 
   &:hover,
   &._hover {
-    background-color: ${p => p.theme.color.wheat};
-    border: 1px solid ${p => p.theme.color.wheat};
+    /* 26 is for opacity = 15% */
+    background-color: ${p => p.theme.color.goldenPoppy}26;
+    border: 1px solid ${p => p.theme.color.goldenPoppy};
     color: ${p => p.theme.color.charcoal};
   }
 
   &:active,
   &._active {
-    background-color: ${p => p.theme.color.goldenPoppy25};
+    background-color: ${p => p.theme.color.goldenPoppy};
     border: 1px solid ${p => p.theme.color.goldenPoppy};
     color: ${p => p.theme.color.charcoal};
   }
@@ -225,5 +228,43 @@ export const WarningButton = styled.button`
     background-color: transparent;
     border: 1px solid ${p => p.theme.color.lightGray};
     color: ${p => p.theme.color.lightGray};
+  }
+`
+export const ErrorButton = styled.button`
+  background-color: transparent;
+  border: 1px solid ${p => p.theme.color.maximumRed};
+  color: ${p => p.theme.color.charcoal};
+  > * {
+    color: ${p => p.theme.color.maximumRed};
+  }
+
+  &:hover,
+  &._hover {
+    /* 26 is for opacity = 15% */
+    background-color: ${p => p.theme.color.maximumRed}26;
+    border: 1px solid ${p => p.theme.color.maximumRed};
+    > * {
+      color: ${p => p.theme.color.maximumRed};
+    }
+  }
+
+  &:active,
+  &._active {
+    background-color: ${p => p.theme.color.maximumRed};
+    border: 1px solid ${p => p.theme.color.maximumRed};
+    color: ${p => p.theme.color.white};
+    > * {
+      color: ${p => p.theme.color.white};
+    }
+  }
+
+  &:disabled,
+  &._disabled {
+    background-color: transparent;
+    border: 1px solid ${p => p.theme.color.lightGray};
+    color: ${p => p.theme.color.lightGray};
+    > * {
+      color: ${p => p.theme.color.lightGray};
+    }
   }
 `
