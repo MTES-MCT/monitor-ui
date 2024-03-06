@@ -29,6 +29,7 @@ export type MultiCascaderProps<OptionValue extends OptionValueType = string> = O
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isRequired?: boolean | undefined
   isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
@@ -46,6 +47,7 @@ export function MultiCascader<OptionValue extends OptionValueType = string>({
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
+  isRequired = false,
   isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
@@ -98,7 +100,7 @@ export function MultiCascader<OptionValue extends OptionValueType = string>({
 
   return (
     <Field className={controlledClassName} style={style}>
-      <Label disabled={disabled} hasError={hasError} htmlFor={originalProps.name} isHidden={isLabelHidden}>
+      <Label $isRequired={isRequired} disabled={disabled} htmlFor={originalProps.name} isHidden={isLabelHidden}>
         {label}
       </Label>
 

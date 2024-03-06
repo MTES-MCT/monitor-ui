@@ -20,6 +20,7 @@ const meta: Meta<RichBooleanCheckboxProps> = {
     isErrorMessageHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
     isLabelHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
     isLight: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isRequired: ARG_TYPE.OPTIONAL_BOOLEAN,
     isTransparent: ARG_TYPE.OPTIONAL_BOOLEAN,
     isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN
   },
@@ -31,6 +32,7 @@ const meta: Meta<RichBooleanCheckboxProps> = {
     isErrorMessageHidden: false,
     isLabelHidden: false,
     isLight: false,
+    isRequired: true,
     isTransparent: false,
     isUndefinedWhenDisabled: false,
     label: 'A rich boolean checkbox. Pick one, both or neither options:',

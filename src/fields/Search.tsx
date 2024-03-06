@@ -37,6 +37,7 @@ export type SearchProps<OptionValue extends OptionValueType = string> = Omit<
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isRequired?: boolean | undefined
   isSearchIconHidden?: boolean | undefined
   isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
@@ -60,6 +61,7 @@ export function Search<OptionValue extends OptionValueType = string>({
   isErrorMessageHidden = false,
   isLabelHidden,
   isLight = false,
+  isRequired = false,
   isSearchIconHidden = true,
   isTransparent = false,
   isUndefinedWhenDisabled = false,
@@ -185,7 +187,7 @@ export function Search<OptionValue extends OptionValueType = string>({
 
   return (
     <Field className={controlledClassName} style={style}>
-      <Label disabled={disabled} hasError={hasError} htmlFor={originalProps.name} isHidden={isLabelHidden}>
+      <Label $isRequired={isRequired} disabled={disabled} htmlFor={originalProps.name} isHidden={isLabelHidden}>
         {label}
       </Label>
 

@@ -76,6 +76,7 @@ export interface DateRangePickerProps
   isHistorical?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isRequired?: boolean | undefined
   isStringDate?: boolean | undefined
   isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
@@ -123,6 +124,7 @@ export function DateRangePicker({
   isHistorical = false,
   isLabelHidden = false,
   isLight = false,
+  isRequired = false,
   isStringDate = false,
   isTransparent = false,
   isUndefinedWhenDisabled = false,
@@ -454,8 +456,8 @@ export function DateRangePicker({
     <Fieldset
       className={controlledClassName}
       disabled={disabled}
-      hasError={hasError}
       isLegendHidden={isLabelHidden}
+      isRequired={isRequired}
       legend={label}
       style={style}
       {...nativeProps}

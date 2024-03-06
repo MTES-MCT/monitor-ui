@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import type { HTMLAttributes } from 'react'
 
 export type LegendProps = HTMLAttributes<HTMLLegendElement> & {
+  $isRequired?: boolean | undefined
   disabled?: boolean | undefined
   hasError?: boolean | undefined
   isHidden?: boolean | undefined
@@ -19,4 +20,11 @@ export const Legend = styled.legend.attrs<LegendProps, LegendProps>(props => ({
   line-height: 1.3846;
   margin-bottom: 4px;
   padding: 0;
+  ${p =>
+    p.$isRequired &&
+    `
+    :after {
+        content:" *";
+        color: ${p.theme.color.maximumRed};
+      }`}
 `

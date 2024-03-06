@@ -30,6 +30,7 @@ export type MultiZoneEditorProps = {
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean
   isLight?: boolean | undefined
+  isRequired?: boolean | undefined
   isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
@@ -53,6 +54,7 @@ export function MultiZoneEditor({
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
+  isRequired = false,
   isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
@@ -133,11 +135,12 @@ export function MultiZoneEditor({
       className={controlledClassName}
       disabled={disabled}
       isLegendHidden={isLabelHidden}
+      isRequired={isRequired}
       legend={label}
       style={style}
     >
       <Button
-        accent={Accent.SECONDARY}
+        accent={hasError ? Accent.ERROR : Accent.SECONDARY}
         disabled={disabled || isAddButtonDisabled}
         Icon={Plus}
         isFullWidth
@@ -207,9 +210,14 @@ const Link = styled.a`
   align-items: center;
   cursor: pointer;
   display: inline-flex;
+  color: ${p => p.theme.color.slateGray};
 
   > span {
     line-height: 1;
     margin: -2px 0 0 8px;
+    text-decoration: underline;
+  }
+  &:hover {
+    color: ${p => p.theme.color.gunMetal};
   }
 `

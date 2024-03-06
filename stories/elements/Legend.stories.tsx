@@ -1,3 +1,4 @@
+import { ARG_TYPE } from '../../.storybook/constants'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Legend } from '../../src'
 
@@ -5,6 +6,7 @@ import type { LegendProps } from '../../src'
 import type { Meta } from '@storybook/react'
 
 const args: LegendProps = {
+  $isRequired: false,
   children: 'A form fieldset legend',
   disabled: false,
   isHidden: false
@@ -15,7 +17,9 @@ const meta: Meta<LegendProps> = {
   title: 'Elements/Legend',
   component: Legend,
 
-  argTypes: {},
+  argTypes: {
+    $isRequired: ARG_TYPE.OPTIONAL_BOOLEAN
+  },
 
   args,
 

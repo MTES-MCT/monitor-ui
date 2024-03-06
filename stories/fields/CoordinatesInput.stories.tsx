@@ -25,6 +25,7 @@ const meta: Meta<CoordinatesInputProps> = {
     isErrorMessageHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
     isLabelHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
     isLight: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isRequired: ARG_TYPE.OPTIONAL_BOOLEAN,
     isTransparent: ARG_TYPE.OPTIONAL_BOOLEAN,
     isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
     readOnly: ARG_TYPE.OPTIONAL_BOOLEAN
@@ -38,6 +39,7 @@ const meta: Meta<CoordinatesInputProps> = {
     isErrorMessageHidden: false,
     isLabelHidden: false,
     isLight: false,
+    isRequired: true,
     isTransparent: false,
     isUndefinedWhenDisabled: false,
     label: 'A coordinates input',

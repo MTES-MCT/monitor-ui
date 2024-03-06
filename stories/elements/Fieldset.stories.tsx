@@ -1,3 +1,4 @@
+import { ARG_TYPE } from '../../.storybook/constants'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Fieldset } from '../../src'
 
@@ -9,6 +10,7 @@ const args: FieldsetProps = {
   hasBorder: false,
   isLegendHidden: false,
   isLight: false,
+  isRequired: false,
   legend: 'A fieldset legend'
 }
 
@@ -17,7 +19,9 @@ const meta: Meta<FieldsetProps> = {
   title: 'Elements/Fieldset',
   component: Fieldset,
 
-  argTypes: {},
+  argTypes: {
+    isRequired: ARG_TYPE.OPTIONAL_BOOLEAN
+  },
 
   args,
 

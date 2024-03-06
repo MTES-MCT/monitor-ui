@@ -64,6 +64,7 @@ export interface DatePickerProps
   isHistorical?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isRequired?: boolean | undefined
   isRightAligned?: boolean | undefined
   isStringDate?: boolean | undefined
   isTransparent?: boolean | undefined
@@ -110,6 +111,7 @@ export function DatePicker({
   isHistorical = false,
   isLabelHidden = false,
   isLight = false,
+  isRequired = false,
   isRightAligned = false,
   isStringDate = false,
   isTransparent = false,
@@ -326,8 +328,8 @@ export function DatePicker({
       $isRightAligned={isRightAligned}
       className={controlledClassName}
       disabled={disabled}
-      hasError={hasError}
       isLegendHidden={isLabelHidden}
+      isRequired={isRequired}
       legend={label}
       style={style}
       {...nativeProps}

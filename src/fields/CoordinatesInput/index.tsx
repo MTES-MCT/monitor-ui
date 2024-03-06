@@ -27,6 +27,7 @@ export type CoordinatesInputProps = {
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isRequired?: boolean | undefined
   isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
@@ -44,6 +45,7 @@ export function CoordinatesInput({
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
+  isRequired = false,
   isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
@@ -117,9 +119,9 @@ export function CoordinatesInput({
       $isDisabled={disabled}
       $isLight={isLight}
       $isReadOnly={readOnly}
+      $isRequired={isRequired}
       $isTransparent={isTransparent}
       className={controlledClassName}
-      hasError={hasError}
       isLegendHidden={isLabelHidden}
       legend={label}
       style={style}
@@ -160,5 +162,12 @@ const StyledFieldset = styled(Fieldset)<CommonFieldStyleProps>`
     &:focus-visible {
       outline: 0;
     }
+    ${p =>
+      p.$isRequired &&
+      `
+        :after {
+            content:" *";
+            color: ${p.theme.color.maximumRed};
+          }`}
   }
 `

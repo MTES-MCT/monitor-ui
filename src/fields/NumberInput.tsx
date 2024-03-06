@@ -25,6 +25,7 @@ export type NumberInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | '
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isRequired?: boolean | undefined
   isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
@@ -40,6 +41,7 @@ export function NumberInput({
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
+  isRequired = false,
   isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
@@ -103,7 +105,7 @@ export function NumberInput({
 
   return (
     <Field className={controlledClassname} style={style}>
-      <Label disabled={disabled} hasError={hasError} htmlFor={name} isHidden={isLabelHidden}>
+      <Label $isRequired={isRequired} disabled={disabled} htmlFor={name} isHidden={isLabelHidden}>
         {label}
       </Label>
 
