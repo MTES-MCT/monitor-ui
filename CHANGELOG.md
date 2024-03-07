@@ -1,3 +1,10 @@
+## [13.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.1.0...v13.2.0) (2024-03-07)
+
+
+### Features
+
+* **utils:** delete "(UTC)"  from humanizePastDate function ([91507d1](https://github.com/MTES-MCT/monitor-ui/commit/91507d17426190f38fddba32c03c50937c0ba6f2))
+
 ## [13.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.0.0...v13.1.0) (2024-03-07)
 
 
