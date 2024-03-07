@@ -1,3 +1,15 @@
+## [13.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.0.0...v13.1.0) (2024-03-07)
+
+
+### Features
+
+* **fields:** add isRequired prop and update label color on error ([88b1bd1](https://github.com/MTES-MCT/monitor-ui/commit/88b1bd10c6c989bffab5125994775c5d0ca23139))
+
+
+### Bug Fixes
+
+* **components:** fix Dropdown border-radius ([77afbd1](https://github.com/MTES-MCT/monitor-ui/commit/77afbd15abc0cbc4297fdebb8079be80107f8775))
+
 ## [13.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v12.4.0...v13.0.0) (2024-03-01)
 
 
