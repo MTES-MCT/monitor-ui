@@ -37,6 +37,7 @@ const PrimaryDropdown = styled(RsuiteDropdown as any)<{
     align-items: center;
     background-color: ${p => p.theme.color.charcoal};
     border: solid 1px ${p => p.theme.color.charcoal};
+    border-radius: 0px;
     color: ${p => p.theme.color.gainsboro};
     display: flex;
     font-size: 13px;
