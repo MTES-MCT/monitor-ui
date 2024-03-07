@@ -9,7 +9,7 @@ describe('utils/humanizePastDate()', () => {
     const result = humanizePastDate(missionUpdatedAtUtc.format('YYYY-MM-DDTHH:mm:ssZ'))
 
     const expectedHour = `${missionUpdatedAtUtc.format('HH[h]mm')}`
-    expect(result).toStrictEqual(`aujourdhui à ${expectedHour} (UTC)`)
+    expect(result).toStrictEqual(`aujourdhui à ${expectedHour}`)
   })
 
   it('should return the expected message when the date is yesterday', () => {
@@ -17,7 +17,7 @@ describe('utils/humanizePastDate()', () => {
     const result = humanizePastDate(missionUpdatedAtUtc.format('YYYY-MM-DDTHH:mm:ssZ'))
 
     const expectedHour = `${missionUpdatedAtUtc.format('HH[h]mm')}`
-    expect(result).toStrictEqual(`hier à ${expectedHour} (UTC)`)
+    expect(result).toStrictEqual(`hier à ${expectedHour}`)
   })
 
   it('should return the expected message when the date is neither today nor yesterday', () => {
@@ -25,6 +25,6 @@ describe('utils/humanizePastDate()', () => {
     const result = humanizePastDate(missionUpdatedAtUtc.format('YYYY-MM-DDTHH:mm:ssZ'))
 
     const expectedHour = `${missionUpdatedAtUtc.format('HH[h]mm')}`
-    expect(result).toStrictEqual(`le ${missionUpdatedAtUtc.format('DD/MM/YYYY')} à ${expectedHour} (UTC)`)
+    expect(result).toStrictEqual(`le ${missionUpdatedAtUtc.format('DD/MM/YYYY')} à ${expectedHour}`)
   })
 })
