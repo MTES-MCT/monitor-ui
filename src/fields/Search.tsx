@@ -262,6 +262,7 @@ const StyledCloseButton = styled(IconButton)<{
   position: absolute;
   right: 0;
   top: 0;
+  margin: ${p => (p.$size === Size.LARGE ? 9 : 5)}px;
 
   ${p =>
     !p.$isSearchIconHidden &&

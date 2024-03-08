@@ -4,7 +4,8 @@ export function fillDateRangePicker(
   fieldsetElement: HTMLElement,
   dateOrDateWithTimeTupleRange: Cypress.DateRangeTuple | Cypress.DateWithTimeRangeTuple | undefined,
   _label: string,
-  force: boolean
+  force: boolean,
+  delay: number
 ) {
   Cypress.log({
     consoleProps: () => ({
@@ -48,31 +49,43 @@ export function fillDateRangePicker(
     const [startYear, startMonth, startDay, startHour, startMinute] = startDateOrDateWithTimeTuple
     const [endYear, endMonth, endDay, endHour, endMinute] = endDateOrDateWithTimeTuple
 
-    cy.wrap(fieldsetElement).find('[aria-label="Jour de début"]').type(String(startDay).padStart(2, '0'), { force })
-    cy.wrap(fieldsetElement).find('[aria-label="Mois de début"]').type(String(startMonth).padStart(2, '0'), { force })
+    cy.wrap(fieldsetElement)
+      .find('[aria-label="Jour de début"]')
+      .type(String(startDay).padStart(2, '0'), { delay, force })
+    cy.wrap(fieldsetElement)
+      .find('[aria-label="Mois de début"]')
+      .type(String(startMonth).padStart(2, '0'), { delay, force })
     cy.wrap(fieldsetElement).find('[aria-label="Année de début"]').type(String(startYear), { force })
 
     if (hasTimeInput) {
-      cy.wrap(fieldsetElement).find('[aria-label="Heure de début"]').type(String(startHour).padStart(2, '0'), { force })
+      cy.wrap(fieldsetElement)
+        .find('[aria-label="Heure de début"]')
+        .type(String(startHour).padStart(2, '0'), { delay, force })
       cy.wrap(fieldsetElement)
         .find('[aria-label="Minute de début"]')
         .type(String(startMinute).padStart(2, '0'), { force })
     }
 
-    cy.wrap(fieldsetElement).find('[aria-label="Jour de fin"]').type(String(endDay).padStart(2, '0'), { force })
-    cy.wrap(fieldsetElement).find('[aria-label="Mois de fin"]').type(String(endMonth).padStart(2, '0'), { force })
+    cy.wrap(fieldsetElement).find('[aria-label="Jour de fin"]').type(String(endDay).padStart(2, '0'), { delay, force })
+    cy.wrap(fieldsetElement)
+      .find('[aria-label="Mois de fin"]')
+      .type(String(endMonth).padStart(2, '0'), { delay, force })
     cy.wrap(fieldsetElement).find('[aria-label="Année de fin"]').type(String(endYear), { force })
 
     if (hasTimeInput) {
-      cy.wrap(fieldsetElement).find('[aria-label="Heure de fin"]').type(String(endHour).padStart(2, '0'), { force })
-      cy.wrap(fieldsetElement).find('[aria-label="Minute de fin"]').type(String(endMinute).padStart(2, '0'), { force })
+      cy.wrap(fieldsetElement)
+        .find('[aria-label="Heure de fin"]')
+        .type(String(endHour).padStart(2, '0'), { delay, force })
+      cy.wrap(fieldsetElement)
+        .find('[aria-label="Minute de fin"]')
+        .type(String(endMinute).padStart(2, '0'), { delay, force })
     }
   }
 
   cy.wait(250)
 
   // Close the range calendar & ranged time picker popup by pressing the escape key
-  cy.get('body').type('{esc}', { force })
+  cy.get('body').type('{esc}', { delay, force })
   // TODO Create a util to handle the `fieldsetElement` re-creation cases.
   // We to use a `wait` as a temporary fix to handle `fieldsetElement` re-creation cases.
   cy.wait(250)

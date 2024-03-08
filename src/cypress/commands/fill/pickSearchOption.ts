@@ -2,7 +2,8 @@ export function pickSearchOption(
   fieldElement: HTMLDivElement,
   value: string | undefined,
   _label: string,
-  force: boolean
+  force: boolean,
+  delay: number
 ) {
   Cypress.log({
     consoleProps: () => ({
@@ -26,7 +27,7 @@ export function pickSearchOption(
   }
 
   // Search for the value
-  cy.wrap(fieldElement).find('input[role="combobox"]').type(value, { force })
+  cy.wrap(fieldElement).find('input[role="combobox"]').type(value, { delay, force })
 
   // Wait for the picker to open
   cy.wrap(fieldElement)

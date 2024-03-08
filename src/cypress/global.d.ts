@@ -114,6 +114,7 @@ declare namespace Cypress {
   type DateWithTimeRangeTuple = [DateWithTimeTuple, DateWithTimeTuple]
 
   interface FillOptions extends Forceable {
+    delay: number
     retries: number
   }
 }
