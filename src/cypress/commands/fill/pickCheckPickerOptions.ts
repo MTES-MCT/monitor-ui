@@ -4,7 +4,8 @@ export function pickCheckPickerOptions(
   fieldElement: HTMLDivElement,
   values: string[] | undefined,
   label: string,
-  force: boolean
+  force: boolean,
+  delay: number
 ) {
   Cypress.log({
     consoleProps: () => ({
@@ -41,14 +42,14 @@ export function pickCheckPickerOptions(
       const maybeSearchInput = rsuitePickerPopupElement.querySelector('input[role="searchbox"]')
       values.forEach(value => {
         if (maybeSearchInput) {
-          cy.wrap(rsuitePickerPopupElement).find('input[role="searchbox"]').type(value, { force }).wait(250)
+          cy.wrap(rsuitePickerPopupElement).find('input[role="searchbox"]').type(value, { delay, force }).wait(250)
         }
 
         cy.wrap(rsuitePickerPopupElement).find('[role="option"]').contains(value).scrollIntoView().click({ force })
       })
 
       // Close the picker popup by pressing the escape key
-      cy.get('body').type('{esc}', { force })
+      cy.get('body').type('{esc}', { delay, force })
       // TODO Create a util to handle the `fieldElement` re-creation cases.
       // We to use a `wait` as a temporary fix to handle `fieldElement` re-creation cases.
       cy.wait(250)

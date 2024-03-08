@@ -4,7 +4,8 @@ export function pickMultiSelectOptions(
   fieldElement: HTMLDivElement,
   values: string[] | undefined,
   label: string,
-  force: boolean
+  force: boolean,
+  delay: number
 ) {
   Cypress.log({
     consoleProps: () => ({
@@ -38,13 +39,18 @@ export function pickMultiSelectOptions(
       }
 
       values.forEach(value => {
-        cy.wrap(fieldElement).find('.rs-picker-toggle').click({ force }).wait(250).type(value, { force }).wait(250)
+        cy.wrap(fieldElement)
+          .find('.rs-picker-toggle')
+          .click({ force })
+          .wait(250)
+          .type(value, { delay, force })
+          .wait(250)
 
         cy.wrap(rsuitePickerPopupElement).find('[role="option"]').contains(value).scrollIntoView().click({ force })
       })
 
       // Close the picker popup by pressing the escape key
-      cy.get('body').type('{esc}')
+      cy.get('body').type('{esc}', { delay, force })
       // TODO Create a util to handle the `fieldElement` re-creation cases.
       // We to use a `wait` as a temporary fix to handle `fieldElement` re-creation cases.
       cy.wait(250)

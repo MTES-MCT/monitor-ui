@@ -4,7 +4,8 @@ export function pickSelectOption(
   fieldElement: HTMLDivElement,
   value: string | undefined,
   label: string,
-  force: boolean
+  force: boolean,
+  delay: number
 ) {
   Cypress.log({
     consoleProps: () => ({
@@ -41,7 +42,7 @@ export function pickSelectOption(
       // Search for the value if there is a search input
       const maybeSearchInput = rsuitePickerPopupElement.querySelector('input[role="searchbox"]')
       if (maybeSearchInput) {
-        cy.wrap(rsuitePickerPopupElement).find('input[role="searchbox"]').type(value, { force }).wait(250)
+        cy.wrap(rsuitePickerPopupElement).find('input[role="searchbox"]').type(value, { delay, force }).wait(250)
       }
 
       cy.wrap(rsuitePickerPopupElement)

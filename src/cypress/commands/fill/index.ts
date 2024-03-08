@@ -67,7 +67,7 @@ export function fill(label: string, value: any, options: Partial<Cypress.FillOpt
 
         case fieldElement.classList.contains('Field-CheckPicker'):
           assertStringArrayOrUndefined(value, 'CheckPicker')
-          pickCheckPickerOptions(fieldElement, value, label, controlledOptions.force)
+          pickCheckPickerOptions(fieldElement, value, label, controlledOptions.force, controlledOptions.delay)
 
           return
 
@@ -76,7 +76,7 @@ export function fill(label: string, value: any, options: Partial<Cypress.FillOpt
 
         case fieldElement.classList.contains('Field-MultiSelect'):
           assertStringArrayOrUndefined(value, 'MultiSelect')
-          pickMultiSelectOptions(fieldElement, value, label, controlledOptions.force)
+          pickMultiSelectOptions(fieldElement, value, label, controlledOptions.force, controlledOptions.delay)
 
           return
 
@@ -85,7 +85,7 @@ export function fill(label: string, value: any, options: Partial<Cypress.FillOpt
 
         case fieldElement.classList.contains('Field-Search'):
           assertStringOrUndefined(value, 'Search')
-          pickSearchOption(fieldElement, value, label, controlledOptions.force)
+          pickSearchOption(fieldElement, value, label, controlledOptions.force, controlledOptions.delay)
 
           return
 
@@ -94,7 +94,7 @@ export function fill(label: string, value: any, options: Partial<Cypress.FillOpt
 
         case fieldElement.classList.contains('Field-Select'):
           assertStringOrUndefined(value, 'Select')
-          pickSelectOption(fieldElement, value, label, controlledOptions.force)
+          pickSelectOption(fieldElement, value, label, controlledOptions.force, controlledOptions.delay)
 
           return
 
@@ -103,7 +103,7 @@ export function fill(label: string, value: any, options: Partial<Cypress.FillOpt
 
         case fieldElement.classList.contains('Field-NumberInput'):
           assertNumberOrUndefined(value, 'TextInput')
-          fillNumberInput(fieldElement, value, label, controlledOptions.force)
+          fillNumberInput(fieldElement, value, label, controlledOptions.force, controlledOptions.delay)
 
           return
 
@@ -112,7 +112,7 @@ export function fill(label: string, value: any, options: Partial<Cypress.FillOpt
 
         case fieldElement.classList.contains('Field-Textarea'):
           assertStringOrUndefined(value, 'Textarea')
-          fillTextarea(fieldElement, value, label, controlledOptions.force)
+          fillTextarea(fieldElement, value, label, controlledOptions.force, controlledOptions.delay)
 
           return
 
@@ -121,7 +121,7 @@ export function fill(label: string, value: any, options: Partial<Cypress.FillOpt
 
         case fieldElement.classList.contains('Field-TextInput'):
           assertStringOrUndefined(value, 'TextInput')
-          fillTextInput(fieldElement, value, label, controlledOptions.force)
+          fillTextInput(fieldElement, value, label, controlledOptions.force, controlledOptions.delay)
 
           return
 
@@ -146,7 +146,7 @@ export function fill(label: string, value: any, options: Partial<Cypress.FillOpt
 
         case fieldsetElement.classList.contains('Field-DatePicker'):
           assertDateTupleOrDateWithTimeTupleOrUndefined(value, 'DatePicker')
-          fillDatePicker(fieldsetElement, value, label, controlledOptions.force)
+          fillDatePicker(fieldsetElement, value, label, controlledOptions.force, controlledOptions.delay)
 
           return
 
@@ -155,7 +155,7 @@ export function fill(label: string, value: any, options: Partial<Cypress.FillOpt
 
         case fieldsetElement.classList.contains('Field-DateRangePicker'):
           assertDateRangeTupleOrDateWithTimeRangeTupleOrUndefined(value, 'DateRangePicker')
-          fillDateRangePicker(fieldsetElement, value, label, controlledOptions.force)
+          fillDateRangePicker(fieldsetElement, value, label, controlledOptions.force, controlledOptions.delay)
 
           return
 

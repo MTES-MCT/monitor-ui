@@ -2,7 +2,8 @@ export function fillNumberInput(
   fieldElement: HTMLDivElement,
   value: number | undefined,
   _label: string,
-  force: boolean
+  force: boolean,
+  delay: number
 ) {
   Cypress.log({
     consoleProps: () => ({
@@ -21,5 +22,5 @@ export function fillNumberInput(
     return
   }
 
-  cy.wrap(fieldElement).find('input[type="number"]').type(String(value), { force }).wait(250)
+  cy.wrap(fieldElement).find('input[type="number"]').type(String(value), { delay, force }).wait(250)
 }
