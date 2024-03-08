@@ -1,3 +1,10 @@
+## [13.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v13.3.0...v13.3.1) (2024-03-08)
+
+
+### Bug Fixes
+
+* **cypress:** fix function waitForLastRequestFunction ([7ad541d](https://github.com/MTES-MCT/monitor-ui/commit/7ad541d54f5d18966c97ecad5779a2668b75678f))
+
 ## [13.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.2.0...v13.3.0) (2024-03-08)
 
 
