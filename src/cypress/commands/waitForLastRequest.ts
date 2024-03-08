@@ -21,6 +21,6 @@ export function waitForLastRequest(
     cy.log('Intercepted request', JSON.stringify(interception.request))
 
     // @ts-ignore
-    return cy.waitForLastRequest(alias, partialRequest, maxRequests, level + 1)
+    return cy.waitForLastRequest(alias, partialRequest, maxRequests, level + 1, callback)
   })
 }
