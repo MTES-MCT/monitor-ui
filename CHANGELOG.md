@@ -1,3 +1,10 @@
+## [13.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.2.0...v13.3.0) (2024-03-08)
+
+
+### Features
+
+* **cypress:** add delay option to fill command ([592b941](https://github.com/MTES-MCT/monitor-ui/commit/592b941daebf6a5deb8d68c110adc3b3900bb71b))
+
 ## [13.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.1.0...v13.2.0) (2024-03-07)
 
 
