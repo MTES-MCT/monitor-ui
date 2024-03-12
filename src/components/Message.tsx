@@ -42,7 +42,7 @@ const Box = styled.span<{
 }>`
   background: ${p => p.backgroundColor ?? p.theme.color.goldenPoppy25};
   color: ${p => p.color ?? p.theme.color.slateGray};
-  padding: 8px 16px 16px 8px;
+  padding: 16px;
   display: flex;
   border-radius: 2px;
   font-size: 13px;

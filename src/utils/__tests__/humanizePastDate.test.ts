@@ -9,7 +9,7 @@ describe('utils/humanizePastDate()', () => {
     const result = humanizePastDate(missionUpdatedAtUtc.format('YYYY-MM-DDTHH:mm:ssZ'))
 
     const expectedHour = `${missionUpdatedAtUtc.format('HH[h]mm')}`
-    expect(result).toStrictEqual(`aujourdhui à ${expectedHour}`)
+    expect(result).toStrictEqual(`aujourd'hui à ${expectedHour}`)
   })
 
   it('should return the expected message when the date is yesterday', () => {
