@@ -11,7 +11,7 @@ export const Action = styled.div`
     align-items: center;
     flex-direction: row;
     justify-content: center;
-    padding: 48px 8px 48px 8px;
+    padding: 32px 8px 32px 8px;
   }
 
   > button {

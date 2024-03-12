@@ -6,7 +6,7 @@ export function humanizePastDate(missionUpdatedAtUtc: string): string {
 
   const today = customDayjs().utc()
   if (updatedDate.isSame(today, 'day')) {
-    return `aujourdhui à ${updatedTime}`
+    return `aujourd'hui à ${updatedTime}`
   }
 
   const yesterday = customDayjs().utc().subtract(1, 'day')
