@@ -11,8 +11,8 @@ import { Clock } from './Clock'
 import { Close } from './Close'
 import { Comment } from './Comment'
 import { Confirm } from './Confirm'
-import { Control } from './Control'
 import { ControlUnit } from './ControlUnit'
+import { ControlUnitFilled } from './ControlUnitFilled'
 import { Delete } from './Delete'
 import { Display } from './Display'
 import { Dot } from './Dot'
@@ -22,7 +22,6 @@ import { Download } from './Download'
 import { Drapeau } from './Drapeau'
 import { Duplicate } from './Duplicate'
 import { Edit } from './Edit'
-import { EditBis } from './EditBis'
 import { EditUnbordered } from './EditUnbordered'
 import { Expand } from './Expand'
 import { Favorite } from './Favorite'
@@ -99,8 +98,8 @@ export {
   Close,
   Comment,
   Confirm,
-  Control,
   ControlUnit,
+  ControlUnitFilled,
   Delete,
   Display,
   Dot,
@@ -110,7 +109,6 @@ export {
   Drapeau,
   Duplicate,
   Edit,
-  EditBis,
   EditUnbordered,
   Expand,
   Favorite,
