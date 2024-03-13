@@ -93,11 +93,19 @@ const StyledToggle = styled(RsuiteToggle)<CommonChoiceFieldStyleProps>`
   > .rs-toggle-presentation {
     background-color: ${getToggleBackgroundColorFactoryForState('default')} !important;
     border: 1px solid ${getToggleBorderColorFactoryForState('default')};
+    height: 16px;
+    min-width: 30px;
 
     /* Thumb */
     &:after {
       background-color: ${getToggleThumbColorFactoryForState('default')};
       top: 2px;
+      height: 10px;
+      width: 10px;
+      margin-left: 0px;
+    }
+    .rs-toggle-inner {
+      margin-left: 20px;
     }
 
     &:hover,
@@ -127,6 +135,17 @@ const StyledToggle = styled(RsuiteToggle)<CommonChoiceFieldStyleProps>`
 
       &:after {
         background-color: ${getToggleThumbColorFactoryForState('active')};
+      }
+    }
+  }
+
+  &.rs-toggle-checked {
+    .rs-toggle-presentation {
+      &:after {
+        margin-left: -13px;
+      }
+      .rs-toggle-inner {
+        margin-right: 20px;
       }
     }
   }
