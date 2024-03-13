@@ -435,5 +435,5 @@ const Field = styled.span<{
   $isTimeField?: boolean
 }>`
   font-size: inherit;
-  margin-left: ${p => (p.$isTimeField ? '2px' : 0)} !important;
+  margin-left: ${p => (p.$isTimeField ? '4px' : 0)} !important;
 `
