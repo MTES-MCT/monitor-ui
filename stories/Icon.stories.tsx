@@ -116,15 +116,15 @@ export function _Icon(props: IconProps) {
       </Cell>
       <Cell>
         <IconBox>
-          <Icon.Control {...props} />
-        </IconBox>
-        <Code>Control</Code>
-      </Cell>
-      <Cell>
-        <IconBox>
           <Icon.ControlUnit {...props} />
         </IconBox>
         <Code>ControlUnit</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
+          <Icon.ControlUnitFilled {...props} />
+        </IconBox>
+        <Code>ControlUnitFilled</Code>
       </Cell>
       <Cell>
         <IconBox>
@@ -179,12 +179,6 @@ export function _Icon(props: IconProps) {
           <Icon.Edit {...props} />
         </IconBox>
         <Code>Edit</Code>
-      </Cell>
-      <Cell>
-        <IconBox>
-          <Icon.EditBis {...props} />
-        </IconBox>
-        <Code>EditBis</Code>
       </Cell>
       <Cell>
         <IconBox>
