@@ -1,3 +1,11 @@
+## [13.3.2](https://github.com/MTES-MCT/monitor-ui/compare/v13.3.1...v13.3.2) (2024-03-13)
+
+
+### Bug Fixes
+
+* **components:** update some style and fix typo ([9a0d16a](https://github.com/MTES-MCT/monitor-ui/commit/9a0d16a42fcbf23b105f9e72cd542cb0a9d28792))
+* **fields:** prevent Textarea resizing from exceeding 100% parent width ([5323f0c](https://github.com/MTES-MCT/monitor-ui/commit/5323f0c8d20d8a7668573adde5e6af5645ab9be3))
+
 ## [13.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v13.3.0...v13.3.1) (2024-03-08)
 
 
