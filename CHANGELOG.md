@@ -1,3 +1,15 @@
+## [13.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.3.2...v13.4.0) (2024-03-14)
+
+
+### Features
+
+* **icons:** add ControlUnitFilled icon and delete useless icons ([3fe4d30](https://github.com/MTES-MCT/monitor-ui/commit/3fe4d305a96dc34a7bf834ad3067f80f10df6fdf))
+
+
+### Bug Fixes
+
+* **fields:** fix style ([f785c43](https://github.com/MTES-MCT/monitor-ui/commit/f785c43b6e7d05e2d120b2837b9ae32e8aea11f7))
+
 ## [13.3.2](https://github.com/MTES-MCT/monitor-ui/compare/v13.3.1...v13.3.2) (2024-03-13)
 
 
