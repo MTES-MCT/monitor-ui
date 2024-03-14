@@ -1,3 +1,15 @@
+## [13.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.5.0...v13.6.0) (2024-03-14)
+
+
+### Features
+
+* **utils:** include undefined value in getMaybeBooleanFromRichBoolean() ([31c7f5f](https://github.com/MTES-MCT/monitor-ui/commit/31c7f5f8f7949a96536203e300e530471169489b))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump follow-redirects from 1.15.5 to 1.15.6 ([3b8002c](https://github.com/MTES-MCT/monitor-ui/commit/3b8002c29ddd0b5e9108440b40cfd1875eae4d9c))
+
 ## [13.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.4.0...v13.5.0) (2024-03-14)
 
 
