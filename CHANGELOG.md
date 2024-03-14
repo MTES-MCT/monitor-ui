@@ -1,3 +1,10 @@
+## [13.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.4.0...v13.5.0) (2024-03-14)
+
+
+### Features
+
+* **utils:** add getMaybeBooleanFromRichBoolean() ([f4d7b59](https://github.com/MTES-MCT/monitor-ui/commit/f4d7b5982ab78c4fc7f762f0b276173af95b0a95))
+
 ## [13.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.3.2...v13.4.0) (2024-03-14)
 
 
