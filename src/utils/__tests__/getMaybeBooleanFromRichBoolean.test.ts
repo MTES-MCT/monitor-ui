@@ -21,4 +21,10 @@ describe('utils/getMaybeBooleanFromRichBoolean()', () => {
 
     expect(result).toBeUndefined()
   })
+
+  it('should return `undefined` for `undefined`', () => {
+    const result = getMaybeBooleanFromRichBoolean(undefined)
+
+    expect(result).toBeUndefined()
+  })
 })

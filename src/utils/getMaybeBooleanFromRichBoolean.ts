@@ -1,7 +1,7 @@
 import { RichBoolean } from '../constants'
 
-export function getMaybeBooleanFromRichBoolean(richBoolean: RichBoolean): boolean | undefined {
-  switch (richBoolean) {
+export function getMaybeBooleanFromRichBoolean(value: RichBoolean | undefined): boolean | undefined {
+  switch (value) {
     case RichBoolean.FALSE:
       return false
 
