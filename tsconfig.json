@@ -30,6 +30,7 @@
     "outDir": "./dist",
     "paths": {
       "@elements/*": ["elements/*"],
+      "@fields/*": ["fields/*"],
       "@hooks/*": ["hooks/*"],
       "@libs/*": ["libs/*"],
       "@types_/*": ["types/*"],

@@ -1,3 +1,4 @@
+import { stopMouseEventPropagation } from '@utils/stopMouseEventPropagation'
 import { type HTMLProps } from 'react'
 import { Checkbox as RsuiteCheckbox } from 'rsuite'
 
@@ -9,7 +10,6 @@ export type RowCheckboxProps = {
   isIndeterminate?: boolean
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
-
 export function RowCheckbox({
   className = '',
   disabled = false,
@@ -25,6 +25,7 @@ export function RowCheckbox({
       indeterminate={isIndeterminate}
       // eslint-disable-next-line @typescript-eslint/naming-convention
       onChange={(_, __, event) => onChange(event)}
+      onClick={stopMouseEventPropagation}
     />
   )
 }
