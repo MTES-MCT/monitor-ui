@@ -1,3 +1,11 @@
+## [13.7.1](https://github.com/MTES-MCT/monitor-ui/compare/v13.7.0...v13.7.1) (2024-03-15)
+
+
+### Bug Fixes
+
+* **tables:** stop click event propagation in RowCheckbox ([7e218ec](https://github.com/MTES-MCT/monitor-ui/commit/7e218eccc1d84c51e5c342c5eb4bfef20744e9f0))
+* **utils:** remove conditional types from getFilteredCollection() ([472e11f](https://github.com/MTES-MCT/monitor-ui/commit/472e11fe02b65ae4295a8b0a2322ff14af370365))
+
 ## [13.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.6.0...v13.7.0) (2024-03-15)
 
 
