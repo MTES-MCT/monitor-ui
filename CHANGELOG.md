@@ -1,3 +1,10 @@
+## [13.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.6.0...v13.7.0) (2024-03-15)
+
+
+### Features
+
+* **utils:** add getFilteredCollection() ([47eb5ff](https://github.com/MTES-MCT/monitor-ui/commit/47eb5ff8dc75a0b5c3dfc8ea081a21a0aa16840f))
+
 ## [13.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.5.0...v13.6.0) (2024-03-14)
 
 
