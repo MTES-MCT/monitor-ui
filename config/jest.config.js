@@ -19,6 +19,7 @@ export default {
           baseUrl: './src',
           paths: {
             '@elements/*': ['elements/*'],
+            '@fields/*': ['fields/*'],
             '@hooks/*': ['hooks/*'],
             '@libs/*': ['libs/*'],
             '@types_/*': ['types/*'],
