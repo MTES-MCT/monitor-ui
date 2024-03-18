@@ -1,3 +1,10 @@
+## [13.7.2](https://github.com/MTES-MCT/monitor-ui/compare/v13.7.1...v13.7.2) (2024-03-18)
+
+
+### Bug Fixes
+
+* **components:** update Dialog padding ([2cacb4e](https://github.com/MTES-MCT/monitor-ui/commit/2cacb4ed492415971ac61a05f8903b9ad1edc3f2))
+
 ## [13.7.1](https://github.com/MTES-MCT/monitor-ui/compare/v13.7.0...v13.7.1) (2024-03-15)
 
 
