@@ -162,12 +162,13 @@ const StyledFieldset = styled(Fieldset)<CommonFieldStyleProps>`
     &:focus-visible {
       outline: 0;
     }
-    ${p =>
-      p.$isRequired &&
-      `
-        :after {
+  }
+
+  ${p =>
+    p.$isRequired &&
+    `
+        legend:after {
             content:" *";
             color: ${p.theme.color.maximumRed};
           }`}
-  }
 `
