@@ -37,7 +37,7 @@ export function _Dialog(props: DialogProps) {
       </Dialog.Body>
 
       <Dialog.Action>
-        <Button accent={Accent.TERTIARY} onClick={noop}>
+        <Button accent={Accent.SECONDARY} onClick={noop}>
           Cancel
         </Button>
         <Button accent={Accent.PRIMARY} onClick={noop}>

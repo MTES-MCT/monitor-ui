@@ -7,23 +7,11 @@ export const Action = styled.div`
   display: flex;
   flex-direction: column-reverse;
   padding: 8px 8px 8px 8px;
+  gap: 8px;
   @media (min-width: 740px) {
     align-items: center;
     flex-direction: row;
     justify-content: center;
-    padding: 32px 8px 32px 8px;
-  }
-
-  > button {
-    margin-bottom: 2px;
-  }
-  @media (min-width: 740px) {
-    > button {
-      margin-bottom: 0;
-
-      &:first-child {
-        margin-right: 8px;
-      }
-    }
+    padding: 32px 48px 48px 48px;
   }
 `
