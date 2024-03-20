@@ -39,14 +39,18 @@ export function pickMultiSelectOptions(
       }
 
       values.forEach(value => {
-        cy.wrap(fieldElement)
-          .find('.rs-picker-toggle')
-          .click({ force })
-          .wait(250)
-          .type(value, { delay, force })
-          .wait(250)
+        // Search for the value if there is a search input
+        const maybeSearchInput = fieldElement.querySelector('.rs-picker-search-input > input')
+        if (maybeSearchInput) {
+          cy.wrap(fieldElement).find('.rs-picker-search-input > input').type(value, { delay, force }).wait(250)
+        }
 
-        cy.wrap(rsuitePickerPopupElement).find('[role="option"]').contains(value).scrollIntoView().click({ force })
+        cy.wrap(rsuitePickerPopupElement)
+          .find('[role="option"]')
+          .contains(value)
+          .first()
+          .scrollIntoView()
+          .click({ force })
       })
 
       // Close the picker popup by pressing the escape key

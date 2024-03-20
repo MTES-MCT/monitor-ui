@@ -196,3 +196,48 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     })
   })
 })
+
+context('With `searchable`', () => {
+  const options = [
+    { label: 'La Première Option', value: 'FIRST_OPTION' },
+    { label: 'La Seconde Option', value: 'SECOND_OPTION' },
+    { label: 'La Troisième Option', value: 'THIRD_OPTION' },
+    { label: 'La Quatrième Option', value: 'FOURTH_OPTION' },
+    { label: 'La Cinquième Option', value: 'FIFTH_OPTION' },
+    { label: 'La Sixième Option', value: 'SIXTH_OPTION' },
+    { label: 'La Septième Option', value: 'SEVENTH_OPTION' },
+    { label: 'La Huitième Option', value: 'EIGHTH_OPTION' },
+    { label: 'La Neuvième Option', value: 'NINTH_OPTION' },
+    { label: 'La Dixième Option', value: 'TENTH_OPTION' },
+    { label: 'La Onzième Option', value: 'ELEVENTH_OPTION' },
+    { label: 'La Douzième Option', value: 'TWELFTH_OPTION' },
+    { label: 'La Treizième Option', value: 'THIRTEENTH_OPTION' },
+    { label: 'La Quatorzième Option', value: 'FOURTEENTH_OPTION' },
+    { label: 'La Quinzième Option', value: 'FIFTEENTH_OPTION' },
+    { label: 'La Seizième Option', value: 'SIXTEENTH_OPTION' },
+    { label: 'La Dix-septième Option', value: 'SEVENTEENTH_OPTION' },
+    { label: 'La Dix-huitième Option', value: 'EIGHTEENTH_OPTION' },
+    { label: 'La Dix-neuvième Option', value: 'NINETEENTH_OPTION' },
+    { label: 'La Vingtième Option', value: 'TWENTIETH_OPTION' }
+  ]
+  const commonProps: MultiSelectProps = {
+    label: 'A multiple select',
+    name: 'myMultiSelect',
+    options,
+    searchable: true
+  }
+
+  it('Should search for options', () => {
+    mountAndWait(
+      <StoryBox>
+        <MultiSelectStory {...commonProps} />
+      </StoryBox>
+    )
+
+    outputShouldNotBe()
+
+    cy.fill('A multiple select', ['Vingtième'])
+
+    outputShouldBe([options[19]!.value])
+  })
+})
