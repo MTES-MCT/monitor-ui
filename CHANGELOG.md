@@ -1,3 +1,11 @@
+## [13.7.3](https://github.com/MTES-MCT/monitor-ui/compare/v13.7.2...v13.7.3) (2024-03-20)
+
+
+### Bug Fixes
+
+* **cypress:** handle searchable MultiSelect in fill() command ([9a66bb1](https://github.com/MTES-MCT/monitor-ui/commit/9a66bb19b07b482dbab49bdaf7c96d359e7aa1e6))
+* **fields:** the CoordinatesInput now displays the * when isRequired ([e38c209](https://github.com/MTES-MCT/monitor-ui/commit/e38c209f06a221b14a1a9917fe3925048fbea405))
+
 ## [13.7.2](https://github.com/MTES-MCT/monitor-ui/compare/v13.7.1...v13.7.2) (2024-03-18)
 
 
