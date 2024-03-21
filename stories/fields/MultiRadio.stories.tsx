@@ -42,7 +42,7 @@ const OPTIONS_WITH_ICONS: Array<Option<InterestPointOptionValueType>> = [
   }
 ]
 
-const OPTIONS_WITH_BOOLEANS: Array<Option<InterestPointOptionValueType>> = [
+const OPTIONS_WITH_BOOLEANS: Array<Option<boolean>> = [
   {
     label: 'Option OK',
     value: true
@@ -116,11 +116,11 @@ export default meta
 
 export function _MultiRadio(props: MultiRadioProps) {
   const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
-  const [outputValueWithBoolean, setOutputValueWithBoolean] = useState<boolean | undefined | '∅'>('∅')
+  const [outputValueWithBoolean, setOutputValueWithBoolean] = useState<boolean | undefined>(undefined)
 
   const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
 
-  const [outputValueWithIcon, setOutputValueWithIcons] = useState<InterestPointOptionValueType | undefined | '∅'>(
+  const [outputValueWithIcon, setOutputValueWithIcons] = useState<InterestPointOptionValueType | undefined>(
     OPTIONS_WITH_ICONS[2]?.value
   )
 
@@ -149,12 +149,11 @@ export function _MultiRadio(props: MultiRadioProps) {
           value={outputValueWithIcon}
         />
 
-        {outputValueWithIcon !== '∅' && <Output value={outputValueWithIcon} />}
+        {outputValueWithIcon !== undefined && <Output value={outputValueWithIcon} />}
       </div>
 
       <div style={{ marginTop: '32px' }}>
         <MultiRadio
-          {...props}
           label="Multiradio with boolean"
           name="myMultiRadioWithBooleans"
           onChange={nextOptionValue => setOutputValueWithBoolean(nextOptionValue)}
@@ -162,7 +161,7 @@ export function _MultiRadio(props: MultiRadioProps) {
           value={outputValueWithBoolean}
         />
 
-        {outputValueWithBoolean !== '∅' && <Output value={outputValueWithBoolean} />}
+        {outputValueWithBoolean !== undefined && <Output value={outputValueWithBoolean} />}
       </div>
     </>
   )
