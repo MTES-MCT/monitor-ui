@@ -5,7 +5,7 @@ import { getOptionValueKeyValueFromOptionValue } from './getOptionValueKeyValueF
 import type { Option, OptionValueType } from '@types_/definitions'
 
 /**
- * Get the selected option from the option value.
+ * Get the matching option from an option value in an option list.
  */
 export function getSelectedOptionFromOptionValue<OptionValue extends OptionValueType = string>(
   allOptions: Array<Option<OptionValue>>,
