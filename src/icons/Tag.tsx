@@ -2,9 +2,9 @@ import { IconBox } from '../elements/IconBox'
 
 import type { IconProps } from '../types/definitions'
 
-export function Tag({ color, size, ...nativeProps }: IconProps) {
+export function Tag({ color, size, title, ...nativeProps }: IconProps) {
   return (
-    <IconBox $color={color} $size={size}>
+    <IconBox $color={color} $size={size} title={title}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <g transform="translate(-160)">
           <path d="M173.063,6l3.334,4-3.334,4H164V6h9.063M174,4H162V16h12l5-6-5-6Z" fill="currentColor" />

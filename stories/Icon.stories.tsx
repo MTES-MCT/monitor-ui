@@ -8,7 +8,8 @@ import type { Meta } from '@storybook/react'
 
 const args: IconProps = {
   color: THEME.color.charcoal,
-  size: 32
+  size: 32,
+  title: 'any optional text you want'
 }
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */

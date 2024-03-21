@@ -2,9 +2,9 @@ import { IconBox } from '../elements/IconBox'
 
 import type { IconProps } from '../types/definitions'
 
-export function MissionAction({ color, size, ...nativeProps }: IconProps) {
+export function MissionAction({ color, size, title, ...nativeProps }: IconProps) {
   return (
-    <IconBox $color={color} $size={size}>
+    <IconBox $color={color} $size={size} title={title}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <path d="M214,2V0h-2V2h-4V0h-2V2h-3V18h14V2Zm1,14H205V4h10Z" fill="currentColor" transform="translate(-200)" />
         <rect fill="currentColor" height="1.5" transform="translate(7 6.5)" width="6" />
