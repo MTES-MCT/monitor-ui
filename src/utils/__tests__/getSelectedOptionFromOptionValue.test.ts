@@ -20,44 +20,44 @@ describe('utils/getSelectedOptionFromOptionValue()', () => {
 
   it('should return the correct option for boolean options', () => {
     const allOptions = FAKE_BOOLEAN_OPTIONS
-    const selectedOptionValue = FAKE_BOOLEAN_OPTIONS[1]!.value
+    const selectedOptionValue = false
 
     const result = getSelectedOptionFromOptionValue(allOptions, selectedOptionValue)
 
-    expect(result).toBe(FAKE_BOOLEAN_OPTIONS[1]!)
+    expect(result).toEqual({ label: 'No', value: false })
   })
 
   it('should return the correct option for number options', () => {
     const allOptions = FAKE_NUMBER_OPTIONS
-    const selectedOptionValue = FAKE_NUMBER_OPTIONS[1]!.value
+    const selectedOptionValue = 2
 
     const result = getSelectedOptionFromOptionValue(allOptions, selectedOptionValue)
 
-    expect(result).toBe(FAKE_NUMBER_OPTIONS[1]!)
+    expect(result).toEqual({ label: 'Second Option', value: 2 })
   })
 
   it('should return the correct option for a object options', () => {
     const allOptions = FAKE_OBJECT_OPTIONS
-    const selectedOptionValue = FAKE_OBJECT_OPTIONS[1]!.value
+    const selectedOptionValue = { id: 2, name: 'Second Option Name' }
     const optionValueKey = 'id'
 
     const result = getSelectedOptionFromOptionValue(allOptions, selectedOptionValue, optionValueKey)
 
-    expect(result).toBe(FAKE_OBJECT_OPTIONS[1]!)
+    expect(result).toEqual({ label: 'Second Option', value: { id: 2, name: 'Second Option Name' } })
   })
 
   it('should return the correct option for string options', () => {
     const allOptions = FAKE_STRING_OPTIONS
-    const selectedOptionValue = FAKE_STRING_OPTIONS[1]!.value
+    const selectedOptionValue = 'SECOND_OPTION'
 
     const result = getSelectedOptionFromOptionValue(allOptions, selectedOptionValue)
 
-    expect(result).toBe(FAKE_STRING_OPTIONS[1]!)
+    expect(result).toEqual({ label: 'Second Option', value: 'SECOND_OPTION' })
   })
 
   it('should throw an error with object option when <selectedOptionValue> does NOT exist', () => {
     const allOptions = FAKE_OBJECT_OPTIONS
-    const selectedOptionValue = FAKE_OBJECT_OPTIONS[1]!.value
+    const selectedOptionValue = { id: 2, name: 'Second Option Name' }
     const optionValueKey = 'non-existent'
 
     const call = () => getSelectedOptionFromOptionValue(allOptions, selectedOptionValue, optionValueKey as any)
