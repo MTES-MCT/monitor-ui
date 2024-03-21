@@ -17,6 +17,10 @@ const OPTIONS_TYPES = {
     { label: 'Second Option', value: 1 },
     { label: 'Third Option', value: 2 }
   ],
+  boolean: [
+    { label: 'True', value: false },
+    { label: 'False', value: true }
+  ],
   object: [
     { label: 'First Option', value: { id: 0, name: 'First Option Name' } },
     { label: 'Second Option', value: { id: 1, name: 'Second Option Name' } },
