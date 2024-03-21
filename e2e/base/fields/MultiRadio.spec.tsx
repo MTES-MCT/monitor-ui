@@ -75,10 +75,10 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       outputShouldBe(options[1].value)
     })
 
-    it(`Should fill and change the multiple radio with \`value={${JSON.stringify(options[2].value)}}\``, () => {
+    it(`Should fill and change the multiple radio with \`value={${JSON.stringify(options[1].value)}}\``, () => {
       mountAndWait(
         <StoryBox>
-          <MultiRadioStory {...commonProps} value={options[2].value} />
+          <MultiRadioStory {...commonProps} value={options[1].value} />
         </StoryBox>
       )
 
@@ -117,10 +117,10 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       outputShouldNotBe()
     })
 
-    it(`Should NOT call \`onChange(undefined)\` with \`disabled value={${JSON.stringify(options[2].value)}}\``, () => {
+    it(`Should NOT call \`onChange(undefined)\` with \`disabled value={${JSON.stringify(options[1].value)}}\``, () => {
       mountAndWait(
         <StoryBox>
-          <MultiRadioStory {...commonProps} disabled value={options[2].value} />
+          <MultiRadioStory {...commonProps} disabled value={options[1].value} />
         </StoryBox>
       )
 
@@ -138,11 +138,11 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
     })
 
     it(`Should call \`onChange(undefined)\` with \`disabled isUndefinedWhenDisabled value={${JSON.stringify(
-      options[2].value
+      options[1].value
     )}}\``, () => {
       mountAndWait(
         <StoryBox>
-          <MultiRadioStory {...commonProps} disabled isUndefinedWhenDisabled value={options[2].value} />
+          <MultiRadioStory {...commonProps} disabled isUndefinedWhenDisabled value={options[1].value} />
         </StoryBox>
       )
 
