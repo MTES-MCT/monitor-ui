@@ -2,9 +2,9 @@ import { IconBox } from '../elements/IconBox'
 
 import type { IconProps } from '../types/definitions'
 
-export function FleetSegment({ color, size, ...nativeProps }: IconProps) {
+export function FleetSegment({ color, size, title, ...nativeProps }: IconProps) {
   return (
-    <IconBox $color={color} $size={size}>
+    <IconBox $color={color} $size={size} title={title}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <rect fill="none" height="20" width="20" />
         <g>

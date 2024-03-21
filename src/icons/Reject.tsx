@@ -2,9 +2,9 @@ import { IconBox } from '../elements/IconBox'
 
 import type { IconProps } from '../types/definitions'
 
-export function Reject({ color, size, ...nativeProps }: IconProps) {
+export function Reject({ color, size, title, ...nativeProps }: IconProps) {
   return (
-    <IconBox $color={color} $size={size}>
+    <IconBox $color={color} $size={size} title={title}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <g transform="translate(-80)">
           <path d="M90,1a9,9,0,1,0,9,9A9,9,0,0,0,90,1Zm0,16a7,7,0,1,1,7-7A7,7,0,0,1,90,17Z" fill="currentColor" />
