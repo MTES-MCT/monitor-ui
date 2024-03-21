@@ -24,7 +24,7 @@ describe('utils/getSelectedOptionFromOptionValue()', () => {
 
     const result = getSelectedOptionFromOptionValue(allOptions, selectedOptionValue)
 
-    expect(result).toBe(FAKE_BOOLEAN_OPTIONS[1])
+    expect(result).toBe(FAKE_BOOLEAN_OPTIONS[1]!)
   })
 
   it('should return the correct option for number options', () => {
@@ -33,7 +33,7 @@ describe('utils/getSelectedOptionFromOptionValue()', () => {
 
     const result = getSelectedOptionFromOptionValue(allOptions, selectedOptionValue)
 
-    expect(result).toBe(FAKE_NUMBER_OPTIONS[1])
+    expect(result).toBe(FAKE_NUMBER_OPTIONS[1]!)
   })
 
   it('should return the correct option for a object options', () => {
@@ -43,7 +43,7 @@ describe('utils/getSelectedOptionFromOptionValue()', () => {
 
     const result = getSelectedOptionFromOptionValue(allOptions, selectedOptionValue, optionValueKey)
 
-    expect(result).toBe(FAKE_OBJECT_OPTIONS[1])
+    expect(result).toBe(FAKE_OBJECT_OPTIONS[1]!)
   })
 
   it('should return the correct option for string options', () => {
@@ -52,7 +52,7 @@ describe('utils/getSelectedOptionFromOptionValue()', () => {
 
     const result = getSelectedOptionFromOptionValue(allOptions, selectedOptionValue)
 
-    expect(result).toBe(FAKE_STRING_OPTIONS[1])
+    expect(result).toBe(FAKE_STRING_OPTIONS[1]!)
   })
 
   it('should throw an error with object option when <selectedOptionValue> does NOT exist', () => {
