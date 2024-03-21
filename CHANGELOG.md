@@ -1,3 +1,11 @@
+## [13.7.4](https://github.com/MTES-MCT/monitor-ui/compare/v13.7.3...v13.7.4) (2024-03-21)
+
+
+### Bug Fixes
+
+* **e2e:** fix e2e MultiRadio test with boolean ([5344063](https://github.com/MTES-MCT/monitor-ui/commit/5344063517f3740fea062600522b6cb76094533f))
+* **fields:** fix MultiRadio with booleans ([cd25778](https://github.com/MTES-MCT/monitor-ui/commit/cd2577800e9d9a0fcc49034f522bb1998524ad66))
+
 ## [13.7.3](https://github.com/MTES-MCT/monitor-ui/compare/v13.7.2...v13.7.3) (2024-03-20)
 
 
