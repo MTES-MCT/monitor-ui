@@ -42,6 +42,17 @@ const OPTIONS_WITH_ICONS: Array<Option<InterestPointOptionValueType>> = [
   }
 ]
 
+const OPTIONS_WITH_BOOLEANS: Array<Option<InterestPointOptionValueType>> = [
+  {
+    label: 'Option OK',
+    value: true
+  },
+  {
+    label: 'Option NOK',
+    value: false
+  }
+]
+
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<MultiRadioProps> = {
   ...META_DEFAULTS,
@@ -105,10 +116,11 @@ export default meta
 
 export function _MultiRadio(props: MultiRadioProps) {
   const [outputValue, setOutputValue] = useState<string | undefined | '∅'>('∅')
+  const [outputValueWithBoolean, setOutputValueWithBoolean] = useState<boolean | undefined | '∅'>('∅')
 
   const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
 
-  const [outputValueWithIcon, setOutputValueWithIcons] = useState<InterestPointOptionValueType | undefined>(
+  const [outputValueWithIcon, setOutputValueWithIcons] = useState<InterestPointOptionValueType | undefined | '∅'>(
     OPTIONS_WITH_ICONS[2]?.value
   )
 
@@ -122,6 +134,7 @@ export function _MultiRadio(props: MultiRadioProps) {
 
       <div style={{ marginTop: '32px' }}>
         <MultiRadio
+          {...props}
           label="Multiradio with icons"
           name="myMultiRadioWithIcons"
           onChange={nextOptionValue => setOutputValueWithIcons(nextOptionValue)}
@@ -135,6 +148,21 @@ export function _MultiRadio(props: MultiRadioProps) {
           )}
           value={outputValueWithIcon}
         />
+
+        {outputValueWithIcon !== '∅' && <Output value={outputValueWithIcon} />}
+      </div>
+
+      <div style={{ marginTop: '32px' }}>
+        <MultiRadio
+          {...props}
+          label="Multiradio with boolean"
+          name="myMultiRadioWithBooleans"
+          onChange={nextOptionValue => setOutputValueWithBoolean(nextOptionValue)}
+          options={OPTIONS_WITH_BOOLEANS}
+          value={outputValueWithBoolean}
+        />
+
+        {outputValueWithBoolean !== '∅' && <Output value={outputValueWithBoolean} />}
       </div>
     </>
   )

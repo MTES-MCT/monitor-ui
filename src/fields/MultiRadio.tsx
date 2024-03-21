@@ -66,7 +66,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   const key = useKey([disabled, name])
   const selectedRsuiteValue = useMemo(
     // eslint-disable-next-line no-null/no-null
-    () => (value ? getRsuiteDataItemValueFromOptionValue(value, optionValueKey) : null),
+    () => (value !== undefined ? getRsuiteDataItemValueFromOptionValue(value, optionValueKey) : null),
     [value, optionValueKey]
   )
   const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
@@ -105,7 +105,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
         {rsuiteData.map(rsuiteDataItem => (
           <Radio
             key={rsuiteDataItem.value}
-            checked={!!value && eq(rsuiteDataItem.value, value)}
+            checked={value !== undefined && eq(rsuiteDataItem.optionValue, value)}
             disabled={!!rsuiteDataItem.isDisabled || disabled}
             hasError={hasError}
             isLight={isLight}
