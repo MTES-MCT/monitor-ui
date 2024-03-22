@@ -8,14 +8,14 @@ import {
   FAKE_OBJECT_TREE_OPTIONS,
   FAKE_STRING_TREE_OPTIONS
 } from '../../../__mocks__/fake_tree_options'
-import { getSelectedTreeOptionFromTreeOptionValue } from '../getSelectedTreeOptionFromTreeOptionValue'
+import { getSelectedOptionFromOptionValueInTree } from '../getSelectedOptionFromOptionValueInTree'
 
-describe('utils/getSelectedTreeOptionFromTreeOptionValue()', () => {
+describe('utils/getSelectedOptionFromOptionValueInTree()', () => {
   it('should return undefined for undefined selectedOptionValue', () => {
     const allOptions = FAKE_STRING_TREE_OPTIONS
     const selectedOptionValue = undefined
 
-    const result = getSelectedTreeOptionFromTreeOptionValue(allOptions, selectedOptionValue)
+    const result = getSelectedOptionFromOptionValueInTree(allOptions, selectedOptionValue)
 
     expect(result).toBeUndefined()
   })
@@ -24,7 +24,7 @@ describe('utils/getSelectedTreeOptionFromTreeOptionValue()', () => {
     const allOptions = FAKE_NUMBER_TREE_OPTIONS
     const selectedOptionValue = 4
 
-    const result = getSelectedTreeOptionFromTreeOptionValue(allOptions, selectedOptionValue)
+    const result = getSelectedOptionFromOptionValueInTree(allOptions, selectedOptionValue)
 
     expect(result).toEqual({ label: LOREM_IPSUM, value: 4 })
   })
@@ -34,7 +34,7 @@ describe('utils/getSelectedTreeOptionFromTreeOptionValue()', () => {
     const selectedOptionValue = { id: 4, name: 'Chatty Option Name' }
     const optionValueKey = 'id'
 
-    const result = getSelectedTreeOptionFromTreeOptionValue(allOptions, selectedOptionValue, optionValueKey)
+    const result = getSelectedOptionFromOptionValueInTree(allOptions, selectedOptionValue, optionValueKey)
 
     expect(result).toEqual({ label: LOREM_IPSUM, value: { id: 4, name: 'Chatty Option Name' } })
   })
@@ -43,7 +43,7 @@ describe('utils/getSelectedTreeOptionFromTreeOptionValue()', () => {
     const allOptions = FAKE_STRING_TREE_OPTIONS
     const selectedOptionValue = 'CHATTY_OPTION'
 
-    const result = getSelectedTreeOptionFromTreeOptionValue(allOptions, selectedOptionValue)
+    const result = getSelectedOptionFromOptionValueInTree(allOptions, selectedOptionValue)
 
     expect(result).toEqual({ label: LOREM_IPSUM, value: 'CHATTY_OPTION' })
   })
@@ -53,7 +53,7 @@ describe('utils/getSelectedTreeOptionFromTreeOptionValue()', () => {
     const selectedOptionValue = { id: 4, name: 'Chatty Option Name' }
     const optionValueKey = 'non-existent'
 
-    const call = () => getSelectedTreeOptionFromTreeOptionValue(allOptions, selectedOptionValue, optionValueKey as any)
+    const call = () => getSelectedOptionFromOptionValueInTree(allOptions, selectedOptionValue, optionValueKey as any)
 
     expect(call).toThrow()
   })

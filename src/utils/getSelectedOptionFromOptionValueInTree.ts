@@ -17,7 +17,7 @@ function getLeafOptionsFromTreeOptions<OptionValue extends OptionValueType>(
 /**
  * Get the matching tree option deepest child from a tree option value in a tree option list.
  */
-export function getSelectedTreeOptionFromTreeOptionValue<OptionValue extends OptionValueType = string>(
+export function getSelectedOptionFromOptionValueInTree<OptionValue extends OptionValueType = string>(
   allOptions: Array<TreeOption<OptionValue>>,
   selectedOptionValue: OptionValue | undefined,
   optionValueKey?: keyof OptionValue | undefined
