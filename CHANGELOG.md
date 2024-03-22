@@ -1,3 +1,11 @@
+## [13.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.7.4...v13.8.0) (2024-03-22)
+
+
+### Features
+
+* **utils:** add getSelectedTreeOptionFromTreeOptionValue() ([551079a](https://github.com/MTES-MCT/monitor-ui/commit/551079a1be73698784f7540476bfa44e1a9d32f2))
+* **utils:** rename getSelectedTreeOptionFromTreeOptionValue() to getSelectedOptionFromOptionValueInTree() ([12b918e](https://github.com/MTES-MCT/monitor-ui/commit/12b918e653a56cbd845c9003e1690ebf32ce70ec))
+
 ## [13.7.4](https://github.com/MTES-MCT/monitor-ui/compare/v13.7.3...v13.7.4) (2024-03-21)
 
 
