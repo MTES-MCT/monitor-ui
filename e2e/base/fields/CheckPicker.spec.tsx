@@ -39,191 +39,191 @@ function CheckPickerStory({ value, ...otherProps }: CheckPickerProps) {
   )
 }
 
-Object.keys(OPTIONS_TYPES).forEach(optionType => {
-  context(`With ${optionType} options`, () => {
-    const options = OPTIONS_TYPES[optionType]
-    const commonProps: CheckPickerProps = {
-      label: 'A check picker',
-      name: 'myCheckPicker',
-      options,
-      ...(optionType === 'object'
-        ? {
-            optionValueKey: 'name' as any
-          }
-        : {})
-    }
+describe('fields/CheckPicker', () => {
+  Object.keys(OPTIONS_TYPES).forEach(optionType => {
+    context(`With ${optionType} options`, () => {
+      const options = OPTIONS_TYPES[optionType]
+      const commonProps: CheckPickerProps = {
+        label: 'A check picker',
+        name: 'myCheckPicker',
+        options,
+        ...(optionType === 'object'
+          ? {
+              optionValueKey: 'name' as any
+            }
+          : {})
+      }
 
-    it('Should fill, change and clear the check picker', () => {
-      mountAndWait(
-        <StoryBox>
-          <CheckPickerStory {...commonProps} />
-        </StoryBox>
-      )
+      it('Should fill, change and clear the check picker', () => {
+        mountAndWait(
+          <StoryBox>
+            <CheckPickerStory {...commonProps} />
+          </StoryBox>
+        )
 
-      outputShouldNotBe()
+        outputShouldNotBe()
 
-      cy.fill('A check picker', [options[0].label])
+        cy.fill('A check picker', [options[0].label])
 
-      outputShouldBe([options[0].value])
+        outputShouldBe([options[0].value])
 
-      cy.fill('A check picker', [options[1].label, options[2].label])
+        cy.fill('A check picker', [options[1].label, options[2].label])
 
-      outputShouldBe([options[1].value, options[2].value])
+        outputShouldBe([options[1].value, options[2].value])
 
-      cy.fill('A check picker', undefined)
+        cy.fill('A check picker', undefined)
 
-      outputShouldBe(undefined)
-    })
+        outputShouldBe(undefined)
+      })
 
-    it(`Should fill, change and clear the check picker with \`value={[${JSON.stringify(options[2].value)}]\``, () => {
-      mountAndWait(
-        <StoryBox>
-          <CheckPickerStory {...commonProps} value={[options[2].value]} />
-        </StoryBox>
-      )
+      it('Should fill, change and clear the check picker with `value`', () => {
+        mountAndWait(
+          <StoryBox>
+            <CheckPickerStory {...commonProps} value={[options[2].value]} />
+          </StoryBox>
+        )
 
-      outputShouldNotBe()
+        outputShouldNotBe()
 
-      cy.fill('A check picker', [options[0].label])
+        cy.fill('A check picker', [options[0].label])
 
-      outputShouldBe([options[0].value])
+        outputShouldBe([options[0].value])
 
-      cy.fill('A check picker', [options[1].label, options[2].label])
+        cy.fill('A check picker', [options[1].label, options[2].label])
 
-      outputShouldBe([options[1].value, options[2].value])
+        outputShouldBe([options[1].value, options[2].value])
 
-      cy.fill('A check picker', undefined)
+        cy.fill('A check picker', undefined)
 
-      outputShouldBe(undefined)
-    })
+        outputShouldBe(undefined)
+      })
 
-    it('Should fill the check picker with `isLabelHidden`', () => {
-      mountAndWait(
-        <StoryBox>
-          <CheckPickerStory {...commonProps} isLabelHidden />
-        </StoryBox>
-      )
+      it('Should fill the check picker with `isLabelHidden`', () => {
+        mountAndWait(
+          <StoryBox>
+            <CheckPickerStory {...commonProps} isLabelHidden />
+          </StoryBox>
+        )
 
-      outputShouldNotBe()
+        outputShouldNotBe()
 
-      cy.fill('A check picker', [options[0].label])
+        cy.fill('A check picker', [options[0].label])
 
-      outputShouldBe([options[0].value])
-    })
+        outputShouldBe([options[0].value])
+      })
 
-    it('Should fill the check picker with `searcheable`', () => {
-      mountAndWait(
-        <StoryBox>
-          <CheckPickerStory {...commonProps} searchable />
-        </StoryBox>
-      )
+      it('Should fill the check picker with `searcheable`', () => {
+        mountAndWait(
+          <StoryBox>
+            <CheckPickerStory {...commonProps} searchable />
+          </StoryBox>
+        )
 
-      outputShouldNotBe()
+        outputShouldNotBe()
 
-      cy.fill('A check picker', [options[0].label])
+        cy.fill('A check picker', [options[0].label])
 
-      outputShouldBe([options[0].value])
+        outputShouldBe([options[0].value])
 
-      cy.fill('A check picker', [options[1].label, options[2].label])
+        cy.fill('A check picker', [options[1].label, options[2].label])
 
-      outputShouldBe([options[1].value, options[2].value])
-    })
+        outputShouldBe([options[1].value, options[2].value])
+      })
 
-    it('Should NOT call `onChange(undefined)` with `disabled`', () => {
-      mountAndWait(
-        <StoryBox>
-          <CheckPickerStory {...commonProps} disabled />
-        </StoryBox>
-      )
+      it('Should NOT call `onChange(undefined)` with `disabled`', () => {
+        mountAndWait(
+          <StoryBox>
+            <CheckPickerStory {...commonProps} disabled />
+          </StoryBox>
+        )
 
-      outputShouldNotBe()
-    })
+        outputShouldNotBe()
+      })
 
-    it(`Should NOT call \`onChange(undefined)\` with \`disabled value={[${JSON.stringify(options[2].value)}]\``, () => {
-      mountAndWait(
-        <StoryBox>
-          <CheckPickerStory {...commonProps} disabled value={[options[2].value]} />
-        </StoryBox>
-      )
+      it('Should NOT call `onChange(undefined)` with `disabled value`', () => {
+        mountAndWait(
+          <StoryBox>
+            <CheckPickerStory {...commonProps} disabled value={[options[2].value]} />
+          </StoryBox>
+        )
 
-      outputShouldNotBe()
-    })
+        outputShouldNotBe()
+      })
 
-    it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
-      mountAndWait(
-        <StoryBox>
-          <CheckPickerStory {...commonProps} disabled isUndefinedWhenDisabled />
-        </StoryBox>
-      )
+      it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
+        mountAndWait(
+          <StoryBox>
+            <CheckPickerStory {...commonProps} disabled isUndefinedWhenDisabled />
+          </StoryBox>
+        )
 
-      outputShouldBe(undefined)
-    })
+        outputShouldBe(undefined)
+      })
 
-    it(`Should call \`onChange(undefined)\` with \`disabled isUndefinedWhenDisabled value={[${JSON.stringify(
-      options[2].value
-    )}]\``, () => {
-      mountAndWait(
-        <StoryBox>
-          <CheckPickerStory {...commonProps} disabled isUndefinedWhenDisabled value={[options[2].value]} />
-        </StoryBox>
-      )
+      it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled value`', () => {
+        mountAndWait(
+          <StoryBox>
+            <CheckPickerStory {...commonProps} disabled isUndefinedWhenDisabled value={[options[2].value]} />
+          </StoryBox>
+        )
 
-      outputShouldBe(undefined)
-    })
+        outputShouldBe(undefined)
+      })
 
-    it('Should filter and select the expected options when using `customSearch`', () => {
-      const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
+      it('Should filter and select the expected options when using `customSearch`', () => {
+        const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
 
-      mountAndWait(
-        <StoryBox>
-          <CheckPickerStory {...commonProps} customSearch={customSearch as any} />
-        </StoryBox>
-      )
+        mountAndWait(
+          <StoryBox>
+            <CheckPickerStory {...commonProps} customSearch={customSearch as any} />
+          </StoryBox>
+        )
 
-      outputShouldNotBe()
+        outputShouldNotBe()
 
-      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
-      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('la remie')
-      cy.get('.rs-picker-popup').find('[role="option"]').first().click()
-      cy.clickOutside()
+        cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+        cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('la remie')
+        cy.get('.rs-picker-popup').find('[role="option"]').first().click()
+        cy.clickOutside()
 
-      outputShouldBe([options[0].value])
+        outputShouldBe([options[0].value])
 
-      // Clear the CheckPicker
-      cy.fill('A check picker', undefined)
+        // Clear the CheckPicker
+        cy.fill('A check picker', undefined)
 
-      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
-      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('la option')
-      cy.get('.rs-picker-popup').find('[role="option"]').first().click()
-      cy.clickOutside()
+        cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+        cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('la option')
+        cy.get('.rs-picker-popup').find('[role="option"]').first().click()
+        cy.clickOutside()
 
-      outputShouldBe([options[0].value])
+        outputShouldBe([options[0].value])
 
-      // Clear the CheckPicker
-      cy.fill('A check picker', undefined)
+        // Clear the CheckPicker
+        cy.fill('A check picker', undefined)
 
-      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
-      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('sêcôndÈ')
-      cy.get('.rs-picker-popup').find('[role="option"]').first().click()
-      cy.clickOutside()
+        cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+        cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('sêcôndÈ')
+        cy.get('.rs-picker-popup').find('[role="option"]').first().click()
+        cy.clickOutside()
 
-      outputShouldBe([options[1].value])
-    })
-    it('Should fill, clear and get all list', () => {
-      const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
-      mountAndWait(
-        <StoryBox>
-          <CheckPickerStory {...commonProps} customSearch={customSearch as any} />
-        </StoryBox>
-      )
+        outputShouldBe([options[1].value])
+      })
+      it('Should fill, clear and get all list', () => {
+        const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
+        mountAndWait(
+          <StoryBox>
+            <CheckPickerStory {...commonProps} customSearch={customSearch as any} />
+          </StoryBox>
+        )
 
-      outputShouldNotBe()
+        outputShouldNotBe()
 
-      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
-      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('sêc')
-      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('{backspace}{backspace}{backspace}')
+        cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click()
+        cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('sêc')
+        cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('{backspace}{backspace}{backspace}')
 
-      cy.get('.rs-picker-check-menu').find('[role="option"]').should('have.length', 3)
+        cy.get('.rs-picker-check-menu').find('[role="option"]').should('have.length', 3)
+      })
     })
   })
 })

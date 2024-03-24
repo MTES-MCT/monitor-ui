@@ -39,143 +39,147 @@ function SelectStory({ value, ...otherProps }: SelectProps) {
   )
 }
 
-Object.keys(OPTIONS_TYPES).forEach(optionType => {
-  context(`Story (${optionType} options)`, () => {
-    const options = OPTIONS_TYPES[optionType]
-    const commonProps: SelectProps = {
-      label: 'A select',
-      name: 'mySelect',
-      options,
-      ...(optionType === 'object'
-        ? {
-            optionValueKey: 'name' as any
-          }
-        : {})
-    }
+describe('fields/Select', () => {
+  Object.keys(OPTIONS_TYPES).forEach(optionType => {
+    context(`With ${optionType} options`, () => {
+      const options = OPTIONS_TYPES[optionType]
+      const commonProps: SelectProps = {
+        label: 'A select',
+        name: 'mySelect',
+        options,
+        ...(optionType === 'object'
+          ? {
+              optionValueKey: 'name' as any
+            }
+          : {})
+      }
 
-    it('Should fill, change and clear the select', () => {
-      mountAndWait(<SelectStory {...commonProps} />)
+      it('Should fill, change and clear the select', () => {
+        mountAndWait(<SelectStory {...commonProps} />)
 
-      outputShouldNotBe()
+        outputShouldNotBe()
 
-      cy.fill('A select', options[0].label)
+        cy.fill('A select', options[0].label)
 
-      outputShouldBe(options[0].value)
+        outputShouldBe(options[0].value)
 
-      cy.fill('A select', options[1].label)
+        cy.fill('A select', options[1].label)
 
-      outputShouldBe(options[1].value)
+        outputShouldBe(options[1].value)
 
-      cy.fill('A select', undefined)
+        cy.fill('A select', undefined)
 
-      outputShouldBe(undefined)
-    })
+        outputShouldBe(undefined)
+      })
 
-    it(`Should fill, change and clear the select with \`value={${JSON.stringify(options[2].value)}}\``, () => {
-      mountAndWait(<SelectStory {...commonProps} value={options[2].value} />)
+      it(`Should fill, change and clear the select with \`value={${JSON.stringify(options[2].value)}}\``, () => {
+        mountAndWait(<SelectStory {...commonProps} value={options[2].value} />)
 
-      outputShouldNotBe()
+        outputShouldNotBe()
 
-      cy.fill('A select', options[0].label)
+        cy.fill('A select', options[0].label)
 
-      outputShouldBe(options[0].value)
+        outputShouldBe(options[0].value)
 
-      cy.fill('A select', options[1].label)
+        cy.fill('A select', options[1].label)
 
-      outputShouldBe(options[1].value)
+        outputShouldBe(options[1].value)
 
-      cy.fill('A select', undefined)
+        cy.fill('A select', undefined)
 
-      outputShouldBe(undefined)
-    })
+        outputShouldBe(undefined)
+      })
 
-    it('Should fill the select with `isLabelHidden`', () => {
-      mountAndWait(<SelectStory {...commonProps} isLabelHidden />)
+      it('Should fill the select with `isLabelHidden`', () => {
+        mountAndWait(<SelectStory {...commonProps} isLabelHidden />)
 
-      outputShouldNotBe()
+        outputShouldNotBe()
 
-      cy.fill('A select', options[0].label)
+        cy.fill('A select', options[0].label)
 
-      outputShouldBe(options[0].value)
-    })
+        outputShouldBe(options[0].value)
+      })
 
-    it('Should NOT call `onChange(undefined)` with `disabled`', () => {
-      mountAndWait(<SelectStory {...commonProps} disabled />)
+      it('Should NOT call `onChange(undefined)` with `disabled`', () => {
+        mountAndWait(<SelectStory {...commonProps} disabled />)
 
-      outputShouldNotBe()
-    })
+        outputShouldNotBe()
+      })
 
-    it(`Should NOT call \`onChange(undefined)\` with \`disabled value={${JSON.stringify(options[2].value)}}\``, () => {
-      mountAndWait(<SelectStory {...commonProps} disabled value={options[2].value} />)
+      it(`Should NOT call \`onChange(undefined)\` with \`disabled value={${JSON.stringify(
+        options[2].value
+      )}}\``, () => {
+        mountAndWait(<SelectStory {...commonProps} disabled value={options[2].value} />)
 
-      outputShouldNotBe()
-    })
+        outputShouldNotBe()
+      })
 
-    it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
-      mountAndWait(<SelectStory {...commonProps} disabled isUndefinedWhenDisabled />)
+      it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
+        mountAndWait(<SelectStory {...commonProps} disabled isUndefinedWhenDisabled />)
 
-      outputShouldBe(undefined)
-    })
+        outputShouldBe(undefined)
+      })
 
-    it(`Should call \`onChange(undefined)\` with \`disabled isUndefinedWhenDisabled value={${JSON.stringify(
-      options[2].value
-    )}}\``, () => {
-      mountAndWait(<SelectStory {...commonProps} disabled isUndefinedWhenDisabled value={options[2].value} />)
+      it(`Should call \`onChange(undefined)\` with \`disabled isUndefinedWhenDisabled value={${JSON.stringify(
+        options[2].value
+      )}}\``, () => {
+        mountAndWait(<SelectStory {...commonProps} disabled isUndefinedWhenDisabled value={options[2].value} />)
 
-      outputShouldBe(undefined)
-    })
+        outputShouldBe(undefined)
+      })
 
-    it('Should filter and select the expected options when using `customSearch`', () => {
-      const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
+      it('Should filter and select the expected options when using `customSearch`', () => {
+        const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
 
-      mountAndWait(<SelectStory {...commonProps} customSearch={customSearch as any} />)
+        mountAndWait(<SelectStory {...commonProps} customSearch={customSearch as any} />)
 
-      outputShouldNotBe()
+        outputShouldNotBe()
 
-      // TODO Investigate why we need to wait here (expecting the popup to be visible doesn't fix the failing case).
-      // eslint-disable-next-line cypress/no-unnecessary-waiting
-      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click().wait(100)
-      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('la remie')
-      cy.get('.rs-picker-popup').find('div[role="option"]').first().click()
+        // TODO Investigate why we need to wait here (expecting the popup to be visible doesn't fix the failing case).
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click().wait(100)
+        cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('la remie')
+        cy.get('.rs-picker-popup').find('div[role="option"]').first().click()
 
-      outputShouldBe(options[0].value)
+        outputShouldBe(options[0].value)
 
-      // Clear the Select
-      cy.fill('A select', undefined)
+        // Clear the Select
+        cy.fill('A select', undefined)
 
-      // TODO Investigate why we need to wait here (expecting the popup to be visible doesn't fix the failing case).
-      // eslint-disable-next-line cypress/no-unnecessary-waiting
-      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click().wait(100)
-      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('la option')
-      cy.get('.rs-picker-popup').find('div[role="option"]').first().click()
+        // TODO Investigate why we need to wait here (expecting the popup to be visible doesn't fix the failing case).
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click().wait(100)
+        cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('la option')
+        cy.get('.rs-picker-popup').find('div[role="option"]').first().click()
 
-      outputShouldBe(options[0].value)
+        outputShouldBe(options[0].value)
 
-      // Clear the Select
-      cy.fill('A select', undefined)
+        // Clear the Select
+        cy.fill('A select', undefined)
 
-      // TODO Investigate why we need to wait here (expecting the popup to be visible doesn't fix the failing case).
-      // eslint-disable-next-line cypress/no-unnecessary-waiting
-      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click().wait(100)
-      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('sêcôndÈ')
-      cy.get('.rs-picker-popup').find('div[role="option"]').first().click()
+        // TODO Investigate why we need to wait here (expecting the popup to be visible doesn't fix the failing case).
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click().wait(100)
+        cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('sêcôndÈ')
+        cy.get('.rs-picker-popup').find('div[role="option"]').first().click()
 
-      outputShouldBe(options[1].value)
-    })
+        outputShouldBe(options[1].value)
+      })
 
-    it('Should fill, clear and get all list', () => {
-      const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
-      mountAndWait(<SelectStory {...commonProps} customSearch={customSearch as any} />)
+      it('Should fill, clear and get all list', () => {
+        const customSearch = new CustomSearch(options, ['label'], { isStrict: true })
+        mountAndWait(<SelectStory {...commonProps} customSearch={customSearch as any} />)
 
-      outputShouldNotBe()
+        outputShouldNotBe()
 
-      // TODO Investigate why we need to wait here (expecting the popup to be visible doesn't fix the failing case).
-      // eslint-disable-next-line cypress/no-unnecessary-waiting
-      cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click().wait(100)
-      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('sêc')
-      cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('{backspace}{backspace}{backspace}')
+        // TODO Investigate why we need to wait here (expecting the popup to be visible doesn't fix the failing case).
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.get('.rs-stack > .rs-stack-item > .rs-picker-caret-icon').click().wait(100)
+        cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('sêc')
+        cy.get('.rs-picker-popup').find('input[role="searchbox"]').type('{backspace}{backspace}{backspace}')
 
-      cy.get('.rs-picker-popup').find('[role="option"]').should('have.length', 3)
+        cy.get('.rs-picker-popup').find('[role="option"]').should('have.length', 3)
+      })
     })
   })
 })

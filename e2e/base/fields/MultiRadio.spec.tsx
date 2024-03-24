@@ -43,110 +43,110 @@ function MultiRadioStory({ value, ...otherProps }: MultiRadioProps) {
   )
 }
 
-Object.keys(OPTIONS_TYPES).forEach(optionType => {
-  context(`With ${optionType} options`, () => {
-    const options = OPTIONS_TYPES[optionType]
-    const commonProps: MultiRadioProps = {
-      label: 'A multiple radio',
-      name: 'myMultiRadio',
-      options,
-      ...(optionType === 'object'
-        ? {
-            optionValueKey: 'name' as any
-          }
-        : {})
-    }
+describe('fields/MultiRadio', () => {
+  Object.keys(OPTIONS_TYPES).forEach(optionType => {
+    context(`With ${optionType} options`, () => {
+      const options = OPTIONS_TYPES[optionType]
+      const commonProps: MultiRadioProps = {
+        label: 'A multiple radio',
+        name: 'myMultiRadio',
+        options,
+        ...(optionType === 'object'
+          ? {
+              optionValueKey: 'name' as any
+            }
+          : {})
+      }
 
-    it('Should fill and change the multiple radio', () => {
-      mountAndWait(
-        <StoryBox>
-          <MultiRadioStory {...commonProps} />
-        </StoryBox>
-      )
+      it('Should fill and change the multiple radio', () => {
+        mountAndWait(
+          <StoryBox>
+            <MultiRadioStory {...commonProps} />
+          </StoryBox>
+        )
 
-      outputShouldNotBe()
+        outputShouldNotBe()
 
-      cy.fill('A multiple radio', options[0].label)
+        cy.fill('A multiple radio', options[0].label)
 
-      outputShouldBe(options[0].value)
+        outputShouldBe(options[0].value)
 
-      cy.fill('A multiple radio', options[1].label)
+        cy.fill('A multiple radio', options[1].label)
 
-      outputShouldBe(options[1].value)
-    })
+        outputShouldBe(options[1].value)
+      })
 
-    it(`Should fill and change the multiple radio with \`value={${JSON.stringify(options[1].value)}}\``, () => {
-      mountAndWait(
-        <StoryBox>
-          <MultiRadioStory {...commonProps} value={options[1].value} />
-        </StoryBox>
-      )
+      it('Should fill and change the multiple radio with `value`', () => {
+        mountAndWait(
+          <StoryBox>
+            <MultiRadioStory {...commonProps} value={options[1].value} />
+          </StoryBox>
+        )
 
-      outputShouldNotBe()
+        outputShouldNotBe()
 
-      cy.fill('A multiple radio', options[0].label)
+        cy.fill('A multiple radio', options[0].label)
 
-      outputShouldBe(options[0].value)
+        outputShouldBe(options[0].value)
 
-      cy.fill('A multiple radio', options[1].label)
+        cy.fill('A multiple radio', options[1].label)
 
-      outputShouldBe(options[1].value)
-    })
+        outputShouldBe(options[1].value)
+      })
 
-    it('Should fill the multiple radio with `isLabelHidden`', () => {
-      mountAndWait(
-        <StoryBox>
-          <MultiRadioStory {...commonProps} isLabelHidden />
-        </StoryBox>
-      )
+      it('Should fill the multiple radio with `isLabelHidden`', () => {
+        mountAndWait(
+          <StoryBox>
+            <MultiRadioStory {...commonProps} isLabelHidden />
+          </StoryBox>
+        )
 
-      outputShouldNotBe()
+        outputShouldNotBe()
 
-      cy.fill('A multiple radio', options[0].label)
+        cy.fill('A multiple radio', options[0].label)
 
-      outputShouldBe(options[0].value)
-    })
+        outputShouldBe(options[0].value)
+      })
 
-    it('Should NOT call `onChange(undefined)` with `disabled`', () => {
-      mountAndWait(
-        <StoryBox>
-          <MultiRadioStory {...commonProps} disabled />
-        </StoryBox>
-      )
+      it('Should NOT call `onChange(undefined)` with `disabled`', () => {
+        mountAndWait(
+          <StoryBox>
+            <MultiRadioStory {...commonProps} disabled />
+          </StoryBox>
+        )
 
-      outputShouldNotBe()
-    })
+        outputShouldNotBe()
+      })
 
-    it(`Should NOT call \`onChange(undefined)\` with \`disabled value={${JSON.stringify(options[1].value)}}\``, () => {
-      mountAndWait(
-        <StoryBox>
-          <MultiRadioStory {...commonProps} disabled value={options[1].value} />
-        </StoryBox>
-      )
+      it('Should NOT call `onChange(undefined)` with `disabled value`', () => {
+        mountAndWait(
+          <StoryBox>
+            <MultiRadioStory {...commonProps} disabled value={options[1].value} />
+          </StoryBox>
+        )
 
-      outputShouldNotBe()
-    })
+        outputShouldNotBe()
+      })
 
-    it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
-      mountAndWait(
-        <StoryBox>
-          <MultiRadioStory {...commonProps} disabled isUndefinedWhenDisabled />
-        </StoryBox>
-      )
+      it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
+        mountAndWait(
+          <StoryBox>
+            <MultiRadioStory {...commonProps} disabled isUndefinedWhenDisabled />
+          </StoryBox>
+        )
 
-      outputShouldBe(undefined)
-    })
+        outputShouldBe(undefined)
+      })
 
-    it(`Should call \`onChange(undefined)\` with \`disabled isUndefinedWhenDisabled value={${JSON.stringify(
-      options[1].value
-    )}}\``, () => {
-      mountAndWait(
-        <StoryBox>
-          <MultiRadioStory {...commonProps} disabled isUndefinedWhenDisabled value={options[1].value} />
-        </StoryBox>
-      )
+      it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled value`', () => {
+        mountAndWait(
+          <StoryBox>
+            <MultiRadioStory {...commonProps} disabled isUndefinedWhenDisabled value={options[1].value} />
+          </StoryBox>
+        )
 
-      outputShouldBe(undefined)
+        outputShouldBe(undefined)
+      })
     })
   })
 })
