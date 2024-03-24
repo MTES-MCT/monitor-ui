@@ -10,6 +10,7 @@ import { fillNumberInput } from './fillNumberInput'
 import { fillTextarea } from './fillTextarea'
 import { fillTextInput } from './fillTextInput'
 import { pickCheckPickerOptions } from './pickCheckPickerOptions'
+import { pickMultiCascaderOptions } from './pickMultiCascaderOptions'
 import { pickMultiSelectOptions } from './pickMultiSelectOptions'
 import { pickSearchOption } from './pickSearchOption'
 import { pickSelectOption } from './pickSelectOption'
@@ -68,6 +69,15 @@ export function fill(label: string, value: any, options: Partial<Cypress.FillOpt
         case fieldElement.classList.contains('Field-CheckPicker'):
           assertStringArrayOrUndefined(value, 'CheckPicker')
           pickCheckPickerOptions(fieldElement, value, label, controlledOptions.force, controlledOptions.delay)
+
+          return
+
+        // ---------------------------------------------------------------------
+        // MultiCascader
+
+        case fieldElement.classList.contains('Field-MultiCascader'):
+          assertStringArrayOrUndefined(value, 'MultiCascader')
+          pickMultiCascaderOptions(fieldElement, value, label, controlledOptions.force, controlledOptions.delay)
 
           return
 
