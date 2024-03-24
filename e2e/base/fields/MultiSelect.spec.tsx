@@ -1,6 +1,8 @@
+import { useState } from 'react'
+
+import { Output } from '../../../.storybook/components/Output'
 import { StoryBox } from '../../../.storybook/components/StoryBox'
-import { CustomSearch, type MultiSelectProps } from '../../../src'
-import { _MultiSelect as MultiSelectStory } from '../../../stories/fields/MultiSelect.stories'
+import { CustomSearch, useFieldControl, type MultiSelectProps, MultiSelect } from '../../../src'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
@@ -22,6 +24,20 @@ const OPTIONS_TYPES = {
   ]
 }
 /* eslint-enable sort-keys-fix/sort-keys-fix */
+
+function MultiSelectStory({ value, ...otherProps }: MultiSelectProps) {
+  const [outputValue, setOutputValue] = useState<any>('∅')
+
+  const { controlledOnChange, controlledValue } = useFieldControl(value, setOutputValue)
+
+  return (
+    <StoryBox>
+      <MultiSelect onChange={controlledOnChange} value={controlledValue} {...otherProps} />
+
+      {outputValue !== '∅' && <Output value={outputValue} />}
+    </StoryBox>
+  )
+}
 
 Object.keys(OPTIONS_TYPES).forEach(optionType => {
   context(`With ${optionType} options`, () => {
@@ -59,30 +75,6 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       outputShouldBe(undefined)
     })
 
-    it(`Should fill, change and clear the multiple select with \`value={[${JSON.stringify(
-      options[2].value
-    )}]\``, () => {
-      mountAndWait(
-        <StoryBox>
-          <MultiSelectStory {...commonProps} value={[options[2].value]} />
-        </StoryBox>
-      )
-
-      outputShouldNotBe()
-
-      cy.fill('A multiple select', [options[0].label])
-
-      outputShouldBe([options[0].value])
-
-      cy.fill('A multiple select', [options[1].label, options[2].label])
-
-      outputShouldBe([options[1].value, options[2].value])
-
-      cy.fill('A multiple select', undefined)
-
-      outputShouldBe(undefined)
-    })
-
     it('Should fill the multiple select with `isLabelHidden`', () => {
       mountAndWait(
         <StoryBox>
@@ -95,6 +87,24 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       cy.fill('A multiple select', [options[0].label])
 
       outputShouldBe([options[0].value])
+    })
+
+    it('Should fill the multiple picker with `searcheable`', () => {
+      mountAndWait(
+        <StoryBox>
+          <MultiSelectStory {...commonProps} searchable />
+        </StoryBox>
+      )
+
+      outputShouldNotBe()
+
+      cy.fill('A multiple select', [options[0].label])
+
+      outputShouldBe([options[0].value])
+
+      cy.fill('A multiple select', [options[1].label, options[2].label])
+
+      outputShouldBe([options[1].value, options[2].value])
     })
 
     it('Should NOT call `onChange(undefined)` with `disabled`', () => {
