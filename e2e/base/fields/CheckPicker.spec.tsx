@@ -1,6 +1,8 @@
+import { useState } from 'react'
+
+import { Output } from '../../../.storybook/components/Output'
 import { StoryBox } from '../../../.storybook/components/StoryBox'
-import { CustomSearch, type CheckPickerProps } from '../../../src'
-import { _CheckPicker as CheckPickerStory } from '../../../stories/fields/CheckPicker.stories'
+import { CustomSearch, type CheckPickerProps, CheckPicker, useFieldControl } from '../../../src'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
@@ -22,6 +24,20 @@ const OPTIONS_TYPES = {
   ]
 }
 /* eslint-enable sort-keys-fix/sort-keys-fix */
+
+function CheckPickerStory({ value, ...otherProps }: CheckPickerProps) {
+  const [outputValue, setOutputValue] = useState<any>('∅')
+
+  const { controlledOnChange, controlledValue } = useFieldControl(value, setOutputValue)
+
+  return (
+    <StoryBox>
+      <CheckPicker onChange={controlledOnChange} value={controlledValue} {...otherProps} />
+
+      {outputValue !== '∅' && <Output value={outputValue} />}
+    </StoryBox>
+  )
+}
 
 Object.keys(OPTIONS_TYPES).forEach(optionType => {
   context(`With ${optionType} options`, () => {
@@ -93,6 +109,24 @@ Object.keys(OPTIONS_TYPES).forEach(optionType => {
       cy.fill('A check picker', [options[0].label])
 
       outputShouldBe([options[0].value])
+    })
+
+    it('Should fill the check picker with `searcheable`', () => {
+      mountAndWait(
+        <StoryBox>
+          <CheckPickerStory {...commonProps} searchable />
+        </StoryBox>
+      )
+
+      outputShouldNotBe()
+
+      cy.fill('A check picker', [options[0].label])
+
+      outputShouldBe([options[0].value])
+
+      cy.fill('A check picker', [options[1].label, options[2].label])
+
+      outputShouldBe([options[1].value, options[2].value])
     })
 
     it('Should NOT call `onChange(undefined)` with `disabled`', () => {
