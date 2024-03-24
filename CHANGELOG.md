@@ -1,3 +1,15 @@
+## [13.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.8.0...v13.9.0) (2024-03-24)
+
+
+### Features
+
+* **cypress:** handle searchable MultiCascader in fill() command ([b943f93](https://github.com/MTES-MCT/monitor-ui/commit/b943f93466b491b5f8afe9cf934e43de55d43071))
+
+
+### Bug Fixes
+
+* **cypress:** clear CheckPicker search input in fill() command ([899842c](https://github.com/MTES-MCT/monitor-ui/commit/899842cf53195f9d624144a7368a530726adff8b))
+
 ## [13.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.7.4...v13.8.0) (2024-03-22)
 
 
