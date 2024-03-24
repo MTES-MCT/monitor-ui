@@ -42,7 +42,11 @@ export function pickCheckPickerOptions(
       const maybeSearchInput = rsuitePickerPopupElement.querySelector('input[role="searchbox"]')
       values.forEach(value => {
         if (maybeSearchInput) {
-          cy.wrap(rsuitePickerPopupElement).find('input[role="searchbox"]').type(value, { delay, force }).wait(250)
+          cy.wrap(rsuitePickerPopupElement)
+            .find('input[role="searchbox"]')
+            .clear()
+            .type(value, { delay, force })
+            .wait(250)
         }
 
         cy.wrap(rsuitePickerPopupElement).find('[role="option"]').contains(value).scrollIntoView().click({ force })
