@@ -2,8 +2,8 @@ import { IconBox } from '../elements/IconBox'
 
 import type { IconProps } from '../types/definitions'
 
-export const /*ICON_NAME*/ = ({ color, size, ...nativeProps}: IconProps) => (
-  <IconBox $size={size} $color={color}>
+export const /*ICON_NAME*/ = ({ color, size, title, ...nativeProps}: IconProps) => (
+  <IconBox $size={size} $color={color} title={title}>
     /*ICON_SVG_SOURCE*/
   </IconBox>
 )

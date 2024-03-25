@@ -14,6 +14,7 @@ async function generateIcon({ count, index, svgIconPath, template }) {
     .replace(/ data-name="[^"]*"/g, '')
     .replace(/ id="[^"]*"/g, '')
   const svgIconSourceWithProps = svgIconSourceWithoutExtraneousProps.replace(/>/, ` {...nativeProps}>`)
+
   const tsxIconSource = template
     .replace(/\/\*ICON_NAME\*\//g, iconName)
     .replace(/\/\*ICON_SVG_SOURCE\*\//g, svgIconSourceWithProps)
