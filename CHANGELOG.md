@@ -1,3 +1,11 @@
+## [13.10.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.9.0...v13.10.0) (2024-03-25)
+
+
+### Features
+
+* **icons:** introduce title props on icons for additional info on hover ([5849aa1](https://github.com/MTES-MCT/monitor-ui/commit/5849aa103ed6039e31b92b06ed4f0b70f86a43e7))
+* **symbols:** rework ExclamationPoint to resize dynamically ([ce6a398](https://github.com/MTES-MCT/monitor-ui/commit/ce6a3981a2e5544cf630a7185bce4171a648140e))
+
 ## [13.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.8.0...v13.9.0) (2024-03-24)
 
 
