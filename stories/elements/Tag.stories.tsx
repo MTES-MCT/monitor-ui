@@ -1,7 +1,7 @@
 import { Showcase } from '../../.storybook/components/Showcase'
 import { ACCENTS_AS_ARRAY, TAG_BULLETS_AS_ARRAY } from '../../.storybook/constants'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
-import { Accent, Icon, THEME, Tag, TagBullet } from '../../src'
+import { Accent, Icon, THEME, Tag, TagBullet, ExclamationPoint } from '../../src'
 
 import type { TagProps } from '../../src'
 import type { Meta } from '@storybook/react'
@@ -91,6 +91,13 @@ export function _Tag(props: TagProps) {
         <Tag borderColor={THEME.color.slateGray}>A tag with a border</Tag>
         <Tag backgroundColor={THEME.color.maximumRed15} color={THEME.color.charcoal} Icon={Icon.Link}>
           A tag with custom colors and icon
+        </Tag>
+        <Tag
+          backgroundColor={THEME.color.maximumRed15}
+          color={THEME.color.charcoal}
+          Icon={() => <ExclamationPoint size={16} />}
+        >
+          A tag with an ExclamationPoint component
         </Tag>
       </Showcase>
     </>

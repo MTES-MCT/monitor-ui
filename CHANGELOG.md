@@ -1,3 +1,23 @@
+## [13.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.8.0...v13.9.0) (2024-03-24)
+
+
+### Features
+
+* **cypress:** handle searchable MultiCascader in fill() command ([b943f93](https://github.com/MTES-MCT/monitor-ui/commit/b943f93466b491b5f8afe9cf934e43de55d43071))
+
+
+### Bug Fixes
+
+* **cypress:** clear CheckPicker search input in fill() command ([899842c](https://github.com/MTES-MCT/monitor-ui/commit/899842cf53195f9d624144a7368a530726adff8b))
+
+## [13.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.7.4...v13.8.0) (2024-03-22)
+
+
+### Features
+
+* **utils:** add getSelectedTreeOptionFromTreeOptionValue() ([551079a](https://github.com/MTES-MCT/monitor-ui/commit/551079a1be73698784f7540476bfa44e1a9d32f2))
+* **utils:** rename getSelectedTreeOptionFromTreeOptionValue() to getSelectedOptionFromOptionValueInTree() ([12b918e](https://github.com/MTES-MCT/monitor-ui/commit/12b918e653a56cbd845c9003e1690ebf32ce70ec))
+
 ## [13.7.4](https://github.com/MTES-MCT/monitor-ui/compare/v13.7.3...v13.7.4) (2024-03-21)
 
 

@@ -24,6 +24,7 @@ export type IconProps = SVGProps<SVGSVGElement> & {
   color?: string | undefined
   /** In pixels */
   size?: number | undefined
+  title?: string | undefined
 }
 
 export type Filter<T> = (collection: T[]) => T[]

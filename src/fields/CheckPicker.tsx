@@ -132,6 +132,7 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
       <Label $isRequired={isRequired} disabled={disabled} htmlFor={originalProps.name} isHidden={isLabelHidden}>
         {label}
       </Label>
+
       <StyledRsuitePickerBox
         ref={boxRef}
         $hasError={hasError}

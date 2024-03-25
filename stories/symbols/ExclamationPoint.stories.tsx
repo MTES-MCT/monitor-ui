@@ -6,7 +6,8 @@ import type { Meta } from '@storybook/react'
 
 const args: ExclamationPointProps = {
   backgroundColor: THEME.color.goldenPoppy,
-  color: THEME.color.white
+  color: THEME.color.white,
+  size: 20
 }
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */

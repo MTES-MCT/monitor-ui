@@ -2,9 +2,9 @@ import { IconBox } from '../elements/IconBox'
 
 import type { IconProps } from '../types/definitions'
 
-export function ControlUnitFilled({ color, size, ...nativeProps }: IconProps) {
+export function ControlUnitFilled({ color, size, title, ...nativeProps }: IconProps) {
   return (
-    <IconBox $color={color} $size={size}>
+    <IconBox $color={color} $size={size} title={title}>
       <svg height="18.25" viewBox="0 0 14 18.25" width="14" {...nativeProps}>
         <g transform="translate(77 204.25)">
           <rect fill="currentColor" height="12" transform="translate(-64 -188) rotate(90)" width="2" />

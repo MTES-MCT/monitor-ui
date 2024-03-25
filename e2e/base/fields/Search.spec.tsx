@@ -1,8 +1,9 @@
-import { StoryBox } from '../../../.storybook/components/StoryBox'
-import { _Search as SearchStory } from '../../../stories/fields/Search.stories'
-import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
+import { useState } from 'react'
 
-import type { SearchProps } from '../../../src'
+import { Output } from '../../../.storybook/components/Output'
+import { StoryBox } from '../../../.storybook/components/StoryBox'
+import { Search, useFieldControl, type SearchProps } from '../../../src'
+import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const OPTIONS_TYPES = {
@@ -24,36 +25,52 @@ const OPTIONS_TYPES = {
 }
 /* eslint-enable sort-keys-fix/sort-keys-fix */
 
-Object.keys(OPTIONS_TYPES).forEach(optionType => {
-  context(`With (${optionType} options`, () => {
-    const options = OPTIONS_TYPES[optionType]
-    const commonProps: SearchProps = {
-      label: 'A search',
-      name: 'mySearch',
-      options,
-      ...(optionType === 'object'
-        ? {
-            optionValueKey: 'name' as any
-          }
-        : {})
-    }
+function SearchStory({ value, ...otherProps }: SearchProps) {
+  const [outputValue, setOutputValue] = useState<any>('∅')
 
-    it('Should fill, change and clear the select', () => {
-      mountAndWait(
-        <StoryBox>
-          <SearchStory {...commonProps} />
-        </StoryBox>
-      )
+  const { controlledOnChange, controlledValue } = useFieldControl(value, setOutputValue)
 
-      outputShouldNotBe()
+  return (
+    <StoryBox>
+      <Search onChange={controlledOnChange} value={controlledValue} {...otherProps} />
 
-      cy.fill('A search', 'first')
+      {outputValue !== '∅' && <Output value={outputValue} />}
+    </StoryBox>
+  )
+}
 
-      outputShouldBe(options[0].value)
+describe('fields/Search', () => {
+  Object.keys(OPTIONS_TYPES).forEach(optionType => {
+    context(`With ${optionType} options`, () => {
+      const options = OPTIONS_TYPES[optionType]
+      const commonProps: SearchProps = {
+        label: 'A search',
+        name: 'mySearch',
+        options,
+        ...(optionType === 'object'
+          ? {
+              optionValueKey: 'name' as any
+            }
+          : {})
+      }
 
-      cy.fill('A search', 'second')
+      it('Should fill, change and clear the search', () => {
+        mountAndWait(
+          <StoryBox>
+            <SearchStory {...commonProps} />
+          </StoryBox>
+        )
 
-      outputShouldBe(options[1].value)
+        outputShouldNotBe()
+
+        cy.fill('A search', 'first')
+
+        outputShouldBe(options[0].value)
+
+        cy.fill('A search', 'second')
+
+        outputShouldBe(options[1].value)
+      })
     })
   })
 })

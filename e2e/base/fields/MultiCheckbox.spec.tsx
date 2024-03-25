@@ -39,92 +39,92 @@ function MultiCheckboxStory({ value, ...otherProps }: MultiCheckboxProps) {
   )
 }
 
-Object.keys(OPTIONS_TYPES).forEach(optionType => {
-  context(`With ${optionType} options`, () => {
-    const options = OPTIONS_TYPES[optionType]
-    const commonProps: MultiCheckboxProps = {
-      label: 'A multiple checkbox',
-      name: 'myMultiCheckbox',
-      options,
-      ...(optionType === 'object'
-        ? {
-            optionValueKey: 'name' as any
-          }
-        : {})
-    }
+describe('fields/MultiCheckbox', () => {
+  Object.keys(OPTIONS_TYPES).forEach(optionType => {
+    context(`With ${optionType} options`, () => {
+      const options = OPTIONS_TYPES[optionType]
+      const commonProps: MultiCheckboxProps = {
+        label: 'A multiple checkbox',
+        name: 'myMultiCheckbox',
+        options,
+        ...(optionType === 'object'
+          ? {
+              optionValueKey: 'name' as any
+            }
+          : {})
+      }
 
-    it('Should fill, change and clear the multiple checkbox', () => {
-      mountAndWait(<MultiCheckboxStory {...commonProps} />)
+      it('Should fill, change and clear the multiple checkbox', () => {
+        mountAndWait(<MultiCheckboxStory {...commonProps} />)
 
-      outputShouldNotBe()
+        outputShouldNotBe()
 
-      cy.fill('A multiple checkbox', [options[0].label])
+        cy.fill('A multiple checkbox', [options[0].label])
 
-      outputShouldBe([options[0].value])
+        outputShouldBe([options[0].value])
 
-      cy.fill('A multiple checkbox', [options[1].label, options[2].label])
+        cy.fill('A multiple checkbox', [options[1].label, options[2].label])
 
-      outputShouldBe([options[1].value, options[2].value])
+        outputShouldBe([options[1].value, options[2].value])
 
-      cy.fill('A multiple checkbox', undefined)
+        cy.fill('A multiple checkbox', undefined)
 
-      outputShouldBe(undefined)
-    })
+        outputShouldBe(undefined)
+      })
 
-    it(`Should fill, change and clear the multiple checkbox with \`value={[${JSON.stringify(
-      options[2].value
-    )}]\``, () => {
-      mountAndWait(<MultiCheckboxStory {...commonProps} value={[options[2].value]} />)
+      it('Should fill, change and clear the multiple checkbox with `value`', () => {
+        mountAndWait(<MultiCheckboxStory {...commonProps} value={[options[2].value]} />)
 
-      outputShouldNotBe()
+        outputShouldNotBe()
 
-      cy.fill('A multiple checkbox', [options[0].label])
+        cy.fill('A multiple checkbox', [options[0].label])
 
-      outputShouldBe([options[0].value])
+        outputShouldBe([options[0].value])
 
-      cy.fill('A multiple checkbox', [options[1].label, options[2].label])
+        cy.fill('A multiple checkbox', [options[1].label, options[2].label])
 
-      outputShouldBe([options[1].value, options[2].value])
+        outputShouldBe([options[1].value, options[2].value])
 
-      cy.fill('A multiple checkbox', undefined)
+        cy.fill('A multiple checkbox', undefined)
 
-      outputShouldBe(undefined)
-    })
+        outputShouldBe(undefined)
+      })
 
-    it('Should fill the multiple checkbox with `isLabelHidden`', () => {
-      mountAndWait(<MultiCheckboxStory {...commonProps} isLabelHidden />)
+      it('Should fill the multiple checkbox with `isLabelHidden`', () => {
+        mountAndWait(<MultiCheckboxStory {...commonProps} isLabelHidden />)
 
-      outputShouldNotBe()
+        outputShouldNotBe()
 
-      cy.fill('A multiple checkbox', [options[0].label])
+        cy.fill('A multiple checkbox', [options[0].label])
 
-      outputShouldBe([options[0].value])
-    })
+        outputShouldBe([options[0].value])
+      })
 
-    it('Should NOT call `onChange(undefined)` with `disabled`', () => {
-      mountAndWait(<MultiCheckboxStory {...commonProps} disabled />)
+      it('Should NOT call `onChange(undefined)` with `disabled`', () => {
+        mountAndWait(<MultiCheckboxStory {...commonProps} disabled />)
 
-      outputShouldNotBe()
-    })
+        outputShouldNotBe()
+      })
 
-    it(`Should NOT call \`onChange(undefined)\` with \`disabled value={[${JSON.stringify(options[2].value)}]\``, () => {
-      mountAndWait(<MultiCheckboxStory {...commonProps} disabled value={[options[2].value]} />)
+      it('Should NOT call `onChange(undefined)` with `disabled value`', () => {
+        mountAndWait(<MultiCheckboxStory {...commonProps} disabled value={[options[2].value]} />)
 
-      outputShouldNotBe()
-    })
+        outputShouldNotBe()
+      })
 
-    it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
-      mountAndWait(<MultiCheckboxStory {...commonProps} disabled isUndefinedWhenDisabled />)
+      it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled`', () => {
+        mountAndWait(<MultiCheckboxStory {...commonProps} disabled isUndefinedWhenDisabled />)
 
-      outputShouldBe(undefined)
-    })
+        outputShouldBe(undefined)
+      })
 
-    it(`Should call \`onChange(undefined)\` with \`disabled isUndefinedWhenDisabled value={[${JSON.stringify(
-      options[2].value
-    )}]\``, () => {
-      mountAndWait(<MultiCheckboxStory {...commonProps} disabled isUndefinedWhenDisabled value={[options[2].value]} />)
+      it('Should call `onChange(undefined)` with `disabled isUndefinedWhenDisabled value`', () => {
+        mountAndWait(
+          <MultiCheckboxStory {...commonProps} disabled isUndefinedWhenDisabled value={[options[2].value]} />
+        )
 
-      outputShouldBe(undefined)
+        outputShouldBe(undefined)
+      })
     })
   })
 })
