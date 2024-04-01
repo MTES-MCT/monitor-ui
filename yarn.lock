@@ -1648,12 +1648,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:7.22.15":
-  version: 7.22.15
-  resolution: "@babel/runtime@npm:7.22.15"
+"@babel/runtime@npm:7.24.1":
+  version: 7.24.1
+  resolution: "@babel/runtime@npm:7.24.1"
   dependencies:
     regenerator-runtime: "npm:^0.14.0"
-  checksum: 96b74adfd1db812d06ed56d9db12acecfc844d252b93994ce4901433957bd28affba725622a4dc9e7f76384c4cb6cadc3d620d07817c8be9156eaedba5eea059
+  checksum: 500c6a99ddd84f37c7bc5dbc84777af47b1372b20e879941670451d55484faf18a673c5ebee9ca2b0f36208a729417873b35b1b92e76f811620f6adf7b8cb0f1
   languageName: node
   linkType: hard
 
@@ -2835,7 +2835,7 @@ __metadata:
     "@babel/preset-env": "npm:7.22.15"
     "@babel/preset-react": "npm:7.22.15"
     "@babel/preset-typescript": "npm:7.23.2"
-    "@babel/runtime": "npm:7.22.15"
+    "@babel/runtime": "npm:7.24.1"
     "@chrisneedham/rollup-plugin-peer-deps-external": "npm:2.3.1"
     "@commitlint/cli": "npm:19.0.1"
     "@commitlint/config-conventional": "npm:19.0.0"
