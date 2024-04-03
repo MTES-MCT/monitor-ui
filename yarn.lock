@@ -2481,7 +2481,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/core@npm:^29.5.0, @jest/core@npm:^29.7.0":
+"@jest/core@npm:^29.7.0":
   version: 29.7.0
   resolution: "@jest/core@npm:29.7.0"
   dependencies:
@@ -2692,7 +2692,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/types@npm:^29.5.0, @jest/types@npm:^29.6.1, @jest/types@npm:^29.6.3":
+"@jest/types@npm:^29.6.1, @jest/types@npm:^29.6.3":
   version: 29.6.3
   resolution: "@jest/types@npm:29.6.3"
   dependencies:
@@ -2869,7 +2869,7 @@ __metadata:
     "@testing-library/react": "npm:14.2.1"
     "@types/diacritics": "npm:1.3.1"
     "@types/jabber": "npm:1.2.0"
-    "@types/jest": "npm:29.5.2"
+    "@types/jest": "npm:29.5.12"
     "@types/node": "npm:20.9.0"
     "@types/react": "npm:18.2.37"
     "@types/react-dom": "npm:18.2.17"
@@ -2907,7 +2907,7 @@ __metadata:
     glob: "npm:10.3.10"
     http-server: "npm:14.1.1"
     husky: "npm:8.0.3"
-    jest: "npm:29.5.0"
+    jest: "npm:29.7.0"
     jest-environment-jsdom: "npm:29.7.0"
     jest-environment-node: "npm:29.6.1"
     json-stringify-deterministic: "npm:1.0.12"
@@ -5848,13 +5848,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:29.5.2":
-  version: 29.5.2
-  resolution: "@types/jest@npm:29.5.2"
+"@types/jest@npm:29.5.12":
+  version: 29.5.12
+  resolution: "@types/jest@npm:29.5.12"
   dependencies:
     expect: "npm:^29.0.0"
     pretty-format: "npm:^29.0.0"
-  checksum: e85525fe83a0792632a31ca32968b33a0014d617442e9a515357d2aa8890052ef622b1f6fd25d48f4f1a3ab806bed94e6d9b056dea23a897464e0e35957ff654
+  checksum: 25fc8e4c611fa6c4421e631432e9f0a6865a8cb07c9815ec9ac90d630271cad773b2ee5fe08066f7b95bebd18bb967f8ce05d018ee9ab0430f9dfd1d84665b6f
   languageName: node
   linkType: hard
 
@@ -13053,7 +13053,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-cli@npm:^29.5.0, jest-cli@npm:^29.7.0":
+"jest-cli@npm:^29.7.0":
   version: 29.7.0
   resolution: "jest-cli@npm:29.7.0"
   dependencies:
@@ -13544,26 +13544,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest@npm:29.5.0":
-  version: 29.5.0
-  resolution: "jest@npm:29.5.0"
-  dependencies:
-    "@jest/core": "npm:^29.5.0"
-    "@jest/types": "npm:^29.5.0"
-    import-local: "npm:^3.0.2"
-    jest-cli: "npm:^29.5.0"
-  peerDependencies:
-    node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
-  peerDependenciesMeta:
-    node-notifier:
-      optional: true
-  bin:
-    jest: bin/jest.js
-  checksum: 32e29cfa2373530ed323ea65dfb4fd5172026349be48ebb7a2dc5660adadd1c68f6b0fe2b67cc3ee723cc34e2d4552a852730ac787251b406cf58e37a90f6dac
-  languageName: node
-  linkType: hard
-
-"jest@npm:^29.6.4":
+"jest@npm:29.7.0, jest@npm:^29.6.4":
   version: 29.7.0
   resolution: "jest@npm:29.7.0"
   dependencies:
