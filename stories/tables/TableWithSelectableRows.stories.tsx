@@ -226,7 +226,12 @@ export function _TableWithSelectableRows() {
       {
         accessorFn: row => row.geom,
         cell: () => (
-          <Tag backgroundColor={THEME.color.gainsboro} iconColor={THEME.color.goldenPoppy} withBullet>
+          <Tag
+            backgroundColor={THEME.color.gainsboro}
+            Icon={Icon.CircleFilled}
+            iconColor={THEME.color.goldenPoppy}
+            withCircleIcon
+          >
             Ctl fait
           </Tag>
         ),

@@ -2,8 +2,7 @@ import classnames from 'classnames'
 import { type FunctionComponent, type HTMLAttributes, useMemo } from 'react'
 import styled from 'styled-components'
 
-import { Accent, TagBullet } from '../../constants'
-import { DotFilled } from '../../icons'
+import { Accent } from '../../constants'
 import { THEME } from '../../theme'
 
 import type { IconProps } from '../../types/definitions'
@@ -13,37 +12,28 @@ export type TagProps = HTMLAttributes<HTMLSpanElement> & {
   accent?: Accent | undefined
   backgroundColor?: string | undefined
   borderColor?: string | undefined
-  /* @deprecated Replaced by `withBullet` prop. Will be removed in `v11.0.0`. */
-  bullet?: TagBullet | undefined
-  /* @deprecated Replaced by `iconColor` prop. Will be removed in `v11.0.0`. */
-  bulletColor?: string | undefined
+  color?: string | undefined
   iconColor?: string | undefined
   isLight?: boolean | undefined
-  withBullet?: boolean | undefined
+  withCircleIcon?: boolean | undefined
 }
 export function Tag({
   accent,
   backgroundColor,
   borderColor,
-  bullet,
-  bulletColor,
   children,
   className,
   color,
   Icon,
   iconColor,
   isLight = false,
-  withBullet = false,
+  withCircleIcon = false,
   ...nativeProps
 }: TagProps) {
-  // TODO remove all bullet and bulletColor related code
-  const withDot = useMemo(() => (bullet === TagBullet.DISK || withBullet) && !Icon, [bullet, Icon, withBullet])
-
   const commonChildren = useMemo(() => {
     const defaultColor = color ?? THEME.color.gunMetal
 
     const cutomIconColor =
-      bulletColor ??
       iconColor ??
       (accent
         ? {
@@ -55,23 +45,22 @@ export function Tag({
 
     return (
       <>
-        {Icon && <Icon color={cutomIconColor} size={16} />}
-        {withDot && <DotFilled color={cutomIconColor} size={20} />}
+        {Icon && <Icon color={cutomIconColor} />}
 
         {children}
       </>
     )
-  }, [accent, bulletColor, color, children, Icon, withDot, iconColor])
+  }, [accent, color, children, Icon, iconColor])
 
   const commonProps = useMemo(
     () => ({
       $isLight: isLight,
-      $withBullet: withDot,
+      $withCircleIcon: withCircleIcon,
       children: commonChildren,
       className: classnames('Element-Tag', className),
       ...nativeProps
     }),
-    [className, commonChildren, isLight, nativeProps, withDot]
+    [className, commonChildren, isLight, nativeProps, withCircleIcon]
   )
 
   switch (accent) {
@@ -94,9 +83,8 @@ const Box = styled.span<{
   $borderColor?: string | undefined
   $color?: string | undefined
   $isLight: boolean
-  $withBullet?: boolean | undefined
+  $withCircleIcon?: boolean | undefined
 }>`
-  align-items: ${p => (p.$withBullet ? 'flex-start' : 'end')};
   align-self: flex-start;
   background-color: ${p => {
     if (p.$backgroundColor) {
@@ -110,18 +98,12 @@ const Box = styled.span<{
   color: ${p => (p.$color ? p.$color : p.theme.color.gunMetal)};
   display: inline-flex;
   font-size: 13px;
-  padding: ${p => (p.$withBullet ? '0px 6px 0px 0px' : '1px 8px 3px 8px')};
-
-  /* Bullet components are a span */
-  > span {
-    height: 16px;
-    margin-right: 4px;
-    width: 16px;
-  }
-
+  height: 22px;
+  line-height: normal;
+  padding: ${p => (p.$withCircleIcon ? '1px 8px 0px 1px' : '0px 8px')};
   /* SVG Icon components are wrapped within a <div /> */
   > div {
-    margin-right: ${p => (p.$withBullet ? '0px' : '4px')};
+    margin-right: 4px;
   }
 `
 
