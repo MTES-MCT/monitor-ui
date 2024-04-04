@@ -3,11 +3,15 @@ import { Alert } from './Alert'
 import { Anchor } from './Anchor'
 import { Archive } from './Archive'
 import { Attention } from './Attention'
+import { AttentionFilled } from './AttentionFilled'
 import { Calendar } from './Calendar'
 import { Car } from './Car'
 import { Check } from './Check'
 import { Chevron } from './Chevron'
+import { Circle } from './Circle'
+import { CircleFilled } from './CircleFilled'
 import { Clock } from './Clock'
+import { ClockDashed } from './ClockDashed'
 import { Close } from './Close'
 import { Comment } from './Comment'
 import { Confirm } from './Confirm'
@@ -15,8 +19,6 @@ import { ControlUnit } from './ControlUnit'
 import { ControlUnitFilled } from './ControlUnitFilled'
 import { Delete } from './Delete'
 import { Display } from './Display'
-import { Dot } from './Dot'
-import { DotFilled } from './DotFilled'
 import { DoubleChevron } from './DoubleChevron'
 import { Download } from './Download'
 import { Drapeau } from './Drapeau'
@@ -90,11 +92,15 @@ export {
   Anchor,
   Archive,
   Attention,
+  AttentionFilled,
   Calendar,
   Car,
   Check,
   Chevron,
+  Circle,
+  CircleFilled,
   Clock,
+  ClockDashed,
   Close,
   Comment,
   Confirm,
@@ -102,8 +108,6 @@ export {
   ControlUnitFilled,
   Delete,
   Display,
-  Dot,
-  DotFilled,
   DoubleChevron,
   Download,
   Drapeau,
