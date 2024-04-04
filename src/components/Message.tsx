@@ -1,8 +1,8 @@
+import { AttentionFilled } from 'icons'
 import { type HTMLAttributes, type ReactNode } from 'react'
 import styled from 'styled-components'
 
 import { Level } from '../constants'
-import { ExclamationPoint } from '../symbols/ExclamationPoint'
 import { THEME } from '../theme'
 
 export type MessageProps = HTMLAttributes<HTMLDivElement> & {
@@ -14,7 +14,7 @@ export function Message({ children, level = Level.WARNING, ...nativeProps }: Mes
     case Level.WARNING:
       return (
         <Box backgroundColor={THEME.color.goldenPoppy25} color={THEME.color.slateGray} {...nativeProps}>
-          <StyledExclamationPoint backgroundColor={THEME.color.goldenPoppy} color={THEME.color.white} />
+          <AttentionFilled color={THEME.color.goldenPoppy} />
           <ChildrenContainer>{children}</ChildrenContainer>
         </Box>
       )
@@ -22,7 +22,7 @@ export function Message({ children, level = Level.WARNING, ...nativeProps }: Mes
     default:
       return (
         <Box backgroundColor={THEME.color.goldenPoppy25} color={THEME.color.slateGray} {...nativeProps}>
-          <StyledExclamationPoint backgroundColor={THEME.color.goldenPoppy} color={THEME.color.white} />
+          <AttentionFilled color={THEME.color.goldenPoppy} />
           <ChildrenContainer>{children}</ChildrenContainer>
         </Box>
       )
@@ -46,8 +46,4 @@ const Box = styled.span<{
   display: flex;
   border-radius: 2px;
   font-size: 13px;
-`
-
-const StyledExclamationPoint = styled(ExclamationPoint)`
-  flex-shrink: 0;
 `

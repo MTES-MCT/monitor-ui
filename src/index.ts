@@ -75,6 +75,7 @@ export { FormikTextInput } from './formiks/FormikTextInput'
 export { FormikToggle } from './formiks/FormikToggle'
 
 export { ExclamationPoint } from './symbols/ExclamationPoint'
+export { Dot } from './symbols/Dot'
 
 /* -----------------------------------------------------------------------------
   Constants
@@ -207,7 +208,9 @@ export type { LabelProps } from './elements/Label'
 export type { LegendProps } from './elements/Legend'
 export type { TagProps } from './elements/Tag'
 export type { TagGroupProps } from './elements/TagGroup'
+
 export type { ExclamationPointProps } from './symbols/ExclamationPoint'
+export type { DotProps } from './symbols/Dot'
 
 export type { CheckboxProps } from './fields/Checkbox'
 export type { CheckPickerProps } from './fields/CheckPicker'
