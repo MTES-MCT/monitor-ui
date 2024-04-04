@@ -69,6 +69,12 @@ export function _Icon(props: IconProps) {
       </Cell>
       <Cell>
         <IconBox>
+          <Icon.AttentionFilled {...props} />
+        </IconBox>
+        <Code>AttentionFilled</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
           <Icon.Car {...props} />
         </IconBox>
         <Code>Car</Code>
@@ -93,9 +99,27 @@ export function _Icon(props: IconProps) {
       </Cell>
       <Cell>
         <IconBox>
+          <Icon.Circle {...props} />
+        </IconBox>
+        <Code>Circle</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
+          <Icon.CircleFilled {...props} />
+        </IconBox>
+        <Code>CircleFilled</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
           <Icon.Clock {...props} />
         </IconBox>
         <Code>Clock</Code>
+      </Cell>
+      <Cell>
+        <IconBox>
+          <Icon.ClockDashed {...props} />
+        </IconBox>
+        <Code>ClockDashed</Code>
       </Cell>
       <Cell>
         <IconBox>
@@ -138,18 +162,6 @@ export function _Icon(props: IconProps) {
           <Icon.Display {...props} />
         </IconBox>
         <Code>Display</Code>
-      </Cell>
-      <Cell>
-        <IconBox>
-          <Icon.Dot {...props} />
-        </IconBox>
-        <Code>Dot</Code>
-      </Cell>
-      <Cell>
-        <IconBox>
-          <Icon.DotFilled {...props} />
-        </IconBox>
-        <Code>DotFilled</Code>
       </Cell>
       <Cell>
         <IconBox>
