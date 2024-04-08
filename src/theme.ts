@@ -26,6 +26,7 @@ export const THEME = {
     blueYonder25: '#D4DDE7',
     blueGray: '#5697D2',
     blueGray25: '#D4E5F4',
+    mayaBlue: '#5FBDFC',
     maximumRed: '#E1000F',
     maximumRed15: '#FBD9DB',
     babyBlueEyes: '#99C9FF',
