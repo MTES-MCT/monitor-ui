@@ -1,3 +1,40 @@
+## [14.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.10.0...v14.0.0) (2024-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **elements:** delete bullet and bulletColor props
+* **icons:** delete Dot and DotFilled icons
+
+### Features
+
+* **colors:** add mayaBlue color ([319aea1](https://github.com/MTES-MCT/monitor-ui/commit/319aea159aaa18974ac348708d9febf92feb4011))
+* **elements:** delete bullet and bulletColor props to Tag component and add withCircleColor ([3c81afe](https://github.com/MTES-MCT/monitor-ui/commit/3c81afe8904749839c3eab0e4ab82c14a226a267))
+* **entities:** add RapportNav to MissionSourceEnum ([9b868fc](https://github.com/MTES-MCT/monitor-ui/commit/9b868fc88b5a0aad4690f557b3b054f7d5f11e05))
+* **icons:** add AttentionFilledClockDashed, Circle and CircleFilled icons and delete Dot and DotFilled icons ([496f11a](https://github.com/MTES-MCT/monitor-ui/commit/496f11ab78f2bb3320aaf9755b61bc23a6563bb1))
+* **symbols:** create Dot component ([fd6c0c3](https://github.com/MTES-MCT/monitor-ui/commit/fd6c0c3e4bbc2dec1901d4b59cd7d5e6e9377ee7))
+
+
+### Bug Fixes
+
+* **icons:** fix controlUnit and controlUnitFilled icons ([6edfc83](https://github.com/MTES-MCT/monitor-ui/commit/6edfc83ddfef7b2ce5a08b1c21743589f77996fb))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump @babel/runtime from 7.22.15 to 7.24.4 ([43a0def](https://github.com/MTES-MCT/monitor-ui/commit/43a0defe621b6ab3e7771d75c1bfdee8ca8285be))
+* **deps:** bump express from 4.18.2 to 4.19.2 ([acb4412](https://github.com/MTES-MCT/monitor-ui/commit/acb44120a29e7313b383ab64eacad1c4bfd1fb76))
+* **dev-deps:** bump @tsconfig/vite-react in /e2e/release/sample ([5ee6ef7](https://github.com/MTES-MCT/monitor-ui/commit/5ee6ef73123ef2c4ddcd4827e3ff934215dd9e10))
+* **dev-deps:** bump @types/node in /e2e/release/sample ([2f49b9f](https://github.com/MTES-MCT/monitor-ui/commit/2f49b9ffedd2064a8d8671e08c0f6f4becaefc32))
+* **dev-deps:** bump @types/react from 18.2.37 to 18.2.74 ([5057fbf](https://github.com/MTES-MCT/monitor-ui/commit/5057fbf1b6c436f5e2db73c350d0eacdd68ef70e))
+* **dev-deps:** bump @types/react-dom in /e2e/release/sample ([555e2cf](https://github.com/MTES-MCT/monitor-ui/commit/555e2cf15b446eb7bb43a49546b8b8ec14853a1c))
+* **dev-deps:** bump cypress in /e2e/release/sample ([4d6445e](https://github.com/MTES-MCT/monitor-ui/commit/4d6445ef190aa1a22b013b5065df63c004e76492))
+* **dev-deps:** bump jest and @types/jest ([b915184](https://github.com/MTES-MCT/monitor-ui/commit/b91518483233ab98690540baf24ef0eac187f945))
+* **dev-deps:** bump prettier from 3.1.1 to 3.2.5 ([ccb5b90](https://github.com/MTES-MCT/monitor-ui/commit/ccb5b908a503af59b44497ac27abc6519762ab3b))
+* **dev-deps:** bump rsuite in /e2e/release/sample ([c0f7606](https://github.com/MTES-MCT/monitor-ui/commit/c0f76061bed49037edbd3d9988b90e1e3b469a0f))
+* **dev-deps:** bump vite from 5.1.4 to 5.1.7 ([71faafb](https://github.com/MTES-MCT/monitor-ui/commit/71faafbd4aaf3ea3b5b8436e4af71ab4810e1fc5))
+* **dev-deps:** bump yup from 1.3.3 to 1.4.0 ([92c906d](https://github.com/MTES-MCT/monitor-ui/commit/92c906dc31b16ab2758d106d12ef15684e9eaaae))
+
 ## [13.10.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.9.0...v13.10.0) (2024-03-25)
 
 
