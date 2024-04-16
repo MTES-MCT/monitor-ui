@@ -9,7 +9,6 @@ import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
-import { useKey } from '../hooks/useKey'
 import { type CustomSearch } from '../libs/CustomSearch'
 import { type Option, type OptionValueType } from '../types/definitions'
 import { getRsuiteDataItemsFromOptions } from '../utils/getRsuiteDataItemsFromOptions'
@@ -70,8 +69,7 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
 
   const controlledClassName = useMemo(() => classnames('Field-CheckPicker', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
-  const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([disabled, originalProps.name])
+  const hasError = Boolean(controlledError)
   const selectedRsuiteValue = useMemo(
     () => getRsuiteDataItemValuesFromOptionValues(value, optionValueKey),
     [optionValueKey, value]
@@ -144,7 +142,6 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
       >
         {boxRef.current && (
           <RsuiteCheckPicker
-            key={key}
             container={boxRef.current}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
             // when we don't, we don't need to control that and just pass the non-internally-controlled `rsuiteData`
