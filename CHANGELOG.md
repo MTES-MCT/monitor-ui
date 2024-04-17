@@ -1,3 +1,17 @@
+## [14.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v14.0.0...v14.1.0) (2024-04-17)
+
+
+### Features
+
+* **components:** introduce Banner component ([537b641](https://github.com/MTES-MCT/monitor-ui/commit/537b641eadbe28efcbd2e8376b91b896e8e9b873))
+* **elements:** introduce LinkButton component ([c8c39e0](https://github.com/MTES-MCT/monitor-ui/commit/c8c39e0155cafed8ca2faad1413011408babf92a))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump tar from 6.2.0 to 6.2.1 ([2cc4fee](https://github.com/MTES-MCT/monitor-ui/commit/2cc4fee18acbd3d11f1477f011b96fcf910b6bb1))
+* **dev-deps:** bump vite from 5.1.4 to 5.1.7 in /e2e/release/sample ([76c1d53](https://github.com/MTES-MCT/monitor-ui/commit/76c1d537064f6ea01b00049d0001d2ef49774ab1))
+
 ## [14.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.10.0...v14.0.0) (2024-04-08)
 
 
