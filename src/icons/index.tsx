@@ -1,3 +1,4 @@
+import { Account } from './Account'
 import { ActivityFeed } from './ActivityFeed'
 import { Alert } from './Alert'
 import { Anchor } from './Anchor'
@@ -42,6 +43,7 @@ import { Infringement } from './Infringement'
 import { Landmark } from './Landmark'
 import { Link } from './Link'
 import { List } from './List'
+import { Logout } from './Logout'
 import { MapLayers } from './MapLayers'
 import { MeasureAngle } from './MeasureAngle'
 import { MeasureBrokenLine } from './MeasureBrokenLine'
@@ -87,6 +89,7 @@ import { Vms } from './Vms'
 import { Warning } from './Warning'
 
 export {
+  Account,
   ActivityFeed,
   Alert,
   Anchor,
@@ -131,6 +134,7 @@ export {
   Landmark,
   Link,
   List,
+  Logout,
   MapLayers,
   MeasureAngle,
   MeasureBrokenLine,
