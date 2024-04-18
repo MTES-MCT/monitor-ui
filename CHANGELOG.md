@@ -1,3 +1,10 @@
+## [14.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v14.1.0...v14.2.0) (2024-04-18)
+
+
+### Features
+
+* **icons:** add new icons ([887c14e](https://github.com/MTES-MCT/monitor-ui/commit/887c14ee4c8246131f21f89d9391d9c010a88d9d))
+
 ## [14.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v14.0.0...v14.1.0) (2024-04-17)
 
 
