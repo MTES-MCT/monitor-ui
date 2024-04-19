@@ -1,7 +1,8 @@
 import { IconButton } from '@elements/IconButton'
 import { LinkButton } from '@elements/LinkButton'
+import classNames from 'classnames'
 import { isString } from 'lodash'
-import { type ReactNode, useState } from 'react'
+import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 
 import { getBannerPalette } from './utils'
@@ -9,11 +10,14 @@ import { Accent, Icon, Level, Size } from '../../constants'
 
 export type BannerProps = {
   children: string | ReactNode
+  className?: string | undefined
+  closingDelay?: number
   isClosable: boolean
   isCollapsible: boolean
   isHiddenByDefault: boolean | undefined
   level: Level
   top: string
+  withAutomaticClosing?: boolean
 }
 
 interface WrapperProps {
@@ -23,6 +27,89 @@ interface WrapperProps {
   $level: Level
   $top: string
 }
+
+function Banner({
+  children,
+  className = undefined,
+  closingDelay = 3000,
+  isClosable,
+  isCollapsible,
+  isHiddenByDefault,
+  level,
+  top,
+  withAutomaticClosing = false
+}: Readonly<BannerProps>) {
+  const timeoutIdRef = useRef<NodeJS.Timeout | undefined>(undefined)
+  const controlledClassName = classNames('Component-Banner', className)
+  const [isHidden, setIsHidden] = useState<boolean>(!!isHiddenByDefault)
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(false)
+  const [isCollapsing, setIsCollapsing] = useState<boolean>(false)
+  const [hasCollapsed, setHasCollapsed] = useState<boolean>(false)
+
+  const enterHover = (): void => {
+    if (!isHidden && isCollapsed && !isCollapsing) {
+      setIsCollapsed(false)
+    }
+    setIsCollapsing(false)
+  }
+  const leaveHover = (): void => {
+    if (!isHidden && hasCollapsed) {
+      setIsCollapsed(true)
+    }
+  }
+
+  const onClickAction = useCallback((): void => {
+    if (isClosable) {
+      setIsHidden(true)
+    } else if (isCollapsible) {
+      setIsCollapsing(true)
+      setIsCollapsed(true)
+      setHasCollapsed(true)
+    }
+  }, [isClosable, isCollapsible])
+
+  useEffect(() => {
+    if (withAutomaticClosing) {
+      const timeoutId = setTimeout(() => {
+        onClickAction()
+      }, closingDelay)
+
+      timeoutIdRef.current = timeoutId
+    }
+
+    return () => clearTimeout(timeoutIdRef.current)
+  }, [closingDelay, onClickAction, withAutomaticClosing])
+
+  return (
+    <Wrapper
+      $isCollapsed={isCollapsed}
+      $isCollapsible={isCollapsible}
+      $isHidden={isHidden}
+      $level={level}
+      $top={top}
+      className={controlledClassName}
+      onMouseEnter={enterHover}
+      onMouseLeave={leaveHover}
+    >
+      {!isHidden && !isCollapsed && (
+        <>
+          <ContentWrapper $level={level}>{isString(children) ? <p>{children}</p> : <>{children}</>}</ContentWrapper>
+          <ButtonWrapper
+            className="banner-button"
+            onClick={() => onClickAction()}
+            title={isClosable ? 'fermer' : 'masquer'}
+          >
+            {isClosable && (
+              <IconButton accent={Accent.TERTIARY} color={getBannerPalette(level).color} Icon={Icon.Close} />
+            )}
+            {!isClosable && isCollapsible && <LinkButton size={Size.LARGE}>Masquer</LinkButton>}
+          </ButtonWrapper>
+        </>
+      )}
+    </Wrapper>
+  )
+}
+
 const Wrapper = styled.div<WrapperProps>`
   display: ${(p: WrapperProps) => (p.$isHidden ? 'none' : 'flex')};
   flex-direction: row;
@@ -58,64 +145,6 @@ const ContentWrapper = styled.div<ContentWrapperProps>`
 const ButtonWrapper = styled.div`
   align-self: center;
 `
-
-function Banner({ children, isClosable, isCollapsible, isHiddenByDefault, level, top }: Readonly<BannerProps>) {
-  const [isHidden, setIsHidden] = useState<boolean>(!!isHiddenByDefault)
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(false)
-  const [isCollapsing, setIsCollapsing] = useState<boolean>(false)
-  const [hasCollapsed, setHasCollapsed] = useState<boolean>(false)
-
-  const enterHover = (): void => {
-    if (!isHidden && isCollapsed && !isCollapsing) {
-      setIsCollapsed(false)
-    }
-    setIsCollapsing(false)
-  }
-  const leaveHover = (): void => {
-    if (!isHidden && hasCollapsed) {
-      setIsCollapsed(true)
-    }
-  }
-
-  const onClickAction = (): void => {
-    if (isClosable) {
-      setIsHidden(true)
-    } else if (isCollapsible) {
-      setIsCollapsing(true)
-      setIsCollapsed(true)
-      setHasCollapsed(true)
-    }
-  }
-
-  return (
-    <Wrapper
-      $isCollapsed={isCollapsed}
-      $isCollapsible={isCollapsible}
-      $isHidden={isHidden}
-      $level={level}
-      $top={top}
-      className="banner"
-      onMouseEnter={enterHover}
-      onMouseLeave={leaveHover}
-    >
-      {!isHidden && !isCollapsed && (
-        <>
-          <ContentWrapper $level={level}>{isString(children) ? <p>{children}</p> : <>{children}</>}</ContentWrapper>
-          <ButtonWrapper
-            className="banner-button"
-            onClick={() => onClickAction()}
-            title={isClosable ? 'fermer' : 'masquer'}
-          >
-            {isClosable && (
-              <IconButton accent={Accent.TERTIARY} color={getBannerPalette(level).color} Icon={Icon.Close} />
-            )}
-            {!isClosable && isCollapsible && <LinkButton size={Size.LARGE}>Masquer</LinkButton>}
-          </ButtonWrapper>
-        </>
-      )}
-    </Wrapper>
-  )
-}
 
 Banner.displayName = 'Banner'
 
