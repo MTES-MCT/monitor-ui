@@ -13,7 +13,7 @@ context(`Story`, () => {
           </BannerStory>
         </StoryBox>
       )
-      cy.get('.banner').should('not.be.visible')
+      cy.get('.Banner-Storie').should('not.be.visible')
     })
     it('should show the banner when isHiddenByDefault is false', () => {
       mountAndWait(
@@ -23,7 +23,7 @@ context(`Story`, () => {
           </BannerStory>
         </StoryBox>
       )
-      cy.get('.banner').should('be.visible')
+      cy.get('.Banner-Storie').should('be.visible')
     })
     it('should show the banner when isHiddenByDefault is undefined', () => {
       mountAndWait(
@@ -33,7 +33,7 @@ context(`Story`, () => {
           </BannerStory>
         </StoryBox>
       )
-      cy.get('.banner').should('be.visible')
+      cy.get('.Banner-Storie').should('be.visible')
     })
   })
   describe('closable version', () => {
@@ -45,8 +45,8 @@ context(`Story`, () => {
           </BannerStory>
         </StoryBox>
       )
-      cy.get('.banner-button').click()
-      cy.get('.banner').should('not.be.visible')
+      cy.get('.banner-button').first().click()
+      cy.get('.Banner-Storie').should('not.be.visible')
     })
   })
   describe('collapsible version', () => {
@@ -59,11 +59,11 @@ context(`Story`, () => {
         </StoryBox>
       )
       // check it's fully opened
-      cy.get('.banner').invoke('outerHeight').should('be.gt', 10)
+      cy.get('.Banner-Storie').invoke('outerHeight').should('be.gt', 10)
       // click on the hide button
-      cy.get('.banner-button').click()
+      cy.get('.banner-button').first().click()
       // check it's shrunk
-      cy.get('.banner').invoke('outerHeight').should('be.equal', 10)
+      cy.get('.Banner-Storie').invoke('outerHeight').should('be.equal', 10)
     })
   })
 })
