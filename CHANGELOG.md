@@ -1,3 +1,10 @@
+## [14.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v14.2.0...v14.3.0) (2024-04-19)
+
+
+### Features
+
+* **components:** add automatic closing ([759c131](https://github.com/MTES-MCT/monitor-ui/commit/759c13101f048ecd7745480d775c6953d2a31229))
+
 ## [14.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v14.1.0...v14.2.0) (2024-04-18)
 
 
