@@ -1,3 +1,10 @@
+## [14.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v14.3.0...v14.3.1) (2024-04-22)
+
+
+### Bug Fixes
+
+* **component:** display hide text in red when level isError in banner component ([1e10ef2](https://github.com/MTES-MCT/monitor-ui/commit/1e10ef2ea7fd0b1e7d07ef616980306aee416099))
+
 ## [14.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v14.2.0...v14.3.0) (2024-04-19)
 
 
