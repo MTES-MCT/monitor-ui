@@ -3,7 +3,7 @@ import { LinkButton } from '@elements/LinkButton'
 import classNames from 'classnames'
 import { isString } from 'lodash'
 import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { getBannerPalette } from './utils'
 import { Accent, Icon, Level, Size } from '../../constants'
@@ -102,7 +102,11 @@ function Banner({
             {isClosable && (
               <IconButton accent={Accent.TERTIARY} color={getBannerPalette(level).color} Icon={Icon.Close} />
             )}
-            {!isClosable && isCollapsible && <LinkButton size={Size.LARGE}>Masquer</LinkButton>}
+            {!isClosable && isCollapsible && (
+              <LinkButton size={Size.LARGE}>
+                <HideText $level={level}>Masquer</HideText>
+              </LinkButton>
+            )}
           </ButtonWrapper>
         </>
       )}
@@ -145,7 +149,15 @@ const ContentWrapper = styled.div<ContentWrapperProps>`
 const ButtonWrapper = styled.div`
   align-self: center;
 `
-
+const HideText = styled.span<{ $level: Level }>`
+  ${p =>
+    p.$level === Level.ERROR
+      ? css`
+          color: ${getBannerPalette(p.$level).color};
+          text-decoration: ${getBannerPalette(p.$level).color} underline;
+        `
+      : ''}
+`
 Banner.displayName = 'Banner'
 
 export { Banner }
