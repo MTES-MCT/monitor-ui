@@ -14,26 +14,20 @@ export type BannerProps = {
   closingDelay?: number
   isClosable?: boolean | undefined
   isCollapsible?: boolean | undefined
+  isFixed?: boolean | undefined
   isHiddenByDefault?: boolean | undefined
   level: Level
   top: string
   withAutomaticClosing?: boolean | undefined
 }
 
-interface WrapperProps {
-  $isCollapsed: boolean
-  $isCollapsible: boolean
-  $isHidden: boolean
-  $level: Level
-  $top: string
-}
-
-function Banner({
+export function Banner({
   children,
   className = undefined,
   closingDelay = 3000,
   isClosable = false,
   isCollapsible = false,
+  isFixed = false,
   isHiddenByDefault = false,
   level,
   top,
@@ -84,6 +78,7 @@ function Banner({
     <Wrapper
       $isCollapsed={isCollapsed}
       $isCollapsible={isCollapsible}
+      $isFixed={isFixed}
       $isHidden={isHidden}
       $level={level}
       $top={top}
@@ -114,36 +109,42 @@ function Banner({
   )
 }
 
-const Wrapper = styled.div<WrapperProps>`
-  display: ${(p: WrapperProps) => (p.$isHidden ? 'none' : 'flex')};
-  flex-direction: row;
-  justify-content: space-between;
+const Wrapper = styled.div<{
+  $isCollapsed: boolean
+  $isCollapsible: boolean
+  $isFixed: boolean
+  $isHidden: boolean
+  $level: Level
+  $top: string
+}>`
   align-items: center;
-  position: absolute;
-  background-color: ${(p: WrapperProps) => getBannerPalette(p.$level).backgroundColor};
-  width: 100%;
-  min-width: 100%;
+  background-color: ${p => getBannerPalette(p.$level).backgroundColor};
+  border-bottom: ${p => (p.$isCollapsible ? `4px solid ${getBannerPalette(p.$level).borderColor}` : 'none')};
+  box-shadow: ${p => (p.$isCollapsible ? 'none' : '0px 3px 4px #7077854D')};
+  display: ${p => (p.$isHidden ? 'none' : 'flex')};
+  flex-direction: row;
+  height: ${p => (!p.$isHidden && p.$isCollapsed ? '10px' : '50px')};
+  justify-content: space-between;
   max-width: 100%;
+  min-width: 100%;
   padding: 0 2rem;
-  top: ${(p: WrapperProps) => `${p.$top}`};
-  z-index: 1000;
-  height: ${(p: WrapperProps) => (!p.$isHidden && p.$isCollapsed ? '10px' : '50px')};
-  border-bottom: ${({ $isCollapsible, $level }: WrapperProps) =>
-    $isCollapsible ? `4px solid ${getBannerPalette($level).borderColor}` : 'none'};
-  box-shadow: ${({ $isCollapsible }: WrapperProps) => ($isCollapsible ? 'none' : '0px 3px 4px #7077854D')};
+  position: ${p => (p.$isFixed ? 'fixed' : 'relative')};
+  top: ${p => `${p.$top}`};
   transition: height 0.3s ease;
+  width: 100%;
+  z-index: 1000;
 `
 
 interface ContentWrapperProps {
   $level: Level
 }
 const ContentWrapper = styled.div<ContentWrapperProps>`
-  color: ${(p: ContentWrapperProps) => getBannerPalette(p.$level).color};
   align-self: center;
+  color: ${(p: ContentWrapperProps) => getBannerPalette(p.$level).color};
   flex-grow: 2;
-  text-align: center;
   font-size: 16px;
   font-weight: 500;
+  text-align: center;
 `
 
 const ButtonWrapper = styled.div`
@@ -159,5 +160,3 @@ const HideText = styled.span<{ $level: Level }>`
       : ''}
 `
 Banner.displayName = 'Banner'
-
-export { Banner }
