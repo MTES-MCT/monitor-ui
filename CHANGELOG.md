@@ -1,3 +1,20 @@
+## [16.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v15.0.1...v16.0.0) (2024-04-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **entities:** `isEmailSubscriptionContact` & `isSmsSubscriptionContact` props are added to `ControlUnit.ControlUnitContact`.
+
+### Features
+
+* **entities:** add new ControlUnitContact props ([437eb37](https://github.com/MTES-MCT/monitor-ui/commit/437eb37ebd5c5dc531514dcc9bbdafebb87cd987))
+
+
+### Styles
+
+* **components:** specify solid border in Message ([78d2f40](https://github.com/MTES-MCT/monitor-ui/commit/78d2f4001cc67b77694ea8ae3d97167e091c5cd8))
+* **elements:** specify solid border in IconButton ([f7deba3](https://github.com/MTES-MCT/monitor-ui/commit/f7deba3abae79bf9f0de6c289b1999fba93fd1d9))
+
 ## [15.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v15.0.0...v15.0.1) (2024-04-28)
 
 
