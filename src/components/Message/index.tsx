@@ -32,7 +32,7 @@ const ChildrenContainer = styled.div`
   flex: 1;
 `
 
-const Box = styled.span<{
+const Box = styled.div<{
   $backgroundColor?: string | undefined
   $color?: string | undefined
   $level: Level
