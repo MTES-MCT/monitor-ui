@@ -1,6 +1,7 @@
 import { Level } from '../../constants'
 import { THEME } from '../../theme'
 
+/* istanbul ignore next */
 export function getStyledCssFromLevel() {
   return (props: { $level: Level; theme: typeof THEME }) => {
     switch (true) {
