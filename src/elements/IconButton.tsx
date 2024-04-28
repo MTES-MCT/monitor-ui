@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { useMemo, type MouseEvent, type ButtonHTMLAttributes, type FunctionComponent, useCallback } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import { PrimaryButton, SecondaryButton } from './Button'
 import { Accent, Size } from '../constants'
@@ -94,59 +94,35 @@ const StyledButton = styled.button<{
   size: Size
 }>`
   align-items: center;
+  border-width: ${p => (p.isCompact ? 0 : 1)}px !important;
   display: flex;
   justify-content: center;
   padding: ${p => (p.isCompact ? 0 : PADDING[p.size])};
-
-  ${p =>
-    p.isCompact &&
-    css`
-      border: 0;
-
-      :hover,
-      &._hover {
-        border: 0;
-      }
-      border: 0;
-
-      :active,
-      &._active {
-        border: 0;
-      }
-      border: 0;
-
-      :disabled,
-      &._disabled {
-        border: 0;
-      }
-    `}
 `
 
-const TertiaryButton = styled.button<{
-  isCompact: boolean | undefined
-}>`
+const TertiaryButton = styled.button`
   background-color: transparent;
-  border: ${p => (p.isCompact ? 0 : '1px solid transparent')};
+  border-color: transparent;
   color: ${p => p.theme.color.charcoal};
 
-  :hover,
+  &:hover,
   &._hover {
     background-color: transparent;
-    border: ${p => (p.isCompact ? 0 : '1px solid transparent')};
+    border-color: transparent;
     color: ${p => p.theme.color.blueYonder};
   }
 
-  :active,
+  &:active,
   &._active {
     background-color: transparent;
-    border: ${p => (p.isCompact ? 0 : '1px solid transparent')};
+    border-color: transparent;
     color: ${p => p.theme.color.blueGray};
   }
 
-  :disabled,
+  &:disabled,
   &._disabled {
     background-color: transparent;
-    border: ${p => (p.isCompact ? 0 : '1px solid transparent')};
+    border-color: transparent;
     color: ${p => p.theme.color.lightGray};
   }
 `
