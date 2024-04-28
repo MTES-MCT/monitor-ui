@@ -3,7 +3,7 @@ import { LinkButton } from '@elements/LinkButton'
 import classNames from 'classnames'
 import { isString } from 'lodash'
 import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css, type CSSProperties } from 'styled-components'
 
 import { getBannerPalette } from './utils'
 import { Accent, Icon, Level, Size } from '../../constants'
@@ -17,6 +17,7 @@ export type BannerProps = {
   isFixed?: boolean | undefined
   isHiddenByDefault?: boolean | undefined
   level: Level
+  style?: CSSProperties | undefined
   top: string
   withAutomaticClosing?: boolean | undefined
 }
@@ -30,6 +31,7 @@ export function Banner({
   isFixed = false,
   isHiddenByDefault = false,
   level,
+  style,
   top,
   withAutomaticClosing = false
 }: Readonly<BannerProps>) {
@@ -85,6 +87,7 @@ export function Banner({
       className={controlledClassName}
       onMouseEnter={enterHover}
       onMouseLeave={leaveHover}
+      style={style}
     >
       {!isHidden && !isCollapsed && (
         <>
