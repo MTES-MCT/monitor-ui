@@ -1,3 +1,11 @@
+## [15.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v15.0.0...v15.0.1) (2024-04-28)
+
+
+### Bug Fixes
+
+* **components:** add missing default class name in Message ([462ebf3](https://github.com/MTES-MCT/monitor-ui/commit/462ebf3c16cf32f7de326e36b8d27d8eecb863ef))
+* **components:** replace span box with div in Message ([d4e31e1](https://github.com/MTES-MCT/monitor-ui/commit/d4e31e10ca98a7a89e1c3e132d1386e954a2f651))
+
 ## [15.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v14.3.1...v15.0.0) (2024-04-28)
 
 
