@@ -1,3 +1,18 @@
+## [16.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v16.0.0...v16.1.0) (2024-04-28)
+
+
+### Features
+
+* **components:** add isFixed prop to Banner ([4830f91](https://github.com/MTES-MCT/monitor-ui/commit/4830f913fcde74b6d5c7520423ef5bb46d1b6305))
+* **components:** make isClosable, isCollapsible & isHiddenByDefault Banner props optional ([bbf07db](https://github.com/MTES-MCT/monitor-ui/commit/bbf07db7d7e2054ff37f4c40b439346f47d6363e))
+* **components:** make style prop transparent in Banner ([30beabd](https://github.com/MTES-MCT/monitor-ui/commit/30beabdb52a5119b86fc2efdfdb14223f6223360))
+
+
+### Bug Fixes
+
+* **components:** remove position typo in Banner ([17143e1](https://github.com/MTES-MCT/monitor-ui/commit/17143e1e54004f9b2b7bf863f287c67d7c5b54d7))
+* **elements:** fix non-transparent border in tertiary IconButton ([a4ce7b4](https://github.com/MTES-MCT/monitor-ui/commit/a4ce7b4a7c0dd731e035c0631f3196d06ea9d242))
+
 ## [16.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v15.0.1...v16.0.0) (2024-04-28)
 
 
