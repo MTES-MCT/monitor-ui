@@ -17,11 +17,16 @@ const meta: Meta<MessageProps> = {
 
   argTypes: {
     children: ARG_TYPE.REACT_NODE,
+    Icon: ARG_TYPE.OPTIONAL_ICON,
+    iconColor: ARG_TYPE.OPTIONAL_COLOR,
     level: ARG_TYPE.OPTIONAL_LEVEL
   },
 
   args: {
-    children: 'A warning message'
+    children: 'A info message.',
+    Icon: undefined,
+    iconColor: undefined,
+    level: undefined
   },
 
   decorators: [
@@ -44,7 +49,7 @@ export function _Message(props: MessageProps) {
 
         <Message>{LOREM_IPSUM}</Message>
 
-        <Showcase.Subtitle>With actions</Showcase.Subtitle>
+        <Showcase.Subtitle>A warning message with actions</Showcase.Subtitle>
 
         <Message level={Level.WARNING}>
           <div>
