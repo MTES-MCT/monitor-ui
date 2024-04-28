@@ -30,6 +30,8 @@ export namespace ControlUnit {
     controlUnitId: number
     email: string | undefined
     id: number
+    isEmailSubscriptionContact: boolean
+    isSmsSubscriptionContact: boolean
     name: string
     phone: string | undefined
   }
