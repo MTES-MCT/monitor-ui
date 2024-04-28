@@ -16,6 +16,7 @@ const ICON_SIZE_IN_PX: Record<Size, number> = {
 export type IconButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> & {
   Icon: FunctionComponent<IconProps>
   accent?: Accent | undefined
+  badge?: string | undefined
   color?: string | undefined
   /** In pixels, override `size` prop default values. */
   iconSize?: number | undefined
