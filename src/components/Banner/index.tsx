@@ -12,12 +12,12 @@ export type BannerProps = {
   children: string | ReactNode
   className?: string | undefined
   closingDelay?: number
-  isClosable: boolean
-  isCollapsible: boolean
-  isHiddenByDefault: boolean | undefined
+  isClosable?: boolean | undefined
+  isCollapsible?: boolean | undefined
+  isHiddenByDefault?: boolean | undefined
   level: Level
   top: string
-  withAutomaticClosing?: boolean
+  withAutomaticClosing?: boolean | undefined
 }
 
 interface WrapperProps {
@@ -32,9 +32,9 @@ function Banner({
   children,
   className = undefined,
   closingDelay = 3000,
-  isClosable,
-  isCollapsible,
-  isHiddenByDefault,
+  isClosable = false,
+  isCollapsible = false,
+  isHiddenByDefault = false,
   level,
   top,
   withAutomaticClosing = false
