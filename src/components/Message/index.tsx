@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import { type FunctionComponent, type HTMLAttributes, type ReactNode } from 'react'
 import styled from 'styled-components'
 
@@ -13,12 +14,13 @@ export type MessageProps = HTMLAttributes<HTMLDivElement> & {
   iconColor?: Level | undefined
   level?: Level | undefined
 }
-export function Message({ children, Icon, iconColor, level = Level.INFO, ...nativeProps }: MessageProps) {
+export function Message({ children, className, Icon, iconColor, level = Level.INFO, ...nativeProps }: MessageProps) {
+  const controlledClassName = classnames('Component-Message>', className)
   const ControlledIcon = Icon ?? DEFAUT_ICON[level]
   const controlledIconColor = iconColor ?? DEFAULT_ICON_COLOR[level]
 
   return (
-    <Box $level={level} {...nativeProps}>
+    <Box $level={level} className={controlledClassName} {...nativeProps}>
       <ControlledIcon color={controlledIconColor} />
       <ChildrenContainer>{children}</ChildrenContainer>
     </Box>
