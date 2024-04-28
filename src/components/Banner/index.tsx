@@ -8,6 +8,8 @@ import styled, { css, type CSSProperties } from 'styled-components'
 import { getBannerPalette } from './utils'
 import { Accent, Icon, Level, Size } from '../../constants'
 
+import type { Promisable } from 'type-fest'
+
 export type BannerProps = {
   children: string | ReactNode
   className?: string | undefined
@@ -17,6 +19,7 @@ export type BannerProps = {
   isFixed?: boolean | undefined
   isHiddenByDefault?: boolean | undefined
   level: Level
+  onAutoClose?: (() => Promisable<void>) | undefined
   style?: CSSProperties | undefined
   top: string
   withAutomaticClosing?: boolean | undefined
@@ -31,6 +34,7 @@ export function Banner({
   isFixed = false,
   isHiddenByDefault = false,
   level,
+  onAutoClose,
   style,
   top,
   withAutomaticClosing = false
@@ -68,13 +72,14 @@ export function Banner({
     if (withAutomaticClosing) {
       const timeoutId = setTimeout(() => {
         onClickAction()
+        onAutoClose?.()
       }, closingDelay)
 
       timeoutIdRef.current = timeoutId
     }
 
     return () => clearTimeout(timeoutIdRef.current)
-  }, [closingDelay, onClickAction, withAutomaticClosing])
+  }, [closingDelay, onClickAction, onAutoClose, withAutomaticClosing])
 
   return (
     <Wrapper
