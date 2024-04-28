@@ -20,6 +20,7 @@ export type BannerProps = {
   isHiddenByDefault?: boolean | undefined
   level: Level
   onAutoClose?: (() => Promisable<void>) | undefined
+  onClose?: (() => Promisable<void>) | undefined
   style?: CSSProperties | undefined
   top: string
   withAutomaticClosing?: boolean | undefined
@@ -35,6 +36,7 @@ export function Banner({
   isHiddenByDefault = false,
   level,
   onAutoClose,
+  onClose,
   style,
   top,
   withAutomaticClosing = false
@@ -61,17 +63,20 @@ export function Banner({
   const onClickAction = useCallback((): void => {
     if (isClosable) {
       setIsHidden(true)
+
+      onClose?.()
     } else if (isCollapsible) {
       setIsCollapsing(true)
       setIsCollapsed(true)
       setHasCollapsed(true)
     }
-  }, [isClosable, isCollapsible])
+  }, [isClosable, isCollapsible, onClose])
 
   useEffect(() => {
     if (withAutomaticClosing) {
       const timeoutId = setTimeout(() => {
         onClickAction()
+
         onAutoClose?.()
       }, closingDelay)
 
