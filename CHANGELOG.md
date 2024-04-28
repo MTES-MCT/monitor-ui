@@ -1,3 +1,10 @@
+## [16.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v16.2.0...v16.3.0) (2024-04-28)
+
+
+### Features
+
+* **components:** add onClose prop to Banner ([eba610c](https://github.com/MTES-MCT/monitor-ui/commit/eba610cac5fc0f40702d0587a440eb06fddfd76f))
+
 ## [16.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v16.1.0...v16.2.0) (2024-04-28)
 
 
