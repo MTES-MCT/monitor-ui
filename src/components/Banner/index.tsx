@@ -131,7 +131,7 @@ const Wrapper = styled.div<{
   max-width: 100%;
   min-width: 100%;
   padding: 0 2rem;
-  position: ${p => (p.$isFixed ? 'fixed' : 'relative')};
+  position: ${p => (p.$isFixed ? 'fixed' : 'absolute')};
   top: ${p => `${p.$top}`};
   transition: height 0.3s ease;
   width: 100%;
