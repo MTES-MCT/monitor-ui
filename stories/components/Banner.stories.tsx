@@ -20,6 +20,7 @@ const meta: Meta<BannerProps> = {
     level: ARG_TYPE.OPTIONAL_LEVEL,
     isCollapsible: ARG_TYPE.OPTIONAL_BOOLEAN,
     isClosable: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isFixed: ARG_TYPE.OPTIONAL_BOOLEAN,
     top: {
       control: 'text'
     },
@@ -33,6 +34,7 @@ const meta: Meta<BannerProps> = {
     isHiddenByDefault: false,
     isCollapsible: true,
     isClosable: false,
+    isFixed: false,
     level: Level.SUCCESS,
     children: 'This is the content of the banner',
     top: '60px',
