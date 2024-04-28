@@ -1,3 +1,15 @@
+## [16.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v16.1.0...v16.2.0) (2024-04-28)
+
+
+### Features
+
+* **components:** add onAutoClose prop to Banner ([a28e5fc](https://github.com/MTES-MCT/monitor-ui/commit/a28e5fc82e6c72c0f21de80a3d731fd70bfb5a20))
+
+
+### Bug Fixes
+
+* **components:** set left position to 0 in Banner ([1a91c7f](https://github.com/MTES-MCT/monitor-ui/commit/1a91c7f1494379677e54900172f7cab3b688741b))
+
 ## [16.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v16.0.0...v16.1.0) (2024-04-28)
 
 
