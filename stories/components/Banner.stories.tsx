@@ -18,15 +18,15 @@ const meta: Meta<BannerProps> = {
   argTypes: {
     isHiddenByDefault: ARG_TYPE.OPTIONAL_BOOLEAN,
     level: ARG_TYPE.OPTIONAL_LEVEL,
-    isCollapsible: ARG_TYPE.BOOLEAN,
-    isClosable: ARG_TYPE.BOOLEAN,
+    isCollapsible: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isClosable: ARG_TYPE.OPTIONAL_BOOLEAN,
     top: {
       control: 'text'
     },
     closingDelay: {
       control: 'number'
     },
-    withAutomaticClosing: ARG_TYPE.BOOLEAN
+    withAutomaticClosing: ARG_TYPE.OPTIONAL_BOOLEAN
   },
 
   args: {
