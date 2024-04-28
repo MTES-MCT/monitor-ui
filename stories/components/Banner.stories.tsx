@@ -21,14 +21,10 @@ const meta: Meta<BannerProps> = {
     isCollapsible: ARG_TYPE.BOOLEAN,
     isClosable: ARG_TYPE.BOOLEAN,
     top: {
-      control: {
-        type: 'string'
-      }
+      control: 'text'
     },
     closingDelay: {
-      control: {
-        type: 'number'
-      }
+      control: 'number'
     },
     withAutomaticClosing: ARG_TYPE.BOOLEAN
   },

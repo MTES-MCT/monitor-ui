@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Output } from '../../.storybook/components/Output'
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
+import { getArrayFromEnum } from '../../.storybook/utils/getArrayFromEnum'
 import { CoordinatesFormat, CoordinatesInput } from '../../src'
 
 import type { CoordinatesInputProps } from '../../src/fields/CoordinatesInput'
@@ -18,7 +19,7 @@ const meta: Meta<CoordinatesInputProps> = {
   argTypes: {
     coordinatesFormat: {
       control: 'inline-radio',
-      options: CoordinatesFormat
+      options: getArrayFromEnum(CoordinatesFormat)
     },
     disabled: ARG_TYPE.OPTIONAL_BOOLEAN,
     error: ARG_TYPE.OPTIONAL_STRING,

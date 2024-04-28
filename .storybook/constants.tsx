@@ -27,7 +27,7 @@ export const LOREM_IPSUM = [
   'Etiam eget erat nisi.'
 ].join('')
 
-export const ARG_TYPE = {
+const ARG_TYPE_TYPED: Meta['argTypes'] = {
   BOOLEAN: {
     control: 'boolean',
     table: {
@@ -208,6 +208,8 @@ export const ARG_TYPE = {
     }
   }
 }
+// TODO There is a strange issue with Storybook types not matching the type of `ARG_TYPE_TYPED`.
+export const ARG_TYPE: any = ARG_TYPE_TYPED
 
 export const META_DEFAULTS: Meta = {
   parameters: {
