@@ -1,3 +1,5 @@
+import styled from 'styled-components'
+
 import { Showcase } from '../../.storybook/components/Showcase'
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
@@ -16,6 +18,7 @@ const meta: Meta<IconButtonProps> = {
   argTypes: {
     accent: ARG_TYPE.OPTIONAL_ACCENT,
     color: ARG_TYPE.OPTIONAL_COLOR,
+    disabled: ARG_TYPE.OPTIONAL_BOOLEAN,
     Icon: ARG_TYPE.ICON,
     iconSize: ARG_TYPE.OPTIONAL_NUMBER,
     isCompact: ARG_TYPE.OPTIONAL_BOOLEAN,
@@ -26,6 +29,7 @@ const meta: Meta<IconButtonProps> = {
 
   args: {
     accent: Accent.PRIMARY,
+    disabled: false,
     Icon: Icon.Close,
     isCompact: false,
     size: undefined,
@@ -38,10 +42,39 @@ const meta: Meta<IconButtonProps> = {
 
 export default meta
 
+const TestButton = styled(IconButton)`
+  background-color: lightgreen;
+  border-color: darkgreen;
+  color: yellow;
+
+  &:hover,
+  &._hover {
+    background-color: lightblue;
+    border-color: darkblue;
+    color: orange;
+  }
+
+  &:active,
+  &._active {
+    background-color: lightblue;
+    border-color: darkblue;
+    color: orange;
+  }
+
+  &:disabled,
+  &._disabled {
+    background-color: lightblue;
+    border-color: darkblue;
+    color: orange;
+  }
+`
+
 export function _IconButton(props: IconButtonProps) {
   return (
     <>
       <IconButton {...props} />
+
+      <TestButton {...props} />
 
       <Showcase>
         <Showcase.Subtitle>PRIMARY</Showcase.Subtitle>
