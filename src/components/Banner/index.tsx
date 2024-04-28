@@ -133,6 +133,7 @@ const Wrapper = styled.div<{
   flex-direction: row;
   height: ${p => (!p.$isHidden && p.$isCollapsed ? '10px' : '50px')};
   justify-content: space-between;
+  left: 0;
   max-width: 100%;
   min-width: 100%;
   padding: 0 2rem;
