@@ -1,3 +1,29 @@
+## [15.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v14.3.1...v15.0.0) (2024-04-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **components:** The default `Message.level` is now "INFO" instead of "WARNING".
+
+### Features
+
+* **components:** add Icon & iconColor props to Message ([e8d1520](https://github.com/MTES-MCT/monitor-ui/commit/e8d1520db170594c767300a28fe355b3d2002483))
+
+
+### Bug Fixes
+
+* **fields:** prevent textarea from being horizontally reduced ([76d3057](https://github.com/MTES-MCT/monitor-ui/commit/76d305748fa6afc09254efe3e77b66af4dd9ddbe))
+
+
+### Code Refactoring
+
+* **elements:** start cleaning & simplifying IconButton logic ([afffc00](https://github.com/MTES-MCT/monitor-ui/commit/afffc00a65218f9f8645de252ab476764baf0881))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bunp storybook from 8.0.0-beta.4 to 8.0.9 ([b1b9aa1](https://github.com/MTES-MCT/monitor-ui/commit/b1b9aa113e4497c11ccdad057573747333d2632c))
+
 ## [14.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v14.3.0...v14.3.1) (2024-04-22)
 
 
