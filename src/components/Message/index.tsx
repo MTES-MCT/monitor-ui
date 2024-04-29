@@ -15,7 +15,7 @@ export type MessageProps = HTMLAttributes<HTMLDivElement> & {
   level?: Level | undefined
 }
 export function Message({ children, className, Icon, iconColor, level = Level.INFO, ...nativeProps }: MessageProps) {
-  const controlledClassName = classnames('Component-Message>', className)
+  const controlledClassName = classnames('Component-Message', className)
   const ControlledIcon = Icon ?? DEFAUT_ICON[level]
   const controlledIconColor = iconColor ?? DEFAULT_ICON_COLOR[level]
 
