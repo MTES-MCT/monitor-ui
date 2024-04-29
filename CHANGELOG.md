@@ -1,3 +1,10 @@
+## [16.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v16.3.0...v16.3.1) (2024-04-29)
+
+
+### Bug Fixes
+
+* **components:** remove typo in Message class name ([acec040](https://github.com/MTES-MCT/monitor-ui/commit/acec04006303306ae4b79c1f9e8dbcc7f471d02b))
+
 ## [16.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v16.2.0...v16.3.0) (2024-04-28)
 
 
