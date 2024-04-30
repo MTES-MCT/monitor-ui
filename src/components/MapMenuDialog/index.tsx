@@ -1,6 +1,7 @@
+import { IconButton } from '@elements/IconButton'
 import styled from 'styled-components'
 
-import { IconButton } from '../../elements/IconButton'
+import { Accent } from '../../constants'
 
 const Container = styled.div`
   background-color: ${p => p.theme.color.white};
@@ -43,8 +44,26 @@ const VisibilityButton = styled(IconButton as any)`
   background-color: ${p => p.theme.color.gainsboro};
 `
 
-const CloseButton = styled(IconButton as any)`
-  color: white;
+const CloseButton = styled(IconButton as any).attrs(props => ({
+  accent: Accent.TERTIARY,
+  Icon: props.Icon ?? 'Close'
+}))`
+  color: ${p => p.theme.color.white};
+
+  &:hover,
+  &._hover {
+    color: ${p => p.theme.color.white};
+  }
+
+  &:active,
+  &._active {
+    color: ${p => p.theme.color.white};
+  }
+
+  &:disabled,
+  &._disabled {
+    color: ${p => p.theme.color.white};
+  }
 `
 
 const Footer = styled.div`
