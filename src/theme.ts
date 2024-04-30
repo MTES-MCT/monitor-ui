@@ -26,6 +26,7 @@ export const THEME = {
     blueYonder25: '#D4DDE7',
     blueGray: '#5697D2',
     blueGray25: '#D4E5F4',
+    blueGrayBorder: '#AECEEA',
     mayaBlue: '#5FBDFC',
     maximumRed: '#E1000F',
     maximumRed15: '#FBD9DB',
@@ -36,6 +37,7 @@ export const THEME = {
     mediumSeaGreen25: '#c9ecd7',
     goldenPoppy: '#FAC11A',
     goldenPoppy25: '#FDF3C3',
+    goldenPoppyBorder: '#FEE291',
 
     /** CONTEXTUAL COLORS */
 
