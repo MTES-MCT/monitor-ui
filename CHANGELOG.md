@@ -1,3 +1,26 @@
+## [16.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v16.3.1...v16.4.0) (2024-04-30)
+
+
+### Features
+
+* **components:** set tertiary accent as default with right colorin MapMenuDialog.CloseButton ([884caf1](https://github.com/MTES-MCT/monitor-ui/commit/884caf17994bfedd72caa110d4158e4e67de96be))
+* **icons:** add Subscription icon ([77345a0](https://github.com/MTES-MCT/monitor-ui/commit/77345a07714751fbacdabe94b58ba8707d2f1c68))
+
+
+### Styles
+
+* **components:** update Message colors ([704d9bc](https://github.com/MTES-MCT/monitor-ui/commit/704d9bc1bc0f0760c588d6485c209fb65795479b))
+
+
+### Bug Fixes
+
+* **elements:** fix border color in IconButton ([b87aeaa](https://github.com/MTES-MCT/monitor-ui/commit/b87aeaa11b4513379b9973f39b82fa5093d22a8d))
+
+
+### Documentation
+
+* **storybook:** remove legacy Icons story ([d6a33bb](https://github.com/MTES-MCT/monitor-ui/commit/d6a33bb1e191d989ed5238008423fe326e104cb0))
+
 ## [16.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v16.3.0...v16.3.1) (2024-04-29)
 
 
