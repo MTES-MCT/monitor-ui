@@ -41,7 +41,6 @@ const Box = styled.div<{
 }>`
   ${getStyledCssFromLevel()}
 
-  border: solid 1px;
   border-radius: 2px;
   display: flex;
   font-size: 13px;
