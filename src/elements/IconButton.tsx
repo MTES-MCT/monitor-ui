@@ -94,7 +94,7 @@ const StyledButton = styled.button<{
   size: Size
 }>`
   align-items: center;
-  border: solid ${p => (p.isCompact ? 0 : 1)}px;
+  border: solid ${p => (p.isCompact ? 0 : 1)}px transparent;
   display: flex;
   justify-content: center;
   padding: ${p => (p.isCompact ? 0 : PADDING[p.size])};
