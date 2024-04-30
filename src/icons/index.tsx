@@ -78,6 +78,7 @@ import { SortingArrows } from './SortingArrows'
 import { SortingChevrons } from './SortingChevrons'
 import { SortSelectedDown } from './SortSelectedDown'
 import { SortSelectedUp } from './SortSelectedUp'
+import { Subscription } from './Subscription'
 import { Summary } from './Summary'
 import { Tag } from './Tag'
 import { Target } from './Target'
@@ -169,6 +170,7 @@ export {
   SortSelectedUp,
   SortingArrows,
   SortingChevrons,
+  Subscription,
   Summary,
   Tag,
   Target,
