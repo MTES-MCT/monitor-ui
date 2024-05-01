@@ -24,15 +24,15 @@ const ICON_SIZE: Record<Size, number> = {
 }
 
 const StyledLinkButton = styled.button<LinkButtonProps>`
-  display: flex;
-  flex-direction: row;
-  gap: 0.4rem;
   align-items: flex-end;
   background: transparent;
-  text-decoration: underline;
-  cursor: ${({ disabled }: LinkButtonProps) => (disabled ? 'none' : 'pointer')}};
-  font-size: ${({ size }: LinkButtonProps) => FONT_SIZE[size]}};
   color: ${p => p.theme.color.slateGray};
+  cursor: ${p => (p.disabled ? 'none' : 'pointer')};
+  display: flex;
+  flex-direction: row;
+  font-size: ${p => FONT_SIZE[p.size]};
+  gap: 0.4rem;
+  text-decoration: underline;
 
   &:hover,
   &._hover {
@@ -59,7 +59,7 @@ const StyledLinkButton = styled.button<LinkButtonProps>`
   }
 `
 
-function LinkButton({ children, Icon, ...props }: Readonly<LinkButtonProps>) {
+export function LinkButton({ children, Icon, ...props }: Readonly<LinkButtonProps>) {
   return (
     <StyledLinkButton {...props}>
       <>
@@ -71,5 +71,3 @@ function LinkButton({ children, Icon, ...props }: Readonly<LinkButtonProps>) {
 }
 
 LinkButton.displayName = 'LinkButton'
-
-export { LinkButton }
