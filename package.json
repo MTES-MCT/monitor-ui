@@ -141,7 +141,7 @@
     "rollup-plugin-import-css": "3.5.0",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "rollup-plugin-postcss": "4.0.2",
-    "rollup-plugin-sizes": "1.0.5",
+    "rollup-plugin-sizes": "1.0.6",
     "rollup-plugin-swc3": "0.10.3",
     "rsuite": "5.53.2",
     "semantic-release": "23.0.8",
