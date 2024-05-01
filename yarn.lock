@@ -2943,7 +2943,7 @@ __metadata:
     rollup-plugin-import-css: "npm:3.5.0"
     rollup-plugin-peer-deps-external: "npm:2.2.4"
     rollup-plugin-postcss: "npm:4.0.2"
-    rollup-plugin-sizes: "npm:1.0.5"
+    rollup-plugin-sizes: "npm:1.0.6"
     rollup-plugin-swc3: "npm:0.10.3"
     rsuite: "npm:5.53.2"
     semantic-release: "npm:23.0.8"
@@ -18432,15 +18432,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-sizes@npm:1.0.5":
-  version: 1.0.5
-  resolution: "rollup-plugin-sizes@npm:1.0.5"
+"rollup-plugin-sizes@npm:1.0.6":
+  version: 1.0.6
+  resolution: "rollup-plugin-sizes@npm:1.0.6"
   dependencies:
     filesize: "npm:^9.0.0"
     module-details-from-path: "npm:^1.0.3"
   peerDependencies:
-    rollup: ^2 || ^3
-  checksum: 67f54789675cbcd8de7749f21e52d52d99f5f0cf8f31f6630b7883243060f3c29f6d61cf819c322fd792e7c1d1ddd5093b2025d715373348c2f4bdda90e21250
+    rollup: ^2 || ^3 || ^4
+  checksum: 582857c8e23591bb6c9e9b39fd2a7d44c47928433a089bc5e0d14ca37a72ae7e63867f097a2b0ed8fc3db54ee0aee66e8c56c7102d4775c693211bfbcebf78a0
   languageName: node
   linkType: hard
 
