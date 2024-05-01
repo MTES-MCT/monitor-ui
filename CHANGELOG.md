@@ -1,3 +1,18 @@
+## [16.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v16.4.0...v16.5.0) (2024-05-01)
+
+
+### Features
+
+* **elements:** add Link ([b72322b](https://github.com/MTES-MCT/monitor-ui/commit/b72322bb5d0b3e61fe41c4ce21a02e32c09fcbd0))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @types/node in /e2e/release/sample ([0df00a3](https://github.com/MTES-MCT/monitor-ui/commit/0df00a3f4194d21ac3f95df7d7f3d644fdfc2640))
+* **dev-deps:** bump rsuite in /e2e/release/sample ([69e238e](https://github.com/MTES-MCT/monitor-ui/commit/69e238e8bdf271d5556c9db104e64928003cd9b8))
+* **dev-deps:** bump styled-components in /e2e/release/sample ([6b8e9f4](https://github.com/MTES-MCT/monitor-ui/commit/6b8e9f4e31b04314568af1a2db5e1bfdd9fb216f))
+* **dev-deps:** bump vite from 5.1.7 to 5.2.10 in /e2e/release/sample ([3861028](https://github.com/MTES-MCT/monitor-ui/commit/3861028a8bca05bcc9780ee07a4ca8e4386cd5c0))
+
 ## [16.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v16.3.1...v16.4.0) (2024-04-30)
 
 
