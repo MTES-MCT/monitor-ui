@@ -101,8 +101,8 @@ const Box = styled.span<{
   height: 22px;
   line-height: normal;
   padding: ${p => (p.$withCircleIcon ? '1px 8px 0px 1px' : '0px 8px')};
-  /* SVG Icon components are wrapped within a <div /> */
-  > div {
+
+  > .Element-IconBox {
     margin-right: 4px;
   }
 `
