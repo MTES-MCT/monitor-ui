@@ -108,8 +108,7 @@ const StyledButton = styled.button<{
   padding: ${p => PADDING[p.size]};
   width: ${p => (p.isFullWidth ? '100%' : 'auto')};
 
-  /* SVG Icon Components are wrapped within a <div /> */
-  > div {
+  > .Element-IconBox {
     margin-right: 5px;
   }
 `

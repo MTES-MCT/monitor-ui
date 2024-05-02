@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import type { HTMLAttributes } from 'react'
 
-export type IconBoxProps = HTMLAttributes<HTMLDivElement> & {
+export type IconBoxProps = HTMLAttributes<HTMLSpanElement> & {
   $color?: string | undefined
   /** In pixels */
   $size?: number | undefined
@@ -10,7 +10,7 @@ export type IconBoxProps = HTMLAttributes<HTMLDivElement> & {
 /**
  * Internal component used to wrap SVG icon components
  */
-export const IconBox = styled.div.attrs<IconBoxProps, IconBoxProps>(() => ({
+export const IconBox = styled.span.attrs<IconBoxProps, IconBoxProps>(() => ({
   className: 'Element-IconBox'
 }))`
   display: inline-block;

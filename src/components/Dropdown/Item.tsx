@@ -55,8 +55,7 @@ const PrimaryDropdownItem = styled(RsuiteDropdown.Item as any)<{
   &:not(:last-child) {
     border-bottom: 1px solid var(--lightGray);
   }
-  /* SVG Icon Components are wrapped within a <div />  */
-  > div {
+  > .Element-IconBox {
     margin-top: 1px;
   }
 `

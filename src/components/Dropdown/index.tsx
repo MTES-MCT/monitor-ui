@@ -61,8 +61,7 @@ const PrimaryDropdown = styled(RsuiteDropdown as any)<{
       color: ${p => p.theme.color.cultured};
     }
 
-    /* SVG Icon Components are wrapped within a <div /> */
-    > div {
+    > .Element-IconBox {
       margin: 1px 8px 0 0;
     }
 
