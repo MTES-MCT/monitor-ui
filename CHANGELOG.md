@@ -1,3 +1,24 @@
+## [17.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v16.5.0...v17.0.0) (2024-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **elements:** `<IconButton />` is now a span instead of a div.
+
+### Bug Fixes
+
+* **elements:** switch IconBox wrapper element from a div to a span ([4a17f10](https://github.com/MTES-MCT/monitor-ui/commit/4a17f10699bfe59c6484641e0759741a89dbcc88))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump @babel/runtime from 7.24.4 to 7.24.5 ([0c6b0a6](https://github.com/MTES-MCT/monitor-ui/commit/0c6b0a609e79c6870ae70c36cd52ed2ec5cb1084))
+* **deps:** bump ejs from 3.1.9 to 3.1.10 ([5a3e05a](https://github.com/MTES-MCT/monitor-ui/commit/5a3e05a4139084163cdbed69929af0056031fbc9))
+* **dev-deps:** bump @babel/preset-react from 7.22.15 to 7.24.1 ([a78b5b3](https://github.com/MTES-MCT/monitor-ui/commit/a78b5b37108683db184a416259ee04a0551ef44a))
+* **dev-deps:** bump react-is from 18.2.0 to 18.3.1 ([258a53d](https://github.com/MTES-MCT/monitor-ui/commit/258a53d57d981fd2c92a167627fd5620e48682d0))
+* **dev-deps:** bump rollup-plugin-sizes from 1.0.5 to 1.0.6 ([8a19fe6](https://github.com/MTES-MCT/monitor-ui/commit/8a19fe605c9f6e10612e2b37f1b561ec1cb3e375))
+* **dev-deps:** bump semantic-release from 23.0.0 to 23.0.8 ([47e7c23](https://github.com/MTES-MCT/monitor-ui/commit/47e7c23ab207cbc950503bed03909ccdf70fb717))
+
 ## [16.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v16.4.0...v16.5.0) (2024-05-01)
 
 
