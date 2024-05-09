@@ -1,4 +1,4 @@
-import { findElementBytext } from '../utils/findElementBytext'
+import { findElementByText } from '../utils/findElementByText'
 
 const RETRIES = 5
 
@@ -13,7 +13,7 @@ function findButton(
     prevSubjectElement: HTMLElement | undefined
   }
 ): HTMLElement | undefined {
-  const buttonElement = findElementBytext(`${preSelector}button`, label, {
+  const buttonElement = findElementByText(`${preSelector}button`, label, {
     index,
     inElement: prevSubjectElement
   })
@@ -35,7 +35,7 @@ function findButton(
     return buttonElementByTitle as HTMLElement
   }
 
-  const menuItemElement = findElementBytext(`${preSelector}[role="menuitem"]`, label, {
+  const menuItemElement = findElementByText(`${preSelector}[role="menuitem"]`, label, {
     index,
     inElement: prevSubjectElement
   })

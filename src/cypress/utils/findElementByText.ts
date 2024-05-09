@@ -2,7 +2,7 @@
 // instead of using a cleaner FP `.filter()`
 // but real experience made me think it greatly improves results stability.
 
-export function findElementBytext<T extends HTMLElement = HTMLElement>(
+export function findElementByText<T extends HTMLElement = HTMLElement>(
   selector: string,
   text: string,
   {

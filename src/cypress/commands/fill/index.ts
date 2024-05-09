@@ -23,7 +23,7 @@ import {
   assertStringArrayOrUndefined,
   assertStringOrUndefined
 } from './utils'
-import { findElementBytext } from '../../utils/findElementBytext'
+import { findElementByText } from '../../utils/findElementByText'
 import { throwError } from '../../utils/throwError'
 
 let TOTAL_RETRIES: number
@@ -46,7 +46,7 @@ export function fill(label: string, value: any, options: Partial<Cypress.FillOpt
     // =========================================================================
     // If it's a field labelled by a `<label />` element
 
-    const labelElement = findElementBytext<HTMLLabelElement>('label', label)
+    const labelElement = findElementByText<HTMLLabelElement>('label', label, { index: controlledOptions.index })
     if (labelElement) {
       const fieldElement = findElementParentBySelector<HTMLDivElement>(labelElement, '.Element-Field')
       if (!fieldElement) {
@@ -143,7 +143,7 @@ export function fill(label: string, value: any, options: Partial<Cypress.FillOpt
     // =========================================================================
     // If it's a field labelled by a `<legend />` element
 
-    const legendElement = findElementBytext<HTMLLegendElement>('legend', label)
+    const legendElement = findElementByText<HTMLLegendElement>('legend', label)
     if (legendElement) {
       const fieldsetElement = findElementParentBySelector<HTMLFieldSetElement>(legendElement, '.Element-Fieldset')
       if (!fieldsetElement) {
