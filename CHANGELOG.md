@@ -1,3 +1,16 @@
+## [17.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v17.0.0...v17.1.0) (2024-05-09)
+
+
+### Features
+
+* **cypress:** add index to fill command ([1e93f0c](https://github.com/MTES-MCT/monitor-ui/commit/1e93f0cad50960bb1650bd37bdad2e9f64d78bb6))
+* **cypress:** add logging to fill command ([eeafd54](https://github.com/MTES-MCT/monitor-ui/commit/eeafd549cd081dd0ff85ad43a2cd167878602975))
+
+
+### Bug Fixes
+
+* **CheckPicker:** remove useKey ([2b552a8](https://github.com/MTES-MCT/monitor-ui/commit/2b552a810357a106c060a5abe80490f41348909d))
+
 ## [17.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v16.5.0...v17.0.0) (2024-05-02)
 
 
