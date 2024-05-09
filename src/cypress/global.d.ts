@@ -115,6 +115,7 @@ declare namespace Cypress {
 
   interface FillOptions extends Forceable {
     delay: number
+    index: number
     retries: number
   }
 }
