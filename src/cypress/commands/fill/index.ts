@@ -50,7 +50,9 @@ export function fill(label: string, value: any, options: Partial<Cypress.FillOpt
     if (labelElement) {
       const fieldElement = findElementParentBySelector<HTMLDivElement>(labelElement, '.Element-Field')
       if (!fieldElement) {
-        throwError(`Could not find '.Element-Field' in field with label "${label}".`)
+        throwError(
+          `Could not find '.Element-Field' in field with label "${label}" at index "${controlledOptions.index}".`
+        )
       }
 
       switch (true) {
@@ -143,11 +145,13 @@ export function fill(label: string, value: any, options: Partial<Cypress.FillOpt
     // =========================================================================
     // If it's a field labelled by a `<legend />` element
 
-    const legendElement = findElementByText<HTMLLegendElement>('legend', label)
+    const legendElement = findElementByText<HTMLLegendElement>('legend', label, { index: controlledOptions.index })
     if (legendElement) {
       const fieldsetElement = findElementParentBySelector<HTMLFieldSetElement>(legendElement, '.Element-Fieldset')
       if (!fieldsetElement) {
-        throwError(`Could not find '.Element-Fieldset' in field with \`<legend />\` "${label}".`)
+        throwError(
+          `Could not find '.Element-Fieldset' in field with \`<legend />\` "${label}" at index "${controlledOptions.index}".`
+        )
       }
 
       switch (true) {
@@ -224,7 +228,7 @@ export function fill(label: string, value: any, options: Partial<Cypress.FillOpt
 
     throwError(
       [
-        `Could not find or fill field with label or legend "${label}" after ${TOTAL_RETRIES} attempts.`,
+        `Could not find or fill field with label or legend "${label}" at index "${controlledOptions.index}" after ${TOTAL_RETRIES} attempts.`,
         `This error was thrown: “${normalizedError.message}”`,
         `Please check the Cypress "- ERROR" log above for more details.`
       ].join('\n')
