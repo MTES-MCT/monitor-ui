@@ -89,7 +89,7 @@ export function _Banner(props: BannerProps) {
           <h2 style={{ color: THEME.color.white }}>Another header</h2>
         </div>
         <Banner
-          closingDelay={50000}
+          closingDelay={5000}
           isCollapsible
           level={Level.SUCCESS}
           onAutoClose={() => setHasSecondBannerAutoClosed(true)}
@@ -126,6 +126,7 @@ export function _Banner(props: BannerProps) {
           <h2 style={{ color: THEME.color.white }}>Again a header</h2>
         </div>
         <Banner
+          closingDelay={3000}
           isClosable
           level={Level.SUCCESS}
           onAutoClose={() => setHasThirdBannerAutoClosed(true)}
