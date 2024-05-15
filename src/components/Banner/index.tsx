@@ -5,6 +5,7 @@ import { isString } from 'lodash'
 import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import styled, { css, type CSSProperties } from 'styled-components'
 
+import { ANIMATION_DURATION_IN_MS } from './constants'
 import { getBannerPalette } from './utils'
 import { Accent, Icon, Level, Size } from '../../constants'
 
@@ -15,6 +16,7 @@ export type BannerProps = {
   className?: string | undefined
   closingDelay?: number
   isClosable?: boolean | undefined
+  // TODO This is a breaking change but it would be easier to have a `closingMode="CLOSABLE|COLLAPSIBLE"` prop.
   isCollapsible?: boolean | undefined
   isFixed?: boolean | undefined
   isHiddenByDefault?: boolean | undefined
@@ -25,7 +27,6 @@ export type BannerProps = {
   top: string
   withAutomaticClosing?: boolean | undefined
 }
-
 export function Banner({
   children,
   className = undefined,
@@ -60,31 +61,38 @@ export function Banner({
     }
   }
 
-  const onClickAction = useCallback((): void => {
+  const closeOrCollapse = useCallback((): void => {
+    if (timeoutIdRef.current) {
+      clearTimeout(timeoutIdRef.current)
+    }
+
     if (isClosable) {
       setIsHidden(true)
 
       onClose?.()
     } else if (isCollapsible) {
       setIsCollapsing(true)
-      setIsCollapsed(true)
-      setHasCollapsed(true)
+
+      setTimeout(() => {
+        setIsCollapsed(true)
+        setHasCollapsed(true)
+
+        onClose?.()
+      }, ANIMATION_DURATION_IN_MS)
     }
   }, [isClosable, isCollapsible, onClose])
 
   useEffect(() => {
     if (withAutomaticClosing) {
-      const timeoutId = setTimeout(() => {
-        onClickAction()
+      timeoutIdRef.current = setTimeout(() => {
+        closeOrCollapse()
 
         onAutoClose?.()
       }, closingDelay)
-
-      timeoutIdRef.current = timeoutId
     }
 
     return () => clearTimeout(timeoutIdRef.current)
-  }, [closingDelay, onClickAction, onAutoClose, withAutomaticClosing])
+  }, [closingDelay, closeOrCollapse, isCollapsible, onAutoClose, withAutomaticClosing])
 
   return (
     <Wrapper
@@ -104,11 +112,17 @@ export function Banner({
           <ContentWrapper $level={level}>{isString(children) ? <p>{children}</p> : <>{children}</>}</ContentWrapper>
           <ButtonWrapper
             className="banner-button"
-            onClick={() => onClickAction()}
+            onClick={() => closeOrCollapse()}
+            // TODO This is a breaking change but we should only use `IconButton` title rather than this one.
             title={isClosable ? 'fermer' : 'masquer'}
           >
             {isClosable && (
-              <IconButton accent={Accent.TERTIARY} color={getBannerPalette(level).color} Icon={Icon.Close} />
+              <IconButton
+                accent={Accent.TERTIARY}
+                color={getBannerPalette(level).color}
+                Icon={Icon.Close}
+                title={isClosable ? 'Fermer' : 'Masquer'}
+              />
             )}
             {!isClosable && isCollapsible && (
               <LinkButton size={Size.LARGE}>
@@ -144,7 +158,7 @@ const Wrapper = styled.div<{
   padding: 0 2rem;
   position: ${p => (p.$isFixed ? 'fixed' : 'absolute')};
   top: ${p => `${p.$top}`};
-  transition: height 0.3s ease;
+  transition: height ${ANIMATION_DURATION_IN_MS}ms ease;
   width: 100%;
   z-index: 1000;
 `

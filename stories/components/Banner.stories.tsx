@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 
+import { Output } from '../../.storybook/components/Output'
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Level, THEME } from '../../src'
@@ -48,6 +50,11 @@ const meta: Meta<BannerProps> = {
 export default meta
 
 export function _Banner(props: BannerProps) {
+  const [hasSecondBannerAutoClosed, setHasSecondBannerAutoClosed] = useState<boolean>(false)
+  const [hasSecondBannerClosed, setHasSecondBannerClosed] = useState<boolean>(false)
+  const [hasThirdBannerAutoClosed, setHasThirdBannerAutoClosed] = useState<boolean>(false)
+  const [hasThirdBannerClosed, setHasThirdBannerClosed] = useState<boolean>(false)
+
   return (
     <BannerWrapper>
       <div
@@ -66,6 +73,7 @@ export function _Banner(props: BannerProps) {
         </div>
         <Banner {...props} className="Banner-Storie" />
       </div>
+
       <div
         style={{
           position: 'relative'
@@ -80,10 +88,29 @@ export function _Banner(props: BannerProps) {
         >
           <h2 style={{ color: THEME.color.white }}>Another header</h2>
         </div>
-        <Banner {...props} closingDelay={5000} withAutomaticClosing>
-          Closes automatically in 5 seconds
+        <Banner
+          closingDelay={50000}
+          isCollapsible
+          level={Level.SUCCESS}
+          onAutoClose={() => setHasSecondBannerAutoClosed(true)}
+          onClose={() => setHasSecondBannerClosed(true)}
+          top="60px"
+          withAutomaticClosing
+        >
+          Collapses automatically in 5 seconds
         </Banner>
+
+        <Output
+          style={{
+            marginTop: '64px'
+          }}
+          value={{
+            hasSecondBannerAutoClosed,
+            hasSecondBannerClosed
+          }}
+        />
       </div>
+
       <div
         style={{
           position: 'relative'
@@ -98,9 +125,26 @@ export function _Banner(props: BannerProps) {
         >
           <h2 style={{ color: THEME.color.white }}>Again a header</h2>
         </div>
-        <Banner {...props} isClosable isCollapsible={false} withAutomaticClosing>
+        <Banner
+          isClosable
+          level={Level.SUCCESS}
+          onAutoClose={() => setHasThirdBannerAutoClosed(true)}
+          onClose={() => setHasThirdBannerClosed(true)}
+          top="60px"
+          withAutomaticClosing
+        >
           Closes automatically in 3 seconds
         </Banner>
+
+        <Output
+          style={{
+            marginTop: '64px'
+          }}
+          value={{
+            hasThirdBannerAutoClosed,
+            hasThirdBannerClosed
+          }}
+        />
       </div>
     </BannerWrapper>
   )
