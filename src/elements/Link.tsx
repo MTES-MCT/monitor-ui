@@ -7,9 +7,14 @@ export const Link = styled.a<LinkProps>`
   color: ${p => p.theme.color.slateGray};
   text-decoration: underline;
 
+  svg {
+    color: ${p => p.theme.color.slateGray};
+  }
+
   &:hover,
   &._hover {
     color: ${p => p.theme.color.blueYonder};
+
     svg {
       color: ${p => p.theme.color.blueYonder};
     }
@@ -18,6 +23,7 @@ export const Link = styled.a<LinkProps>`
   &:active,
   &._active {
     color: ${p => p.theme.color.blueGray};
+
     svg {
       color: ${p => p.theme.color.blueGray};
     }
@@ -25,6 +31,10 @@ export const Link = styled.a<LinkProps>`
 
   &:visited {
     color: ${p => p.theme.color.slateGray};
+
+    svg {
+      color: ${p => p.theme.color.slateGray};
+    }
   }
 `
 
