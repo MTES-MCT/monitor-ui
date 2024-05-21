@@ -17,7 +17,7 @@ export type AnyObject = {
 
 /** Any collection objects with an `id` prop. */
 export interface CollectionItem {
-  id: number
+  id: number | string
 }
 
 export type Coordinates = [number, number]
