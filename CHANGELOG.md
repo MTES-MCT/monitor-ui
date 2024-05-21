@@ -1,3 +1,17 @@
+## [17.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v17.1.0...v17.1.1) (2024-05-21)
+
+
+### Bug Fixes
+
+* **components:** fix onAutoClose prop callback in Banner ([8fc6980](https://github.com/MTES-MCT/monitor-ui/commit/8fc69805f430bde762494cc3209a1fb4a09ca619))
+* **elements:** add some missing inner svg colors in Link ([f71649a](https://github.com/MTES-MCT/monitor-ui/commit/f71649a71facc1445a11ebcbaa4a7076e1bb4a91))
+* **elements:** fix visited colors & add importants in Link ([34d03d3](https://github.com/MTES-MCT/monitor-ui/commit/34d03d3d2aaa95c102683c79c637d141dd781d74))
+
+
+### Documentation
+
+* **components:** fix Banner story delays ([986fe56](https://github.com/MTES-MCT/monitor-ui/commit/986fe56d3de704477eaff6c606ddbe3d9247e961))
+
 ## [17.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v17.0.0...v17.1.0) (2024-05-09)
 
 
