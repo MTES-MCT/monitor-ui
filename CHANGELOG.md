@@ -1,3 +1,10 @@
+## [17.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v17.2.0...v17.2.1) (2024-05-21)
+
+
+### Bug Fixes
+
+* **types:** fix AnyEnum key type ([de3f0cc](https://github.com/MTES-MCT/monitor-ui/commit/de3f0cce9a5228db0e1c48a7d6a7f4ec662b7ab0))
+
 ## [17.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v17.1.1...v17.2.0) (2024-05-21)
 
 
