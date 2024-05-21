@@ -1,3 +1,10 @@
+## [17.2.2](https://github.com/MTES-MCT/monitor-ui/compare/v17.2.1...v17.2.2) (2024-05-21)
+
+
+### Bug Fixes
+
+* **elements:** fix IconButton border ([f55eb2c](https://github.com/MTES-MCT/monitor-ui/commit/f55eb2ca036cd0c1c06b78eaaacfc1983e48ffb3))
+
 ## [17.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v17.2.0...v17.2.1) (2024-05-21)
 
 
