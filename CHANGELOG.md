@@ -1,3 +1,11 @@
+## [17.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v17.1.1...v17.2.0) (2024-05-21)
+
+
+### Features
+
+* **types:** add AnyEnum ([32c84cc](https://github.com/MTES-MCT/monitor-ui/commit/32c84ccbfd7c98f2e05b64a607254931b4bab28b))
+* **types:** support string id in CollectionItem ([0ad3e38](https://github.com/MTES-MCT/monitor-ui/commit/0ad3e388d6db09cbcd3ccc7a80471b83553a7559))
+
 ## [17.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v17.1.0...v17.1.1) (2024-05-21)
 
 
