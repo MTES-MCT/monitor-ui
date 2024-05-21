@@ -5,9 +5,9 @@
 import type { SVGProps } from 'react'
 import type { ItemDataType } from 'rsuite/esm/@types/common'
 
-/** Any object with string keys and string values. */
+/** Any enum with string values. */
 export type AnyEnum = {
-  [k: string]: string
+  [k: number]: string
 }
 
 /** Any object with string keys. */
