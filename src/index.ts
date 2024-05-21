@@ -174,6 +174,7 @@ export { undefine } from './utils/undefine'
 
 export type { PartialTheme, Theme } from './theme'
 export type {
+  AnyEnum,
   AnyObject,
   CollectionItem,
   Coordinates,

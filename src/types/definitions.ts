@@ -5,6 +5,11 @@
 import type { SVGProps } from 'react'
 import type { ItemDataType } from 'rsuite/esm/@types/common'
 
+/** Any object with string keys and string values. */
+export type AnyEnum = {
+  [k: string]: string
+}
+
 /** Any object with string keys. */
 export type AnyObject = {
   [k: string]: any
