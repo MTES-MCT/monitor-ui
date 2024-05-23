@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 import { META_DEFAULTS } from '../../../.storybook/constants'
 import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
-import { SimpleTable } from '../../../src'
+import { Icon, IconButton, SimpleTable, Size } from '../../../src'
 
 import type { Meta } from '@storybook/react'
 
@@ -45,12 +45,14 @@ export function WithLoader() {
         <SimpleTable.Th $width={48}>ID</SimpleTable.Th>
         <SimpleTable.Th $width={240}>Name</SimpleTable.Th>
         <SimpleTable.Th $width={480}>Address</SimpleTable.Th>
+        <SimpleTable.Th $width={44} />
       </SimpleTable.Head>
       <tbody>
         {isLoading &&
           emptyRows.map((_, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <SimpleTable.BodyTr key={`row-${index}`}>
+              <SimpleTable.Td $isLoading />
               <SimpleTable.Td $isLoading />
               <SimpleTable.Td $isLoading />
               <SimpleTable.Td $isLoading />
@@ -62,6 +64,9 @@ export function WithLoader() {
               <SimpleTable.Td>{brewery.id}</SimpleTable.Td>
               <SimpleTable.Td>{brewery.name}</SimpleTable.Td>
               <SimpleTable.Td>{`${brewery.street}, ${brewery.city} ${brewery.postalCode}, ${brewery.state}`}</SimpleTable.Td>
+              <SimpleTable.Td>
+                <IconButton Icon={Icon.Check} size={Size.SMALL} />
+              </SimpleTable.Td>
             </SimpleTable.BodyTr>
           ))}
       </tbody>

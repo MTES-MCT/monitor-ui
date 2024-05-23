@@ -11,7 +11,7 @@ const cellLoaderAnimation = keyframes`
 `
 export const CellLoader = styled.div`
   background: ${p => p.theme.color.gainsboro};
-  height: 18px;
+  height: 22px;
   overflow: hidden;
   position: relative;
 
