@@ -30,7 +30,7 @@ const args: MultiCascaderProps<FakeCity> = {
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<MultiCascaderProps<FakeCity>> = {
   title: 'Fields/MultiCascader (variations)',
-  component: MultiCascaderWithThreeColumns,
+  component: MultiCascader,
 
   argTypes: {
     value: {
@@ -53,7 +53,7 @@ const meta: Meta<MultiCascaderProps<FakeCity>> = {
 
 export default meta
 
-export function MultiCascaderWithThreeColumns(props: MultiCascaderProps<FakeCity>) {
+export function WithThreeColumns(props: MultiCascaderProps<FakeCity>) {
   const [outputValue, setOutputValue] = useState<FakeCity[] | undefined | '∅'>(props.value ?? '∅')
 
   const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)

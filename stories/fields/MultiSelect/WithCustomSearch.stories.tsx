@@ -52,7 +52,7 @@ const meta: Meta<MultiSelectProps<Specy>> = {
 
 export default meta
 
-export function MultiSelectWithCustomSearch(props: MultiSelectProps<Specy>) {
+export function WithCustomSearch(props: MultiSelectProps<Specy>) {
   const optionsRef = useRef(
     (SPECIES as Specy[]).map(specy => ({
       label: `${specy.code} - ${specy.name}`,

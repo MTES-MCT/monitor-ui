@@ -22,6 +22,7 @@ export default {
             '@fields/*': ['fields/*'],
             '@hooks/*': ['hooks/*'],
             '@libs/*': ['libs/*'],
+            '@tables/*': ['tables/*'],
             '@types_/*': ['types/*'],
             '@utils/*': ['utils/*']
           },
