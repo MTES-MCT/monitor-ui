@@ -1,31 +1,67 @@
+import { StyledRsuiteCheckbox } from '@fields/Checkbox'
 import { stopMouseEventPropagation } from '@utils/stopMouseEventPropagation'
-import { type HTMLProps } from 'react'
-import { Checkbox as RsuiteCheckbox } from 'rsuite'
+import { useCallback, type ChangeEvent, type HTMLProps } from 'react'
+import { type CheckboxProps as RsuiteCheckboxProps } from 'rsuite'
+import styled from 'styled-components'
 
-export type RowCheckboxProps = {
-  className?: string
-  disabled?: boolean
-  isChecked?: boolean
-  // handle the case where some child checkboxes are checked to display an indeterminate style (-)
-  isIndeterminate?: boolean
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+import type { ValueType } from 'rsuite/esm/Checkbox'
+
+export type RowCheckboxProps = Omit<RsuiteCheckboxProps, 'onClick' | 'onChange'> & {
+  // TODO Maybe replace that with a `((isChecked: boolean) => Promisable<void>) | undefined` for consistency with other boolean fields?
+  onChange?: ((event: ChangeEvent<HTMLInputElement>) => void) | undefined
 }
-export function RowCheckbox({
-  className = '',
-  disabled = false,
-  isChecked = false,
-  isIndeterminate = false,
-  onChange = () => undefined
-}: RowCheckboxProps & HTMLProps<HTMLInputElement>) {
+export function RowCheckbox({ onChange, ...nativeProps }: RowCheckboxProps & HTMLProps<HTMLInputElement>) {
+  const handleOnChange = useCallback(
+    (_value: ValueType | undefined, _checked: boolean, event: ChangeEvent<HTMLInputElement>) => {
+      if (onChange) {
+        onChange(event)
+      }
+    },
+    [onChange]
+  )
+
   return (
-    <RsuiteCheckbox
-      checked={isChecked}
-      className={`${className} cursor-pointer`}
-      disabled={disabled}
-      indeterminate={isIndeterminate}
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      onChange={(_, __, event) => onChange(event)}
+    <RestyledRsuiteCheckbox
+      $isChecked={nativeProps.checked || nativeProps.indeterminate}
+      $isDisabled={nativeProps.disabled}
+      $isReadOnly={nativeProps.readOnly}
+      {...nativeProps}
+      onChange={handleOnChange}
       onClick={stopMouseEventPropagation}
     />
   )
 }
+
+const RestyledRsuiteCheckbox = styled(StyledRsuiteCheckbox)`
+  vertical-align: top;
+
+  > .rs-checkbox-checker,
+  &.rs-checkbox-indeterminate > .rs-checkbox-checker {
+    padding: 0;
+
+    > label {
+      > .rs-checkbox-wrapper {
+        bottom: 0;
+        top: 3px;
+
+        &:before {
+        }
+        &:after {
+          bottom: 0;
+          left: 0;
+          right: 0;
+          top: 0;
+        }
+
+        > .rs-checkbox-inner {
+          &:before {
+          }
+
+          /* Checkmark */
+          &:after {
+          }
+        }
+      }
+    }
+  }
+`

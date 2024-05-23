@@ -11,7 +11,7 @@ import { Link } from '../../src/icons'
 
 import type { Meta } from '@storybook/react'
 
-const fakeData1 = Array(100).fill({
+const fakeData1 = Array(5).fill({
   actionTaken: null,
   controlUnitId: null,
   createdAt: '2023-08-04T15:13:43.296Z',
@@ -48,7 +48,7 @@ const fakeData1 = Array(100).fill({
   validityTime: 1,
   vehicleType: null
 })
-const fakeData2 = Array(100).fill({
+const fakeData2 = Array(5).fill({
   actionTaken: 'ACTION TAKEN',
   controlUnitId: null,
   createdAt: '2023-08-01T15:13:01.073587Z',
@@ -127,21 +127,26 @@ export function _TableWithSelectableRows() {
         accessorFn: row => row.reportingId,
         cell: ({ row }) => (
           <TableWithSelectableRows.RowCheckbox
+            checked={row.getIsSelected()}
             disabled={!row.getCanSelect()}
-            isChecked={row.getIsSelected()}
             onChange={row.getToggleSelectedHandler(row)}
           />
         ),
         enableSorting: false,
         header: ({ table }) => (
           <TableWithSelectableRows.RowCheckbox
-            isChecked={table.getIsAllRowsSelected()}
-            isIndeterminate={table.getIsSomeRowsSelected()}
+            checked={table.getIsAllRowsSelected()}
+            indeterminate={(() => {
+              console.log('indeterminate', table.getIsSomeRowsSelected())
+
+              return table.getIsSomeRowsSelected()
+            })()}
             onChange={table.getToggleAllRowsSelectedHandler()}
           />
         ),
         id: 'select',
-        size: 25
+
+        size: 25 // 24px + 1px to avoid cutting the right border
       },
       {
         accessorFn: row => row.reportingId,
@@ -221,7 +226,7 @@ export function _TableWithSelectableRows() {
         enableSorting: false,
         header: () => '',
         id: 'missionId',
-        size: 85
+        size: 120
       },
       {
         accessorFn: row => row.geom,
@@ -238,12 +243,17 @@ export function _TableWithSelectableRows() {
         enableSorting: false,
         header: () => '',
         id: 'actionStatus',
-        size: 85
+        size: 112
       },
       {
         accessorFn: row => row.geom,
         cell: info => (
-          <IconButton accent={Accent.TERTIARY} Icon={Icon.FocusZones} onClick={() => console.log(info.getValue())} />
+          <IconButton
+            accent={Accent.TERTIARY}
+            Icon={Icon.FocusZones}
+            isCompact
+            onClick={() => console.log(info.getValue())}
+          />
         ),
         enableSorting: false,
         header: () => '',
@@ -321,13 +331,14 @@ export function _TableWithSelectableRows() {
         <IconButton accent={Accent.SECONDARY} Icon={Icon.Archive} onClick={archiveReportings} />
       </div>
       <div ref={tableContainerRef} style={{ width: 1776 }}>
-        <TableWithSelectableRows.Table>
+        <TableWithSelectableRows.Table $withRowCheckbox>
           <TableWithSelectableRows.Head>
             {table.getHeaderGroups().map(headerGroup => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
                   <TableWithSelectableRows.Th key={header.id} $width={header.column.getSize()}>
-                    {header.isPlaceholder ? undefined : (
+                    {header.id === 'select' && flexRender(header.column.columnDef.header, header.getContext())}
+                    {header.id !== 'select' && !header.isPlaceholder && (
                       <TableWithSelectableRows.SortContainer
                         className={header.column.getCanSort() ? 'cursor-pointer' : ''}
                         onClick={header.column.getToggleSortingHandler()}
@@ -335,8 +346,8 @@ export function _TableWithSelectableRows() {
                         {flexRender(header.column.columnDef.header, header.getContext())}
                         {header.column.getCanSort() &&
                           ({
-                            asc: <div>▲</div>,
-                            desc: <div>▼</div>
+                            asc: <Icon.SortSelectedDown size={14} />,
+                            desc: <Icon.SortSelectedUp size={14} />
                           }[header.column.getIsSorted() as string] ?? <Icon.SortingArrows size={14} />)}
                       </TableWithSelectableRows.SortContainer>
                     )}
@@ -361,8 +372,6 @@ export function _TableWithSelectableRows() {
                       key={cell.id}
                       $hasRightBorder={!!(cell.column.id === 'geom')}
                       $isCenter={!!(cell.column.id === 'geom' || cell.column.id === 'id')}
-                      $isHighlighted={index % 2 === 0}
-                      $width={cell.column.getSize()}
                     >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableWithSelectableRows.Td>
