@@ -34,7 +34,8 @@ const Th = styled.th<{
   color: ${p => p.theme.color.slateGray};
   font-size: 13px;
   font-weight: 500;
-  padding: 10px;
+  line-height: 22px;
+  padding: 9px 10px;
   overflow: hidden;
   text-overflow: ellipsis;
   ${p => !!p.$width && `width: ${p.$width}px;`}

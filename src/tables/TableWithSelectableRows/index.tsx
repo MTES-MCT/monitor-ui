@@ -3,24 +3,58 @@ import styled from 'styled-components'
 import { RowCheckbox } from './RowCheckbox'
 import { SimpleTable } from '../SimpleTable'
 
-const Table = styled(SimpleTable.Table)`
+const Table = styled(SimpleTable.Table)<{
+  $withRowCheckbox?: boolean
+}>`
   border-collapse: separate;
   border-spacing: 0 5px;
   table-layout: fixed;
+
+  ${p =>
+    !!p.$withRowCheckbox &&
+    `
+      > thead > tr > th:first-child {
+        padding: 0 0 0 8px;
+
+        > .rs-checkbox {
+          > .rs-checkbox-checker {
+            > label {
+              > .rs-checkbox-wrapper {
+                left: -8px;
+              }
+            }
+          }
+        }
+      }
+
+      > tbody > tr > td:first-child {
+        padding: 0 0 0 8px;
+      }
+  `}
 `
 
 const Head = styled(SimpleTable.Head)`
-  > th:last-child {
-    border-right: 1px solid ${p => p.theme.color.lightGray};
+  > tr {
+    > th {
+      border-bottom: 1px solid ${p => p.theme.color.lightGray};
+      border-right: none;
+      border-top: 1px solid ${p => p.theme.color.lightGray};
+
+      &:first-child {
+        border-left: 1px solid ${p => p.theme.color.lightGray};
+      }
+
+      &:last-child {
+        border-right: 1px solid ${p => p.theme.color.lightGray};
+      }
+    }
   }
 `
 
 const Th = styled(SimpleTable.Th)`
   background-color: ${p => p.theme.color.white};
-  border-top: 1px solid ${p => p.theme.color.lightGray};
-  border-bottom: 1px solid ${p => p.theme.color.lightGray};
-  border-right: none;
-  padding: 2px 16px;
+  line-height: 22px;
+  padding: 9px 16px;
 `
 
 const SortContainer = styled(SimpleTable.SortContainer)`
@@ -28,34 +62,40 @@ const SortContainer = styled(SimpleTable.SortContainer)`
   justify-content: start;
 `
 
-const BodyTr = styled(SimpleTable.BodyTr)<{ $isHighlighted?: boolean }>`
-  > td:first-child {
-    border-left: ${p =>
-      p.$isHighlighted ? `2px solid ${p.theme.color.blueGray}` : `1px solid ${p.theme.color.lightGray}`};
-  }
-  > td:last-child {
-    border-right: ${p =>
-      p.$isHighlighted ? `2px solid ${p.theme.color.blueGray}` : `1px solid ${p.theme.color.lightGray}`};
-    overflow: visible;
+const BodyTr = styled(SimpleTable.BodyTr)<{
+  $isHighlighted?: boolean
+}>`
+  > td {
+    border-bottom: 1px solid ${p => (p.$isHighlighted ? p.theme.color.blueGray : p.theme.color.lightGray)};
+    border-right: none;
+    border-top: 1px solid ${p => (p.$isHighlighted ? p.theme.color.blueGray : p.theme.color.lightGray)};
+    ${p =>
+      !!p.$isHighlighted &&
+      `box-shadow: 0 -1px 0 ${p.theme.color.blueGray} inset, 0 1px 0 ${p.theme.color.blueGray} inset;`}
+
+    &:first-child {
+      border-left: 1px solid ${p => (p.$isHighlighted ? p.theme.color.blueGray : p.theme.color.lightGray)};
+      ${p =>
+        !!p.$isHighlighted &&
+        `box-shadow: 0 -1px 0 ${p.theme.color.blueGray} inset, 0 1px 0 ${p.theme.color.blueGray} inset, 1px 0 0 ${p.theme.color.blueGray} inset;`}
+    }
+
+    &:last-child {
+      border-right: 1px solid ${p => (p.$isHighlighted ? p.theme.color.blueGray : p.theme.color.lightGray)};
+      ${p =>
+        !!p.$isHighlighted &&
+        `box-shadow: 0 -1px 0 ${p.theme.color.blueGray} inset, 0 1px 0 ${p.theme.color.blueGray} inset, -1px 0 0 ${p.theme.color.blueGray} inset;`}
+      overflow: visible;
+    }
   }
 `
 
 const Td = styled(SimpleTable.Td)<{
-  $hasRightBorder: boolean
-  $isHighlighted?: boolean
-  // TODO This should be removed, a table column width should only be set via its `th` width.
-  /** @deprecated Will be removed in the next major version. Use `Td.$width` instead to set columns width. */
-  $width?: number | undefined
+  $hasRightBorder?: boolean
 }>`
   background-color: ${p => p.theme.color.cultured};
-  border-bottom: ${p =>
-    p.$isHighlighted ? `2px solid ${p.theme.color.blueGray}` : `1px solid ${p.theme.color.lightGray}`};
-  border-right: none;
-  border-right: ${p => (p.$hasRightBorder ? `1px solid ${p.theme.color.lightGray}` : '')};
-  border-top: ${p =>
-    p.$isHighlighted ? `2px solid ${p.theme.color.blueGray}` : `1px solid ${p.theme.color.lightGray}`};
-  padding: 4px 16px;
-  width: ${p => p.$width}px;
+  ${p => !!p.$hasRightBorder && `border-right: 1px solid ${p.theme.color.lightGray};`}
+  padding: 9px 16px;
 `
 
 export const TableWithSelectableRows = {

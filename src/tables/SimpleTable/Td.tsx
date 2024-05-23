@@ -19,8 +19,17 @@ export const Td = styled.td.attrs<TdProps, TdProps>(props => ({
   line-height: 22px;
   max-width: 0;
   overflow: hidden;
-  padding: 10px;
+  padding: 9px 10px;
   text-align: ${p => (p.$isCenter ? 'center' : 'left')};
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  /**
+    Dirty hack to prevent 'display: inline-flex;' from breaking row height.
+    This may be fixable by internal alignment cleanup in <Tag /> component.
+  */
+  > .Element-Tag {
+    align-self: unset;
+    vertical-align: bottom;
+  }
 `

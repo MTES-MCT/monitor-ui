@@ -45,6 +45,8 @@ export function Checkbox({
   disabled = false,
   error,
   hasError = false,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  indeterminate = false,
   isErrorMessageHidden = false,
   isLight = false,
   isTransparent = false,
@@ -79,7 +81,7 @@ export function Checkbox({
       <StyledRsuiteCheckbox
         key={key}
         $hasError={hasControlledError}
-        $isChecked={checked}
+        $isChecked={checked || indeterminate}
         $isDisabled={disabled}
         $isLight={isLight}
         $isReadOnly={readOnly}
@@ -87,6 +89,7 @@ export function Checkbox({
         checked={checked}
         disabled={disabled}
         id={name}
+        indeterminate={indeterminate}
         name={name}
         onChange={handleChange}
         readOnly={readOnly}
@@ -100,13 +103,14 @@ export function Checkbox({
   )
 }
 
-const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyleProps>`
+export const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyleProps>`
   * {
     ${p => p.$isReadOnly && `cursor: default !important;`}
     user-select: none;
   }
 
-  > .rs-checkbox-checker {
+  > .rs-checkbox-checker,
+  &.rs-checkbox-indeterminate > .rs-checkbox-checker {
     min-height: unset;
     padding: 0 0 0 24px;
 
