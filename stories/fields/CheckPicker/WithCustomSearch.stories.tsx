@@ -57,7 +57,7 @@ const meta: Meta<CheckPickerProps<{}>> = {
 
 export default meta
 
-export function _CheckPickerWithCustomSearch(props: CheckPickerProps<Specy>) {
+export function WithCustomSearch(props: CheckPickerProps<Specy>) {
   const optionsRef = useRef(
     (SPECIES as Specy[]).map(specy => ({
       label: `${specy.code} - ${specy.name}`,

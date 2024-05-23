@@ -51,7 +51,7 @@ const meta: Meta<SelectProps<Specy>> = {
 
 export default meta
 
-export function SelectWithCustomSearch(props: SelectProps<Specy>) {
+export function WithCustomSearch(props: SelectProps<Specy>) {
   const optionsRef = useRef(
     (SPECIES as Specy[]).map(specy => ({
       label: `${specy.code} - ${specy.name}`,
