@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { RowCheckbox } from './RowCheckbox'
 import { SimpleTable } from '../SimpleTable'
@@ -12,7 +12,7 @@ const Table = styled(SimpleTable.Table)<{
 
   ${p =>
     !!p.$withRowCheckbox &&
-    `
+    css`
       > thead > tr > th:first-child {
         padding: 0 0 0 8px;
 
@@ -30,7 +30,7 @@ const Table = styled(SimpleTable.Table)<{
       > tbody > tr > td:first-child {
         padding: 0 0 0 8px;
       }
-  `}
+    `}
 `
 
 const Head = styled(SimpleTable.Head)`

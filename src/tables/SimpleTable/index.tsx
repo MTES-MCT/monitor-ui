@@ -38,6 +38,7 @@ const Th = styled.th<{
   padding: 9px 10px;
   overflow: hidden;
   text-overflow: ellipsis;
+  user-select: none;
   white-space: nowrap;
 
   ${p =>
