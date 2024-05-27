@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { CellLoader } from './CellLoader'
 import { Td } from './Td'
@@ -38,8 +38,15 @@ const Th = styled.th<{
   padding: 9px 10px;
   overflow: hidden;
   text-overflow: ellipsis;
-  ${p => !!p.$width && `width: ${p.$width}px;`}
   white-space: nowrap;
+
+  ${p =>
+    !!p.$width &&
+    css`
+      max-width: ${p.$width}px;
+      min-width: ${p.$width}px;
+      width: ${p.$width}px;
+    `}
 `
 
 const SortContainer = styled.div`
