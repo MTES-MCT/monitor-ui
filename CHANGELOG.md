@@ -1,3 +1,28 @@
+## [18.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v17.2.2...v18.0.0) (2024-05-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **tables:** - Remove `isChecked` prop in `TableWithSelectableRows.RowCheckbox`, replaced by native `checked` prop.
+- Remove `isIndeterminate` prop in `TableWithSelectableRows.RowCheckbox`, replaced by original Rsuite `indeterminate` prop.
+- Remove `$isHighlighted` prop in `TableWithSelectableRows.Td`, replaced by the same prop on `TableWithSelectableRows.BodyTr`.
+- In order to work properly with `RowCheckbox`, `TableWithSelectableRows` now requires `<Table $withRowCheckbox />`.
+- Following the `SimpleTable` & `TableWithSelectableRows` margins/heights normalization, including a few hacks,
+  it may break some UI widths & heights.
+- Please check `TableWithSelectableRows.stories.tsx` to see a full example on how to use/update it.
+- As shown in the story, be careful **NOT** to wrap the checkbox table header cell
+  within `<TableWithSelectableRows.SortContainer />` since the flex display breaks its internal positioning.
+
+### Features
+
+* **tables:** add $isLoading prop to SimpleTable.Td ([6cc137e](https://github.com/MTES-MCT/monitor-ui/commit/6cc137e187bd0314756bfc973f65bcde19f063ea))
+
+
+### Bug Fixes
+
+* **tables:** normalize tables checkbox, margins & height ([23afb70](https://github.com/MTES-MCT/monitor-ui/commit/23afb702e79e44788d82b6abeb0e2e6ba4deb4d3))
+* **tables:** set SimpleTable.Td line-height & .CellLoader height to 22px ([176b161](https://github.com/MTES-MCT/monitor-ui/commit/176b161ac85c48913f25e5a483ce8ac30698e65c))
+
 ## [17.2.2](https://github.com/MTES-MCT/monitor-ui/compare/v17.2.1...v17.2.2) (2024-05-21)
 
 
