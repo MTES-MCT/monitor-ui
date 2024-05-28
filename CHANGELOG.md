@@ -1,3 +1,10 @@
+## [18.0.2](https://github.com/MTES-MCT/monitor-ui/compare/v18.0.1...v18.0.2) (2024-05-28)
+
+
+### Bug Fixes
+
+* **components:** ignore external domain stylesheets in NewWindow styles copying ([fb02756](https://github.com/MTES-MCT/monitor-ui/commit/fb0275608debbd07acdc4f2aed0f197f1e864bff))
+
 ## [18.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v18.0.0...v18.0.1) (2024-05-28)
 
 
