@@ -1,3 +1,12 @@
+## [18.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v18.0.0...v18.0.1) (2024-05-28)
+
+
+### Bug Fixes
+
+* **tables:** disable user selection in SimpleTable.Th ([20d9b64](https://github.com/MTES-MCT/monitor-ui/commit/20d9b64fa72739b880d09740c6f9de6c2141b536))
+* **tables:** force  prop border in TableWithSelectableRows.Td ([9fbd1ee](https://github.com/MTES-MCT/monitor-ui/commit/9fbd1ee51236b6a7da47ff410cb2b00e95ddc66e))
+* **tables:** force min & max width in SimpleTable.Th ([0ddfa57](https://github.com/MTES-MCT/monitor-ui/commit/0ddfa57afc4ec734d5242b82756d8506bc7f00fc))
+
 ## [18.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v17.2.2...v18.0.0) (2024-05-27)
 
 
