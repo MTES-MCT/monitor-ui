@@ -276,7 +276,12 @@ function onCopyStyles(source: Document, target: Document | undefined): void {
     try {
       rules = styleSheet.cssRules
     } catch (err) {
-      console.error(err)
+      // An error here most likely happens when trying to access stylesheets from other domains,
+      // which is a CORS violation and should be ignored.
+      // eslint-disable-next-line no-console
+      console.debug(err)
+
+      return
     }
     if (rules) {
       // IE11 is very slow for appendChild, so use plain string here
