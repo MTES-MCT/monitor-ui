@@ -94,7 +94,7 @@ const Td = styled(SimpleTable.Td)<{
   $hasRightBorder?: boolean
 }>`
   background-color: ${p => p.theme.color.cultured};
-  ${p => !!p.$hasRightBorder && `border-right: 1px solid ${p.theme.color.lightGray};`}
+  ${p => !!p.$hasRightBorder && `border-right: 1px solid ${p.theme.color.lightGray} !important;`}
   padding: 9px 16px;
 `
 
