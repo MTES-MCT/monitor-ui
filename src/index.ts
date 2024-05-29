@@ -141,6 +141,7 @@ export { TableWithSelectableRows } from './tables/TableWithSelectableRows'
   Utils
 */
 
+export { assertNotNullish } from './utils/assertNotNullish'
 export { cleanString } from './utils/cleanString'
 export { customDayjs } from './utils/customDayjs'
 export { getCoordinates, coordinatesAreDistinct } from './utils/coordinates'
