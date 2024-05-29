@@ -77,6 +77,8 @@ export { FormikTextarea } from './formiks/FormikTextarea'
 export { FormikTextInput } from './formiks/FormikTextInput'
 export { FormikToggle } from './formiks/FormikToggle'
 
+export { LocalStorageMigrationOperationType } from './libs/LocalStorageMigrator'
+
 export { ExclamationPoint } from './symbols/ExclamationPoint'
 export { Dot } from './symbols/Dot'
 
@@ -128,6 +130,7 @@ export { usePrevious } from './hooks/usePrevious'
 */
 
 export { CustomSearch } from './libs/CustomSearch'
+export { LocalStorageMigrator } from './libs/LocalStorageMigrator'
 
 /* -----------------------------------------------------------------------------
   Tables
@@ -263,6 +266,7 @@ export type { FormikToggleProps } from './formiks/FormikToggle'
 export type { NewWindowContextValue } from './hooks/useNewWindow'
 
 export type { CustomSearchKey, CustomSearchOptions } from './libs/CustomSearch'
+export type { LocalStorageMigration, LocalStorageMigrationOperation } from './libs/LocalStorageMigrator'
 
 export type { DataTableProps } from './tables/DataTable'
 export type { RowCheckboxProps } from './tables/TableWithSelectableRows/RowCheckbox'

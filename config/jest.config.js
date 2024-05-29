@@ -4,6 +4,7 @@ export default {
   clearMocks: true,
   collectCoverageFrom: [
     '<rootDir>/src/**/hooks/*.{ts,tsx}',
+    '<rootDir>/src/libs/*.{ts,tsx}',
     '<rootDir>/src/utils/*.{ts,tsx}',
     '<rootDir>/src/**/utils.{ts,tsx}'
   ],
