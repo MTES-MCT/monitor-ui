@@ -48,7 +48,7 @@
     "@babel/core": "7.22.20",
     "@babel/preset-env": "7.22.15",
     "@babel/preset-react": "7.24.1",
-    "@babel/preset-typescript": "7.23.2",
+    "@babel/preset-typescript": "7.24.6",
     "@chrisneedham/rollup-plugin-peer-deps-external": "2.3.1",
     "@commitlint/cli": "19.0.1",
     "@commitlint/config-conventional": "19.0.0",
