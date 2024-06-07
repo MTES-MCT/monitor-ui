@@ -1,3 +1,19 @@
+## [18.0.3](https://github.com/MTES-MCT/monitor-ui/compare/v18.0.2...v18.0.3) (2024-06-07)
+
+
+### Bug Fixes
+
+* **fields:** set calendar range popup width in DateRangePicker ([a758655](https://github.com/MTES-MCT/monitor-ui/commit/a7586557e76f3f53e2da47e9e509ebed9341ebdc))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @babel/preset-typescript from 7.23.2 to 7.24.6 ([995ec7e](https://github.com/MTES-MCT/monitor-ui/commit/995ec7e5e01c4d41b75a8b6f5788b95064598be9))
+* **dev-deps:** bump @semantic-release/npm from 11.0.2 to 12.0.1 ([841dd01](https://github.com/MTES-MCT/monitor-ui/commit/841dd012da83ad70075349f7e5010cc387664b5d))
+* **dev-deps:** bump @storybook/blocks from 8.0.9 to 8.1.5 ([f0f1eb2](https://github.com/MTES-MCT/monitor-ui/commit/f0f1eb2b7c435d075d0ca52c6fd36426ea804066))
+* **dev-deps:** bump @storybook/test from 8.0.9 to 8.1.5 ([eed0812](https://github.com/MTES-MCT/monitor-ui/commit/eed0812786993f36cbcf2b8588c8ca2118cf4ddc))
+* **dev-deps:** bump eslint-plugin-react-hooks from 4.6.0 to 4.6.2 ([8c319a7](https://github.com/MTES-MCT/monitor-ui/commit/8c319a706cdd9f28b083e6d744577fd3a10b3745))
+
 ## [18.0.2](https://github.com/MTES-MCT/monitor-ui/compare/v18.0.1...v18.0.2) (2024-05-28)
 
 
