@@ -92,6 +92,7 @@ export function RangeCalendarPicker({
   return (
     <StyledRsuiteCalendarBox
       ref={boxRef}
+      $isDoubleCalendar={!hasSingleCalendar}
       className="Field-DateRangePicker__RangeCalendarPicker"
       onClick={stopMouseEventPropagation}
     >

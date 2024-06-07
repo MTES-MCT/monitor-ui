@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const StyledRsuiteCalendarBox = styled.div<{
+  $isDoubleCalendar?: boolean
   $isRightAligned?: boolean
 }>`
   font-size: 13px !important;
@@ -20,6 +21,7 @@ export const StyledRsuiteCalendarBox = styled.div<{
     top: 0 !important;
     line-height: 1;
     padding: 0;
+    ${p => p.$isDoubleCalendar && `width: 483px;`}
 
     > .rs-picker-daterange-panel {
       min-width: unset !important;
