@@ -13,7 +13,6 @@ import { IconButton } from '../elements/IconButton'
 import { Label } from '../elements/Label'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
-import { useKey } from '../hooks/useKey'
 import { THEME } from '../theme'
 import { getRsuiteDataItemsFromOptions } from '../utils/getRsuiteDataItemsFromOptions'
 import { normalizeString } from '../utils/normalizeString'
@@ -41,6 +40,7 @@ export type SearchProps<OptionValue extends OptionValueType = string> = Omit<
   isSearchIconHidden?: boolean | undefined
   isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
+  key?: string | undefined
   label: string
   name: string
   onChange?: (nextValue: OptionValue | undefined) => Promisable<void>
@@ -65,6 +65,7 @@ export function Search<OptionValue extends OptionValueType = string>({
   isSearchIconHidden = true,
   isTransparent = false,
   isUndefinedWhenDisabled = false,
+  key,
   label,
   MenuItem,
   onChange,
@@ -88,7 +89,6 @@ export function Search<OptionValue extends OptionValueType = string>({
   const controlledClassName = useMemo(() => classnames('Field-Search', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const key = useKey([disabled, originalProps.name])
   const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
 
   // Only used when `customSearch` prop is set
