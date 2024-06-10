@@ -1,3 +1,10 @@
+## [18.0.4](https://github.com/MTES-MCT/monitor-ui/compare/v18.0.3...v18.0.4) (2024-06-10)
+
+
+### Bug Fixes
+
+* **fields:**  remove useKey ([5e194f0](https://github.com/MTES-MCT/monitor-ui/commit/5e194f0d85a308412a43760b32eb10df01ff068d))
+
 ## [18.0.3](https://github.com/MTES-MCT/monitor-ui/compare/v18.0.2...v18.0.3) (2024-06-07)
 
 
