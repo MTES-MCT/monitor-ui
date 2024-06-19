@@ -72,6 +72,7 @@ import { SelectPolygon } from './SelectPolygon'
 import { SelectRectangle } from './SelectRectangle'
 import { SelectZone } from './SelectZone'
 import { Semaphore } from './Semaphore'
+import { Send } from './Send'
 import { ShowErsMessages } from './ShowErsMessages'
 import { ShowXml } from './ShowXml'
 import { SortingArrows } from './SortingArrows'
@@ -164,6 +165,7 @@ export {
   SelectRectangle,
   SelectZone,
   Semaphore,
+  Send,
   ShowErsMessages,
   ShowXml,
   SortSelectedDown,
