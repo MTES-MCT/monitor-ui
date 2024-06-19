@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
-      interval: 'monthly'
+      interval: 'weekly'
     commit-message:
       prefix: 'ci(github)'
     labels: ['tech. enhancement']
@@ -11,18 +11,34 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'monthly'
+      interval: 'weekly'
     commit-message:
       prefix: 'build(deps)'
       prefix-development: 'build(dev-deps)'
     labels: ['tech. enhancement']
+    ignore:
+      - dependency-name: 'rsuite'
+    groups:
+      non-major-dependencies:
+        applies-to: version-updates
+        dependency-type: production
+        update-types: ['minor', 'patch']
+      non-major-dev-dependencies:
+        applies-to: version-updates
+        dependency-type: development
+        update-types: ['minor', 'patch']
 
   - package-ecosystem: 'npm'
     directory: '/e2e/release/sample'
     schedule:
-      interval: 'monthly'
+      interval: 'weekly'
     commit-message:
       # `/e2e/release/sample` is only used for e2e release testing
       prefix: 'build(dev-deps)'
       prefix-development: 'build(dev-deps)'
     labels: ['tech. enhancement']
+    groups:
+      non-major-dev-dependencies:
+        applies-to: version-updates
+        dependency-type: development
+        update-types: ['minor', 'patch']
