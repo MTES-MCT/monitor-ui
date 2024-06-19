@@ -38,7 +38,5 @@ updates:
       prefix-development: 'build(dev-deps)'
     labels: ['tech. enhancement']
     groups:
-      non-major-dev-dependencies:
-        applies-to: version-updates
-        dependency-type: development
+      all-non-major-dependencies:
         update-types: ['minor', 'patch']
