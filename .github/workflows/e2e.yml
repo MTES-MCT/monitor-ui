@@ -1,10 +1,14 @@
 name: E2E
 
-on: push
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   # Normal E2E testing with Cypress
