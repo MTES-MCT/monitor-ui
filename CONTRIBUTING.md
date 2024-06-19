@@ -68,10 +68,14 @@ The release process is automated, including versionning and release notes genera
 
 1. Go to [Github Actions Release Workflow](https://github.com/MTES-MCT/monitor-ui/actions/workflows/release.yml)
 2. Click on "Run workflow" > "Run workflow" ("Branch: main" should be selected by default).
-3. ⚠️ This will generate a version pull request with a title looking like `ci(release): X.Y.Z`.  
-   You **MUST** merge this pull request before merging new pull requests.  
-   _Why? Because this PR include both the release notes and the new version from which later versions will be
-   calculated._
+3. This will generate a version pull request with a title looking like `ci(release): X.Y.Z` which will then be
+   auto-merged by the `Merge Release Pull Request` workflow.
+
+> [!IMPORTANT]  
+> **DO NOT** merge other pull requests:
+>
+> - while the `Release` workflow is running
+> - or while the release pull request is still open (waiting to be auto-merged).
 
 ### Versionning
 
@@ -87,11 +91,18 @@ In the case of a BREAKING CHANGE, it's **strongly advised** to add an exclamatio
 message, i.e.:
 
 ```sh
-git commit -m "feat(fields)!: this prop has been removed"
-git commit -m "feat!: all theses component props are now strings instead of numbers"
+git commit -m 'feat(fields)!: this prop has been removed'
+git commit -m 'feat!: all theses component props are now strings instead of numbers'
 ```
 
-And **don't forget** the `BREAKING CHANGE: ...` in the commit message body.
+And **DON'T FORGET** the `BREAKING CHANGE: ...` in the commit message body.
+
+> [!WARNING]  
+> When using an exclamation point, your bash can interpret it as a history expansion character.  
+> To avoid that, you can:
+>
+> - either escape it with a backslash: `git commit -m "feat\!:..."` when using double quotes
+> - or simply use single quotes: `git commit -m 'feat!: ...'`.
 
 ## Maintenance
 
