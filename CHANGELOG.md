@@ -1,3 +1,16 @@
+## [18.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.0.4...v18.1.0) (2024-06-19)
+
+
+### Features
+
+* **icons:** add Send ([41f7742](https://github.com/MTES-MCT/monitor-ui/commit/41f7742a084b1fc2a46d74084d5da8ba88bc3ce7))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump braces from 3.0.2 to 3.0.3 ([c9689fe](https://github.com/MTES-MCT/monitor-ui/commit/c9689fee0800b7a8341ddbcc531df2cc42d9c33e))
+* **deps:** bump ws from 8.16.0 to 8.17.1 ([a933c10](https://github.com/MTES-MCT/monitor-ui/commit/a933c10719cbacf2a24993d518873917d102b770))
+
 ## [18.0.4](https://github.com/MTES-MCT/monitor-ui/compare/v18.0.3...v18.0.4) (2024-06-10)
 
 
