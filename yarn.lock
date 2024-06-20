@@ -3354,6 +3354,7 @@ __metadata:
     browser-assert: "npm:1.2.1"
     chromatic: "npm:6.19.9"
     classnames: "npm:2.5.1"
+    commitlint-plugin-selective-scope: "npm:1.0.1"
     cypress: "npm:13.12.0"
     date-fns: "npm:3.6.0"
     dayjs: "npm:1.11.11"
@@ -9120,6 +9121,13 @@ __metadata:
   version: 7.2.0
   resolution: "commander@npm:7.2.0"
   checksum: 8d690ff13b0356df7e0ebbe6c59b4712f754f4b724d4f473d3cc5b3fdcf978e3a5dc3078717858a2ceb50b0f84d0660a7f22a96cdc50fb877d0c9bb31593d23a
+  languageName: node
+  linkType: hard
+
+"commitlint-plugin-selective-scope@npm:1.0.1":
+  version: 1.0.1
+  resolution: "commitlint-plugin-selective-scope@npm:1.0.1"
+  checksum: ffff4dc71946834e9a855fce2de7c6b5bc289ae3fb8113b129917655a7bc44b298a7b76c50ba4c01d9e87b56c45c019ef3e9704c16b239e1b7182bbd37ced758
   languageName: node
   linkType: hard
 
