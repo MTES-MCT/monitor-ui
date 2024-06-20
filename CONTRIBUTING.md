@@ -29,8 +29,11 @@
 git clone https://github.com/MTES-MCT/monitor-ui.git
 cd monitor-ui
 yarn
-yarn dev:setup # Install Git hooks
+yarn postinstall # Optional: automatically run each time Yarn cache is cleared
 ```
+
+> [!NOTE]  
+> You may have to manually run `yarn postinstall` to update post-install scripts when Yarn cache already exists.
 
 ### Local Development
 
