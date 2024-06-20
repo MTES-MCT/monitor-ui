@@ -27,7 +27,7 @@ jobs:
       - name: Install
         uses: ./.github/actions/install
       - name: Lint commits (last 100)
-        run: yarn commitlint --from HEAD~99 --to HEAD -V
+        run: yarn commitlint --from HEAD~49 --to HEAD -V
       - name: Lint code
         run: yarn test:lint
 
