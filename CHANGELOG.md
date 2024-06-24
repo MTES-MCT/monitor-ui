@@ -1,3 +1,40 @@
+## [18.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.1.0...v18.2.0) (2024-06-24)
+
+
+### Features
+
+* **components:** fix secondary dropdown ([30d2ade](https://github.com/MTES-MCT/monitor-ui/commit/30d2ade0c56170a6e59b5a4c214e2fca91bafc9c))
+
+
+### Bug Fixes
+
+* **components:** fix dropdown icon margin in secondary ([55930e1](https://github.com/MTES-MCT/monitor-ui/commit/55930e1d43d9d4310ac4042d383b599913fdee5f))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump the non-major-dependencies group with 3 updates ([3c303fc](https://github.com/MTES-MCT/monitor-ui/commit/3c303fc24085ec1b2e2536d3b99effbf970262f5))
+* **dev-deps:** bump @sentry/react in /e2e/release/sample ([8a1b70d](https://github.com/MTES-MCT/monitor-ui/commit/8a1b70d3f2daa93e5576e720eabca294243a9281))
+* **dev-deps:** bump @testing-library/react from 14.2.1 to 16.0.0 ([6fa7e1f](https://github.com/MTES-MCT/monitor-ui/commit/6fa7e1fd7c9043c64ddea63ef39701f68187cd71))
+* **dev-deps:** bump @types/node in /e2e/release/sample ([ec15bbc](https://github.com/MTES-MCT/monitor-ui/commit/ec15bbc08b995e459d5eaf4e0e2515bbc357d2cd))
+* **dev-deps:** bump @typescript-eslint/parser from 6.0.0 to 7.13.1 ([64e7766](https://github.com/MTES-MCT/monitor-ui/commit/64e776617fb09dcca8fdc03e1343ce5866d78ce7))
+* **dev-deps:** bump cypress in /e2e/release/sample ([429af53](https://github.com/MTES-MCT/monitor-ui/commit/429af536934f895516e330eba5e63bed88b43a09))
+* **dev-deps:** bump eslint-plugin-cypress from 2.13.3 to 3.3.0 ([d415d41](https://github.com/MTES-MCT/monitor-ui/commit/d415d41fa8f7aeeb68173ef815774ddb2248b262))
+* **dev-deps:** bump husky from 8.0.3 to 9.0.11 ([b177afe](https://github.com/MTES-MCT/monitor-ui/commit/b177afec7ba20c177de79e01af6a0e6e42a8e9dc))
+* **dev-deps:** bump react and @types/react in /e2e/release/sample ([fcddfba](https://github.com/MTES-MCT/monitor-ui/commit/fcddfbae79b6ac2d287a61c7758cb5b7d7bb9421))
+* **dev-deps:** bump rsuite in /e2e/release/sample ([98fd2dc](https://github.com/MTES-MCT/monitor-ui/commit/98fd2dc5f6186fe08635bf5b60c6bb57a8b7adef))
+* **dev-deps:** bump the all-non-major-dependencies group ([8c4fe4d](https://github.com/MTES-MCT/monitor-ui/commit/8c4fe4d67b2844c0dec8e136c4ac0d6e71213997))
+* **dev-deps:** bump the all-non-major-dependencies group ([4fe6b93](https://github.com/MTES-MCT/monitor-ui/commit/4fe6b93388c86d4eb7bc0713c5edde01254bf358))
+* **dev-deps:** bump the non-major-dev-dependencies group ([d45b893](https://github.com/MTES-MCT/monitor-ui/commit/d45b893ce37fe680cc74a53af4d68166e09ff3b8))
+* **dev-deps:** bump the non-major-dev-dependencies group with 49 updates ([4b4e85f](https://github.com/MTES-MCT/monitor-ui/commit/4b4e85f00d8b0dd21c45a557572bc939e9734d3c))
+* **dev-deps:** bump the non-major-dev-dependencies group with 5 updates ([540f1f5](https://github.com/MTES-MCT/monitor-ui/commit/540f1f59a1cef946f2ee41e50a4b915824b0319e))
+
+
+### Documentation
+
+* **contributing:** update first setup instructions ([0506aea](https://github.com/MTES-MCT/monitor-ui/commit/0506aead4fe4517a06f45baa2dc312840b27ae8e))
+* **contributing:** update release instructions ([d6c56ee](https://github.com/MTES-MCT/monitor-ui/commit/d6c56ee5b02717df96071c1940f5a35c7940c8e6))
+
 ## [18.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.0.4...v18.1.0) (2024-06-19)
 
 
