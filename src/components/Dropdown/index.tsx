@@ -41,7 +41,7 @@ const PrimaryDropdown = styled(RsuiteDropdown as any)<{
     color: ${p => p.theme.color.gainsboro};
     display: flex;
     font-size: 13px;
-    padding: ${p => (p.$hasIcon ? '4px' : '5px')} 12px ${p => (p.$hasIcon ? '5px' : '7px')};
+    padding: 3px 12px ${p => (p.$hasIcon ? '4px' : '5px')};
 
     :hover {
       background-color: ${p => p.theme.color.blueYonder};
@@ -87,13 +87,32 @@ const SecondaryDropdown = styled(RsuiteDropdown as any)<{
   .rs-btn {
     align-items: center;
     display: flex;
-    padding: ${p => (p.$hasIcon ? '0px ' : '5px 12px 7px')};
+    padding: 3px 12px ${p => (p.$hasIcon ? '4px' : '5px')};
 
-    :hover,
-    :active {
-      background-color: transparent;
-      border: none;
+    border-radius: 0;
+    background-color: transparent;
+    border: 1px solid ${p => p.theme.color.charcoal};
+    color: ${p => p.theme.color.charcoal};
+
+    &:hover,
+    &._hover {
+      background-color: ${p => p.theme.color.blueYonder25};
+      border: 1px solid ${p => p.theme.color.blueYonder};
       color: ${p => p.theme.color.blueYonder};
+    }
+
+    &:active,
+    &._active {
+      background-color: ${p => p.theme.color.blueGray25};
+      border: 1px solid ${p => p.theme.color.blueGray};
+      color: ${p => p.theme.color.blueGray};
+    }
+
+    &:disabled,
+    &._disabled {
+      background-color: transparent;
+      border: 1px solid ${p => p.theme.color.lightGray};
+      color: ${p => p.theme.color.lightGray};
     }
 
     > svg {
@@ -102,7 +121,6 @@ const SecondaryDropdown = styled(RsuiteDropdown as any)<{
   }
 
   > .rs-dropdown-menu {
-    background-color: transparent;
     border-radius: 0;
     padding: 0;
   }
