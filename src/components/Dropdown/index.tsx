@@ -115,6 +115,10 @@ const SecondaryDropdown = styled(RsuiteDropdown as any)<{
       color: ${p => p.theme.color.lightGray};
     }
 
+    > .Element-IconBox {
+      margin: 1px 8px 0 0;
+    }
+
     > svg {
       display: none;
     }
@@ -123,6 +127,11 @@ const SecondaryDropdown = styled(RsuiteDropdown as any)<{
   > .rs-dropdown-menu {
     border-radius: 0;
     padding: 0;
+  }
+
+  svg.rs-dropdown-item-menu-icon {
+    vertical-align: middle;
+    margin-right: 10px;
   }
 `
 
