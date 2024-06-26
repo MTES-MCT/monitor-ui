@@ -137,6 +137,15 @@ export function fill(label: string, value: any, options: Partial<Cypress.FillOpt
 
           return
 
+        // ---------------------------------------------------------------------
+        //  PhoneInput
+
+        case fieldElement.classList.contains('Field-PhoneInput'):
+          assertStringOrUndefined(value, 'PhoneInput')
+          fillTextInput(fieldElement, value, label, controlledOptions.force, controlledOptions.delay)
+
+          return
+
         default:
           throwError(`\`cy.fill()\` can't handle field with \`<label>\` "${label}".`)
       }
