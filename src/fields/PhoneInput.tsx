@@ -25,13 +25,16 @@ export type PhoneInputProps = {
 
 const internationalFormat = {
   definitions: { '#': /[1-9]/, '@': /0/ },
-  mask: '@@ #[00] 000 000 000 000'
+  mask: '`@@ #[00] 000 000 000 000'
 }
 
-const frenchFormat = { definitions: { '#': /[1-9]/, '@': /0/ }, mask: '@# 00 00 00 00' }
+const frenchFormat = { definitions: { '#': /[1-9]/, '@': /0/ }, mask: '`@# 00 00 00 00' }
 
-const defaultFormat = { definitions: { '#': /[1-9]/, '+': /[+\d]/ }, mask: '+00 000 000 000 000 000' }
+const defaultFormat = { definitions: { '#': /[1-9]/, '+': /[+\d]/ }, mask: '`+00 000 000 000 000 000' }
 
+/**
+ * FIXME (01/07/2024): This lib has probably a bug, I opened an issue : https://github.com/uNmAnNeR/imaskjs/issues/1053
+ */
 export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
   (
     {
@@ -66,7 +69,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
           $isTransparent={isTransparent}
           disabled={disabled}
           dispatch={(appended, dynamicMasked) => {
-            const phoneNumber = (dynamicMasked.value + appended).replace(/\s+/g, '')
+            const phoneNumber = dynamicMasked.unmaskedValue + appended
 
             if (phoneNumber.startsWith('00')) {
               return dynamicMasked.compiledMasks[0]
