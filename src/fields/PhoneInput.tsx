@@ -15,7 +15,6 @@ export type PhoneInputProps = {
   isLabelHidden?: boolean
   isLight?: boolean
   isRequired?: boolean
-  isSearchInput?: boolean
   isTransparent?: boolean
   isUndefinedWhenDisabled?: boolean
   label: string
@@ -38,6 +37,8 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
     {
       disabled = false,
       error,
+      isErrorMessageHidden = false,
+      isLabelHidden = false,
       isLight = false,
       isRequired = false,
       isTransparent = false,
@@ -54,7 +55,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
 
     return (
       <Field className="Field-PhoneInput">
-        <Label $isRequired={isRequired} disabled={disabled} htmlFor={name}>
+        <Label $isRequired={isRequired} disabled={disabled} htmlFor={name} isHidden={isLabelHidden}>
           {label}
         </Label>
         <StyledIMaskInput
@@ -87,7 +88,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
           value={value}
           {...props}
         />
-        {!!error && <FieldError>{error}</FieldError>}
+        {!isErrorMessageHidden && !!error && <FieldError>{error}</FieldError>}
       </Field>
     )
   }
