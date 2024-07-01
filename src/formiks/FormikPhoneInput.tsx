@@ -1,4 +1,4 @@
-import { PhoneInput, type PhoneInputProps } from '@fields/Phone/PhoneInput'
+import { PhoneInput, type PhoneInputProps } from '@fields/PhoneInput'
 import { useField } from 'formik'
 import { useMemo } from 'react'
 

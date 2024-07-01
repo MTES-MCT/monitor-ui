@@ -19,6 +19,15 @@ export type PhoneInputProps = {
   value: string | undefined
 } & Omit<ComponentProps<'input'>, 'onChange' | 'value'>
 
+const internationalFormat = {
+  definitions: { '#': /[1-9]/, '@': /0/ },
+  mask: '@@ #[00] 000 000 000 000'
+}
+
+const frenchFormat = { definitions: { '#': /[1-9]/, '@': /0/ }, mask: '@# 00 00 00 00' }
+
+const defaultFormat = { definitions: { '#': /[1-9]/ }, mask: '*00 000 000 000 000 000' }
+
 export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
   ({ disabled, error, isRequired, isUndefinedWhenDisabled, label, name, onChange, value, ...props }, ref) => {
     useFieldUndefineEffect(isUndefinedWhenDisabled && !!disabled, onChange)
@@ -32,20 +41,24 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
           ref={ref}
           $hasError={!!error}
           disabled={disabled}
+          dispatch={(appended, dynamicMasked) => {
+            const phoneNumber = (dynamicMasked.value + appended).replace(/\s+/g, '')
+
+            if (phoneNumber.startsWith('00')) {
+              return dynamicMasked.compiledMasks[0]
+            }
+            if (phoneNumber.startsWith('0') && value && value.length <= 10 && phoneNumber === value) {
+              return dynamicMasked.compiledMasks[1]
+            }
+
+            return dynamicMasked.compiledMasks[2]
+          }}
           id={name}
-          lazy={false}
-          mask={[
-            {
-              definitions: { '#': /[1-9]/, '@': /0/ },
-              mask: '@@ #[000] 00 00 00 00 00 00 00 00',
-              startsWith: '00'
-            },
-            { definitions: { '#': /[1-9]/, '@': /0/ }, mask: '@# 00 00 00 00', startsWith: '0' }
-          ]}
+          mask={[internationalFormat, frenchFormat, defaultFormat]}
           onAccept={(nextValue: string) => {
             onChange(nextValue || undefined)
           }}
-          placeholder="01 23 45 67 89 ou 00 594 12 34 56 78 90"
+          overwrite={false}
           unmask
           value={value}
           {...props}
