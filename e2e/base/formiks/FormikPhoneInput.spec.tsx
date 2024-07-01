@@ -44,7 +44,7 @@ function Template({
 
             <Button onClick={() => setIsDisabled(true)}>Disable</Button>
             <Button onClick={() => setFieldValue(props.name, updatedValue)}>Update</Button>
-            <Button onClick={() => setFieldValue(props.name, undefined)}>Reset</Button>
+            <Button onClick={() => setFieldValue(props.name, '')}>Reset</Button>
           </>
         )}
       </Formik>

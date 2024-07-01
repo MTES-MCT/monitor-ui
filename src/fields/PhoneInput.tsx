@@ -11,7 +11,12 @@ import type { Promisable } from 'type-fest'
 
 export type PhoneInputProps = {
   error?: string | undefined
+  isErrorMessageHidden?: boolean | undefined
+  isLabelHidden?: boolean
+  isLight?: boolean
   isRequired?: boolean
+  isSearchInput?: boolean
+  isTransparent?: boolean
   isUndefinedWhenDisabled?: boolean
   label: string
   name: string
@@ -26,11 +31,26 @@ const internationalFormat = {
 
 const frenchFormat = { definitions: { '#': /[1-9]/, '@': /0/ }, mask: '@# 00 00 00 00' }
 
-const defaultFormat = { definitions: { '#': /[1-9]/ }, mask: '*00 000 000 000 000 000' }
+const defaultFormat = { definitions: { '#': /[1-9]/, '+': /[+\d]/ }, mask: '+00 000 000 000 000 000' }
 
 export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
-  ({ disabled, error, isRequired, isUndefinedWhenDisabled, label, name, onChange, value, ...props }, ref) => {
-    useFieldUndefineEffect(isUndefinedWhenDisabled && !!disabled, onChange)
+  (
+    {
+      disabled = false,
+      error,
+      isLight = false,
+      isRequired = false,
+      isTransparent = false,
+      isUndefinedWhenDisabled = false,
+      label,
+      name,
+      onChange,
+      value,
+      ...props
+    },
+    ref
+  ) => {
+    useFieldUndefineEffect(isUndefinedWhenDisabled && !!disabled, undefined, () => onChange(''))
 
     return (
       <Field className="Field-PhoneInput">
@@ -40,6 +60,9 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
         <StyledIMaskInput
           ref={ref}
           $hasError={!!error}
+          $isDisabled={disabled}
+          $isLight={isLight}
+          $isTransparent={isTransparent}
           disabled={disabled}
           dispatch={(appended, dynamicMasked) => {
             const phoneNumber = (dynamicMasked.value + appended).replace(/\s+/g, '')
@@ -59,6 +82,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
             onChange(nextValue || undefined)
           }}
           overwrite={false}
+          type="tel"
           unmask
           value={value}
           {...props}
