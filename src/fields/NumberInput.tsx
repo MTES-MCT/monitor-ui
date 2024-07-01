@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { useCallback, useMemo, useRef, type FocusEvent } from 'react'
+import { useCallback, useMemo, useRef } from 'react'
 import { Input, type InputProps } from 'rsuite'
 import styled from 'styled-components'
 
@@ -13,7 +13,6 @@ import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useKey } from '../hooks/useKey'
-import { usePreventWheelEvent } from '../hooks/usePreventWheelEvent'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { CommonFieldStyleProps } from './shared/types'
@@ -46,9 +45,7 @@ export function NumberInput({
   isUndefinedWhenDisabled = false,
   label,
   name,
-  onBlur,
   onChange,
-  onFocus,
   readOnly = false,
   style,
   value,
@@ -62,43 +59,23 @@ export function NumberInput({
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([disabled, name])
 
-  const preventWheelEvent = usePreventWheelEvent(inputRef)
-
   const handleChange = useCallback(
     (nextValue: string) => {
       if (!onChange) {
         return
       }
+      if (nextValue === '') {
+        onChange(undefined)
+      }
 
       const normalizedNextValueAsString = nextValue && nextValue.length ? nextValue : undefined
       const nextValueAsNumber = Number(normalizedNextValueAsString)
-      const normalizedNextValue = !Number.isNaN(nextValueAsNumber) ? nextValueAsNumber : undefined
-
-      onChange(normalizedNextValue)
+      if (Number.isNaN(nextValueAsNumber)) {
+        return
+      }
+      onChange(nextValueAsNumber)
     },
     [onChange]
-  )
-
-  const handleBlur = useCallback(
-    (event: FocusEvent<HTMLInputElement>) => {
-      event.target.removeEventListener('wheel', preventWheelEvent)
-
-      if (onBlur) {
-        onBlur(event)
-      }
-    },
-    [onBlur, preventWheelEvent]
-  )
-
-  const handleFocus = useCallback(
-    (event: FocusEvent<HTMLInputElement>) => {
-      event.target.addEventListener('wheel', preventWheelEvent)
-
-      if (onFocus) {
-        onFocus(event)
-      }
-    },
-    [onFocus, preventWheelEvent]
   )
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && !!disabled, onChange)
@@ -119,11 +96,11 @@ export function NumberInput({
         $isTransparent={isTransparent}
         disabled={disabled}
         id={name}
-        onBlur={handleBlur}
+        inputMode="numeric"
+        maxLength="12"
         onChange={handleChange}
-        onFocus={handleFocus}
         readOnly={readOnly}
-        type="number"
+        type="text"
         value={value ?? ''}
         {...originalProps}
       />
