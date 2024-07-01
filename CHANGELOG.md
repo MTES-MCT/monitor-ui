@@ -1,928 +1,1099 @@
-## [18.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.1.0...v18.2.0) (2024-06-24)
-
+## [18.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.2.0...v18.3.0) (2024-07-01)
 
 ### Features
 
-* **components:** fix secondary dropdown ([30d2ade](https://github.com/MTES-MCT/monitor-ui/commit/30d2ade0c56170a6e59b5a4c214e2fca91bafc9c))
-
-
-### Bug Fixes
-
-* **components:** fix dropdown icon margin in secondary ([55930e1](https://github.com/MTES-MCT/monitor-ui/commit/55930e1d43d9d4310ac4042d383b599913fdee5f))
-
+- **components:** add basic input and story
+  ([10cb8ee](https://github.com/MTES-MCT/monitor-ui/commit/10cb8eed09c1c567814a202012330b42ecf5eb7d))
+- **components:** add default format
+  ([9b711e6](https://github.com/MTES-MCT/monitor-ui/commit/9b711e62fa35a12b5ba438c932751980b2abfeec))
+- **components:** add readme for npm link
+  ([5193a5b](https://github.com/MTES-MCT/monitor-ui/commit/5193a5b527f590d80809cfa31ccda6e8be5044cb))
+- **components:** add style properties and fix formik tests
+  ([c8e102e](https://github.com/MTES-MCT/monitor-ui/commit/c8e102ebe9f1fef95a82d8938045628210666e80))
+- **components:** claire's review
+  ([7622665](https://github.com/MTES-MCT/monitor-ui/commit/762266503a5784d4430d45576ee061a5f7b4e5d6))
+- **components:** phone number and formik phone number
+  ([65108b5](https://github.com/MTES-MCT/monitor-ui/commit/65108b5b9e9e4af58d6864fba32d290a5941f870))
+- **components:** rename component
+  ([024977e](https://github.com/MTES-MCT/monitor-ui/commit/024977efcf3e7c16e3935141bc17980d88d17335))
+- **components:** writing FIXME with issue related
+  ([910a367](https://github.com/MTES-MCT/monitor-ui/commit/910a367bd7aaa6f40fd73a7d7512a6213f13a34e))
 
 ### Buid System & Dependencies
 
-* **deps:** bump the non-major-dependencies group with 3 updates ([3c303fc](https://github.com/MTES-MCT/monitor-ui/commit/3c303fc24085ec1b2e2536d3b99effbf970262f5))
-* **dev-deps:** bump @sentry/react in /e2e/release/sample ([8a1b70d](https://github.com/MTES-MCT/monitor-ui/commit/8a1b70d3f2daa93e5576e720eabca294243a9281))
-* **dev-deps:** bump @testing-library/react from 14.2.1 to 16.0.0 ([6fa7e1f](https://github.com/MTES-MCT/monitor-ui/commit/6fa7e1fd7c9043c64ddea63ef39701f68187cd71))
-* **dev-deps:** bump @types/node in /e2e/release/sample ([ec15bbc](https://github.com/MTES-MCT/monitor-ui/commit/ec15bbc08b995e459d5eaf4e0e2515bbc357d2cd))
-* **dev-deps:** bump @typescript-eslint/parser from 6.0.0 to 7.13.1 ([64e7766](https://github.com/MTES-MCT/monitor-ui/commit/64e776617fb09dcca8fdc03e1343ce5866d78ce7))
-* **dev-deps:** bump cypress in /e2e/release/sample ([429af53](https://github.com/MTES-MCT/monitor-ui/commit/429af536934f895516e330eba5e63bed88b43a09))
-* **dev-deps:** bump eslint-plugin-cypress from 2.13.3 to 3.3.0 ([d415d41](https://github.com/MTES-MCT/monitor-ui/commit/d415d41fa8f7aeeb68173ef815774ddb2248b262))
-* **dev-deps:** bump husky from 8.0.3 to 9.0.11 ([b177afe](https://github.com/MTES-MCT/monitor-ui/commit/b177afec7ba20c177de79e01af6a0e6e42a8e9dc))
-* **dev-deps:** bump react and @types/react in /e2e/release/sample ([fcddfba](https://github.com/MTES-MCT/monitor-ui/commit/fcddfbae79b6ac2d287a61c7758cb5b7d7bb9421))
-* **dev-deps:** bump rsuite in /e2e/release/sample ([98fd2dc](https://github.com/MTES-MCT/monitor-ui/commit/98fd2dc5f6186fe08635bf5b60c6bb57a8b7adef))
-* **dev-deps:** bump the all-non-major-dependencies group ([8c4fe4d](https://github.com/MTES-MCT/monitor-ui/commit/8c4fe4d67b2844c0dec8e136c4ac0d6e71213997))
-* **dev-deps:** bump the all-non-major-dependencies group ([4fe6b93](https://github.com/MTES-MCT/monitor-ui/commit/4fe6b93388c86d4eb7bc0713c5edde01254bf358))
-* **dev-deps:** bump the non-major-dev-dependencies group ([d45b893](https://github.com/MTES-MCT/monitor-ui/commit/d45b893ce37fe680cc74a53af4d68166e09ff3b8))
-* **dev-deps:** bump the non-major-dev-dependencies group with 49 updates ([4b4e85f](https://github.com/MTES-MCT/monitor-ui/commit/4b4e85f00d8b0dd21c45a557572bc939e9734d3c))
-* **dev-deps:** bump the non-major-dev-dependencies group with 5 updates ([540f1f5](https://github.com/MTES-MCT/monitor-ui/commit/540f1f59a1cef946f2ee41e50a4b915824b0319e))
+- **dev-deps:** bump the all-non-major-dependencies group
+  ([04fbf57](https://github.com/MTES-MCT/monitor-ui/commit/04fbf574ad44194312d1d8ca9897e68e3a6ae162))
 
+## [18.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.1.0...v18.2.0) (2024-06-24)
+
+### Features
+
+- **components:** fix secondary dropdown
+  ([30d2ade](https://github.com/MTES-MCT/monitor-ui/commit/30d2ade0c56170a6e59b5a4c214e2fca91bafc9c))
+
+### Bug Fixes
+
+- **components:** fix dropdown icon margin in secondary
+  ([55930e1](https://github.com/MTES-MCT/monitor-ui/commit/55930e1d43d9d4310ac4042d383b599913fdee5f))
+
+### Buid System & Dependencies
+
+- **deps:** bump the non-major-dependencies group with 3 updates
+  ([3c303fc](https://github.com/MTES-MCT/monitor-ui/commit/3c303fc24085ec1b2e2536d3b99effbf970262f5))
+- **dev-deps:** bump @sentry/react in /e2e/release/sample
+  ([8a1b70d](https://github.com/MTES-MCT/monitor-ui/commit/8a1b70d3f2daa93e5576e720eabca294243a9281))
+- **dev-deps:** bump @testing-library/react from 14.2.1 to 16.0.0
+  ([6fa7e1f](https://github.com/MTES-MCT/monitor-ui/commit/6fa7e1fd7c9043c64ddea63ef39701f68187cd71))
+- **dev-deps:** bump @types/node in /e2e/release/sample
+  ([ec15bbc](https://github.com/MTES-MCT/monitor-ui/commit/ec15bbc08b995e459d5eaf4e0e2515bbc357d2cd))
+- **dev-deps:** bump @typescript-eslint/parser from 6.0.0 to 7.13.1
+  ([64e7766](https://github.com/MTES-MCT/monitor-ui/commit/64e776617fb09dcca8fdc03e1343ce5866d78ce7))
+- **dev-deps:** bump cypress in /e2e/release/sample
+  ([429af53](https://github.com/MTES-MCT/monitor-ui/commit/429af536934f895516e330eba5e63bed88b43a09))
+- **dev-deps:** bump eslint-plugin-cypress from 2.13.3 to 3.3.0
+  ([d415d41](https://github.com/MTES-MCT/monitor-ui/commit/d415d41fa8f7aeeb68173ef815774ddb2248b262))
+- **dev-deps:** bump husky from 8.0.3 to 9.0.11
+  ([b177afe](https://github.com/MTES-MCT/monitor-ui/commit/b177afec7ba20c177de79e01af6a0e6e42a8e9dc))
+- **dev-deps:** bump react and @types/react in /e2e/release/sample
+  ([fcddfba](https://github.com/MTES-MCT/monitor-ui/commit/fcddfbae79b6ac2d287a61c7758cb5b7d7bb9421))
+- **dev-deps:** bump rsuite in /e2e/release/sample
+  ([98fd2dc](https://github.com/MTES-MCT/monitor-ui/commit/98fd2dc5f6186fe08635bf5b60c6bb57a8b7adef))
+- **dev-deps:** bump the all-non-major-dependencies group
+  ([8c4fe4d](https://github.com/MTES-MCT/monitor-ui/commit/8c4fe4d67b2844c0dec8e136c4ac0d6e71213997))
+- **dev-deps:** bump the all-non-major-dependencies group
+  ([4fe6b93](https://github.com/MTES-MCT/monitor-ui/commit/4fe6b93388c86d4eb7bc0713c5edde01254bf358))
+- **dev-deps:** bump the non-major-dev-dependencies group
+  ([d45b893](https://github.com/MTES-MCT/monitor-ui/commit/d45b893ce37fe680cc74a53af4d68166e09ff3b8))
+- **dev-deps:** bump the non-major-dev-dependencies group with 49 updates
+  ([4b4e85f](https://github.com/MTES-MCT/monitor-ui/commit/4b4e85f00d8b0dd21c45a557572bc939e9734d3c))
+- **dev-deps:** bump the non-major-dev-dependencies group with 5 updates
+  ([540f1f5](https://github.com/MTES-MCT/monitor-ui/commit/540f1f59a1cef946f2ee41e50a4b915824b0319e))
 
 ### Documentation
 
-* **contributing:** update first setup instructions ([0506aea](https://github.com/MTES-MCT/monitor-ui/commit/0506aead4fe4517a06f45baa2dc312840b27ae8e))
-* **contributing:** update release instructions ([d6c56ee](https://github.com/MTES-MCT/monitor-ui/commit/d6c56ee5b02717df96071c1940f5a35c7940c8e6))
+- **contributing:** update first setup instructions
+  ([0506aea](https://github.com/MTES-MCT/monitor-ui/commit/0506aead4fe4517a06f45baa2dc312840b27ae8e))
+- **contributing:** update release instructions
+  ([d6c56ee](https://github.com/MTES-MCT/monitor-ui/commit/d6c56ee5b02717df96071c1940f5a35c7940c8e6))
 
 ## [18.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.0.4...v18.1.0) (2024-06-19)
 
-
 ### Features
 
-* **icons:** add Send ([41f7742](https://github.com/MTES-MCT/monitor-ui/commit/41f7742a084b1fc2a46d74084d5da8ba88bc3ce7))
-
+- **icons:** add Send
+  ([41f7742](https://github.com/MTES-MCT/monitor-ui/commit/41f7742a084b1fc2a46d74084d5da8ba88bc3ce7))
 
 ### Buid System & Dependencies
 
-* **deps:** bump braces from 3.0.2 to 3.0.3 ([c9689fe](https://github.com/MTES-MCT/monitor-ui/commit/c9689fee0800b7a8341ddbcc531df2cc42d9c33e))
-* **deps:** bump ws from 8.16.0 to 8.17.1 ([a933c10](https://github.com/MTES-MCT/monitor-ui/commit/a933c10719cbacf2a24993d518873917d102b770))
+- **deps:** bump braces from 3.0.2 to 3.0.3
+  ([c9689fe](https://github.com/MTES-MCT/monitor-ui/commit/c9689fee0800b7a8341ddbcc531df2cc42d9c33e))
+- **deps:** bump ws from 8.16.0 to 8.17.1
+  ([a933c10](https://github.com/MTES-MCT/monitor-ui/commit/a933c10719cbacf2a24993d518873917d102b770))
 
 ## [18.0.4](https://github.com/MTES-MCT/monitor-ui/compare/v18.0.3...v18.0.4) (2024-06-10)
 
-
 ### Bug Fixes
 
-* **fields:**  remove useKey ([5e194f0](https://github.com/MTES-MCT/monitor-ui/commit/5e194f0d85a308412a43760b32eb10df01ff068d))
+- **fields:** remove useKey
+  ([5e194f0](https://github.com/MTES-MCT/monitor-ui/commit/5e194f0d85a308412a43760b32eb10df01ff068d))
 
 ## [18.0.3](https://github.com/MTES-MCT/monitor-ui/compare/v18.0.2...v18.0.3) (2024-06-07)
 
-
 ### Bug Fixes
 
-* **fields:** set calendar range popup width in DateRangePicker ([a758655](https://github.com/MTES-MCT/monitor-ui/commit/a7586557e76f3f53e2da47e9e509ebed9341ebdc))
-
+- **fields:** set calendar range popup width in DateRangePicker
+  ([a758655](https://github.com/MTES-MCT/monitor-ui/commit/a7586557e76f3f53e2da47e9e509ebed9341ebdc))
 
 ### Buid System & Dependencies
 
-* **dev-deps:** bump @babel/preset-typescript from 7.23.2 to 7.24.6 ([995ec7e](https://github.com/MTES-MCT/monitor-ui/commit/995ec7e5e01c4d41b75a8b6f5788b95064598be9))
-* **dev-deps:** bump @semantic-release/npm from 11.0.2 to 12.0.1 ([841dd01](https://github.com/MTES-MCT/monitor-ui/commit/841dd012da83ad70075349f7e5010cc387664b5d))
-* **dev-deps:** bump @storybook/blocks from 8.0.9 to 8.1.5 ([f0f1eb2](https://github.com/MTES-MCT/monitor-ui/commit/f0f1eb2b7c435d075d0ca52c6fd36426ea804066))
-* **dev-deps:** bump @storybook/test from 8.0.9 to 8.1.5 ([eed0812](https://github.com/MTES-MCT/monitor-ui/commit/eed0812786993f36cbcf2b8588c8ca2118cf4ddc))
-* **dev-deps:** bump eslint-plugin-react-hooks from 4.6.0 to 4.6.2 ([8c319a7](https://github.com/MTES-MCT/monitor-ui/commit/8c319a706cdd9f28b083e6d744577fd3a10b3745))
+- **dev-deps:** bump @babel/preset-typescript from 7.23.2 to 7.24.6
+  ([995ec7e](https://github.com/MTES-MCT/monitor-ui/commit/995ec7e5e01c4d41b75a8b6f5788b95064598be9))
+- **dev-deps:** bump @semantic-release/npm from 11.0.2 to 12.0.1
+  ([841dd01](https://github.com/MTES-MCT/monitor-ui/commit/841dd012da83ad70075349f7e5010cc387664b5d))
+- **dev-deps:** bump @storybook/blocks from 8.0.9 to 8.1.5
+  ([f0f1eb2](https://github.com/MTES-MCT/monitor-ui/commit/f0f1eb2b7c435d075d0ca52c6fd36426ea804066))
+- **dev-deps:** bump @storybook/test from 8.0.9 to 8.1.5
+  ([eed0812](https://github.com/MTES-MCT/monitor-ui/commit/eed0812786993f36cbcf2b8588c8ca2118cf4ddc))
+- **dev-deps:** bump eslint-plugin-react-hooks from 4.6.0 to 4.6.2
+  ([8c319a7](https://github.com/MTES-MCT/monitor-ui/commit/8c319a706cdd9f28b083e6d744577fd3a10b3745))
 
 ## [18.0.2](https://github.com/MTES-MCT/monitor-ui/compare/v18.0.1...v18.0.2) (2024-05-28)
 
-
 ### Bug Fixes
 
-* **components:** ignore external domain stylesheets in NewWindow styles copying ([fb02756](https://github.com/MTES-MCT/monitor-ui/commit/fb0275608debbd07acdc4f2aed0f197f1e864bff))
+- **components:** ignore external domain stylesheets in NewWindow styles copying
+  ([fb02756](https://github.com/MTES-MCT/monitor-ui/commit/fb0275608debbd07acdc4f2aed0f197f1e864bff))
 
 ## [18.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v18.0.0...v18.0.1) (2024-05-28)
 
-
 ### Bug Fixes
 
-* **tables:** disable user selection in SimpleTable.Th ([20d9b64](https://github.com/MTES-MCT/monitor-ui/commit/20d9b64fa72739b880d09740c6f9de6c2141b536))
-* **tables:** force  prop border in TableWithSelectableRows.Td ([9fbd1ee](https://github.com/MTES-MCT/monitor-ui/commit/9fbd1ee51236b6a7da47ff410cb2b00e95ddc66e))
-* **tables:** force min & max width in SimpleTable.Th ([0ddfa57](https://github.com/MTES-MCT/monitor-ui/commit/0ddfa57afc4ec734d5242b82756d8506bc7f00fc))
+- **tables:** disable user selection in SimpleTable.Th
+  ([20d9b64](https://github.com/MTES-MCT/monitor-ui/commit/20d9b64fa72739b880d09740c6f9de6c2141b536))
+- **tables:** force prop border in TableWithSelectableRows.Td
+  ([9fbd1ee](https://github.com/MTES-MCT/monitor-ui/commit/9fbd1ee51236b6a7da47ff410cb2b00e95ddc66e))
+- **tables:** force min & max width in SimpleTable.Th
+  ([0ddfa57](https://github.com/MTES-MCT/monitor-ui/commit/0ddfa57afc4ec734d5242b82756d8506bc7f00fc))
 
 ## [18.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v17.2.2...v18.0.0) (2024-05-27)
 
-
 ### ⚠ BREAKING CHANGES
 
-* **tables:** - Remove `isChecked` prop in `TableWithSelectableRows.RowCheckbox`, replaced by native `checked` prop.
-- Remove `isIndeterminate` prop in `TableWithSelectableRows.RowCheckbox`, replaced by original Rsuite `indeterminate` prop.
-- Remove `$isHighlighted` prop in `TableWithSelectableRows.Td`, replaced by the same prop on `TableWithSelectableRows.BodyTr`.
-- In order to work properly with `RowCheckbox`, `TableWithSelectableRows` now requires `<Table $withRowCheckbox />`.
-- Following the `SimpleTable` & `TableWithSelectableRows` margins/heights normalization, including a few hacks,
-  it may break some UI widths & heights.
-- Please check `TableWithSelectableRows.stories.tsx` to see a full example on how to use/update it.
-- As shown in the story, be careful **NOT** to wrap the checkbox table header cell
-  within `<TableWithSelectableRows.SortContainer />` since the flex display breaks its internal positioning.
+- **tables:** - Remove `isChecked` prop in `TableWithSelectableRows.RowCheckbox`, replaced by native `checked` prop.
+
+* Remove `isIndeterminate` prop in `TableWithSelectableRows.RowCheckbox`, replaced by original Rsuite `indeterminate`
+  prop.
+* Remove `$isHighlighted` prop in `TableWithSelectableRows.Td`, replaced by the same prop on
+  `TableWithSelectableRows.BodyTr`.
+* In order to work properly with `RowCheckbox`, `TableWithSelectableRows` now requires `<Table $withRowCheckbox />`.
+* Following the `SimpleTable` & `TableWithSelectableRows` margins/heights normalization, including a few hacks, it may
+  break some UI widths & heights.
+* Please check `TableWithSelectableRows.stories.tsx` to see a full example on how to use/update it.
+* As shown in the story, be careful **NOT** to wrap the checkbox table header cell within
+  `<TableWithSelectableRows.SortContainer />` since the flex display breaks its internal positioning.
 
 ### Features
 
-* **tables:** add $isLoading prop to SimpleTable.Td ([6cc137e](https://github.com/MTES-MCT/monitor-ui/commit/6cc137e187bd0314756bfc973f65bcde19f063ea))
-
+- **tables:** add $isLoading prop to SimpleTable.Td
+  ([6cc137e](https://github.com/MTES-MCT/monitor-ui/commit/6cc137e187bd0314756bfc973f65bcde19f063ea))
 
 ### Bug Fixes
 
-* **tables:** normalize tables checkbox, margins & height ([23afb70](https://github.com/MTES-MCT/monitor-ui/commit/23afb702e79e44788d82b6abeb0e2e6ba4deb4d3))
-* **tables:** set SimpleTable.Td line-height & .CellLoader height to 22px ([176b161](https://github.com/MTES-MCT/monitor-ui/commit/176b161ac85c48913f25e5a483ce8ac30698e65c))
+- **tables:** normalize tables checkbox, margins & height
+  ([23afb70](https://github.com/MTES-MCT/monitor-ui/commit/23afb702e79e44788d82b6abeb0e2e6ba4deb4d3))
+- **tables:** set SimpleTable.Td line-height & .CellLoader height to 22px
+  ([176b161](https://github.com/MTES-MCT/monitor-ui/commit/176b161ac85c48913f25e5a483ce8ac30698e65c))
 
 ## [17.2.2](https://github.com/MTES-MCT/monitor-ui/compare/v17.2.1...v17.2.2) (2024-05-21)
 
-
 ### Bug Fixes
 
-* **elements:** fix IconButton border ([f55eb2c](https://github.com/MTES-MCT/monitor-ui/commit/f55eb2ca036cd0c1c06b78eaaacfc1983e48ffb3))
+- **elements:** fix IconButton border
+  ([f55eb2c](https://github.com/MTES-MCT/monitor-ui/commit/f55eb2ca036cd0c1c06b78eaaacfc1983e48ffb3))
 
 ## [17.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v17.2.0...v17.2.1) (2024-05-21)
 
-
 ### Bug Fixes
 
-* **types:** fix AnyEnum key type ([de3f0cc](https://github.com/MTES-MCT/monitor-ui/commit/de3f0cce9a5228db0e1c48a7d6a7f4ec662b7ab0))
+- **types:** fix AnyEnum key type
+  ([de3f0cc](https://github.com/MTES-MCT/monitor-ui/commit/de3f0cce9a5228db0e1c48a7d6a7f4ec662b7ab0))
 
 ## [17.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v17.1.1...v17.2.0) (2024-05-21)
 
-
 ### Features
 
-* **types:** add AnyEnum ([32c84cc](https://github.com/MTES-MCT/monitor-ui/commit/32c84ccbfd7c98f2e05b64a607254931b4bab28b))
-* **types:** support string id in CollectionItem ([0ad3e38](https://github.com/MTES-MCT/monitor-ui/commit/0ad3e388d6db09cbcd3ccc7a80471b83553a7559))
+- **types:** add AnyEnum
+  ([32c84cc](https://github.com/MTES-MCT/monitor-ui/commit/32c84ccbfd7c98f2e05b64a607254931b4bab28b))
+- **types:** support string id in CollectionItem
+  ([0ad3e38](https://github.com/MTES-MCT/monitor-ui/commit/0ad3e388d6db09cbcd3ccc7a80471b83553a7559))
 
 ## [17.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v17.1.0...v17.1.1) (2024-05-21)
 
-
 ### Bug Fixes
 
-* **components:** fix onAutoClose prop callback in Banner ([8fc6980](https://github.com/MTES-MCT/monitor-ui/commit/8fc69805f430bde762494cc3209a1fb4a09ca619))
-* **elements:** add some missing inner svg colors in Link ([f71649a](https://github.com/MTES-MCT/monitor-ui/commit/f71649a71facc1445a11ebcbaa4a7076e1bb4a91))
-* **elements:** fix visited colors & add importants in Link ([34d03d3](https://github.com/MTES-MCT/monitor-ui/commit/34d03d3d2aaa95c102683c79c637d141dd781d74))
-
+- **components:** fix onAutoClose prop callback in Banner
+  ([8fc6980](https://github.com/MTES-MCT/monitor-ui/commit/8fc69805f430bde762494cc3209a1fb4a09ca619))
+- **elements:** add some missing inner svg colors in Link
+  ([f71649a](https://github.com/MTES-MCT/monitor-ui/commit/f71649a71facc1445a11ebcbaa4a7076e1bb4a91))
+- **elements:** fix visited colors & add importants in Link
+  ([34d03d3](https://github.com/MTES-MCT/monitor-ui/commit/34d03d3d2aaa95c102683c79c637d141dd781d74))
 
 ### Documentation
 
-* **components:** fix Banner story delays ([986fe56](https://github.com/MTES-MCT/monitor-ui/commit/986fe56d3de704477eaff6c606ddbe3d9247e961))
+- **components:** fix Banner story delays
+  ([986fe56](https://github.com/MTES-MCT/monitor-ui/commit/986fe56d3de704477eaff6c606ddbe3d9247e961))
 
 ## [17.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v17.0.0...v17.1.0) (2024-05-09)
 
-
 ### Features
 
-* **cypress:** add index to fill command ([1e93f0c](https://github.com/MTES-MCT/monitor-ui/commit/1e93f0cad50960bb1650bd37bdad2e9f64d78bb6))
-* **cypress:** add logging to fill command ([eeafd54](https://github.com/MTES-MCT/monitor-ui/commit/eeafd549cd081dd0ff85ad43a2cd167878602975))
-
+- **cypress:** add index to fill command
+  ([1e93f0c](https://github.com/MTES-MCT/monitor-ui/commit/1e93f0cad50960bb1650bd37bdad2e9f64d78bb6))
+- **cypress:** add logging to fill command
+  ([eeafd54](https://github.com/MTES-MCT/monitor-ui/commit/eeafd549cd081dd0ff85ad43a2cd167878602975))
 
 ### Bug Fixes
 
-* **CheckPicker:** remove useKey ([2b552a8](https://github.com/MTES-MCT/monitor-ui/commit/2b552a810357a106c060a5abe80490f41348909d))
+- **CheckPicker:** remove useKey
+  ([2b552a8](https://github.com/MTES-MCT/monitor-ui/commit/2b552a810357a106c060a5abe80490f41348909d))
 
 ## [17.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v16.5.0...v17.0.0) (2024-05-02)
 
-
 ### ⚠ BREAKING CHANGES
 
-* **elements:** `<IconButton />` is now a span instead of a div.
+- **elements:** `<IconButton />` is now a span instead of a div.
 
 ### Bug Fixes
 
-* **elements:** switch IconBox wrapper element from a div to a span ([4a17f10](https://github.com/MTES-MCT/monitor-ui/commit/4a17f10699bfe59c6484641e0759741a89dbcc88))
-
+- **elements:** switch IconBox wrapper element from a div to a span
+  ([4a17f10](https://github.com/MTES-MCT/monitor-ui/commit/4a17f10699bfe59c6484641e0759741a89dbcc88))
 
 ### Buid System & Dependencies
 
-* **deps:** bump @babel/runtime from 7.24.4 to 7.24.5 ([0c6b0a6](https://github.com/MTES-MCT/monitor-ui/commit/0c6b0a609e79c6870ae70c36cd52ed2ec5cb1084))
-* **deps:** bump ejs from 3.1.9 to 3.1.10 ([5a3e05a](https://github.com/MTES-MCT/monitor-ui/commit/5a3e05a4139084163cdbed69929af0056031fbc9))
-* **dev-deps:** bump @babel/preset-react from 7.22.15 to 7.24.1 ([a78b5b3](https://github.com/MTES-MCT/monitor-ui/commit/a78b5b37108683db184a416259ee04a0551ef44a))
-* **dev-deps:** bump react-is from 18.2.0 to 18.3.1 ([258a53d](https://github.com/MTES-MCT/monitor-ui/commit/258a53d57d981fd2c92a167627fd5620e48682d0))
-* **dev-deps:** bump rollup-plugin-sizes from 1.0.5 to 1.0.6 ([8a19fe6](https://github.com/MTES-MCT/monitor-ui/commit/8a19fe605c9f6e10612e2b37f1b561ec1cb3e375))
-* **dev-deps:** bump semantic-release from 23.0.0 to 23.0.8 ([47e7c23](https://github.com/MTES-MCT/monitor-ui/commit/47e7c23ab207cbc950503bed03909ccdf70fb717))
+- **deps:** bump @babel/runtime from 7.24.4 to 7.24.5
+  ([0c6b0a6](https://github.com/MTES-MCT/monitor-ui/commit/0c6b0a609e79c6870ae70c36cd52ed2ec5cb1084))
+- **deps:** bump ejs from 3.1.9 to 3.1.10
+  ([5a3e05a](https://github.com/MTES-MCT/monitor-ui/commit/5a3e05a4139084163cdbed69929af0056031fbc9))
+- **dev-deps:** bump @babel/preset-react from 7.22.15 to 7.24.1
+  ([a78b5b3](https://github.com/MTES-MCT/monitor-ui/commit/a78b5b37108683db184a416259ee04a0551ef44a))
+- **dev-deps:** bump react-is from 18.2.0 to 18.3.1
+  ([258a53d](https://github.com/MTES-MCT/monitor-ui/commit/258a53d57d981fd2c92a167627fd5620e48682d0))
+- **dev-deps:** bump rollup-plugin-sizes from 1.0.5 to 1.0.6
+  ([8a19fe6](https://github.com/MTES-MCT/monitor-ui/commit/8a19fe605c9f6e10612e2b37f1b561ec1cb3e375))
+- **dev-deps:** bump semantic-release from 23.0.0 to 23.0.8
+  ([47e7c23](https://github.com/MTES-MCT/monitor-ui/commit/47e7c23ab207cbc950503bed03909ccdf70fb717))
 
 ## [16.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v16.4.0...v16.5.0) (2024-05-01)
 
-
 ### Features
 
-* **elements:** add Link ([b72322b](https://github.com/MTES-MCT/monitor-ui/commit/b72322bb5d0b3e61fe41c4ce21a02e32c09fcbd0))
-
+- **elements:** add Link
+  ([b72322b](https://github.com/MTES-MCT/monitor-ui/commit/b72322bb5d0b3e61fe41c4ce21a02e32c09fcbd0))
 
 ### Buid System & Dependencies
 
-* **dev-deps:** bump @types/node in /e2e/release/sample ([0df00a3](https://github.com/MTES-MCT/monitor-ui/commit/0df00a3f4194d21ac3f95df7d7f3d644fdfc2640))
-* **dev-deps:** bump rsuite in /e2e/release/sample ([69e238e](https://github.com/MTES-MCT/monitor-ui/commit/69e238e8bdf271d5556c9db104e64928003cd9b8))
-* **dev-deps:** bump styled-components in /e2e/release/sample ([6b8e9f4](https://github.com/MTES-MCT/monitor-ui/commit/6b8e9f4e31b04314568af1a2db5e1bfdd9fb216f))
-* **dev-deps:** bump vite from 5.1.7 to 5.2.10 in /e2e/release/sample ([3861028](https://github.com/MTES-MCT/monitor-ui/commit/3861028a8bca05bcc9780ee07a4ca8e4386cd5c0))
+- **dev-deps:** bump @types/node in /e2e/release/sample
+  ([0df00a3](https://github.com/MTES-MCT/monitor-ui/commit/0df00a3f4194d21ac3f95df7d7f3d644fdfc2640))
+- **dev-deps:** bump rsuite in /e2e/release/sample
+  ([69e238e](https://github.com/MTES-MCT/monitor-ui/commit/69e238e8bdf271d5556c9db104e64928003cd9b8))
+- **dev-deps:** bump styled-components in /e2e/release/sample
+  ([6b8e9f4](https://github.com/MTES-MCT/monitor-ui/commit/6b8e9f4e31b04314568af1a2db5e1bfdd9fb216f))
+- **dev-deps:** bump vite from 5.1.7 to 5.2.10 in /e2e/release/sample
+  ([3861028](https://github.com/MTES-MCT/monitor-ui/commit/3861028a8bca05bcc9780ee07a4ca8e4386cd5c0))
 
 ## [16.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v16.3.1...v16.4.0) (2024-04-30)
 
-
 ### Features
 
-* **components:** set tertiary accent as default with right colorin MapMenuDialog.CloseButton ([884caf1](https://github.com/MTES-MCT/monitor-ui/commit/884caf17994bfedd72caa110d4158e4e67de96be))
-* **icons:** add Subscription icon ([77345a0](https://github.com/MTES-MCT/monitor-ui/commit/77345a07714751fbacdabe94b58ba8707d2f1c68))
-
+- **components:** set tertiary accent as default with right colorin MapMenuDialog.CloseButton
+  ([884caf1](https://github.com/MTES-MCT/monitor-ui/commit/884caf17994bfedd72caa110d4158e4e67de96be))
+- **icons:** add Subscription icon
+  ([77345a0](https://github.com/MTES-MCT/monitor-ui/commit/77345a07714751fbacdabe94b58ba8707d2f1c68))
 
 ### Styles
 
-* **components:** update Message colors ([704d9bc](https://github.com/MTES-MCT/monitor-ui/commit/704d9bc1bc0f0760c588d6485c209fb65795479b))
-
+- **components:** update Message colors
+  ([704d9bc](https://github.com/MTES-MCT/monitor-ui/commit/704d9bc1bc0f0760c588d6485c209fb65795479b))
 
 ### Bug Fixes
 
-* **elements:** fix border color in IconButton ([b87aeaa](https://github.com/MTES-MCT/monitor-ui/commit/b87aeaa11b4513379b9973f39b82fa5093d22a8d))
-
+- **elements:** fix border color in IconButton
+  ([b87aeaa](https://github.com/MTES-MCT/monitor-ui/commit/b87aeaa11b4513379b9973f39b82fa5093d22a8d))
 
 ### Documentation
 
-* **storybook:** remove legacy Icons story ([d6a33bb](https://github.com/MTES-MCT/monitor-ui/commit/d6a33bb1e191d989ed5238008423fe326e104cb0))
+- **storybook:** remove legacy Icons story
+  ([d6a33bb](https://github.com/MTES-MCT/monitor-ui/commit/d6a33bb1e191d989ed5238008423fe326e104cb0))
 
 ## [16.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v16.3.0...v16.3.1) (2024-04-29)
 
-
 ### Bug Fixes
 
-* **components:** remove typo in Message class name ([acec040](https://github.com/MTES-MCT/monitor-ui/commit/acec04006303306ae4b79c1f9e8dbcc7f471d02b))
+- **components:** remove typo in Message class name
+  ([acec040](https://github.com/MTES-MCT/monitor-ui/commit/acec04006303306ae4b79c1f9e8dbcc7f471d02b))
 
 ## [16.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v16.2.0...v16.3.0) (2024-04-28)
 
-
 ### Features
 
-* **components:** add onClose prop to Banner ([eba610c](https://github.com/MTES-MCT/monitor-ui/commit/eba610cac5fc0f40702d0587a440eb06fddfd76f))
+- **components:** add onClose prop to Banner
+  ([eba610c](https://github.com/MTES-MCT/monitor-ui/commit/eba610cac5fc0f40702d0587a440eb06fddfd76f))
 
 ## [16.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v16.1.0...v16.2.0) (2024-04-28)
 
-
 ### Features
 
-* **components:** add onAutoClose prop to Banner ([a28e5fc](https://github.com/MTES-MCT/monitor-ui/commit/a28e5fc82e6c72c0f21de80a3d731fd70bfb5a20))
-
+- **components:** add onAutoClose prop to Banner
+  ([a28e5fc](https://github.com/MTES-MCT/monitor-ui/commit/a28e5fc82e6c72c0f21de80a3d731fd70bfb5a20))
 
 ### Bug Fixes
 
-* **components:** set left position to 0 in Banner ([1a91c7f](https://github.com/MTES-MCT/monitor-ui/commit/1a91c7f1494379677e54900172f7cab3b688741b))
+- **components:** set left position to 0 in Banner
+  ([1a91c7f](https://github.com/MTES-MCT/monitor-ui/commit/1a91c7f1494379677e54900172f7cab3b688741b))
 
 ## [16.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v16.0.0...v16.1.0) (2024-04-28)
 
-
 ### Features
 
-* **components:** add isFixed prop to Banner ([4830f91](https://github.com/MTES-MCT/monitor-ui/commit/4830f913fcde74b6d5c7520423ef5bb46d1b6305))
-* **components:** make isClosable, isCollapsible & isHiddenByDefault Banner props optional ([bbf07db](https://github.com/MTES-MCT/monitor-ui/commit/bbf07db7d7e2054ff37f4c40b439346f47d6363e))
-* **components:** make style prop transparent in Banner ([30beabd](https://github.com/MTES-MCT/monitor-ui/commit/30beabdb52a5119b86fc2efdfdb14223f6223360))
-
+- **components:** add isFixed prop to Banner
+  ([4830f91](https://github.com/MTES-MCT/monitor-ui/commit/4830f913fcde74b6d5c7520423ef5bb46d1b6305))
+- **components:** make isClosable, isCollapsible & isHiddenByDefault Banner props optional
+  ([bbf07db](https://github.com/MTES-MCT/monitor-ui/commit/bbf07db7d7e2054ff37f4c40b439346f47d6363e))
+- **components:** make style prop transparent in Banner
+  ([30beabd](https://github.com/MTES-MCT/monitor-ui/commit/30beabdb52a5119b86fc2efdfdb14223f6223360))
 
 ### Bug Fixes
 
-* **components:** remove position typo in Banner ([17143e1](https://github.com/MTES-MCT/monitor-ui/commit/17143e1e54004f9b2b7bf863f287c67d7c5b54d7))
-* **elements:** fix non-transparent border in tertiary IconButton ([a4ce7b4](https://github.com/MTES-MCT/monitor-ui/commit/a4ce7b4a7c0dd731e035c0631f3196d06ea9d242))
+- **components:** remove position typo in Banner
+  ([17143e1](https://github.com/MTES-MCT/monitor-ui/commit/17143e1e54004f9b2b7bf863f287c67d7c5b54d7))
+- **elements:** fix non-transparent border in tertiary IconButton
+  ([a4ce7b4](https://github.com/MTES-MCT/monitor-ui/commit/a4ce7b4a7c0dd731e035c0631f3196d06ea9d242))
 
 ## [16.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v15.0.1...v16.0.0) (2024-04-28)
 
-
 ### ⚠ BREAKING CHANGES
 
-* **entities:** `isEmailSubscriptionContact` & `isSmsSubscriptionContact` props are added to `ControlUnit.ControlUnitContact`.
+- **entities:** `isEmailSubscriptionContact` & `isSmsSubscriptionContact` props are added to
+  `ControlUnit.ControlUnitContact`.
 
 ### Features
 
-* **entities:** add new ControlUnitContact props ([437eb37](https://github.com/MTES-MCT/monitor-ui/commit/437eb37ebd5c5dc531514dcc9bbdafebb87cd987))
-
+- **entities:** add new ControlUnitContact props
+  ([437eb37](https://github.com/MTES-MCT/monitor-ui/commit/437eb37ebd5c5dc531514dcc9bbdafebb87cd987))
 
 ### Styles
 
-* **components:** specify solid border in Message ([78d2f40](https://github.com/MTES-MCT/monitor-ui/commit/78d2f4001cc67b77694ea8ae3d97167e091c5cd8))
-* **elements:** specify solid border in IconButton ([f7deba3](https://github.com/MTES-MCT/monitor-ui/commit/f7deba3abae79bf9f0de6c289b1999fba93fd1d9))
+- **components:** specify solid border in Message
+  ([78d2f40](https://github.com/MTES-MCT/monitor-ui/commit/78d2f4001cc67b77694ea8ae3d97167e091c5cd8))
+- **elements:** specify solid border in IconButton
+  ([f7deba3](https://github.com/MTES-MCT/monitor-ui/commit/f7deba3abae79bf9f0de6c289b1999fba93fd1d9))
 
 ## [15.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v15.0.0...v15.0.1) (2024-04-28)
 
-
 ### Bug Fixes
 
-* **components:** add missing default class name in Message ([462ebf3](https://github.com/MTES-MCT/monitor-ui/commit/462ebf3c16cf32f7de326e36b8d27d8eecb863ef))
-* **components:** replace span box with div in Message ([d4e31e1](https://github.com/MTES-MCT/monitor-ui/commit/d4e31e10ca98a7a89e1c3e132d1386e954a2f651))
+- **components:** add missing default class name in Message
+  ([462ebf3](https://github.com/MTES-MCT/monitor-ui/commit/462ebf3c16cf32f7de326e36b8d27d8eecb863ef))
+- **components:** replace span box with div in Message
+  ([d4e31e1](https://github.com/MTES-MCT/monitor-ui/commit/d4e31e10ca98a7a89e1c3e132d1386e954a2f651))
 
 ## [15.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v14.3.1...v15.0.0) (2024-04-28)
 
-
 ### ⚠ BREAKING CHANGES
 
-* **components:** The default `Message.level` is now "INFO" instead of "WARNING".
+- **components:** The default `Message.level` is now "INFO" instead of "WARNING".
 
 ### Features
 
-* **components:** add Icon & iconColor props to Message ([e8d1520](https://github.com/MTES-MCT/monitor-ui/commit/e8d1520db170594c767300a28fe355b3d2002483))
-
+- **components:** add Icon & iconColor props to Message
+  ([e8d1520](https://github.com/MTES-MCT/monitor-ui/commit/e8d1520db170594c767300a28fe355b3d2002483))
 
 ### Bug Fixes
 
-* **fields:** prevent textarea from being horizontally reduced ([76d3057](https://github.com/MTES-MCT/monitor-ui/commit/76d305748fa6afc09254efe3e77b66af4dd9ddbe))
-
+- **fields:** prevent textarea from being horizontally reduced
+  ([76d3057](https://github.com/MTES-MCT/monitor-ui/commit/76d305748fa6afc09254efe3e77b66af4dd9ddbe))
 
 ### Code Refactoring
 
-* **elements:** start cleaning & simplifying IconButton logic ([afffc00](https://github.com/MTES-MCT/monitor-ui/commit/afffc00a65218f9f8645de252ab476764baf0881))
-
+- **elements:** start cleaning & simplifying IconButton logic
+  ([afffc00](https://github.com/MTES-MCT/monitor-ui/commit/afffc00a65218f9f8645de252ab476764baf0881))
 
 ### Buid System & Dependencies
 
-* **dev-deps:** bunp storybook from 8.0.0-beta.4 to 8.0.9 ([b1b9aa1](https://github.com/MTES-MCT/monitor-ui/commit/b1b9aa113e4497c11ccdad057573747333d2632c))
+- **dev-deps:** bunp storybook from 8.0.0-beta.4 to 8.0.9
+  ([b1b9aa1](https://github.com/MTES-MCT/monitor-ui/commit/b1b9aa113e4497c11ccdad057573747333d2632c))
 
 ## [14.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v14.3.0...v14.3.1) (2024-04-22)
 
-
 ### Bug Fixes
 
-* **component:** display hide text in red when level isError in banner component ([1e10ef2](https://github.com/MTES-MCT/monitor-ui/commit/1e10ef2ea7fd0b1e7d07ef616980306aee416099))
+- **component:** display hide text in red when level isError in banner component
+  ([1e10ef2](https://github.com/MTES-MCT/monitor-ui/commit/1e10ef2ea7fd0b1e7d07ef616980306aee416099))
 
 ## [14.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v14.2.0...v14.3.0) (2024-04-19)
 
-
 ### Features
 
-* **components:** add automatic closing ([759c131](https://github.com/MTES-MCT/monitor-ui/commit/759c13101f048ecd7745480d775c6953d2a31229))
+- **components:** add automatic closing
+  ([759c131](https://github.com/MTES-MCT/monitor-ui/commit/759c13101f048ecd7745480d775c6953d2a31229))
 
 ## [14.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v14.1.0...v14.2.0) (2024-04-18)
 
-
 ### Features
 
-* **icons:** add new icons ([887c14e](https://github.com/MTES-MCT/monitor-ui/commit/887c14ee4c8246131f21f89d9391d9c010a88d9d))
+- **icons:** add new icons
+  ([887c14e](https://github.com/MTES-MCT/monitor-ui/commit/887c14ee4c8246131f21f89d9391d9c010a88d9d))
 
 ## [14.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v14.0.0...v14.1.0) (2024-04-17)
 
-
 ### Features
 
-* **components:** introduce Banner component ([537b641](https://github.com/MTES-MCT/monitor-ui/commit/537b641eadbe28efcbd2e8376b91b896e8e9b873))
-* **elements:** introduce LinkButton component ([c8c39e0](https://github.com/MTES-MCT/monitor-ui/commit/c8c39e0155cafed8ca2faad1413011408babf92a))
-
+- **components:** introduce Banner component
+  ([537b641](https://github.com/MTES-MCT/monitor-ui/commit/537b641eadbe28efcbd2e8376b91b896e8e9b873))
+- **elements:** introduce LinkButton component
+  ([c8c39e0](https://github.com/MTES-MCT/monitor-ui/commit/c8c39e0155cafed8ca2faad1413011408babf92a))
 
 ### Buid System & Dependencies
 
-* **deps:** bump tar from 6.2.0 to 6.2.1 ([2cc4fee](https://github.com/MTES-MCT/monitor-ui/commit/2cc4fee18acbd3d11f1477f011b96fcf910b6bb1))
-* **dev-deps:** bump vite from 5.1.4 to 5.1.7 in /e2e/release/sample ([76c1d53](https://github.com/MTES-MCT/monitor-ui/commit/76c1d537064f6ea01b00049d0001d2ef49774ab1))
+- **deps:** bump tar from 6.2.0 to 6.2.1
+  ([2cc4fee](https://github.com/MTES-MCT/monitor-ui/commit/2cc4fee18acbd3d11f1477f011b96fcf910b6bb1))
+- **dev-deps:** bump vite from 5.1.4 to 5.1.7 in /e2e/release/sample
+  ([76c1d53](https://github.com/MTES-MCT/monitor-ui/commit/76c1d537064f6ea01b00049d0001d2ef49774ab1))
 
 ## [14.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.10.0...v14.0.0) (2024-04-08)
 
-
 ### ⚠ BREAKING CHANGES
 
-* **elements:** delete bullet and bulletColor props
-* **icons:** delete Dot and DotFilled icons
+- **elements:** delete bullet and bulletColor props
+- **icons:** delete Dot and DotFilled icons
 
 ### Features
 
-* **colors:** add mayaBlue color ([319aea1](https://github.com/MTES-MCT/monitor-ui/commit/319aea159aaa18974ac348708d9febf92feb4011))
-* **elements:** delete bullet and bulletColor props to Tag component and add withCircleColor ([3c81afe](https://github.com/MTES-MCT/monitor-ui/commit/3c81afe8904749839c3eab0e4ab82c14a226a267))
-* **entities:** add RapportNav to MissionSourceEnum ([9b868fc](https://github.com/MTES-MCT/monitor-ui/commit/9b868fc88b5a0aad4690f557b3b054f7d5f11e05))
-* **icons:** add AttentionFilledClockDashed, Circle and CircleFilled icons and delete Dot and DotFilled icons ([496f11a](https://github.com/MTES-MCT/monitor-ui/commit/496f11ab78f2bb3320aaf9755b61bc23a6563bb1))
-* **symbols:** create Dot component ([fd6c0c3](https://github.com/MTES-MCT/monitor-ui/commit/fd6c0c3e4bbc2dec1901d4b59cd7d5e6e9377ee7))
-
+- **colors:** add mayaBlue color
+  ([319aea1](https://github.com/MTES-MCT/monitor-ui/commit/319aea159aaa18974ac348708d9febf92feb4011))
+- **elements:** delete bullet and bulletColor props to Tag component and add withCircleColor
+  ([3c81afe](https://github.com/MTES-MCT/monitor-ui/commit/3c81afe8904749839c3eab0e4ab82c14a226a267))
+- **entities:** add RapportNav to MissionSourceEnum
+  ([9b868fc](https://github.com/MTES-MCT/monitor-ui/commit/9b868fc88b5a0aad4690f557b3b054f7d5f11e05))
+- **icons:** add AttentionFilledClockDashed, Circle and CircleFilled icons and delete Dot and DotFilled icons
+  ([496f11a](https://github.com/MTES-MCT/monitor-ui/commit/496f11ab78f2bb3320aaf9755b61bc23a6563bb1))
+- **symbols:** create Dot component
+  ([fd6c0c3](https://github.com/MTES-MCT/monitor-ui/commit/fd6c0c3e4bbc2dec1901d4b59cd7d5e6e9377ee7))
 
 ### Bug Fixes
 
-* **icons:** fix controlUnit and controlUnitFilled icons ([6edfc83](https://github.com/MTES-MCT/monitor-ui/commit/6edfc83ddfef7b2ce5a08b1c21743589f77996fb))
-
+- **icons:** fix controlUnit and controlUnitFilled icons
+  ([6edfc83](https://github.com/MTES-MCT/monitor-ui/commit/6edfc83ddfef7b2ce5a08b1c21743589f77996fb))
 
 ### Buid System & Dependencies
 
-* **deps:** bump @babel/runtime from 7.22.15 to 7.24.4 ([43a0def](https://github.com/MTES-MCT/monitor-ui/commit/43a0defe621b6ab3e7771d75c1bfdee8ca8285be))
-* **deps:** bump express from 4.18.2 to 4.19.2 ([acb4412](https://github.com/MTES-MCT/monitor-ui/commit/acb44120a29e7313b383ab64eacad1c4bfd1fb76))
-* **dev-deps:** bump @tsconfig/vite-react in /e2e/release/sample ([5ee6ef7](https://github.com/MTES-MCT/monitor-ui/commit/5ee6ef73123ef2c4ddcd4827e3ff934215dd9e10))
-* **dev-deps:** bump @types/node in /e2e/release/sample ([2f49b9f](https://github.com/MTES-MCT/monitor-ui/commit/2f49b9ffedd2064a8d8671e08c0f6f4becaefc32))
-* **dev-deps:** bump @types/react from 18.2.37 to 18.2.74 ([5057fbf](https://github.com/MTES-MCT/monitor-ui/commit/5057fbf1b6c436f5e2db73c350d0eacdd68ef70e))
-* **dev-deps:** bump @types/react-dom in /e2e/release/sample ([555e2cf](https://github.com/MTES-MCT/monitor-ui/commit/555e2cf15b446eb7bb43a49546b8b8ec14853a1c))
-* **dev-deps:** bump cypress in /e2e/release/sample ([4d6445e](https://github.com/MTES-MCT/monitor-ui/commit/4d6445ef190aa1a22b013b5065df63c004e76492))
-* **dev-deps:** bump jest and @types/jest ([b915184](https://github.com/MTES-MCT/monitor-ui/commit/b91518483233ab98690540baf24ef0eac187f945))
-* **dev-deps:** bump prettier from 3.1.1 to 3.2.5 ([ccb5b90](https://github.com/MTES-MCT/monitor-ui/commit/ccb5b908a503af59b44497ac27abc6519762ab3b))
-* **dev-deps:** bump rsuite in /e2e/release/sample ([c0f7606](https://github.com/MTES-MCT/monitor-ui/commit/c0f76061bed49037edbd3d9988b90e1e3b469a0f))
-* **dev-deps:** bump vite from 5.1.4 to 5.1.7 ([71faafb](https://github.com/MTES-MCT/monitor-ui/commit/71faafbd4aaf3ea3b5b8436e4af71ab4810e1fc5))
-* **dev-deps:** bump yup from 1.3.3 to 1.4.0 ([92c906d](https://github.com/MTES-MCT/monitor-ui/commit/92c906dc31b16ab2758d106d12ef15684e9eaaae))
+- **deps:** bump @babel/runtime from 7.22.15 to 7.24.4
+  ([43a0def](https://github.com/MTES-MCT/monitor-ui/commit/43a0defe621b6ab3e7771d75c1bfdee8ca8285be))
+- **deps:** bump express from 4.18.2 to 4.19.2
+  ([acb4412](https://github.com/MTES-MCT/monitor-ui/commit/acb44120a29e7313b383ab64eacad1c4bfd1fb76))
+- **dev-deps:** bump @tsconfig/vite-react in /e2e/release/sample
+  ([5ee6ef7](https://github.com/MTES-MCT/monitor-ui/commit/5ee6ef73123ef2c4ddcd4827e3ff934215dd9e10))
+- **dev-deps:** bump @types/node in /e2e/release/sample
+  ([2f49b9f](https://github.com/MTES-MCT/monitor-ui/commit/2f49b9ffedd2064a8d8671e08c0f6f4becaefc32))
+- **dev-deps:** bump @types/react from 18.2.37 to 18.2.74
+  ([5057fbf](https://github.com/MTES-MCT/monitor-ui/commit/5057fbf1b6c436f5e2db73c350d0eacdd68ef70e))
+- **dev-deps:** bump @types/react-dom in /e2e/release/sample
+  ([555e2cf](https://github.com/MTES-MCT/monitor-ui/commit/555e2cf15b446eb7bb43a49546b8b8ec14853a1c))
+- **dev-deps:** bump cypress in /e2e/release/sample
+  ([4d6445e](https://github.com/MTES-MCT/monitor-ui/commit/4d6445ef190aa1a22b013b5065df63c004e76492))
+- **dev-deps:** bump jest and @types/jest
+  ([b915184](https://github.com/MTES-MCT/monitor-ui/commit/b91518483233ab98690540baf24ef0eac187f945))
+- **dev-deps:** bump prettier from 3.1.1 to 3.2.5
+  ([ccb5b90](https://github.com/MTES-MCT/monitor-ui/commit/ccb5b908a503af59b44497ac27abc6519762ab3b))
+- **dev-deps:** bump rsuite in /e2e/release/sample
+  ([c0f7606](https://github.com/MTES-MCT/monitor-ui/commit/c0f76061bed49037edbd3d9988b90e1e3b469a0f))
+- **dev-deps:** bump vite from 5.1.4 to 5.1.7
+  ([71faafb](https://github.com/MTES-MCT/monitor-ui/commit/71faafbd4aaf3ea3b5b8436e4af71ab4810e1fc5))
+- **dev-deps:** bump yup from 1.3.3 to 1.4.0
+  ([92c906d](https://github.com/MTES-MCT/monitor-ui/commit/92c906dc31b16ab2758d106d12ef15684e9eaaae))
 
 ## [13.10.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.9.0...v13.10.0) (2024-03-25)
 
-
 ### Features
 
-* **icons:** introduce title props on icons for additional info on hover ([5849aa1](https://github.com/MTES-MCT/monitor-ui/commit/5849aa103ed6039e31b92b06ed4f0b70f86a43e7))
-* **symbols:** rework ExclamationPoint to resize dynamically ([ce6a398](https://github.com/MTES-MCT/monitor-ui/commit/ce6a3981a2e5544cf630a7185bce4171a648140e))
+- **icons:** introduce title props on icons for additional info on hover
+  ([5849aa1](https://github.com/MTES-MCT/monitor-ui/commit/5849aa103ed6039e31b92b06ed4f0b70f86a43e7))
+- **symbols:** rework ExclamationPoint to resize dynamically
+  ([ce6a398](https://github.com/MTES-MCT/monitor-ui/commit/ce6a3981a2e5544cf630a7185bce4171a648140e))
 
 ## [13.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.8.0...v13.9.0) (2024-03-24)
 
-
 ### Features
 
-* **cypress:** handle searchable MultiCascader in fill() command ([b943f93](https://github.com/MTES-MCT/monitor-ui/commit/b943f93466b491b5f8afe9cf934e43de55d43071))
-
+- **cypress:** handle searchable MultiCascader in fill() command
+  ([b943f93](https://github.com/MTES-MCT/monitor-ui/commit/b943f93466b491b5f8afe9cf934e43de55d43071))
 
 ### Bug Fixes
 
-* **cypress:** clear CheckPicker search input in fill() command ([899842c](https://github.com/MTES-MCT/monitor-ui/commit/899842cf53195f9d624144a7368a530726adff8b))
+- **cypress:** clear CheckPicker search input in fill() command
+  ([899842c](https://github.com/MTES-MCT/monitor-ui/commit/899842cf53195f9d624144a7368a530726adff8b))
 
 ## [13.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.7.4...v13.8.0) (2024-03-22)
 
-
 ### Features
 
-* **utils:** add getSelectedTreeOptionFromTreeOptionValue() ([551079a](https://github.com/MTES-MCT/monitor-ui/commit/551079a1be73698784f7540476bfa44e1a9d32f2))
-* **utils:** rename getSelectedTreeOptionFromTreeOptionValue() to getSelectedOptionFromOptionValueInTree() ([12b918e](https://github.com/MTES-MCT/monitor-ui/commit/12b918e653a56cbd845c9003e1690ebf32ce70ec))
+- **utils:** add getSelectedTreeOptionFromTreeOptionValue()
+  ([551079a](https://github.com/MTES-MCT/monitor-ui/commit/551079a1be73698784f7540476bfa44e1a9d32f2))
+- **utils:** rename getSelectedTreeOptionFromTreeOptionValue() to getSelectedOptionFromOptionValueInTree()
+  ([12b918e](https://github.com/MTES-MCT/monitor-ui/commit/12b918e653a56cbd845c9003e1690ebf32ce70ec))
 
 ## [13.7.4](https://github.com/MTES-MCT/monitor-ui/compare/v13.7.3...v13.7.4) (2024-03-21)
 
-
 ### Bug Fixes
 
-* **e2e:** fix e2e MultiRadio test with boolean ([5344063](https://github.com/MTES-MCT/monitor-ui/commit/5344063517f3740fea062600522b6cb76094533f))
-* **fields:** fix MultiRadio with booleans ([cd25778](https://github.com/MTES-MCT/monitor-ui/commit/cd2577800e9d9a0fcc49034f522bb1998524ad66))
+- **e2e:** fix e2e MultiRadio test with boolean
+  ([5344063](https://github.com/MTES-MCT/monitor-ui/commit/5344063517f3740fea062600522b6cb76094533f))
+- **fields:** fix MultiRadio with booleans
+  ([cd25778](https://github.com/MTES-MCT/monitor-ui/commit/cd2577800e9d9a0fcc49034f522bb1998524ad66))
 
 ## [13.7.3](https://github.com/MTES-MCT/monitor-ui/compare/v13.7.2...v13.7.3) (2024-03-20)
 
-
 ### Bug Fixes
 
-* **cypress:** handle searchable MultiSelect in fill() command ([9a66bb1](https://github.com/MTES-MCT/monitor-ui/commit/9a66bb19b07b482dbab49bdaf7c96d359e7aa1e6))
-* **fields:** the CoordinatesInput now displays the * when isRequired ([e38c209](https://github.com/MTES-MCT/monitor-ui/commit/e38c209f06a221b14a1a9917fe3925048fbea405))
+- **cypress:** handle searchable MultiSelect in fill() command
+  ([9a66bb1](https://github.com/MTES-MCT/monitor-ui/commit/9a66bb19b07b482dbab49bdaf7c96d359e7aa1e6))
+- **fields:** the CoordinatesInput now displays the \* when isRequired
+  ([e38c209](https://github.com/MTES-MCT/monitor-ui/commit/e38c209f06a221b14a1a9917fe3925048fbea405))
 
 ## [13.7.2](https://github.com/MTES-MCT/monitor-ui/compare/v13.7.1...v13.7.2) (2024-03-18)
 
-
 ### Bug Fixes
 
-* **components:** update Dialog padding ([2cacb4e](https://github.com/MTES-MCT/monitor-ui/commit/2cacb4ed492415971ac61a05f8903b9ad1edc3f2))
+- **components:** update Dialog padding
+  ([2cacb4e](https://github.com/MTES-MCT/monitor-ui/commit/2cacb4ed492415971ac61a05f8903b9ad1edc3f2))
 
 ## [13.7.1](https://github.com/MTES-MCT/monitor-ui/compare/v13.7.0...v13.7.1) (2024-03-15)
 
-
 ### Bug Fixes
 
-* **tables:** stop click event propagation in RowCheckbox ([7e218ec](https://github.com/MTES-MCT/monitor-ui/commit/7e218eccc1d84c51e5c342c5eb4bfef20744e9f0))
-* **utils:** remove conditional types from getFilteredCollection() ([472e11f](https://github.com/MTES-MCT/monitor-ui/commit/472e11fe02b65ae4295a8b0a2322ff14af370365))
+- **tables:** stop click event propagation in RowCheckbox
+  ([7e218ec](https://github.com/MTES-MCT/monitor-ui/commit/7e218eccc1d84c51e5c342c5eb4bfef20744e9f0))
+- **utils:** remove conditional types from getFilteredCollection()
+  ([472e11f](https://github.com/MTES-MCT/monitor-ui/commit/472e11fe02b65ae4295a8b0a2322ff14af370365))
 
 ## [13.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.6.0...v13.7.0) (2024-03-15)
 
-
 ### Features
 
-* **utils:** add getFilteredCollection() ([47eb5ff](https://github.com/MTES-MCT/monitor-ui/commit/47eb5ff8dc75a0b5c3dfc8ea081a21a0aa16840f))
+- **utils:** add getFilteredCollection()
+  ([47eb5ff](https://github.com/MTES-MCT/monitor-ui/commit/47eb5ff8dc75a0b5c3dfc8ea081a21a0aa16840f))
 
 ## [13.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.5.0...v13.6.0) (2024-03-14)
 
-
 ### Features
 
-* **utils:** include undefined value in getMaybeBooleanFromRichBoolean() ([31c7f5f](https://github.com/MTES-MCT/monitor-ui/commit/31c7f5f8f7949a96536203e300e530471169489b))
-
+- **utils:** include undefined value in getMaybeBooleanFromRichBoolean()
+  ([31c7f5f](https://github.com/MTES-MCT/monitor-ui/commit/31c7f5f8f7949a96536203e300e530471169489b))
 
 ### Buid System & Dependencies
 
-* **deps:** bump follow-redirects from 1.15.5 to 1.15.6 ([3b8002c](https://github.com/MTES-MCT/monitor-ui/commit/3b8002c29ddd0b5e9108440b40cfd1875eae4d9c))
+- **deps:** bump follow-redirects from 1.15.5 to 1.15.6
+  ([3b8002c](https://github.com/MTES-MCT/monitor-ui/commit/3b8002c29ddd0b5e9108440b40cfd1875eae4d9c))
 
 ## [13.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.4.0...v13.5.0) (2024-03-14)
 
-
 ### Features
 
-* **utils:** add getMaybeBooleanFromRichBoolean() ([f4d7b59](https://github.com/MTES-MCT/monitor-ui/commit/f4d7b5982ab78c4fc7f762f0b276173af95b0a95))
+- **utils:** add getMaybeBooleanFromRichBoolean()
+  ([f4d7b59](https://github.com/MTES-MCT/monitor-ui/commit/f4d7b5982ab78c4fc7f762f0b276173af95b0a95))
 
 ## [13.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.3.2...v13.4.0) (2024-03-14)
 
-
 ### Features
 
-* **icons:** add ControlUnitFilled icon and delete useless icons ([3fe4d30](https://github.com/MTES-MCT/monitor-ui/commit/3fe4d305a96dc34a7bf834ad3067f80f10df6fdf))
-
+- **icons:** add ControlUnitFilled icon and delete useless icons
+  ([3fe4d30](https://github.com/MTES-MCT/monitor-ui/commit/3fe4d305a96dc34a7bf834ad3067f80f10df6fdf))
 
 ### Bug Fixes
 
-* **fields:** fix style ([f785c43](https://github.com/MTES-MCT/monitor-ui/commit/f785c43b6e7d05e2d120b2837b9ae32e8aea11f7))
+- **fields:** fix style
+  ([f785c43](https://github.com/MTES-MCT/monitor-ui/commit/f785c43b6e7d05e2d120b2837b9ae32e8aea11f7))
 
 ## [13.3.2](https://github.com/MTES-MCT/monitor-ui/compare/v13.3.1...v13.3.2) (2024-03-13)
 
-
 ### Bug Fixes
 
-* **components:** update some style and fix typo ([9a0d16a](https://github.com/MTES-MCT/monitor-ui/commit/9a0d16a42fcbf23b105f9e72cd542cb0a9d28792))
-* **fields:** prevent Textarea resizing from exceeding 100% parent width ([5323f0c](https://github.com/MTES-MCT/monitor-ui/commit/5323f0c8d20d8a7668573adde5e6af5645ab9be3))
+- **components:** update some style and fix typo
+  ([9a0d16a](https://github.com/MTES-MCT/monitor-ui/commit/9a0d16a42fcbf23b105f9e72cd542cb0a9d28792))
+- **fields:** prevent Textarea resizing from exceeding 100% parent width
+  ([5323f0c](https://github.com/MTES-MCT/monitor-ui/commit/5323f0c8d20d8a7668573adde5e6af5645ab9be3))
 
 ## [13.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v13.3.0...v13.3.1) (2024-03-08)
 
-
 ### Bug Fixes
 
-* **cypress:** fix function waitForLastRequestFunction ([7ad541d](https://github.com/MTES-MCT/monitor-ui/commit/7ad541d54f5d18966c97ecad5779a2668b75678f))
+- **cypress:** fix function waitForLastRequestFunction
+  ([7ad541d](https://github.com/MTES-MCT/monitor-ui/commit/7ad541d54f5d18966c97ecad5779a2668b75678f))
 
 ## [13.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.2.0...v13.3.0) (2024-03-08)
 
-
 ### Features
 
-* **cypress:** add delay option to fill command ([592b941](https://github.com/MTES-MCT/monitor-ui/commit/592b941daebf6a5deb8d68c110adc3b3900bb71b))
+- **cypress:** add delay option to fill command
+  ([592b941](https://github.com/MTES-MCT/monitor-ui/commit/592b941daebf6a5deb8d68c110adc3b3900bb71b))
 
 ## [13.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.1.0...v13.2.0) (2024-03-07)
 
-
 ### Features
 
-* **utils:** delete "(UTC)"  from humanizePastDate function ([91507d1](https://github.com/MTES-MCT/monitor-ui/commit/91507d17426190f38fddba32c03c50937c0ba6f2))
+- **utils:** delete "(UTC)" from humanizePastDate function
+  ([91507d1](https://github.com/MTES-MCT/monitor-ui/commit/91507d17426190f38fddba32c03c50937c0ba6f2))
 
 ## [13.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v13.0.0...v13.1.0) (2024-03-07)
 
-
 ### Features
 
-* **fields:** add isRequired prop and update label color on error ([88b1bd1](https://github.com/MTES-MCT/monitor-ui/commit/88b1bd10c6c989bffab5125994775c5d0ca23139))
-
+- **fields:** add isRequired prop and update label color on error
+  ([88b1bd1](https://github.com/MTES-MCT/monitor-ui/commit/88b1bd10c6c989bffab5125994775c5d0ca23139))
 
 ### Bug Fixes
 
-* **components:** fix Dropdown border-radius ([77afbd1](https://github.com/MTES-MCT/monitor-ui/commit/77afbd15abc0cbc4297fdebb8079be80107f8775))
+- **components:** fix Dropdown border-radius
+  ([77afbd1](https://github.com/MTES-MCT/monitor-ui/commit/77afbd15abc0cbc4297fdebb8079be80107f8775))
 
 ## [13.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v12.4.0...v13.0.0) (2024-03-01)
 
-
 ### ⚠ BREAKING CHANGES
 
-* **github:** - `baseContainer` prop has been removed in `MultiCascader`.
-- `baseContainer` prop has been removed in `MultiSelect`.
-- `baseContainer` prop has been removed in `Search`.
+- **github:** - `baseContainer` prop has been removed in `MultiCascader`.
+
+* `baseContainer` prop has been removed in `MultiSelect`.
+* `baseContainer` prop has been removed in `Search`.
 
 ### Buid System & Dependencies
 
-* **tsconfig:** exclude coverage/ directory ([f5a42a8](https://github.com/MTES-MCT/monitor-ui/commit/f5a42a87195b4a9181b48e2bbb4f81dc3531178f))
-* **tsconfig:** migrate to bundler module resolution & enable incremental compilation ([c677f77](https://github.com/MTES-MCT/monitor-ui/commit/c677f77cee788683a30681ed48659ab65fb09f9a))
-* **vite:** set projects in viteTsconfigPaths to silence e2e release sample errors ([dfa7bfa](https://github.com/MTES-MCT/monitor-ui/commit/dfa7bfae8f7004ca45ff6a06bf9b61e7d8a214f3))
-* **vite:** use ts extension instead of mts for config ([4eaaedc](https://github.com/MTES-MCT/monitor-ui/commit/4eaaedc923127dc5cf060bd383832361853598ab))
-
+- **tsconfig:** exclude coverage/ directory
+  ([f5a42a8](https://github.com/MTES-MCT/monitor-ui/commit/f5a42a87195b4a9181b48e2bbb4f81dc3531178f))
+- **tsconfig:** migrate to bundler module resolution & enable incremental compilation
+  ([c677f77](https://github.com/MTES-MCT/monitor-ui/commit/c677f77cee788683a30681ed48659ab65fb09f9a))
+- **vite:** set projects in viteTsconfigPaths to silence e2e release sample errors
+  ([dfa7bfa](https://github.com/MTES-MCT/monitor-ui/commit/dfa7bfae8f7004ca45ff6a06bf9b61e7d8a214f3))
+- **vite:** use ts extension instead of mts for config
+  ([4eaaedc](https://github.com/MTES-MCT/monitor-ui/commit/4eaaedc923127dc5cf060bd383832361853598ab))
 
 ### Continuous Integration
 
-* **github:** fix typo in E2E Test job ([26f4809](https://github.com/MTES-MCT/monitor-ui/commit/26f4809070878c7438ea7daaeb135de7cc0e89c3))
+- **github:** fix typo in E2E Test job
+  ([26f4809](https://github.com/MTES-MCT/monitor-ui/commit/26f4809070878c7438ea7daaeb135de7cc0e89c3))
 
 ## [12.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v12.3.0...v12.4.0) (2024-03-01)
 
-
 ### Buid System & Dependencies
 
-* **dev-deps:** bump @semantic-release/github from 9.0.4 to 9.2.6 ([4a92e0f](https://github.com/MTES-MCT/monitor-ui/commit/4a92e0f9ffd2870bef0551e3286086d9416892b7))
-* **dev-deps:** bump @sentry/react in /e2e/release/sample ([0aa779b](https://github.com/MTES-MCT/monitor-ui/commit/0aa779b7cf001e6041c04674ba8c5aadccfc13ab))
-* **dev-deps:** bump @swc/core from 1.4.1 to 1.4.2 ([6a5334b](https://github.com/MTES-MCT/monitor-ui/commit/6a5334b9d0ea83ff80d2b3795be5547d2acd8ab4))
-* **dev-deps:** bump @types/node in /e2e/release/sample ([9c1d210](https://github.com/MTES-MCT/monitor-ui/commit/9c1d2106d810dd2bb7983e438d6351f248d6f04a))
-* **dev-deps:** bump @types/react in /e2e/release/sample ([d7aa8c6](https://github.com/MTES-MCT/monitor-ui/commit/d7aa8c6bd36c754530e5ab391a3a0ceca3294121))
-* **dev-deps:** bump date-fns from 2.30.0 to 3.3.1 ([eba1fae](https://github.com/MTES-MCT/monitor-ui/commit/eba1fae77336f59ed2afe65f599dcc42f5d5a735))
-* **dev-deps:** bump eslint-plugin-prettier from 5.1.2 to 5.1.3 ([e07c9ff](https://github.com/MTES-MCT/monitor-ui/commit/e07c9ff21112665014d47c2a6f7301f89489929d))
-* **dev-deps:** bump rsuite in /e2e/release/sample ([0c361fa](https://github.com/MTES-MCT/monitor-ui/commit/0c361fa39d968c02537a26702cd8fc49d9ea59e3))
-* **dev-deps:** bump vite from 5.0.12 to 5.1.4 in /e2e/release/sample ([ddcbb71](https://github.com/MTES-MCT/monitor-ui/commit/ddcbb71f3efc1d665cdcf7f42f71757501e14473))
-* **tsconfig:** remove direct index paths which break release build ([e65c08f](https://github.com/MTES-MCT/monitor-ui/commit/e65c08f08ccf9b07b6086ad160888aac0d262105))
-
+- **dev-deps:** bump @semantic-release/github from 9.0.4 to 9.2.6
+  ([4a92e0f](https://github.com/MTES-MCT/monitor-ui/commit/4a92e0f9ffd2870bef0551e3286086d9416892b7))
+- **dev-deps:** bump @sentry/react in /e2e/release/sample
+  ([0aa779b](https://github.com/MTES-MCT/monitor-ui/commit/0aa779b7cf001e6041c04674ba8c5aadccfc13ab))
+- **dev-deps:** bump @swc/core from 1.4.1 to 1.4.2
+  ([6a5334b](https://github.com/MTES-MCT/monitor-ui/commit/6a5334b9d0ea83ff80d2b3795be5547d2acd8ab4))
+- **dev-deps:** bump @types/node in /e2e/release/sample
+  ([9c1d210](https://github.com/MTES-MCT/monitor-ui/commit/9c1d2106d810dd2bb7983e438d6351f248d6f04a))
+- **dev-deps:** bump @types/react in /e2e/release/sample
+  ([d7aa8c6](https://github.com/MTES-MCT/monitor-ui/commit/d7aa8c6bd36c754530e5ab391a3a0ceca3294121))
+- **dev-deps:** bump date-fns from 2.30.0 to 3.3.1
+  ([eba1fae](https://github.com/MTES-MCT/monitor-ui/commit/eba1fae77336f59ed2afe65f599dcc42f5d5a735))
+- **dev-deps:** bump eslint-plugin-prettier from 5.1.2 to 5.1.3
+  ([e07c9ff](https://github.com/MTES-MCT/monitor-ui/commit/e07c9ff21112665014d47c2a6f7301f89489929d))
+- **dev-deps:** bump rsuite in /e2e/release/sample
+  ([0c361fa](https://github.com/MTES-MCT/monitor-ui/commit/0c361fa39d968c02537a26702cd8fc49d9ea59e3))
+- **dev-deps:** bump vite from 5.0.12 to 5.1.4 in /e2e/release/sample
+  ([ddcbb71](https://github.com/MTES-MCT/monitor-ui/commit/ddcbb71f3efc1d665cdcf7f42f71757501e14473))
+- **tsconfig:** remove direct index paths which break release build
+  ([e65c08f](https://github.com/MTES-MCT/monitor-ui/commit/e65c08f08ccf9b07b6086ad160888aac0d262105))
 
 ### Features
 
-* **field:** add size prop to Search ([d395e49](https://github.com/MTES-MCT/monitor-ui/commit/d395e499371ea20c6155b218a35f30cdcff6a6d1))
-* **fields:** add isRightAligned prop to DatePicker ([d80ce28](https://github.com/MTES-MCT/monitor-ui/commit/d80ce28c1766f55b6029656713520181d01da6e7))
-* **fields:** add popupWidth prop to pickers ([aa8b550](https://github.com/MTES-MCT/monitor-ui/commit/aa8b5501c1232d796371fbc93a21e3f9b505d832))
-* **utils:** add getSelectedOptionFromOptionValue() ([6a80172](https://github.com/MTES-MCT/monitor-ui/commit/6a801720423f6509954d1a174f26eebd858460ec))
-
+- **field:** add size prop to Search
+  ([d395e49](https://github.com/MTES-MCT/monitor-ui/commit/d395e499371ea20c6155b218a35f30cdcff6a6d1))
+- **fields:** add isRightAligned prop to DatePicker
+  ([d80ce28](https://github.com/MTES-MCT/monitor-ui/commit/d80ce28c1766f55b6029656713520181d01da6e7))
+- **fields:** add popupWidth prop to pickers
+  ([aa8b550](https://github.com/MTES-MCT/monitor-ui/commit/aa8b5501c1232d796371fbc93a21e3f9b505d832))
+- **utils:** add getSelectedOptionFromOptionValue()
+  ([6a80172](https://github.com/MTES-MCT/monitor-ui/commit/6a801720423f6509954d1a174f26eebd858460ec))
 
 ### Code Refactoring
 
-* remove ramda ([e3453a2](https://github.com/MTES-MCT/monitor-ui/commit/e3453a2958bf2d62461fb2d71fa1a5c74f4ebe8e))
+- remove ramda ([e3453a2](https://github.com/MTES-MCT/monitor-ui/commit/e3453a2958bf2d62461fb2d71fa1a5c74f4ebe8e))
 
 ## [12.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v12.2.1...v12.3.0) (2024-02-29)
 
-
 ### Features
 
-* **cypress:** add force option to fill() command ([538615f](https://github.com/MTES-MCT/monitor-ui/commit/538615f64fbdbfce3cb4b71eabb4bea5c9c9b919))
-
+- **cypress:** add force option to fill() command
+  ([538615f](https://github.com/MTES-MCT/monitor-ui/commit/538615f64fbdbfce3cb4b71eabb4bea5c9c9b919))
 
 ### Bug Fixes
 
-* **cypress:** type fill() command as non-chainable ([d4b5c35](https://github.com/MTES-MCT/monitor-ui/commit/d4b5c3568177b44f591462e2ecbf3ba9a39fdb64))
+- **cypress:** type fill() command as non-chainable
+  ([d4b5c35](https://github.com/MTES-MCT/monitor-ui/commit/d4b5c3568177b44f591462e2ecbf3ba9a39fdb64))
 
 ## [12.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v12.2.0...v12.2.1) (2024-02-29)
 
-
 ### Bug Fixes
 
-* **cypress:** widen input type for fill() on TextInput ([e7f9984](https://github.com/MTES-MCT/monitor-ui/commit/e7f998474148d970cc81b9dee23740a991dc1d5b))
+- **cypress:** widen input type for fill() on TextInput
+  ([e7f9984](https://github.com/MTES-MCT/monitor-ui/commit/e7f998474148d970cc81b9dee23740a991dc1d5b))
 
 ## [12.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v12.1.3...v12.2.0) (2024-02-29)
 
-
 ### Features
 
-* **cypress:** add forceCheck() command ([ab382b7](https://github.com/MTES-MCT/monitor-ui/commit/ab382b76e6569e80f305c3abffe9133a2d5cac0c))
-* **cypress:** add forceClear() command ([ebd5ad8](https://github.com/MTES-MCT/monitor-ui/commit/ebd5ad86249aaf333ce088b06561b5827bd8a156))
-* **cypress:** add forceType() command ([c6017a1](https://github.com/MTES-MCT/monitor-ui/commit/c6017a1b3c0f480b5595563102ff1778d1961841))
-* **cypress:** add forceUncheck() command ([d75171a](https://github.com/MTES-MCT/monitor-ui/commit/d75171ab811bd7cbebd61efa617b4d67c2ea874b))
-
+- **cypress:** add forceCheck() command
+  ([ab382b7](https://github.com/MTES-MCT/monitor-ui/commit/ab382b76e6569e80f305c3abffe9133a2d5cac0c))
+- **cypress:** add forceClear() command
+  ([ebd5ad8](https://github.com/MTES-MCT/monitor-ui/commit/ebd5ad86249aaf333ce088b06561b5827bd8a156))
+- **cypress:** add forceType() command
+  ([c6017a1](https://github.com/MTES-MCT/monitor-ui/commit/c6017a1b3c0f480b5595563102ff1778d1961841))
+- **cypress:** add forceUncheck() command
+  ([d75171a](https://github.com/MTES-MCT/monitor-ui/commit/d75171ab811bd7cbebd61efa617b4d67c2ea874b))
 
 ### Bug Fixes
 
-* **cypress:** force all actions in fill() subcommands ([359b752](https://github.com/MTES-MCT/monitor-ui/commit/359b752fbc4186ebfb9e9d2d1a6ba7b8114a6249))
-* **cypress:** upse native uncheck for fill() on MultiCheckbox ([f9e2ef9](https://github.com/MTES-MCT/monitor-ui/commit/f9e2ef9a7b80834d28034f4f3303590ae1ee8e9d))
+- **cypress:** force all actions in fill() subcommands
+  ([359b752](https://github.com/MTES-MCT/monitor-ui/commit/359b752fbc4186ebfb9e9d2d1a6ba7b8114a6249))
+- **cypress:** upse native uncheck for fill() on MultiCheckbox
+  ([f9e2ef9](https://github.com/MTES-MCT/monitor-ui/commit/f9e2ef9a7b80834d28034f4f3303590ae1ee8e9d))
 
 ## [12.1.3](https://github.com/MTES-MCT/monitor-ui/compare/v12.1.2...v12.1.3) (2024-02-29)
 
-
 ### Buid System & Dependencies
 
-* **dev-deps:** bump @commitlint/config-conventional ([45fcba7](https://github.com/MTES-MCT/monitor-ui/commit/45fcba7f342dc70c4e29b3cd3d3cb2b0b02cc69a))
-
+- **dev-deps:** bump @commitlint/config-conventional
+  ([45fcba7](https://github.com/MTES-MCT/monitor-ui/commit/45fcba7f342dc70c4e29b3cd3d3cb2b0b02cc69a))
 
 ### Documentation
 
-* **readme:** add Cypress badge ([f580fb9](https://github.com/MTES-MCT/monitor-ui/commit/f580fb93db6c38d38a6260a22697780ab22c5757))
-* **readme:** add documentation badge ([5057133](https://github.com/MTES-MCT/monitor-ui/commit/5057133e7431edcbdd182ff1bbc6dc82aef7a991))
-
+- **readme:** add Cypress badge
+  ([f580fb9](https://github.com/MTES-MCT/monitor-ui/commit/f580fb93db6c38d38a6260a22697780ab22c5757))
+- **readme:** add documentation badge
+  ([5057133](https://github.com/MTES-MCT/monitor-ui/commit/5057133e7431edcbdd182ff1bbc6dc82aef7a991))
 
 ### Bug Fixes
 
-* **cypress:** fix forceClick() ability to be properly chained with other commands ([ffc733c](https://github.com/MTES-MCT/monitor-ui/commit/ffc733c22999f47a65408bb45a6728df26828839))
-* **cypress:** use forced click instead of click in fill() on MultiSelect ([b14f63a](https://github.com/MTES-MCT/monitor-ui/commit/b14f63a890ce355ed66d3b64e22f65d2936c40cb))
+- **cypress:** fix forceClick() ability to be properly chained with other commands
+  ([ffc733c](https://github.com/MTES-MCT/monitor-ui/commit/ffc733c22999f47a65408bb45a6728df26828839))
+- **cypress:** use forced click instead of click in fill() on MultiSelect
+  ([b14f63a](https://github.com/MTES-MCT/monitor-ui/commit/b14f63a890ce355ed66d3b64e22f65d2936c40cb))
 
 ## [12.1.2](https://github.com/MTES-MCT/monitor-ui/compare/v12.1.1...v12.1.2) (2024-02-28)
 
-
 ### Bug Fixes
 
-* **cypress:** target right input during fill() search for MultiSelect ([1692c0b](https://github.com/MTES-MCT/monitor-ui/commit/1692c0bce324eeb172c58d77e0bb268d918226c8))
+- **cypress:** target right input during fill() search for MultiSelect
+  ([1692c0b](https://github.com/MTES-MCT/monitor-ui/commit/1692c0bce324eeb172c58d77e0bb268d918226c8))
 
 ## [12.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v12.1.0...v12.1.1) (2024-02-28)
 
-
 ### Bug Fixes
 
-* **cypress:** fix inner findElementParentBySelector() util ([a2dc379](https://github.com/MTES-MCT/monitor-ui/commit/a2dc37935989c54f4151d5fc47fde6956707cdf0))
-* **cypress:** handle nested fieldsets in fill() command ([b5cb9f2](https://github.com/MTES-MCT/monitor-ui/commit/b5cb9f2ae1dff27e9d17d76022299ba36e9b2f19))
-
+- **cypress:** fix inner findElementParentBySelector() util
+  ([a2dc379](https://github.com/MTES-MCT/monitor-ui/commit/a2dc37935989c54f4151d5fc47fde6956707cdf0))
+- **cypress:** handle nested fieldsets in fill() command
+  ([b5cb9f2](https://github.com/MTES-MCT/monitor-ui/commit/b5cb9f2ae1dff27e9d17d76022299ba36e9b2f19))
 
 ### Buid System & Dependencies
 
-* **dev-deps:** bump @commitlint/cli from 18.4.3 to 19.0.1 ([65e3b1c](https://github.com/MTES-MCT/monitor-ui/commit/65e3b1cbf6ff50ab61683e649638ca982074e993))
-* **dev-deps:** bump @storybook/addon-storysource ([e5de861](https://github.com/MTES-MCT/monitor-ui/commit/e5de861a5710c119a68d17ca4c1e077893f79aef))
-* **dev-deps:** bump @types/node in /e2e/release/sample ([e2f88b0](https://github.com/MTES-MCT/monitor-ui/commit/e2f88b0db3e73c9336c232e9e09f7b8cb614c729))
-* **dev-deps:** bump @types/react in /e2e/release/sample ([214db7a](https://github.com/MTES-MCT/monitor-ui/commit/214db7a3a0bcac96e329808fa46d297954e35ec9))
-* **dev-deps:** bump @types/react-dom in /e2e/release/sample ([8e74dd4](https://github.com/MTES-MCT/monitor-ui/commit/8e74dd4bf76753db7885244e7ebd2397faf186a1))
-* **dev-deps:** bump cypress in /e2e/release/sample ([16e73ad](https://github.com/MTES-MCT/monitor-ui/commit/16e73add39ef203ea48ed782414d4f13748fa35b))
-* **dev-deps:** bump prettier in /e2e/release/sample ([34d3b00](https://github.com/MTES-MCT/monitor-ui/commit/34d3b005e4a263fe6251a936282ab359c2cbb7ce))
-* **dev-deps:** bump rollup-plugin-import-css from 3.4.0 to 3.5.0 ([69351ea](https://github.com/MTES-MCT/monitor-ui/commit/69351eab749ac534f267abd0e3fe2bde16bb0b54))
+- **dev-deps:** bump @commitlint/cli from 18.4.3 to 19.0.1
+  ([65e3b1c](https://github.com/MTES-MCT/monitor-ui/commit/65e3b1cbf6ff50ab61683e649638ca982074e993))
+- **dev-deps:** bump @storybook/addon-storysource
+  ([e5de861](https://github.com/MTES-MCT/monitor-ui/commit/e5de861a5710c119a68d17ca4c1e077893f79aef))
+- **dev-deps:** bump @types/node in /e2e/release/sample
+  ([e2f88b0](https://github.com/MTES-MCT/monitor-ui/commit/e2f88b0db3e73c9336c232e9e09f7b8cb614c729))
+- **dev-deps:** bump @types/react in /e2e/release/sample
+  ([214db7a](https://github.com/MTES-MCT/monitor-ui/commit/214db7a3a0bcac96e329808fa46d297954e35ec9))
+- **dev-deps:** bump @types/react-dom in /e2e/release/sample
+  ([8e74dd4](https://github.com/MTES-MCT/monitor-ui/commit/8e74dd4bf76753db7885244e7ebd2397faf186a1))
+- **dev-deps:** bump cypress in /e2e/release/sample
+  ([16e73ad](https://github.com/MTES-MCT/monitor-ui/commit/16e73add39ef203ea48ed782414d4f13748fa35b))
+- **dev-deps:** bump prettier in /e2e/release/sample
+  ([34d3b00](https://github.com/MTES-MCT/monitor-ui/commit/34d3b005e4a263fe6251a936282ab359c2cbb7ce))
+- **dev-deps:** bump rollup-plugin-import-css from 3.4.0 to 3.5.0
+  ([69351ea](https://github.com/MTES-MCT/monitor-ui/commit/69351eab749ac534f267abd0e3fe2bde16bb0b54))
 
 ## [12.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v12.0.3...v12.1.0) (2024-02-27)
 
-
 ### Features
 
-* **cypress:** add logs in fill() and all its subcommands ([f9b320f](https://github.com/MTES-MCT/monitor-ui/commit/f9b320fc335745bb562da34f00b98ef78bf5ef74))
-
+- **cypress:** add logs in fill() and all its subcommands
+  ([f9b320f](https://github.com/MTES-MCT/monitor-ui/commit/f9b320fc335745bb562da34f00b98ef78bf5ef74))
 
 ### Bug Fixes
 
-* **cypress:** replace picker popup closure check with a wait in fill() ([9b4108b](https://github.com/MTES-MCT/monitor-ui/commit/9b4108be9479fb25d99902ca451dc329192bdb18))
-
+- **cypress:** replace picker popup closure check with a wait in fill()
+  ([9b4108b](https://github.com/MTES-MCT/monitor-ui/commit/9b4108be9479fb25d99902ca451dc329192bdb18))
 
 ### Buid System & Dependencies
 
-* **vite:** disable CSS minification for storybook build ([c98d7c9](https://github.com/MTES-MCT/monitor-ui/commit/c98d7c99c053f4084bec5c044a8ff1050e2029aa))
+- **vite:** disable CSS minification for storybook build
+  ([c98d7c9](https://github.com/MTES-MCT/monitor-ui/commit/c98d7c99c053f4084bec5c044a8ff1050e2029aa))
 
 ## [12.0.3](https://github.com/MTES-MCT/monitor-ui/compare/v12.0.2...v12.0.3) (2024-02-27)
 
-
 ### Styles
 
-* **fields:** fix MultiCheckbox options margin when isInline ([d98f1a5](https://github.com/MTES-MCT/monitor-ui/commit/d98f1a549ac2b7ffb0b82c67435c39f0a6fd9ea8))
+- **fields:** fix MultiCheckbox options margin when isInline
+  ([d98f1a5](https://github.com/MTES-MCT/monitor-ui/commit/d98f1a549ac2b7ffb0b82c67435c39f0a6fd9ea8))
 
 ## [12.0.2](https://github.com/MTES-MCT/monitor-ui/compare/v12.0.1...v12.0.2) (2024-02-27)
 
-
 ### Styles
 
-* **fields:** fix MultiRadio options margin when isInline ([9c7e15b](https://github.com/MTES-MCT/monitor-ui/commit/9c7e15bdc8dac946d16e06cc7336e4cc2802cbb7))
-* **fields:** fix pickers border color when isTransparent ([b10ac28](https://github.com/MTES-MCT/monitor-ui/commit/b10ac286201610cba620291cb525167a01c0d659))
+- **fields:** fix MultiRadio options margin when isInline
+  ([9c7e15b](https://github.com/MTES-MCT/monitor-ui/commit/9c7e15bdc8dac946d16e06cc7336e4cc2802cbb7))
+- **fields:** fix pickers border color when isTransparent
+  ([b10ac28](https://github.com/MTES-MCT/monitor-ui/commit/b10ac286201610cba620291cb525167a01c0d659))
 
 ## [12.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v12.0.0...v12.0.1) (2024-02-27)
 
-
 ### Bug Fixes
 
-* **fields:** handle missing boolean option value case in options fields ([966e17c](https://github.com/MTES-MCT/monitor-ui/commit/966e17c5dfea03a48a8387f03cbcbaeff5c68008))
+- **fields:** handle missing boolean option value case in options fields
+  ([966e17c](https://github.com/MTES-MCT/monitor-ui/commit/966e17c5dfea03a48a8387f03cbcbaeff5c68008))
 
 ## [12.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.9.1...v12.0.0) (2024-02-26)
 
-
 ### ⚠ BREAKING CHANGES
 
-* **fields:** - Add mandatory `name` prop on `CoordinatesInput`.
-- Add mandatory `name` prop on `DatePicker`.
-- Add mandatory `name` prop on `DateRangePicker`.
-- `isChecked` prop has been renamed to `checked` in Toggle.
-* **fields:** - `isReadOnly` has been renamed to `readOnly` in `MultiRadio`.
-* **fields:** - `.rs-picker*`, `.rs-tag*`, `.rs-btn*` & `label` styles have been removed from `rsuite-override.css`
-* **fields:** - Migrate to Rsuite v5.53.2 and enforce it as minimal version via `^5.53.2` in peer dependencies.
-- Remove `baseContainer` property from `MultiSelect` and `FormikMultiSelect`.
-- Remove `baseContainer` property from `Select` and `FormikSelect`.
-- Forbid Rsuite inherited property `valueKey` in `CheckPicker`.
-- Forbid Rsuite inherited property `valueKey` in `MultiSelect` and `FormikMultiSelect`.
-- Forbid Rsuite inherited property `valueKey` in `Search`.
-- The `Option` type now doesn't allow the `children` property, you need to use `TreeOption` for that instead.
+- **fields:** - Add mandatory `name` prop on `CoordinatesInput`.
+
+* Add mandatory `name` prop on `DatePicker`.
+* Add mandatory `name` prop on `DateRangePicker`.
+* `isChecked` prop has been renamed to `checked` in Toggle.
+
+- **fields:** - `isReadOnly` has been renamed to `readOnly` in `MultiRadio`.
+- **fields:** - `.rs-picker*`, `.rs-tag*`, `.rs-btn*` & `label` styles have been removed from `rsuite-override.css`
+- **fields:** - Migrate to Rsuite v5.53.2 and enforce it as minimal version via `^5.53.2` in peer dependencies.
+
+* Remove `baseContainer` property from `MultiSelect` and `FormikMultiSelect`.
+* Remove `baseContainer` property from `Select` and `FormikSelect`.
+* Forbid Rsuite inherited property `valueKey` in `CheckPicker`.
+* Forbid Rsuite inherited property `valueKey` in `MultiSelect` and `FormikMultiSelect`.
+* Forbid Rsuite inherited property `valueKey` in `Search`.
+* The `Option` type now doesn't allow the `children` property, you need to use `TreeOption` for that instead.
 
 ### Features
 
-* **cypress:** use Escape instead of click outside for fill() on DateRangePicker ([3883337](https://github.com/MTES-MCT/monitor-ui/commit/3883337273eb38829e25d77e1b3f8703c23dae4e))
-* **field:** add Radio ([0573fc8](https://github.com/MTES-MCT/monitor-ui/commit/0573fc890ccfd5e04028359e7fe2f55f1006da32))
-* **fields:** add isLight prop to Checkbox ([9992824](https://github.com/MTES-MCT/monitor-ui/commit/9992824e519f4bb8151aa6d61eade3f87e6992ba))
-* **fields:** add MultiCascader ([5900bb6](https://github.com/MTES-MCT/monitor-ui/commit/5900bb6a6234adc904aa01917da05edf14777111))
-* **fields:** add readOnly prop to MultiCheckbox ([bd1e21b](https://github.com/MTES-MCT/monitor-ui/commit/bd1e21b00b041be05acb896cc0e65a9b8692a7c0))
-* **fields:** close DatePicker calendar & time pickers on Escape ([96344da](https://github.com/MTES-MCT/monitor-ui/commit/96344da55e609a1bd19c82279bbcbc2cdac83031))
-* **fields:** close DateRangePicker calendar & time pickers on Escape ([4ae6edd](https://github.com/MTES-MCT/monitor-ui/commit/4ae6edda9367cd078426b651832c590fad36ec53))
-* **fields:** normalize disabled, isLight, isTransparent & readOnly props ([88e8308](https://github.com/MTES-MCT/monitor-ui/commit/88e8308c20b216de4925e9258b207798c5d139ef))
-* **fields:** rename isReadOnly prop to readOnly in MultiRadio ([71581b4](https://github.com/MTES-MCT/monitor-ui/commit/71581b46129e8a6e90bd4c701eaf41be5bffa20f))
-* **fields:** set CheckPicker, MultiCascader, MultiSelect & Select height to 30px ([6caff98](https://github.com/MTES-MCT/monitor-ui/commit/6caff986cacbc73c51b3843764fd5f31fa8cbdda))
-* **formiks:** add FormikCheckPicker ([b480014](https://github.com/MTES-MCT/monitor-ui/commit/b4800141a9587f98035d6094d8f0e6b74d255038))
-* **formiks:** add FormikMultiCascader ([77effaa](https://github.com/MTES-MCT/monitor-ui/commit/77effaafca094407eee6f8f369423c82254a483d))
-* **formiks:** add FormikToggle ([e4e821b](https://github.com/MTES-MCT/monitor-ui/commit/e4e821b162a20eeef40566542ac207b7e974d342))
-* **hooks:** add usePressEscapeEffect() ([9e85593](https://github.com/MTES-MCT/monitor-ui/commit/9e85593e37b6e372b621d601af76e07411f6c78e))
-
+- **cypress:** use Escape instead of click outside for fill() on DateRangePicker
+  ([3883337](https://github.com/MTES-MCT/monitor-ui/commit/3883337273eb38829e25d77e1b3f8703c23dae4e))
+- **field:** add Radio
+  ([0573fc8](https://github.com/MTES-MCT/monitor-ui/commit/0573fc890ccfd5e04028359e7fe2f55f1006da32))
+- **fields:** add isLight prop to Checkbox
+  ([9992824](https://github.com/MTES-MCT/monitor-ui/commit/9992824e519f4bb8151aa6d61eade3f87e6992ba))
+- **fields:** add MultiCascader
+  ([5900bb6](https://github.com/MTES-MCT/monitor-ui/commit/5900bb6a6234adc904aa01917da05edf14777111))
+- **fields:** add readOnly prop to MultiCheckbox
+  ([bd1e21b](https://github.com/MTES-MCT/monitor-ui/commit/bd1e21b00b041be05acb896cc0e65a9b8692a7c0))
+- **fields:** close DatePicker calendar & time pickers on Escape
+  ([96344da](https://github.com/MTES-MCT/monitor-ui/commit/96344da55e609a1bd19c82279bbcbc2cdac83031))
+- **fields:** close DateRangePicker calendar & time pickers on Escape
+  ([4ae6edd](https://github.com/MTES-MCT/monitor-ui/commit/4ae6edda9367cd078426b651832c590fad36ec53))
+- **fields:** normalize disabled, isLight, isTransparent & readOnly props
+  ([88e8308](https://github.com/MTES-MCT/monitor-ui/commit/88e8308c20b216de4925e9258b207798c5d139ef))
+- **fields:** rename isReadOnly prop to readOnly in MultiRadio
+  ([71581b4](https://github.com/MTES-MCT/monitor-ui/commit/71581b46129e8a6e90bd4c701eaf41be5bffa20f))
+- **fields:** set CheckPicker, MultiCascader, MultiSelect & Select height to 30px
+  ([6caff98](https://github.com/MTES-MCT/monitor-ui/commit/6caff986cacbc73c51b3843764fd5f31fa8cbdda))
+- **formiks:** add FormikCheckPicker
+  ([b480014](https://github.com/MTES-MCT/monitor-ui/commit/b4800141a9587f98035d6094d8f0e6b74d255038))
+- **formiks:** add FormikMultiCascader
+  ([77effaa](https://github.com/MTES-MCT/monitor-ui/commit/77effaafca094407eee6f8f369423c82254a483d))
+- **formiks:** add FormikToggle
+  ([e4e821b](https://github.com/MTES-MCT/monitor-ui/commit/e4e821b162a20eeef40566542ac207b7e974d342))
+- **hooks:** add usePressEscapeEffect()
+  ([9e85593](https://github.com/MTES-MCT/monitor-ui/commit/9e85593e37b6e372b621d601af76e07411f6c78e))
 
 ### Bug Fixes
 
-* **cypress:** add dedicated function to fill() for Search field ([b20a102](https://github.com/MTES-MCT/monitor-ui/commit/b20a1028eae0d5210fdb9be4e5b7f50543ded818))
-* **cypress:** fix fill() command for CheckPicker after Rsuite upgrade ([f987cde](https://github.com/MTES-MCT/monitor-ui/commit/f987cdeba881ff8ed799a16cbe3d953bb9360f72))
-* **cypress:** fix fill() command for Select & MultiSelect after Rsuite upgrade ([0112f3b](https://github.com/MTES-MCT/monitor-ui/commit/0112f3b5d9cf696ee0a1a063534f3930e747ba87))
-* **field:** fix Checkbox after Rsuite upgrade ([abc0b71](https://github.com/MTES-MCT/monitor-ui/commit/abc0b712b596ed917694af9c7e7a2b36adf3a61a))
-* **field:** fix MultiRadio after Rsuite upgrade ([63829b8](https://github.com/MTES-MCT/monitor-ui/commit/63829b83a53f73d32907f9d989e61928bcf3b074))
-* **field:** set rsuite value to null when undefined in Select ([e40ae4e](https://github.com/MTES-MCT/monitor-ui/commit/e40ae4ece7fc71963b53e74394ed16737e3cdadd))
-* **fields:** finalize DatePicker & DateRangePicker style after Rsuite upgrade ([0004843](https://github.com/MTES-MCT/monitor-ui/commit/00048437b0b72db7659e649550b221640e5e738f))
-* **fields:** fix DateRangePicker basic styles after Rsuite upgrade ([e2b853f](https://github.com/MTES-MCT/monitor-ui/commit/e2b853f30bb87f076c87c08e25eb532daef3ae82))
-
+- **cypress:** add dedicated function to fill() for Search field
+  ([b20a102](https://github.com/MTES-MCT/monitor-ui/commit/b20a1028eae0d5210fdb9be4e5b7f50543ded818))
+- **cypress:** fix fill() command for CheckPicker after Rsuite upgrade
+  ([f987cde](https://github.com/MTES-MCT/monitor-ui/commit/f987cdeba881ff8ed799a16cbe3d953bb9360f72))
+- **cypress:** fix fill() command for Select & MultiSelect after Rsuite upgrade
+  ([0112f3b](https://github.com/MTES-MCT/monitor-ui/commit/0112f3b5d9cf696ee0a1a063534f3930e747ba87))
+- **field:** fix Checkbox after Rsuite upgrade
+  ([abc0b71](https://github.com/MTES-MCT/monitor-ui/commit/abc0b712b596ed917694af9c7e7a2b36adf3a61a))
+- **field:** fix MultiRadio after Rsuite upgrade
+  ([63829b8](https://github.com/MTES-MCT/monitor-ui/commit/63829b83a53f73d32907f9d989e61928bcf3b074))
+- **field:** set rsuite value to null when undefined in Select
+  ([e40ae4e](https://github.com/MTES-MCT/monitor-ui/commit/e40ae4ece7fc71963b53e74394ed16737e3cdadd))
+- **fields:** finalize DatePicker & DateRangePicker style after Rsuite upgrade
+  ([0004843](https://github.com/MTES-MCT/monitor-ui/commit/00048437b0b72db7659e649550b221640e5e738f))
+- **fields:** fix DateRangePicker basic styles after Rsuite upgrade
+  ([e2b853f](https://github.com/MTES-MCT/monitor-ui/commit/e2b853f30bb87f076c87c08e25eb532daef3ae82))
 
 ### Code Refactoring
 
-* **cypress:** improve fill() command for Checkbox & basic fields ([747c009](https://github.com/MTES-MCT/monitor-ui/commit/747c009f0bc493dc9fd9d1f5c2f6c466c67415fe))
-* **cypress:** improve fill() command for MultiRadio ([30a5f05](https://github.com/MTES-MCT/monitor-ui/commit/30a5f05c7772e4e87c2a6073ac2eddc0a3d6bb7b))
-* **cypress:** move fill() utils within fill/ folder ([5be34e2](https://github.com/MTES-MCT/monitor-ui/commit/5be34e2582edce2b64352b3878c133b7ea766a4a))
-
+- **cypress:** improve fill() command for Checkbox & basic fields
+  ([747c009](https://github.com/MTES-MCT/monitor-ui/commit/747c009f0bc493dc9fd9d1f5c2f6c466c67415fe))
+- **cypress:** improve fill() command for MultiRadio
+  ([30a5f05](https://github.com/MTES-MCT/monitor-ui/commit/30a5f05c7772e4e87c2a6073ac2eddc0a3d6bb7b))
+- **cypress:** move fill() utils within fill/ folder
+  ([5be34e2](https://github.com/MTES-MCT/monitor-ui/commit/5be34e2582edce2b64352b3878c133b7ea766a4a))
 
 ### Buid System & Dependencies
 
-* **jest:** fix missing SWC paths ([13a98ea](https://github.com/MTES-MCT/monitor-ui/commit/13a98ea0149ee96840a97d2674c4dd0930c7de0a))
-* **storybook:** migrate to v8 ([eaa25fb](https://github.com/MTES-MCT/monitor-ui/commit/eaa25fbfc87152204ce577da15e073b9c5271ff9))
-
+- **jest:** fix missing SWC paths
+  ([13a98ea](https://github.com/MTES-MCT/monitor-ui/commit/13a98ea0149ee96840a97d2674c4dd0930c7de0a))
+- **storybook:** migrate to v8
+  ([eaa25fb](https://github.com/MTES-MCT/monitor-ui/commit/eaa25fbfc87152204ce577da15e073b9c5271ff9))
 
 ### Documentation
 
-* **components:** clean stories ([7536d4e](https://github.com/MTES-MCT/monitor-ui/commit/7536d4e1bbf03cb0efb755da865e5f71d9bd00a0))
-* **cypress:** update fill() command tsdoc ([7d1db8d](https://github.com/MTES-MCT/monitor-ui/commit/7d1db8d252468dae1f891de637b26415562c9a09))
-
+- **components:** clean stories
+  ([7536d4e](https://github.com/MTES-MCT/monitor-ui/commit/7536d4e1bbf03cb0efb755da865e5f71d9bd00a0))
+- **cypress:** update fill() command tsdoc
+  ([7d1db8d](https://github.com/MTES-MCT/monitor-ui/commit/7d1db8d252468dae1f891de637b26415562c9a09))
 
 ### Styles
 
-* **components:** set Dialog action buttons spacing to 8px ([3281d20](https://github.com/MTES-MCT/monitor-ui/commit/3281d2011bc9d605ee8c0765ec8d4b19111e0912))
-* **fields:** add 8px padding in DatePicker & DateRangePicker calendars ([3aac367](https://github.com/MTES-MCT/monitor-ui/commit/3aac36748443747be17c0736a69f388208e5f361))
-* **fields:** fix Checkbox checkmark color when transparent ([c2dbfae](https://github.com/MTES-MCT/monitor-ui/commit/c2dbfae11f0eae57fcce5e18eda0eeba31879a5e))
-* **fields:** fix CoordinatesInput states & height ([9900849](https://github.com/MTES-MCT/monitor-ui/commit/9900849530fcb6ddb3b4120f5a46274e5031333b))
-* **fields:** fix counter badge look in CheckPicker & MultiCascader ([9ffeaff](https://github.com/MTES-MCT/monitor-ui/commit/9ffeafffa8f652a7b1637dc616a708513c1e8982))
-* **fields:** fix option focus colors in CheckPicker, MultiCascader, MultiSelect & Select ([a76fe8f](https://github.com/MTES-MCT/monitor-ui/commit/a76fe8f6fa27c3ac92a9c7ce21c5b049f26041c8))
-* **fields:** fix option hover color in CheckPicker, MultiCascader, MultiSelect & Select ([c91c249](https://github.com/MTES-MCT/monitor-ui/commit/c91c249f2c7fcd007235d325a2087a3c75329502))
-* **fields:** fix picker popup column border in MultiCascader ([879f4a8](https://github.com/MTES-MCT/monitor-ui/commit/879f4a893005b712348b1ede5c4b6beefa8d4d52))
-* **fields:** fix selected value(s) color in CheckPicker, MultiCascader & Select ([0390555](https://github.com/MTES-MCT/monitor-ui/commit/03905556fb61b6baf139d57bcae4e0fdf6eed1b0))
-* **fields:** fix Toggle state colors ([ab9b0ba](https://github.com/MTES-MCT/monitor-ui/commit/ab9b0bad746dd5cb5462f4f49ea6bf958a5dc889))
-* remove Rsuite table classes from rsuite-override.css ([f69b89d](https://github.com/MTES-MCT/monitor-ui/commit/f69b89dcbd8d850943ef23cda6be7442465d2a46))
+- **components:** set Dialog action buttons spacing to 8px
+  ([3281d20](https://github.com/MTES-MCT/monitor-ui/commit/3281d2011bc9d605ee8c0765ec8d4b19111e0912))
+- **fields:** add 8px padding in DatePicker & DateRangePicker calendars
+  ([3aac367](https://github.com/MTES-MCT/monitor-ui/commit/3aac36748443747be17c0736a69f388208e5f361))
+- **fields:** fix Checkbox checkmark color when transparent
+  ([c2dbfae](https://github.com/MTES-MCT/monitor-ui/commit/c2dbfae11f0eae57fcce5e18eda0eeba31879a5e))
+- **fields:** fix CoordinatesInput states & height
+  ([9900849](https://github.com/MTES-MCT/monitor-ui/commit/9900849530fcb6ddb3b4120f5a46274e5031333b))
+- **fields:** fix counter badge look in CheckPicker & MultiCascader
+  ([9ffeaff](https://github.com/MTES-MCT/monitor-ui/commit/9ffeafffa8f652a7b1637dc616a708513c1e8982))
+- **fields:** fix option focus colors in CheckPicker, MultiCascader, MultiSelect & Select
+  ([a76fe8f](https://github.com/MTES-MCT/monitor-ui/commit/a76fe8f6fa27c3ac92a9c7ce21c5b049f26041c8))
+- **fields:** fix option hover color in CheckPicker, MultiCascader, MultiSelect & Select
+  ([c91c249](https://github.com/MTES-MCT/monitor-ui/commit/c91c249f2c7fcd007235d325a2087a3c75329502))
+- **fields:** fix picker popup column border in MultiCascader
+  ([879f4a8](https://github.com/MTES-MCT/monitor-ui/commit/879f4a893005b712348b1ede5c4b6beefa8d4d52))
+- **fields:** fix selected value(s) color in CheckPicker, MultiCascader & Select
+  ([0390555](https://github.com/MTES-MCT/monitor-ui/commit/03905556fb61b6baf139d57bcae4e0fdf6eed1b0))
+- **fields:** fix Toggle state colors
+  ([ab9b0ba](https://github.com/MTES-MCT/monitor-ui/commit/ab9b0bad746dd5cb5462f4f49ea6bf958a5dc889))
+- remove Rsuite table classes from rsuite-override.css
+  ([f69b89d](https://github.com/MTES-MCT/monitor-ui/commit/f69b89dcbd8d850943ef23cda6be7442465d2a46))
 
 ## [11.9.1](https://github.com/MTES-MCT/monitor-ui/compare/v11.9.0...v11.9.1) (2024-02-23)
 
-
 ### Bug Fixes
 
-* **utils:** export humanizePastDate function ([2dafd68](https://github.com/MTES-MCT/monitor-ui/commit/2dafd6883131865c97a4692bd2d93f2c521cf4e0))
+- **utils:** export humanizePastDate function
+  ([2dafd68](https://github.com/MTES-MCT/monitor-ui/commit/2dafd6883131865c97a4692bd2d93f2c521cf4e0))
 
 ## [11.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.8.0...v11.9.0) (2024-02-23)
 
-
 ### Features
 
-* **utils:** changes after code review ([8073a81](https://github.com/MTES-MCT/monitor-ui/commit/8073a817581ae418e8dab7551ccc7024574293d6))
-* **utils:** create a function to get the formatted mission update date ([9c161b0](https://github.com/MTES-MCT/monitor-ui/commit/9c161b0ffe4d092fb581a885ac795a5f48afb7db))
-* **utils:** update name of test ([4f0711d](https://github.com/MTES-MCT/monitor-ui/commit/4f0711d0d686f0d0755c71356ca1cade72702435))
+- **utils:** changes after code review
+  ([8073a81](https://github.com/MTES-MCT/monitor-ui/commit/8073a817581ae418e8dab7551ccc7024574293d6))
+- **utils:** create a function to get the formatted mission update date
+  ([9c161b0](https://github.com/MTES-MCT/monitor-ui/commit/9c161b0ffe4d092fb581a885ac795a5f48afb7db))
+- **utils:** update name of test
+  ([4f0711d](https://github.com/MTES-MCT/monitor-ui/commit/4f0711d0d686f0d0755c71356ca1cade72702435))
 
 ## [11.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.7.2...v11.8.0) (2024-02-20)
 
-
 ### Features
 
-* **fields:** add RichBooleanCheckbox ([ac36b4b](https://github.com/MTES-MCT/monitor-ui/commit/ac36b4b9914eba55d412685e3ea79f06e64a44ab))
-
+- **fields:** add RichBooleanCheckbox
+  ([ac36b4b](https://github.com/MTES-MCT/monitor-ui/commit/ac36b4b9914eba55d412685e3ea79f06e64a44ab))
 
 ### Bug Fixes
 
-* **type:** update EngagedControlUnit type ([6bc3cac](https://github.com/MTES-MCT/monitor-ui/commit/6bc3cacc6046aad0e9aafdcaaf352e170a7966e6))
+- **type:** update EngagedControlUnit type
+  ([6bc3cac](https://github.com/MTES-MCT/monitor-ui/commit/6bc3cacc6046aad0e9aafdcaaf352e170a7966e6))
 
 ## [11.7.2](https://github.com/MTES-MCT/monitor-ui/compare/v11.7.1...v11.7.2) (2024-02-12)
 
-
 ### Bug Fixes
 
-* **fields:** update background color for MultiRadio component ([3d2108b](https://github.com/MTES-MCT/monitor-ui/commit/3d2108be10f551d2dc7e188755f6f551eed21483))
+- **fields:** update background color for MultiRadio component
+  ([3d2108b](https://github.com/MTES-MCT/monitor-ui/commit/3d2108be10f551d2dc7e188755f6f551eed21483))
 
 ## [11.7.1](https://github.com/MTES-MCT/monitor-ui/compare/v11.7.0...v11.7.1) (2024-02-08)
 
-
 ### Bug Fixes
 
-* **fields:** fix MultiRadio colors ([42d87c7](https://github.com/MTES-MCT/monitor-ui/commit/42d87c7fc15eb3af9a602242d4f5f8c3f3e683a6))
+- **fields:** fix MultiRadio colors
+  ([42d87c7](https://github.com/MTES-MCT/monitor-ui/commit/42d87c7fc15eb3af9a602242d4f5f8c3f3e683a6))
 
 ## [11.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.6.0...v11.7.0) (2024-02-08)
 
-
 ### Features
 
-* **fields:** accept JSX Elements for multiradio label ([5776236](https://github.com/MTES-MCT/monitor-ui/commit/577623600d3588733c111b73fe0b341625d03f25))
-* **fields:** add field and label to Toggle component ([1ef21e3](https://github.com/MTES-MCT/monitor-ui/commit/1ef21e34d262e56d21a2bd2eac87a7401d34bf1d))
-* **fields:** can display custom items for MultiRadio component ([5e75fff](https://github.com/MTES-MCT/monitor-ui/commit/5e75fffdcef9fd47926e2f699e702d024f9c5fe7))
-* **fields:** can display custom items for MultiRadio component ([86080d7](https://github.com/MTES-MCT/monitor-ui/commit/86080d755c429ae604ae4ab9c70998dca3ac2389))
-* **fields:** create Toggle component ([6a649cd](https://github.com/MTES-MCT/monitor-ui/commit/6a649cd2733055f9b13ebc988e61a2138cfeb637))
-
+- **fields:** accept JSX Elements for multiradio label
+  ([5776236](https://github.com/MTES-MCT/monitor-ui/commit/577623600d3588733c111b73fe0b341625d03f25))
+- **fields:** add field and label to Toggle component
+  ([1ef21e3](https://github.com/MTES-MCT/monitor-ui/commit/1ef21e34d262e56d21a2bd2eac87a7401d34bf1d))
+- **fields:** can display custom items for MultiRadio component
+  ([5e75fff](https://github.com/MTES-MCT/monitor-ui/commit/5e75fffdcef9fd47926e2f699e702d024f9c5fe7))
+- **fields:** can display custom items for MultiRadio component
+  ([86080d7](https://github.com/MTES-MCT/monitor-ui/commit/86080d755c429ae604ae4ab9c70998dca3ac2389))
+- **fields:** create Toggle component
+  ([6a649cd](https://github.com/MTES-MCT/monitor-ui/commit/6a649cd2733055f9b13ebc988e61a2138cfeb637))
 
 ### Bug Fixes
 
-* **fields:** update error mode for MultiRadio component ([b7babe9](https://github.com/MTES-MCT/monitor-ui/commit/b7babe98124929cd707ce67e80f710351181eca1))
+- **fields:** update error mode for MultiRadio component
+  ([b7babe9](https://github.com/MTES-MCT/monitor-ui/commit/b7babe98124929cd707ce67e80f710351181eca1))
 
 ## [11.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.5.1...v11.6.0) (2024-02-05)
 
-
 ### Features
 
-* **icons:** add warning icon ([1d7cc3f](https://github.com/MTES-MCT/monitor-ui/commit/1d7cc3fc20716454ae4dbb80571959eb8e48f166))
+- **icons:** add warning icon
+  ([1d7cc3f](https://github.com/MTES-MCT/monitor-ui/commit/1d7cc3fc20716454ae4dbb80571959eb8e48f166))
 
 ## [11.5.1](https://github.com/MTES-MCT/monitor-ui/compare/v11.5.0...v11.5.1) (2024-02-05)
 
-
 ### Bug Fixes
 
-* **build:** force rsuite version to 5.45.0 before fixing cy.fill() command ([949e6ed](https://github.com/MTES-MCT/monitor-ui/commit/949e6ed04b6f922eaf8cd6118b2aa10e9780ab24))
+- **build:** force rsuite version to 5.45.0 before fixing cy.fill() command
+  ([949e6ed](https://github.com/MTES-MCT/monitor-ui/commit/949e6ed04b6f922eaf8cd6118b2aa10e9780ab24))
 
 ## [11.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.4.0...v11.5.0) (2024-02-02)
 
-
 ### Features
 
-* **types:** add optional children prop to Option ([0a2a934](https://github.com/MTES-MCT/monitor-ui/commit/0a2a934475b75dc9c81f7057a383bd1e5635653c))
-* **types:** add PartialExcept & UndefineExcept ([c33afe1](https://github.com/MTES-MCT/monitor-ui/commit/c33afe1c7745d1e3e0c18eea6a8663748be29a86))
-* **types:** expose AnyObject & Native* types ([e9d267f](https://github.com/MTES-MCT/monitor-ui/commit/e9d267f358285a2ee96e36c87d584930465337c7))
-
+- **types:** add optional children prop to Option
+  ([0a2a934](https://github.com/MTES-MCT/monitor-ui/commit/0a2a934475b75dc9c81f7057a383bd1e5635653c))
+- **types:** add PartialExcept & UndefineExcept
+  ([c33afe1](https://github.com/MTES-MCT/monitor-ui/commit/c33afe1c7745d1e3e0c18eea6a8663748be29a86))
+- **types:** expose AnyObject & Native\* types
+  ([e9d267f](https://github.com/MTES-MCT/monitor-ui/commit/e9d267f358285a2ee96e36c87d584930465337c7))
 
 ### Bug Fixes
 
-* **types:** expose missing PartialExcept & UndefineExcept ([0d59087](https://github.com/MTES-MCT/monitor-ui/commit/0d590876c1df7498347a26a5ee3439cc335bbdc3))
+- **types:** expose missing PartialExcept & UndefineExcept
+  ([0d59087](https://github.com/MTES-MCT/monitor-ui/commit/0d590876c1df7498347a26a5ee3439cc335bbdc3))
 
 ## [11.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.3.0...v11.4.0) (2024-01-24)
 
-
 ### Features
 
-* **entities:** add getControlUnitResourceCategoryFromType() util ([c9a8545](https://github.com/MTES-MCT/monitor-ui/commit/c9a854554ac900794d3bce18f8a539013c8397c8))
+- **entities:** add getControlUnitResourceCategoryFromType() util
+  ([c9a8545](https://github.com/MTES-MCT/monitor-ui/commit/c9a854554ac900794d3bce18f8a539013c8397c8))
 
 ## [11.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.2.0...v11.3.0) (2024-01-22)
 
-
 ### Features
 
-* **components:** add warning accent for Buttons ([dbe77d2](https://github.com/MTES-MCT/monitor-ui/commit/dbe77d2e543781d5962e032eab84483707babd21))
-* **entities:** add ControlUnitResourceCategory enum ([29a007b](https://github.com/MTES-MCT/monitor-ui/commit/29a007b2cc8958e29731a26602aa15cb7b2015b7))
-
+- **components:** add warning accent for Buttons
+  ([dbe77d2](https://github.com/MTES-MCT/monitor-ui/commit/dbe77d2e543781d5962e032eab84483707babd21))
+- **entities:** add ControlUnitResourceCategory enum
+  ([29a007b](https://github.com/MTES-MCT/monitor-ui/commit/29a007b2cc8958e29731a26602aa15cb7b2015b7))
 
 ### Bug Fixes
 
-* **utils:** add missing generic type in getOptionsFromLabelledEnum() ([c1f0a5a](https://github.com/MTES-MCT/monitor-ui/commit/c1f0a5aecc68235eb4a40a2913753879cbe4c47b))
+- **utils:** add missing generic type in getOptionsFromLabelledEnum()
+  ([c1f0a5a](https://github.com/MTES-MCT/monitor-ui/commit/c1f0a5aecc68235eb4a40a2913753879cbe4c47b))
 
 ## [11.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.1.0...v11.2.0) (2024-01-18)
 
-
 ### Features
 
-* add Open Sans Variable font ([c2049c5](https://github.com/MTES-MCT/monitor-ui/commit/c2049c5acca76c71b1de39176871314db5599cc0))
-* **elements:** add Figure ([0e5a3dc](https://github.com/MTES-MCT/monitor-ui/commit/0e5a3dc04df50bc1940607ed6b394a1ba6ffd010))
-
+- add Open Sans Variable font
+  ([c2049c5](https://github.com/MTES-MCT/monitor-ui/commit/c2049c5acca76c71b1de39176871314db5599cc0))
+- **elements:** add Figure
+  ([0e5a3dc](https://github.com/MTES-MCT/monitor-ui/commit/0e5a3dc04df50bc1940607ed6b394a1ba6ffd010))
 
 ### Bug Fixes
 
-* use local Open Sans font from assets instead of dependency ([88e7f2e](https://github.com/MTES-MCT/monitor-ui/commit/88e7f2ec04d338314d51512013902466542d28fa))
+- use local Open Sans font from assets instead of dependency
+  ([88e7f2e](https://github.com/MTES-MCT/monitor-ui/commit/88e7f2ec04d338314d51512013902466542d28fa))
 
 ## [11.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v11.0.1...v11.1.0) (2024-01-17)
 
-
 ### Features
 
-* **components:** allow title prop on MapMenuDialog.Title ([70e03b3](https://github.com/MTES-MCT/monitor-ui/commit/70e03b39e90b591c3723ac851c4b4745c518ebae))
+- **components:** allow title prop on MapMenuDialog.Title
+  ([70e03b3](https://github.com/MTES-MCT/monitor-ui/commit/70e03b39e90b591c3723ac851c4b4745c518ebae))
 
 ## [11.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v11.0.0...v11.0.1) (2024-01-17)
 
-
 ### Bug Fixes
 
-* **icon:** fix Attention icon ([72f0161](https://github.com/MTES-MCT/monitor-ui/commit/72f016188dbe016842a693e441ce8a22532354f5))
+- **icon:** fix Attention icon
+  ([72f0161](https://github.com/MTES-MCT/monitor-ui/commit/72f016188dbe016842a693e441ce8a22532354f5))
 
 ## [11.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v10.19.1...v11.0.0) (2024-01-16)
 
-
 ### ⚠ BREAKING CHANGES
 
-* **tables:** Add width prop in TableWithSelectableRows.Td to have fixed columns size.
-* **table:** add width prop in TableWithSelectableRows.Td and update table-layout to fixed
+- **tables:** Add width prop in TableWithSelectableRows.Td to have fixed columns size.
+- **table:** add width prop in TableWithSelectableRows.Td and update table-layout to fixed
 
 ### Features
 
-* **tables:** add width prop in TableWithSelectableRows.Td & update table-layout to fixed ([e80f88f](https://github.com/MTES-MCT/monitor-ui/commit/e80f88fb36f5a1210b36e1ef114249c1c1a3586d))
-
+- **tables:** add width prop in TableWithSelectableRows.Td & update table-layout to fixed
+  ([e80f88f](https://github.com/MTES-MCT/monitor-ui/commit/e80f88fb36f5a1210b36e1ef114249c1c1a3586d))
 
 ### Bug Fixes
 
-* **table:** add width prop in TableWithSelectableRows.Td and update table-layout to fixed ([38a9d3e](https://github.com/MTES-MCT/monitor-ui/commit/38a9d3ef2f8b756b43dc43ebce89f10965c60fd4))
+- **table:** add width prop in TableWithSelectableRows.Td and update table-layout to fixed
+  ([38a9d3e](https://github.com/MTES-MCT/monitor-ui/commit/38a9d3ef2f8b756b43dc43ebce89f10965c60fd4))
 
 ## [10.19.1](https://github.com/MTES-MCT/monitor-ui/compare/v10.19.0...v10.19.1) (2024-01-15)
 
