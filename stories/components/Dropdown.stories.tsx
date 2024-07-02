@@ -65,7 +65,17 @@ export function _Dropdown(props: DropdownProps) {
         </Dropdown>
 
         <Showcase.Subtitle>With &quot;more&quot; ellipsis</Showcase.Subtitle>
+        <Dropdown accent={Accent.PRIMARY} Icon={Icon.More} onSelect={setOutputValue}>
+          <Dropdown.Item accent={Accent.SECONDARY} eventKey="ARCHIVE" Icon={Icon.Archive} />
+          <Dropdown.Item accent={Accent.SECONDARY} eventKey="DELETE" Icon={Icon.Delete} />
+        </Dropdown>
+        <br />
         <Dropdown accent={Accent.SECONDARY} Icon={Icon.More} onSelect={setOutputValue}>
+          <Dropdown.Item accent={Accent.SECONDARY} eventKey="ARCHIVE" Icon={Icon.Archive} />
+          <Dropdown.Item accent={Accent.SECONDARY} eventKey="DELETE" Icon={Icon.Delete} />
+        </Dropdown>
+        <br />
+        <Dropdown accent={Accent.TERTIARY} Icon={Icon.More} onSelect={setOutputValue}>
           <Dropdown.Item accent={Accent.SECONDARY} eventKey="ARCHIVE" Icon={Icon.Archive} />
           <Dropdown.Item accent={Accent.SECONDARY} eventKey="DELETE" Icon={Icon.Delete} />
         </Dropdown>
