@@ -59,6 +59,8 @@ export const THEME = {
     wheat: '#EDD6A4',
     opal: '#A5BCC0',
 
+    earthYellow: '#E6B771',
+
     // Regulation Areas
     yaleBlue: '#295375',
     queenBlue: '#367096',
@@ -82,12 +84,13 @@ export const THEME = {
     prussianBlue: '#003E54',
     lightCoral: '#FA8282',
 
-    // AMP Zones
-    brownSugar: '#B26A53',
-    rust: '#B1502F',
+    // Vigilance Areas
+    rufous: '#A13112',
+    brownSugar: '#B0644A',
+    rust: '#A85438',
     burntSienna: '#D46E49',
     persianOrange: '#D6814F',
-    jasper: '#DB503D',
+    jasper: '#C25141',
     bittersweet: '#F0755C',
     coral: '#F78A69',
     peach: '#FCB394',
@@ -96,13 +99,19 @@ export const THEME = {
     paleDogwood: '#F8D7CE',
     seashell: '#FCECE4',
 
-    // Custom Zones
+    // AMP Zones
     darkGoldenrod: '#A98A0F',
-    pear: '#DBE33E',
-    jonquil: '#F0CB38',
-    earthYellow: '#E6B771',
     ecru: '#BAAB68',
+    citron: '#B9B94D',
+    citrine: '#C8C732',
+    pear: '#DBE33E',
     goldMetallic: '#C5A730',
-    mindaro: '#F2F58E'
+    oldGold: '#DBB934',
+    arylideYellow: '#E1C55E',
+    jonquil: '#F0CB38',
+    maize: '#F1E243',
+    lemonLime: '#F0FE58',
+    mindaro: '#F2F58E',
+    cream: '#FFFEC2'
   }
 }
