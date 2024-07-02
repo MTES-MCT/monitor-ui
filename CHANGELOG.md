@@ -1,3 +1,22 @@
+## [18.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.2.0...v18.3.0) (2024-07-01)
+
+
+### Features
+
+* **components:** add basic input and story ([10cb8ee](https://github.com/MTES-MCT/monitor-ui/commit/10cb8eed09c1c567814a202012330b42ecf5eb7d))
+* **components:** add default format ([9b711e6](https://github.com/MTES-MCT/monitor-ui/commit/9b711e62fa35a12b5ba438c932751980b2abfeec))
+* **components:** add readme for npm link ([5193a5b](https://github.com/MTES-MCT/monitor-ui/commit/5193a5b527f590d80809cfa31ccda6e8be5044cb))
+* **components:** add style properties and fix formik tests ([c8e102e](https://github.com/MTES-MCT/monitor-ui/commit/c8e102ebe9f1fef95a82d8938045628210666e80))
+* **components:** claire's review ([7622665](https://github.com/MTES-MCT/monitor-ui/commit/762266503a5784d4430d45576ee061a5f7b4e5d6))
+* **components:** phone number and formik phone number ([65108b5](https://github.com/MTES-MCT/monitor-ui/commit/65108b5b9e9e4af58d6864fba32d290a5941f870))
+* **components:** rename component ([024977e](https://github.com/MTES-MCT/monitor-ui/commit/024977efcf3e7c16e3935141bc17980d88d17335))
+* **components:** writing FIXME with issue related ([910a367](https://github.com/MTES-MCT/monitor-ui/commit/910a367bd7aaa6f40fd73a7d7512a6213f13a34e))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump the all-non-major-dependencies group ([04fbf57](https://github.com/MTES-MCT/monitor-ui/commit/04fbf574ad44194312d1d8ca9897e68e3a6ae162))
+
 ## [18.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.0.4...v18.1.0) (2024-06-19)
 
 
