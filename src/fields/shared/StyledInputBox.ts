@@ -75,8 +75,10 @@ export const StyledInputBox = styled.div<StyledInputBoxProps>`
 
   > input,
   > .rs-auto-complete > input {
-    padding: ${p => (p.$hasIcon ? PADDING_WITH_ICON[p.$size] : PADDING[p.$size])};
     ${inputStyle}
+    padding: ${p => (p.$hasIcon ? PADDING_WITH_ICON[p.$size] : PADDING[p.$size])};
+    line-height: 1;
+    flex-grow: 1;
   }
 
   > .Element-IconBox {
