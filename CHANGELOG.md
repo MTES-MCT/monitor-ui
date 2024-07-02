@@ -1,3 +1,10 @@
+## [18.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.3.0...v18.4.0) (2024-07-02)
+
+### Features
+
+- **components:** add new color for vigilance areas
+  ([1e05794](https://github.com/MTES-MCT/monitor-ui/commit/1e05794f1b0fa4fb38e51ed1294b44dea178a5d2))
+
 ## [18.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.2.0...v18.3.0) (2024-07-01)
 
 ### Features
