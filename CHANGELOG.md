@@ -1,3 +1,10 @@
+## [18.4.1](https://github.com/MTES-MCT/monitor-ui/compare/v18.4.0...v18.4.1) (2024-07-02)
+
+### Bug Fixes
+
+- **components:** input box properties should override input ones
+  ([8103029](https://github.com/MTES-MCT/monitor-ui/commit/8103029c5f7205251241b2f9167bb48f592ace5a))
+
 ## [18.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.3.0...v18.4.0) (2024-07-02)
 
 ### Features
