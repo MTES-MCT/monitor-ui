@@ -1,3 +1,15 @@
+## [18.4.2](https://github.com/MTES-MCT/monitor-ui/compare/v18.4.1...v18.4.2) (2024-07-03)
+
+
+### Bug Fixes
+
+* **components:** add tertiary to dropdown ([805e34e](https://github.com/MTES-MCT/monitor-ui/commit/805e34eb2e6a1c8d44e1b9c738f77c8f13186721))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump the non-major-dev-dependencies group across 1 directory with 17 updates ([5313127](https://github.com/MTES-MCT/monitor-ui/commit/53131272261e00bbf36e68b8a2e051a6c06a9b86))
+
 ## [18.4.1](https://github.com/MTES-MCT/monitor-ui/compare/v18.4.0...v18.4.1) (2024-07-02)
 
 ### Bug Fixes
