@@ -8,6 +8,7 @@
   "engines": {
     "node": ">=20"
   },
+  "main": "dist/index.js",
   "scripts": {
     "build": "yarn build:clean && rollup -c && yarn build:type && yarn build:copy && yarn build:package",
     "build:clean": "rm -Rf ./dist",

@@ -15,23 +15,54 @@ export type DropdownProps = Omit<RsuiteDropdownProps, 'as' | 'icon'> & {
   Icon?: FunctionComponent<IconProps>
   accent?: Accent | undefined
 }
-function RawDropdown({ accent, className, Icon, ...originalProps }: DropdownProps) {
+function RawDropdown({ accent, className, Icon, title, ...originalProps }: DropdownProps) {
   const controlledClassName = classnames('Component-Dropdow', className)
   const icon = useMemo(() => (Icon ? <Icon size={20} /> : undefined), [Icon])
   const hasIcon = useMemo(() => Boolean(Icon), [Icon])
 
   switch (accent) {
+    case Accent.TERTIARY:
+      return (
+        <TertiaryDropdown
+          $hasIcon={hasIcon}
+          $hasTitle={!!title}
+          className={controlledClassName}
+          icon={icon}
+          title={title}
+          {...originalProps}
+        />
+      )
+
     case Accent.SECONDARY:
-      return <SecondaryDropdown $hasIcon={hasIcon} className={controlledClassName} icon={icon} {...originalProps} />
+      return (
+        <SecondaryDropdown
+          $hasIcon={hasIcon}
+          $hasTitle={!!title}
+          className={controlledClassName}
+          icon={icon}
+          title={title}
+          {...originalProps}
+        />
+      )
 
     default:
-      return <PrimaryDropdown $hasIcon={hasIcon} className={controlledClassName} icon={icon} {...originalProps} />
+      return (
+        <PrimaryDropdown
+          $hasIcon={hasIcon}
+          $hasTitle={!!title}
+          className={controlledClassName}
+          icon={icon}
+          title={title}
+          {...originalProps}
+        />
+      )
   }
 }
 
 // TODO We need to split into multiple styled components as done in `<Button />`.
 const PrimaryDropdown = styled(RsuiteDropdown as any)<{
   $hasIcon: boolean
+  $hasTitle: boolean
 }>`
   .rs-btn {
     align-items: center;
@@ -41,7 +72,7 @@ const PrimaryDropdown = styled(RsuiteDropdown as any)<{
     color: ${p => p.theme.color.gainsboro};
     display: flex;
     font-size: 13px;
-    padding: 3px 12px ${p => (p.$hasIcon ? '4px' : '5px')};
+    padding: 3px ${p => (p.$hasTitle ? 12 : 6)}px ${p => (p.$hasIcon ? '4px' : '5px')};
 
     :hover {
       background-color: ${p => p.theme.color.blueYonder};
@@ -62,7 +93,7 @@ const PrimaryDropdown = styled(RsuiteDropdown as any)<{
     }
 
     > .Element-IconBox {
-      margin: 1px 8px 0 0;
+      margin: 1px ${p => (p.$hasTitle ? 8 : 0)}px 0 0;
     }
 
     > svg {
@@ -83,11 +114,12 @@ const PrimaryDropdown = styled(RsuiteDropdown as any)<{
 
 const SecondaryDropdown = styled(RsuiteDropdown as any)<{
   $hasIcon: boolean
+  $hasTitle: boolean
 }>`
   .rs-btn {
     align-items: center;
     display: flex;
-    padding: 3px 12px ${p => (p.$hasIcon ? '4px' : '5px')};
+    padding: 3px ${p => (p.$hasTitle ? 12 : 6)}px ${p => (p.$hasIcon ? '4px' : '5px')};
 
     border-radius: 0;
     background-color: transparent;
@@ -116,7 +148,62 @@ const SecondaryDropdown = styled(RsuiteDropdown as any)<{
     }
 
     > .Element-IconBox {
-      margin: 1px 8px 0 0;
+      margin: 1px ${p => (p.$hasTitle ? 8 : 0)}px 0 0;
+    }
+
+    > svg {
+      display: none;
+    }
+  }
+
+  > .rs-dropdown-menu {
+    border-radius: 0;
+    padding: 0;
+  }
+
+  svg.rs-dropdown-item-menu-icon {
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+`
+
+const TertiaryDropdown = styled(RsuiteDropdown as any)<{
+  $hasIcon: boolean
+  $hasTitle: boolean
+}>`
+  .rs-btn {
+    align-items: center;
+    display: flex;
+    padding: 3px ${p => (p.$hasTitle ? 13 : 7)}px ${p => (p.$hasIcon ? '4px' : '5px')};
+
+    border-radius: 0;
+    background-color: transparent;
+    border: unset;
+    color: ${p => p.theme.color.charcoal};
+
+    &:hover,
+    &._hover {
+      background-color: ${p => p.theme.color.blueYonder25};
+      border: unset;
+      color: ${p => p.theme.color.blueYonder};
+    }
+
+    &:active,
+    &._active {
+      background-color: ${p => p.theme.color.blueGray25};
+      border: unset;
+      color: ${p => p.theme.color.blueGray};
+    }
+
+    &:disabled,
+    &._disabled {
+      background-color: transparent;
+      border: unset;
+      color: ${p => p.theme.color.lightGray};
+    }
+
+    > .Element-IconBox {
+      margin: 1px ${p => (p.$hasTitle ? 8 : 0)}px 0 0;
     }
 
     > svg {

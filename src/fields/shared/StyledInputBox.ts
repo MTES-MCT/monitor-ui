@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import {
   getFieldBackgroundColorFactory,
@@ -25,6 +25,43 @@ const PADDING_WITH_ICON: Record<Size, string> = {
   [Size.NORMAL]: '3px 38px 6px 8px',
   [Size.SMALL]: '3px 38px 6px 8px'
 }
+export const inputStyle = css<StyledInputBoxProps>`
+  background-color: ${getFieldBackgroundColorFactory()};
+  border: solid 1px ${getFieldBorderColorFactoryForState('default')};
+  border-radius: 0;
+  color: ${p => p.theme.color.gunMetal};
+  ${p => p.$isReadOnly && `cursor: default;`}
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 19px;
+  padding: 3px 8px 6px;
+  vertical-align: center;
+  width: 100%;
+
+  &::placeholder {
+    color: ${getFieldPlaceholderColorFactoryForState('default')};
+  }
+
+  &:hover {
+    background-color: ${getFieldBackgroundColorFactory()};
+    border: solid 1px ${getFieldBorderColorFactoryForState('hover')} !important;
+
+    &::placeholder {
+      color: ${getFieldPlaceholderColorFactoryForState('hover')};
+    }
+  }
+
+  &:active,
+  &:focus {
+    background-color: ${getFieldBackgroundColorFactory()};
+    border: solid 1px ${getFieldBorderColorFactoryForState('focus')} !important;
+    outline: 0;
+
+    &::placeholder {
+      color: ${getFieldPlaceholderColorFactoryForState('focus')};
+    }
+  }
+`
 
 export const StyledInputBox = styled.div<StyledInputBoxProps>`
   display: flex;
@@ -38,41 +75,10 @@ export const StyledInputBox = styled.div<StyledInputBoxProps>`
 
   > input,
   > .rs-auto-complete > input {
-    background-color: ${getFieldBackgroundColorFactory()};
-    border: solid 1px ${getFieldBorderColorFactoryForState('default')};
-    border-radius: 0;
-    color: ${p => p.theme.color.gunMetal};
-    ${p => p.$isReadOnly && `cursor: default;`}
-    flex-grow: 1;
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1;
+    ${inputStyle}
     padding: ${p => (p.$hasIcon ? PADDING_WITH_ICON[p.$size] : PADDING[p.$size])};
-    vertical-align: center;
-
-    &::placeholder {
-      color: ${getFieldPlaceholderColorFactoryForState('default')};
-    }
-
-    &:hover {
-      background-color: ${getFieldBackgroundColorFactory()};
-      border: solid 1px ${getFieldBorderColorFactoryForState('hover')} !important;
-
-      &::placeholder {
-        color: ${getFieldPlaceholderColorFactoryForState('hover')};
-      }
-    }
-
-    &:active,
-    &:focus {
-      background-color: ${getFieldBackgroundColorFactory()};
-      border: solid 1px ${getFieldBorderColorFactoryForState('focus')} !important;
-      outline: 0;
-
-      &::placeholder {
-        color: ${getFieldPlaceholderColorFactoryForState('focus')};
-      }
-    }
+    line-height: 1;
+    flex-grow: 1;
   }
 
   > .Element-IconBox {

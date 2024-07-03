@@ -54,6 +54,37 @@ export function App() {
 
 Here is [the Storybook documentation][lnk-documentation].
 
+## Testing in your project
+
+### Using npm link
+
+1. Globally link your module
+
+```bash
+npm link
+```
+
+2. Link the module in a project
+
+```bash
+cd /path/to/my-project
+```
+
+Add to `dependencies` `   "@mtes-mct/monitor-ui__root": "<version>",` to `package.json`
+
+```bash
+npm link @mtes-mct/monitor-ui__root
+```
+
+3. Unlink the module:
+
+```bash
+cd /path/to/my-project
+npm unlink my-module
+cd /path/to/my-module
+npm unlink
+```
+
 ## Contributing
 
 Please read the [contributing document](CONTRIBUTING.md) for setup and contributing instructions.
