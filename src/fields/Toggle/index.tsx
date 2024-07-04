@@ -59,7 +59,7 @@ export function Toggle({
 
   return (
     <Field className={controlledClassName} style={style}>
-      <Label $isRequired={isRequired} disabled={disabled} htmlFor={originalProps.name} isHidden={isLabelHidden}>
+      <Label $isHidden={isLabelHidden} $isRequired={isRequired} disabled={disabled} htmlFor={originalProps.name}>
         {label}
       </Label>
       <StyledToggle
