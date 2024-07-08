@@ -70,96 +70,95 @@ context('Story', () => {
 
         outputShouldBe('0712345678')
       })
+    })
+    describe('international format', () => {
+      it('Should fill, change and clear the input', () => {
+        mountAndWait(
+          <StoryBox>
+            <PhoneInputStory {...commonProps} />
+          </StoryBox>
+        )
 
-      describe('international format', () => {
-        it('Should fill, change and clear the input', () => {
-          mountAndWait(
-            <StoryBox>
-              <PhoneInputStory {...commonProps} />
-            </StoryBox>
-          )
+        outputShouldBe(undefined)
 
-          outputShouldBe(undefined)
+        cy.fill(commonProps.label, '00 594 222 333 444')
 
-          cy.fill(commonProps.label, '00 594 222 333 444')
+        outputShouldBe('00594222333444')
 
-          outputShouldBe('00594222333444')
+        cy.fill(commonProps.label, '')
 
-          cy.fill(commonProps.label, '')
+        outputShouldBe(undefined)
+      })
 
-          outputShouldBe(undefined)
-        })
+      it('Should have output with default value`', () => {
+        mountAndWait(
+          <StoryBox>
+            <PhoneInputStory {...commonProps} value="00 594 222 333 444" />
+          </StoryBox>
+        )
 
-        it('Should have output with default value`', () => {
-          mountAndWait(
-            <StoryBox>
-              <PhoneInputStory {...commonProps} value="00 594 222 333 444" />
-            </StoryBox>
-          )
+        outputShouldBe('00594222333444')
+      })
+    })
+    describe('other format', () => {
+      it('Should fill, change and clear the input', () => {
+        mountAndWait(
+          <StoryBox>
+            <PhoneInputStory {...commonProps} />
+          </StoryBox>
+        )
 
-          outputShouldBe('00594222333444')
-        })
-        describe('other format', () => {
-          it('Should fill, change and clear the input', () => {
-            mountAndWait(
-              <StoryBox>
-                <PhoneInputStory {...commonProps} />
-              </StoryBox>
-            )
+        outputShouldBe(undefined)
 
-            outputShouldBe(undefined)
+        cy.fill(commonProps.label, '8317920035')
 
-            cy.fill(commonProps.label, '8317920035')
+        outputShouldBe('8317920035')
 
-            outputShouldBe('8317920035')
+        cy.fill(commonProps.label, '')
 
-            cy.fill(commonProps.label, '')
+        outputShouldBe(undefined)
+      })
 
-            outputShouldBe(undefined)
-          })
+      it('Should be editable to a international number', () => {
+        mountAndWait(
+          <StoryBox>
+            <PhoneInputStory {...commonProps} />
+          </StoryBox>
+        )
 
-          it('Should be editable to a international number', () => {
-            mountAndWait(
-              <StoryBox>
-                <PhoneInputStory {...commonProps} />
-              </StoryBox>
-            )
+        outputShouldBe(undefined)
 
-            outputShouldBe(undefined)
+        cy.fill(commonProps.label, '8317920035')
 
-            cy.fill(commonProps.label, '8317920035')
+        cy.get(`#${commonProps.name}`).type('{moveToStart}').type('00')
 
-            cy.get(`#${commonProps.name}`).type('{moveToStart}').type('00')
+        outputShouldBe('008317920035')
+      })
 
-            outputShouldBe('008317920035')
-          })
+      it('Should be editable to a french number', () => {
+        mountAndWait(
+          <StoryBox>
+            <PhoneInputStory {...commonProps} />
+          </StoryBox>
+        )
 
-          it('Should be editable to a french number', () => {
-            mountAndWait(
-              <StoryBox>
-                <PhoneInputStory {...commonProps} />
-              </StoryBox>
-            )
+        outputShouldBe(undefined)
 
-            outputShouldBe(undefined)
+        cy.fill(commonProps.label, '8317920035')
 
-            cy.fill(commonProps.label, '8317920035')
+        cy.get(`#${commonProps.name}`).type('{moveToStart}').type('0')
 
-            cy.get(`#${commonProps.name}`).type('{moveToStart}').type('0')
+        outputShouldBe('08317920035')
+      })
 
-            outputShouldBe('08317920035')
-          })
+      it('Should have output with default value`', () => {
+        mountAndWait(
+          <StoryBox>
+            <PhoneInputStory {...commonProps} value="+3361234567890" />
+          </StoryBox>
+        )
 
-          it('Should have output with default value`', () => {
-            mountAndWait(
-              <StoryBox>
-                <PhoneInputStory {...commonProps} value="+3361234567890" />
-              </StoryBox>
-            )
-
-            outputShouldBe('+3361234567890')
-          })
-        })
+        outputShouldBe('+3361234567890')
       })
     })
   })

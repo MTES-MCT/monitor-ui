@@ -28,6 +28,11 @@ const internationalFormat = {
   mask: '`@@ #[00] 000 000 000 000'
 }
 
+const internationalFrenchFormat = {
+  definitions: { '@': /0/ },
+  mask: '`@@ 00 00 00 00 00'
+}
+
 const frenchFormat = { definitions: { '#': /[1-9]/, '@': /0/ }, mask: '`@# 00 00 00 00' }
 
 const defaultFormat = { definitions: { '#': /[1-9]/, '+': /[+\d]/ }, mask: '`+00 000 000 000 000 000' }
@@ -69,23 +74,27 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
           $isTransparent={isTransparent}
           disabled={disabled}
           dispatch={(appended, dynamicMasked) => {
-            const phoneNumber = dynamicMasked.unmaskedValue + appended
+            const phoneNumber = (dynamicMasked.unmaskedValue + appended).replace(/\s+/g, '')
 
             if (phoneNumber.startsWith('00')) {
+              if (value && value.length === 12 && phoneNumber === value) {
+                return dynamicMasked.compiledMasks[1]
+              }
+
               return dynamicMasked.compiledMasks[0]
             }
             if (phoneNumber.startsWith('0') && value && value.length <= 10 && phoneNumber === value) {
-              return dynamicMasked.compiledMasks[1]
+              return dynamicMasked.compiledMasks[2]
             }
 
-            return dynamicMasked.compiledMasks[2]
+            return dynamicMasked.compiledMasks[3]
           }}
           id={name}
-          mask={[internationalFormat, frenchFormat, defaultFormat]}
+          mask={[internationalFormat, internationalFrenchFormat, frenchFormat, defaultFormat]}
           onAccept={(nextValue: string) => {
             onChange(nextValue || undefined)
           }}
-          overwrite={false}
+          overwrite="shift"
           type="tel"
           unmask
           value={value}
