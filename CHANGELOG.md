@@ -1,3 +1,24 @@
+## [18.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.4.2...v18.5.0) (2024-07-08)
+
+
+### Features
+
+* **components:** add an international french format ([ca61f53](https://github.com/MTES-MCT/monitor-ui/commit/ca61f530913fd37ebc9f84f90811761915cfe8f2))
+* **components:** redo overwrite property ([f2e376e](https://github.com/MTES-MCT/monitor-ui/commit/f2e376eb91b7eeecf3d6c61385db481f739f64fd))
+
+
+### Bug Fixes
+
+* **components:** add $ to isHidden ([bcdd45f](https://github.com/MTES-MCT/monitor-ui/commit/bcdd45f14c91cd8e385c0d28be659549a91e7687))
+* **fields:** isHidden with display none makes label unaccessible ([4253739](https://github.com/MTES-MCT/monitor-ui/commit/4253739005523a6f145308db45982dda22ad515d))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @semantic-release/commit-analyzer ([32e8c03](https://github.com/MTES-MCT/monitor-ui/commit/32e8c03375133d5c323af4ea4c62f8256000ddea))
+* **dev-deps:** bump the all-non-major-dependencies group ([6d41b26](https://github.com/MTES-MCT/monitor-ui/commit/6d41b26e95ffbc29372cf9b582bc86d9c68e4448))
+* **dev-deps:** bump the non-major-dev-dependencies group with 3 updates ([ed2063d](https://github.com/MTES-MCT/monitor-ui/commit/ed2063dd06349e88071835787d4447fb3e615121))
+
 ## [18.4.2](https://github.com/MTES-MCT/monitor-ui/compare/v18.4.1...v18.4.2) (2024-07-03)
 
 
