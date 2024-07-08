@@ -94,7 +94,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
           onAccept={(nextValue: string) => {
             onChange(nextValue || undefined)
           }}
-          overwrite="shift"
+          overwrite={false}
           type="tel"
           unmask
           value={value}
