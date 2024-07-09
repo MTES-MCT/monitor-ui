@@ -4,10 +4,10 @@ import styled from 'styled-components'
 import type { LabelHTMLAttributes } from 'react'
 
 export type LabelProps = LabelHTMLAttributes<HTMLLabelElement> & {
-  $isHidden?: boolean | undefined
   $isRequired?: boolean | undefined
   disabled?: boolean | undefined
   hasError?: boolean | undefined
+  isHidden?: boolean | undefined
 }
 export const Label = styled.label.attrs<LabelProps, LabelProps>(props => ({
   className: classnames('Element-Label', props.className)
@@ -26,13 +26,13 @@ export const Label = styled.label.attrs<LabelProps, LabelProps>(props => ({
         color: ${p.theme.color.maximumRed};
       }`}
   ${p =>
-    p.$isHidden &&
+    p.isHidden &&
     `
-    position:absolute;
-    left:-10000px;
-    top:auto;
-    width:1px;
-    height:1px;
-    overflow:hidden;
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
     `}
 `
