@@ -1,35 +1,48 @@
-## [18.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.4.2...v18.5.0) (2024-07-08)
+## [18.5.1](https://github.com/MTES-MCT/monitor-ui/compare/v18.5.0...v18.5.1) (2024-07-09)
 
+### Reverts
+
+- Revert "fix(fields): isHidden with display none makes label unaccessible"
+  ([f9f2ae4](https://github.com/MTES-MCT/monitor-ui/commit/f9f2ae4d61784810ed60483ced4f3f30875f8a21))
+- Revert "fix(components): add $ to isHidden"
+  ([19f3dc9](https://github.com/MTES-MCT/monitor-ui/commit/19f3dc9a0560ee85efe52d9be0ec935061d1469b))
+
+## [18.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.4.2...v18.5.0) (2024-07-08)
 
 ### Features
 
-* **components:** add an international french format ([ca61f53](https://github.com/MTES-MCT/monitor-ui/commit/ca61f530913fd37ebc9f84f90811761915cfe8f2))
-* **components:** redo overwrite property ([f2e376e](https://github.com/MTES-MCT/monitor-ui/commit/f2e376eb91b7eeecf3d6c61385db481f739f64fd))
-
+- **components:** add an international french format
+  ([ca61f53](https://github.com/MTES-MCT/monitor-ui/commit/ca61f530913fd37ebc9f84f90811761915cfe8f2))
+- **components:** redo overwrite property
+  ([f2e376e](https://github.com/MTES-MCT/monitor-ui/commit/f2e376eb91b7eeecf3d6c61385db481f739f64fd))
 
 ### Bug Fixes
 
-* **components:** add $ to isHidden ([bcdd45f](https://github.com/MTES-MCT/monitor-ui/commit/bcdd45f14c91cd8e385c0d28be659549a91e7687))
-* **fields:** isHidden with display none makes label unaccessible ([4253739](https://github.com/MTES-MCT/monitor-ui/commit/4253739005523a6f145308db45982dda22ad515d))
-
+- **components:** add $ to isHidden
+  ([bcdd45f](https://github.com/MTES-MCT/monitor-ui/commit/bcdd45f14c91cd8e385c0d28be659549a91e7687))
+- **fields:** isHidden with display none makes label unaccessible
+  ([4253739](https://github.com/MTES-MCT/monitor-ui/commit/4253739005523a6f145308db45982dda22ad515d))
 
 ### Buid System & Dependencies
 
-* **dev-deps:** bump @semantic-release/commit-analyzer ([32e8c03](https://github.com/MTES-MCT/monitor-ui/commit/32e8c03375133d5c323af4ea4c62f8256000ddea))
-* **dev-deps:** bump the all-non-major-dependencies group ([6d41b26](https://github.com/MTES-MCT/monitor-ui/commit/6d41b26e95ffbc29372cf9b582bc86d9c68e4448))
-* **dev-deps:** bump the non-major-dev-dependencies group with 3 updates ([ed2063d](https://github.com/MTES-MCT/monitor-ui/commit/ed2063dd06349e88071835787d4447fb3e615121))
+- **dev-deps:** bump @semantic-release/commit-analyzer
+  ([32e8c03](https://github.com/MTES-MCT/monitor-ui/commit/32e8c03375133d5c323af4ea4c62f8256000ddea))
+- **dev-deps:** bump the all-non-major-dependencies group
+  ([6d41b26](https://github.com/MTES-MCT/monitor-ui/commit/6d41b26e95ffbc29372cf9b582bc86d9c68e4448))
+- **dev-deps:** bump the non-major-dev-dependencies group with 3 updates
+  ([ed2063d](https://github.com/MTES-MCT/monitor-ui/commit/ed2063dd06349e88071835787d4447fb3e615121))
 
 ## [18.4.2](https://github.com/MTES-MCT/monitor-ui/compare/v18.4.1...v18.4.2) (2024-07-03)
 
-
 ### Bug Fixes
 
-* **components:** add tertiary to dropdown ([805e34e](https://github.com/MTES-MCT/monitor-ui/commit/805e34eb2e6a1c8d44e1b9c738f77c8f13186721))
-
+- **components:** add tertiary to dropdown
+  ([805e34e](https://github.com/MTES-MCT/monitor-ui/commit/805e34eb2e6a1c8d44e1b9c738f77c8f13186721))
 
 ### Buid System & Dependencies
 
-* **dev-deps:** bump the non-major-dev-dependencies group across 1 directory with 17 updates ([5313127](https://github.com/MTES-MCT/monitor-ui/commit/53131272261e00bbf36e68b8a2e051a6c06a9b86))
+- **dev-deps:** bump the non-major-dev-dependencies group across 1 directory with 17 updates
+  ([5313127](https://github.com/MTES-MCT/monitor-ui/commit/53131272261e00bbf36e68b8a2e051a6c06a9b86))
 
 ## [18.4.1](https://github.com/MTES-MCT/monitor-ui/compare/v18.4.0...v18.4.1) (2024-07-02)
 
