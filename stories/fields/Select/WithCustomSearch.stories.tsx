@@ -71,7 +71,7 @@ export function WithCustomSearch(props: SelectProps<Specy>) {
           weight: 0.1
         }
       ],
-      { isStrict: true }
+      { cacheKey: 'PNO_SPECIES_AS_OPTIONS', isStrict: true }
     )
   )
 
