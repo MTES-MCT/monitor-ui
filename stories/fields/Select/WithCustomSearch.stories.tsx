@@ -108,6 +108,30 @@ export function WithCustomSearch(props: SelectProps<Specy>) {
         value={controlledValue}
         searchable
       />
+      <Select
+        {...props}
+        customSearch={customSearchRef.current}
+        onChange={controlledOnChange}
+        options={optionsRef.current}
+        value={controlledValue}
+        searchable
+      />
+      <Select
+        {...props}
+        customSearch={customSearchRef.current}
+        onChange={controlledOnChange}
+        options={optionsRef.current}
+        value={controlledValue}
+        searchable
+      />
+      <Select
+        {...props}
+        customSearch={customSearchRef.current}
+        onChange={controlledOnChange}
+        options={optionsRef.current}
+        value={controlledValue}
+        searchable
+      />
       {outputValue !== '∅' && <Output value={outputValue} />}
     </>
   )
