@@ -93,6 +93,22 @@ export function WithCustomSearch(props: SelectProps<Specy>) {
       </div>
 
       {outputValue !== '∅' && <Output value={outputValue} />}
+
+      <hr/>
+
+      <div>
+        <em>Do not add the `searchable` property to the component when there is a `customSearch`, as it will impact the scroll performance.</em>
+        <em>Example :</em>
+      </div>
+      <Select
+        {...props}
+        customSearch={customSearchRef.current}
+        onChange={controlledOnChange}
+        options={optionsRef.current}
+        value={controlledValue}
+        searchable
+      />
+      {outputValue !== '∅' && <Output value={outputValue} />}
     </>
   )
 }
