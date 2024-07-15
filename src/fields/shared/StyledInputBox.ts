@@ -15,13 +15,13 @@ type StyledInputBoxProps = CommonFieldStyleProps & {
 }
 
 const PADDING: Record<Size, string> = {
-  [Size.LARGE]: '8px 16px 12px',
+  [Size.LARGE]: '8px 16px 10px',
   [Size.NORMAL]: '3px 8px 7px',
   [Size.SMALL]: '3px 8px 6px'
 }
 
 const PADDING_WITH_ICON: Record<Size, string> = {
-  [Size.LARGE]: '8px 48px 11px 16px',
+  [Size.LARGE]: '8px 48px 10px 16px',
   [Size.NORMAL]: '3px 38px 6px 8px',
   [Size.SMALL]: '3px 38px 6px 8px'
 }
