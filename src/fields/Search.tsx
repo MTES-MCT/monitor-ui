@@ -187,7 +187,7 @@ export function Search<OptionValue extends OptionValueType = string>({
 
   return (
     <Field className={controlledClassName} style={style}>
-      <Label $isHidden={isLabelHidden} $isRequired={isRequired} disabled={disabled} htmlFor={originalProps.name}>
+      <Label $isRequired={isRequired} disabled={disabled} htmlFor={originalProps.name} isHidden={isLabelHidden}>
         {label}
       </Label>
 
