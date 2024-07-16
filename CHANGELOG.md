@@ -1,3 +1,10 @@
+## [18.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.6.0...v18.7.0) (2024-07-16)
+
+
+### Features
+
+* **components:** increase padding right in textinput search mode ([4a3261d](https://github.com/MTES-MCT/monitor-ui/commit/4a3261d9680508b4e33a903114ff137b38737481))
+
 ## [18.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.5.1...v18.6.0) (2024-07-16)
 
 
