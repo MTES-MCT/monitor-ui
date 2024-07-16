@@ -1,3 +1,17 @@
+## [18.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.5.1...v18.6.0) (2024-07-16)
+
+
+### Features
+
+* **components:** add right padding to input when its an search input ([ec50305](https://github.com/MTES-MCT/monitor-ui/commit/ec50305d1bd783dc09c8d5e9a7ee8b035fc69b08))
+* **fields:** modifying padding-bottom for LARGE inputs ([3b2486a](https://github.com/MTES-MCT/monitor-ui/commit/3b2486a92497d6a40a44f4ec76bbc9d3fad403c0))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump the non-major-dependencies group across 1 directory with 2 updates ([f8b3fd1](https://github.com/MTES-MCT/monitor-ui/commit/f8b3fd123f8c4391b4230e9d61f1c0ab9fb32392))
+* **dev-deps:** bump the all-non-major-dependencies group ([973e72d](https://github.com/MTES-MCT/monitor-ui/commit/973e72d189d863d2baa9cedd3150da1e0510e7f6))
+
 ## [18.5.1](https://github.com/MTES-MCT/monitor-ui/compare/v18.5.0...v18.5.1) (2024-07-09)
 
 ### Reverts
