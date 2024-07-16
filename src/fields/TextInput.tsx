@@ -144,7 +144,7 @@ const IconsContainer = styled.div<{
   align-items: center;
   display: flex;
   position: absolute;
-  right: 5px;
+  right: 8px;
   top: ${p => (p.$size === Size.LARGE ? '9px' : '5px')};
 `
 
