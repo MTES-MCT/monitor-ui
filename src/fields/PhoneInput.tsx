@@ -63,7 +63,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
 
     return (
       <Field className="Field-PhoneInput">
-        <Label $isHidden={isLabelHidden} $isRequired={isRequired} disabled={disabled} htmlFor={name}>
+        <Label $isRequired={isRequired} disabled={disabled} htmlFor={name} isHidden={isLabelHidden}>
           {label}
         </Label>
         <StyledIMaskInput

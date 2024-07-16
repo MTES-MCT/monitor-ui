@@ -86,16 +86,17 @@ export function TextInput({
 
   return (
     <Field className={controlledClassname} style={style}>
-      <Label $isHidden={isLabelHidden} $isRequired={isRequired} disabled={disabled} htmlFor={name}>
+      <Label $isRequired={isRequired} disabled={disabled} htmlFor={name} isHidden={isLabelHidden}>
         {label}
       </Label>
 
-      <StyledInputBox
+      <RestyledStyledInputBox
         $hasError={hasError}
         $hasIcon={!!Icon}
         $isDisabled={disabled}
         $isLight={isLight}
         $isReadOnly={readOnly}
+        $isSearchInput={isSearchInput}
         $isTransparent={isTransparent}
         $size={size}
       >
@@ -130,7 +131,7 @@ export function TextInput({
         )}
 
         {Icon && <Icon color={THEME.color.slateGray} />}
-      </StyledInputBox>
+      </RestyledStyledInputBox>
 
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
     </Field>
@@ -144,7 +145,14 @@ const IconsContainer = styled.div<{
   display: flex;
   position: absolute;
   right: 5px;
-  top: ${p => (p.$size === Size.LARGE ? '10px' : '5px')};
+  top: ${p => (p.$size === Size.LARGE ? '9px' : '5px')};
+`
+
+const RestyledStyledInputBox = styled(StyledInputBox)<{ $isSearchInput: boolean }>`
+  > input,
+  > .rs-auto-complete > input {
+    padding-right: ${p => p.$isSearchInput && '64px'};
+  }
 `
 
 const Separator = styled.div`
