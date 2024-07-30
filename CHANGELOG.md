@@ -1,3 +1,11 @@
+## [18.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.8.0...v18.9.0) (2024-07-30)
+
+
+### Features
+
+* **elements:** add color and background color props to icon button ([e8a123a](https://github.com/MTES-MCT/monitor-ui/commit/e8a123aa5d8b1cea3035da022967d7fd3b1de058))
+* **elements:** add spotlighted number to icon button ([d3881df](https://github.com/MTES-MCT/monitor-ui/commit/d3881df340fad2866d12ed0dd9515fbd591bbbba))
+
 ## [18.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.6.0...v18.7.0) (2024-07-16)
 
 
