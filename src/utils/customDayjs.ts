@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import isBetween from 'dayjs/plugin/isBetween'
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
 import localeData from 'dayjs/plugin/localeData'
@@ -16,6 +17,7 @@ dayjs.extend(quarterOfYear)
 dayjs.extend(timezone)
 dayjs.extend(updateLocale)
 dayjs.extend(utc)
+dayjs.extend(isBetween)
 
 dayjs.locale('fr')
 
