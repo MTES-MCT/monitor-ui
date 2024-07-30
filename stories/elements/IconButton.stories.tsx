@@ -22,6 +22,7 @@ const meta: Meta<IconButtonProps> = {
     isCompact: ARG_TYPE.OPTIONAL_BOOLEAN,
     size: ARG_TYPE.OPTIONAL_SIZE,
     type: ARG_TYPE.NO_CONTROL,
+    spotlightedNumber: ARG_TYPE.OPTIONAL_NUMBER,
     withUnpropagatedClick: ARG_TYPE.OPTIONAL_BOOLEAN
   },
 
@@ -30,6 +31,7 @@ const meta: Meta<IconButtonProps> = {
     disabled: false,
     Icon: Icon.Close,
     isCompact: false,
+    spotlightedNumber: 2,
     size: undefined,
     withUnpropagatedClick: false
   },
@@ -73,7 +75,13 @@ function ShowcaseReference() {
               <IconButton accent={Accent.PRIMARY} className="" Icon={Icon.Search} size={Size.LARGE} />
             </td>
             <td>
-              <IconButton accent={Accent.PRIMARY} className="" Icon={Icon.Search} size={Size.NORMAL} />
+              <IconButton
+                accent={Accent.PRIMARY}
+                className=""
+                Icon={Icon.Search}
+                size={Size.NORMAL}
+                spotlightedNumber={123}
+              />
             </td>
             <td>
               <IconButton accent={Accent.PRIMARY} className="" Icon={Icon.Search} size={Size.SMALL} />

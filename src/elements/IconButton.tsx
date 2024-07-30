@@ -23,6 +23,7 @@ export type IconButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'chi
   /** Remove button border and padding. */
   isCompact?: boolean | undefined
   size?: Size | undefined
+  spotlightedNumber?: number | undefined
   /** Prevent onClick event propagation. */
   withUnpropagatedClick?: boolean | undefined
 }
@@ -35,6 +36,7 @@ export function IconButton({
   isCompact,
   onClick,
   size = Size.NORMAL,
+  spotlightedNumber,
   type = 'button',
   withUnpropagatedClick = false,
   ...nativeProps
@@ -72,13 +74,28 @@ export function IconButton({
 
   switch (accent) {
     case Accent.SECONDARY:
-      return <SecondaryButton as={StyledButton} {...commonProps} />
+      return (
+        <Wrapper>
+          {!!spotlightedNumber && <SpotlightedNumber size={size}>{spotlightedNumber}</SpotlightedNumber>}
+          <SecondaryButton as={StyledButton} {...commonProps} />
+        </Wrapper>
+      )
 
     case Accent.TERTIARY:
-      return <TertiaryButton as={StyledButton} {...commonProps} />
+      return (
+        <Wrapper>
+          {!!spotlightedNumber && <SpotlightedNumber size={size}>{spotlightedNumber}</SpotlightedNumber>}
+          <TertiaryButton as={StyledButton} {...commonProps} />
+        </Wrapper>
+      )
 
     default:
-      return <PrimaryButton as={StyledButton} {...commonProps} />
+      return (
+        <Wrapper>
+          {!!spotlightedNumber && <SpotlightedNumber size={size}>{spotlightedNumber}</SpotlightedNumber>}
+          <PrimaryButton as={StyledButton} {...commonProps} />
+        </Wrapper>
+      )
   }
 }
 
@@ -87,6 +104,35 @@ const PADDING: Record<Size, string> = {
   [Size.NORMAL]: '5px',
   [Size.SMALL]: '3px'
 }
+
+const Wrapper = styled.div`
+  position: relative;
+`
+
+const LEFT_MARGIN: Record<Size, number> = {
+  [Size.LARGE]: 35,
+  [Size.NORMAL]: 25,
+  [Size.SMALL]: 15
+}
+
+const SpotlightedNumber = styled.div<{
+  size: Size
+}>`
+  display: inline-block;
+  position: absolute;
+  height: 15px;
+  padding: 0 4px;
+  text-align: center;
+  border-radius: 10px;
+  top: -5px;
+  line-height: 14px;
+  left: ${p => (p.size ? LEFT_MARGIN[p.size] : 25)}px;
+  background: ${p => p.theme.color.maximumRed};
+  color: ${p => p.theme.color.white};
+  font-size: 12px;
+  letter-spacing: 0px;
+  font-weight: 700;
+`
 
 // We can't use $-prefixed props here for some reason (maybe because the `as` prop exclude them?).
 const StyledButton = styled.button<{
