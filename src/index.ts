@@ -7,6 +7,7 @@ import 'dayjs/plugin/quarterOfYear'
 import 'dayjs/plugin/timezone'
 import 'dayjs/plugin/updateLocale'
 import 'dayjs/plugin/utc'
+import 'dayjs/plugin/isBetween'
 
 export { GlobalStyle } from './GlobalStyle'
 export { OnlyFontGlobalStyle } from './OnlyFontGlobalStyle'
