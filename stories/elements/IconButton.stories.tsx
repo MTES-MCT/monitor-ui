@@ -2,6 +2,7 @@ import { Showcase } from '../../.storybook/components/Showcase'
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Accent, IconButton, Icon, Size } from '../../src'
+import { THEME } from '../../src/theme'
 
 import type { IconButtonProps } from '../../src'
 import type { Meta } from '@storybook/react'
@@ -16,13 +17,15 @@ const meta: Meta<IconButtonProps> = {
   argTypes: {
     accent: ARG_TYPE.OPTIONAL_ACCENT,
     color: ARG_TYPE.OPTIONAL_COLOR,
+    badgeBackgroundColor: ARG_TYPE.OPTIONAL_COLOR,
+    badgeColor: ARG_TYPE.OPTIONAL_COLOR,
     disabled: ARG_TYPE.OPTIONAL_BOOLEAN,
     Icon: ARG_TYPE.ICON,
     iconSize: ARG_TYPE.OPTIONAL_NUMBER,
     isCompact: ARG_TYPE.OPTIONAL_BOOLEAN,
     size: ARG_TYPE.OPTIONAL_SIZE,
     type: ARG_TYPE.NO_CONTROL,
-    spotlightedNumber: ARG_TYPE.OPTIONAL_NUMBER,
+    badgeNumber: ARG_TYPE.OPTIONAL_NUMBER,
     withUnpropagatedClick: ARG_TYPE.OPTIONAL_BOOLEAN
   },
 
@@ -31,7 +34,9 @@ const meta: Meta<IconButtonProps> = {
     disabled: false,
     Icon: Icon.Close,
     isCompact: false,
-    spotlightedNumber: 2,
+    badgeNumber: 2,
+    badgeBackgroundColor: THEME.color.lightGray,
+    badgeColor: THEME.color.slateGray,
     size: undefined,
     withUnpropagatedClick: false
   },
@@ -77,10 +82,10 @@ function ShowcaseReference() {
             <td>
               <IconButton
                 accent={Accent.PRIMARY}
+                badgeNumber={123}
                 className=""
                 Icon={Icon.Search}
                 size={Size.NORMAL}
-                spotlightedNumber={123}
               />
             </td>
             <td>

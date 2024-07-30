@@ -16,19 +16,23 @@ const ICON_SIZE_IN_PX: Record<Size, number> = {
 export type IconButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> & {
   Icon: FunctionComponent<IconProps>
   accent?: Accent | undefined
-  badge?: string | undefined
+  badgeBackgroundColor?: string | undefined
+  badgeColor?: string | undefined
+  badgeNumber?: number | undefined
   color?: string | undefined
   /** In pixels, override `size` prop default values. */
   iconSize?: number | undefined
   /** Remove button border and padding. */
   isCompact?: boolean | undefined
   size?: Size | undefined
-  spotlightedNumber?: number | undefined
   /** Prevent onClick event propagation. */
   withUnpropagatedClick?: boolean | undefined
 }
 export function IconButton({
   accent = Accent.PRIMARY,
+  badgeBackgroundColor,
+  badgeColor,
+  badgeNumber,
   className,
   color,
   Icon,
@@ -36,7 +40,6 @@ export function IconButton({
   isCompact,
   onClick,
   size = Size.NORMAL,
-  spotlightedNumber,
   type = 'button',
   withUnpropagatedClick = false,
   ...nativeProps
@@ -76,7 +79,11 @@ export function IconButton({
     case Accent.SECONDARY:
       return (
         <Wrapper>
-          {!!spotlightedNumber && <SpotlightedNumber size={size}>{spotlightedNumber}</SpotlightedNumber>}
+          {!!badgeNumber && (
+            <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
+              {badgeNumber}
+            </BadgeNumber>
+          )}
           <SecondaryButton as={StyledButton} {...commonProps} />
         </Wrapper>
       )
@@ -84,7 +91,11 @@ export function IconButton({
     case Accent.TERTIARY:
       return (
         <Wrapper>
-          {!!spotlightedNumber && <SpotlightedNumber size={size}>{spotlightedNumber}</SpotlightedNumber>}
+          {!!badgeNumber && (
+            <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
+              {badgeNumber}
+            </BadgeNumber>
+          )}
           <TertiaryButton as={StyledButton} {...commonProps} />
         </Wrapper>
       )
@@ -92,7 +103,11 @@ export function IconButton({
     default:
       return (
         <Wrapper>
-          {!!spotlightedNumber && <SpotlightedNumber size={size}>{spotlightedNumber}</SpotlightedNumber>}
+          {!!badgeNumber && (
+            <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
+              {badgeNumber}
+            </BadgeNumber>
+          )}
           <PrimaryButton as={StyledButton} {...commonProps} />
         </Wrapper>
       )
@@ -115,7 +130,9 @@ const LEFT_MARGIN: Record<Size, number> = {
   [Size.SMALL]: 15
 }
 
-const SpotlightedNumber = styled.div<{
+const BadgeNumber = styled.div<{
+  backgroundColor: string | undefined
+  color: string | undefined
   size: Size
 }>`
   display: inline-block;
@@ -127,8 +144,8 @@ const SpotlightedNumber = styled.div<{
   top: -5px;
   line-height: 14px;
   left: ${p => (p.size ? LEFT_MARGIN[p.size] : 25)}px;
-  background: ${p => p.theme.color.maximumRed};
-  color: ${p => p.theme.color.white};
+  background: ${p => (p.backgroundColor ? p.backgroundColor : p.theme.color.maximumRed)};
+  color: ${p => (p.color ? p.color : p.theme.color.white)};
   font-size: 12px;
   letter-spacing: 0px;
   font-weight: 700;
