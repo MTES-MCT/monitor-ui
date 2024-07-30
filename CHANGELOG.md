@@ -1,3 +1,17 @@
+## [18.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.7.0...v18.8.0) (2024-07-30)
+
+
+### Features
+
+* **utils:** add new dayjs plugin ( `isBetween`) ([fa71cb0](https://github.com/MTES-MCT/monitor-ui/commit/fa71cb04958e80f9406eacabb6d051cbe07666d0))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @types/node in /e2e/release/sample ([ce09d83](https://github.com/MTES-MCT/monitor-ui/commit/ce09d8315b5e0dce8f63206ce1e9ce88aed613b0))
+* **dev-deps:** bump the all-non-major-dependencies group ([96c7123](https://github.com/MTES-MCT/monitor-ui/commit/96c7123369f1f4bc24df976fd176cd403a983231))
+* **dev-deps:** bump the all-non-major-dependencies group ([5d1ee3b](https://github.com/MTES-MCT/monitor-ui/commit/5d1ee3bf2827fe1bfaf7292b44c9ecc14aae0a39))
+
 ## [18.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.6.0...v18.7.0) (2024-07-16)
 
 
