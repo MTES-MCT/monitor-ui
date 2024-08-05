@@ -1,3 +1,17 @@
+## [18.10.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.9.0...v18.10.0) (2024-08-05)
+
+
+### Features
+
+* **icons:** add invalid icon ([a72a198](https://github.com/MTES-MCT/monitor-ui/commit/a72a198dfa8495b016e7395815ca50d0c1c26cd0))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump @babel/runtime in the non-major-dependencies group ([554e667](https://github.com/MTES-MCT/monitor-ui/commit/554e667373a2f44613a45925eed8c5f2db1404e1))
+* **deps:** bump @tanstack/react-table ([a8e68fb](https://github.com/MTES-MCT/monitor-ui/commit/a8e68fbf0ab272dd5d3e85152af296f1e065f3a0))
+* **dev-deps:** bump the all-non-major-dependencies group ([fecdd12](https://github.com/MTES-MCT/monitor-ui/commit/fecdd1262ba5bf0e619f3dae7af661774adf2195))
+
 ## [18.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.8.0...v18.9.0) (2024-07-30)
 
 ### Features
