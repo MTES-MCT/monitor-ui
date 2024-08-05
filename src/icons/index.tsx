@@ -40,6 +40,7 @@ import { FocusZones } from './FocusZones'
 import { Hide } from './Hide'
 import { Info } from './Info'
 import { Infringement } from './Infringement'
+import { Invalid } from './Invalid'
 import { Landmark } from './Landmark'
 import { Link } from './Link'
 import { List } from './List'
@@ -133,6 +134,7 @@ export {
   Hide,
   Info,
   Infringement,
+  Invalid,
   Landmark,
   Link,
   List,
