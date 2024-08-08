@@ -79,7 +79,7 @@
     "@swc/core": "1.6.13",
     "@swc/jest": "0.2.36",
     "@tanstack/react-table": "8.20.1",
-    "@tanstack/react-virtual": "beta",
+    "@tanstack/react-virtual": "3.8.4",
     "@testing-library/react": "16.0.0",
     "@types/diacritics": "1.3.3",
     "@types/jabber": "1.2.4",
@@ -159,6 +159,8 @@
   },
   "peerDependencies": {
     "@sentry/react": "^8.0.0",
+    "@tanstack/react-table": "^8.0.0",
+    "@tanstack/react-virtual": "^3.0.0",
     "cypress": "^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0",
     "formik": "^2.0.0",
     "react": "^18.0.0",
