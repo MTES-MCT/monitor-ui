@@ -1,3 +1,14 @@
+## [19.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.10.0...v19.0.0) (2024-08-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **peer-deps:** @sentry/react must be upgraded to v8.
+
+### Buid System & Dependencies
+
+* **peer-deps:** upgrade @sentry/react to v8 ([52be5b7](https://github.com/MTES-MCT/monitor-ui/commit/52be5b7b872d0ea83d75138982c78bb5e156f2d3))
+
 ## [18.10.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.9.0...v18.10.0) (2024-08-05)
 
 
