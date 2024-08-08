@@ -3,7 +3,7 @@ import { useRef, useState } from 'react'
 import { Output } from '../../../.storybook/components/Output'
 import SPECIES from '../../../.storybook/data/species.json'
 import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
-import { CustomSearch, Select, useFieldControl, type SelectProps } from '../../../src'
+import { CustomSearch, Select, useFieldControl, type SelectProps, RsuiteSelect } from '../../../src'
 
 import type { Meta } from '@storybook/react'
 
@@ -43,7 +43,8 @@ const meta: Meta<SelectProps<Specy>> = {
 
   decorators: [
     generateStoryDecorator({
-      withBackgroundButton: true
+      withBackgroundButton: true,
+      withNewWindowButton: true
     })
   ]
 }
@@ -79,6 +80,8 @@ export function WithCustomSearch(props: SelectProps<Specy>) {
 
   const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
 
+  const speciesAsOptions = SPECIES.map(({ code, name }) => ({ label: name, value: code }))
+
   return (
     <>
       <Select
@@ -88,6 +91,11 @@ export function WithCustomSearch(props: SelectProps<Specy>) {
         options={optionsRef.current}
         value={controlledValue}
       />
+
+      <hr />
+
+      <RsuiteSelect data={speciesAsOptions} virtualized />
+
       <div>
         <em>Loads a pre-shuffled list of {optionsRef.current.length} species in order to check performances.</em>
       </div>
