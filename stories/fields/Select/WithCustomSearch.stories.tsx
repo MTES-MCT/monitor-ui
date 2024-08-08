@@ -1,8 +1,9 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 
+import { Output } from '../../../.storybook/components/Output'
 import SPECIES from '../../../.storybook/data/species.json'
 import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
-import { Select, type SelectProps, RsuiteSelect } from '../../../src'
+import { CustomSearch, Select, useFieldControl, type SelectProps, RsuiteSelect } from '../../../src'
 
 import type { Meta } from '@storybook/react'
 
@@ -51,23 +52,55 @@ const meta: Meta<SelectProps<Specy>> = {
 
 export default meta
 
-export function WithCustomSearch() {
+export function WithCustomSearch(props: SelectProps<Specy>) {
   const optionsRef = useRef(
     (SPECIES as Specy[]).map(specy => ({
       label: `${specy.code} - ${specy.name}`,
       value: specy
     }))
   )
+  const customSearchRef = useRef(
+    new CustomSearch(
+      optionsRef.current,
+      [
+        {
+          name: 'value.code',
+          weight: 0.9
+        },
+        {
+          name: 'value.name',
+          weight: 0.1
+        }
+      ],
+      { isStrict: true }
+    )
+  )
+
+  const [outputValue, setOutputValue] = useState<Specy | undefined | '∅'>('∅')
+
+  const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
 
   const speciesAsOptions = SPECIES.map(({ code, name }) => ({ label: name, value: code }))
 
   return (
     <>
+      <Select
+        {...props}
+        customSearch={customSearchRef.current}
+        onChange={controlledOnChange}
+        options={optionsRef.current}
+        value={controlledValue}
+      />
+
+      <hr />
+
       <RsuiteSelect data={speciesAsOptions} virtualized />
 
       <div>
         <em>Loads a pre-shuffled list of {optionsRef.current.length} species in order to check performances.</em>
       </div>
+
+      {outputValue !== '∅' && <Output value={outputValue} />}
     </>
   )
 }
