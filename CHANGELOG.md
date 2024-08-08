@@ -1,3 +1,15 @@
+## [20.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v19.0.0...v20.0.0) (2024-08-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dev-deps:** - @tanstack/react-table is added as a peer dependency set to v^8.0.0.
+- @tanstack/react-virtual is added as a peer dependency set to v^3.0.0.
+
+### Buid System & Dependencies
+
+* **dev-deps:** stabilize @tanstack/react-virtual from beta to 3.8.4 ([1ecd065](https://github.com/MTES-MCT/monitor-ui/commit/1ecd06544f3fd2b229eff89773d64097d74db212))
+
 ## [19.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v18.10.0...v19.0.0) (2024-08-08)
 
 
