@@ -17,7 +17,7 @@ export function FormikEffect({ onChange, onError }: FormikEffectProps) {
   const previousValues = usePrevious(values)
 
   useEffect(() => {
-    if (isEqual(previousValues, values)) {
+    if (!previousValues || isEqual(previousValues, values)) {
       return
     }
 
@@ -25,7 +25,7 @@ export function FormikEffect({ onChange, onError }: FormikEffectProps) {
   }, [onChange, previousValues, values])
 
   useEffect(() => {
-    if (!onError || isEqual(previousErrors, errors)) {
+    if (!previousErrors || !onError || isEqual(previousErrors, errors)) {
       return
     }
 
