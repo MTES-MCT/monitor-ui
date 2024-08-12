@@ -1,3 +1,11 @@
+## [21.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v20.0.0...v21.0.0) (2024-08-12)
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump the all-non-major-dependencies group ([32cf7e9](https://github.com/MTES-MCT/monitor-ui/commit/32cf7e9cbb06b8204c27cae6ea88ef8a7e16f933))
+* **peer-deps:** allow @sentry/react v7 ([b87acc2](https://github.com/MTES-MCT/monitor-ui/commit/b87acc2f27740d955b737a77e933f10a91a55dbd))
+
 ## [20.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v19.0.0...v20.0.0) (2024-08-08)
 
 
