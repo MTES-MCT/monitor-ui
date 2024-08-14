@@ -1,6 +1,6 @@
 export function getTableRowById(
   prevSubjectElements: HTMLElement[] | undefined,
-  id: number
+  id: number | string
 ): Cypress.Chainable<JQuery<HTMLElement>> {
   const prevSubjectElement = prevSubjectElements ? prevSubjectElements[0] : undefined
   if (prevSubjectElements && !prevSubjectElements[0]) {
