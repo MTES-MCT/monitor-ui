@@ -1,3 +1,15 @@
+## [21.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v21.0.0...v21.0.1) (2024-08-14)
+
+
+### Bug Fixes
+
+* **cypress:** allow string id in cy.getTableRowById() command ([b97fa08](https://github.com/MTES-MCT/monitor-ui/commit/b97fa086760c912466e73e226170f4d0809a8367))
+
+
+### Buid System & Dependencies
+
+* bump yarn from v4.0.2 to v4.4.0 ([be8e50d](https://github.com/MTES-MCT/monitor-ui/commit/be8e50da1787e8329a4013b304169b2751620fb6))
+
 ## [21.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v20.0.0...v21.0.0) (2024-08-12)
 
 
