@@ -73,7 +73,7 @@ declare namespace Cypress {
      *   cy.getDataCy('my-list').getTableRowByText(42).clickButton('Edit')
      * ```
      */
-    getTableRowById(id: number): Chainable<JQuery<HTMLElement>>
+    getTableRowById(id: number | string): Chainable<JQuery<HTMLElement>>
 
     /**
      * @description Only works with `<SimpleTable />` tables.
