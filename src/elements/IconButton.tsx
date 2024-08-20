@@ -25,6 +25,7 @@ export type IconButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'chi
   /** Remove button border and padding. */
   isCompact?: boolean | undefined
   size?: Size | undefined
+  style?: React.CSSProperties | undefined
   /** Prevent onClick event propagation. */
   withUnpropagatedClick?: boolean | undefined
 }
@@ -40,6 +41,7 @@ export function IconButton({
   isCompact,
   onClick,
   size = Size.NORMAL,
+  style,
   type = 'button',
   withUnpropagatedClick = false,
   ...nativeProps
@@ -65,20 +67,20 @@ export function IconButton({
   const commonProps = useMemo(
     () => ({
       children: commonChildren,
-      className: classnames('Element-IconButton', className),
+      className: classnames('Element-IconButton'),
       isCompact,
       onClick: handleClick,
       size,
       type,
       ...nativeProps
     }),
-    [className, commonChildren, handleClick, isCompact, nativeProps, size, type]
+    [commonChildren, handleClick, isCompact, nativeProps, size, type]
   )
 
   switch (accent) {
     case Accent.SECONDARY:
       return (
-        <Wrapper className={className}>
+        <Wrapper className={className} style={style}>
           {!!badgeNumber && (
             <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
               {badgeNumber}
@@ -90,7 +92,7 @@ export function IconButton({
 
     case Accent.TERTIARY:
       return (
-        <Wrapper className={className}>
+        <Wrapper className={className} style={style}>
           {!!badgeNumber && (
             <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
               {badgeNumber}
@@ -102,7 +104,7 @@ export function IconButton({
 
     default:
       return (
-        <Wrapper className={className}>
+        <Wrapper className={className} style={style}>
           {!!badgeNumber && (
             <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
               {badgeNumber}
