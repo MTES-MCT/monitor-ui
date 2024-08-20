@@ -78,7 +78,7 @@ export function IconButton({
   switch (accent) {
     case Accent.SECONDARY:
       return (
-        <Wrapper>
+        <Wrapper className={className}>
           {!!badgeNumber && (
             <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
               {badgeNumber}
@@ -90,7 +90,7 @@ export function IconButton({
 
     case Accent.TERTIARY:
       return (
-        <Wrapper>
+        <Wrapper className={className}>
           {!!badgeNumber && (
             <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
               {badgeNumber}
@@ -102,7 +102,7 @@ export function IconButton({
 
     default:
       return (
-        <Wrapper>
+        <Wrapper className={className}>
           {!!badgeNumber && (
             <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
               {badgeNumber}
