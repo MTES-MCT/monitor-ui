@@ -1,3 +1,11 @@
+## [21.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v21.1.0...v21.1.1) (2024-08-20)
+
+
+### Bug Fixes
+
+* **elements:** remove div wrapper ([798f109](https://github.com/MTES-MCT/monitor-ui/commit/798f1093fdd60bbf19521c36d9aa7a2dfb3ab0e9))
+* **elements:** user ternary ([71537f3](https://github.com/MTES-MCT/monitor-ui/commit/71537f37f74029a0e6e19a89045cbf7fdaf7cf00))
+
 ## [21.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v21.0.1...v21.1.0) (2024-08-20)
 
 
