@@ -83,8 +83,9 @@ export function IconButton({
     case Accent.SECONDARY:
       return (
         <>
-          {badgeNumber === undefined && <SecondaryButton as={StyledButton} {...buttonProps} />}
-          {badgeNumber !== undefined && (
+          {badgeNumber === undefined ? (
+            <SecondaryButton as={StyledButton} {...buttonProps} />
+          ) : (
             <Wrapper className={className} style={style}>
               <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
                 {badgeNumber}
@@ -98,8 +99,9 @@ export function IconButton({
     case Accent.TERTIARY:
       return (
         <>
-          {badgeNumber === undefined && <TertiaryButton as={StyledButton} {...buttonProps} />}
-          {badgeNumber !== undefined && (
+          {badgeNumber === undefined ? (
+            <TertiaryButton as={StyledButton} {...buttonProps} />
+          ) : (
             <Wrapper className={className} style={style}>
               <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
                 {badgeNumber}
@@ -113,8 +115,9 @@ export function IconButton({
     default:
       return (
         <>
-          {badgeNumber === undefined && <PrimaryButton as={StyledButton} {...buttonProps} />}
-          {badgeNumber !== undefined && (
+          {badgeNumber === undefined ? (
+            <PrimaryButton as={StyledButton} {...buttonProps} />
+          ) : (
             <Wrapper className={className} style={style}>
               <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
                 {badgeNumber}
