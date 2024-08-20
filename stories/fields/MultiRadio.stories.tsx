@@ -123,6 +123,9 @@ export function _MultiRadio(props: MultiRadioProps) {
   const [outputValueWithIcon, setOutputValueWithIcons] = useState<InterestPointOptionValueType | undefined>(
     OPTIONS_WITH_ICONS[2]?.value
   )
+  const [outputValueInlineWithIcon, setOutputValueInlineWithIcons] = useState<InterestPointOptionValueType | undefined>(
+    OPTIONS_WITH_ICONS[2]?.value
+  )
 
   return (
     <>
@@ -162,6 +165,27 @@ export function _MultiRadio(props: MultiRadioProps) {
         />
 
         {outputValueWithBoolean !== undefined && <Output value={outputValueWithBoolean} />}
+      </div>
+
+      <div style={{ marginTop: '32px' }}>
+        <MultiRadio
+          {...props}
+          isInline
+          label="Multiradio inline with icons"
+          name="myMultiRadioInlineWithIcons"
+          onChange={nextOptionValue => setOutputValueInlineWithIcons(nextOptionValue)}
+          options={OPTIONS_WITH_ICONS}
+          optionValueKey="value"
+          renderMenuItem={(label, value) => (
+            <>
+              <value.Icon />
+              {label}
+            </>
+          )}
+          value={outputValueInlineWithIcon}
+        />
+
+        {outputValueInlineWithIcon !== undefined && <Output value={outputValueInlineWithIcon} />}
       </div>
     </>
   )
