@@ -64,54 +64,65 @@ export function IconButton({
     [color, Icon, iconSize, size]
   )
 
-  const commonProps = useMemo(
+  const buttonProps = useMemo(
     () => ({
       children: commonChildren,
-      className: classnames('Element-IconButton'),
+      className:
+        badgeNumber === undefined ? classnames('Element-IconButton', className) : classnames('Element-IconButton'),
       isCompact,
       onClick: handleClick,
       size,
+      style: badgeNumber === undefined ? style : undefined,
       type,
       ...nativeProps
     }),
-    [commonChildren, handleClick, isCompact, nativeProps, size, type]
+    [badgeNumber, className, commonChildren, handleClick, isCompact, nativeProps, size, type, style]
   )
 
   switch (accent) {
     case Accent.SECONDARY:
       return (
-        <Wrapper className={className} style={style}>
-          {!!badgeNumber && (
-            <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
-              {badgeNumber}
-            </BadgeNumber>
+        <>
+          {badgeNumber === undefined && <SecondaryButton as={StyledButton} {...buttonProps} />}
+          {badgeNumber !== undefined && (
+            <Wrapper className={className} style={style}>
+              <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
+                {badgeNumber}
+              </BadgeNumber>
+              <SecondaryButton as={StyledButton} {...buttonProps} />
+            </Wrapper>
           )}
-          <SecondaryButton as={StyledButton} {...commonProps} />
-        </Wrapper>
+        </>
       )
 
     case Accent.TERTIARY:
       return (
-        <Wrapper className={className} style={style}>
-          {!!badgeNumber && (
-            <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
-              {badgeNumber}
-            </BadgeNumber>
+        <>
+          {badgeNumber === undefined && <TertiaryButton as={StyledButton} {...buttonProps} />}
+          {badgeNumber !== undefined && (
+            <Wrapper className={className} style={style}>
+              <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
+                {badgeNumber}
+              </BadgeNumber>
+              <TertiaryButton as={StyledButton} {...buttonProps} />
+            </Wrapper>
           )}
-          <TertiaryButton as={StyledButton} {...commonProps} />
-        </Wrapper>
+        </>
       )
 
     default:
       return (
-        <Wrapper className={className} style={style}>
-          {!!badgeNumber && (
-            <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
-              {badgeNumber}
-            </BadgeNumber>
+        <>
+          {badgeNumber === undefined && <PrimaryButton as={StyledButton} {...buttonProps} />}
+          {badgeNumber !== undefined && (
+            <Wrapper className={className} style={style}>
+              <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
+                {badgeNumber}
+              </BadgeNumber>
+              <PrimaryButton as={StyledButton} {...buttonProps} />
+            </Wrapper>
           )}
-          <PrimaryButton as={StyledButton} {...commonProps} />
-        </Wrapper>
+        </>
       )
   }
 }
