@@ -1,3 +1,30 @@
+## [21.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v21.1.0...v21.1.1) (2024-08-20)
+
+
+### Bug Fixes
+
+* **elements:** remove div wrapper ([798f109](https://github.com/MTES-MCT/monitor-ui/commit/798f1093fdd60bbf19521c36d9aa7a2dfb3ab0e9))
+* **elements:** user ternary ([71537f3](https://github.com/MTES-MCT/monitor-ui/commit/71537f37f74029a0e6e19a89045cbf7fdaf7cf00))
+
+## [21.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v21.0.1...v21.1.0) (2024-08-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **elements:** pass style to wrapper
+
+### Features
+
+* **elements:** pass class name to icon button ([23251d7](https://github.com/MTES-MCT/monitor-ui/commit/23251d73759d427dbe3d4946e758e4cb93d036cc))
+* **elements:** pass style to wrapper ([c3ce3f2](https://github.com/MTES-MCT/monitor-ui/commit/c3ce3f2466d835f98a7a5bcbfbe471e55816bbf4))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump axios from 1.6.7 to 1.7.4 ([e960cd3](https://github.com/MTES-MCT/monitor-ui/commit/e960cd35947623f89866aa05fd17950a888cf17f))
+* **dev-deps:** bump the all-non-major-dependencies group ([9ff22e4](https://github.com/MTES-MCT/monitor-ui/commit/9ff22e4ef28c13cf5e6f27e5d501dc1eb8f59519))
+* **dev-deps:** bump vite-tsconfig-paths in /e2e/release/sample ([b2c5e80](https://github.com/MTES-MCT/monitor-ui/commit/b2c5e808c2b2346d213e7ab3408174ad3dfaaa66))
+
 ## [21.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v21.0.0...v21.0.1) (2024-08-14)
 
 

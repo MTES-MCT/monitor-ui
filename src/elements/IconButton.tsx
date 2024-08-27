@@ -25,6 +25,7 @@ export type IconButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'chi
   /** Remove button border and padding. */
   isCompact?: boolean | undefined
   size?: Size | undefined
+  style?: React.CSSProperties | undefined
   /** Prevent onClick event propagation. */
   withUnpropagatedClick?: boolean | undefined
 }
@@ -40,6 +41,7 @@ export function IconButton({
   isCompact,
   onClick,
   size = Size.NORMAL,
+  style,
   type = 'button',
   withUnpropagatedClick = false,
   ...nativeProps
@@ -62,54 +64,68 @@ export function IconButton({
     [color, Icon, iconSize, size]
   )
 
-  const commonProps = useMemo(
+  const buttonProps = useMemo(
     () => ({
       children: commonChildren,
-      className: classnames('Element-IconButton', className),
+      className:
+        badgeNumber === undefined ? classnames('Element-IconButton', className) : classnames('Element-IconButton'),
       isCompact,
       onClick: handleClick,
       size,
+      style: badgeNumber === undefined ? style : undefined,
       type,
       ...nativeProps
     }),
-    [className, commonChildren, handleClick, isCompact, nativeProps, size, type]
+    [badgeNumber, className, commonChildren, handleClick, isCompact, nativeProps, size, type, style]
   )
 
   switch (accent) {
     case Accent.SECONDARY:
       return (
-        <Wrapper>
-          {!!badgeNumber && (
-            <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
-              {badgeNumber}
-            </BadgeNumber>
+        <>
+          {badgeNumber === undefined ? (
+            <SecondaryButton as={StyledButton} {...buttonProps} />
+          ) : (
+            <Wrapper className={className} style={style}>
+              <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
+                {badgeNumber}
+              </BadgeNumber>
+              <SecondaryButton as={StyledButton} {...buttonProps} />
+            </Wrapper>
           )}
-          <SecondaryButton as={StyledButton} {...commonProps} />
-        </Wrapper>
+        </>
       )
 
     case Accent.TERTIARY:
       return (
-        <Wrapper>
-          {!!badgeNumber && (
-            <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
-              {badgeNumber}
-            </BadgeNumber>
+        <>
+          {badgeNumber === undefined ? (
+            <TertiaryButton as={StyledButton} {...buttonProps} />
+          ) : (
+            <Wrapper className={className} style={style}>
+              <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
+                {badgeNumber}
+              </BadgeNumber>
+              <TertiaryButton as={StyledButton} {...buttonProps} />
+            </Wrapper>
           )}
-          <TertiaryButton as={StyledButton} {...commonProps} />
-        </Wrapper>
+        </>
       )
 
     default:
       return (
-        <Wrapper>
-          {!!badgeNumber && (
-            <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
-              {badgeNumber}
-            </BadgeNumber>
+        <>
+          {badgeNumber === undefined ? (
+            <PrimaryButton as={StyledButton} {...buttonProps} />
+          ) : (
+            <Wrapper className={className} style={style}>
+              <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
+                {badgeNumber}
+              </BadgeNumber>
+              <PrimaryButton as={StyledButton} {...buttonProps} />
+            </Wrapper>
           )}
-          <PrimaryButton as={StyledButton} {...commonProps} />
-        </Wrapper>
+        </>
       )
   }
 }
