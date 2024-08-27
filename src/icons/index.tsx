@@ -44,6 +44,7 @@ import { Invalid } from './Invalid'
 import { Landmark } from './Landmark'
 import { Link } from './Link'
 import { List } from './List'
+import { ListLines } from './ListLines'
 import { Logout } from './Logout'
 import { MapLayers } from './MapLayers'
 import { MeasureAngle } from './MeasureAngle'
@@ -138,6 +139,7 @@ export {
   Landmark,
   Link,
   List,
+  ListLines,
   Logout,
   MapLayers,
   MeasureAngle,
