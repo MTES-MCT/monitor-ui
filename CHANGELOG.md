@@ -1,3 +1,15 @@
+## [21.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v21.1.1...v21.2.0) (2024-08-27)
+
+
+### Features
+
+* **icons:** new icon for lists ([d5a6b3c](https://github.com/MTES-MCT/monitor-ui/commit/d5a6b3ce8108ae1c7841ccfe4b167621c72670d5))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump the all-non-major-dependencies group ([7899982](https://github.com/MTES-MCT/monitor-ui/commit/78999826f6d74020d6e7aa544925c2d75405342e))
+
 ## [21.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v21.1.0...v21.1.1) (2024-08-20)
 
 
