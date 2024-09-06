@@ -1,3 +1,17 @@
+## [21.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v21.2.0...v21.2.1) (2024-09-06)
+
+
+### Bug Fixes
+
+* **utils:** sort by French natural order in getOptionsFromLabelledEnum() ([3803823](https://github.com/MTES-MCT/monitor-ui/commit/38038234d4aa389178c80fe89f88e6429aef530c))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump micromatch from 4.0.5 to 4.0.8 ([7866fa1](https://github.com/MTES-MCT/monitor-ui/commit/7866fa1c8c0c68aa038e3fb3a0a66994437eef54))
+* **deps:** bump the non-major-dependencies group with 3 updates ([0ac790e](https://github.com/MTES-MCT/monitor-ui/commit/0ac790ed596abe0192b68b4cdd5760352cac7862))
+* **dev-deps:** bump the all-non-major-dependencies group ([ca16c6b](https://github.com/MTES-MCT/monitor-ui/commit/ca16c6b6a6974ec339ca131017aa04b1146e5dea))
+
 ## [21.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v21.1.1...v21.2.0) (2024-08-27)
 
 
