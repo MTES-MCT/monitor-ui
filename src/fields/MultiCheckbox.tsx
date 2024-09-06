@@ -65,7 +65,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
 
       const nextCheckedOptionValues = isChecked
         ? [...(value ?? []), nextOptionValue]
-        : value?.filter(optionValue => !isEqual(optionValue, nextOptionValue)) ?? []
+        : (value?.filter(optionValue => !isEqual(optionValue, nextOptionValue)) ?? [])
 
       const normalizedNextValue = nextCheckedOptionValues.length ? nextCheckedOptionValues : undefined
 

@@ -38,7 +38,7 @@ export class CustomSearch<T extends AnyObject = AnyObject> {
     const maybeCacheRecord = findCacheRecord(collection, cacheKey, withCacheInvalidation)
 
     const normalizedCollection: T[] =
-      maybeCacheRecord?.normalizedCollection ?? isDiacriticSensitive
+      (maybeCacheRecord?.normalizedCollection ?? isDiacriticSensitive)
         ? collection
         : cleanCollectionDiacritics(collection, keys)
 

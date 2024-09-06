@@ -100,7 +100,7 @@ export function Search<OptionValue extends OptionValueType = string>({
     () => getSelectedOptionFromOptionValue<OptionValue>(options, value, optionValueKey),
     [options, optionValueKey, value]
   )
-  const rsuiteValue = currentQueryRef.current.length > 0 ? currentQueryRef.current : selectedOption?.label ?? ''
+  const rsuiteValue = currentQueryRef.current.length > 0 ? currentQueryRef.current : (selectedOption?.label ?? '')
 
   const clear = useCallback(() => {
     if (onChange) {
