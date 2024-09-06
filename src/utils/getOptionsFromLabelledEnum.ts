@@ -1,6 +1,6 @@
-import { sortBy } from 'lodash/fp'
-
 import type { Option } from '../types/definitions'
+
+const byFrenchNaturalOrder = (a: Option, b: Option) => a.label.localeCompare(b.label, 'fr', { sensitivity: 'base' })
 
 export function getOptionsFromLabelledEnum<T extends Record<string, string> = Record<string, string>>(
   labelledEnum: T,
@@ -12,7 +12,7 @@ export function getOptionsFromLabelledEnum<T extends Record<string, string> = Re
   }))
 
   if (mustSort) {
-    return sortBy(['label'], formattedOptions)
+    return formattedOptions.sort(byFrenchNaturalOrder)
   }
 
   return formattedOptions
