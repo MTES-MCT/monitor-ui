@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import { useCallback, useMemo, useRef, type FocusEvent } from 'react'
 import { Input, type InputProps } from 'rsuite'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import {
   getFieldBackgroundColorFactory,
@@ -20,6 +20,7 @@ import type { CommonFieldStyleProps } from './shared/types'
 import type { Promisable } from 'type-fest'
 
 export type NumberInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | 'onChange' | 'type' | 'value'> & {
+  areArrowsHidden?: boolean | undefined
   disabled?: boolean | undefined
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
@@ -35,6 +36,7 @@ export type NumberInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | '
   value?: number | undefined
 }
 export function NumberInput({
+  areArrowsHidden = false,
   className,
   disabled = false,
   error,
@@ -112,6 +114,7 @@ export function NumberInput({
       <StyledInput
         key={key}
         ref={inputRef}
+        $areArrowsHidden={areArrowsHidden}
         $hasError={hasError}
         $isDisabled={disabled}
         $isLight={isLight}
@@ -133,7 +136,11 @@ export function NumberInput({
   )
 }
 
-const StyledInput = styled(Input as any)<CommonFieldStyleProps>`
+const StyledInput = styled(Input as any)<
+  CommonFieldStyleProps & {
+    $areArrowsHidden: boolean
+  }
+>`
   background-color: ${getFieldBackgroundColorFactory()};
   border: solid 1px ${getFieldBorderColorFactoryForState('default')};
   border-radius: 0;
@@ -145,6 +152,17 @@ const StyledInput = styled(Input as any)<CommonFieldStyleProps>`
   padding: 3px 8px 6px;
   vertical-align: center;
   width: 100%;
+
+  ${p =>
+    p.$areArrowsHidden &&
+    css`
+      -moz-appearance: textfield;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+    `}
 
   &::placeholder {
     color: ${getFieldPlaceholderColorFactoryForState('default')};

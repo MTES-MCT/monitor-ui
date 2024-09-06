@@ -14,6 +14,7 @@ const meta: Meta<NumberInputProps> = {
   component: NumberInput,
 
   argTypes: {
+    areArrowsHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
     disabled: ARG_TYPE.OPTIONAL_BOOLEAN,
     error: ARG_TYPE.OPTIONAL_STRING,
     isErrorMessageHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
@@ -28,6 +29,7 @@ const meta: Meta<NumberInputProps> = {
   },
 
   args: {
+    areArrowsHidden: false,
     disabled: false,
     error: '',
     isErrorMessageHidden: false,
