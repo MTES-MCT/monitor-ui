@@ -1,25 +1,62 @@
 /* eslint-disable typescript-sort-keys/string-enum */
+
 import { describe, expect, it } from '@jest/globals'
 
 import { getOptionsFromLabelledEnum } from '../getOptionsFromLabelledEnum'
 
 describe('utils/getOptionsFromLabelledEnum()', () => {
-  it('should return the expected array of options', () => {
+  it('should return the expected array of options naturally French-sorted', () => {
     enum LabelledEnum {
-      TWO = 'two',
-      ONE = 'one'
+      XYLOPHONE = 'Xylophone',
+      SCREEN_LOWERCASE = 'écran',
+      SCREEN = 'Écran',
+      E_LOWERCASE = 'e',
+      E = 'E',
+      LAMP_SHADE = 'Abat-jour',
+      TODO = 'À faire',
+      A_LOWERCASE = 'a',
+      A = 'A'
     }
+    const mustSort = true
 
-    const result = getOptionsFromLabelledEnum(LabelledEnum, true)
+    const result = getOptionsFromLabelledEnum(LabelledEnum, mustSort)
 
     expect(result).toStrictEqual([
       {
-        label: 'one',
-        value: 'ONE'
+        label: 'a',
+        value: 'A_LOWERCASE'
       },
       {
-        label: 'two',
-        value: 'TWO'
+        label: 'A',
+        value: 'A'
+      },
+      {
+        label: 'À faire',
+        value: 'TODO'
+      },
+      {
+        label: 'Abat-jour',
+        value: 'LAMP_SHADE'
+      },
+      {
+        label: 'e',
+        value: 'E_LOWERCASE'
+      },
+      {
+        label: 'E',
+        value: 'E'
+      },
+      {
+        label: 'écran',
+        value: 'SCREEN_LOWERCASE'
+      },
+      {
+        label: 'Écran',
+        value: 'SCREEN'
+      },
+      {
+        label: 'Xylophone',
+        value: 'XYLOPHONE'
       }
     ])
   })
@@ -30,8 +67,9 @@ describe('utils/getOptionsFromLabelledEnum()', () => {
       APPLE = 'apple',
       GRAPES = 'grapes'
     }
+    const mustSort = false
 
-    const result = getOptionsFromLabelledEnum(LabelledEnum)
+    const result = getOptionsFromLabelledEnum(LabelledEnum, mustSort)
 
     expect(result).toStrictEqual([
       {
