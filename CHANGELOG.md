@@ -1,3 +1,15 @@
+## [21.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v21.2.1...v21.3.0) (2024-09-06)
+
+
+### Features
+
+* **fields:** add areArrowsHidden prop to NumberInput ([6dad78e](https://github.com/MTES-MCT/monitor-ui/commit/6dad78ea5406295ee0cf97cc2dc7355c3d655761))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump @babel/runtime in the non-major-dependencies group ([ad6262c](https://github.com/MTES-MCT/monitor-ui/commit/ad6262c22e5cdfa701e9f72a2519b65bd5e2be3e))
+
 ## [21.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v21.2.0...v21.2.1) (2024-09-06)
 
 
