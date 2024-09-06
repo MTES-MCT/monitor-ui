@@ -10,7 +10,7 @@ on:
 jobs:
   test_unit_in_paris:
     name: Unit Test
-    if: ${{ !startsWith(github.ref, 'refs/heads/ci-release-v') }}
+    if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
     strategy:
       matrix:
         timeZone: ['Europe/Paris']
@@ -36,7 +36,7 @@ jobs:
 
   test_e2e_in_paris:
     name: E2E Test
-    if: ${{ !startsWith(github.ref, 'refs/heads/ci-release-v') }}
+    if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
     strategy:
       matrix:
         timeZone: ['Europe/Paris']
