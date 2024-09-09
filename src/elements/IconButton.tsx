@@ -116,13 +116,13 @@ export function IconButton({
       return (
         <>
           {badgeNumber === undefined ? (
-            <PrimaryButton as={BaseButton} {...buttonProps} />
+            <PrimaryButton {...buttonProps} />
           ) : (
             <Wrapper className={className} style={style}>
               <BadgeNumber $backgroundColor={badgeBackgroundColor} $color={badgeColor} $size={size}>
                 {badgeNumber}
               </BadgeNumber>
-              <PrimaryButton as={BaseButton} {...buttonProps} />
+              <PrimaryButton {...buttonProps} />
             </Wrapper>
           )}
         </>
