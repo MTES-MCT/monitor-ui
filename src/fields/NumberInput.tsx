@@ -107,7 +107,7 @@ export function NumberInput({
 
   return (
     <Field className={controlledClassname} style={style}>
-      <Label $isRequired={isRequired} disabled={disabled} htmlFor={name} isHidden={isLabelHidden}>
+      <Label $idDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={name}>
         {label}
       </Label>
 
