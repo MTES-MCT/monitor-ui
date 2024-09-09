@@ -2,7 +2,7 @@ import classnames from 'classnames'
 import { useMemo, type MouseEvent, type ButtonHTMLAttributes, type FunctionComponent, useCallback } from 'react'
 import styled from 'styled-components'
 
-import { PrimaryButton, SecondaryButton } from './Button'
+import { interpolatePrimaryButtonThemedCss, interpolateSecondaryButtonThemedCss } from './Button/utils'
 import { Accent, Size } from '../constants'
 import { type IconProps } from '../types/definitions'
 import { stopMouseEventPropagation } from '../utils/stopMouseEventPropagation'
@@ -64,14 +64,14 @@ export function IconButton({
     [color, Icon, iconSize, size]
   )
 
-  const buttonProps = useMemo(
+  const buttonProps: BaseButtonProps = useMemo(
     () => ({
+      $isCompact: isCompact,
+      $size: size,
       children: commonChildren,
       className:
         badgeNumber === undefined ? classnames('Element-IconButton', className) : classnames('Element-IconButton'),
-      isCompact,
       onClick: handleClick,
-      size,
       style: badgeNumber === undefined ? style : undefined,
       type,
       ...nativeProps
@@ -84,13 +84,13 @@ export function IconButton({
       return (
         <>
           {badgeNumber === undefined ? (
-            <SecondaryButton as={StyledButton} {...buttonProps} />
+            <SecondaryButton {...buttonProps} />
           ) : (
             <Wrapper className={className} style={style}>
-              <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
+              <BadgeNumber $backgroundColor={badgeBackgroundColor} $color={badgeColor} $size={size}>
                 {badgeNumber}
               </BadgeNumber>
-              <SecondaryButton as={StyledButton} {...buttonProps} />
+              <SecondaryButton {...buttonProps} />
             </Wrapper>
           )}
         </>
@@ -100,13 +100,13 @@ export function IconButton({
       return (
         <>
           {badgeNumber === undefined ? (
-            <TertiaryButton as={StyledButton} {...buttonProps} />
+            <TertiaryButton {...buttonProps} />
           ) : (
             <Wrapper className={className} style={style}>
-              <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
+              <BadgeNumber $backgroundColor={badgeBackgroundColor} $color={badgeColor} $size={size}>
                 {badgeNumber}
               </BadgeNumber>
-              <TertiaryButton as={StyledButton} {...buttonProps} />
+              <TertiaryButton {...buttonProps} />
             </Wrapper>
           )}
         </>
@@ -116,13 +116,13 @@ export function IconButton({
       return (
         <>
           {badgeNumber === undefined ? (
-            <PrimaryButton as={StyledButton} {...buttonProps} />
+            <PrimaryButton as={BaseButton} {...buttonProps} />
           ) : (
             <Wrapper className={className} style={style}>
-              <BadgeNumber backgroundColor={badgeBackgroundColor} color={badgeColor} size={size}>
+              <BadgeNumber $backgroundColor={badgeBackgroundColor} $color={badgeColor} $size={size}>
                 {badgeNumber}
               </BadgeNumber>
-              <PrimaryButton as={StyledButton} {...buttonProps} />
+              <PrimaryButton as={BaseButton} {...buttonProps} />
             </Wrapper>
           )}
         </>
@@ -147,9 +147,9 @@ const LEFT_MARGIN: Record<Size, number> = {
 }
 
 const BadgeNumber = styled.div<{
-  backgroundColor: string | undefined
-  color: string | undefined
-  size: Size
+  $backgroundColor: string | undefined
+  $color: string | undefined
+  $size: Size
 }>`
   display: inline-block;
   position: absolute;
@@ -159,26 +159,33 @@ const BadgeNumber = styled.div<{
   border-radius: 10px;
   top: -5px;
   line-height: 14px;
-  left: ${p => (p.size ? LEFT_MARGIN[p.size] : 25)}px;
-  background: ${p => (p.backgroundColor ? p.backgroundColor : p.theme.color.maximumRed)};
-  color: ${p => (p.color ? p.color : p.theme.color.white)};
+  left: ${p => (p.$size ? LEFT_MARGIN[p.$size] : 25)}px;
+  background: ${p => (p.$backgroundColor ? p.$backgroundColor : p.theme.color.maximumRed)};
+  color: ${p => (p.$color ? p.$color : p.theme.color.white)};
   font-size: 12px;
   letter-spacing: 0px;
   font-weight: 700;
 `
 
-// We can't use $-prefixed props here for some reason (maybe because the `as` prop exclude them?).
-const StyledButton = styled.button<{
-  isCompact: boolean | undefined
-  size: Size
+type BaseButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  $isCompact: boolean | undefined
+  $size: Size
+}
+const BaseButton = styled.button<{
+  $isCompact: boolean | undefined
+  $size: Size
 }>`
   align-items: center;
   border-style: solid;
-  border-width: ${p => (p.isCompact ? 0 : 1)}px;
+  border-width: ${p => (p.$isCompact ? 0 : 1)}px;
   display: flex;
   justify-content: center;
-  padding: ${p => (p.isCompact ? 0 : PADDING[p.size])};
+  padding: ${p => (p.$isCompact ? 0 : PADDING[p.$size])};
 `
+
+const PrimaryButton = styled(BaseButton)(interpolatePrimaryButtonThemedCss)
+
+const SecondaryButton = styled(BaseButton)(interpolateSecondaryButtonThemedCss)
 
 const TertiaryButton = styled.button`
   background-color: transparent;

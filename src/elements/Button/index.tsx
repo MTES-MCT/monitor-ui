@@ -2,9 +2,10 @@ import classnames from 'classnames'
 import { useCallback, useMemo, type MouseEvent, type ButtonHTMLAttributes, type FunctionComponent } from 'react'
 import styled from 'styled-components'
 
-import { Accent, Size } from '../constants'
-import { type IconProps } from '../types/definitions'
-import { stopMouseEventPropagation } from '../utils/stopMouseEventPropagation'
+import { interpolatePrimaryButtonThemedCss, interpolateSecondaryButtonThemedCss } from './utils'
+import { Accent, Size } from '../../constants'
+import { type IconProps } from '../../types/definitions'
+import { stopMouseEventPropagation } from '../../utils/stopMouseEventPropagation'
 
 const ICON_SIZE: Record<Size, number> = {
   [Size.LARGE]: 20,
@@ -56,14 +57,13 @@ export function Button({
     [children, Icon, size]
   )
 
-  const commonProps = useMemo(
+  const commonProps: BaseButtonProps = useMemo(
     () => ({
-      as: StyledButton,
+      $isFullWidth: isFullWidth,
+      $size: size,
       children: commonChildren,
       className: classnames('Element-Button', className),
-      isFullWidth,
       onClick: handleClick,
-      size,
       type,
       ...nativeProps
     }),
@@ -96,7 +96,12 @@ const PADDING: Record<Size, string> = {
   [Size.NORMAL]: '6px 12px',
   [Size.SMALL]: '5px 8px 4px'
 }
-const StyledButton = styled.button<{
+
+type BaseButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  $isFullWidth: boolean
+  $size: Size
+}
+const BaseButton = styled.button<{
   $isFullWidth: boolean
   $size: Size
 }>`
@@ -122,61 +127,11 @@ const ButtonLabel = styled.span`
   white-space: nowrap;
 `
 
-export const PrimaryButton = styled.button`
-  background-color: ${p => p.theme.color.charcoal};
-  border: 1px solid ${p => p.theme.color.charcoal};
-  color: ${p => p.theme.color.gainsboro};
+const PrimaryButton = styled(BaseButton)(interpolatePrimaryButtonThemedCss)
 
-  &:hover,
-  &._hover {
-    background-color: ${p => p.theme.color.blueYonder};
-    border: 1px solid ${p => p.theme.color.blueYonder};
-    color: ${p => p.theme.color.white};
-  }
+const SecondaryButton = styled(BaseButton)(interpolateSecondaryButtonThemedCss)
 
-  &:active,
-  &._active {
-    background-color: ${p => p.theme.color.blueGray};
-    border: 1px solid ${p => p.theme.color.blueGray};
-    color: ${p => p.theme.color.white};
-  }
-
-  &:disabled,
-  &._disabled {
-    background-color: ${p => p.theme.color.lightGray};
-    border: 1px solid ${p => p.theme.color.lightGray};
-    color: ${p => p.theme.color.cultured};
-  }
-`
-
-export const SecondaryButton = styled.button`
-  background-color: transparent;
-  border: 1px solid ${p => p.theme.color.charcoal};
-  color: ${p => p.theme.color.charcoal};
-
-  &:hover,
-  &._hover {
-    background-color: ${p => p.theme.color.blueYonder25};
-    border: 1px solid ${p => p.theme.color.blueYonder};
-    color: ${p => p.theme.color.blueYonder};
-  }
-
-  &:active,
-  &._active {
-    background-color: ${p => p.theme.color.blueGray25};
-    border: 1px solid ${p => p.theme.color.blueGray};
-    color: ${p => p.theme.color.blueGray};
-  }
-
-  &:disabled,
-  &._disabled {
-    background-color: transparent;
-    border: 1px solid ${p => p.theme.color.lightGray};
-    color: ${p => p.theme.color.lightGray};
-  }
-`
-
-export const TertiaryButton = styled.button`
+const TertiaryButton = styled(BaseButton)`
   background-color: ${p => p.theme.color.white};
   border: 1px solid ${p => p.theme.color.white};
   color: ${p => p.theme.color.charcoal};
@@ -202,7 +157,8 @@ export const TertiaryButton = styled.button`
     color: ${p => p.theme.color.lightGray};
   }
 `
-export const WarningButton = styled.button`
+
+const WarningButton = styled(BaseButton)`
   background-color: transparent;
   border: 1px solid ${p => p.theme.color.goldenPoppy};
   color: ${p => p.theme.color.charcoal};
@@ -229,7 +185,7 @@ export const WarningButton = styled.button`
     color: ${p => p.theme.color.lightGray};
   }
 `
-export const ErrorButton = styled.button`
+const ErrorButton = styled(BaseButton)`
   background-color: transparent;
   border: 1px solid ${p => p.theme.color.maximumRed};
   color: ${p => p.theme.color.charcoal};
