@@ -1,6 +1,6 @@
 import { css } from 'styled-components'
 
-export function interpolatePrimaryButtonThemedCss() {
+export function getPrimaryButtonCss() {
   return css`
     background-color: ${p => p.theme.color.charcoal};
     border: 1px solid ${p => p.theme.color.charcoal};
@@ -29,7 +29,7 @@ export function interpolatePrimaryButtonThemedCss() {
   `
 }
 
-export function interpolateSecondaryButtonThemedCss() {
+export function getSecondaryButtonCss() {
   return css`
     background-color: transparent;
     border: 1px solid ${p => p.theme.color.charcoal};

@@ -2,7 +2,7 @@ import classnames from 'classnames'
 import { useMemo, type MouseEvent, type ButtonHTMLAttributes, type FunctionComponent, useCallback } from 'react'
 import styled from 'styled-components'
 
-import { interpolatePrimaryButtonThemedCss, interpolateSecondaryButtonThemedCss } from './Button/utils'
+import { getPrimaryButtonCss, getSecondaryButtonCss } from './Button/utils'
 import { Accent, Size } from '../constants'
 import { type IconProps } from '../types/definitions'
 import { stopMouseEventPropagation } from '../utils/stopMouseEventPropagation'
@@ -183,9 +183,9 @@ const BaseButton = styled.button<{
   padding: ${p => (p.$isCompact ? 0 : PADDING[p.$size])};
 `
 
-const PrimaryButton = styled(BaseButton)(interpolatePrimaryButtonThemedCss)
+const PrimaryButton = styled(BaseButton)(getPrimaryButtonCss)
 
-const SecondaryButton = styled(BaseButton)(interpolateSecondaryButtonThemedCss)
+const SecondaryButton = styled(BaseButton)(getSecondaryButtonCss)
 
 const TertiaryButton = styled.button`
   background-color: transparent;
