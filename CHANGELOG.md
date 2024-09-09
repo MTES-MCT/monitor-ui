@@ -1,3 +1,23 @@
+## [22.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v22.0.0...v22.0.1) (2024-09-09)
+
+
+### Bug Fixes
+
+* **elements:** fix prefixed props passing & logic in Button & IconButton ([708db85](https://github.com/MTES-MCT/monitor-ui/commit/708db85981bd24550fefe3f2e9171f2b2f3367ee))
+* **elements:** remove left 'as' prop in IconButton ([b83dc13](https://github.com/MTES-MCT/monitor-ui/commit/b83dc135b469e5472b883ea74908c73020c0cd59))
+
+
+### Code Refactoring
+
+* **elements:** rename primary & secondary CSS getters in Button ([7c75af0](https://github.com/MTES-MCT/monitor-ui/commit/7c75af0d735e01ffca2dd250158906beb7ec40d8))
+* **elements:** rename utils to styles in Button ([c7c2dfe](https://github.com/MTES-MCT/monitor-ui/commit/c7c2dfee31d7c1f14ca7ea3ab0ad88a74d67d20a))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump the non-major-dev-dependencies group across 1 directory with 34 updates ([0406d9b](https://github.com/MTES-MCT/monitor-ui/commit/0406d9b101d778dba4d77a1402fc27246a7af8ae))
+* **npm:** downgrade typescript from v5.5.4 to v5.5.3 because of cypress-io/cypress[#30016](https://github.com/MTES-MCT/monitor-ui/issues/30016) ([78de54b](https://github.com/MTES-MCT/monitor-ui/commit/78de54b9eecebe61fc4ac54d06d67d36919de644))
+
 ## [22.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v21.3.0...v22.0.0) (2024-09-09)
 
 
