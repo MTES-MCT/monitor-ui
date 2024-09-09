@@ -77,7 +77,7 @@ export function Textarea({
 
   return (
     <Field className={controlledClassname} style={style}>
-      <Label $isRequired={isRequired} disabled={disabled} htmlFor={originalProps.name} isHidden={isLabelHidden}>
+      <Label $idDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={originalProps.name}>
         {label}
       </Label>
 

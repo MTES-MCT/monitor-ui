@@ -6,10 +6,10 @@ import type { LabelProps } from '../../src'
 import type { Meta } from '@storybook/react'
 
 const args: LabelProps = {
+  $idDisabled: false,
+  $isHidden: false,
   $isRequired: false,
-  children: 'A form input label',
-  disabled: false,
-  isHidden: false
+  children: 'A form input label'
 }
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
