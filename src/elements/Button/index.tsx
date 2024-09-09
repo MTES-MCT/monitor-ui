@@ -2,7 +2,7 @@ import classnames from 'classnames'
 import { useCallback, useMemo, type MouseEvent, type ButtonHTMLAttributes, type FunctionComponent } from 'react'
 import styled from 'styled-components'
 
-import { interpolatePrimaryButtonThemedCss, interpolateSecondaryButtonThemedCss } from './utils'
+import { getPrimaryButtonCss, getSecondaryButtonCss } from './utils'
 import { Accent, Size } from '../../constants'
 import { type IconProps } from '../../types/definitions'
 import { stopMouseEventPropagation } from '../../utils/stopMouseEventPropagation'
@@ -127,9 +127,9 @@ const ButtonLabel = styled.span`
   white-space: nowrap;
 `
 
-const PrimaryButton = styled(BaseButton)(interpolatePrimaryButtonThemedCss)
+const PrimaryButton = styled(BaseButton)(getPrimaryButtonCss)
 
-const SecondaryButton = styled(BaseButton)(interpolateSecondaryButtonThemedCss)
+const SecondaryButton = styled(BaseButton)(getSecondaryButtonCss)
 
 const TertiaryButton = styled(BaseButton)`
   background-color: ${p => p.theme.color.white};
