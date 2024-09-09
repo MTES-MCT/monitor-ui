@@ -4,9 +4,9 @@ import { type ElementType, useCallback, useEffect, useMemo, useRef, useState, ty
 import { AutoComplete as RsuiteAutoComplete } from 'rsuite'
 import styled from 'styled-components'
 
+import { Accent, Size, Icon } from '../constants'
 import { StyledInputBox } from './shared/StyledInputBox'
 import { StyledRsuitePickerBox } from './shared/StyledRsuitePickerBox'
-import { Accent, Size, Icon } from '../constants'
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
 import { IconButton } from '../elements/IconButton'
@@ -100,7 +100,7 @@ export function Search<OptionValue extends OptionValueType = string>({
     () => getSelectedOptionFromOptionValue<OptionValue>(options, value, optionValueKey),
     [options, optionValueKey, value]
   )
-  const rsuiteValue = currentQueryRef.current.length > 0 ? currentQueryRef.current : selectedOption?.label ?? ''
+  const rsuiteValue = currentQueryRef.current.length > 0 ? currentQueryRef.current : (selectedOption?.label ?? '')
 
   const clear = useCallback(() => {
     if (onChange) {
