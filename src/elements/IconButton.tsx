@@ -2,8 +2,8 @@ import classnames from 'classnames'
 import { useMemo, type MouseEvent, type ButtonHTMLAttributes, type FunctionComponent, useCallback } from 'react'
 import styled from 'styled-components'
 
-import { getPrimaryButtonCss, getSecondaryButtonCss } from './Button/styles'
 import { Accent, Size } from '../constants'
+import { getPrimaryButtonCss, getSecondaryButtonCss } from './Button/styles'
 import { type IconProps } from '../types/definitions'
 import { stopMouseEventPropagation } from '../utils/stopMouseEventPropagation'
 
