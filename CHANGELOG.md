@@ -1,3 +1,17 @@
+## [22.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v21.3.0...v22.0.0) (2024-09-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **elements:** - `disabled` is renamed `$isDisabled` in `Label` props.
+- `hasError` is renamed `$hasError` in `Label` props.
+- `isHidden` is renamed `$isHidden` in `Label` props.
+
+### Bug Fixes
+
+* **elements:** add missing styled component prop prefixes in Button ([6e9a56d](https://github.com/MTES-MCT/monitor-ui/commit/6e9a56d8c3f8e7190030a580372ce55d2df2f740))
+* **elements:** add missing styled component prop prefixes in Label ([f2b5188](https://github.com/MTES-MCT/monitor-ui/commit/f2b518858d3fc959dddeff5d039f6cb5527680d5))
+
 ## [21.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v21.2.1...v21.3.0) (2024-09-06)
 
 
