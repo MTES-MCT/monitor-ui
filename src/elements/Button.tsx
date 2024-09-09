@@ -97,16 +97,16 @@ const PADDING: Record<Size, string> = {
   [Size.SMALL]: '5px 8px 4px'
 }
 const StyledButton = styled.button<{
-  isFullWidth: boolean
-  size: Size
+  $isFullWidth: boolean
+  $size: Size
 }>`
   align-items: center;
   display: inline-flex;
-  font-size: ${p => FONT_SIZE[p.size]};
+  font-size: ${p => FONT_SIZE[p.$size]};
   justify-content: center;
   max-width: 100%;
-  padding: ${p => PADDING[p.size]};
-  width: ${p => (p.isFullWidth ? '100%' : 'auto')};
+  padding: ${p => PADDING[p.$size]};
+  width: ${p => (p.$isFullWidth ? '100%' : 'auto')};
 
   > .Element-IconBox {
     margin-right: 5px;
