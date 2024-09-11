@@ -5,6 +5,7 @@ import { Anchor } from './Anchor'
 import { Archive } from './Archive'
 import { Attention } from './Attention'
 import { AttentionFilled } from './AttentionFilled'
+import { Bullseye } from './Bullseye'
 import { Calendar } from './Calendar'
 import { Car } from './Car'
 import { Check } from './Check'
@@ -100,6 +101,7 @@ export {
   Archive,
   Attention,
   AttentionFilled,
+  Bullseye,
   Calendar,
   Car,
   Check,
