@@ -6,10 +6,10 @@ import type { LegendProps } from '../../src'
 import type { Meta } from '@storybook/react'
 
 const args: LegendProps = {
+  $disabled: false,
+  $isHidden: false,
   $isRequired: false,
-  children: 'A form fieldset legend',
-  disabled: false,
-  isHidden: false
+  children: 'A form fieldset legend'
 }
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
