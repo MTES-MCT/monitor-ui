@@ -1,3 +1,22 @@
+## [23.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v22.1.0...v23.0.0) (2024-09-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* **elements:** - `disabled` is renamed `$isDisabled` in `Legend` props.
+- `hasError` is renamed `$hasError` in `Legend` props.
+- `isHidden` is renamed `$isHidden` in `Legend` props.
+
+### Bug Fixes
+
+* **elements:** prefix styled component props in Legend ([ef4284a](https://github.com/MTES-MCT/monitor-ui/commit/ef4284a50dee68cdb6c65308d2ae42da2798efdf))
+* **fields:** prefix styled components props in DateRangePicker ([3572267](https://github.com/MTES-MCT/monitor-ui/commit/3572267c6e285d87f7c9efd006bf7c0daf592a5e))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump express from 4.19.2 to 4.21.0 ([46d1134](https://github.com/MTES-MCT/monitor-ui/commit/46d113401e48191f59f9c8e309761ba2e44ccbb0))
+
 ## [22.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v22.0.1...v22.1.0) (2024-09-12)
 
 
