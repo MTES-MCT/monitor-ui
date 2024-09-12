@@ -493,7 +493,7 @@ export function DateRangePicker({
         </Field>
 
         {withTime && (
-          <Field isTimeField>
+          <Field $isTimeField>
             <TimeInput
               ref={startTimeInputRef}
               baseContainer={baseContainer ?? undefined}
@@ -516,7 +516,7 @@ export function DateRangePicker({
           </Field>
         )}
 
-        <Field isEndDateField>
+        <Field $isEndDateField>
           <DateInput
             ref={endDateInputRef}
             baseContainer={baseContainer ?? undefined}
@@ -542,7 +542,7 @@ export function DateRangePicker({
         </Field>
 
         {withTime && (
-          <Field isTimeField>
+          <Field $isTimeField>
             <TimeInput
               ref={endTimeInputRef}
               baseContainer={baseContainer ?? undefined}
@@ -604,15 +604,15 @@ const Box = styled.div<CommonFieldStyleProps>`
 `
 
 const Field = styled.span<{
-  isEndDateField?: boolean
-  isTimeField?: boolean
+  $isEndDateField?: boolean
+  $isTimeField?: boolean
 }>`
   font-size: inherit;
   margin-left: ${p => {
-    if (p.isEndDateField) {
+    if (p.$isEndDateField) {
       return '10px'
     }
 
-    return p.isTimeField ? '2px' : 0
+    return p.$isTimeField ? '2px' : 0
   }} !important;
 `

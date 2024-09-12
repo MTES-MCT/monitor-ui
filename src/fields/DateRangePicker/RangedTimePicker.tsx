@@ -96,9 +96,9 @@ export function RangedTimePicker({ filter, minutesRange, onChange }: RangedTimeP
       {filteredRangedTimeOptions.map(({ label, value }, index) => (
         <Option
           key={label}
+          $isSelected={index === selectedOptionIndex}
           aria-selected={false}
           className="js-ranged-time-picker-option"
-          isSelected={index === selectedOptionIndex}
           onClick={() => onChange(value)}
           role="option"
           tabIndex={-1}
@@ -142,16 +142,16 @@ const Box = styled.div`
 `
 
 const Option = styled.div<{
-  isSelected: boolean
+  $isSelected: boolean
 }>`
-  background-color: ${p => (p.isSelected ? p.theme.color.blueGray : 'transparent')};
-  color: ${p => (p.isSelected ? p.theme.color.white : p.theme.color.gunMetal)};
+  background-color: ${p => (p.$isSelected ? p.theme.color.blueGray : 'transparent')};
+  color: ${p => (p.$isSelected ? p.theme.color.white : p.theme.color.gunMetal)};
   cursor: pointer;
   line-height: 1;
   padding: 8.5px 0 10.5px 8px;
 
   &:hover {
-    background-color: ${p => (p.isSelected ? p.theme.color.blueGray : p.theme.color.blueYonder25)};
+    background-color: ${p => (p.$isSelected ? p.theme.color.blueGray : p.theme.color.blueYonder25)};
   }
 
   > span {
