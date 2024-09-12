@@ -1,3 +1,15 @@
+## [22.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v22.0.1...v22.1.0) (2024-09-12)
+
+
+### Features
+
+* **icons:** add bullseye icon ([1f76116](https://github.com/MTES-MCT/monitor-ui/commit/1f76116bf996528e4d548479996cf47e78d2453d))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump the all-non-major-dependencies group across 1 directory with 5 updates ([52dabbf](https://github.com/MTES-MCT/monitor-ui/commit/52dabbfed940b787a9fb1490f0696595291d5f6e))
+
 ## [22.0.1](https://github.com/MTES-MCT/monitor-ui/compare/v22.0.0...v22.0.1) (2024-09-09)
 
 
