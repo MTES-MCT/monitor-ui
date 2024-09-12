@@ -28,7 +28,12 @@ export function Fieldset({
   return (
     <Box className={classnames('Element-Fieldset', className)} {...nativeProps}>
       {legend && (
-        <Legend $isRequired={isRequired} disabled={nativeProps.disabled} hasError={hasError} isHidden={isLegendHidden}>
+        <Legend
+          $disabled={nativeProps.disabled}
+          $hasError={hasError}
+          $isHidden={isLegendHidden}
+          $isRequired={isRequired}
+        >
           {legend}
         </Legend>
       )}
