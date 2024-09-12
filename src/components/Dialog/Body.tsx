@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
-export const Body = styled.div<{ $color?: string }>`
+export const Body = styled.div<{
+  $color?: string
+}>`
   background-color: ${p => p.theme.color.white};
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;

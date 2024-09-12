@@ -178,7 +178,9 @@ const ContentWrapper = styled.div<ContentWrapperProps>`
 const ButtonWrapper = styled.div`
   align-self: center;
 `
-const HideText = styled.span<{ $level: Level }>`
+const HideText = styled.span<{
+  $level: Level
+}>`
   ${p =>
     p.$level === Level.ERROR
       ? css`

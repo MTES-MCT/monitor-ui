@@ -148,7 +148,9 @@ const IconsContainer = styled.div<{
   top: ${p => (p.$size === Size.LARGE ? '9px' : '5px')};
 `
 
-const RestyledStyledInputBox = styled(StyledInputBox)<{ $isSearchInput: boolean }>`
+const RestyledStyledInputBox = styled(StyledInputBox)<{
+  $isSearchInput: boolean
+}>`
   > input,
   > .rs-auto-complete > input {
     padding-right: ${p => p.$isSearchInput && '64px'};
