@@ -16,7 +16,7 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Merge pull request
-        uses: pascalgn/automerge-action@v0.16.3
+        uses: pascalgn/automerge-action@v0.16.4
         # https://github.com/pascalgn/automerge-action#configuration
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
