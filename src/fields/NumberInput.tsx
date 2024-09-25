@@ -33,6 +33,7 @@ export type NumberInputProps = Omit<InputProps, 'as' | 'defaultValue' | 'id' | '
   name: string
   onChange?: (nextValue: number | undefined) => Promisable<void>
   readOnly?: boolean | undefined
+  unit?: string | undefined
   value?: number | undefined
 }
 export function NumberInput({
@@ -53,6 +54,7 @@ export function NumberInput({
   onFocus,
   readOnly = false,
   style,
+  unit,
   value,
   ...originalProps
 }: NumberInputProps) {
@@ -105,44 +107,55 @@ export function NumberInput({
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && !!disabled, onChange)
 
+  const commonInputProps = {
+    $areArrowsHidden: areArrowsHidden,
+    $isDisabled: disabled,
+    $isLight: isLight,
+    $isReadOnly: readOnly,
+    $isTransparent: isTransparent,
+    disabled,
+    id: name,
+    onBlur: handleBlur,
+    onChange: handleChange,
+    onFocus: handleFocus,
+    readOnly,
+    ref: inputRef,
+    type: 'number',
+    value: value ?? '',
+    ...originalProps
+  }
+
   return (
     <Field className={controlledClassname} style={style}>
       <Label $idDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={name}>
         {label}
       </Label>
 
-      <StyledInput
-        key={key}
-        ref={inputRef}
-        $areArrowsHidden={areArrowsHidden}
-        $hasError={hasError}
-        $isDisabled={disabled}
-        $isLight={isLight}
-        $isReadOnly={readOnly}
-        $isTransparent={isTransparent}
-        disabled={disabled}
-        id={name}
-        onBlur={handleBlur}
-        onChange={handleChange}
-        onFocus={handleFocus}
-        readOnly={readOnly}
-        type="number"
-        value={value ?? ''}
-        {...originalProps}
-      />
+      {!unit && <InputWithoutUnit key={key} {...commonInputProps} />}
+      {!!unit && (
+        <InputBoxWithUnit
+          key={key}
+          $hasError={hasError}
+          $isDisabled={disabled}
+          $isLight={isLight}
+          $isReadOnly={readOnly}
+          $isTransparent={isTransparent}
+        >
+          <InputWithUnit {...commonInputProps} />
+          {unit}
+        </InputBoxWithUnit>
+      )}
 
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
     </Field>
   )
 }
 
-const StyledInput = styled(Input as any)<
+const BaseInput = styled(Input)<
   CommonFieldStyleProps & {
     $areArrowsHidden: boolean
   }
 >`
-  background-color: ${getFieldBackgroundColorFactory()};
-  border: solid 1px ${getFieldBorderColorFactoryForState('default')};
   border-radius: 0;
   color: ${p => p.theme.color.gunMetal};
   ${p => p.$isReadOnly && `cursor: default;`}
@@ -169,9 +182,6 @@ const StyledInput = styled(Input as any)<
   }
 
   &:hover {
-    background-color: ${getFieldBackgroundColorFactory()};
-    border: solid 1px ${getFieldBorderColorFactoryForState('hover')} !important;
-
     &::placeholder {
       color: ${getFieldPlaceholderColorFactoryForState('hover')};
     }
@@ -179,12 +189,60 @@ const StyledInput = styled(Input as any)<
 
   &:active,
   &:focus {
-    background-color: ${getFieldBackgroundColorFactory()};
-    border: solid 1px ${getFieldBorderColorFactoryForState('focus')} !important;
     outline: 0;
 
     &::placeholder {
       color: ${getFieldPlaceholderColorFactoryForState('focus')};
     }
   }
+`
+
+const InputWithoutUnit = styled(BaseInput)<
+  CommonFieldStyleProps & {
+    $areArrowsHidden: boolean
+  }
+>`
+  background-color: ${getFieldBackgroundColorFactory()};
+  border: solid 1px ${getFieldBorderColorFactoryForState('default')};
+
+  &:hover {
+    background-color: ${getFieldBackgroundColorFactory()};
+    border: solid 1px ${getFieldBorderColorFactoryForState('hover')} !important;
+  }
+
+  &:active,
+  &:focus {
+    background-color: ${getFieldBackgroundColorFactory()};
+    border: solid 1px ${getFieldBorderColorFactoryForState('focus')} !important;
+  }
+`
+
+const InputBoxWithUnit = styled.div<CommonFieldStyleProps>`
+  align-items: center;
+  background-color: ${getFieldBackgroundColorFactory()};
+  border: solid 1px ${getFieldBorderColorFactoryForState('default')};
+  color: ${p => p.theme.color.slateGray};
+  display: flex;
+  font-size: 13px;
+  line-height: 19px;
+  padding-right: 8px;
+  user-select: none;
+  width: 100%;
+
+  &:hover {
+    background-color: ${getFieldBackgroundColorFactory()};
+    border: solid 1px ${getFieldBorderColorFactoryForState('hover')} !important;
+  }
+
+  &:active,
+  &:focus {
+    background-color: ${getFieldBackgroundColorFactory()};
+    border: solid 1px ${getFieldBorderColorFactoryForState('focus')} !important;
+  }
+`
+
+const InputWithUnit = styled(BaseInput)`
+  background-color: transparent;
+  border: none;
+  flex-grow: 1;
 `
