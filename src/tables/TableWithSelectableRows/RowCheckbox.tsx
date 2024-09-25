@@ -22,7 +22,7 @@ export function RowCheckbox({ onChange, ...nativeProps }: RowCheckboxProps & HTM
 
   return (
     <RestyledRsuiteCheckbox
-      $isChecked={nativeProps.checked || nativeProps.indeterminate}
+      $isChecked={!!nativeProps.checked || !!nativeProps.indeterminate}
       $isDisabled={nativeProps.disabled}
       $isReadOnly={nativeProps.readOnly}
       {...nativeProps}
