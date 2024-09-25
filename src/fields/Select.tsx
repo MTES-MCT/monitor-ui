@@ -160,7 +160,7 @@ export function Select<OptionValue extends OptionValueType = string>({
               }, 300)
             }
           }
-        : undefined,
+        : {},
     [originalProps.virtualized, originalProps.name]
   )
 
