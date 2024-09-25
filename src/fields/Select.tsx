@@ -133,6 +133,37 @@ export function Select<OptionValue extends OptionValueType = string>({
     [controlledRsuiteData, rsuiteData]
   )
 
+  const listProps = useMemo(
+    () =>
+      originalProps.virtualized
+        ? {
+            onItemsRendered: () => {
+              setTimeout(() => {
+                if (!boxRef.current) {
+                  return
+                }
+
+                const divs = boxRef.current!.querySelectorAll(`#${originalProps.name}-listbox div`)
+                const targetDiv = divs[2]
+
+                /**
+                 *  Reset the 'pointer-events' style
+                 *  @see:
+                 *  https://github.com/MTES-MCT/monitorfish/issues/3211
+                 *  https://github.com/bvaughn/react-window/issues/128
+                 */
+                if (targetDiv) {
+                  requestAnimationFrame(() => {
+                    ;(targetDiv as HTMLDivElement).style.pointerEvents = 'auto'
+                  })
+                }
+              }, 300)
+            }
+          }
+        : undefined,
+    [originalProps.virtualized, originalProps.name]
+  )
+
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
   useEffect(() => {
@@ -165,19 +196,7 @@ export function Select<OptionValue extends OptionValueType = string>({
             disabled={disabled}
             disabledItemValues={disabledItemValues}
             id={originalProps.name}
-            listProps={{
-              onItemsRendered: () => {
-                setTimeout(() => {
-                  const divs = boxRef.current.querySelectorAll('.rs-picker-select-menu div')
-                  const targetDiv = divs[5]
-
-                  // Reset the 'pointer-events' style
-                  if (targetDiv) {
-                    targetDiv.style.pointerEvents = undefined
-                  }
-                }, 300)
-              }
-            }}
+            listProps={listProps}
             onChange={handleChange}
             onSearch={handleSearch}
             // `as any` because we customized `ItemDataType` type by adding `optionValue`,
