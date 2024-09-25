@@ -25,6 +25,7 @@ const meta: Meta<NumberInputProps> = {
     isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
     onChange: ARG_TYPE.NO_CONTROL_INPUT,
     readOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
+    unit: ARG_TYPE.OPTIONAL_STRING,
     value: ARG_TYPE.OPTIONAL_NUMBER
   },
 
@@ -41,7 +42,8 @@ const meta: Meta<NumberInputProps> = {
     label: 'A number input',
     name: 'myNumberInput',
     placeholder: 'Pick a number',
-    readOnly: false
+    readOnly: false,
+    unit: ''
   },
 
   decorators: [
