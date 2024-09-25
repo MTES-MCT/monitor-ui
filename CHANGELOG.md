@@ -1,3 +1,24 @@
+## [23.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v23.0.0...v23.1.0) (2024-09-25)
+
+
+### Features
+
+* **fields:** add unit prop to NumberInput ([5773587](https://github.com/MTES-MCT/monitor-ui/commit/5773587eb738e6eb8672ede9dc348dd430070acb))
+
+
+### Bug Fixes
+
+* **fields:** re-add missing hasError passed prop within NumberInput ([2a3e6fb](https://github.com/MTES-MCT/monitor-ui/commit/2a3e6fb76dc1b23a09b0346695d623f6f2e719bf))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump date-fns from 3.6.0 to 4.0.0 ([0490c87](https://github.com/MTES-MCT/monitor-ui/commit/0490c87f2e0b7842719619c25a28d8da3510c92d))
+* **dev-deps:** bump rollup in /e2e/release/sample ([d129438](https://github.com/MTES-MCT/monitor-ui/commit/d1294389097d528637c481ada8ea9ad1514f2640))
+* **dev-deps:** bump the all-non-major-dependencies group ([949f672](https://github.com/MTES-MCT/monitor-ui/commit/949f6720e532f2e91222fe20352330ed270ea17e))
+* **dev-deps:** bump the all-non-major-dependencies group across 1 directory with 4 updates ([5de56bd](https://github.com/MTES-MCT/monitor-ui/commit/5de56bd3f1da2832c7302c4db549fe5387aca01a))
+* **dev-deps:** bump vite from 5.4.3 to 5.4.6 in /e2e/release/sample ([7dd2268](https://github.com/MTES-MCT/monitor-ui/commit/7dd2268c1c3eced211027447da3c6c4139510a79))
+
 ## [23.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v22.1.0...v23.0.0) (2024-09-12)
 
 
