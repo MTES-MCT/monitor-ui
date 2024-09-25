@@ -109,6 +109,7 @@ export function NumberInput({
 
   const commonInputProps = {
     $areArrowsHidden: areArrowsHidden,
+    $hasError: hasError,
     $isDisabled: disabled,
     $isLight: isLight,
     $isReadOnly: readOnly,
