@@ -52,7 +52,7 @@ const PrimaryText = styled.span`
   color: ${p => p.theme.color.gunMetal};
   font-size: 13px;
   line-height: 1.3846;
-  padding: 3px 8px 5px;
+  padding: 2px 8px 6px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -60,8 +60,9 @@ const PrimaryText = styled.span`
 
 const PrimaryIconButton = styled(IconButton as any)`
   background-color: ${p => p.theme.color.lightGray};
+  line-height: 18px;
   margin-left: 1px;
-  padding: 7px;
+  padding: 2px 8px 6px;
 
   :hover,
   &._hover {
