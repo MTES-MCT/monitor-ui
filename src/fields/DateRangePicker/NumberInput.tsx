@@ -17,7 +17,7 @@ import type { Promisable } from 'type-fest'
 
 export type NumberInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  'defaultValue' | 'maxLength' | 'onInput' | 'pattern' | 'type'
+  'defaultValue' | 'max' | 'maxLength' | 'min' | 'onInput' | 'pattern' | 'type'
 > & {
   isLight: boolean
   max?: number
@@ -107,7 +107,11 @@ function NumberInputWithRef(
     }
 
     const valueAsNumber = Number(inputRef.current.value)
-    if (Number.isNaN(valueAsNumber) || valueAsNumber < min || valueAsNumber > max) {
+    if (
+      Number.isNaN(valueAsNumber) ||
+      (min !== undefined && valueAsNumber < min) ||
+      (max !== undefined && valueAsNumber > max)
+    ) {
       onFormatError(true)
 
       return
