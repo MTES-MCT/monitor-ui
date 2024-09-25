@@ -43,7 +43,8 @@ const meta: Meta<SelectProps<Specy>> = {
 
   decorators: [
     generateStoryDecorator({
-      withBackgroundButton: true
+      withBackgroundButton: true,
+      withNewWindowButton: true
     })
   ]
 }

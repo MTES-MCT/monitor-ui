@@ -1,6 +1,6 @@
 import { getSelectedOptionValueFromSelectedRsuiteDataItemValue } from '@utils/getSelectedOptionValueFromSelectedRsuiteDataItemValue'
 import classnames from 'classnames'
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { SelectPicker as RsuiteSelectPicker, type SelectPickerProps as RsuiteSelectPickerProps } from 'rsuite'
 
 import { StyledRsuitePickerBox } from './shared/StyledRsuitePickerBox'
@@ -165,6 +165,19 @@ export function Select<OptionValue extends OptionValueType = string>({
             disabled={disabled}
             disabledItemValues={disabledItemValues}
             id={originalProps.name}
+            listProps={{
+              onItemsRendered: () => {
+                setTimeout(() => {
+                  const divs = boxRef.current.querySelectorAll('.rs-picker-select-menu div')
+                  const targetDiv = divs[5]
+
+                  // Reset the 'pointer-events' style
+                  if (targetDiv) {
+                    targetDiv.style.pointerEvents = undefined
+                  }
+                }, 300)
+              }
+            }}
             onChange={handleChange}
             onSearch={handleSearch}
             // `as any` because we customized `ItemDataType` type by adding `optionValue`,
