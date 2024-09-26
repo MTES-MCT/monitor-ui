@@ -272,41 +272,31 @@ function onCopyStyles(source: Document, target: Document | undefined): void {
 
   Array.from(source.styleSheets).forEach(styleSheet => {
     // For <style> elements
-    let rules
+    let rules: CSSRuleList | undefined
     try {
       rules = styleSheet.cssRules
     } catch (err) {
       // An error here most likely happens when trying to access stylesheets from other domains,
       // which is a CORS violation and should be ignored.
       // eslint-disable-next-line no-console
-      console.debug(err)
 
       return
     }
+
     if (rules) {
-      // IE11 is very slow for appendChild, so use plain string here
-      const ruleText: string[] = []
-
       // Write the text of each rule into the body of the style element
-      Array.from(styleSheet.cssRules).forEach(cssRule => {
-        const { type } = cssRule
+      const ruleText = Array.from(rules)
+        .flat()
+        .map(cssRule => {
+          if (['CSSImportRule', 'CSSFontFaceRule'].includes(cssRule.constructor.name)) {
+            // Check if the cssRule type is CSSImportRule (3) or CSSFontFaceRule (5)
+            // to handle local imports on a about:blank page
+            // '/custom.css' turns to 'http://my-site.com/custom.css'
+            return fixUrlForRule(cssRule)
+          }
 
-        let returnText = ''
-
-        if (type === CSSRule.KEYFRAMES_RULE) {
-          // IE11 will throw error when trying to access cssText property, so we
-          // need to assemble them
-          returnText = getKeyFrameText(cssRule)
-        } else if ([CSSRule.IMPORT_RULE, CSSRule.FONT_FACE_RULE].includes(type as any)) {
-          // Check if the cssRule type is CSSImportRule (3) or CSSFontFaceRule (5)
-          // to handle local imports on a about:blank page
-          // '/custom.css' turns to 'http://my-site.com/custom.css'
-          returnText = fixUrlForRule(cssRule)
-        } else {
-          returnText = cssRule.cssText
-        }
-        ruleText.push(returnText)
-      })
+          return cssRule.cssText
+        })
 
       const newStyleEl = target.createElement('style')
       newStyleEl.textContent = ruleText.join('\n')
@@ -322,21 +312,6 @@ function onCopyStyles(source: Document, target: Document | undefined): void {
   })
 
   target.head.appendChild(headFrag)
-}
-
-/**
- * Make keyframe rules.
- */
-// This should be `CSSRule` instead of `any` but this code is a bit tedious.
-function getKeyFrameText(cssRule: any /** CSSRule */): string {
-  const tokens = ['@keyframes', cssRule.name, '{']
-  Array.from(cssRule.cssRules).forEach((keyframesCssRule: any) => {
-    // type === CSSRule.KEYFRAME_RULE should always be true
-    tokens.push(keyframesCssRule.keyText, '{', keyframesCssRule.style.cssText, '}')
-  })
-  tokens.push('}')
-
-  return tokens.join(' ')
 }
 
 /**
