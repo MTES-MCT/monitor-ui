@@ -1,3 +1,15 @@
+## [23.1.2](https://github.com/MTES-MCT/monitor-ui/compare/v23.1.1...v23.1.2) (2024-09-26)
+
+
+### Bug Fixes
+
+* **fields:** handle id with special chars in Select pointer-events hack ([271e475](https://github.com/MTES-MCT/monitor-ui/commit/271e475b33fa570269925b6127f6c035be86aa60))
+
+
+### Code Refactoring
+
+* **components:** simplify stylesheets injection in NewWindow ([9ca5417](https://github.com/MTES-MCT/monitor-ui/commit/9ca54179c8a4bda6e3504cd87b9c923a5b154c99))
+
 ## [23.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v23.1.0...v23.1.1) (2024-09-26)
 
 
