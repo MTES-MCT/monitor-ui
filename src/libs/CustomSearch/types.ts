@@ -1,5 +1,5 @@
 import type { AnyObject } from '../../types/definitions'
-import type Fuse from 'fuse.js'
+import type { FuseOptionKeyObject } from 'fuse.js'
 
 export type CustomSearchCache = Record<string, CustomSearchCacheRecord>
 export type CustomSearchCacheRecord = {
@@ -9,7 +9,7 @@ export type CustomSearchCacheRecord = {
   originalCollectionHash: string
 }
 
-export type CustomSearchKey<T> = string | Fuse.FuseOptionKeyObject<T>
+export type CustomSearchKey<T> = string | FuseOptionKeyObject<T>
 
 export type CustomSearchOptions = Partial<{
   /** Cache search index to avoid Must be unique in the entire application. */
