@@ -1,3 +1,29 @@
+## [23.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v23.1.0...v23.1.1) (2024-09-26)
+
+
+### Styles
+
+* **elements:** fix close button size in SingleTag ([ff8a1b5](https://github.com/MTES-MCT/monitor-ui/commit/ff8a1b5f7bf2ba4b05d791ea038a9b25dde41665))
+
+
+### Bug Fixes
+
+* **fields:** add debounce ([79b19fb](https://github.com/MTES-MCT/monitor-ui/commit/79b19fb37eae38612feab4328021d4d233775844))
+* **fields:** apply review comment ([8e864da](https://github.com/MTES-MCT/monitor-ui/commit/8e864da6d96b7b211200bfe01eabba0c1283a675))
+* **fields:** fix pointer-events ([13d1955](https://github.com/MTES-MCT/monitor-ui/commit/13d195566a61c99e9aae297f201dce4c425cfbc9))
+* **fields:** handle undefined min/max prop in DateRangePicker number inputs ([8e10304](https://github.com/MTES-MCT/monitor-ui/commit/8e10304f20266839f7c727c686f0ad1038f8b0a9))
+* **fields:** memoize list props ([54c4d3f](https://github.com/MTES-MCT/monitor-ui/commit/54c4d3f2090a6f470362dc85bdde45e9f26cb944))
+* **fields:** set default listProps value to empty object in Select ([88ce94f](https://github.com/MTES-MCT/monitor-ui/commit/88ce94feff3c509c771586013f98be1a1cba5def))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump rollup from 4.21.2 to 4.22.4 ([4684626](https://github.com/MTES-MCT/monitor-ui/commit/4684626b83cc16ab102c46ed4891fcfe0cde7ff2))
+* **dev-deps:** bump the non-major-dev-dependencies group across 1 directory with 23 updates ([491a8c6](https://github.com/MTES-MCT/monitor-ui/commit/491a8c64b5f9d00d88bded52b868b5d9aa279398))
+* **dev-deps:** bump vite from 5.4.3 to 5.4.6 ([8268198](https://github.com/MTES-MCT/monitor-ui/commit/8268198bc7156700bf58c2be2449623857dab67d))
+* **dev-deps:** upgrade dev deps in /e2e/release/sample ([1581c0a](https://github.com/MTES-MCT/monitor-ui/commit/1581c0ab0e00134d51fe9caa54c8204adc416d3f))
+* **e2e:** remove useless browserslist in e2e release sample package.json ([398e20a](https://github.com/MTES-MCT/monitor-ui/commit/398e20a21ca3b42a74d0df5116983865d527edf7))
+
 ## [23.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v23.0.0...v23.1.0) (2024-09-25)
 
 
