@@ -1,5 +1,6 @@
 import { getSelectedOptionValueFromSelectedRsuiteDataItemValue } from '@utils/getSelectedOptionValueFromSelectedRsuiteDataItemValue'
 import classnames from 'classnames'
+import { debounce } from 'lodash'
 import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { SelectPicker as RsuiteSelectPicker, type SelectPickerProps as RsuiteSelectPickerProps } from 'rsuite'
 
@@ -137,28 +138,26 @@ export function Select<OptionValue extends OptionValueType = string>({
     () =>
       originalProps.virtualized
         ? {
-            onItemsRendered: () => {
-              setTimeout(() => {
-                if (!boxRef.current) {
-                  return
-                }
+            onItemsRendered: debounce(() => {
+              if (!boxRef.current) {
+                return
+              }
 
-                const divs = boxRef.current.querySelectorAll(`#${originalProps.name}-listbox div`)
-                const targetDiv = divs[2]
+              const divs = boxRef.current.querySelectorAll(`#${originalProps.name}-listbox div`)
+              const targetDiv = divs[2]
 
-                /**
-                 *  Reset the 'pointer-events' style
-                 *  @see:
-                 *  https://github.com/MTES-MCT/monitorfish/issues/3211
-                 *  https://github.com/bvaughn/react-window/issues/128
-                 */
-                if (targetDiv) {
-                  requestAnimationFrame(() => {
-                    ;(targetDiv as HTMLDivElement).style.pointerEvents = 'auto'
-                  })
-                }
-              }, 300)
-            }
+              /**
+               *  Reset the 'pointer-events' style
+               *  @see:
+               *  https://github.com/MTES-MCT/monitorfish/issues/3211
+               *  https://github.com/bvaughn/react-window/issues/128
+               */
+              if (targetDiv) {
+                requestAnimationFrame(() => {
+                  ;(targetDiv as HTMLDivElement).style.pointerEvents = 'auto'
+                })
+              }
+            }, 300)
           }
         : {},
     [originalProps.virtualized, originalProps.name]
