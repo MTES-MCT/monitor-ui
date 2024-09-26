@@ -143,7 +143,7 @@ export function Select<OptionValue extends OptionValueType = string>({
                 return
               }
 
-              const divs = boxRef.current.querySelectorAll(`#${originalProps.name}-listbox div`)
+              const divs = boxRef.current.querySelectorAll<HTMLDivElement>(`[id="${originalProps.name}-listbox"] div`)
               const targetDiv = divs[2]
 
               /**
@@ -154,7 +154,7 @@ export function Select<OptionValue extends OptionValueType = string>({
                */
               if (targetDiv) {
                 requestAnimationFrame(() => {
-                  ;(targetDiv as HTMLDivElement).style.pointerEvents = 'auto'
+                  targetDiv.style.pointerEvents = 'auto'
                 })
               }
             }, 300)
