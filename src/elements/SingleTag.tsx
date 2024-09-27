@@ -2,7 +2,6 @@ import classnames from 'classnames'
 import { type HTMLAttributes, useCallback } from 'react'
 import styled from 'styled-components'
 
-import { IconButton } from './IconButton'
 import { Accent } from '../constants'
 import { Close } from '../icons'
 
@@ -14,7 +13,8 @@ export type SingleTagProps = HTMLAttributes<HTMLDivElement> & {
   onDelete: () => Promisable<void>
 }
 export function SingleTag({ accent = Accent.PRIMARY, children, className, onDelete, ...nativeProps }: SingleTagProps) {
-  const controlledClassName = classnames('Component-SingleTag', className)
+  // TODO Remove `Component-SingleTag` in a next major/breaking version.
+  const controlledClassName = classnames('Component-SingleTag', 'Element-SingleTag', className)
 
   const handleDelete = useCallback(() => {
     if (onDelete) {
@@ -27,15 +27,20 @@ export function SingleTag({ accent = Accent.PRIMARY, children, className, onDele
       return (
         <Box className={controlledClassName} {...nativeProps}>
           <SecondaryText>{children}</SecondaryText>
-          <SecondaryIconButton accent={Accent.TERTIARY} Icon={Close} iconSize={10} onClick={handleDelete} />
+          <SecondaryIconButton onClick={handleDelete}>
+            <Close size={10} />
+          </SecondaryIconButton>
         </Box>
       )
 
+    case Accent.PRIMARY:
     default:
       return (
         <Box className={controlledClassName} {...nativeProps}>
           <PrimaryText>{children}</PrimaryText>
-          <PrimaryIconButton accent={Accent.TERTIARY} Icon={Close} iconSize={10} onClick={handleDelete} />
+          <PrimaryIconButton onClick={handleDelete}>
+            <Close size={10} />
+          </PrimaryIconButton>
         </Box>
       )
   }
@@ -45,6 +50,15 @@ const Box = styled.div`
   align-items: center;
   display: inline-flex;
   max-width: 100%;
+`
+
+const BaseIconButton = styled.button`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  line-height: 18px;
+  margin-left: 1px;
+  padding: 8px;
 `
 
 const PrimaryText = styled.span`
@@ -58,25 +72,30 @@ const PrimaryText = styled.span`
   white-space: nowrap;
 `
 
-const PrimaryIconButton = styled(IconButton as any)`
+const PrimaryIconButton = styled(BaseIconButton)`
   background-color: ${p => p.theme.color.lightGray};
-  line-height: 18px;
-  margin-left: 1px;
-  padding: 2px 8px 6px;
+  border-color: ${p => p.theme.color.lightGray};
+  color: ${p => p.theme.color.charcoal};
 
   :hover,
   &._hover {
     background-color: ${p => p.theme.color.lightGray};
+    border-color: ${p => p.theme.color.lightGray};
+    color: ${p => p.theme.color.blueYonder};
   }
 
   :active,
   &._active {
     background-color: ${p => p.theme.color.lightGray};
+    border-color: ${p => p.theme.color.lightGray};
+    color: ${p => p.theme.color.blueGray};
   }
 
   :disabled,
   &._disabled {
     background-color: ${p => p.theme.color.lightGray};
+    border-color: ${p => p.theme.color.lightGray};
+    color: ${p => p.theme.color.lightGray};
   }
 `
 
@@ -85,25 +104,29 @@ const SecondaryText = styled(PrimaryText)`
   color: ${p => p.theme.color.white};
 `
 
-const SecondaryIconButton = styled(PrimaryIconButton)`
+const SecondaryIconButton = styled(BaseIconButton)`
   background-color: ${p => p.theme.color.blueYonder};
+  border-color: ${p => p.theme.color.blueYonder};
   color: ${p => p.theme.color.white};
 
   :hover,
   &._hover {
     background-color: ${p => p.theme.color.blueYonder};
+    border-color: ${p => p.theme.color.blueYonder};
     color: ${p => p.theme.color.blueYonder25};
   }
 
   :active,
   &._active {
     background-color: ${p => p.theme.color.blueYonder};
+    border-color: ${p => p.theme.color.blueYonder};
     color: ${p => p.theme.color.blueYonder25};
   }
 
   :disabled,
   &._disabled {
     background-color: ${p => p.theme.color.blueYonder};
+    border-color: ${p => p.theme.color.blueYonder};
     color: ${p => p.theme.color.blueYonder25};
   }
 `
