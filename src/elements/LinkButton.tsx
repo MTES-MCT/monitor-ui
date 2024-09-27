@@ -7,11 +7,11 @@ import { Size } from '../constants'
 import { THEME } from '../theme'
 
 export type LinkButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  Icon?: FunctionComponent<IconProps>
-  children?: string | ReactNode
-  size: Size
+  Icon?: FunctionComponent<IconProps> | undefined
+  children?: string | ReactNode | undefined
+  size?: Size | undefined
 }
-export function LinkButton({ children, Icon, size, ...props }: Readonly<LinkButtonProps>) {
+export function LinkButton({ children, Icon, size = Size.NORMAL, ...props }: Readonly<LinkButtonProps>) {
   return (
     <StyledLinkButton $size={size} {...props}>
       <>

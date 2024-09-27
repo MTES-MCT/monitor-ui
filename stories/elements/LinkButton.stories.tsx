@@ -23,7 +23,7 @@ const meta: Meta<LinkButtonProps> = {
   args: {
     disabled: false,
     Icon: Icon.Close,
-    size: Size.NORMAL,
+    size: undefined,
     children: 'a random text'
   },
 
