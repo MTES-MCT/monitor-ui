@@ -1,11 +1,12 @@
+import { Accent, Size } from '@constants'
+import { type IconProps } from '@types_/definitions'
+import { stopMouseEventPropagation } from '@utils/stopMouseEventPropagation'
 import classnames from 'classnames'
 import { useMemo, type MouseEvent, type ButtonHTMLAttributes, type FunctionComponent, useCallback } from 'react'
 import styled from 'styled-components'
 
-import { Accent, Size } from '../constants'
-import { getPrimaryButtonCss, getSecondaryButtonCss } from './Button/styles'
-import { type IconProps } from '../types/definitions'
-import { stopMouseEventPropagation } from '../utils/stopMouseEventPropagation'
+import { BaseIconButton, type BaseIconButtonProps } from './BaseIconButton'
+import { getPrimaryButtonCss, getSecondaryButtonCss } from '../Button/styles'
 
 const ICON_SIZE_IN_PX: Record<Size, number> = {
   [Size.LARGE]: 26,
@@ -64,7 +65,7 @@ export function IconButton({
     [color, Icon, iconSize, size]
   )
 
-  const buttonProps: BaseButtonProps = useMemo(
+  const buttonProps: BaseIconButtonProps = useMemo(
     () => ({
       $isCompact: isCompact,
       $size: size,
@@ -130,12 +131,6 @@ export function IconButton({
   }
 }
 
-const PADDING: Record<Size, string> = {
-  [Size.LARGE]: '7px',
-  [Size.NORMAL]: '5px',
-  [Size.SMALL]: '3px'
-}
-
 const Wrapper = styled.div`
   position: relative;
 `
@@ -167,25 +162,9 @@ const BadgeNumber = styled.div<{
   font-weight: 700;
 `
 
-type BaseButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  $isCompact: boolean | undefined
-  $size: Size
-}
-const BaseButton = styled.button<{
-  $isCompact: boolean | undefined
-  $size: Size
-}>`
-  align-items: center;
-  border-style: solid;
-  border-width: ${p => (p.$isCompact ? 0 : 1)}px;
-  display: flex;
-  justify-content: center;
-  padding: ${p => (p.$isCompact ? 0 : PADDING[p.$size])};
-`
+const PrimaryButton = styled(BaseIconButton)(getPrimaryButtonCss)
 
-const PrimaryButton = styled(BaseButton)(getPrimaryButtonCss)
-
-const SecondaryButton = styled(BaseButton)(getSecondaryButtonCss)
+const SecondaryButton = styled(BaseIconButton)(getSecondaryButtonCss)
 
 const TertiaryButton = styled.button`
   background-color: transparent;
