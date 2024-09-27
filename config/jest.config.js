@@ -24,6 +24,7 @@ export default {
             '@hooks/*': ['hooks/*'],
             '@libs/*': ['libs/*'],
             '@tables/*': ['tables/*'],
+            '@theme': ['theme.ts'],
             '@types_/*': ['types/*'],
             '@utils/*': ['utils/*']
           },

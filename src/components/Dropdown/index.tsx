@@ -1,13 +1,13 @@
+import { Accent } from '@constants'
 import classnames from 'classnames'
 import { useMemo } from 'react'
 import { Dropdown as RsuiteDropdown } from 'rsuite'
 import styled from 'styled-components'
 
 import { Item } from './Item'
-import { Accent } from '../../constants'
 
 import type { DropdownItemProps } from './Item'
-import type { IconProps } from '../../types/definitions'
+import type { IconProps } from '@types_/definitions'
 import type { FunctionComponent } from 'react'
 import type { DropdownProps as RsuiteDropdownProps } from 'rsuite'
 

@@ -1,6 +1,5 @@
+import { RichBoolean } from '@constants'
 import { isEqual } from 'lodash'
-
-import { RichBoolean } from '../../constants'
 
 import type { RichBooleanOptionValue } from './types'
 

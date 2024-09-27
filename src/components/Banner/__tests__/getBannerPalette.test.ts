@@ -1,7 +1,7 @@
+import { Level } from '@constants'
 import { describe, expect, test } from '@jest/globals'
+import { THEME } from '@theme'
 
-import { Level } from '../../../constants'
-import { THEME } from '../../../theme'
 import { getBannerPalette } from '../utils'
 
 describe('getBannerPalette', () => {

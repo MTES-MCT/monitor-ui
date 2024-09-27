@@ -1,7 +1,7 @@
+import { RichBoolean } from '@constants'
 import { useCallback, useMemo } from 'react'
 
 import { getRichBooleanFromRichBooleanOptionValues, getRichBooleanOptionValuesFromRichBoolean } from './utils'
-import { RichBoolean } from '../../constants'
 import { MultiCheckbox, type MultiCheckboxProps } from '../MultiCheckbox'
 
 import type { RichBooleanOption, RichBooleanOptionValue } from './types'

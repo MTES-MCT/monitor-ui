@@ -1,5 +1,5 @@
-import { Level } from '../../constants'
-import { THEME } from '../../theme'
+import { Level } from '@constants'
+import { THEME } from '@theme'
 
 export const getBannerPalette = (level: Level) => {
   if (level === Level.ERROR) {

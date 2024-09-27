@@ -1,6 +1,6 @@
+import { RichBoolean } from '@constants'
 import { describe, expect, test } from '@jest/globals'
 
-import { RichBoolean } from '../../../constants'
 import { getRichBooleanFromRichBooleanOptionValues } from '../utils'
 
 import type { RichBooleanOptionValue } from '../types'

@@ -1,10 +1,9 @@
+import { RichBooleanCheckbox } from '@fields/RichBooleanCheckbox'
 import { useField } from 'formik'
 import { useMemo } from 'react'
 
-import { RichBooleanCheckbox } from '../fields/RichBooleanCheckbox'
-
-import type { RichBoolean } from '../constants'
-import type { RichBooleanCheckboxProps } from '../fields/RichBooleanCheckbox'
+import type { RichBoolean } from '@constants'
+import type { RichBooleanCheckboxProps } from '@fields/RichBooleanCheckbox'
 
 export type FormikRichBooleanCheckboxProps = Omit<
   RichBooleanCheckboxProps,

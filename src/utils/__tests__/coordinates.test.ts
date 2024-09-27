@@ -1,6 +1,6 @@
+import { CoordinatesFormat, OPENLAYERS_PROJECTION, WSG84_PROJECTION } from '@constants'
 import { describe, expect, it } from '@jest/globals'
 
-import { CoordinatesFormat, OPENLAYERS_PROJECTION, WSG84_PROJECTION } from '../../constants'
 import { getCoordinates } from '../coordinates'
 
 describe('utils/getCoordinates()', () => {
