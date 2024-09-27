@@ -11,6 +11,16 @@ export type LinkButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children?: string | ReactNode
   size: Size
 }
+export function LinkButton({ children, Icon, size, ...props }: Readonly<LinkButtonProps>) {
+  return (
+    <StyledLinkButton $size={size} {...props}>
+      <>
+        {Icon && <Icon color={THEME.color.slateGray} size={ICON_SIZE[size]} />}
+        {isString(children) ? <p>{children}</p> : <>{children}</>}
+      </>
+    </StyledLinkButton>
+  )
+}
 
 const FONT_SIZE: Record<Size, string> = {
   [Size.LARGE]: '16px',
@@ -23,14 +33,16 @@ const ICON_SIZE: Record<Size, number> = {
   [Size.SMALL]: 11
 }
 
-const StyledLinkButton = styled.button<LinkButtonProps>`
+const StyledLinkButton = styled.button<{
+  $size: Size
+}>`
   align-items: flex-end;
   background: transparent;
   color: ${p => p.theme.color.slateGray};
   cursor: ${p => (p.disabled ? 'none' : 'pointer')};
   display: flex;
   flex-direction: row;
-  font-size: ${p => FONT_SIZE[p.size]};
+  font-size: ${p => FONT_SIZE[p.$size]};
   gap: 0.4rem;
   text-decoration: underline;
 
@@ -58,16 +70,3 @@ const StyledLinkButton = styled.button<LinkButtonProps>`
     }
   }
 `
-
-export function LinkButton({ children, Icon, ...props }: Readonly<LinkButtonProps>) {
-  return (
-    <StyledLinkButton {...props}>
-      <>
-        {Icon && <Icon color={THEME.color.slateGray} size={ICON_SIZE[props.size]} />}
-        {isString(children) ? <p>{children}</p> : <>{children}</>}
-      </>
-    </StyledLinkButton>
-  )
-}
-
-LinkButton.displayName = 'LinkButton'
