@@ -1,3 +1,22 @@
+## [23.1.3](https://github.com/MTES-MCT/monitor-ui/compare/v23.1.2...v23.1.3) (2024-09-27)
+
+
+### Bug Fixes
+
+* **elements:** uncouple SingleTag from IconButton ([011c66f](https://github.com/MTES-MCT/monitor-ui/commit/011c66f86cd3a305e4e1e022cebb0e2aa61d5f7e))
+* **libs:** fix fuse.js import following upgrade in CustomSearch ([1c6eb04](https://github.com/MTES-MCT/monitor-ui/commit/1c6eb041218ea79085d06e47af7bc5117717ce85))
+
+
+### Code Refactoring
+
+* **elements:** split Button > BaseButton into seprate file ([996c918](https://github.com/MTES-MCT/monitor-ui/commit/996c91829c1c7b8b778d517444c701c9f26eb5f7))
+* **elements:** split IconButton > BaseIconButton into seprate file ([99c4b95](https://github.com/MTES-MCT/monitor-ui/commit/99c4b954b7ca6ec1e8ab9efb43eac838ef0dc51e))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump fuse.js from 6.6.2 to 7.0.0 ([49a5cd4](https://github.com/MTES-MCT/monitor-ui/commit/49a5cd4eba009ad50f592c64e7012beb00ead9cb))
+
 ## [23.1.2](https://github.com/MTES-MCT/monitor-ui/compare/v23.1.1...v23.1.2) (2024-09-26)
 
 
