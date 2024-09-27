@@ -1,4 +1,4 @@
-import { RichBoolean } from '../constants'
+import { RichBoolean } from '@constants'
 
 export function getMaybeBooleanFromRichBoolean(value: RichBoolean | undefined): boolean | undefined {
   switch (value) {

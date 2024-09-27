@@ -1,7 +1,6 @@
+import { Level } from '@constants'
+import { THEME } from '@theme'
 import { AttentionFilled, Check, Info } from 'icons'
-
-import { Level } from '../../constants'
-import { THEME } from '../../theme'
 
 import type { IconProps } from '@types_/definitions'
 import type { FunctionComponent } from 'react'

@@ -1,13 +1,12 @@
+import { CoordinatesFormat, WSG84_PROJECTION } from '@constants'
+import { getCoordinates } from '@utils/coordinates'
+import { isNumeric } from '@utils/isNumeric'
 import { useEffect, useState } from 'react'
 import { dmsToDecimal } from 'react-coordinate-input'
 import { IMaskInput } from 'react-imask'
 import styled from 'styled-components'
 
-import { CoordinatesFormat, WSG84_PROJECTION } from '../../constants'
-import { getCoordinates } from '../../utils/coordinates'
-import { isNumeric } from '../../utils/isNumeric'
-
-import type { Coordinates } from '../../types/definitions'
+import type { Coordinates } from '@types_/definitions'
 
 // TODO Remove that once the fix is added and released.
 // Open issue: https://github.com/uNmAnNeR/imaskjs/issues/761

@@ -1,8 +1,8 @@
+import { Accent } from '@constants'
 import classnames from 'classnames'
 import { type HTMLAttributes, useCallback } from 'react'
 import styled from 'styled-components'
 
-import { Accent } from '../constants'
 import { Close } from '../icons'
 
 import type { Promisable } from 'type-fest'

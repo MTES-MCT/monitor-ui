@@ -1,5 +1,12 @@
 // TODO Clean, split and finalize this component.
 
+import { Accent } from '@constants'
+import { Button } from '@elements/Button'
+import { FieldError } from '@elements/FieldError'
+import { Fieldset } from '@elements/Fieldset'
+import { IconButton } from '@elements/IconButton'
+import { useFieldUndefineEffect } from '@hooks/useFieldUndefineEffect'
+import { normalizeString } from '@utils/normalizeString'
 import { remove } from '@utils/remove'
 import classnames from 'classnames'
 import { getFieldBackgroundColorFactory } from 'fields/shared/utils'
@@ -7,14 +14,7 @@ import { isEqual } from 'lodash'
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import styled from 'styled-components'
 
-import { Accent } from '../../constants'
-import { Button } from '../../elements/Button'
-import { FieldError } from '../../elements/FieldError'
-import { Fieldset } from '../../elements/Fieldset'
-import { IconButton } from '../../elements/IconButton'
-import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { Delete, Edit, Plus, SelectRectangle } from '../../icons'
-import { normalizeString } from '../../utils/normalizeString'
 
 import type { CommonFieldStyleProps } from 'fields/shared/types'
 import type { Promisable } from 'type-fest'

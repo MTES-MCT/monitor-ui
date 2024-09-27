@@ -1,7 +1,6 @@
+import { Accent } from '@constants'
 import { IconButton } from '@elements/IconButton'
 import styled from 'styled-components'
-
-import { Accent } from '../../constants'
 
 const Container = styled.div`
   background-color: ${p => p.theme.color.white};

@@ -1,6 +1,6 @@
+import { RichBoolean } from '@constants'
 import { describe, expect, it } from '@jest/globals'
 
-import { RichBoolean } from '../../constants'
 import { getMaybeBooleanFromRichBoolean } from '../getMaybeBooleanFromRichBoolean'
 
 describe('utils/getMaybeBooleanFromRichBoolean()', () => {

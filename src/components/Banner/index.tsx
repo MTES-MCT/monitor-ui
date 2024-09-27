@@ -1,3 +1,4 @@
+import { Accent, Icon, Level, Size } from '@constants'
 import { IconButton } from '@elements/IconButton'
 import { LinkButton } from '@elements/LinkButton'
 import classNames from 'classnames'
@@ -7,7 +8,6 @@ import styled, { css, type CSSProperties } from 'styled-components'
 
 import { ANIMATION_DURATION_IN_MS } from './constants'
 import { getBannerPalette } from './utils'
-import { Accent, Icon, Level, Size } from '../../constants'
 
 import type { Promisable } from 'type-fest'
 

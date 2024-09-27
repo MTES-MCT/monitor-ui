@@ -1,11 +1,10 @@
+import { Accent } from '@constants'
+import { THEME } from '@theme'
 import classnames from 'classnames'
 import { type FunctionComponent, type HTMLAttributes, useMemo } from 'react'
 import styled from 'styled-components'
 
-import { Accent } from '../../constants'
-import { THEME } from '../../theme'
-
-import type { IconProps } from '../../types/definitions'
+import type { IconProps } from '@types_/definitions'
 
 export type TagProps = HTMLAttributes<HTMLSpanElement> & {
   Icon?: FunctionComponent<IconProps> | undefined

@@ -1,11 +1,10 @@
 import { Size } from '@constants'
+import { THEME } from '@theme'
 import { type IconProps } from '@types_/definitions'
 import classnames from 'classnames'
 import { isString } from 'lodash'
 import { type ButtonHTMLAttributes, type FunctionComponent, type ReactNode } from 'react'
 import styled from 'styled-components'
-
-import { THEME } from '../theme'
 
 export type LinkButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   Icon?: FunctionComponent<IconProps> | undefined
