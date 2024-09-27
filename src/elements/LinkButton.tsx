@@ -1,9 +1,10 @@
+import { Size } from '@constants'
 import { type IconProps } from '@types_/definitions'
+import classnames from 'classnames'
 import { isString } from 'lodash'
 import { type ButtonHTMLAttributes, type FunctionComponent, type ReactNode } from 'react'
 import styled from 'styled-components'
 
-import { Size } from '../constants'
 import { THEME } from '../theme'
 
 export type LinkButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -11,9 +12,11 @@ export type LinkButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children?: string | ReactNode | undefined
   size?: Size | undefined
 }
-export function LinkButton({ children, Icon, size = Size.NORMAL, ...props }: Readonly<LinkButtonProps>) {
+export function LinkButton({ children, className, Icon, size = Size.NORMAL, ...props }: Readonly<LinkButtonProps>) {
+  const controlledClassName = classnames('Element-LinkButton', className)
+
   return (
-    <StyledLinkButton $size={size} {...props}>
+    <StyledLinkButton $size={size} className={controlledClassName} {...props}>
       <>
         {Icon && <Icon color={THEME.color.slateGray} size={ICON_SIZE[size]} />}
         {isString(children) ? <p>{children}</p> : <>{children}</>}
