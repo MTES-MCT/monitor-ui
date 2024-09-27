@@ -29,6 +29,7 @@
     "noUnusedParameters": true,
     "outDir": "./dist",
     "paths": {
+      "@constants": ["constants.ts"],
       "@elements/*": ["elements/*"],
       "@fields/*": ["fields/*"],
       "@hooks/*": ["hooks/*"],

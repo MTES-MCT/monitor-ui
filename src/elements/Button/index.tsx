@@ -1,11 +1,12 @@
+import { Accent, Size } from '@constants'
+import { type IconProps } from '@types_/definitions'
+import { stopMouseEventPropagation } from '@utils/stopMouseEventPropagation'
 import classnames from 'classnames'
 import { useCallback, useMemo, type MouseEvent, type ButtonHTMLAttributes, type FunctionComponent } from 'react'
 import styled from 'styled-components'
 
+import { BaseButton, type BaseButtonProps } from './BaseButton'
 import { getPrimaryButtonCss, getSecondaryButtonCss } from './styles'
-import { Accent, Size } from '../../constants'
-import { type IconProps } from '../../types/definitions'
-import { stopMouseEventPropagation } from '../../utils/stopMouseEventPropagation'
 
 const ICON_SIZE: Record<Size, number> = {
   [Size.LARGE]: 20,
@@ -85,38 +86,6 @@ export function Button({
       return <PrimaryButton {...commonProps} />
   }
 }
-
-const FONT_SIZE: Record<Size, string> = {
-  [Size.LARGE]: '13px',
-  [Size.NORMAL]: '13px',
-  [Size.SMALL]: '11px'
-}
-const PADDING: Record<Size, string> = {
-  [Size.LARGE]: '12px',
-  [Size.NORMAL]: '6px 12px',
-  [Size.SMALL]: '5px 8px 4px'
-}
-
-type BaseButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  $isFullWidth: boolean
-  $size: Size
-}
-const BaseButton = styled.button<{
-  $isFullWidth: boolean
-  $size: Size
-}>`
-  align-items: center;
-  display: inline-flex;
-  font-size: ${p => FONT_SIZE[p.$size]};
-  justify-content: center;
-  max-width: 100%;
-  padding: ${p => PADDING[p.$size]};
-  width: ${p => (p.$isFullWidth ? '100%' : 'auto')};
-
-  > .Element-IconBox {
-    margin-right: 5px;
-  }
-`
 
 const ButtonLabel = styled.span`
   line-height: 1.3846;
