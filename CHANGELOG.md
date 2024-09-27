@@ -1,3 +1,21 @@
+## [23.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v23.1.3...v23.2.0) (2024-09-27)
+
+
+### Features
+
+* **elements:** make size prop optional in LinkButton ([e99e710](https://github.com/MTES-MCT/monitor-ui/commit/e99e71049096165c0b2a83c1003f93b55101b8d6))
+
+
+### Bug Fixes
+
+* **elements:** add missing default className to LinkButton ([8c7d259](https://github.com/MTES-MCT/monitor-ui/commit/8c7d25981f93d01bb0887cc6850cf27248c2db9f))
+* **elements:** prefix styled component props in LinkButton ([03f02ff](https://github.com/MTES-MCT/monitor-ui/commit/03f02ff83b20ffa7823ba06f0f6e136b869f92e8))
+
+
+### Buid System & Dependencies
+
+* **tsconfig:** add [@theme](https://github.com/theme) path ([7b8fc7a](https://github.com/MTES-MCT/monitor-ui/commit/7b8fc7af2e22c98ac42b6d2197ebada0d444d141))
+
 ## [23.1.3](https://github.com/MTES-MCT/monitor-ui/compare/v23.1.2...v23.1.3) (2024-09-27)
 
 
