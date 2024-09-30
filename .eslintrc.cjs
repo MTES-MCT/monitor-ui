@@ -3,8 +3,8 @@
 const path = require('path')
 
 const BOOLEAN_CAMEL_PREFIXES = [
-  ...['are', 'can', 'did', 'is', 'had', 'has', 'must', 'should', 'was', 'will', 'with'],
-  ...['$are', '$can', '$did', '$is', '$had', '$has', '$must', '$should', '$was', '$will', '$with']
+  ...['are', 'can', 'did', 'is', 'had', 'has', 'must', 'should', 'was', 'will', 'with', 'without'],
+  ...['$are', '$can', '$did', '$is', '$had', '$has', '$must', '$should', '$was', '$will', '$with', '$without']
 ]
 const BOOLEAN_UPPER_PREFIXES = [
   'ARE_',
@@ -17,7 +17,8 @@ const BOOLEAN_UPPER_PREFIXES = [
   'SHOULD_',
   'WAS_',
   'WILL_',
-  'WITH_'
+  'WITH_',
+  'WITHOUT_'
 ]
 
 module.exports = {

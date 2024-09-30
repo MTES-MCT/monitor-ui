@@ -13,6 +13,7 @@ declare namespace Cypress {
       options?: Partial<{
         index: number
         withinSelector: string
+        withoutScroll: boolean
       }>
     ): Chainable<JQuery<HTMLButtonElement>>
 
