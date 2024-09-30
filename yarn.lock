@@ -3402,7 +3402,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:7.15.0"
     "@vitejs/plugin-react": "npm:4.3.2"
     browser-assert: "npm:1.2.1"
-    chromatic: "npm:6.19.9"
+    chromatic: "npm:11.10.4"
     classnames: "npm:2.5.1"
     commitlint-plugin-selective-scope: "npm:1.0.1"
     cypress: "npm:13.15.0"
@@ -8155,14 +8155,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:6.19.9":
-  version: 6.19.9
-  resolution: "chromatic@npm:6.19.9"
+"chromatic@npm:11.10.4":
+  version: 11.10.4
+  resolution: "chromatic@npm:11.10.4"
+  peerDependencies:
+    "@chromatic-com/cypress": ^0.*.* || ^1.0.0
+    "@chromatic-com/playwright": ^0.*.* || ^1.0.0
+  peerDependenciesMeta:
+    "@chromatic-com/cypress":
+      optional: true
+    "@chromatic-com/playwright":
+      optional: true
   bin:
     chroma: dist/bin.js
     chromatic: dist/bin.js
     chromatic-cli: dist/bin.js
-  checksum: 10c0/a97814f0d67584e1fec5609a65c81ba4d536aa47a27df91b045de89571412d443b53931ee7c1cb15ef9687c45c20ac4bb2d0c3e16236bfe70a5d514062f373ec
+  checksum: 10c0/b14b43f7ded1c6536fd2b0edf0d5d2da1a0f36083d14a87ce0c069db83f7c4896b483238164199976343748b5b846640b6914dcf523b9e9e698145fe74f52bcd
   languageName: node
   linkType: hard
 
