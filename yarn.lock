@@ -3463,7 +3463,7 @@ __metadata:
     tslib: "npm:2.7.0"
     type-fest: "npm:4.26.1"
     typescript: "npm:5.6.2"
-    use-debounce: "npm:9.0.4"
+    use-debounce: "npm:10.0.3"
     vite: "npm:5.4.8"
     vite-tsconfig-paths: "npm:4.3.2"
     yup: "npm:1.4.0"
@@ -20758,12 +20758,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-debounce@npm:9.0.4":
-  version: 9.0.4
-  resolution: "use-debounce@npm:9.0.4"
+"use-debounce@npm:10.0.3":
+  version: 10.0.3
+  resolution: "use-debounce@npm:10.0.3"
   peerDependencies:
-    react: ">=16.8.0"
-  checksum: 10c0/97096fd3a0987beef190978c05affacb63c04ffd2d2132340bd2d161edf4f1695d9077c71ad5845b0e86b6cfec994ba141af0b62985a4e793166cac5a5c7d116
+    react: "*"
+  checksum: 10c0/351b62c565d6dce5a21ecc21fe3e1f8db74f70c81c8f7d9dbdfc2da1cb82d883578589f6146e684d91dac534bc3c8b145ab1a36fbf4d44cbb4113827508b39aa
   languageName: node
   linkType: hard
 
