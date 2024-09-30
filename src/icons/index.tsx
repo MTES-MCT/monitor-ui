@@ -28,6 +28,7 @@ import { Duplicate } from './Duplicate'
 import { Edit } from './Edit'
 import { EditUnbordered } from './EditUnbordered'
 import { Expand } from './Expand'
+import { ExternalLink } from './ExternalLink'
 import { Favorite } from './Favorite'
 import { FilledArrow } from './FilledArrow'
 import { Filter } from './Filter'
@@ -124,6 +125,7 @@ export {
   Edit,
   EditUnbordered,
   Expand,
+  ExternalLink,
   Favorite,
   FilledArrow,
   Filter,
