@@ -51,10 +51,12 @@ export function clickButton(
   label: string,
   {
     index = 0,
-    withinSelector
+    withinSelector,
+    withoutScroll = false
   }: Partial<{
     index: number | undefined
     withinSelector: string | undefined
+    withoutScroll: boolean
   }> = {},
   leftRetries: number = RETRIES
 ): Cypress.Chainable<JQuery<HTMLElement>> {
@@ -71,7 +73,9 @@ export function clickButton(
   })
 
   if (maybeButton) {
-    return cy.wrap(maybeButton).scrollIntoView().forceClick().wait(250)
+    return (
+      withoutScroll ? cy.wrap(maybeButton).forceClick() : cy.wrap(maybeButton).scrollIntoView().forceClick()
+    ).wait(250)
   }
 
   if (leftRetries > 0) {
