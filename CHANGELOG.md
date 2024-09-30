@@ -1,3 +1,18 @@
+## [23.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v23.2.0...v23.3.0) (2024-09-30)
+
+
+### Features
+
+* **cypress:** add withoutScroll option to clickButton() ([0af29ca](https://github.com/MTES-MCT/monitor-ui/commit/0af29ca4ecc514cf9b0bdc1dd1eca6c6628d7f02))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump chromatic from 6.19.9 to 11.10.4 ([84b4189](https://github.com/MTES-MCT/monitor-ui/commit/84b4189b96a0037b8ffa6f0d23fa5520c1aebe23))
+* **dev-deps:** bump lint-staged from 13.2.2 to 15.2.10 ([271fc46](https://github.com/MTES-MCT/monitor-ui/commit/271fc461eaa09704776cc39c43c6545ec81bb829))
+* **dev-deps:** bump the non-major-dev-dependencies group with 17 updates ([e975922](https://github.com/MTES-MCT/monitor-ui/commit/e975922abb86ef0c03b3feb7d4a3d915adb3f2ee))
+* **dev-deps:** bump use-debounce from 9.0.4 to 10.0.3 ([28f1a16](https://github.com/MTES-MCT/monitor-ui/commit/28f1a16712d9341c21f6a71d83f019d154fd40d0))
+
 ## [23.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v23.1.3...v23.2.0) (2024-09-27)
 
 
