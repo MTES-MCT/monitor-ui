@@ -1,3 +1,16 @@
+## [23.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v23.3.0...v23.4.0) (2024-09-30)
+
+
+### Features
+
+* **icons:** add externalLink icon ([5e50157](https://github.com/MTES-MCT/monitor-ui/commit/5e501576807529110139a54d6fb9a0b1867ba653))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @semantic-release/github from 9.2.6 to 11.0.0 ([60395b6](https://github.com/MTES-MCT/monitor-ui/commit/60395b6c84a0e2b51868d978168c6ebef1830c5b))
+* **dev-deps:** bump the all-non-major-dependencies group ([cccdcf3](https://github.com/MTES-MCT/monitor-ui/commit/cccdcf36f8576e55d345f3169c4c16ac21039709))
+
 ## [23.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v23.2.0...v23.3.0) (2024-09-30)
 
 
