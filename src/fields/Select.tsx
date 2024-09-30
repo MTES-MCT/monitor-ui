@@ -1,6 +1,5 @@
 import { getSelectedOptionValueFromSelectedRsuiteDataItemValue } from '@utils/getSelectedOptionValueFromSelectedRsuiteDataItemValue'
 import classnames from 'classnames'
-import { debounce } from 'lodash'
 import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { SelectPicker as RsuiteSelectPicker, type SelectPickerProps as RsuiteSelectPickerProps } from 'rsuite'
 
@@ -134,35 +133,6 @@ export function Select<OptionValue extends OptionValueType = string>({
     [controlledRsuiteData, rsuiteData]
   )
 
-  const listProps = useMemo(
-    () =>
-      originalProps.virtualized
-        ? {
-            onItemsRendered: debounce(() => {
-              if (!boxRef.current) {
-                return
-              }
-
-              const divs = boxRef.current.querySelectorAll<HTMLDivElement>(`[id="${originalProps.name}-listbox"] div`)
-              const targetDiv = divs[2]
-
-              /**
-               *  Reset the 'pointer-events' style
-               *  @see:
-               *  https://github.com/MTES-MCT/monitorfish/issues/3211
-               *  https://github.com/bvaughn/react-window/issues/128
-               */
-              if (targetDiv) {
-                requestAnimationFrame(() => {
-                  targetDiv.style.pointerEvents = 'auto'
-                })
-              }
-            }, 300)
-          }
-        : {},
-    [originalProps.virtualized, originalProps.name]
-  )
-
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
   useEffect(() => {
@@ -195,7 +165,6 @@ export function Select<OptionValue extends OptionValueType = string>({
             disabled={disabled}
             disabledItemValues={disabledItemValues}
             id={originalProps.name}
-            listProps={listProps}
             onChange={handleChange}
             onSearch={handleSearch}
             // `as any` because we customized `ItemDataType` type by adding `optionValue`,
