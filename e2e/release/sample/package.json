@@ -10,20 +10,20 @@
     "start": "vite preview"
   },
   "dependencies": {
-    "@sentry/react": "8.30.0",
-    "cypress": "13.14.2",
+    "@sentry/react": "8.32.0",
+    "cypress": "13.15.0",
     "formik": "2.4.6",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "rsuite": "5.70.3",
+    "rsuite": "5.71.0",
     "styled-components": "6.1.13"
   },
   "devDependencies": {
     "@tsconfig/vite-react": "3.0.2",
-    "@types/node": "22.7.0",
-    "@types/react": "18.3.9",
+    "@types/node": "22.7.4",
+    "@types/react": "18.3.10",
     "@types/react-dom": "18.3.0",
-    "@vitejs/plugin-react": "4.3.1",
+    "@vitejs/plugin-react": "4.3.2",
     "prettier": "3.3.3",
     "typescript": "5.6.2",
     "vite": "5.4.8",
