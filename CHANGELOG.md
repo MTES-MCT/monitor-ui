@@ -1,3 +1,23 @@
+## [23.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v23.4.0...v23.5.0) (2024-10-07)
+
+
+### Features
+
+* **fields:** rollback pointer-events hack in Select ([799e911](https://github.com/MTES-MCT/monitor-ui/commit/799e911d7c63a9e7c726f0c25f9a0e41a04a0bb6))
+
+
+### Bug Fixes
+
+* **cypress:** pass missing option to retry in clickButton() ([e70f974](https://github.com/MTES-MCT/monitor-ui/commit/e70f974b69cf63fed285733ca5266fb5ebcffc7f))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump @babel/runtime in the non-major-dependencies group ([7c18617](https://github.com/MTES-MCT/monitor-ui/commit/7c18617e56f86c851b388e33be61b23874aaec5d))
+* **dev-deps:** bump @semantic-release/release-notes-generator ([418147a](https://github.com/MTES-MCT/monitor-ui/commit/418147a72baa1ee0ec195d8cd71e330c727fc1db))
+* **dev-deps:** bump the all-non-major-dependencies group ([0fd5de1](https://github.com/MTES-MCT/monitor-ui/commit/0fd5de1837b981e902a5c7b3ac68f275f421e5f4))
+* **dev-deps:** bump the non-major-dev-dependencies group with 20 updates ([fe9aa0e](https://github.com/MTES-MCT/monitor-ui/commit/fe9aa0ee317ef2a3d9a4da392d1cc6b11b018617))
+
 ## [23.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v23.3.0...v23.4.0) (2024-09-30)
 
 
