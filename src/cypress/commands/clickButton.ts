@@ -56,7 +56,7 @@ export function clickButton(
   }: Partial<{
     index: number | undefined
     withinSelector: string | undefined
-    withoutScroll: boolean
+    withoutScroll: boolean | undefined
   }> = {},
   leftRetries: number = RETRIES
 ): Cypress.Chainable<JQuery<HTMLElement>> {
@@ -82,7 +82,7 @@ export function clickButton(
     return cy.wait(250).then(() => {
       cy.log(`Retrying (${RETRIES - leftRetries + 1} / ${RETRIES})...`)
 
-      return clickButton(prevSubjectElements, label, { index, withinSelector }, leftRetries - 1)
+      return clickButton(prevSubjectElements, label, { index, withinSelector, withoutScroll }, leftRetries - 1)
     })
   }
 
