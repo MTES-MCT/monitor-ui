@@ -64,7 +64,7 @@
     "@semantic-release/exec": "6.0.3",
     "@semantic-release/github": "11.0.0",
     "@semantic-release/npm": "12.0.1",
-    "@semantic-release/release-notes-generator": "11.0.4",
+    "@semantic-release/release-notes-generator": "14.0.1",
     "@sentry/react": "8.33.1",
     "@storybook/addon-a11y": "8.3.5",
     "@storybook/addon-actions": "8.3.5",
