@@ -2,13 +2,12 @@ import { Size } from '@constants'
 import { THEME } from '@theme'
 import { type IconProps } from '@types_/definitions'
 import classnames from 'classnames'
-import { isString } from 'lodash'
 import { type ButtonHTMLAttributes, type FunctionComponent, type ReactNode } from 'react'
 import styled from 'styled-components'
 
 export type LinkButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   Icon?: FunctionComponent<IconProps> | undefined
-  children?: string | ReactNode | undefined
+  children: string | ReactNode
   size?: Size | undefined
 }
 export function LinkButton({ children, className, Icon, size = Size.NORMAL, ...props }: Readonly<LinkButtonProps>) {
@@ -18,7 +17,7 @@ export function LinkButton({ children, className, Icon, size = Size.NORMAL, ...p
     <StyledLinkButton $size={size} className={controlledClassName} {...props}>
       <>
         {Icon && <Icon color={THEME.color.slateGray} size={ICON_SIZE[size]} />}
-        {isString(children) ? <p>{children}</p> : <>{children}</>}
+        {children}
       </>
     </StyledLinkButton>
   )
@@ -51,6 +50,7 @@ const StyledLinkButton = styled.button<{
   &:hover,
   &._hover {
     color: ${p => p.theme.color.blueYonder};
+
     svg {
       color: ${p => p.theme.color.blueYonder};
     }
@@ -59,6 +59,7 @@ const StyledLinkButton = styled.button<{
   &:active,
   &._active {
     color: ${p => p.theme.color.blueGray};
+
     svg {
       color: ${p => p.theme.color.blueGray};
     }
@@ -67,6 +68,7 @@ const StyledLinkButton = styled.button<{
   &:disabled,
   &._disabled {
     color: ${p => p.theme.color.lightGray};
+
     svg {
       color: ${p => p.theme.color.lightGray};
     }

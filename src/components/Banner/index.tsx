@@ -125,9 +125,9 @@ export function Banner({
               />
             )}
             {!isClosable && isCollapsible && (
-              <LinkButton size={Size.LARGE}>
-                <HideText $level={level}>Masquer</HideText>
-              </LinkButton>
+              <StyledLinkButton $level={level} size={Size.LARGE}>
+                Masquer
+              </StyledLinkButton>
             )}
           </ButtonWrapper>
         </>
@@ -178,7 +178,7 @@ const ContentWrapper = styled.div<ContentWrapperProps>`
 const ButtonWrapper = styled.div`
   align-self: center;
 `
-const HideText = styled.span<{
+const StyledLinkButton = styled(LinkButton)<{
   $level: Level
 }>`
   ${p =>
