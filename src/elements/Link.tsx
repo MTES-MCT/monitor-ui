@@ -45,4 +45,4 @@ export const Link = styled.a<LinkProps>`
   }
 `
 
-Link.displayName = 'LinkButton'
+Link.displayName = 'Link'
