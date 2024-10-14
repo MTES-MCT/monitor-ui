@@ -1,3 +1,24 @@
+## [24.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v23.5.0...v24.0.0) (2024-10-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **elements:** - `children` prop is now a required prop in `<LinkButton />`.
+- `<p>` wrapper has been removed from `<LinkButton />` string  `children`.
+
+### Bug Fixes
+
+* **elements:** fix displayName prop in Link ([531b19d](https://github.com/MTES-MCT/monitor-ui/commit/531b19d72d02ee4a06f7b8aafd6bab6597678ba6))
+* **elements:** remove p tag & enforce string children in LinkButton ([c7e7279](https://github.com/MTES-MCT/monitor-ui/commit/c7e72791f071400e0975fb8003b8ff4789159f53))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @rollup/plugin-replace from 5.0.7 to 6.0.1 ([75653c3](https://github.com/MTES-MCT/monitor-ui/commit/75653c3585df9e82f2f9da60d2896f80ced083af))
+* **dev-deps:** bump eslint-plugin-typescript-sort-keys ([3573ab8](https://github.com/MTES-MCT/monitor-ui/commit/3573ab85648a5e39e201c23bd3698e50411fda8a))
+* **dev-deps:** bump the all-non-major-dependencies group ([9742d5a](https://github.com/MTES-MCT/monitor-ui/commit/9742d5a0b95b322d53764d5c111f1507e8ee6f32))
+* **dev-deps:** bump the non-major-dev-dependencies group with 11 updates ([957ed38](https://github.com/MTES-MCT/monitor-ui/commit/957ed388f90590304a2aa427e6c8af5eb927ff59))
+
 ## [23.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v23.4.0...v23.5.0) (2024-10-07)
 
 
