@@ -1,13 +1,14 @@
 // These imports are required in order to include Dayjs plugins-related type definitions overrides
 // for `customDayjs()` util in the published library.
+import 'dayjs/plugin/isBetween'
 import 'dayjs/plugin/isSameOrAfter'
 import 'dayjs/plugin/isSameOrBefore'
 import 'dayjs/plugin/localeData'
 import 'dayjs/plugin/quarterOfYear'
+import 'dayjs/plugin/relativeTime'
 import 'dayjs/plugin/timezone'
 import 'dayjs/plugin/updateLocale'
 import 'dayjs/plugin/utc'
-import 'dayjs/plugin/isBetween'
 
 export { GlobalStyle } from './GlobalStyle'
 export { OnlyFontGlobalStyle } from './OnlyFontGlobalStyle'
