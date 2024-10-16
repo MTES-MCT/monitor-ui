@@ -1,3 +1,10 @@
+## [24.1.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.0.0...v24.1.0) (2024-10-16)
+
+
+### Features
+
+* **utils:** add relativeTime extension to customDayjs ([d523512](https://github.com/MTES-MCT/monitor-ui/commit/d5235124249cd2dcda39a0cbffe701105248eaf4))
+
 ## [24.0.0](https://github.com/MTES-MCT/monitor-ui/compare/v23.5.0...v24.0.0) (2024-10-14)
 
 
