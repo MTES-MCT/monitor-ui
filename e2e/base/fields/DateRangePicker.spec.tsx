@@ -227,3 +227,39 @@ context('With time inputs', () => {
     outputShouldBe(['2023-12-11T13:34:00.000Z', '2024-01-08T23:56:59.000Z'])
   })
 })
+
+context('With default times as full day', () => {
+  beforeEach(() => {
+    mountAndWait(
+      <StoryBox>
+        <DateRangePickerStory {...(Meta.args as any)} hasFullDayDefaultValue withTime />
+      </StoryBox>
+    )
+  })
+
+  it('Should fill, change and clear the date range', () => {
+    cy.get('input[aria-label="Jour de début"]').type('01')
+
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Mois de début"]').type('02')
+
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Année de début"]').type('2023')
+
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Jour de fin"]').type('03')
+
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Mois de fin"]').type('04')
+
+    outputShouldBe(undefined)
+
+    cy.get('input[aria-label="Année de fin"]').type('2024')
+
+    outputShouldBe(['2023-02-01T00:00:00.000Z', '2024-04-03T23:59:59.000Z'])
+  })
+})
