@@ -69,6 +69,7 @@ export interface DateRangePickerProps
   defaultValue?: DateRange | DateAsStringRange | undefined
   disabled?: boolean | undefined
   error?: string | undefined
+  hasFullDayDefaultValue?: boolean
   hasSingleCalendar?: boolean
   isCompact?: boolean | undefined
   isErrorMessageHidden?: boolean | undefined
@@ -118,6 +119,7 @@ export function DateRangePicker({
   defaultValue,
   disabled = false,
   error,
+  hasFullDayDefaultValue = false,
   hasSingleCalendar = false,
   isCompact = false,
   isErrorMessageHidden = false,
@@ -250,12 +252,12 @@ export function DateRangePicker({
   }, [forceUpdate])
 
   const handleEndDateInputNext = useCallback(() => {
-    if (!withTime || !endTimeInputRef.current) {
+    if (!withTime || !endTimeInputRef.current || hasFullDayDefaultValue) {
       return
     }
 
     endTimeInputRef.current.focus()
-  }, [withTime])
+  }, [withTime, hasFullDayDefaultValue])
 
   const handleEndDateInputPrevious = useCallback(() => {
     if (!startDateInputRef.current) {
@@ -276,27 +278,28 @@ export function DateRangePicker({
       return
     }
 
-    if (withTime && startTimeInputRef.current) {
+    if (withTime && !hasFullDayDefaultValue && startTimeInputRef.current) {
       startTimeInputRef.current.focus()
 
       return
     }
 
     endDateInputRef.current.focus()
-  }, [withTime])
+  }, [withTime, hasFullDayDefaultValue])
 
   const handleDateInputChange = useCallback(
     (position: DateRangePosition, nextDateTuple: DateTuple, isFilled: boolean) => {
       if (position === DateRangePosition.START) {
         selectedStartDateTupleRef.current = nextDateTuple
 
-        // If there is NO time input OR there is a time input WHILE a start time is selected,
-        if (!withTime || (withTime && selectedStartTimeTupleRef.current)) {
+        if (!withTime || (withTime && hasFullDayDefaultValue) || (withTime && selectedStartTimeTupleRef.current)) {
           // we update the selected start datetime
-          const startUtcTimeTuple: TimeTuple =
-            withTime && selectedStartTimeTupleRef.current ? selectedStartTimeTupleRef.current : ['00', '00']
+          const startUtcTimeTuple: TimeTuple = selectedStartTimeTupleRef.current
+            ? selectedStartTimeTupleRef.current
+            : ['00', '00']
           const nextStartDateAsDayjs = getDayjsFromUtcDateAndTimeTuple(nextDateTuple, startUtcTimeTuple)
 
+          selectedStartTimeTupleRef.current = startUtcTimeTuple
           selectedStartDateTimeAsDayjsRef.current = nextStartDateAsDayjs
 
           callOnChange()
@@ -304,27 +307,42 @@ export function DateRangePicker({
 
         if (isFilled) {
           handleStartDateInputNext()
+          forceUpdate()
         }
       } else {
         selectedEndDateTupleRef.current = nextDateTuple
 
-        // If there is NO time input OR there is a time input WHILE a start time is selected,
-        if (!withTime || (withTime && selectedEndTimeTupleRef.current)) {
+        if (!withTime || (withTime && hasFullDayDefaultValue) || (withTime && selectedEndTimeTupleRef.current)) {
           // we update the selected end datetime
-          const endTimeTuple = (withTime ? selectedEndTimeTupleRef.current : ['23', '59']) as TimeTuple
+          const endTimeTuple = (
+            selectedEndTimeTupleRef.current ? selectedEndTimeTupleRef.current : ['23', '59']
+          ) as TimeTuple
           const nextEndDateAsDayjs = getDayjsFromUtcDateAndTimeTuple(nextDateTuple, endTimeTuple, true)
 
+          selectedEndTimeTupleRef.current = endTimeTuple
           selectedEndDateTimeAsDayjsRef.current = nextEndDateAsDayjs
 
           callOnChange()
         }
 
         if (isFilled) {
+          if (withTime && hasFullDayDefaultValue) {
+            closeRangeCalendarPicker()
+          }
           handleEndDateInputNext()
+          forceUpdate()
         }
       }
     },
-    [callOnChange, handleEndDateInputNext, handleStartDateInputNext, withTime]
+    [
+      closeRangeCalendarPicker,
+      forceUpdate,
+      hasFullDayDefaultValue,
+      withTime,
+      callOnChange,
+      handleEndDateInputNext,
+      handleStartDateInputNext
+    ]
   )
 
   const handleRangeCalendarPickerChange = useCallback(
@@ -332,7 +350,10 @@ export function DateRangePicker({
       const [nextStartUtcDateTuple, nextEndUtcDateTuple] = nextUtcDateTupleRange
 
       // If there is NO time input,
-      if (!withTime) {
+      if (
+        !withTime ||
+        (withTime && hasFullDayDefaultValue && !selectedStartTimeTupleRef.current && !selectedEndTimeTupleRef.current)
+      ) {
         // we have to fix the start datetime at the beginning of the day
         selectedStartDateTimeAsDayjsRef.current = getDayjsFromUtcDateAndTimeTuple(nextStartUtcDateTuple, ['00', '00'])
         // and the end datetime at the end of the day
@@ -369,7 +390,7 @@ export function DateRangePicker({
 
       callOnChange()
     },
-    [callOnChange, closeRangeCalendarPicker, withTime]
+    [callOnChange, closeRangeCalendarPicker, hasFullDayDefaultValue, withTime]
   )
 
   const handleTimeInputChange = useCallback(
