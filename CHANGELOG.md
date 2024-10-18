@@ -1,3 +1,15 @@
+## [24.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.1.1...v24.2.0) (2024-10-18)
+
+
+### Features
+
+* **fields:** add hasFullDayDefaultValue to date range picker ([5adc234](https://github.com/MTES-MCT/monitor-ui/commit/5adc2340b42aabe02b496ee2044957d47b4027c3))
+
+
+### Code Refactoring
+
+* **fields:** add early return ([af9360b](https://github.com/MTES-MCT/monitor-ui/commit/af9360b4bb35584f2705524f2d425b5bcb4fd4e8))
+
 ## [24.1.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.1.0...v24.1.1) (2024-10-16)
 
 
