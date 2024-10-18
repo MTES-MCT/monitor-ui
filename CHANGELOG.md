@@ -1,3 +1,11 @@
+## [24.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.2.0...v24.2.1) (2024-10-18)
+
+
+### Code Refactoring
+
+* **fields:** move eslint disable ([1c1533a](https://github.com/MTES-MCT/monitor-ui/commit/1c1533af36f8180c6921d71a137f537256a70e1f))
+* **fields:** rename props ([e6ef3de](https://github.com/MTES-MCT/monitor-ui/commit/e6ef3de40c22f596abe24c99cea8f5d4db481569))
+
 ## [24.2.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.1.1...v24.2.0) (2024-10-18)
 
 
