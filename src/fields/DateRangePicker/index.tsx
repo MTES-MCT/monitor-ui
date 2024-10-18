@@ -328,9 +328,12 @@ export function DateRangePicker({
         if (isFilled) {
           if (withTime && hasFullDayDefaultValue) {
             closeRangeCalendarPicker()
+            forceUpdate()
+
+            return
           }
+
           handleEndDateInputNext()
-          forceUpdate()
         }
       }
     },
