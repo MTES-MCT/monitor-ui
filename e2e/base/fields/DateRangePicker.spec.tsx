@@ -232,7 +232,7 @@ context('With default times as full day', () => {
   beforeEach(() => {
     mountAndWait(
       <StoryBox>
-        <DateRangePickerStory {...(Meta.args as any)} hasFullDayDefaultValue withTime />
+        <DateRangePickerStory {...(Meta.args as any)} withFullDayDefaults withTime />
       </StoryBox>
     )
   })
