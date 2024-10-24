@@ -19,6 +19,7 @@ const args: DataTableProps<FakeBasicTableDataItem> = {
       id: 'lastName'
     }
   ],
+  isTableHeadHidden: false,
   tableOptions: undefined
 }
 
@@ -28,6 +29,7 @@ const meta: Meta<DataTableProps<FakeBasicTableDataItem>> = {
   component: DataTable,
 
   argTypes: {
+    isTableHeadHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
     tableOptions: {
       ...ARG_TYPE.NO_CONTROL_INPUT,
       table: {
