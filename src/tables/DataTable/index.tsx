@@ -7,6 +7,7 @@ import {
   useReactTable
 } from '@tanstack/react-table'
 import { useState } from 'react'
+import styled from 'styled-components'
 
 import { Td } from './Td'
 import { Th } from './Th'
@@ -18,9 +19,16 @@ export type DataTableProps<T extends AnyObject> = {
   columns: Array<ColumnDef<T>>
   data: T[] | undefined
   initialSorting: SortingState
+  isTableHeadHidden?: boolean | undefined
   tableOptions?: TableOptions<T> | undefined
 }
-export function DataTable<T extends AnyObject>({ columns, data, initialSorting, tableOptions }: DataTableProps<T>) {
+export function DataTable<T extends AnyObject>({
+  columns,
+  data,
+  initialSorting,
+  isTableHeadHidden = false,
+  tableOptions
+}: DataTableProps<T>) {
   const [sorting, setSorting] = useState<SortingState>(initialSorting)
 
   const table = useReactTable({
@@ -49,17 +57,19 @@ export function DataTable<T extends AnyObject>({ columns, data, initialSorting, 
 
           {data.length > 0 && (
             <SimpleTable.Table>
-              <SimpleTable.Head>
-                {table.getHeaderGroups().map(headerGroup => (
-                  <tr key={headerGroup.id}>
-                    {headerGroup.headers.map(header => (
-                      <Th key={header.id} header={header} />
-                    ))}
-                  </tr>
-                ))}
-              </SimpleTable.Head>
+              {!isTableHeadHidden && (
+                <SimpleTable.Head>
+                  {table.getHeaderGroups().map(headerGroup => (
+                    <tr key={headerGroup.id}>
+                      {headerGroup.headers.map(header => (
+                        <Th key={header.id} header={header} />
+                      ))}
+                    </tr>
+                  ))}
+                </SimpleTable.Head>
+              )}
 
-              <tbody>
+              <TBody $withTopBorder={isTableHeadHidden!}>
                 {rows.map(row => (
                   <SimpleTable.BodyTr key={row.id} data-id={'id' in row.original ? row.original.id : row.id}>
                     {row.getVisibleCells().map(cell => (
@@ -67,7 +77,7 @@ export function DataTable<T extends AnyObject>({ columns, data, initialSorting, 
                     ))}
                   </SimpleTable.BodyTr>
                 ))}
-              </tbody>
+              </TBody>
             </SimpleTable.Table>
           )}
         </>
@@ -75,3 +85,13 @@ export function DataTable<T extends AnyObject>({ columns, data, initialSorting, 
     </>
   )
 }
+
+const TBody = styled.tbody<{
+  $withTopBorder: boolean
+}>`
+  > tr {
+    > td {
+      border-top: ${p => (p.$withTopBorder ? `1px solid ${p.theme.color.lightGray}` : 0)};
+    }
+  }
+`
