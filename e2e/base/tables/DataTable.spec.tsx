@@ -1,6 +1,25 @@
 import { StoryBox } from '../../../.storybook/components/StoryBox'
-import { _DataTable as DataTableStory, args as dataTableProps } from '../../../stories/tables/DataTable.stories'
+import {
+  FAKE_BASIC_TABLE_COLUMNS,
+  FAKE_BASIC_TABLE_DATA,
+  type FakeBasicTableDataItem
+} from '../../../__mocks__/fake_table_columns_and_data'
+import { _DataTable as DataTableStory } from '../../../stories/tables/DataTable.stories'
 import { mountAndWait } from '../utils'
+
+import type { DataTableProps } from 'index'
+
+const dataTableProps: DataTableProps<FakeBasicTableDataItem> = {
+  columns: FAKE_BASIC_TABLE_COLUMNS,
+  data: FAKE_BASIC_TABLE_DATA,
+  initialSorting: [
+    {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      desc: false,
+      id: 'lastName'
+    }
+  ]
+}
 
 context('Story', () => {
   it('Should find the matching first name using `cy.getTableRowById()`', () => {
