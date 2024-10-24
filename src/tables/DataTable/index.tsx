@@ -19,15 +19,15 @@ export type DataTableProps<T extends AnyObject> = {
   columns: Array<ColumnDef<T>>
   data: T[] | undefined
   initialSorting: SortingState
-  isTableHeadHidden?: boolean | undefined
   tableOptions?: Partial<TableOptions<T>> | undefined
+  withoutHead?: boolean | undefined
 }
 export function DataTable<T extends AnyObject>({
   columns,
   data,
   initialSorting,
-  isTableHeadHidden = false,
-  tableOptions
+  tableOptions,
+  withoutHead = false
 }: DataTableProps<T>) {
   const [sorting, setSorting] = useState<SortingState>(initialSorting)
 
@@ -57,7 +57,7 @@ export function DataTable<T extends AnyObject>({
 
           {data.length > 0 && (
             <SimpleTable.Table>
-              {!isTableHeadHidden && (
+              {!withoutHead && (
                 <SimpleTable.Head>
                   {table.getHeaderGroups().map(headerGroup => (
                     <tr key={headerGroup.id}>
@@ -69,7 +69,7 @@ export function DataTable<T extends AnyObject>({
                 </SimpleTable.Head>
               )}
 
-              <TBody $withTopBorder={isTableHeadHidden!}>
+              <TBody $withTopBorder={withoutHead}>
                 {rows.map(row => (
                   // `data-id` is expected by `cy.getTableRowById()` custom command
                   <SimpleTable.BodyTr key={row.id} data-id={'id' in row.original ? row.original.id : row.id}>

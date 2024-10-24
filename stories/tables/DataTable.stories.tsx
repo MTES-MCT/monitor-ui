@@ -19,8 +19,8 @@ const args: DataTableProps<FakeBasicTableDataItem> = {
       id: 'lastName'
     }
   ],
-  isTableHeadHidden: false,
-  tableOptions: undefined
+  tableOptions: undefined,
+  withoutHead: false
 }
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
@@ -29,7 +29,6 @@ const meta: Meta<DataTableProps<FakeBasicTableDataItem>> = {
   component: DataTable,
 
   argTypes: {
-    isTableHeadHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
     tableOptions: {
       ...ARG_TYPE.NO_CONTROL_INPUT,
       table: {
@@ -38,7 +37,8 @@ const meta: Meta<DataTableProps<FakeBasicTableDataItem>> = {
           summary: `import('@tanstack/react-table').TableOptions | undefined`
         }
       }
-    }
+    },
+    withoutHead: ARG_TYPE.OPTIONAL_BOOLEAN
   },
 
   args,
