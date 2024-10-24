@@ -20,7 +20,7 @@ export type DataTableProps<T extends AnyObject> = {
   data: T[] | undefined
   initialSorting: SortingState
   isTableHeadHidden?: boolean | undefined
-  tableOptions?: TableOptions<T> | undefined
+  tableOptions?: Partial<TableOptions<T>> | undefined
 }
 export function DataTable<T extends AnyObject>({
   columns,
