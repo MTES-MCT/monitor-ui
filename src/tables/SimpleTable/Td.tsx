@@ -17,7 +17,6 @@ export const Td = styled.td.attrs<TdProps, TdProps>(props => ({
   font-size: 13px;
   font-weight: 500;
   line-height: 22px;
-  max-width: 0;
   overflow: hidden;
   padding: 9px 10px;
   text-align: ${p => (p.$isCenter ? 'center' : 'left')};
