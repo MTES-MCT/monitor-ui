@@ -71,6 +71,7 @@ export function DataTable<T extends AnyObject>({
 
               <TBody $withTopBorder={isTableHeadHidden!}>
                 {rows.map(row => (
+                  // `data-id` is expected by `cy.getTableRowById()` custom command
                   <SimpleTable.BodyTr key={row.id} data-id={'id' in row.original ? row.original.id : row.id}>
                     {row.getVisibleCells().map(cell => (
                       <Td key={cell.id} cell={cell} />
