@@ -1,3 +1,11 @@
+## [24.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.3.0...v24.3.1) (2024-10-24)
+
+
+### Bug Fixes
+
+* **tables:** make DataTable tableOptions prop partial ([939c501](https://github.com/MTES-MCT/monitor-ui/commit/939c50112dd73e0074937b655df31e4a2833d06a))
+* **tables:** rename isTableHeadHidden prop to withoutHead in DataTable ([5bc2b76](https://github.com/MTES-MCT/monitor-ui/commit/5bc2b7644293c42693fb18506b3e4445ab985622))
+
 ## [24.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.2.1...v24.3.0) (2024-10-24)
 
 
