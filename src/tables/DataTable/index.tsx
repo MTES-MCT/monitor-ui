@@ -1,6 +1,7 @@
 import {
   type ColumnDef,
   type SortingState,
+  type TableOptions,
   getCoreRowModel,
   getSortedRowModel,
   useReactTable
@@ -17,8 +18,14 @@ export type DataTableProps<T extends CollectionItem> = {
   columns: Array<ColumnDef<T>>
   data: T[] | undefined
   initialSorting: SortingState
+  tableOptions?: TableOptions<T> | undefined
 }
-export function DataTable<T extends CollectionItem>({ columns, data, initialSorting }: DataTableProps<T>) {
+export function DataTable<T extends CollectionItem>({
+  columns,
+  data,
+  initialSorting,
+  tableOptions
+}: DataTableProps<T>) {
   const [sorting, setSorting] = useState<SortingState>(initialSorting)
 
   const table = useReactTable({
@@ -31,7 +38,8 @@ export function DataTable<T extends CollectionItem>({ columns, data, initialSort
     onSortingChange: setSorting,
     state: {
       sorting
-    }
+    },
+    ...tableOptions
   })
 
   const { rows } = table.getRowModel()

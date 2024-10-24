@@ -1,3 +1,4 @@
+import { ARG_TYPE } from '../../.storybook/constants'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import {
   FAKE_BASIC_TABLE_COLUMNS,
@@ -17,7 +18,8 @@ const args: DataTableProps<FakeBasicTableDataItem> = {
       desc: false,
       id: 'lastName'
     }
-  ]
+  ],
+  tableOptions: undefined
 }
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
@@ -25,7 +27,17 @@ const meta: Meta<DataTableProps<FakeBasicTableDataItem>> = {
   title: 'Tables/DataTable',
   component: DataTable,
 
-  argTypes: {},
+  argTypes: {
+    tableOptions: {
+      ...ARG_TYPE.NO_CONTROL_INPUT,
+      table: {
+        type: {
+          detail: 'Overrides options internally passed to `useReactTable()`.',
+          summary: `import('@tanstack/react-table').TableOptions | undefined`
+        }
+      }
+    }
+  },
 
   args,
 
