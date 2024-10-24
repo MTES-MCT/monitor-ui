@@ -1,3 +1,32 @@
+## [24.3.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.2.1...v24.3.0) (2024-10-24)
+
+
+### Features
+
+* **tables:** add isTableHeadHidden prop to DataTable ([fb723b0](https://github.com/MTES-MCT/monitor-ui/commit/fb723b078bf132806806ef7305d79b5d8e0ad926))
+* **tables:** add tableOptions prop to DataTable ([1a28bae](https://github.com/MTES-MCT/monitor-ui/commit/1a28bae13c859b074c404673bd1cfc62d16c5518))
+* **tables:** allow any object as collection item in DataTable data ([06ab17c](https://github.com/MTES-MCT/monitor-ui/commit/06ab17cc724021c40cb31b8dfdb212ea14d1e4c7))
+
+
+### Bug Fixes
+
+* **tables:** remove wrong 0 max-width from SimpleTable.Td ([e75b525](https://github.com/MTES-MCT/monitor-ui/commit/e75b525501fb6b84603d3484b332a898dbbdd9ac))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump tslib in the non-major-dependencies group ([c686c05](https://github.com/MTES-MCT/monitor-ui/commit/c686c056e3db44295ee5effebb94c39b0c32ab60))
+* **dev-deps:** bump eslint-plugin-cypress from 3.5.0 to 4.0.0 ([6411931](https://github.com/MTES-MCT/monitor-ui/commit/641193149549795a2be2cef4b7a4b773d6eedbad))
+* **dev-deps:** bump glob from 10.4.3 to 11.0.0 ([9fbf7af](https://github.com/MTES-MCT/monitor-ui/commit/9fbf7af3b7c22ff296e6013f9cd48ef973685ba4))
+* **dev-deps:** bump the all-non-major-dependencies group ([7030e2c](https://github.com/MTES-MCT/monitor-ui/commit/7030e2ceceadd5525c0557ca954dcae120819d32))
+* **dev-deps:** bump the non-major-dev-dependencies group with 13 updates ([1e1f0d2](https://github.com/MTES-MCT/monitor-ui/commit/1e1f0d272674250a2f0cea4c209f1d0ec824d6a3))
+
+
+### Documentation
+
+* **tables:** add comment to DataTable ([139ed72](https://github.com/MTES-MCT/monitor-ui/commit/139ed72e68600744ae3406d94a14172d54e178a6))
+* **tables:** remove useless generated doc exports from DataTable story ([e8ff655](https://github.com/MTES-MCT/monitor-ui/commit/e8ff6550401d56e0ce34c81be4bd28182d350b13))
+
 ## [24.2.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.2.0...v24.2.1) (2024-10-18)
 
 
