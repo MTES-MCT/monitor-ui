@@ -1,3 +1,24 @@
+## [24.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.3.1...v24.4.0) (2024-10-29)
+
+
+### Features
+
+* **icons:** add vigilanceAreas icon ([d1976a5](https://github.com/MTES-MCT/monitor-ui/commit/d1976a56a9ed7e0c91c87c333a7eb4522cd689b5))
+
+
+### Reverts
+
+* Revert "build(deps): update yarn.lock" ([e357f23](https://github.com/MTES-MCT/monitor-ui/commit/e357f2376e055edb98c98211a896bb2fffce5d8f))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump @babel/runtime in the non-major-dependencies group ([5062609](https://github.com/MTES-MCT/monitor-ui/commit/50626095b1b496b77c69d0738b8b34dbbb468ff0))
+* **deps:** update yarn.lock ([acab8f3](https://github.com/MTES-MCT/monitor-ui/commit/acab8f337b25e1028408909879116c66f5f4b0a3))
+* **dev-deps:** bump the all-non-major-dependencies group ([a782d08](https://github.com/MTES-MCT/monitor-ui/commit/a782d08c19659e9b4e6742f1ceae1b78ace9df9b))
+* **dev-deps:** bump the non-major-dev-dependencies group with 15 updates ([b19357f](https://github.com/MTES-MCT/monitor-ui/commit/b19357f1b483d533488beccca8ec72bb29eb7b46))
+* **dev-deps:** bump vite-tsconfig-paths from 4.3.2 to 5.0.1 ([a7fe2c2](https://github.com/MTES-MCT/monitor-ui/commit/a7fe2c2fad7f21af812757f0b21eb2b4a89ef0fd))
+
 ## [24.3.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.3.0...v24.3.1) (2024-10-24)
 
 
