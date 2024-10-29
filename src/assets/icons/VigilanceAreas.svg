@@ -1,0 +1,13 @@
+<svg id="Vigilance_areas" data-name="Vigilance areas" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <rect id="Rectangle_6966" data-name="Rectangle 6966" width="20" height="20" fill="none"/>
+  <g id="Ellipse_799" data-name="Ellipse 799" fill="none" stroke="#707785" stroke-miterlimit="10" stroke-width="2" stroke-dasharray="2.835 2.835 2.835 2.835">
+    <circle cx="10" cy="10" r="10" stroke="none"/>
+    <circle cx="10" cy="10" r="9" fill="none"/>
+  </g>
+  <rect id="Rectangle_6967" data-name="Rectangle 6967" width="20" height="20" fill="none"/>
+  <g id="Groupe_5839" data-name="Groupe 5839" transform="translate(139 -127)">
+    <path id="Tracé_1776" data-name="Tracé 1776" d="M-129,133a6.451,6.451,0,0,0-6,4,6.451,6.451,0,0,0,6,4,6.451,6.451,0,0,0,6-4A6.451,6.451,0,0,0-129,133Zm0,6.667A2.667,2.667,0,0,1-131.667,137,2.667,2.667,0,0,1-129,134.333,2.667,2.667,0,0,1-126.333,137,2.667,2.667,0,0,1-129,139.667Z" fill="#707785"/>
+    <circle id="Ellipse_800" data-name="Ellipse 800" cx="1.5" cy="1.5" r="1.5" transform="translate(-130.5 135.5)" fill="#707785"/>
+  </g>
+  <path id="Tracé_1777" data-name="Tracé 1777" d="M-139,127h20v20h-20Z" transform="translate(139 -127)" fill="none"/>
+</svg>
