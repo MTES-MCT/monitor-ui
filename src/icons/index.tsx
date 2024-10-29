@@ -91,6 +91,7 @@ import { Unlink } from './Unlink'
 import { Unlock } from './Unlock'
 import { Vessel } from './Vessel'
 import { ViewOnMap } from './ViewOnMap'
+import { VigilanceAreas } from './VigilanceAreas'
 import { Vms } from './Vms'
 import { Warning } from './Warning'
 
@@ -188,6 +189,7 @@ export {
   Unlock,
   Vessel,
   ViewOnMap,
+  VigilanceAreas,
   Vms,
   Warning
 }
