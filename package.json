@@ -149,7 +149,7 @@
     "semantic-release": "23.0.8",
     "storybook": "8.4.5",
     "storybook-addon-performance": "0.17.3",
-    "styled-components": "5.3.10",
+    "styled-components": "6.1.13",
     "type-fest": "4.28.0",
     "typescript": "5.7.2",
     "use-debounce": "10.0.4",
