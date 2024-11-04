@@ -1,3 +1,15 @@
+## [24.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.4.0...v24.5.0) (2024-11-04)
+
+
+### Features
+
+* **icons:** modify icons for selection [scare and polygons] ([1d9b566](https://github.com/MTES-MCT/monitor-ui/commit/1d9b566ade9c0d638484853e547056d738477841))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump the all-non-major-dependencies group ([69cb9ab](https://github.com/MTES-MCT/monitor-ui/commit/69cb9abfe8cde9a158f6a1d756e0f6fb2d440c63))
+
 ## [24.4.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.3.1...v24.4.0) (2024-10-29)
 
 
