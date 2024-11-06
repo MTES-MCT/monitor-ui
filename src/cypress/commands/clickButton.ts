@@ -35,12 +35,34 @@ function findButton(
     return buttonElementByTitle as HTMLElement
   }
 
-  const menuItemElement = findElementByText(`${preSelector}[role="menuitem"]`, label, {
+  const buttonRoleElement = findElementByText(`${preSelector}[role="button"]`, label, {
     index,
     inElement: prevSubjectElement
   })
-  if (menuItemElement) {
-    return menuItemElement as HTMLElement
+  if (buttonRoleElement) {
+    return buttonRoleElement as HTMLElement
+  }
+
+  const buttonRoleElementByAriaLabel = prevSubjectElement
+    ? prevSubjectElement.querySelectorAll(`${preSelector}[role="button"][aria-label="${label}"]`)[index]
+    : Cypress.$(`${preSelector}[role="button"][aria-label="${label}"]`).get(index)
+  if (buttonRoleElementByAriaLabel) {
+    return buttonRoleElementByAriaLabel as HTMLElement
+  }
+
+  const buttonRoleElementByTitle = prevSubjectElement
+    ? prevSubjectElement.querySelectorAll(`${preSelector}[role="button"][title="${label}"]`)[index]
+    : Cypress.$(`${preSelector}[role="button"][title="${label}"]`).get(index)
+  if (buttonRoleElementByTitle) {
+    return buttonRoleElementByTitle as HTMLElement
+  }
+
+  const menuItemRoleElement = findElementByText(`${preSelector}[role="menuitem"]`, label, {
+    index,
+    inElement: prevSubjectElement
+  })
+  if (menuItemRoleElement) {
+    return menuItemRoleElement as HTMLElement
   }
 
   return undefined
