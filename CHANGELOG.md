@@ -1,3 +1,16 @@
+## [24.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.5.0...v24.6.0) (2024-11-06)
+
+
+### Features
+
+* **cypress:** add button role support to clickButton() ([d31f471](https://github.com/MTES-MCT/monitor-ui/commit/d31f471c4022b9284332db23a963e20558c06c1b))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump tslib in the non-major-dependencies group ([b8e259e](https://github.com/MTES-MCT/monitor-ui/commit/b8e259e20c6940ffad4697fd6550986f72316ec5))
+* **dev-deps:** bump the non-major-dev-dependencies group across 1 directory with 15 updates ([9bf4411](https://github.com/MTES-MCT/monitor-ui/commit/9bf44110281b34250d8a17314e149370834781cd))
+
 ## [24.5.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.4.0...v24.5.0) (2024-11-04)
 
 
