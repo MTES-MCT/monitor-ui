@@ -11,7 +11,10 @@ const FEATURE_SCOPES = [
   'symbols',
   'tables',
   'types',
-  'utils'
+  'utils',
+
+  // For everything else
+  'global'
 ]
 
 // eslint-disable-next-line import/no-default-export
