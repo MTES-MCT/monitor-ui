@@ -1,3 +1,15 @@
+## [24.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.6.0...v24.7.0) (2024-11-12)
+
+
+### Features
+
+* **global:** export fonts from assets ([d0c53da](https://github.com/MTES-MCT/monitor-ui/commit/d0c53da5beabce301e156bcff15f99addcea3397))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump the all-non-major-dependencies group ([7522a2a](https://github.com/MTES-MCT/monitor-ui/commit/7522a2a0a8bdac49f44b4175f8c6fd2f0de98243))
+
 ## [24.6.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.5.0...v24.6.0) (2024-11-06)
 
 
