@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { Output } from '../../../.storybook/components/Output'
 import { StoryBox } from '../../../.storybook/components/StoryBox'
 import { Banner, Level, type BannerProps } from '../../../src'
-import { _Banner as BannerStory } from '../../../stories/components/Banner.stories'
 import { mountAndWait, outputShouldBe } from '../utils'
 
 context(`Story`, () => {
@@ -11,37 +10,37 @@ context(`Story`, () => {
     it('should not show the banner when isHiddenByDefault is true', () => {
       mountAndWait(
         <StoryBox>
-          <BannerStory isClosable={false} isCollapsible isHiddenByDefault level={Level.SUCCESS} top="60px">
+          <Banner isClosable={false} isCollapsible isHiddenByDefault level={Level.SUCCESS} top="60px">
             some text
-          </BannerStory>
+          </Banner>
         </StoryBox>
       )
 
-      cy.get('.Banner-Storie').should('not.be.visible')
+      cy.get('.Component-Banner').should('not.be.visible')
     })
 
     it('should show the banner when isHiddenByDefault is false', () => {
       mountAndWait(
         <StoryBox>
-          <BannerStory isClosable={false} isCollapsible isHiddenByDefault={false} level={Level.SUCCESS} top="60px">
+          <Banner isClosable={false} isCollapsible isHiddenByDefault={false} level={Level.SUCCESS} top="60px">
             some text
-          </BannerStory>
+          </Banner>
         </StoryBox>
       )
 
-      cy.get('.Banner-Storie').should('be.visible')
+      cy.get('.Component-Banner').should('be.visible')
     })
 
     it('should show the banner when isHiddenByDefault is undefined', () => {
       mountAndWait(
         <StoryBox>
-          <BannerStory isClosable={false} isCollapsible isHiddenByDefault={undefined} level={Level.SUCCESS} top="60px">
+          <Banner isClosable={false} isCollapsible isHiddenByDefault={undefined} level={Level.SUCCESS} top="60px">
             some text
-          </BannerStory>
+          </Banner>
         </StoryBox>
       )
 
-      cy.get('.Banner-Storie').should('be.visible')
+      cy.get('.Component-Banner').should('be.visible')
     })
   })
 
@@ -49,14 +48,14 @@ context(`Story`, () => {
     it('should disappear when the action button is clicked', () => {
       mountAndWait(
         <StoryBox>
-          <BannerStory isClosable isCollapsible={false} isHiddenByDefault={false} level={Level.SUCCESS} top="60px">
+          <Banner isClosable isCollapsible={false} isHiddenByDefault={false} level={Level.SUCCESS} top="60px">
             some text
-          </BannerStory>
+          </Banner>
         </StoryBox>
       )
 
       cy.get('.banner-button').first().click()
-      cy.get('.Banner-Storie').should('not.be.visible')
+      cy.get('.Component-Banner').should('not.be.visible')
     })
   })
 
@@ -64,18 +63,18 @@ context(`Story`, () => {
     it('should collapse when the action button is clicked', () => {
       mountAndWait(
         <StoryBox>
-          <BannerStory isClosable={false} isCollapsible isHiddenByDefault={false} level={Level.SUCCESS} top="60px">
+          <Banner isClosable={false} isCollapsible isHiddenByDefault={false} level={Level.SUCCESS} top="60px">
             some text
-          </BannerStory>
+          </Banner>
         </StoryBox>
       )
 
       // check it's fully opened
-      cy.get('.Banner-Storie').invoke('outerHeight').should('be.gt', 10)
+      cy.get('.Component-Banner').invoke('outerHeight').should('be.gt', 10)
       // click on the hide button
       cy.get('.banner-button').first().click()
       // check it's shrunk
-      cy.get('.Banner-Storie').invoke('outerHeight').should('be.equal', 10)
+      cy.get('.Component-Banner').invoke('outerHeight').should('be.equal', 10)
     })
   })
 })

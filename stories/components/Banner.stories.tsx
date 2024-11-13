@@ -1,14 +1,13 @@
-import { useState } from 'react'
+import { fn } from '@storybook/test'
 import styled from 'styled-components'
 
-import { Output } from '../../.storybook/components/Output'
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Level, THEME } from '../../src'
 import { Banner } from '../../src/components/Banner'
 
 import type { BannerProps } from '../../src/components/Banner'
-import type { Meta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<BannerProps> = {
@@ -49,110 +48,77 @@ const meta: Meta<BannerProps> = {
 
 export default meta
 
-export function _Banner(props: BannerProps) {
-  const [hasSecondBannerAutoClosed, setHasSecondBannerAutoClosed] = useState<boolean>(false)
-  const [hasSecondBannerClosed, setHasSecondBannerClosed] = useState<boolean>(false)
-  const [hasThirdBannerAutoClosed, setHasThirdBannerAutoClosed] = useState<boolean>(false)
-  const [hasThirdBannerClosed, setHasThirdBannerClosed] = useState<boolean>(false)
+type Story = StoryObj<typeof Banner>
 
-  return (
-    <BannerWrapper>
+export const Default: Story = {
+  render: props => (
+    <Box>
       <div
         style={{
-          position: 'relative'
+          backgroundColor: THEME.color.charcoal,
+          height: '60px',
+          width: '100%'
         }}
       >
-        <div
-          style={{
-            backgroundColor: THEME.color.charcoal,
-            height: '60px',
-            width: '100%'
-          }}
-        >
-          <h2 style={{ color: THEME.color.white }}>This is a header</h2>
-        </div>
-        <Banner {...props} className="Banner-Storie" />
+        <h2 style={{ color: THEME.color.white }}>This is a header</h2>
       </div>
-
-      <div
-        style={{
-          position: 'relative'
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: THEME.color.charcoal,
-            height: '60px',
-            width: '100%'
-          }}
-        >
-          <h2 style={{ color: THEME.color.white }}>Another header</h2>
-        </div>
-        <Banner
-          closingDelay={5000}
-          isCollapsible
-          level={Level.SUCCESS}
-          onAutoClose={() => setHasSecondBannerAutoClosed(true)}
-          onClose={() => setHasSecondBannerClosed(true)}
-          top="60px"
-          withAutomaticClosing
-        >
-          Collapses automatically in 5 seconds
-        </Banner>
-
-        <Output
-          style={{
-            marginTop: '64px'
-          }}
-          value={{
-            hasSecondBannerAutoClosed,
-            hasSecondBannerClosed
-          }}
-        />
-      </div>
-
-      <div
-        style={{
-          position: 'relative'
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: THEME.color.charcoal,
-            height: '60px',
-            width: '100%'
-          }}
-        >
-          <h2 style={{ color: THEME.color.white }}>Again a header</h2>
-        </div>
-        <Banner
-          closingDelay={3000}
-          isClosable
-          level={Level.SUCCESS}
-          onAutoClose={() => setHasThirdBannerAutoClosed(true)}
-          onClose={() => setHasThirdBannerClosed(true)}
-          top="60px"
-          withAutomaticClosing
-        >
-          Closes automatically in 3 seconds
-        </Banner>
-
-        <Output
-          style={{
-            marginTop: '64px'
-          }}
-          value={{
-            hasThirdBannerAutoClosed,
-            hasThirdBannerClosed
-          }}
-        />
-      </div>
-    </BannerWrapper>
+      <Banner {...props} className="Banner-Storie" />
+    </Box>
   )
 }
 
-const BannerWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 72px;
+export const AutoCollapsing: Story = {
+  args: {
+    closingDelay: 5000,
+    isCollapsible: true,
+    level: Level.SUCCESS,
+    onAutoClose: fn(),
+    onClose: fn(),
+    top: '60px',
+    withAutomaticClosing: true
+  },
+  render: props => (
+    <Box>
+      <div
+        style={{
+          backgroundColor: THEME.color.charcoal,
+          height: '60px',
+          width: '100%'
+        }}
+      >
+        <h2 style={{ color: THEME.color.white }}>Another header</h2>
+      </div>
+      <Banner {...props}>Collapses automatically in 5 seconds</Banner>
+    </Box>
+  )
+}
+
+export const AutoClosing: Story = {
+  args: {
+    closingDelay: 3000,
+    isClosable: true,
+    level: Level.SUCCESS,
+    onAutoClose: fn(),
+    onClose: fn(),
+    top: '60px',
+    withAutomaticClosing: true
+  },
+  render: props => (
+    <Box>
+      <div
+        style={{
+          backgroundColor: THEME.color.charcoal,
+          height: '60px',
+          width: '100%'
+        }}
+      >
+        <h2 style={{ color: THEME.color.white }}>Again a header</h2>
+      </div>
+      <Banner {...props}>Closes automatically in 3 seconds</Banner>
+    </Box>
+  )
+}
+
+const Box = styled.div`
+  position: relative;
 `
