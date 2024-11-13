@@ -1,3 +1,6 @@
+// TODO Migrate this story to the new Storybook structure. Example: stories/components/Banner.stories.tsx.
+/* eslint-disable react-hooks/rules-of-hooks */
+
 import { useState } from 'react'
 
 import { Description } from '../../.storybook/components/Description'
