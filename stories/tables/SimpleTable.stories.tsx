@@ -1,3 +1,6 @@
+// TODO Migrate this story to the new Storybook structure. Example: stories/components/Banner.stories.tsx.
+/* eslint-disable react-hooks/rules-of-hooks */
+
 import { flexRender, getCoreRowModel, getSortedRowModel, type SortingState, useReactTable } from '@tanstack/react-table'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { useCallback, useMemo, useRef, useState } from 'react'

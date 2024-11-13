@@ -62,7 +62,7 @@ export const Default: Story = {
       >
         <h2 style={{ color: THEME.color.white }}>This is a header</h2>
       </div>
-      <Banner {...props} className="Banner-Storie" />
+      <Banner {...props} />
     </Box>
   )
 }

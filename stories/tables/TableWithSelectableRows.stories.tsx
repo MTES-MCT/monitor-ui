@@ -1,4 +1,5 @@
-/* eslint-disable no-console, no-null/no-null */
+// TODO Migrate this story to the new Storybook structure. Example: stories/components/Banner.stories.tsx.
+/* eslint-disable react-hooks/rules-of-hooks */
 
 import { flexRender, getCoreRowModel, getSortedRowModel, type SortingState, useReactTable } from '@tanstack/react-table'
 import { useVirtualizer } from '@tanstack/react-virtual'
@@ -11,6 +12,7 @@ import { Link } from '../../src/icons'
 
 import type { Meta } from '@storybook/react'
 
+/* eslint-disable no-null/no-null */
 const fakeData1 = Array(5).fill({
   actionTaken: null,
   controlUnitId: null,
@@ -85,6 +87,7 @@ const fakeData2 = Array(5).fill({
   validityTime: 24,
   vehicleType: 'VESSEL'
 })
+/* eslint-enable no-null/no-null */
 
 const data = [...fakeData1, ...fakeData2]
 
@@ -100,7 +103,9 @@ export default meta
 
 const ButtonsGroupRow = ({ id, onSelect }) => (
   <ButtonsGroup>
+    {/* eslint-disable-next-line no-console */}
     <IconButton accent={Accent.TERTIARY} Icon={Icon.Duplicate} onClick={() => console.log(id)} />
+    {/* eslint-disable-next-line no-console */}
     <IconButton accent={Accent.TERTIARY} Icon={Icon.Edit} onClick={() => console.log(id)} />
 
     <Dropdown accent={Accent.SECONDARY} Icon={Icon.More} onSelect={onSelect}>
@@ -116,8 +121,10 @@ export function _TableWithSelectableRows() {
 
   const doAction = (key, id) => {
     if (key === 'ARCHIVE') {
+      // eslint-disable-next-line no-console
       console.log('we want to archive the reporting with id: ', id)
     } else {
+      // eslint-disable-next-line no-console
       console.log('we want to delete the reporting with id: ', id)
     }
   }
@@ -137,6 +144,7 @@ export function _TableWithSelectableRows() {
           <TableWithSelectableRows.RowCheckbox
             checked={table.getIsAllRowsSelected()}
             indeterminate={(() => {
+              // eslint-disable-next-line no-console
               console.log('indeterminate', table.getIsSomeRowsSelected())
 
               return table.getIsSomeRowsSelected()
@@ -252,6 +260,7 @@ export function _TableWithSelectableRows() {
             accent={Accent.TERTIARY}
             Icon={Icon.FocusZones}
             isCompact
+            // eslint-disable-next-line no-console
             onClick={() => console.log(info.getValue())}
           />
         ),
