@@ -1,3 +1,21 @@
+## [24.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.7.0...v24.8.0) (2024-11-13)
+
+
+### Features
+
+* **tables:** add emptyLabel prop to DataTable ([b7f025a](https://github.com/MTES-MCT/monitor-ui/commit/b7f025a7642ed10e5e241a91ab3b7e6ed8d0e822))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump eslint-plugin-react-hooks from 4.6.2 to 5.0.0 ([ac0230f](https://github.com/MTES-MCT/monitor-ui/commit/ac0230feedc43ac0f959a17198906c3f5a0cad66))
+* **dev-deps:** bump the non-major-dev-dependencies group across 1 directory with 18 updates ([2a09395](https://github.com/MTES-MCT/monitor-ui/commit/2a0939508815af8aa3eef9aad5268f576a2f23f4))
+
+
+### Documentation
+
+* **component:** migrate Banner story to new Storybook stucture ([c8339e3](https://github.com/MTES-MCT/monitor-ui/commit/c8339e34972facc07fc287a4ca4c846793351459))
+
 ## [24.7.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.6.0...v24.7.0) (2024-11-12)
 
 
