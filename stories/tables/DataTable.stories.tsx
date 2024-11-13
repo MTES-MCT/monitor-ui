@@ -29,6 +29,7 @@ const meta: Meta<DataTableProps<FakeBasicTableDataItem>> = {
   component: DataTable,
 
   argTypes: {
+    emptyLabel: ARG_TYPE.OPTIONAL_REACT_NODE,
     tableOptions: {
       ...ARG_TYPE.NO_CONTROL_INPUT,
       table: {

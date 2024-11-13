@@ -169,6 +169,14 @@ const ARG_TYPE_TYPED: Meta['argTypes'] = {
       }
     }
   },
+  OPTIONAL_REACT_NODE: {
+    control: 'text',
+    table: {
+      type: {
+        summary: 'ReactNode | undefined'
+      }
+    }
+  },
   OPTIONAL_SIZE: {
     control: 'radio',
     // eslint-disable-next-line object-shorthand

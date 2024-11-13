@@ -6,7 +6,7 @@ import {
   getSortedRowModel,
   useReactTable
 } from '@tanstack/react-table'
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import styled from 'styled-components'
 
 import { Td } from './Td'
@@ -18,6 +18,7 @@ import type { AnyObject } from '../../types/definitions'
 export type DataTableProps<T extends AnyObject> = {
   columns: Array<ColumnDef<T>>
   data: T[] | undefined
+  emptyLabel?: ReactNode
   initialSorting: SortingState
   tableOptions?: Partial<TableOptions<T>> | undefined
   withoutHead?: boolean | undefined
@@ -25,6 +26,7 @@ export type DataTableProps<T extends AnyObject> = {
 export function DataTable<T extends AnyObject>({
   columns,
   data,
+  emptyLabel,
   initialSorting,
   tableOptions,
   withoutHead = false
@@ -49,11 +51,11 @@ export function DataTable<T extends AnyObject>({
 
   return (
     <>
-      {!data && <p>Chargement en cours...</p>}
+      {!data && <p className="Table-DataTable--loadingLabel">Chargement en cours...</p>}
 
       {data && (
         <>
-          {!data.length && <p>Aucune donnée.</p>}
+          {!data.length && (emptyLabel ?? <p className="Table-DataTable--emptyLabel">Aucune donnée.</p>)}
 
           {data.length > 0 && (
             <SimpleTable.Table>
