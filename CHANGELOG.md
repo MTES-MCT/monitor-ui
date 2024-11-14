@@ -1,3 +1,10 @@
+## [24.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.8.0...v24.9.0) (2024-11-14)
+
+
+### Features
+
+* **icons:** add icons for document ([0a3105b](https://github.com/MTES-MCT/monitor-ui/commit/0a3105bbddbcbdf53eae7e410d6f67723edefb3f))
+
 ## [24.8.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.7.0...v24.8.0) (2024-11-13)
 
 
