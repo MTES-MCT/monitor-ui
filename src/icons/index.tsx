@@ -21,6 +21,7 @@ import { ControlUnit } from './ControlUnit'
 import { ControlUnitFilled } from './ControlUnitFilled'
 import { Delete } from './Delete'
 import { Display } from './Display'
+import { Document } from './Document'
 import { DoubleChevron } from './DoubleChevron'
 import { Download } from './Download'
 import { Drapeau } from './Drapeau'
@@ -119,6 +120,7 @@ export {
   ControlUnitFilled,
   Delete,
   Display,
+  Document,
   DoubleChevron,
   Download,
   Drapeau,
