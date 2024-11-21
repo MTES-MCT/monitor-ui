@@ -1,3 +1,19 @@
+## [24.9.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.9.0...v24.9.1) (2024-11-21)
+
+
+### Bug Fixes
+
+* **hooks:** add window definition guard to NewWindowContext ([d75f6d4](https://github.com/MTES-MCT/monitor-ui/commit/d75f6d4fc015d1aff437ce13058e53bee30796ab))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump cross-spawn ([47e1a27](https://github.com/MTES-MCT/monitor-ui/commit/47e1a27297da9127476e3deae40f0a7d3320f961))
+* **dev-deps:** bump @typescript-eslint/parser from 7.15.0 to 8.14.0 ([8e1f993](https://github.com/MTES-MCT/monitor-ui/commit/8e1f9931598cdf5d592ec3f1e81d1f10fda08432))
+* **dev-deps:** bump cross-spawn ([3b17e54](https://github.com/MTES-MCT/monitor-ui/commit/3b17e54bb8a651b6c6c86e4c2f68f4982c97fee2))
+* **dev-deps:** bump the all-non-major-dependencies group ([a7d4708](https://github.com/MTES-MCT/monitor-ui/commit/a7d47086f27c183bac6ac755bce902959ff7596a))
+* **dev-deps:** bump the non-major-dev-dependencies group with 11 updates ([24adf88](https://github.com/MTES-MCT/monitor-ui/commit/24adf888706511613c2546834a97a9ed9865e2f4))
+
 ## [24.9.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.8.0...v24.9.0) (2024-11-14)
 
 
