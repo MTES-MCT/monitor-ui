@@ -31,13 +31,13 @@ export function Message({
   return (
     <Box $level={level} className={controlledClassName} {...nativeProps}>
       {!withoutIcon && <ControlledIcon color={controlledIconColor} />}
-      <ChildrenContainer>{children}</ChildrenContainer>
+      <ChildrenContainer $withMargin={!withoutIcon}>{children}</ChildrenContainer>
     </Box>
   )
 }
 
-const ChildrenContainer = styled.div`
-  margin-left: 8px;
+const ChildrenContainer = styled.div<{ $withMargin: boolean }>`
+  margin-left: ${({ $withMargin }) => ($withMargin ? 8 : 0)}px;
   display: flex;
   flex-direction: column;
   flex: 1;
