@@ -13,15 +13,24 @@ export type MessageProps = HTMLAttributes<HTMLDivElement> & {
   children: ReactNode | string
   iconColor?: Level | undefined
   level?: Level | undefined
+  withoutIcon?: boolean
 }
-export function Message({ children, className, Icon, iconColor, level = Level.INFO, ...nativeProps }: MessageProps) {
+export function Message({
+  children,
+  className,
+  Icon,
+  iconColor,
+  level = Level.INFO,
+  withoutIcon,
+  ...nativeProps
+}: MessageProps) {
   const controlledClassName = classnames('Component-Message', className)
   const ControlledIcon = Icon ?? DEFAUT_ICON[level]
   const controlledIconColor = iconColor ?? DEFAULT_ICON_COLOR[level]
 
   return (
     <Box $level={level} className={controlledClassName} {...nativeProps}>
-      <ControlledIcon color={controlledIconColor} />
+      {!withoutIcon && <ControlledIcon color={controlledIconColor} />}
       <ChildrenContainer>{children}</ChildrenContainer>
     </Box>
   )
@@ -41,7 +50,6 @@ const Box = styled.div<{
 }>`
   ${getStyledCssFromLevel()}
 
-  border-radius: 2px;
   display: flex;
   font-size: 13px;
   padding: 16px;

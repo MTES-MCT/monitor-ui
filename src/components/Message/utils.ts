@@ -12,12 +12,11 @@ export function getStyledCssFromLevel() {
           color: ${props.theme.color.gunMetal};
         `
 
-      // TODO Check `border-color` with Adeline.
       case props.$level === Level.INFO:
       default:
         return `
             background-color: ${props.theme.color.blueGray25};
-            border: solid 1px ${props.theme.color.blueGrayBorder};
+            border: solid 1px #AECEEA;
             color: ${props.theme.color.gunMetal};
           `
     }
