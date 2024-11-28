@@ -1,3 +1,17 @@
+## [24.10.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.9.1...v24.10.0) (2024-11-28)
+
+
+### Features
+
+* **components:** add withoutIcon prop to Message component ([4e52cd9](https://github.com/MTES-MCT/monitor-ui/commit/4e52cd9a20ecc75a17888b79fd14517bdd820c3a))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump ky from 0.33.3 to 1.7.2 ([fef35cd](https://github.com/MTES-MCT/monitor-ui/commit/fef35cd376463f66ab1d4fabb908551c183fcff9))
+* **dev-deps:** bump the all-non-major-dependencies group ([96e9141](https://github.com/MTES-MCT/monitor-ui/commit/96e91410931f9e997093bf329f242cd00295691c))
+* **dev-deps:** bump the non-major-dev-dependencies group with 21 updates ([91d4d89](https://github.com/MTES-MCT/monitor-ui/commit/91d4d89599606fb681536307d8fa9a63dadb2aa3))
+
 ## [24.9.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.9.0...v24.9.1) (2024-11-21)
 
 
