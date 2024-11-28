@@ -1,3 +1,15 @@
+## [24.10.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.10.0...v24.10.1) (2024-11-28)
+
+
+### Bug Fixes
+
+* **components:** fix margin when there is no icon ([4d0edd6](https://github.com/MTES-MCT/monitor-ui/commit/4d0edd615ab4f355c2fcf229199098c305867817))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @faker-js/faker from 8.4.1 to 9.2.0 ([b667ea0](https://github.com/MTES-MCT/monitor-ui/commit/b667ea02471350fb05de1721aa7e903a3426f309))
+
 ## [24.10.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.9.1...v24.10.0) (2024-11-28)
 
 
