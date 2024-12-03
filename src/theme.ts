@@ -97,7 +97,8 @@ export const THEME = {
     apricot: '#F0C1A1',
     melon: '#E7A58D',
     paleDogwood: '#F8D7CE',
-    seashell: '#FCECE4',
+    seashell: '#FCECE4', // deprecated ?
+    champagnePink: '#ECCFC4',
 
     // AMP Zones
     darkGoldenrod: '#A98A0F',
