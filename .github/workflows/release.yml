@@ -25,8 +25,8 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           # TODO Check if both are really needed.
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-          NODE_AUTH_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Get version
         id: get_version
         run: echo ::set-output name=version::$(npm pkg get version | sed 's/"//g')
@@ -37,7 +37,7 @@ jobs:
           # https://docs.github.com/en/actions/managing-workflow-runs/skipping-workflow-runs
           commit-message: 'ci(release): ${{ steps.get_version.outputs.version }}'
           title: 'ci(release): ${{ steps.get_version.outputs.version }}'
-          token: ${{ secrets.GH_PAT }}
+          token: ${{ secrets.GH_TOKEN }}
 
   deploy:
     name: Deploy

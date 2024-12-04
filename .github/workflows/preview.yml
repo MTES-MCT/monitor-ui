@@ -38,7 +38,7 @@ jobs:
           onlyChanged: true
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           skip: 'dependabot/**'
-          token: ${{ secrets.GH_PAT }}
+          token: ${{ secrets.GH_TOKEN }}
           zip: true
 
   update_pull_request:
@@ -50,7 +50,7 @@ jobs:
       - name: Update Pull Request Preview URL
         uses: ivangabriele/find-and-replace-pull-request-body@v1.1.5
         with:
-          githubToken: ${{ secrets.GH_PAT }}
+          githubToken: ${{ secrets.GH_TOKEN }}
           find: AUTOFILLED_PREVIEW_URL
           isHtmlCommentTag: true
           replace: ${{ needs.publish.outputs.storybookUrl }}
