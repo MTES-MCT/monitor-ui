@@ -1,3 +1,10 @@
+## [24.10.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.10.1...v24.10.2) (2024-12-04)
+
+
+### Styles
+
+* **global:** add new color for vigilance area ([71a87b5](https://github.com/MTES-MCT/monitor-ui/commit/71a87b542af22e5d65f9a3c1a6584bb6878bd64d))
+
 ## [24.10.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.10.0...v24.10.1) (2024-11-28)
 
 
