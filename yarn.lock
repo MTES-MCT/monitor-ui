@@ -3384,7 +3384,7 @@ __metadata:
     diacritics: "npm:1.3.0"
     eslint: "npm:8.43.0"
     eslint-config-airbnb: "npm:19.0.4"
-    eslint-config-airbnb-typescript: "npm:17.0.0"
+    eslint-config-airbnb-typescript: "npm:18.0.0"
     eslint-config-prettier: "npm:9.1.0"
     eslint-plugin-cypress: "npm:4.1.0"
     eslint-plugin-import: "npm:2.31.0"
@@ -9924,17 +9924,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-airbnb-typescript@npm:17.0.0":
-  version: 17.0.0
-  resolution: "eslint-config-airbnb-typescript@npm:17.0.0"
+"eslint-config-airbnb-typescript@npm:18.0.0":
+  version: 18.0.0
+  resolution: "eslint-config-airbnb-typescript@npm:18.0.0"
   dependencies:
     eslint-config-airbnb-base: "npm:^15.0.0"
   peerDependencies:
-    "@typescript-eslint/eslint-plugin": ^5.13.0
-    "@typescript-eslint/parser": ^5.0.0
-    eslint: ^7.32.0 || ^8.2.0
-    eslint-plugin-import: ^2.25.3
-  checksum: 10c0/9a8ce73c5a52ff1f82842ff95fca9313bb826ade8733d2dc25aa65781969282a5825fb5ac1b89c9d2e18da439aa3dc03486c2c405158559d0b1400e08593557e
+    "@typescript-eslint/eslint-plugin": ^7.0.0
+    "@typescript-eslint/parser": ^7.0.0
+    eslint: ^8.56.0
+  checksum: 10c0/8bfedda75f746f04972ce4cc5f32257bcc7953122360827d8afdd1e2c7c13a296eabacd50588de83ea74bab0f4bc7f383f460708ef267ac72c891daddfa44749
   languageName: node
   linkType: hard
 
