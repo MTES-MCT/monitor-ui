@@ -43,7 +43,7 @@ jobs:
           tag: components
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
   # Release build sanity check with Cypress
   test_e2e_release:
@@ -73,4 +73,4 @@ jobs:
           tag: release
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
