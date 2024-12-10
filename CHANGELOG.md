@@ -1,3 +1,20 @@
+## [24.11.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.10.2...v24.11.0) (2024-12-10)
+
+
+### Features
+
+* **icons:** add Stroke icon ([ecdd45d](https://github.com/MTES-MCT/monitor-ui/commit/ecdd45d549ca7c6d19c7e8b4491dcdb80c8cf4a9))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump nanoid from 3.3.7 to 3.3.8 in the npm_and_yarn group ([e20cf81](https://github.com/MTES-MCT/monitor-ui/commit/e20cf817b5e262dcda5abcd3db4ab0e472d2778f))
+* **dev-deps:** bump eslint-config-airbnb-typescript ([03031be](https://github.com/MTES-MCT/monitor-ui/commit/03031be27c7730cd8acdf023971d20bc85651344))
+* **dev-deps:** bump semantic-release from 23.0.8 to 24.1.2 ([af79b95](https://github.com/MTES-MCT/monitor-ui/commit/af79b95700562a84a3b5f1911fd7dd4e69fccb74))
+* **dev-deps:** bump the all-non-major-dependencies group across 1 directory with 8 updates ([68eb313](https://github.com/MTES-MCT/monitor-ui/commit/68eb3130310041d93b21be67b22d7e156938b821))
+* **dev-deps:** bump vite from 5.4.11 to 6.0.3 in /e2e/release/sample ([5f5ccda](https://github.com/MTES-MCT/monitor-ui/commit/5f5ccdaa46458dfca242955f410c3f73afe8b429))
+* **dev-deps:** downgrade semantic-release from 24.1.2 to 23.0.8 ([f6611e5](https://github.com/MTES-MCT/monitor-ui/commit/f6611e5baf206072676350d19bee2295875ed234))
+
 ## [24.10.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.10.1...v24.10.2) (2024-12-04)
 
 
