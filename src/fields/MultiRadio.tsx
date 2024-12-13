@@ -1,7 +1,7 @@
 import { getSelectedOptionValueFromSelectedRsuiteDataItemValue } from '@utils/getSelectedOptionValueFromSelectedRsuiteDataItemValue'
 import classnames from 'classnames'
 import { eq } from 'lodash'
-import { useCallback, useMemo, type CSSProperties, type ReactNode } from 'react'
+import { useCallback, useMemo, type CSSProperties, type ReactNode, type SyntheticEvent } from 'react'
 import { RadioGroup as RsuiteRadioGroup } from 'rsuite'
 import styled from 'styled-components'
 
@@ -15,6 +15,7 @@ import { getRsuiteDataItemValueFromOptionValue } from '../utils/getRsuiteDataIte
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Option, OptionValueType } from '../types/definitions'
+import type { ValueType } from 'rsuite/esm/Radio'
 import type { Promisable } from 'type-fest'
 
 export type MultiRadioProps<OptionValue extends OptionValueType = string> = {
@@ -72,12 +73,15 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
 
   const handleChange = useCallback(
-    (nextRsuiteDataItemValue: string | null) => {
+    (nextRsuiteDataItemValue: ValueType, _event: SyntheticEvent<Element, Event>) => {
       if (!onChange || readOnly) {
         return
       }
 
-      const nextOptionValue = getSelectedOptionValueFromSelectedRsuiteDataItemValue(rsuiteData, nextRsuiteDataItemValue)
+      const nextOptionValue = getSelectedOptionValueFromSelectedRsuiteDataItemValue(
+        rsuiteData,
+        String(nextRsuiteDataItemValue)
+      )
 
       onChange(nextOptionValue)
     },
@@ -100,7 +104,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
         $isInline={isInline}
         name={name}
         onChange={handleChange}
-        value={selectedRsuiteValue}
+        value={selectedRsuiteValue ?? ''}
       >
         {rsuiteData.map(rsuiteDataItem => (
           <Radio

@@ -4,13 +4,13 @@ import styled from 'styled-components'
 import type { HTMLAttributes } from 'react'
 
 export type FieldErrorProps = HTMLAttributes<HTMLParagraphElement> & {
-  isDisabled?: boolean | undefined
+  $isDisabled?: boolean | undefined
 }
 export const FieldError = styled.p.attrs<FieldErrorProps, FieldErrorProps>(props => ({
   className: classnames('Element-FieldError', props.className)
 }))`
   color: ${p => p.theme.color.maximumRed};
-  display: ${p => (p.isDisabled ? 'none' : 'block')};
+  display: ${p => (p.$isDisabled ? 'none' : 'block')};
   font-size: 13px;
   font-style: italic;
   line-height: 1.3846;

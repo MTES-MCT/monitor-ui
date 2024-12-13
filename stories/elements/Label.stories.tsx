@@ -6,7 +6,7 @@ import type { LabelProps } from '../../src'
 import type { Meta } from '@storybook/react'
 
 const args: LabelProps = {
-  $idDisabled: false,
+  $isDisabled: false,
   $isHidden: false,
   $isRequired: false,
   children: 'A form input label'

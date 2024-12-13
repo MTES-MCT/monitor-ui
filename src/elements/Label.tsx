@@ -5,7 +5,7 @@ import type { LabelHTMLAttributes } from 'react'
 
 export type LabelProps = LabelHTMLAttributes<HTMLLabelElement> & {
   $hasError?: boolean | undefined
-  $idDisabled?: boolean | undefined
+  $isDisabled?: boolean | undefined
   $isHidden?: boolean | undefined
   $isRequired?: boolean | undefined
 }
@@ -14,7 +14,7 @@ export const Label = styled.label.attrs<LabelProps, LabelProps>(props => ({
 }))`
   color: ${p =>
     // eslint-disable-next-line no-nested-ternary
-    p.$idDisabled ? p.theme.color.lightGray : p.$hasError ? p.theme.color.maximumRed : p.theme.color.slateGray};
+    p.$isDisabled ? p.theme.color.lightGray : p.$hasError ? p.theme.color.maximumRed : p.theme.color.slateGray};
   display: ${p => (p.$isHidden ? 'none' : 'block')};
   font-size: 13px;
   line-height: 1.3846;

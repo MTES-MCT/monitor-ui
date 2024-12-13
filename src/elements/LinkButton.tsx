@@ -14,7 +14,7 @@ export function LinkButton({ children, className, Icon, size = Size.NORMAL, ...p
   const controlledClassName = classnames('Element-LinkButton', className)
 
   return (
-    <StyledLinkButton $size={size} className={controlledClassName} {...props}>
+    <StyledLinkButton $isDisabled={props.disabled} $size={size} className={controlledClassName} {...props}>
       <>
         {Icon && <Icon color={THEME.color.slateGray} size={ICON_SIZE[size]} />}
         {children}
@@ -35,12 +35,13 @@ const ICON_SIZE: Record<Size, number> = {
 }
 
 const StyledLinkButton = styled.button<{
+  $isDisabled: boolean | undefined
   $size: Size
 }>`
   align-items: flex-end;
   background: transparent;
   color: ${p => p.theme.color.slateGray};
-  cursor: ${p => (p.disabled ? 'none' : 'pointer')};
+  cursor: ${p => (p.$isDisabled ? 'none' : 'pointer')};
   display: flex;
   flex-direction: row;
   font-size: ${p => FONT_SIZE[p.$size]};

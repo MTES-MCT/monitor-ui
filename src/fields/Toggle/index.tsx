@@ -29,7 +29,7 @@ export type ToggleProps = Omit<RSuiteToggleProps, 'as' | 'checked' | 'defaultChe
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
-  onChange?: (isChecked: boolean | undefined) => void
+  onChange?: (isChecked: boolean) => void
 }
 export function Toggle({
   checked = false,
@@ -59,7 +59,7 @@ export function Toggle({
 
   return (
     <Field className={controlledClassName} style={style}>
-      <Label $idDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={originalProps.name}>
+      <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={originalProps.name}>
         {label}
       </Label>
       <StyledToggle
@@ -73,7 +73,7 @@ export function Toggle({
         checked={checked}
         data-cy={dataCy}
         disabled={disabled}
-        onChange={onChange}
+        onChange={isChecked => onChange?.(isChecked)}
         readOnly={readOnly}
         {...originalProps}
       />
