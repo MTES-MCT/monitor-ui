@@ -118,7 +118,7 @@ export const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyl
       /* TODO Check that with Adeline. */
       color: ${p =>
         // eslint-disable-next-line no-nested-ternary
-        p.$isDisabled || p.$isReadOnly ? p.theme.color.lightGray : p.theme.color.gunMetal};
+        (p.$isDisabled ?? p.$isReadOnly) ? p.theme.color.lightGray : p.theme.color.gunMetal};
       font-size: 13px;
       font-weight: 500;
       line-height: 1;
@@ -144,7 +144,8 @@ export const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyl
 
           /* Checkmark */
           &:after {
-            border-color: ${p => (p.$isReadOnly || p.$isTransparent ? p.theme.color.charcoal : p.theme.color.cultured)};
+            border-color: ${p =>
+              (p.$isReadOnly ?? p.$isTransparent) ? p.theme.color.charcoal : p.theme.color.cultured};
             bottom: 0;
             left: 0;
             right: 0;

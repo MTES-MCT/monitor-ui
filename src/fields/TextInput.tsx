@@ -86,7 +86,7 @@ export function TextInput({
 
   return (
     <Field className={controlledClassname} style={style}>
-      <Label $idDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={name}>
+      <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={name}>
         {label}
       </Label>
 

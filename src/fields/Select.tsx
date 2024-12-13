@@ -141,7 +141,7 @@ export function Select<OptionValue extends OptionValueType = string>({
 
   return (
     <Field className={controlledClassname} style={style}>
-      <Label $idDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={originalProps.name}>
+      <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={originalProps.name}>
         {label}
       </Label>
 

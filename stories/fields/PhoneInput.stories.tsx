@@ -25,6 +25,8 @@ const meta: Meta<PhoneInputProps> = {
     disabled: false,
     error: '',
     isRequired: false,
+    isTransparent: false,
+    isLight: false,
     label: 'A phone number input',
     placeholder: '01 23 45 67 89 ou 00 594 12 34 56 78 90',
     readOnly: false
