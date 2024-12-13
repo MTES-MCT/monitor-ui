@@ -9,36 +9,19 @@ import { FieldError } from '../elements/FieldError'
 import { Label } from '../elements/Label'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
-import { type CustomSearch } from '../libs/CustomSearch'
-import { type Option, type OptionValueType } from '../types/definitions'
+import { type OptionValueType } from '../types/definitions'
 import { getRsuiteDataItemsFromOptions } from '../utils/getRsuiteDataItemsFromOptions'
 import { getRsuiteDataItemValuesFromOptionValues } from '../utils/getRsuiteDataItemValuesFromOptionValues'
 import { normalizeString } from '../utils/normalizeString'
 
-import type { Promisable } from 'type-fest'
+import type { SelectType } from '@types_/commonTypes'
 
 export type CheckPickerProps<OptionValue extends OptionValueType = string> = Omit<
   RsuiteCheckPickerProps<string>,
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderMenuItem' | 'value' | 'valueKey'
-> & {
-  customSearch?: CustomSearch<Option<OptionValue>>
-  /** Minimum search query length required to trigger custom search filtering. */
-  customSearchMinQueryLength?: number | undefined
-  error?: string | undefined
-  isErrorMessageHidden?: boolean | undefined
-  isLabelHidden?: boolean | undefined
-  isLight?: boolean | undefined
-  isRequired?: boolean | undefined
-  isTransparent?: boolean | undefined
-  isUndefinedWhenDisabled?: boolean | undefined
-  label: string
-  name: string
-  onChange?: (nextValue: OptionValue[] | undefined) => Promisable<void>
-  optionValueKey?: keyof OptionValue | undefined
-  options: Option<OptionValue>[]
-  popupWidth?: number | undefined
-  value?: OptionValue[] | undefined
-}
+> &
+  SelectType<OptionValue>
+
 export function CheckPicker<OptionValue extends OptionValueType = string>({
   className,
   customSearch,
