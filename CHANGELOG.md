@@ -1,3 +1,15 @@
+## [24.11.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.11.1...v24.11.2) (2024-12-17)
+
+
+### Bug Fixes
+
+* **elements:** fix prefixed props ([76729c6](https://github.com/MTES-MCT/monitor-ui/commit/76729c63cbbad8f0742a1e207028361f752b7358))
+
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump the non-major-dev-dependencies group across 1 directory with 31 updates ([1731b69](https://github.com/MTES-MCT/monitor-ui/commit/1731b69eff6658b5df49d649dfe2764985989120))
+
 ## [24.11.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.11.0...v24.11.1) (2024-12-17)
 
 
