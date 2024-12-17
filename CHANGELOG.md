@@ -1,3 +1,19 @@
+## [24.11.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.11.0...v24.11.1) (2024-12-17)
+
+
+### Bug Fixes
+
+* **types:** create generic type for CheckPicker and MultiSelect ([b09f859](https://github.com/MTES-MCT/monitor-ui/commit/b09f859b7a56d056310c94c3e71d118611178cf0))
+* **types:** fix typing ([75c5e6d](https://github.com/MTES-MCT/monitor-ui/commit/75c5e6d8749d343a12901be22017d1d1ba450701))
+
+
+### Buid System & Dependencies
+
+* **deps:** bump @tanstack/react-table ([da380bc](https://github.com/MTES-MCT/monitor-ui/commit/da380bc59e7dd806c29b0eb7fd84d31af9dd4976))
+* **dev-deps:** bump nanoid ([32f4d5e](https://github.com/MTES-MCT/monitor-ui/commit/32f4d5ec3ec1d39fbacd951d211fb2f6e4d3a220))
+* **dev-deps:** bump styled-components from 5.3.10 to 6.1.13 ([c158abf](https://github.com/MTES-MCT/monitor-ui/commit/c158abfd729c77c9a76cb1c738d9f6bb4484691a))
+* **dev-deps:** bump the all-non-major-dependencies group ([6040bfb](https://github.com/MTES-MCT/monitor-ui/commit/6040bfb0ba87d63738f8212cad857086885ff8c9))
+
 ## [24.11.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.10.2...v24.11.0) (2024-12-10)
 
 
