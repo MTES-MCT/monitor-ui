@@ -77,21 +77,21 @@ const PrimaryIconButton = styled(BaseIconButton)`
   border-color: ${p => p.theme.color.lightGray};
   color: ${p => p.theme.color.charcoal};
 
-  :hover,
+  &:hover,
   &._hover {
     background-color: ${p => p.theme.color.lightGray};
     border-color: ${p => p.theme.color.lightGray};
     color: ${p => p.theme.color.blueYonder};
   }
 
-  :active,
+  &:active,
   &._active {
     background-color: ${p => p.theme.color.lightGray};
     border-color: ${p => p.theme.color.lightGray};
     color: ${p => p.theme.color.blueGray};
   }
 
-  :disabled,
+  &:disabled,
   &._disabled {
     background-color: ${p => p.theme.color.lightGray};
     border-color: ${p => p.theme.color.lightGray};
@@ -109,21 +109,21 @@ const SecondaryIconButton = styled(BaseIconButton)`
   border-color: ${p => p.theme.color.blueYonder};
   color: ${p => p.theme.color.white};
 
-  :hover,
+  &:hover,
   &._hover {
     background-color: ${p => p.theme.color.blueYonder};
     border-color: ${p => p.theme.color.blueYonder};
     color: ${p => p.theme.color.blueYonder25};
   }
 
-  :active,
+  &:active,
   &._active {
     background-color: ${p => p.theme.color.blueYonder};
     border-color: ${p => p.theme.color.blueYonder};
     color: ${p => p.theme.color.blueYonder25};
   }
 
-  :disabled,
+  &:disabled,
   &._disabled {
     background-color: ${p => p.theme.color.blueYonder};
     border-color: ${p => p.theme.color.blueYonder};

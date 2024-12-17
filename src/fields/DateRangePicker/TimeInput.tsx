@@ -281,7 +281,7 @@ const Box = styled.div<
   position: relative;
   user-select: none;
 
-  :hover {
+  &:hover {
     border: solid 1px
       ${p =>
         p.$isFocused ? getFieldBorderColorFactoryForState('focus')(p) : getFieldBorderColorFactoryForState('hover')(p)};
