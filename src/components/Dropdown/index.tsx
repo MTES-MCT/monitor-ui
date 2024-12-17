@@ -74,19 +74,19 @@ const PrimaryDropdown = styled(RsuiteDropdown as any)<{
     font-size: 13px;
     padding: 3px ${p => (p.$hasTitle ? 12 : 6)}px ${p => (p.$hasIcon ? '4px' : '5px')};
 
-    :hover {
+    &:hover {
       background-color: ${p => p.theme.color.blueYonder};
       border: 1px solid ${p => p.theme.color.blueYonder};
       color: ${p => p.theme.color.white};
     }
 
-    :active {
+    &:active {
       background-color: ${p => p.theme.color.blueGray};
       border: 1px solid ${p => p.theme.color.blueGray};
       color: ${p => p.theme.color.white};
     }
 
-    :disabled {
+    &:disabled {
       background-color: ${p => p.theme.color.lightGray};
       border: 1px solid ${p => p.theme.color.lightGray};
       color: ${p => p.theme.color.cultured};

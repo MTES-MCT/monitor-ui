@@ -20,24 +20,23 @@ const MenuButton = styled(IconButton as any)<{
 }>`
   animation: none;
   background: ${p => (p.$isActive ? p.theme.color.blueGray : 'none')};
-  border: 0;
+  border: none;
   border-bottom: solid 0.5px ${p => p.theme.color.slateGray};
   color: ${p => (p.$isActive ? p.theme.color.white : p.theme.color.gainsboro)};
   padding: 18px;
   height: 64px;
 
-  :hover,
-  :focus {
+  &:hover,
+  &:focus {
     background: ${p => (p.$isActive ? p.theme.color.blueGray : 'rgba(255, 255, 255, 0.125)')};
-    border: 0;
     border: none;
     color: ${p => p.theme.color.white};
   }
 
-  :first-child {
+  &:first-child {
     border-top: solid 0.5px ${p => p.theme.color.slateGray};
 
-    :hover {
+    &:hover {
       border: none;
     }
   }
