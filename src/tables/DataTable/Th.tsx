@@ -28,14 +28,7 @@ export function Th({ children, header }: ThProps) {
     ) : undefined
 
   return (
-    <SimpleTable.Th
-      key={header.id}
-      style={{
-        maxWidth: header.column.getSize() !== 150 ? header.column.getSize() : 'auto',
-        minWidth: header.column.getSize() !== 150 ? header.column.getSize() : 'auto',
-        width: header.column.getSize() !== 150 ? header.column.getSize() : 'auto'
-      }}
-    >
+    <SimpleTable.Th key={header.id} $width={header.column.getSize()}>
       {controlledChildren}
     </SimpleTable.Th>
   )

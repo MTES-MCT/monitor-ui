@@ -28,7 +28,6 @@ export const Td = styled.td.attrs<TdProps, TdProps>(props => ({
     This may be fixable by internal alignment cleanup in <Tag /> component.
   */
   > .Element-Tag {
-    align-self: unset;
     vertical-align: bottom;
   }
 `

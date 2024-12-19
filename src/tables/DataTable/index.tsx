@@ -62,11 +62,11 @@ export function DataTable<T extends AnyObject>({
               {!withoutHead && (
                 <SimpleTable.Head>
                   {table.getHeaderGroups().map(headerGroup => (
-                    <tr key={headerGroup.id}>
+                    <SimpleTable.HeadTr key={headerGroup.id}>
                       {headerGroup.headers.map(header => (
                         <Th key={header.id} header={header} />
                       ))}
-                    </tr>
+                    </SimpleTable.HeadTr>
                   ))}
                 </SimpleTable.Head>
               )}
@@ -74,11 +74,11 @@ export function DataTable<T extends AnyObject>({
               <TBody $withTopBorder={withoutHead}>
                 {rows.map(row => (
                   // `data-id` is expected by `cy.getTableRowById()` custom command
-                  <SimpleTable.BodyTr key={row.id} data-id={'id' in row.original ? row.original.id : row.id}>
+                  <Tr key={row.id} data-id={'id' in row.original ? row.original.id : row.id}>
                     {row.getVisibleCells().map(cell => (
                       <Td key={cell.id} cell={cell} />
                     ))}
-                  </SimpleTable.BodyTr>
+                  </Tr>
                 ))}
               </TBody>
             </SimpleTable.Table>
@@ -96,5 +96,19 @@ const TBody = styled.tbody<{
     > td {
       border-top: ${p => (p.$withTopBorder ? `1px solid ${p.theme.color.lightGray}` : 0)};
     }
+  }
+`
+
+const Tr = styled.tr`
+  display: flex;
+  width: 100%;
+
+  &:hover {
+    > td {
+      background-color: ${p => p.theme.color.blueYonder25};
+    }
+  }
+  > td:first-child {
+    border-left: 1px solid ${p => p.theme.color.lightGray};
   }
 `

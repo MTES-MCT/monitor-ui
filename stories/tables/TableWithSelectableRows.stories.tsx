@@ -13,7 +13,7 @@ import { Link } from '../../src/icons'
 import type { Meta } from '@storybook/react'
 
 /* eslint-disable no-null/no-null */
-const fakeData1 = Array(5).fill({
+const fakeData1 = Array(500).fill({
   actionTaken: null,
   controlUnitId: null,
   createdAt: '2023-08-04T15:13:43.296Z',
@@ -50,7 +50,7 @@ const fakeData1 = Array(5).fill({
   validityTime: 1,
   vehicleType: null
 })
-const fakeData2 = Array(5).fill({
+const fakeData2 = Array(500).fill({
   actionTaken: 'ACTION TAKEN',
   controlUnitId: null,
   createdAt: '2023-08-01T15:13:01.073587Z',
@@ -108,7 +108,7 @@ const ButtonsGroupRow = ({ id, onSelect }) => (
     {/* eslint-disable-next-line no-console */}
     <IconButton accent={Accent.TERTIARY} Icon={Icon.Edit} onClick={() => console.log(id)} />
 
-    <Dropdown accent={Accent.SECONDARY} Icon={Icon.More} onSelect={onSelect}>
+    <Dropdown accent={Accent.TERTIARY} Icon={Icon.More} onSelect={onSelect}>
       <Dropdown.Item accent={Accent.SECONDARY} eventKey="ARCHIVE" Icon={Icon.Archive} />
       <Dropdown.Item accent={Accent.SECONDARY} eventKey="DELETE" Icon={Icon.Delete} />
     </Dropdown>
@@ -153,7 +153,6 @@ export function _TableWithSelectableRows() {
           />
         ),
         id: 'select',
-
         size: 25 // 24px + 1px to avoid cutting the right border
       },
       {
@@ -312,22 +311,17 @@ export function _TableWithSelectableRows() {
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
     estimateSize: () => 10,
+    gap: 5,
     // Pass correct keys to virtualizer it's important when rows change position
     getItemKey: useCallback((index: number) => `${rows[index]?.id}`, [rows]),
-
     getScrollElement: () => tableContainerRef.current,
-
-    overscan: 10
+    overscan: 10,
+    paddingStart: 5,
+    scrollPaddingEnd: 40,
+    scrollPaddingStart: 40
   })
 
   const virtualRows = rowVirtualizer.getVirtualItems()
-  const [paddingTop, paddingBottom] =
-    virtualRows.length > 0
-      ? [
-          Math.max(0, virtualRows[0]?.start ?? 0),
-          Math.max(0, rowVirtualizer.getTotalSize() - (virtualRows[virtualRows.length - 1]?.end ?? 0))
-        ]
-      : [0, 0]
 
   const archiveReportings = () => {
     // eslint-disable-next-line no-console
@@ -339,11 +333,18 @@ export function _TableWithSelectableRows() {
       <div>
         <IconButton accent={Accent.SECONDARY} Icon={Icon.Archive} onClick={archiveReportings} />
       </div>
-      <div ref={tableContainerRef} style={{ width: 1776 }}>
-        <TableWithSelectableRows.Table $withRowCheckbox>
+      <div
+        ref={tableContainerRef}
+        style={{
+          height: '800px',
+          overflow: 'auto',
+          position: 'relative'
+        }}
+      >
+        <TableWithSelectableRows.Table /* $withRowCheckbox */>
           <TableWithSelectableRows.Head>
             {table.getHeaderGroups().map(headerGroup => (
-              <tr key={headerGroup.id}>
+              <TableWithSelectableRows.HeadTr key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
                   <TableWithSelectableRows.Th key={header.id} $width={header.column.getSize()}>
                     {header.id === 'select' && flexRender(header.column.columnDef.header, header.getContext())}
@@ -362,25 +363,31 @@ export function _TableWithSelectableRows() {
                     )}
                   </TableWithSelectableRows.Th>
                 ))}
-              </tr>
+              </TableWithSelectableRows.HeadTr>
             ))}
           </TableWithSelectableRows.Head>
-          <tbody>
-            {paddingTop > 0 && (
-              <tr>
-                <td style={{ height: `${paddingTop}px` }} />
-              </tr>
-            )}
+          <TableWithSelectableRows.Body $totalSize={rowVirtualizer.getTotalSize()}>
             {virtualRows.map((virtualRow, index) => {
               const row = rows[virtualRow.index]
 
               return (
-                <TableWithSelectableRows.BodyTr key={virtualRow.key} $isHighlighted={index % 2 === 0}>
+                <TableWithSelectableRows.BodyTr
+                  key={virtualRow.key}
+                  ref={node => rowVirtualizer.measureElement(node)} // measure dynamic row height
+                  $isHighlighted={index % 2 === 0}
+                  data-index={virtualRow.index} // needed for dynamic row height measurement
+                  style={{
+                    transform: `translateY(${virtualRow.start}px)` // this should always be a `style` as it changes on scroll
+                  }}
+                >
                   {row?.getVisibleCells().map(cell => (
                     <TableWithSelectableRows.Td
                       key={cell.id}
                       $hasRightBorder={!!(cell.column.id === 'geom')}
                       $isCenter={!!(cell.column.id === 'geom' || cell.column.id === 'id')}
+                      style={{
+                        width: cell.column.getSize()
+                      }}
                     >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableWithSelectableRows.Td>
@@ -388,12 +395,7 @@ export function _TableWithSelectableRows() {
                 </TableWithSelectableRows.BodyTr>
               )
             })}
-            {paddingBottom > 0 && (
-              <tr>
-                <td style={{ height: `${paddingBottom}px` }} />
-              </tr>
-            )}
-          </tbody>
+          </TableWithSelectableRows.Body>
         </TableWithSelectableRows.Table>
       </div>
     </>

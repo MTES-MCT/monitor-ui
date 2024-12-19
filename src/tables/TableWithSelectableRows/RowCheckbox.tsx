@@ -31,7 +31,6 @@ export function RowCheckbox({ onChange, ...nativeProps }: RowCheckboxProps & HTM
     />
   )
 }
-
 const RestyledRsuiteCheckbox = styled(StyledRsuiteCheckbox)`
   vertical-align: top;
 

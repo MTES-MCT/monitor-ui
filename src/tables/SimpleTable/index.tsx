@@ -15,15 +15,19 @@ const Table = styled.table.attrs<TableHTMLAttributes<HTMLTableElement>>(props =>
 `
 
 const Head = styled.thead`
+  display: grid;
   position: sticky;
   top: 0;
   z-index: 1;
 
-  > th:first-child {
+  > tr > th:first-child {
     border-left: 1px solid ${p => p.theme.color.lightGray};
   }
 `
-
+const HeadTr = styled.tr`
+  display: flex;
+  width: 100%;
+`
 const Th = styled.th<{
   $width?: number | undefined
 }>`
@@ -32,6 +36,7 @@ const Th = styled.th<{
   border-bottom: 1px solid ${p => p.theme.color.lightGray};
   border-right: 1px solid ${p => p.theme.color.lightGray};
   color: ${p => p.theme.color.slateGray};
+  display: flex;
   font-size: 13px;
   font-weight: 500;
   line-height: 22px;
@@ -60,8 +65,16 @@ const SortContainer = styled.div`
     cursor: pointer;
   }
 `
-
+const Body = styled.tbody<{ $totalSize: number | undefined }>`
+  display: grid;
+  height: ${p => (p.$totalSize ? `${p.$totalSize}px` : 'auto')}; // tells scrollbar how big the table is
+  position: relative; // needed for absolute positioning of rows
+`
 const BodyTr = styled.tr`
+  display: flex;
+  position: absolute;
+  width: 100%;
+
   &:hover {
     > td {
       background-color: ${p => p.theme.color.blueYonder25};
@@ -73,9 +86,11 @@ const BodyTr = styled.tr`
 `
 
 export const SimpleTable = {
+  Body,
   BodyTr,
   CellLoader,
   Head,
+  HeadTr,
   SortContainer,
   Table,
   Td,

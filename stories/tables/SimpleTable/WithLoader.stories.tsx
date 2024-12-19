@@ -26,7 +26,7 @@ export default meta
 export function WithLoader() {
   const [data, setData] = useState<any[] | undefined>(undefined)
 
-  const emptyRows = new Array(10).fill(undefined)
+  const emptyRows = new Array(10000).fill(undefined)
   const isLoading = !data
 
   useEffect(() => {
