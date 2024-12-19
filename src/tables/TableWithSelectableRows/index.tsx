@@ -14,13 +14,12 @@ const Table = styled(SimpleTable.Table)<{
     !!p.$withRowCheckbox &&
     css`
       > thead > tr > th:first-child {
-        padding: 0 0 0 8px;
+        padding: 10px 0 0 8px;
 
         > .rs-checkbox {
           > .rs-checkbox-checker {
             > label {
               > .rs-checkbox-wrapper {
-                left: -8px;
               }
             }
           }
@@ -51,6 +50,8 @@ const Head = styled(SimpleTable.Head)`
   }
 `
 
+const HeadTr = styled(SimpleTable.HeadTr)``
+
 const Th = styled(SimpleTable.Th)`
   background-color: ${p => p.theme.color.white};
   line-height: 22px;
@@ -61,6 +62,8 @@ const SortContainer = styled(SimpleTable.SortContainer)`
   gap: 8px;
   justify-content: start;
 `
+
+const Body = styled(SimpleTable.Body)<{ $totalSize: number }>``
 
 const BodyTr = styled(SimpleTable.BodyTr)<{
   $isHighlighted?: boolean
@@ -99,9 +102,11 @@ const Td = styled(SimpleTable.Td)<{
 `
 
 export const TableWithSelectableRows = {
+  Body,
   BodyTr,
   CellLoader: SimpleTable.CellLoader,
   Head,
+  HeadTr,
   RowCheckbox,
   SortContainer,
   Table,

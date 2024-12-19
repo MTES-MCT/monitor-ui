@@ -16,9 +16,9 @@ export function Td({ cell, children }: TdProps) {
       key={cell.id}
       $isCenter={false}
       style={{
-        maxWidth: cell.column.getSize() !== 150 ? cell.column.getSize() : 'auto',
-        minWidth: cell.column.getSize() !== 150 ? cell.column.getSize() : 'auto',
-        width: cell.column.getSize() !== 150 ? cell.column.getSize() : 'auto'
+        maxWidth: cell.column.getSize(),
+        minWidth: cell.column.getSize(),
+        width: cell.column.getSize()
       }}
     >
       {controlledChildren}

@@ -10,7 +10,7 @@ import { Accent, Button, Icon, IconButton, Size, SimpleTable } from '../../src'
 
 import type { Meta } from '@storybook/react'
 
-const fakeData1 = Array(100).fill({
+const fakeData1 = Array(5000).fill({
   closedBy: 'TIM',
   controlUnits: [
     {
@@ -57,7 +57,7 @@ const fakeData1 = Array(100).fill({
   openBy: 'RAN',
   startDateTimeUtc: '23 juin 23, 05h57 (UTC)'
 })
-const fakeData2 = Array(100).fill({
+const fakeData2 = Array(5000).fill({
   closedBy: 'TIM',
   controlUnits: [
     {
@@ -260,38 +260,29 @@ export function _SimpleTable() {
     estimateSize: () => 10,
     // Pass correct keys to virtualizer it's important when rows change position
     getItemKey: useCallback((index: number) => `${rows[index]?.id}`, [rows]),
-
     getScrollElement: () => tableContainerRef.current,
-
-    overscan: 10
+    overscan: 5,
+    scrollPaddingEnd: 40,
+    scrollPaddingStart: 40
   })
 
   const virtualRows = rowVirtualizer.getVirtualItems()
-  const [paddingTop, paddingBottom] =
-    virtualRows.length > 0
-      ? [
-          Math.max(0, virtualRows[0]?.start ?? 0),
-          Math.max(0, rowVirtualizer.getTotalSize() - (virtualRows[virtualRows.length - 1]?.end ?? 0))
-        ]
-      : [0, 0]
 
   return (
-    <div ref={tableContainerRef}>
+    <div
+      ref={tableContainerRef}
+      style={{
+        height: '800px',
+        overflow: 'auto',
+        position: 'relative'
+      }}
+    >
       <SimpleTable.Table>
         <SimpleTable.Head>
           {table.getHeaderGroups().map(headerGroup => (
-            <tr key={headerGroup.id}>
+            <SimpleTable.HeadTr key={headerGroup.id}>
               {headerGroup.headers.map(header => (
-                <SimpleTable.Th
-                  key={header.id}
-                  {...{
-                    style: {
-                      maxWidth: header.column.getSize(),
-                      minWidth: header.column.getSize(),
-                      width: header.column.getSize()
-                    }
-                  }}
-                >
+                <SimpleTable.Th key={header.id} $width={header.column.getSize()}>
                   {header.isPlaceholder ? undefined : (
                     <SimpleTable.SortContainer
                       {...{
@@ -309,30 +300,30 @@ export function _SimpleTable() {
                   )}
                 </SimpleTable.Th>
               ))}
-            </tr>
+            </SimpleTable.HeadTr>
           ))}
         </SimpleTable.Head>
-        <tbody>
-          {paddingTop > 0 && (
-            <tr>
-              <td style={{ height: `${paddingTop}px` }} />
-            </tr>
-          )}
+        <SimpleTable.Body $totalSize={rowVirtualizer.getTotalSize()}>
           {virtualRows.map(virtualRow => {
             const row = rows[virtualRow.index]
 
             return (
-              <SimpleTable.BodyTr key={virtualRow.key}>
+              <SimpleTable.BodyTr
+                key={row?.id}
+                ref={node => rowVirtualizer.measureElement(node)} // measure dynamic row height
+                data-index={virtualRow.index} // needed for dynamic row height measurement
+                style={{
+                  transform: `translateY(${virtualRow.start}px)` // this should always be a `style` as it changes on scroll
+                }}
+              >
                 {row?.getVisibleCells().map(cell => (
                   <SimpleTable.Td
-                    {...{
-                      $isCenter: !!(cell.column.id === 'geom' || cell.column.id === 'edit'),
-                      key: cell.id,
-                      style: {
-                        maxWidth: cell.column.getSize(),
-                        minWidth: cell.column.getSize(),
-                        width: cell.column.getSize()
-                      }
+                    key={cell.id}
+                    $isCenter={!!(cell.column.id === 'geom' || cell.column.id === 'edit')}
+                    style={{
+                      maxWidth: cell.column.getSize(),
+                      minWidth: cell.column.getSize(),
+                      width: cell.column.getSize()
                     }}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -341,12 +332,7 @@ export function _SimpleTable() {
               </SimpleTable.BodyTr>
             )
           })}
-          {paddingBottom > 0 && (
-            <tr>
-              <td style={{ height: `${paddingBottom}px` }} />
-            </tr>
-          )}
-        </tbody>
+        </SimpleTable.Body>
       </SimpleTable.Table>
     </div>
   )
