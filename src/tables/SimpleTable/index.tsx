@@ -65,14 +65,14 @@ const SortContainer = styled.div`
     cursor: pointer;
   }
 `
-const Body = styled.tbody<{ $totalSize: number | undefined }>`
+const Body = styled.tbody<{ $totalSize?: number | undefined }>`
   display: grid;
   height: ${p => (p.$totalSize ? `${p.$totalSize}px` : 'auto')}; // tells scrollbar how big the table is
   position: relative; // needed for absolute positioning of rows
 `
-const BodyTr = styled.tr`
+const BodyTr = styled.tr<{ $withoutVirtualize?: boolean }>`
   display: flex;
-  position: absolute;
+  position: ${p => (p.$withoutVirtualize ? 'static' : 'absolute')};
   width: 100%;
 
   &:hover {
