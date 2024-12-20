@@ -1,3 +1,10 @@
+## [24.11.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.11.2...v24.11.3) (2024-12-20)
+
+
+### Bug Fixes
+
+* **tables:** fix scroll in virtualize tables ([1488e3d](https://github.com/MTES-MCT/monitor-ui/commit/1488e3d00a086fb992f0038949ef07ac7176c39a))
+
 ## [24.11.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.11.1...v24.11.2) (2024-12-17)
 
 
