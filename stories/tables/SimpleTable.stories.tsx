@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
 import { flexRender, getCoreRowModel, getSortedRowModel, type SortingState, useReactTable } from '@tanstack/react-table'
-import { useVirtualizer } from '@tanstack/react-virtual'
+import { notUndefined, useVirtualizer } from '@tanstack/react-virtual'
 import { useCallback, useMemo, useRef, useState } from 'react'
 
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
@@ -267,11 +267,11 @@ export function _SimpleTable() {
   })
 
   const virtualRows = rowVirtualizer.getVirtualItems()
-  const [paddingTop, paddingBottom] =
+  const [before, after] =
     virtualRows.length > 0
       ? [
-          Math.max(0, virtualRows[0]?.start ?? 0),
-          Math.max(0, rowVirtualizer.getTotalSize() - (virtualRows[virtualRows.length - 1]?.end ?? 0))
+          notUndefined(virtualRows[0]).start - rowVirtualizer.options.scrollMargin,
+          rowVirtualizer.getTotalSize() - notUndefined(virtualRows[virtualRows.length - 1]).end
         ]
       : [0, 0]
 
@@ -312,17 +312,21 @@ export function _SimpleTable() {
             </tr>
           ))}
         </SimpleTable.Head>
+        {before > 0 && (
+          <tr>
+            <td aria-label="padding before" colSpan={columns.length} style={{ height: before }} />
+          </tr>
+        )}
         <tbody>
-          {paddingTop > 0 && (
-            <tr>
-              <td style={{ height: `${paddingTop}px` }} />
-            </tr>
-          )}
           {virtualRows.map(virtualRow => {
             const row = rows[virtualRow.index]
 
             return (
-              <SimpleTable.BodyTr key={virtualRow.key}>
+              <SimpleTable.BodyTr
+                key={virtualRow.key}
+                ref={rowVirtualizer.measureElement} // measure dynamic row height
+                data-index={virtualRow.index} // needed for dynamic row height measurement
+              >
                 {row?.getVisibleCells().map(cell => (
                   <SimpleTable.Td
                     {...{
@@ -341,12 +345,12 @@ export function _SimpleTable() {
               </SimpleTable.BodyTr>
             )
           })}
-          {paddingBottom > 0 && (
-            <tr>
-              <td style={{ height: `${paddingBottom}px` }} />
-            </tr>
-          )}
         </tbody>
+        {after > 0 && (
+          <tr>
+            <td aria-label="padding after" colSpan={columns.length} style={{ height: after }} />
+          </tr>
+        )}
       </SimpleTable.Table>
     </div>
   )
