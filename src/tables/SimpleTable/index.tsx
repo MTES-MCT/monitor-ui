@@ -19,7 +19,7 @@ const Head = styled.thead`
   top: 0;
   z-index: 1;
 
-  > th:first-child {
+  > tr > th:first-child {
     border-left: 1px solid ${p => p.theme.color.lightGray};
   }
 `

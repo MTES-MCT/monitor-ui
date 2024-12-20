@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
 import { flexRender, getCoreRowModel, getSortedRowModel, type SortingState, useReactTable } from '@tanstack/react-table'
-import { useVirtualizer } from '@tanstack/react-virtual'
+import { notUndefined, useVirtualizer } from '@tanstack/react-virtual'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 
@@ -321,18 +321,19 @@ export function _TableWithSelectableRows() {
   })
 
   const virtualRows = rowVirtualizer.getVirtualItems()
-  const [paddingTop, paddingBottom] =
-    virtualRows.length > 0
-      ? [
-          Math.max(0, virtualRows[0]?.start ?? 0),
-          Math.max(0, rowVirtualizer.getTotalSize() - (virtualRows[virtualRows.length - 1]?.end ?? 0))
-        ]
-      : [0, 0]
 
   const archiveReportings = () => {
     // eslint-disable-next-line no-console
     console.log('this reportings will be archived: ', selectedIds)
   }
+
+  const [before, after] =
+    virtualRows.length > 0
+      ? [
+          notUndefined(virtualRows[0]).start - rowVirtualizer.options.scrollMargin,
+          rowVirtualizer.getTotalSize() - notUndefined(virtualRows[virtualRows.length - 1]).end
+        ]
+      : [0, 0]
 
   return (
     <>
@@ -365,17 +366,23 @@ export function _TableWithSelectableRows() {
               </tr>
             ))}
           </TableWithSelectableRows.Head>
+          {before > 0 && (
+            <tr>
+              <td aria-label="padding before" colSpan={columns.length} style={{ height: before }} />
+            </tr>
+          )}
           <tbody>
-            {paddingTop > 0 && (
-              <tr>
-                <td style={{ height: `${paddingTop}px` }} />
-              </tr>
-            )}
             {virtualRows.map((virtualRow, index) => {
               const row = rows[virtualRow.index]
 
               return (
-                <TableWithSelectableRows.BodyTr key={virtualRow.key} $isHighlighted={index % 2 === 0}>
+                <TableWithSelectableRows.BodyTr
+                  key={virtualRow.key}
+                  ref={rowVirtualizer.measureElement} // measure dynamic row height
+                  $isHighlighted={index % 2 === 0}
+                  data-cy="reporting-row"
+                  data-index={virtualRow.index} // needed for dynamic row height measurement
+                >
                   {row?.getVisibleCells().map(cell => (
                     <TableWithSelectableRows.Td
                       key={cell.id}
@@ -388,12 +395,12 @@ export function _TableWithSelectableRows() {
                 </TableWithSelectableRows.BodyTr>
               )
             })}
-            {paddingBottom > 0 && (
-              <tr>
-                <td style={{ height: `${paddingBottom}px` }} />
-              </tr>
-            )}
           </tbody>
+          {after > 0 && (
+            <tr>
+              <td aria-label="padding after" colSpan={columns.length} style={{ height: after }} />
+            </tr>
+          )}
         </TableWithSelectableRows.Table>
       </div>
     </>
