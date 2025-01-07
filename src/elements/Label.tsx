@@ -22,7 +22,7 @@ export const Label = styled.label.attrs<LabelProps, LabelProps>(props => ({
   ${p =>
     p.$isRequired &&
     `
-    :after {
+    &:after {
         content:" *";
         color: ${p.theme.color.maximumRed};
       }`}
