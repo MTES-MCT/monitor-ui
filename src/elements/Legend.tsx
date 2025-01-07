@@ -23,7 +23,7 @@ export const Legend = styled.legend.attrs<LegendProps, LegendProps>(props => ({
   ${p =>
     p.$isRequired &&
     `
-    :after {
+    &:after {
         content:" *";
         color: ${p.theme.color.maximumRed};
       }`}
