@@ -167,6 +167,9 @@
     "rsuite": "^5.53.2",
     "styled-components": "^5.0.0 || ^6.0.0"
   },
+  "overrides": {
+    "conventional-changelog-conventionalcommits": ">= 8.0.0"
+  },
   "//": "https://github.com/okonet/lint-staged/issues/825#issuecomment-674575655",
   "lint-staged": {
     "*.{json,md,yaml,yml}": "prettier --write",
