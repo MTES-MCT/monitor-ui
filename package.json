@@ -176,5 +176,8 @@
       "bash -c 'npm run test:type'"
     ]
   },
-  "packageManager": "yarn@4.4.0"
+  "packageManager": "yarn@4.4.0",
+  "resolutions": {
+    "conventional-changelog-conventionalcommits": ">= 8.0.0"
+  }
 }
