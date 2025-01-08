@@ -2948,7 +2948,7 @@ __metadata:
     react-dom: "npm:18.3.1"
     react-imask: "npm:7.6.1"
     react-is: "npm:19.0.0"
-    react-toastify: "npm:9.1.3"
+    react-toastify: "npm:11.0.2"
     rollup: "npm:4.29.2"
     rollup-plugin-bundle-size: "npm:1.0.3"
     rollup-plugin-import-css: "npm:3.5.8"
@@ -7428,10 +7428,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:^1.1.1":
-  version: 1.2.1
-  resolution: "clsx@npm:1.2.1"
-  checksum: 10c0/34dead8bee24f5e96f6e7937d711978380647e936a22e76380290e35486afd8634966ce300fc4b74a32f3762c7d4c0303f442c3e259f4ce02374eb0c82834f27
+"clsx@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "clsx@npm:2.1.1"
+  checksum: 10c0/c4c8eb865f8c82baab07e71bfa8897c73454881c4f99d6bc81585aecd7c441746c1399d08363dc096c550cceaf97bd4ce1e8854e1771e9998d9f94c4fe075839
   languageName: node
   linkType: hard
 
@@ -16492,15 +16492,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-toastify@npm:9.1.3":
-  version: 9.1.3
-  resolution: "react-toastify@npm:9.1.3"
+"react-toastify@npm:11.0.2":
+  version: 11.0.2
+  resolution: "react-toastify@npm:11.0.2"
   dependencies:
-    clsx: "npm:^1.1.1"
+    clsx: "npm:^2.1.1"
   peerDependencies:
-    react: ">=16"
-    react-dom: ">=16"
-  checksum: 10c0/51de1e51e9357a24773fbcd45a4db18bf74b8ec40d86a2bfb4a4fee23ca4f9fffdac5dfb7a3c21baea39971f72f72dfcdc79403a6de006f74d69e7bc12f8b3e0
+    react: ^18 || ^19
+    react-dom: ^18 || ^19
+  checksum: 10c0/e1ba01846782d47d0bf9cec7e2b4804f9af30e50a203786523f16db33691c1491f2382832e7ec4b69c583d3634ea0e3efb383da00ca9076bcf4bdd906a54a85f
   languageName: node
   linkType: hard
 
@@ -16964,7 +16964,7 @@ __metadata:
     supports-preserve-symlinks-flag: "npm:^1.0.0"
   bin:
     resolve: bin/resolve
-  checksum: 10c0/c8fd3ed88fd49b7dfa8ea408e8beea5ce038114199d7321e39215e7f45659c03eda3025da96ee3c651a9b00eba406ad3e4e61972e9b960c9cf59edb68b83f781
+  checksum: 10c0/0446f024439cd2e50c6c8fa8ba77eaa8370b4180f401a96abf3d1ebc770ac51c1955e12764cde449fde3fff480a61f84388e3505ecdbab778f4bef5f8212c729
   languageName: node
   linkType: hard
 
@@ -16977,7 +16977,7 @@ __metadata:
     supports-preserve-symlinks-flag: "npm:^1.0.0"
   bin:
     resolve: bin/resolve
-  checksum: 10c0/cc8024f1e55ae4710f1874c85bebb32965002c98670b381dc307cb7ea246fe9d9b3c8bbaed4f4090beb5e1c41eb70bac87e5b7a47e096cd0b8effeae210ce577
+  checksum: 10c0/78ad6edb8309a2bfb720c2c1898f7907a37f858866ce11a5974643af1203a6a6e05b2fa9c53d8064a673a447b83d42569260c306d43628bff5bb101969708355
   languageName: node
   linkType: hard
 
@@ -19253,7 +19253,7 @@ __metadata:
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/1cfd5d81579cb7c3496ad6087787ba23b334dba105982aab3c9fe44de4575f2c9f02277497bdd78c16d3dc284641f480228f169e4e6b3cbdce28578a40539117
+  checksum: 10c0/c891ccf04008bc1305ba34053db951f8a4584b4a1bf2f68fd972c4a354df3dc5e62c8bfed4f6ac2d12e5b3b1c49af312c83a651048f818cd5b4949d17baacd79
   languageName: node
   linkType: hard
 
