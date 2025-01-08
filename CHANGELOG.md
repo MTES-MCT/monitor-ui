@@ -1,3 +1,24 @@
+## [24.11.4](https://github.com/MTES-MCT/monitor-ui/compare/v24.11.3...v24.11.4) (2025-01-08)
+
+### Bug Fixes
+
+* **elements:** fix $isRequired prop on label and Legend components ([c410bcf](https://github.com/MTES-MCT/monitor-ui/commit/c410bcf041e6b865ad39c7a35b1fee9746ffcd69))
+* **global:** resolve issue when releasing new version ([cc82fdc](https://github.com/MTES-MCT/monitor-ui/commit/cc82fdcbbbfe3ffdbb6c9e793f08fa34f9a2c833))
+* **global:** resolve issue when releasing new version ([c1a1810](https://github.com/MTES-MCT/monitor-ui/commit/c1a18109995c41f8590e9648f6eaa2093b2ffd65))
+* **global:** resolve issue when releasing new version ([7d418ff](https://github.com/MTES-MCT/monitor-ui/commit/7d418ffb81f64c0a7bd458fcbeecaada8cc15e0f))
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @rollup/plugin-commonjs from 25.0.3 to 28.0.2 ([64efc16](https://github.com/MTES-MCT/monitor-ui/commit/64efc16bfdc6c384f8f7d40c2072017c02709a3b))
+* **dev-deps:** bump @rollup/plugin-node-resolve from 15.3.0 to 16.0.0 ([d9ce487](https://github.com/MTES-MCT/monitor-ui/commit/d9ce487cfaffc961a9d5847e59d52ea21aec99c9))
+* **dev-deps:** bump @types/node from 20.14.10 to 22.10.2 ([9dbd4d3](https://github.com/MTES-MCT/monitor-ui/commit/9dbd4d372a06794a761ea16396f388cd5c0c5d44))
+* **dev-deps:** bump eslint-plugin-sort-destructure-keys ([045286e](https://github.com/MTES-MCT/monitor-ui/commit/045286e246ff519728574b8cf60ea2fe97450c7e))
+* **dev-deps:** bump react-is from 18.3.1 to 19.0.0 ([984dc6c](https://github.com/MTES-MCT/monitor-ui/commit/984dc6c747c127073abf57630663e5e22d27d2da))
+* **dev-deps:** bump semantic-release from 23.0.8 to 24.1.2 ([b988c17](https://github.com/MTES-MCT/monitor-ui/commit/b988c17e09c33bcac757ac9825c8d0a66587ef7c))
+* **dev-deps:** bump the non-major-dev-dependencies group with 5 updates ([bba6b6f](https://github.com/MTES-MCT/monitor-ui/commit/bba6b6f3dec3f77149fab5d507ed5473e3d05031))
+* **dev-deps:** bump the non-major-dev-dependencies group with 6 updates ([c350a8c](https://github.com/MTES-MCT/monitor-ui/commit/c350a8ce224bcd35bd2e37c4193febee3ad006a7))
+* **dev-deps:** bump the non-major-dev-dependencies group with 8 updates ([dc2a9f7](https://github.com/MTES-MCT/monitor-ui/commit/dc2a9f73785f2f274c36dbe2790f2e1b0fd7f137))
+
 ## [24.11.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.11.2...v24.11.3) (2024-12-20)
 
 
