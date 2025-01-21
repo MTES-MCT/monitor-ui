@@ -17,7 +17,7 @@ export function Notifier({ isSideWindow = false }: NotifierProps) {
       }
 
       toast(event.detail.message, {
-        position: toast.POSITION.BOTTOM_RIGHT,
+        position: 'bottom-right',
         type: event.detail.type
       })
     },
