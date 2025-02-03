@@ -155,6 +155,40 @@ export namespace ControlUnit {
   // 10080 PAM Themis
   export const PAMControlUnitIds = [10141, 10404, 10121, 10345, 10080]
 
+  // List of ULAM units identifiers
+  // 10074 ULAM 2A
+  // 10192 ULAM 2B
+  // 10194 ULAM 06
+  // 10039 ULAM 13
+  // 10452 ULAM 14
+  // 10255 ULAM 17
+  // 10204 ULAM 22
+  // 10457 ULAM 29 Brest
+  // 10288  ULAM 29 Douarnenez
+  // 10225 ULAM 33
+  // 10420 ULAM 34/30
+  // 10176 ULAM 35
+  // 10428 ULAM 44
+  // 10210 ULAM 50
+  // 10449 ULAM 56
+  // 10050 ULAM 59
+  // 10318 ULAM 62/80
+  // 10364 ULAM 64/40
+  // 10303 ULAM 66/11
+  // 10423 ULAM 76
+  // 10166 ULAM 83
+  // 10171 ULAM 85
+  // 10169 ULAM 971 Guadeloupe
+  // 10327 ULAM 972 Martinique
+  // 10265 ULAM 973 Guyane
+  // 10183 ULAM 974 Réunion
+  // 10430 ULAM 976 Saint Pierre et Miquelon
+  // 10047 ULAM 976 Mayotte
+  export const ULAMControlUnitIds = [
+    10074, 10192, 10194, 10039, 10452, 10255, 10204, 10457, 10288, 10225, 10420, 10176, 10428, 10210, 10449, 10050,
+    10318, 10364, 10303, 10423, 10166, 10171, 10169, 10327, 10265, 10183, 10430, 10047
+  ]
+
   // ---------------------------------------------------------------------------
   // Types
 
