@@ -1,3 +1,33 @@
+## [24.12.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.11.4...v24.12.0) (2025-02-03)
+
+### Features
+
+* **entities:** add ULAMControlUnitIds ([e6f0e53](https://github.com/MTES-MCT/monitor-ui/commit/e6f0e53879b5a146387b65611e82e75a8b2d90e5))
+
+### Bug Fixes
+
+* **components:** fix initial placement for Notifier ([7cb3e06](https://github.com/MTES-MCT/monitor-ui/commit/7cb3e06c30e191ccd80d2af69d3b8fc790340bf9))
+
+### Buid System & Dependencies
+
+* **deps:** bump @babel/runtime in the non-major-dependencies group ([27b7f6c](https://github.com/MTES-MCT/monitor-ui/commit/27b7f6ce52e09595619d45a43f19b78fc808865a))
+* **dev-deps:** bump @semantic-release/exec from 6.0.3 to 7.0.2 ([50a3bf4](https://github.com/MTES-MCT/monitor-ui/commit/50a3bf4f71637c831033f3c780a330a31d26ae8d))
+* **dev-deps:** bump cypress in /e2e/release/sample ([1d5e074](https://github.com/MTES-MCT/monitor-ui/commit/1d5e0749e9b94c03eaed56360487cbf3a67c7b7e))
+* **dev-deps:** bump eslint-config-prettier from 9.1.0 to 10.0.1 ([e733e92](https://github.com/MTES-MCT/monitor-ui/commit/e733e921b0d1b36ec7a0086816509ed0333c8d93))
+* **dev-deps:** bump ol from 7.1.0 to 10.4.0 ([9e8bece](https://github.com/MTES-MCT/monitor-ui/commit/9e8bece71d10849383f99ceb208c2153da1c6382))
+* **dev-deps:** bump react-toastify from 9.1.3 to 11.0.3 ([4a2f325](https://github.com/MTES-MCT/monitor-ui/commit/4a2f3254011dd389e568d07d2a9e1f4e21650b31))
+* **dev-deps:** bump the all-non-major-dependencies group ([dba68bd](https://github.com/MTES-MCT/monitor-ui/commit/dba68bd9ab2bbeb59e9d766536d6845adc314cdc))
+* **dev-deps:** bump the all-non-major-dependencies group ([d5f6c73](https://github.com/MTES-MCT/monitor-ui/commit/d5f6c73a4f717eb63c7ccef783f6045c2521e42e))
+* **dev-deps:** bump the all-non-major-dependencies group ([e1f65b0](https://github.com/MTES-MCT/monitor-ui/commit/e1f65b00d96ed07a6b3324efea2d20508e90a58f))
+* **dev-deps:** bump the all-non-major-dependencies group across 1 directory with 6 updates ([90c5662](https://github.com/MTES-MCT/monitor-ui/commit/90c5662753fddb46b64f5222dd82022088a0bcbb))
+* **dev-deps:** bump the non-major-dev-dependencies group across 1 directory with 25 updates ([a90b6e4](https://github.com/MTES-MCT/monitor-ui/commit/a90b6e42899d07fde7fafb406bdd7c64b3c7d202))
+* **dev-deps:** bump the non-major-dev-dependencies group across 1 directory with 3 updates ([6cdd1d2](https://github.com/MTES-MCT/monitor-ui/commit/6cdd1d2c5f0f441a8bf6d826a18a329541323bde))
+* **dev-deps:** bump the non-major-dev-dependencies group with 16 updates ([8c89714](https://github.com/MTES-MCT/monitor-ui/commit/8c89714beeb930d8ef028640ccdfe1c62b2b6d85))
+* **dev-deps:** bump the non-major-dev-dependencies group with 18 updates ([c6d3274](https://github.com/MTES-MCT/monitor-ui/commit/c6d3274edb434324f10af7ebbf771c64eedda628))
+* **dev-deps:** bump vite ([3c7b32e](https://github.com/MTES-MCT/monitor-ui/commit/3c7b32eab1c1a207c50ac52cde7c985b99634f41))
+* **dev-deps:** bump vite in the npm_and_yarn group ([a41c0f0](https://github.com/MTES-MCT/monitor-ui/commit/a41c0f046c47b4ab0734df2e19864f9d9b2c4646))
+* **dev-deps:** downgrade storybook/addon-a11y ([49d6148](https://github.com/MTES-MCT/monitor-ui/commit/49d61484b96c00fdaac31a0d955258b2ce1c5476))
+
 ## [24.11.4](https://github.com/MTES-MCT/monitor-ui/compare/v24.11.3...v24.11.4) (2025-01-08)
 
 ### Bug Fixes
