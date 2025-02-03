@@ -66,7 +66,7 @@
     "@semantic-release/npm": "12.0.1",
     "@semantic-release/release-notes-generator": "14.0.3",
     "@sentry/react": "8.53.0",
-    "@storybook/addon-a11y": "8.5.3",
+    "@storybook/addon-a11y": "8.4.7",
     "@storybook/addon-actions": "8.5.3",
     "@storybook/addon-essentials": "8.5.3",
     "@storybook/addon-storysource": "8.5.3",
