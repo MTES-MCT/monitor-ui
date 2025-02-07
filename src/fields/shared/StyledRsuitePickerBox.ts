@@ -71,6 +71,16 @@ export const StyledRsuitePickerBox = styled.div<CommonPickerFieldStyleProps>`
           }
         }
       }
+      &.rs-picker-toggle-active {
+        > .rs-stack {
+          > .rs-stack-item {
+            > .rs-picker-caret-icon {
+              rotate: 180deg;
+              transition: rotate 100ms linear;
+            }
+          }
+        }
+      }
 
       > .rs-stack {
         > .rs-stack-item {
@@ -117,6 +127,7 @@ export const StyledRsuitePickerBox = styled.div<CommonPickerFieldStyleProps>`
             > .rs-picker-caret-icon {
               height: 18px;
               top: 4px;
+              transition: rotate 100ms linear;
             }
 
             > .rs-picker-clean {
