@@ -1,3 +1,5 @@
+import { mount } from 'cypress/react18'
+
 import { StoryBox } from '../../../.storybook/components/StoryBox'
 import { CoordinatesFormat } from '../../../src'
 import { _CoordinatesInput as CoordinatesInputStory } from '../../../stories/fields/CoordinatesInput.stories'
@@ -66,5 +68,51 @@ context('Story', () => {
     cy.get('.Field-CoordinatesInput').should('not.contain', 'La latitude doit être N ou S')
 
     outputShouldBe([-2.986111, -17.414444])
+  })
+
+  it('Should round the default value for DMS coordinates to 6 decimals', () => {
+    const props: CoordinatesInputProps = {
+      coordinatesFormat: CoordinatesFormat.DEGREES_MINUTES_SECONDS,
+      defaultValue: [47.53916721151114, -0.2598992997646015],
+      label: 'Coordinates',
+      name: 'myCoordinatesInput'
+    }
+
+    mountAndWait(
+      <StoryBox>
+        <CoordinatesInputStory {...props} />
+      </StoryBox>
+    )
+
+    outputShouldBe([47.539167, -0.26])
+  })
+
+  it('Should modify the value for DD coordinates', () => {
+    const props: CoordinatesInputProps = {
+      coordinatesFormat: CoordinatesFormat.DECIMAL_DEGREES,
+      defaultValue: [47.53916721151114, -0.2598992997646015],
+      label: 'Coordinates',
+      name: 'myCoordinatesInput'
+    }
+
+    mount(
+      <StoryBox>
+        <CoordinatesInputStory {...props} />
+      </StoryBox>
+    ).then(({ rerender }) => {
+      cy.getDataCy('coordinates-dd-input-lat').should('have.value', '47.539167')
+
+      const nextProps = {
+        ...props,
+        defaultValue: [47.123, -0.123]
+      }
+      rerender(
+        <StoryBox>
+          <CoordinatesInputStory {...nextProps} />
+        </StoryBox>
+      )
+
+      cy.getDataCy('coordinates-dd-input-lat').should('have.value', '47.123000')
+    })
   })
 })
