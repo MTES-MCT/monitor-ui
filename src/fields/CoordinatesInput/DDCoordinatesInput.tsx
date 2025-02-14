@@ -6,6 +6,8 @@ import { isNumeric } from '../../utils/isNumeric'
 
 import type { Coordinates } from '../../types/definitions'
 
+const DECIMAL_PRECISION = 6
+
 type DDCoordinatesInputProps = {
   coordinates: Coordinates | undefined
   disabled: boolean
@@ -30,8 +32,8 @@ export function DDCoordinatesInput({ coordinates, disabled, name, onChange, read
 
     if (isNumeric(latitude) && isNumeric(longitude)) {
       return {
-        latitude: Number(latitude),
-        longitude: Number(longitude)
+        latitude: Number(latitude).toFixed(DECIMAL_PRECISION),
+        longitude: Number(longitude).toFixed(DECIMAL_PRECISION)
       }
     }
 
@@ -75,22 +77,22 @@ export function DDCoordinatesInput({ coordinates, disabled, name, onChange, read
       <DDInput
         ref={latitudeInputRef as any}
         data-cy="coordinates-dd-input-lat"
-        defaultValue={defaultValue ? defaultValue.latitude : undefined}
         disabled={disabled}
         name={`${name}-latitude`}
         onChange={() => handleChange(coordinates)}
         placeholder="Latitude"
         readOnly={readOnly}
+        value={defaultValue ? defaultValue.latitude : undefined}
       />
       <DDInput
         ref={longitudeInputRef as any}
         data-cy="coordinates-dd-input-lon"
-        defaultValue={defaultValue ? defaultValue.longitude : undefined}
         disabled={disabled}
         name={`${name}-longitude`}
         onChange={() => handleChange(coordinates)}
         placeholder="Longitude"
         readOnly={readOnly}
+        value={defaultValue ? defaultValue.longitude : undefined}
       />
       <CoordinatesType>(DD)</CoordinatesType>
       <Error>{latitudeError}</Error>

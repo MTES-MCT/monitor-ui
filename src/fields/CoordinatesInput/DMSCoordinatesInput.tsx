@@ -6,6 +6,8 @@ import styled from 'styled-components'
 import type { CoordinatesFormat } from '@constants'
 import type { Coordinates } from '@types_/definitions'
 
+const DECIMAL_PRECISION = 6
+
 type DMSCoordinatesInputProps = {
   coordinates: Coordinates | undefined
   coordinatesFormat: CoordinatesFormat
@@ -28,7 +30,9 @@ export function DMSCoordinatesInput({
       return ''
     }
 
-    return coordinates?.join(', ') || ''
+    const roundedCoordinates = [coordinates[0].toFixed(DECIMAL_PRECISION), coordinates[1].toFixed(DECIMAL_PRECISION)]
+
+    return roundedCoordinates.join(', ') || ''
   }, [coordinates, coordinatesFormat])
 
   const update = useCallback(
@@ -44,7 +48,7 @@ export function DMSCoordinatesInput({
     <Box>
       <CoordinateInput
         data-cy="dms-coordinates-input"
-        ddPrecision={6}
+        ddPrecision={DECIMAL_PRECISION}
         disabled={disabled}
         name={name}
         onChange={(_, { dd }) => update(dd)}
