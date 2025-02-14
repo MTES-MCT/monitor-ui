@@ -104,7 +104,7 @@ context('Story', () => {
 
       const nextProps = {
         ...props,
-        defaultValue: [47.123, -0.123]
+        defaultValue: [47.123, -0.123] as [number, number]
       }
       rerender(
         <StoryBox>
