@@ -1,3 +1,22 @@
+## [24.12.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.12.0...v24.12.1) (2025-02-17)
+
+### Bug Fixes
+
+* **elements:** rotate caret icon when list is open in cherry picker and select components ([bd07e3e](https://github.com/MTES-MCT/monitor-ui/commit/bd07e3e3e8a761813336ff7f52da6401a4b323f1))
+* **fields:** fix coordinates input dms and dd ([dbc9ea7](https://github.com/MTES-MCT/monitor-ui/commit/dbc9ea7fee0d620926e902d120c7d41d80f9c445))
+
+### Buid System & Dependencies
+
+* **deps:** bump @octokit/endpoint in the npm_and_yarn group ([ec2dd46](https://github.com/MTES-MCT/monitor-ui/commit/ec2dd46f814cb57757c6b964104aa6cb74923d9d))
+* **deps:** bump store2 from 2.14.2 to 2.14.4 in the npm_and_yarn group ([8fd60bc](https://github.com/MTES-MCT/monitor-ui/commit/8fd60bc1404b297717834a9da3d5c072c9f01382))
+* **deps:** bump storybook to 8.6.0-beta.1 ([4defdae](https://github.com/MTES-MCT/monitor-ui/commit/4defdae42609d8bab1e2e2667cfab68a76f74654))
+* **deps:** bump the non-major-dependencies group with 2 updates ([081531d](https://github.com/MTES-MCT/monitor-ui/commit/081531d7b4ba24d11eeb2200cc5456889cb331cf))
+* **deps:** bump the npm_and_yarn group with 3 updates ([a4a6f76](https://github.com/MTES-MCT/monitor-ui/commit/a4a6f76422d5197943e72e9d138da06ab61f94ee))
+* **dev-deps:** bump @sentry/react in /e2e/release/sample ([f12acce](https://github.com/MTES-MCT/monitor-ui/commit/f12acce2632c3a7901b18f9356402440e59a290e))
+* **dev-deps:** bump the all-non-major-dependencies group ([32199ba](https://github.com/MTES-MCT/monitor-ui/commit/32199bab396e124c233cc73b47c57f1efd5f53bc))
+* **dev-deps:** bump the all-non-major-dependencies group ([e40e7c7](https://github.com/MTES-MCT/monitor-ui/commit/e40e7c75705b7b9be6c685cc82429fab0628c987))
+* **dev-deps:** bump the non-major-dev-dependencies group with 12 updates ([91cddc2](https://github.com/MTES-MCT/monitor-ui/commit/91cddc274c5a393b42cedc1d6159af886f6150b4))
+
 ## [24.12.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.11.4...v24.12.0) (2025-02-03)
 
 ### Features
