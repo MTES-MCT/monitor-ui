@@ -92,6 +92,9 @@ import { Target } from './Target'
 import { Unlink } from './Unlink'
 import { Unlock } from './Unlock'
 import { Vessel } from './Vessel'
+import { VesselGroups } from './VesselGroups'
+import { VesselList } from './VesselList'
+import { VesselTrackSettings } from './VesselTrackSettings'
 import { ViewOnMap } from './ViewOnMap'
 import { VigilanceAreas } from './VigilanceAreas'
 import { Vms } from './Vms'
@@ -192,6 +195,9 @@ export {
   Unlink,
   Unlock,
   Vessel,
+  VesselGroups,
+  VesselList,
+  VesselTrackSettings,
   ViewOnMap,
   VigilanceAreas,
   Vms,

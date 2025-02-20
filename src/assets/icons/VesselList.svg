@@ -1,0 +1,11 @@
+<svg id="Vessel_list" data-name="Vessel list" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <rect id="Rectangle_6977" data-name="Rectangle 6977" width="20" height="20" fill="none"/>
+  <path id="Tracé_1781" data-name="Tracé 1781" d="M-160,286h20v20h-20Z" transform="translate(160 -286)" fill="none"/>
+  <g id="Groupe_5849" data-name="Groupe 5849" transform="translate(160 -286)">
+    <rect id="Rectangle_6978" data-name="Rectangle 6978" width="16" height="2" transform="translate(-158 288)" fill="#707785"/>
+    <path id="Union_12" data-name="Union 12" d="M-148.6,304.992a.162.162,0,0,1-.065-.04.172.172,0,0,1-.048-.1l-.48-3.659-3.66-.48a.17.17,0,0,1-.137-.113.168.168,0,0,1,.04-.173l5.108-5.109a.175.175,0,0,1,.064-.039l6.556-2.271a.166.166,0,0,1,.174.039.166.166,0,0,1,.039.174l-2.271,6.556a.165.165,0,0,1-.04.064l-5.108,5.107a.166.166,0,0,1-.119.05A.159.159,0,0,1-148.6,304.992Z" fill="#707785"/>
+    <path id="Tracé_1782" data-name="Tracé 1782" d="M-151.352,296H-158v2h4.648Z" fill="#707785"/>
+    <path id="Tracé_1783" data-name="Tracé 1783" d="M-149.256,293.9a2.171,2.171,0,0,1,.821-.512L-144.42,292H-158v2h8.647Z" fill="#707785"/>
+    <path id="Tracé_1784" data-name="Tracé 1784" d="M-154.928,301.247a2.165,2.165,0,0,1-.036-1.247h-3.079v2h3.582A2.148,2.148,0,0,1-154.928,301.247Z" fill="#707785"/>
+  </g>
+</svg>
