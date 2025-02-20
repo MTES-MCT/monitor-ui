@@ -1,3 +1,13 @@
+## [24.13.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.12.1...v24.13.0) (2025-02-20)
+
+### Features
+
+* **icons:** add vessel groups icons ([3f01122](https://github.com/MTES-MCT/monitor-ui/commit/3f0112204d653958d24ac09f711f3040e26f7a2e))
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @sentry/react from 8.54.0 to 9.1.0 ([7a4be6a](https://github.com/MTES-MCT/monitor-ui/commit/7a4be6ac5fc545f3c376b19b080776531bef3f00))
+
 ## [24.12.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.12.0...v24.12.1) (2025-02-17)
 
 ### Bug Fixes
