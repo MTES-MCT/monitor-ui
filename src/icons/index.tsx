@@ -57,6 +57,7 @@ import { MeasureLine } from './MeasureLine'
 import { Minus } from './Minus'
 import { MissionAction } from './MissionAction'
 import { More } from './More'
+import { NewFeatures } from './NewFeatures'
 import { Note } from './Note'
 import { Observation } from './Observation'
 import { Phone } from './Phone'
@@ -160,6 +161,7 @@ export {
   Minus,
   MissionAction,
   More,
+  NewFeatures,
   Note,
   Observation,
   Phone,
