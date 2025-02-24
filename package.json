@@ -69,7 +69,7 @@
     "@storybook/addon-a11y": "v8.6.0-beta.1",
     "@storybook/addon-actions": "v8.6.0-beta.1",
     "@storybook/addon-essentials": "v8.6.0-beta.1",
-    "@storybook/addon-storysource": "v8.6.0-beta.1",
+    "@storybook/addon-storysource": "v8.6.0-beta.7",
     "@storybook/blocks": "v8.6.0-beta.1",
     "@storybook/react": "v8.6.0-beta.1",
     "@storybook/react-vite": "v8.6.0-beta.1",
