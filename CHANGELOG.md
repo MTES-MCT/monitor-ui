@@ -1,3 +1,16 @@
+## [24.14.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.13.0...v24.14.0) (2025-02-24)
+
+### Features
+
+* **icons:** add new features icon ([4b0e25b](https://github.com/MTES-MCT/monitor-ui/commit/4b0e25b36389646c20091c64b1f1e957974914c8))
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @storybook/addon-storysource ([f86b8ca](https://github.com/MTES-MCT/monitor-ui/commit/f86b8ca30e893e2c38e3e238467dee67920db758))
+* **dev-deps:** bump @storybook/test from 8.6.0-beta.1 to 8.6.0-beta.7 ([d4d3cfd](https://github.com/MTES-MCT/monitor-ui/commit/d4d3cfd63823b155485fbe15252d75850771b9aa))
+* **dev-deps:** bump the all-non-major-dependencies group ([6399107](https://github.com/MTES-MCT/monitor-ui/commit/63991074c9a6d9db2e474a829b7fe9bbaef6a91a))
+* **dev-deps:** bump the non-major-dev-dependencies group with 13 updates ([9612943](https://github.com/MTES-MCT/monitor-ui/commit/9612943a55d4c086c179844c9a17216e74aa9d26))
+
 ## [24.13.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.12.1...v24.13.0) (2025-02-20)
 
 ### Features
