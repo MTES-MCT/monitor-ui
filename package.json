@@ -73,7 +73,7 @@
     "@storybook/blocks": "v8.6.0-beta.1",
     "@storybook/react": "v8.6.0-beta.1",
     "@storybook/react-vite": "v8.6.0-beta.1",
-    "@storybook/test": "v8.6.0-beta.1",
+    "@storybook/test": "v8.6.0-beta.7",
     "@storybook/test-runner": "0.21.3",
     "@storybook/testing-react": "2.0.1",
     "@swc/core": "1.10.18",
