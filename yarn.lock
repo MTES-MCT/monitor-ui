@@ -3052,7 +3052,7 @@ __metadata:
     "@storybook/addon-a11y": "npm:v8.6.0-beta.1"
     "@storybook/addon-actions": "npm:v8.6.0-beta.1"
     "@storybook/addon-essentials": "npm:v8.6.0-beta.1"
-    "@storybook/addon-storysource": "npm:v8.6.0-beta.1"
+    "@storybook/addon-storysource": "npm:v8.6.0-beta.7"
     "@storybook/blocks": "npm:v8.6.0-beta.1"
     "@storybook/react": "npm:v8.6.0-beta.1"
     "@storybook/react-vite": "npm:v8.6.0-beta.1"
@@ -4558,16 +4558,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-storysource@npm:v8.6.0-beta.1":
-  version: 8.6.0-beta.1
-  resolution: "@storybook/addon-storysource@npm:8.6.0-beta.1"
+"@storybook/addon-storysource@npm:v8.6.0-beta.7":
+  version: 8.6.0-beta.7
+  resolution: "@storybook/addon-storysource@npm:8.6.0-beta.7"
   dependencies:
-    "@storybook/source-loader": "npm:8.6.0-beta.1"
+    "@storybook/source-loader": "npm:8.6.0-beta.7"
     estraverse: "npm:^5.2.0"
     tiny-invariant: "npm:^1.3.1"
   peerDependencies:
-    storybook: ^8.6.0-beta.1
-  checksum: 10c0/b1c0e581a4be9838dcd73a2f216f920154d49bf590b693d54b09042273d6da2106def349c4de77af6d97bceea08d9f96abeecaa4005eca416d438273e93f1633
+    storybook: ^8.6.0-beta.7
+  checksum: 10c0/3e7b2faec82788ca05701e8f0c9fcb7991105d1d724104d3a5d31b06c04d3306e333cd2222e2d2856b8596dcf33770d7c458de757937c29ed66119e0930512e6
   languageName: node
   linkType: hard
 
@@ -4860,16 +4860,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/source-loader@npm:8.6.0-beta.1":
-  version: 8.6.0-beta.1
-  resolution: "@storybook/source-loader@npm:8.6.0-beta.1"
+"@storybook/source-loader@npm:8.6.0-beta.7":
+  version: 8.6.0-beta.7
+  resolution: "@storybook/source-loader@npm:8.6.0-beta.7"
   dependencies:
     es-toolkit: "npm:^1.22.0"
     estraverse: "npm:^5.2.0"
     prettier: "npm:^3.1.1"
   peerDependencies:
-    storybook: ^8.6.0-beta.1
-  checksum: 10c0/e06eb8b2f533b14250a62d69e0375a3cfba970a77fd26c95429edc8c5e6660970e2e87f087c4e2044c60d523fd537b6a7c35b7635bbb4bf34971f3fbcd868ab2
+    storybook: ^8.6.0-beta.7
+  checksum: 10c0/a14b8c6ae9f4468b11c600514ed85e5b75db2c64342521d4edb6d0455cb7ad59b67483725ca6d4ccb4ea118a704ab480eedcfaf41ecb526c7b13896eaad5fc66
   languageName: node
   linkType: hard
 
