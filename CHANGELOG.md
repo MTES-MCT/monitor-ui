@@ -1,3 +1,10 @@
+## [24.14.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.14.0...v24.14.1) (2025-03-03)
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump the all-non-major-dependencies group ([41f36e4](https://github.com/MTES-MCT/monitor-ui/commit/41f36e48ee0e195ab5eb448f24ce042aeaa4f147))
+* **dev-deps:** bump the non-major-dev-dependencies group with 23 updates ([e251f0f](https://github.com/MTES-MCT/monitor-ui/commit/e251f0f6c3f9bdb97c838436a536b4db2756a0d9))
+
 ## [24.14.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.13.0...v24.14.0) (2025-02-24)
 
 ### Features
