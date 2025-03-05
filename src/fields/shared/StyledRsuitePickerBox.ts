@@ -326,5 +326,161 @@ export const StyledRsuitePickerBox = styled.div<CommonPickerFieldStyleProps>`
         }
       }
     }
+    /** CheckTreePicker **/
+    > .rs-check-tree {
+      padding: 0;
+      margin: 0;
+      .rs-check-tree-node-icon {
+        margin-top: 4px;
+        &.rs-check-tree-node-expanded {
+          margin-top: -2px;
+        }
+      }
+      [role='treeitem'] {
+        display: flex;
+        align-items: center;
+        .rs-check-item {
+          width: 100%;
+          color: ${p => p.theme.color.gunMetal};
+          line-height: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          .rs-check-item-focus {
+            background-color: none;
+          }
+
+          &:hover {
+            background-color: ${p => p.theme.color.blueYonder25} !important;
+            color: ${p => p.theme.color.blueYonder} !important;
+          }
+
+          &.rs-picker-select-menu-item-active {
+            background-color: transparent;
+            font-weight: 500;
+
+            &:hover {
+              background-color: ${p => p.theme.color.blueYonder25};
+            }
+          }
+
+          &.rs-picker-select-menu-item-disabled {
+            background-color: transparent;
+            color: ${p => p.theme.color.lightGray};
+          }
+        }
+
+        > .rs-check-item {
+          > .rs-checkbox-checker {
+            min-height: auto;
+
+            > label {
+              color: ${p => p.theme.color.gunMetal};
+              font-size: 13px !important;
+              line-height: 1;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              padding: 1px 0;
+
+              > .rs-check-tree-node-label-content {
+                margin-left: 32px;
+                background-color: initial;
+                color: initial;
+              }
+
+              > .rs-checkbox-wrapper {
+                height: auto;
+                left: 8px;
+                top: 7px !important;
+                margin-left: 8px;
+
+                > .rs-checkbox-inner {
+                  &:before {
+                    background-color: ${p => p.theme.color.gainsboro};
+                    border: solid 2px ${p => p.theme.color.lightGray};
+                    border-radius: 0;
+                    margin-right: 8px;
+                  }
+                }
+              }
+            }
+          }
+
+          &:hover {
+            background-color: ${p => p.theme.color.blueYonder25};
+
+            > .rs-checkbox-checker {
+              > label {
+                color: ${p => p.theme.color.blueYonder};
+
+                > .rs-checkbox-wrapper {
+                  > .rs-checkbox-inner {
+                    &:before {
+                      background-color: ${p => p.theme.color.blueYonder25};
+                      border: solid 2px ${p => p.theme.color.blueYonder};
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          &.rs-check-item-focus {
+            background-color: ${p => p.theme.color.blueYonder25} !important;
+
+            > .rs-checkbox-checker {
+              > label {
+                font-weight: 400;
+              }
+            }
+          }
+
+          &.rs-checkbox-checked {
+            background-color: transparent;
+
+            &.rs-check-item-focus {
+              background-color: ${p => p.theme.color.blueYonder25} !important;
+            }
+
+            > .rs-checkbox-checker {
+              > label {
+                color: ${p => p.theme.color.gunMetal};
+                font-weight: 500;
+
+                > .rs-checkbox-wrapper {
+                  > .rs-checkbox-inner {
+                    &:before {
+                      background-color: ${p => p.theme.color.charcoal};
+                      border: solid 2px ${p => p.theme.color.charcoal};
+                    }
+                  }
+                }
+              }
+            }
+
+            &:hover,
+            &._hover {
+              background-color: ${p => p.theme.color.blueYonder25};
+
+              > .rs-checkbox-checker {
+                > label {
+                  color: ${p => p.theme.color.blueYonder};
+
+                  > .rs-checkbox-wrapper {
+                    > .rs-checkbox-inner {
+                      &:before {
+                        background-color: ${p => p.theme.color.blueYonder};
+                        border: solid 2px ${p => p.theme.color.blueYonder};
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 `
