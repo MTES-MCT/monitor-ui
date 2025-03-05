@@ -1,18 +1,15 @@
 import { getSelectedOptionValuesFromSelectedRsuiteDataItemValues } from '@utils/getSelectedOptionValuesFromSelectedRsuiteDataItemValues'
 import classnames from 'classnames'
-import { useCallback, useMemo, useRef, useState, type ReactNode, useEffect } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { CheckPicker as RsuiteCheckPicker, type CheckPickerProps as RsuiteCheckPickerProps } from 'rsuite'
 
-import { StyledRsuitePickerBox } from './shared/StyledRsuitePickerBox'
-import { Field } from '../elements/Field'
-import { FieldError } from '../elements/FieldError'
-import { Label } from '../elements/Label'
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../hooks/useForceUpdate'
 import { type OptionValueType } from '../types/definitions'
 import { getRsuiteDataItemsFromOptions } from '../utils/getRsuiteDataItemsFromOptions'
 import { getRsuiteDataItemValuesFromOptionValues } from '../utils/getRsuiteDataItemValuesFromOptionValues'
 import { normalizeString } from '../utils/normalizeString'
+import { CheckPickerBox } from './shared/CheckPickerBox'
 
 import type { SelectType } from '@types_/commonTypes'
 
@@ -109,43 +106,44 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
   }, [forceUpdate])
 
   return (
-    <Field className={controlledClassName} style={style}>
-      <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={originalProps.name}>
-        {label}
-      </Label>
-
-      <StyledRsuitePickerBox
-        ref={boxRef}
-        $hasError={hasError}
-        $isDisabled={disabled}
-        $isLight={isLight}
-        $isReadOnly={readOnly}
-        $isTransparent={isTransparent}
-        $popupWidth={popupWidth}
-      >
-        {boxRef.current && (
-          <RsuiteCheckPicker
-            container={boxRef.current}
-            // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
-            // when we don't, we don't need to control that and just pass the non-internally-controlled `rsuiteData`
-            data={controlledRsuiteData ?? rsuiteData}
-            disabled={disabled}
-            id={originalProps.name}
-            onChange={handleChange}
-            onSearch={handleSearch}
-            readOnly={readOnly}
-            renderMenuItem={renderMenuItem}
-            searchable={!!customSearch || searchable}
-            // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
-            // that's why we send this "always true" filter to disable Rsuite CheckPicker internal search filtering
-            searchBy={(customSearch ? () => true : undefined) as any}
-            size={originalProps.size ?? 'sm'}
-            value={selectedRsuiteValue}
-            {...originalProps}
-          />
-        )}
-      </StyledRsuitePickerBox>
-      {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
-    </Field>
+    <CheckPickerBox
+      boxRef={boxRef}
+      className={controlledClassName}
+      disabled={disabled}
+      error={controlledError}
+      hasError={hasError}
+      isErrorMessageHidden={isErrorMessageHidden}
+      isLabelHidden={isLabelHidden}
+      isLight={isLight}
+      isRequired={isRequired}
+      isTransparent={isTransparent}
+      label={label}
+      name={originalProps.name}
+      popupWidth={popupWidth}
+      readOnly={readOnly}
+      style={style}
+    >
+      {boxRef.current && (
+        <RsuiteCheckPicker
+          container={boxRef.current}
+          // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
+          // when we don't, we don't need to control that and just pass the non-internally-controlled `rsuiteData`
+          data={controlledRsuiteData ?? rsuiteData}
+          disabled={disabled}
+          id={originalProps.name}
+          onChange={handleChange}
+          onSearch={handleSearch}
+          readOnly={readOnly}
+          renderMenuItem={renderMenuItem}
+          searchable={!!customSearch || searchable}
+          // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
+          // that's why we send this "always true" filter to disable Rsuite CheckPicker internal search filtering
+          searchBy={(customSearch ? () => true : undefined) as any}
+          size={originalProps.size ?? 'sm'}
+          value={selectedRsuiteValue}
+          {...originalProps}
+        />
+      )}
+    </CheckPickerBox>
   )
 }

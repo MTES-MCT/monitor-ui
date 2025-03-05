@@ -1,0 +1,64 @@
+import { Field } from '@elements/Field'
+import { FieldError } from '@elements/FieldError'
+import { Label } from '@elements/Label'
+
+import { StyledRsuitePickerBox } from './StyledRsuitePickerBox'
+
+interface CheckPickerBoxProps {
+  boxRef: React.RefObject<HTMLDivElement> | undefined
+  children?: React.ReactNode
+  className: string | undefined
+  disabled: boolean
+  error: string | undefined
+  hasError: boolean
+  isErrorMessageHidden: boolean
+  isLabelHidden?: boolean
+  isLight: boolean
+  isRequired?: boolean
+  isTransparent: boolean
+  label: string
+  name: string
+  popupWidth: number | undefined
+  readOnly: boolean
+  style: React.CSSProperties | undefined
+}
+
+export function CheckPickerBox({
+  boxRef,
+  children,
+  className,
+  disabled,
+  error,
+  hasError,
+  isErrorMessageHidden,
+  isLabelHidden,
+  isLight,
+  isRequired,
+  isTransparent,
+  label,
+  name,
+  popupWidth,
+  readOnly,
+  style
+}: CheckPickerBoxProps) {
+  return (
+    <Field className={className} style={style}>
+      <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={name}>
+        {label}
+      </Label>
+
+      <StyledRsuitePickerBox
+        ref={boxRef}
+        $hasError={hasError}
+        $isDisabled={disabled}
+        $isLight={isLight}
+        $isReadOnly={readOnly}
+        $isTransparent={isTransparent}
+        $popupWidth={popupWidth}
+      >
+        {children}
+      </StyledRsuitePickerBox>
+      {!isErrorMessageHidden && hasError && <FieldError>{error}</FieldError>}
+    </Field>
+  )
+}
