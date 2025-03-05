@@ -63,6 +63,12 @@ export function CheckTreePicker({
 
   const { forceUpdate } = useForceUpdate()
 
+  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
+
+  useEffect(() => {
+    forceUpdate()
+  }, [forceUpdate])
+
   const rsuiteValue = useMemo(() => toRsuiteValue(value), [value])
 
   const handleChange = useCallback(
@@ -77,12 +83,6 @@ export function CheckTreePicker({
     },
     [onChange, options, rsuiteValue]
   )
-
-  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
-
-  useEffect(() => {
-    forceUpdate()
-  }, [forceUpdate])
 
   return (
     <CheckPickerBox
