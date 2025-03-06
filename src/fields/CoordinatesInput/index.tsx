@@ -94,10 +94,10 @@ export function CoordinatesInput({
         return (
           <DDCoordinatesInput
             key={key}
-            coordinates={defaultValue as [number, number]}
+            coordinates={defaultValue}
             disabled={disabled}
             name={name}
-            onChange={onChange}
+            onChange={nextCoordinates => onChange(nextCoordinates, defaultValue)}
             readOnly={readOnly}
           />
         )
