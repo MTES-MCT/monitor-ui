@@ -37,7 +37,7 @@ const meta: Meta<CoordinatesInputProps> = {
 
   args: {
     coordinatesFormat: CoordinatesFormat.DEGREES_MINUTES_SECONDS,
-    defaultValue: undefined,
+    defaultValue: [47.183333, -7.433333],
     disabled: false,
     error: '',
     isErrorMessageHidden: false,
