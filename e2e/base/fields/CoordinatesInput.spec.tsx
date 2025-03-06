@@ -104,7 +104,7 @@ context('Story', () => {
 
       const nextProps = {
         ...props,
-        defaultValue: [47.123, -0.123] as [number, number]
+        defaultValue: [47.123677909, -0.12378997] as [number, number]
       }
       rerender(
         <StoryBox>
@@ -112,7 +112,7 @@ context('Story', () => {
         </StoryBox>
       )
 
-      cy.getDataCy('coordinates-dd-input-lat').should('have.value', '47.123000')
+      cy.getDataCy('coordinates-dd-input-lat').should('have.value', '47.123678')
     })
   })
 })
