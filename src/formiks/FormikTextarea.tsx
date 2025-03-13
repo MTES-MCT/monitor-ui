@@ -1,5 +1,4 @@
 import { useField } from 'formik'
-import { useMemo } from 'react'
 
 import { Textarea } from '../fields/Textarea'
 
@@ -9,15 +8,9 @@ export type FormikTextareaProps = Omit<TextareaProps, 'error' | 'onChange' | 'va
 export function FormikTextarea({ name, ...originalProps }: FormikTextareaProps) {
   const [field, meta, helpers] = useField(name)
 
-  const handleChange = useMemo(
-    () => (nextValue: string | undefined) => {
-      helpers.setValue(nextValue)
-    },
-
-    // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
+  const handleChange = (nextValue: string | undefined) => {
+    helpers.setValue(nextValue)
+  }
 
   return <Textarea {...originalProps} error={meta.error} name={name} onChange={handleChange} value={field.value} />
 }

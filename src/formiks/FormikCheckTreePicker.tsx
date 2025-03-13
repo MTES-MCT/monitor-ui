@@ -1,6 +1,5 @@
 import { CheckTreePicker, type CheckTreePickerProps } from '@fields/CheckTreePicker'
 import { useField } from 'formik'
-import { useMemo } from 'react'
 
 import type { TreeOption } from '@fields/CheckTreePicker/types'
 
@@ -14,15 +13,9 @@ export function FormikCheckTreePicker<TreeOptionValue extends TreeOption[]>({
 }: FormikCheckTreePickerProps<TreeOptionValue>) {
   const [field, meta, helpers] = useField<TreeOption[] | undefined>(name)
 
-  const handleChange = useMemo(
-    () => (value: TreeOption[] | undefined) => {
-      helpers.setValue(value)
-    },
-
-    // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
+  const handleChange = (nextValue: TreeOption[] | undefined) => {
+    helpers.setValue(nextValue)
+  }
 
   return (
     <CheckTreePicker {...originalProps} error={meta.error} name={name} onChange={handleChange} value={field.value} />

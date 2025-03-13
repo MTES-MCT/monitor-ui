@@ -1,5 +1,5 @@
 import { useField } from 'formik'
-import { useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 
 import { Checkbox } from '../fields/Checkbox'
 
@@ -11,16 +11,9 @@ export function FormikCheckbox({ name, ...originalProps }: FormikCheckboxProps) 
 
   const isChecked = Boolean(field.value)
 
-  const handleChange = useMemo(
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    () => (nextValue: boolean | undefined) => {
-      helpers.setValue(nextValue)
-    },
-
-    // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
+  const handleChange = (isNextChecked: boolean | undefined) => {
+    helpers.setValue(isNextChecked)
+  }
 
   // A checkbox must initialize its Formik value on mount:
   // it wouldn't make sense to keep it as `undefined` since `undefined` means `false` in the case of a checkbox
