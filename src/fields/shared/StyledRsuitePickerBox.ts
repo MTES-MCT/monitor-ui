@@ -330,12 +330,11 @@ export const StyledRsuitePickerBox = styled.div<CommonPickerFieldStyleProps>`
     > .rs-check-tree {
       padding: 0;
       margin: 0;
-      .rs-check-tree-node-icon {
-        margin-top: 4px;
-        &.rs-check-tree-node-expanded {
-          margin-top: -2px;
-        }
+
+      .rs-check-tree-node-custom-icon {
+        margin-top: -3px;
       }
+
       [role='treeitem'] {
         display: flex;
         align-items: center;
@@ -384,7 +383,7 @@ export const StyledRsuitePickerBox = styled.div<CommonPickerFieldStyleProps>`
               padding: 1px 0;
 
               > .rs-check-tree-node-label-content {
-                margin-left: 32px;
+                margin-left: 40px;
                 background-color: initial;
                 color: initial;
               }
@@ -393,7 +392,7 @@ export const StyledRsuitePickerBox = styled.div<CommonPickerFieldStyleProps>`
                 height: auto;
                 left: 8px;
                 top: 7px !important;
-                margin-left: 8px;
+                margin-left: 14px;
 
                 > .rs-checkbox-inner {
                   &:before {

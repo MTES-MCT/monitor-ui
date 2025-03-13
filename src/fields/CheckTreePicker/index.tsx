@@ -1,5 +1,8 @@
+import { Accent, Size } from '@constants'
+import { IconButton } from '@elements/IconButton'
 import { CheckPickerBox } from '@fields/shared/CheckPickerBox'
 import classnames from 'classnames'
+import { Chevron } from 'icons'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import {
   CheckTreePicker as RsuiteCheckTreePicker,
@@ -55,7 +58,6 @@ export function CheckTreePicker({
 }: CheckTreePickerProps<TreeOption[]>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
-  /** Instance of `CustomSearch` */
 
   const controlledClassName = useMemo(() => classnames('Field-CheckTreePicker', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
@@ -111,6 +113,14 @@ export function CheckTreePicker({
           id={originalProps.name}
           onChange={handleChange}
           readOnly={readOnly}
+          renderTreeIcon={({ expand }) => (
+            <IconButton
+              accent={Accent.TERTIARY}
+              Icon={Chevron}
+              size={Size.SMALL}
+              style={{ transform: expand ? 'rotate(-90deg)' : 'rotate(0)' }}
+            />
+          )}
           renderValue={() => {
             const labels = rsuiteValue?.map(val => findItemByValue(options, val)?.item.label)
 
