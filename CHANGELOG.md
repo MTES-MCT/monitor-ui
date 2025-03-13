@@ -1,3 +1,21 @@
+## [24.15.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.14.1...v24.15.0) (2025-03-13)
+
+### Features
+
+* **components:** add checkTreePicker and stories ([b273d6f](https://github.com/MTES-MCT/monitor-ui/commit/b273d6f5a1260cf1950f6b5cfee21c22f19681c1))
+* **components:** add checkTreePicker and stories ([0345ec5](https://github.com/MTES-MCT/monitor-ui/commit/0345ec50bd84818916f6ac026f7157c04d8eeced))
+
+### Bug Fixes
+
+* **fields:** fix DDCoordinatesInput ([771508b](https://github.com/MTES-MCT/monitor-ui/commit/771508b3cf06e78ff48719b83356033d899bc9c4))
+
+### Buid System & Dependencies
+
+* **deps:** bump axios from 1.7.4 to 1.8.2 in the npm_and_yarn group ([8a01b64](https://github.com/MTES-MCT/monitor-ui/commit/8a01b64fa251d7c8915d136abe77b85c2402d5ac))
+* **dev-deps:** bump @babel/runtime ([67cf0e8](https://github.com/MTES-MCT/monitor-ui/commit/67cf0e857b39c7ffc23e2e7dd4052521f941d300))
+* **dev-deps:** bump the all-non-major-dependencies group ([6ff42cd](https://github.com/MTES-MCT/monitor-ui/commit/6ff42cdd0023a5af625a3340d968976f96cb86a4))
+* **dev-deps:** bump the non-major-dev-dependencies group with 22 updates ([023fa93](https://github.com/MTES-MCT/monitor-ui/commit/023fa9368c4fc12eb5ef511eb1b0c7246b438f07))
+
 ## [24.14.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.14.0...v24.14.1) (2025-03-03)
 
 ### Buid System & Dependencies
