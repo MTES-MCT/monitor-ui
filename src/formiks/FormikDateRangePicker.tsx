@@ -1,13 +1,12 @@
 import { useField } from 'formik'
-import { useMemo } from 'react'
 
-import { DateRangePicker } from '../fields/DateRangePicker'
-
-import type {
-  DateRangePickerProps,
-  DateRangePickerWithDateDateProps,
-  DateRangePickerWithStringDateProps
+import {
+  DateRangePicker,
+  type DateRangePickerProps,
+  type DateRangePickerWithDateDateProps,
+  type DateRangePickerWithStringDateProps
 } from '../fields/DateRangePicker'
+
 import type { DateAsStringRange, DateRange } from '@types_/definitions'
 
 const UntypedDateRangePicker: any = DateRangePicker
@@ -29,15 +28,9 @@ export function FormikDateRangePicker(props: FormikDateRangePickerWithStringDate
 export function FormikDateRangePicker({ name, ...originalProps }: FormikDateRangePickerProps) {
   const [field, meta, helpers] = useField<DateRange | DateAsStringRange | undefined>(name)
 
-  const handleChange = useMemo(
-    () => (nextValue: DateRange | DateAsStringRange | undefined) => {
-      helpers.setValue(nextValue)
-    },
-
-    // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
+  const handleChange = (nextValue: DateRange | DateAsStringRange | undefined) => {
+    helpers.setValue(nextValue)
+  }
 
   return (
     <UntypedDateRangePicker

@@ -1,5 +1,4 @@
 import { useField } from 'formik'
-import { useMemo } from 'react'
 
 import { DatePicker } from '../fields/DatePicker'
 
@@ -19,15 +18,9 @@ export function FormikDatePicker(props: FormikDatePickerWithStringDateProps): JS
 export function FormikDatePicker({ name, ...originalProps }: FormikDatePickerProps) {
   const [field, meta, helpers] = useField<Date | string | undefined>(name)
 
-  const handleChange = useMemo(
-    () => (nextValue: Date | string | undefined) => {
-      helpers.setValue(nextValue)
-    },
-
-    // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
+  const handleChange = (nextValue: Date | string | undefined) => {
+    helpers.setValue(nextValue)
+  }
 
   return (
     <UntypedDatePicker

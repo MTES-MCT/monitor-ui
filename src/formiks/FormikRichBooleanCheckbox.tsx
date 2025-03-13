@@ -1,6 +1,5 @@
 import { RichBooleanCheckbox } from '@fields/RichBooleanCheckbox'
 import { useField } from 'formik'
-import { useMemo } from 'react'
 
 import type { RichBoolean } from '@constants'
 import type { RichBooleanCheckboxProps } from '@fields/RichBooleanCheckbox'
@@ -12,15 +11,9 @@ export type FormikRichBooleanCheckboxProps = Omit<
 export function FormikRichBooleanCheckbox({ name, ...originalProps }: FormikRichBooleanCheckboxProps) {
   const [field, meta, helpers] = useField<RichBoolean | undefined>(name)
 
-  const handleChange = useMemo(
-    () => (nextValue: RichBoolean | undefined) => {
-      helpers.setValue(nextValue)
-    },
-
-    // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
+  const handleChange = (nextValue: RichBoolean | undefined) => {
+    helpers.setValue(nextValue)
+  }
 
   return (
     <RichBooleanCheckbox

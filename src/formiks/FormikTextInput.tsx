@@ -1,5 +1,4 @@
 import { useField } from 'formik'
-import { useMemo } from 'react'
 
 import { TextInput } from '../fields/TextInput'
 
@@ -9,15 +8,9 @@ export type FormikTextInputProps = Omit<TextInputProps, 'error' | 'onChange' | '
 export function FormikTextInput({ name, ...originalProps }: FormikTextInputProps) {
   const [field, meta, helpers] = useField(name)
 
-  const handleChange = useMemo(
-    () => (nextValue: string | undefined) => {
-      helpers.setValue(nextValue)
-    },
-
-    // We don't want to trigger infinite re-rendering since `helpers.setValue` changes after each rendering
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
+  const handleChange = (nextValue: string | undefined) => {
+    helpers.setValue(nextValue)
+  }
 
   return <TextInput {...originalProps} error={meta.error} name={name} onChange={handleChange} value={field.value} />
 }
