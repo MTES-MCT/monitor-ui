@@ -18,7 +18,7 @@ import type { TreeOption } from './types'
 import type { ValueType } from 'rsuite/esm/CheckTreePicker'
 import type { Promisable } from 'type-fest'
 
-export type CheckTreePickerProps<TreeOptionValue extends TreeOption[]> = Omit<
+export type CheckTreePickerProps = Omit<
   RsuiteCheckTreePickerProps,
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderMenuItem' | 'value'
 > & {
@@ -31,10 +31,10 @@ export type CheckTreePickerProps<TreeOptionValue extends TreeOption[]> = Omit<
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
-  onChange?: (nextValue: TreeOptionValue | undefined) => Promisable<void>
-  options: TreeOptionValue
+  onChange?: (nextValue: TreeOption[] | undefined) => Promisable<void>
+  options: TreeOption[]
   popupWidth?: number | undefined
-  value?: TreeOptionValue | undefined
+  value?: TreeOption[] | undefined
 }
 
 export function CheckTreePicker({
@@ -55,7 +55,7 @@ export function CheckTreePicker({
   style,
   value,
   ...originalProps
-}: CheckTreePickerProps<TreeOption[]>) {
+}: CheckTreePickerProps) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
 
@@ -118,7 +118,7 @@ export function CheckTreePicker({
               accent={Accent.TERTIARY}
               Icon={Chevron}
               size={Size.SMALL}
-              style={{ transform: expand ? 'rotate(-90deg)' : 'rotate(0)' }}
+              style={{ transform: expand ? 'rotate(0)' : 'rotate(-90deg)' }}
             />
           )}
           renderValue={() => {

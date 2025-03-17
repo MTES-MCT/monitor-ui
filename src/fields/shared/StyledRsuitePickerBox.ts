@@ -333,6 +333,7 @@ export const StyledRsuitePickerBox = styled.div<CommonPickerFieldStyleProps>`
 
       .rs-check-tree-node-custom-icon {
         margin-top: -3px;
+        margin-left: -6px;
       }
 
       [role='treeitem'] {
@@ -383,7 +384,7 @@ export const StyledRsuitePickerBox = styled.div<CommonPickerFieldStyleProps>`
               padding: 1px 0;
 
               > .rs-check-tree-node-label-content {
-                margin-left: 40px;
+                margin-left: 38px;
                 background-color: initial;
                 color: initial;
               }

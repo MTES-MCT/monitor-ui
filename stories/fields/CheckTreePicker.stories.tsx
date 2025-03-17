@@ -11,7 +11,7 @@ import { useFieldControl } from '../../src'
 import type { TreeOption } from '@fields/CheckTreePicker/types'
 import type { Meta } from '@storybook/react'
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-const meta: Meta<CheckTreePickerProps<TreeOption[]>> = {
+const meta: Meta<CheckTreePickerProps> = {
   ...META_DEFAULTS,
 
   title: 'Fields/CheckTreePicker',
@@ -68,7 +68,7 @@ const meta: Meta<CheckTreePickerProps<TreeOption[]>> = {
 
 export default meta
 
-export function _CheckTreePicker(props: CheckTreePickerProps<TreeOption[]>) {
+export function _CheckTreePicker(props: CheckTreePickerProps) {
   const [outputValue, setOutputValue] = useState<TreeOption[]>()
 
   const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)

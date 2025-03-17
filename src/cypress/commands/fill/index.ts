@@ -75,6 +75,22 @@ export function fill(label: string, value: any, options: Partial<Cypress.FillOpt
           return
 
         // ---------------------------------------------------------------------
+        // CheckTreePicker
+
+        case fieldElement.classList.contains('Field-CheckTreePicker'):
+          assertStringArrayOrUndefined(value, 'CheckTreePicker')
+          pickCheckPickerOptions(
+            fieldElement,
+            value,
+            label,
+            controlledOptions.force,
+            controlledOptions.delay,
+            'treeitem'
+          )
+
+          return
+
+        // ---------------------------------------------------------------------
         // MultiCascader
 
         case fieldElement.classList.contains('Field-MultiCascader'):
