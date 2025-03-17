@@ -17,7 +17,7 @@ import type { TreeOption } from '@fields/CheckTreePicker/types'
 import type { Meta } from '@storybook/react'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-const meta: Meta<FormikCheckTreePickerProps<TreeOption[]>> = {
+const meta: Meta<FormikCheckTreePickerProps> = {
   title: 'Formiks/FormikCheckTreePicker',
   component: FormikCheckTreePicker as any,
 

@@ -5,7 +5,8 @@ export function pickCheckPickerOptions(
   values: string[] | undefined,
   label: string,
   force: boolean,
-  delay: number
+  delay: number,
+  role: string = 'option'
 ) {
   Cypress.log({
     consoleProps: () => ({
@@ -50,7 +51,7 @@ export function pickCheckPickerOptions(
         }
 
         cy.wrap(rsuitePickerPopupElement)
-          .find('[role="option"]')
+          .find(`[role="${role}"]`)
           .contains(value)
           .first()
           .scrollIntoView()
