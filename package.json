@@ -41,7 +41,7 @@
   "dependencies": {
     "@babel/runtime": "7.26.10",
     "@tanstack/react-table": "8.21.2",
-    "@tanstack/react-virtual": "3.13.2",
+    "@tanstack/react-virtual": "3.13.4",
     "prop-types": "15.8.1",
     "tslib": "2.8.1"
   },
