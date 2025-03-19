@@ -23,7 +23,7 @@ export type CoordinatesInputProps = {
   coordinatesFormat: CoordinatesFormat
   defaultValue?: Coordinates | undefined
   disabled?: boolean | undefined
-  error?: string | undefined
+  error?: string | string[] | undefined
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
@@ -56,8 +56,18 @@ export function CoordinatesInput({
 }: CoordinatesInputProps) {
   const [clearCounter, setClearCounter] = useState(0)
 
-  const controlledError = useMemo(() => normalizeString(error), [error])
-  const hasError = useMemo(() => Boolean(controlledError), [controlledError])
+  const controlledErrors = useMemo(() => {
+    if (!error) {
+      return []
+    }
+    if (Array.isArray(error)) {
+      return error.map(e => normalizeString(e))
+    }
+
+    return [normalizeString(error)]
+  }, [error])
+
+  const hasError = useMemo(() => controlledErrors.length > 0, [controlledErrors])
   const key = useKey([clearCounter, name])
 
   const controlledClassName = classnames('Field-CoordinatesInput', className)
@@ -128,7 +138,9 @@ export function CoordinatesInput({
     >
       {getCoordinatesInput()}
 
-      {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
+      {!isErrorMessageHidden &&
+        hasError &&
+        controlledErrors.map(controlledError => <FieldError key={controlledError}>{controlledError}</FieldError>)}
     </StyledFieldset>
   )
 }
