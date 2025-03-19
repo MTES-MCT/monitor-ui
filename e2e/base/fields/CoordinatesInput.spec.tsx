@@ -101,6 +101,7 @@ context('Story', () => {
       </StoryBox>
     ).then(({ rerender }) => {
       cy.getDataCy('coordinates-dd-input-lat').should('have.value', '47.539167')
+      cy.getDataCy('coordinates-dd-input-lon').should('have.value', '-0.259899')
 
       const nextProps = {
         ...props,
@@ -113,6 +114,7 @@ context('Story', () => {
       )
 
       cy.getDataCy('coordinates-dd-input-lat').should('have.value', '47.123678')
+      cy.getDataCy('coordinates-dd-input-lon').should('have.value', '-0.123790')
     })
   })
 })
