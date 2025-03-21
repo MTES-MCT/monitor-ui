@@ -8,7 +8,7 @@ import { useMemo, useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
-import { FormikEffect, FormikCoordinatesInput } from '../../src'
+import { FormikCoordinatesInput, FormikEffect } from '../../src'
 import CoordinatesInputStoryMeta from '../fields/CoordinatesInput.stories'
 
 import type { FormikCoordinatesInputProps } from '../../src'
