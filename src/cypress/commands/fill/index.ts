@@ -162,6 +162,15 @@ export function fill(label: string, value: any, options: Partial<Cypress.FillOpt
 
           return
 
+        // ---------------------------------------------------------------------
+        //  LinkInput
+
+        case fieldElement.classList.contains('Field-LinkInput'):
+          assertStringOrUndefined(value, 'LinkInput')
+          fillTextInput(fieldElement, value, label, controlledOptions.force, controlledOptions.delay)
+
+          return
+
         default:
           throwError(`\`cy.fill()\` can't handle field with \`<label>\` "${label}".`)
       }
