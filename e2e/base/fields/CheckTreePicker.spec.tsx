@@ -10,6 +10,47 @@ import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 import type { TreeOption } from '@fields/CheckTreePicker/types'
 
 const options = TAGS! as TreeOption[]
+
+const seaPollutionValue = [
+  {
+    children: [
+      {
+        label: 'Déchets plastiques',
+        value: 'dechets_plastiques'
+      },
+      {
+        label: 'Marées noires',
+        value: 'marees_noires'
+      },
+      {
+        label: 'Rejets industriels',
+        value: 'rejets_industriels'
+      },
+      {
+        label: 'Pollution chimique',
+        value: 'pollution_chimique'
+      },
+      {
+        label: 'Microplastiques',
+        value: 'microplastiques'
+      },
+      {
+        label: 'Contamination radioactive',
+        value: 'contamination_radioactive'
+      },
+      {
+        label: 'Pollution sonore sous-marine',
+        value: 'pollution_sonore'
+      },
+      {
+        label: 'Eutrophisation',
+        value: 'eutrophisation'
+      }
+    ],
+    label: 'Pollution marine',
+    value: 'pollution_marine'
+  }
+]
 function CheckTreePickerStory({ value, ...otherProps }: CheckTreePickerProps) {
   const [outputValue, setOutputValue] = useState<any>('∅')
 
@@ -42,7 +83,7 @@ describe('fields/CheckTreePicker', () => {
 
     cy.fill('A check tree picker', ['Pollution marine'])
 
-    outputShouldBe([{ children: [], label: 'Pollution marine', value: 'pollution_marine' }])
+    outputShouldBe(seaPollutionValue)
 
     cy.fill('A check tree picker', ['Marées noires'])
 
@@ -86,13 +127,7 @@ describe('fields/CheckTreePicker', () => {
     cy.get('.rs-picker').click().get('.rs-picker-popup').find('[role="treeitem"]').contains('Pollution marine').click()
     cy.clickOutside()
 
-    outputShouldBe([
-      {
-        children: [],
-        label: 'Pollution marine',
-        value: 'pollution_marine'
-      }
-    ])
+    outputShouldBe(seaPollutionValue)
 
     cy.get('.rs-picker').click().get('.rs-picker-popup').find('[role="treeitem"]').contains('Pollution marine').click()
 
@@ -123,7 +158,7 @@ describe('fields/CheckTreePicker', () => {
 
     cy.fill('A check tree picker', ['Pollution marine'])
 
-    outputShouldBe([{ children: [], label: 'Pollution marine', value: 'pollution_marine' }])
+    outputShouldBe(seaPollutionValue)
   })
 
   it('Should fill the check picker with `searchable`', () => {
