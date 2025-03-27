@@ -8,8 +8,9 @@ import {
   CheckTreePicker as RsuiteCheckTreePicker,
   type CheckTreePickerProps as RsuiteCheckTreePickerProps
 } from 'rsuite'
+import styled from 'styled-components'
 
-import { findItemByValue, fromRsuiteValue, toRsuiteValue } from './utils'
+import { fromRsuiteValue, getTreeOptionsBySelectedValues, toRsuiteValue } from './utils'
 import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
 import { normalizeString } from '../../utils/normalizeString'
@@ -34,6 +35,8 @@ export type CheckTreePickerProps = Omit<
   onChange?: (nextValue: TreeOption[] | undefined) => Promisable<void>
   options: TreeOption[]
   popupWidth?: number | undefined
+  renderedChildrenValue?: string
+  renderedValue?: string
   value?: TreeOption[] | undefined
 }
 
@@ -52,6 +55,8 @@ export function CheckTreePicker({
   options,
   popupWidth,
   readOnly = false,
+  renderedChildrenValue = 'Sous-thématique',
+  renderedValue = 'Thématique',
   style,
   value,
   ...originalProps
@@ -79,11 +84,11 @@ export function CheckTreePicker({
         return
       }
 
-      const formattedValues = fromRsuiteValue(nextValue, options, rsuiteValue)
+      const formattedValues = fromRsuiteValue(nextValue, options)
 
       onChange(formattedValues)
     },
-    [onChange, options, rsuiteValue]
+    [onChange, options]
   )
 
   return (
@@ -106,7 +111,7 @@ export function CheckTreePicker({
     >
       {boxRef.current && (
         <RsuiteCheckTreePicker
-          cascade={false}
+          cascade
           container={boxRef.current}
           data={options}
           disabled={disabled}
@@ -122,14 +127,21 @@ export function CheckTreePicker({
             />
           )}
           renderValue={() => {
-            const labels = rsuiteValue?.map(val => findItemByValue(options, val)?.item.label)
+            const childrenCount = getTreeOptionsBySelectedValues(rsuiteValue, options).flatMap(
+              ({ children }) => children
+            ).length
+            const parentCount = getTreeOptionsBySelectedValues(rsuiteValue, options).length
 
             return (
               <>
-                <span className="rs-picker-value-list" title={labels?.join(', ')}>
-                  {labels?.join(', ')}
+                <span className="rs-picker-value-list" title={renderedValue}>
+                  {renderedValue} <Bold>({parentCount})</Bold>
                 </span>
-                <span className="rs-picker-value-count">{labels?.length}</span>
+                {childrenCount > 0 && (
+                  <span className="rs-picker-value-list" title={renderedChildrenValue}>
+                    {renderedChildrenValue} <Bold>({childrenCount})</Bold>
+                  </span>
+                )}
               </>
             )
           }}
@@ -141,3 +153,8 @@ export function CheckTreePicker({
     </CheckPickerBox>
   )
 }
+
+const Bold = styled.span`
+  font-weight: bold;
+  margin-right: 4px;
+`
