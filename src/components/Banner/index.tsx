@@ -49,14 +49,22 @@ export function Banner({
   const [isCollapsing, setIsCollapsing] = useState<boolean>(false)
   const [hasCollapsed, setHasCollapsed] = useState<boolean>(false)
 
+  useEffect(() => {
+    // Reset visibility/height when isCollapsible or isClosable change
+    setIsHidden(false)
+    setIsCollapsed(false)
+    setIsCollapsing(false)
+    setHasCollapsed(false)
+  }, [isCollapsible, isClosable])
+
   const enterHover = (): void => {
-    if (!isHidden && isCollapsed && !isCollapsing) {
+    if (isCollapsible && !isHidden && isCollapsed && !isCollapsing) {
       setIsCollapsed(false)
     }
     setIsCollapsing(false)
   }
   const leaveHover = (): void => {
-    if (!isHidden && hasCollapsed) {
+    if (isCollapsible && !isHidden && hasCollapsed) {
       setIsCollapsed(true)
     }
   }
