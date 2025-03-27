@@ -1,3 +1,21 @@
+## [24.15.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.15.0...v24.15.1) (2025-03-27)
+
+### Bug Fixes
+
+* **components:** add custom icon to checktreepicker ([9d27226](https://github.com/MTES-MCT/monitor-ui/commit/9d272260777c4d84873b60c4e5974325434fd877))
+* **components:** fix coordinates dd format ([ee97157](https://github.com/MTES-MCT/monitor-ui/commit/ee97157e48d4bc172785205c85acc6a3f37b784d))
+* **components:** fix some style and add tests ([89d2c19](https://github.com/MTES-MCT/monitor-ui/commit/89d2c1993a4956c5720f12030f42ba8ac0571e88))
+
+### Buid System & Dependencies
+
+* **deps:** bump @babel/runtime in the npm_and_yarn group ([586a952](https://github.com/MTES-MCT/monitor-ui/commit/586a95240aa6a8ba1612faa0322c547a85232c6e))
+* **deps:** bump @tanstack/react-virtual ([f6007f4](https://github.com/MTES-MCT/monitor-ui/commit/f6007f41876c962983001432158d346f0ee9cb7e))
+* **dev-deps:** bump the all-non-major-dependencies group ([3686ff1](https://github.com/MTES-MCT/monitor-ui/commit/3686ff1944b5b3ef371cf5634349b468588268e6))
+* **dev-deps:** bump the all-non-major-dependencies group ([56110ec](https://github.com/MTES-MCT/monitor-ui/commit/56110ec29dd25fd54c124741a97c81db2dbf7120))
+* **dev-deps:** bump the non-major-dev-dependencies group across 1 directory with 19 updates ([c866511](https://github.com/MTES-MCT/monitor-ui/commit/c866511d031a7d57a85cec83e9ad36fcc1600042))
+* **dev-deps:** bump vite ([c0e27d3](https://github.com/MTES-MCT/monitor-ui/commit/c0e27d3aae33d00686e7380b4dbc5227ce248c0b))
+* **dev-deps:** bump vite in the npm_and_yarn group ([7d5c08a](https://github.com/MTES-MCT/monitor-ui/commit/7d5c08af7dcb2d44b62bb9107cd087b964026052))
+
 ## [24.15.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.14.1...v24.15.0) (2025-03-13)
 
 ### Features
