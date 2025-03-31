@@ -8,6 +8,7 @@ import { omit } from 'lodash'
 import { useMemo, useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
+import { TAGS } from '../../.storybook/data/tags'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { FormikEffect } from '../../src'
 import CheckTreePickerStoryMeta from '../fields/CheckTreePicker.stories'
@@ -47,7 +48,7 @@ export function _FormikCheckTreePicker(props: FormikCheckPickerProps) {
         <>
           <FormikEffect onChange={setOutputValue} />
 
-          <FormikCheckTreePicker {...props} />
+          <FormikCheckTreePicker {...props} options={TAGS(props.childrenKey)} />
         </>
       </Formik>
 
