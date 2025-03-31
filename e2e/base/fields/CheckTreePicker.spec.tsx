@@ -3,13 +3,11 @@ import { useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
 import { StoryBox } from '../../../.storybook/components/StoryBox'
-import TAGS from '../../../.storybook/data/tags.json'
+import { TAGS } from '../../../.storybook/data/tags'
 import { useFieldControl } from '../../../src'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
-import type { TreeOption } from '@fields/CheckTreePicker/types'
-
-const options = TAGS! as TreeOption[]
+const options = TAGS()
 
 const seaPollutionValue = [
   {
@@ -107,6 +105,56 @@ describe('fields/CheckTreePicker', () => {
         children: [{ label: 'Protection des coraux', value: 'protection_coraux' }],
         label: 'Biodiversité marine',
         value: 'biodiversite_marine'
+      }
+    ])
+
+    cy.fill('A check tree picker', undefined)
+
+    outputShouldBe(undefined)
+  })
+
+  it('Should fill, change and clear the check picker with modified children key', () => {
+    const customOptions = [
+      {
+        label: 'Entry 1',
+        subTags: [
+          { label: 'Subtag 1', value: 3 },
+          { label: 'Subtag 2', value: 4 }
+        ],
+        value: 1
+      },
+      {
+        label: 'Entry 2',
+        subTags: [
+          { label: 'Subtag 3', value: 5 },
+          { label: 'Subtag 4', value: 6 }
+        ],
+        value: 2
+      }
+    ]
+    mountAndWait(
+      <StoryBox>
+        <CheckTreePickerStory {...commonProps} childrenKey="subTags" options={customOptions} />
+      </StoryBox>
+    )
+
+    outputShouldNotBe()
+
+    cy.fill('A check tree picker', ['Subtag 3'])
+
+    // eslint-disable-next-line sort-keys-fix/sort-keys-fix
+    outputShouldBe([{ subTags: [{ label: 'Subtag 3', value: 5 }], label: 'Entry 2', value: 2 }])
+
+    cy.fill('A check tree picker', ['Entry 1'])
+    outputShouldBe([
+      {
+        subTags: [
+          { label: 'Subtag 1', value: 3 },
+          { label: 'Subtag 2', value: 4 }
+        ],
+        // eslint-disable-next-line sort-keys-fix/sort-keys-fix
+        label: 'Entry 1',
+        value: 1
       }
     ])
 

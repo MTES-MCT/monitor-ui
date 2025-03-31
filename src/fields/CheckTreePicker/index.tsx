@@ -23,6 +23,7 @@ export type CheckTreePickerProps = Omit<
   RsuiteCheckTreePickerProps,
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderMenuItem' | 'value'
 > & {
+  childrenKey?: string
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
@@ -41,6 +42,7 @@ export type CheckTreePickerProps = Omit<
 }
 
 export function CheckTreePicker({
+  childrenKey = 'children',
   className,
   disabled = false,
   error,
@@ -76,7 +78,7 @@ export function CheckTreePicker({
     forceUpdate()
   }, [forceUpdate])
 
-  const rsuiteValue = useMemo(() => toRsuiteValue(value), [value])
+  const rsuiteValue = useMemo(() => toRsuiteValue(value, childrenKey), [childrenKey, value])
 
   const handleChange = useCallback(
     (nextValue: ValueType) => {
@@ -84,11 +86,11 @@ export function CheckTreePicker({
         return
       }
 
-      const formattedValues = fromRsuiteValue(nextValue, options)
+      const formattedValues = fromRsuiteValue(nextValue, options, childrenKey)
 
       onChange(formattedValues)
     },
-    [onChange, options]
+    [childrenKey, onChange, options]
   )
 
   return (
@@ -112,6 +114,7 @@ export function CheckTreePicker({
       {boxRef.current && (
         <RsuiteCheckTreePicker
           cascade
+          childrenKey={childrenKey}
           container={boxRef.current}
           data={options}
           disabled={disabled}
@@ -127,10 +130,10 @@ export function CheckTreePicker({
             />
           )}
           renderValue={() => {
-            const childrenCount = getTreeOptionsBySelectedValues(rsuiteValue, options).flatMap(
-              ({ children }) => children
+            const childrenCount = getTreeOptionsBySelectedValues(rsuiteValue, options, childrenKey).flatMap(
+              treeOption => treeOption[childrenKey]
             ).length
-            const parentCount = getTreeOptionsBySelectedValues(rsuiteValue, options).length
+            const parentCount = getTreeOptionsBySelectedValues(rsuiteValue, options, childrenKey).length
 
             return (
               <>

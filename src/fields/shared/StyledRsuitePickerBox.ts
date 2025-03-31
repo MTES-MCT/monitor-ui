@@ -371,6 +371,23 @@ export const StyledRsuitePickerBox = styled.div<CommonPickerFieldStyleProps>`
         }
 
         > .rs-check-item {
+          /** !important because it's override by determinate checkbox **/
+          &.rs-checkbox-indeterminate {
+            &:hover {
+              .rs-checkbox-inner {
+                &:before {
+                  background-color: ${p => p.theme.color.blueYonder} !important;
+                  border: solid 2px ${p => p.theme.color.blueYonder} !important;
+                }
+              }
+            }
+            .rs-checkbox-inner {
+              &:before {
+                background-color: ${p => p.theme.color.charcoal} !important;
+                border: solid 2px ${p => p.theme.color.charcoal} !important;
+              }
+            }
+          }
           > .rs-checkbox-checker {
             min-height: auto;
 

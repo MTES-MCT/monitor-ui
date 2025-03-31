@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
-import TAGS from '../../.storybook/data/tags.json'
+import { TAGS } from '../../.storybook/data/tags'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { useFieldControl } from '../../src'
 
@@ -30,9 +30,9 @@ const meta: Meta<CheckTreePickerProps> = {
     popupWidth: ARG_TYPE.OPTIONAL_NUMBER,
     readOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
     searchable: ARG_TYPE.BOOLEAN,
+    childrenKey: ARG_TYPE.OPTIONAL_STRING,
     value: {
-      ...ARG_TYPE.OPTIONAL_OPTION_VALUES,
-      options: TAGS
+      ...ARG_TYPE.OPTIONAL_OPTION_VALUES
     }
   },
 
@@ -47,7 +47,6 @@ const meta: Meta<CheckTreePickerProps> = {
     isUndefinedWhenDisabled: false,
     label: 'A check tree picker. Pick some options:',
     name: 'myCheckTreePicker',
-    options: TAGS,
     placeholder: 'Pick some options',
     popupWidth: undefined,
     readOnly: false,
@@ -75,7 +74,14 @@ export function _CheckTreePicker(props: CheckTreePickerProps) {
 
   return (
     <>
-      <CheckTreePicker {...props} onChange={controlledOnChange} searchable value={controlledValue} virtualized />
+      <CheckTreePicker
+        {...props}
+        onChange={controlledOnChange}
+        options={TAGS(props.childrenKey)}
+        searchable
+        value={controlledValue}
+        virtualized
+      />
 
       <Output value={outputValue} />
     </>
