@@ -1,3 +1,17 @@
+## [24.16.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.15.1...v24.16.0) (2025-04-02)
+
+### Features
+
+* **icons:** add offline icon ([e4ddf27](https://github.com/MTES-MCT/monitor-ui/commit/e4ddf27ca264075e6ad97007059b864816f59f34))
+
+### Buid System & Dependencies
+
+* **deps:** bump the non-major-dependencies group with 2 updates ([84b7bfc](https://github.com/MTES-MCT/monitor-ui/commit/84b7bfc92b07e07877026112f1e0a9ea9d795c91))
+* **dev-deps:** bump the all-non-major-dependencies group ([8f7de1f](https://github.com/MTES-MCT/monitor-ui/commit/8f7de1f6ccfe83e82bba12f9111ba6c7175abb50))
+* **dev-deps:** bump the non-major-dev-dependencies group across 1 directory with 20 updates ([5bdd4ba](https://github.com/MTES-MCT/monitor-ui/commit/5bdd4ba6fbbdd853b5159a527c7ff71229d2e2de))
+* **dev-deps:** bump vite ([44cae6c](https://github.com/MTES-MCT/monitor-ui/commit/44cae6c72a2b9ee95d0a6a4c768b405b960f4312))
+* **dev-deps:** bump vite in the npm_and_yarn group ([18e73eb](https://github.com/MTES-MCT/monitor-ui/commit/18e73ebb8e1e84a28dc40fdf932fbf016b9b9939))
+
 ## [24.15.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.15.0...v24.15.1) (2025-03-27)
 
 ### Bug Fixes
