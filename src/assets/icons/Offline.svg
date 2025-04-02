@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_6760" data-name="Rectangle 6760" width="20" height="20" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+    </clipPath>
+    <clipPath id="clip-Plan_de_travail_2">
+      <rect width="20" height="20"/>
+    </clipPath>
+  </defs>
+  <g id="Plan_de_travail_2" data-name="Plan de travail – 2" clip-path="url(#clip-Plan_de_travail_2)">
+    <rect width="20" height="20" fill="transparent"/>
+    <g id="Groupe_5461" data-name="Groupe 5461">
+      <g id="Groupe_5431" data-name="Groupe 5431" clip-path="url(#clip-path)">
+        <path id="Tracé_1781" data-name="Tracé 1781" d="M15.689,17.221l-1.933-1.9H5.988a3.872,3.872,0,0,1-2.845-1.167,3.872,3.872,0,0,1-1.167-2.845,3.916,3.916,0,0,1,.866-2.5,3.851,3.851,0,0,1,2.234-1.4c.037-.1.073-.192.11-.283s.073-.191.109-.3L2.268,3.8,3.289,2.779,16.71,16.2Zm-9.7-3.355H12.3L6.426,7.994c-.025.134-.043.262-.055.383s-.018.249-.018.383H5.988a2.554,2.554,0,0,0-2.553,2.553,2.554,2.554,0,0,0,2.553,2.553M17,14.413l-1.058-1.021a1.656,1.656,0,0,0,.465-.593,1.782,1.782,0,0,0,.155-.757,1.8,1.8,0,0,0-1.823-1.823H13.647V8.76A3.643,3.643,0,0,0,10,5.113a3.756,3.756,0,0,0-.949.119,3.269,3.269,0,0,0-.875.373L7.119,4.548a5.115,5.115,0,0,1,1.358-.666A5.017,5.017,0,0,1,10,3.654,4.927,4.927,0,0,1,13.619,5.14a4.928,4.928,0,0,1,1.487,3.62,3.292,3.292,0,0,1,2.917,3.282A3.2,3.2,0,0,1,17,14.413" fill="currentColor" stroke="currentColor" stroke-width="0.5"/>
+      </g>
+    </g>
+  </g>
+</svg>

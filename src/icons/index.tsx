@@ -60,6 +60,7 @@ import { More } from './More'
 import { NewFeatures } from './NewFeatures'
 import { Note } from './Note'
 import { Observation } from './Observation'
+import { Offline } from './Offline'
 import { Phone } from './Phone'
 import { Pin } from './Pin'
 import { PinFilled } from './PinFilled'
@@ -164,6 +165,7 @@ export {
   NewFeatures,
   Note,
   Observation,
+  Offline,
   Phone,
   Pin,
   PinFilled,
