@@ -48,7 +48,7 @@ export function _FormikCheckTreePicker(props: FormikCheckPickerProps) {
         <>
           <FormikEffect onChange={setOutputValue} />
 
-          <FormikCheckTreePicker {...props} options={TAGS(props.childrenKey)} />
+          <FormikCheckTreePicker {...props} isMultiSelect={false} options={TAGS(props.childrenKey)} />
         </>
       </Formik>
 

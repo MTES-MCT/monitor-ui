@@ -163,6 +163,48 @@ describe('fields/CheckTreePicker', () => {
     outputShouldBe(undefined)
   })
 
+  it('Should disabled all other options when multi selected is off', () => {
+    mountAndWait(
+      <StoryBox>
+        <CheckTreePickerStory {...commonProps} isMultiSelect={false} />
+      </StoryBox>
+    )
+
+    cy.fill('A check tree picker', ['Protection des coraux'])
+
+    outputShouldBe([
+      {
+        children: [{ label: 'Protection des coraux', value: 'protection_coraux' }],
+        label: 'Biodiversité marine',
+        value: 'biodiversite_marine'
+      }
+    ])
+
+    cy.get('.rs-picker')
+      .click()
+      .get('.rs-picker-popup')
+      .find('[role="treeitem"]')
+      .first()
+      .within(() => {
+        cy.get('input').then(inputs => {
+          inputs.each((_, input) => {
+            const label = Cypress.$(input).closest('label').text().trim()
+            if (label !== 'Protection des coraux') {
+              cy.wrap(input).should('be.disabled')
+            }
+          })
+        })
+      })
+
+    outputShouldBe([
+      {
+        children: [{ label: 'Protection des coraux', value: 'protection_coraux' }],
+        label: 'Biodiversité marine',
+        value: 'biodiversite_marine'
+      }
+    ])
+  })
+
   it('Should select parent when selecting child', () => {
     mountAndWait(
       <StoryBox>
