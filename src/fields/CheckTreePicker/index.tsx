@@ -3,14 +3,14 @@ import { IconButton } from '@elements/IconButton'
 import { CheckPickerBox } from '@fields/shared/CheckPickerBox'
 import classnames from 'classnames'
 import { Chevron } from 'icons'
-import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   CheckTreePicker as RsuiteCheckTreePicker,
   type CheckTreePickerProps as RsuiteCheckTreePickerProps
 } from 'rsuite'
 import styled from 'styled-components'
 
-import { fromRsuiteValue, getTreeOptionsBySelectedValues, toRsuiteValue } from './utils'
+import { computeDisabledValues, fromRsuiteValue, getTreeOptionsBySelectedValues, toRsuiteValue } from './utils'
 import { useFieldUndefineEffect } from '../../hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '../../hooks/useForceUpdate'
 import { normalizeString } from '../../utils/normalizeString'
@@ -28,6 +28,7 @@ export type CheckTreePickerProps = Omit<
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isMultiSelect?: boolean
   isRequired?: boolean | undefined
   isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
@@ -49,6 +50,7 @@ export function CheckTreePicker({
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
+  isMultiSelect = true,
   isRequired = false,
   isTransparent = false,
   isUndefinedWhenDisabled = false,
@@ -80,6 +82,10 @@ export function CheckTreePicker({
 
   const rsuiteValue = useMemo(() => toRsuiteValue(value, childrenKey), [childrenKey, value])
 
+  const [disabledValues, setDisabledValues] = useState<ValueType>(
+    computeDisabledValues(isMultiSelect, rsuiteValue, options, childrenKey)
+  )
+
   const handleChange = useCallback(
     (nextValue: ValueType) => {
       if (!onChange) {
@@ -88,9 +94,15 @@ export function CheckTreePicker({
 
       const formattedValues = fromRsuiteValue(nextValue, options, childrenKey)
 
+      if (!isMultiSelect && formattedValues) {
+        setDisabledValues(computeDisabledValues(isMultiSelect, nextValue, options, childrenKey))
+      } else {
+        setDisabledValues([])
+      }
+
       onChange(formattedValues)
     },
-    [childrenKey, onChange, options]
+    [childrenKey, isMultiSelect, onChange, options]
   )
 
   return (
@@ -118,6 +130,7 @@ export function CheckTreePicker({
           container={boxRef.current}
           data={options}
           disabled={disabled}
+          disabledItemValues={disabledValues}
           id={originalProps.name}
           onChange={handleChange}
           readOnly={readOnly}

@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals'
 
-import { fromRsuiteValue, getTreeOptionsBySelectedValues, toRsuiteValue } from '../utils'
+import { computeDisabledValues, fromRsuiteValue, getTreeOptionsBySelectedValues, toRsuiteValue } from '../utils'
 
 import type { TreeOption } from '../types'
 import type { ValueType } from 'rsuite/esm/CheckTreePicker'
@@ -131,7 +131,6 @@ describe('toRsuiteValue', () => {
         value: 'p1'
       },
       {
-        children: [],
         label: 'Parent 2',
         value: 'p2'
       }
@@ -143,5 +142,39 @@ describe('toRsuiteValue', () => {
 
   it('should return undefined when input is undefined', () => {
     expect(toRsuiteValue(undefined)).toBeUndefined()
+  })
+})
+
+describe('computeDisabledValues', () => {
+  const uiValues: TreeOption[] = [
+    {
+      children: [
+        { label: 'Child 1', value: 'c1' },
+        { label: 'Child 2', value: 'c2' }
+      ],
+      label: 'Parent 1',
+      value: 'p1'
+    },
+    {
+      label: 'Parent 2',
+      value: 'p2'
+    }
+  ]
+
+  it('should return empty array if multi-select is true', () => {
+    const result = computeDisabledValues(true, ['p1'], uiValues, 'children')
+    expect(result).toEqual([])
+  })
+
+  it('should disable non-selected options and their children when multi-select is false', () => {
+    const result = computeDisabledValues(false, ['p1'], uiValues, 'children')
+    // B, C, B1 are not selected
+    expect(result).toEqual(['p2'])
+  })
+
+  it('should handle case when selected option has no children', () => {
+    const result = computeDisabledValues(false, ['p2'], uiValues, 'children')
+    // A, B, A1, A2, B1 are not selected
+    expect(result).toEqual(['p1', 'c1', 'c2'])
   })
 })

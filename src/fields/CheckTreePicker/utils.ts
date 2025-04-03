@@ -58,9 +58,34 @@ export function toRsuiteValue(
     return undefined
   }
   // set only childless and children values
-  const rsuiteValues = uiValues.filter(uiValue => uiValue[childrenKey]?.length === 0).flatMap(({ value }) => value)
+  const rsuiteValues = uiValues.filter(uiValue => uiValue[childrenKey] === undefined).flatMap(({ value }) => value)
 
-  const rsuiteChildrenValues = uiValues.flatMap(uiValue => (uiValue[childrenKey] ?? [])?.flatMap(({ value }) => value))
+  const rsuiteChildrenValues = uiValues.flatMap(uiValue => (uiValue[childrenKey] ?? []).flatMap(({ value }) => value))
 
   return [...rsuiteValues, ...rsuiteChildrenValues]
+}
+
+export function computeDisabledValues(
+  isMultiSelect: boolean,
+  value: ValueType | undefined,
+  options: TreeOption[],
+  childrenKey: string = 'children'
+) {
+  if (isMultiSelect) {
+    return []
+  }
+
+  const selectedOptions = getTreeOptionsBySelectedValues(value, options, childrenKey)
+
+  const valuesToDisabled: ValueType = options
+    .filter(option => selectedOptions.some(selectedOption => selectedOption.value !== option.value))
+    .map(option => option.value)
+
+  const subValuesToDisabled: ValueType = options
+    .filter(option => selectedOptions.some(selectedOption => selectedOption.value !== option.value))
+    .flatMap(option => option[childrenKey])
+    .filter(Boolean)
+    .flatMap(option => option.value)
+
+  return [...valuesToDisabled, ...subValuesToDisabled]
 }
