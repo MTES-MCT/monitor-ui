@@ -3,7 +3,7 @@ import { IconButton } from '@elements/IconButton'
 import { CheckPickerBox } from '@fields/shared/CheckPickerBox'
 import classnames from 'classnames'
 import { Chevron } from 'icons'
-import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   CheckTreePicker as RsuiteCheckTreePicker,
   type CheckTreePickerProps as RsuiteCheckTreePickerProps
@@ -28,6 +28,7 @@ export type CheckTreePickerProps = Omit<
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
   isLight?: boolean | undefined
+  isMultiSelect?: boolean
   isRequired?: boolean | undefined
   isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
@@ -49,6 +50,7 @@ export function CheckTreePicker({
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
+  isMultiSelect = true,
   isRequired = false,
   isTransparent = false,
   isUndefinedWhenDisabled = false,
@@ -65,6 +67,7 @@ export function CheckTreePicker({
 }: CheckTreePickerProps) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
+  const [disabledValues, setDisabledValues] = useState<ValueType>([])
 
   const controlledClassName = useMemo(() => classnames('Field-CheckTreePicker', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
@@ -88,9 +91,26 @@ export function CheckTreePicker({
 
       const formattedValues = fromRsuiteValue(nextValue, options, childrenKey)
 
+      if (!isMultiSelect && formattedValues) {
+        const selectedOptions = getTreeOptionsBySelectedValues(nextValue, options, childrenKey)
+        const valuesToDisabled = options
+          .filter(option => selectedOptions.some(selectedOption => selectedOption.value !== option.value))
+          .map(option => option.value)
+
+        const subValuesToDisabled = options
+          .filter(option => selectedOptions.some(selectedOption => selectedOption.value !== option.value))
+          .flatMap(option => option[childrenKey])
+          .filter(Boolean)
+          .flatMap(option => option.value)
+
+        setDisabledValues([...valuesToDisabled, ...subValuesToDisabled])
+      } else {
+        setDisabledValues([])
+      }
+
       onChange(formattedValues)
     },
-    [childrenKey, onChange, options]
+    [childrenKey, isMultiSelect, onChange, options]
   )
 
   return (
@@ -118,6 +138,7 @@ export function CheckTreePicker({
           container={boxRef.current}
           data={options}
           disabled={disabled}
+          disabledItemValues={disabledValues}
           id={originalProps.name}
           onChange={handleChange}
           readOnly={readOnly}
