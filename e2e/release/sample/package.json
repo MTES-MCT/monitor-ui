@@ -10,17 +10,17 @@
     "start": "vite preview"
   },
   "dependencies": {
-    "@sentry/react": "9.10.1",
+    "@sentry/react": "9.11.0",
     "cypress": "14.2.1",
     "formik": "2.4.6",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "rsuite": "5.79.0",
-    "styled-components": "6.1.16"
+    "rsuite": "5.79.1",
+    "styled-components": "6.1.17"
   },
   "devDependencies": {
     "@tsconfig/vite-react": "3.4.0",
-    "@types/node": "22.13.14",
+    "@types/node": "22.14.0",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
     "@vitejs/plugin-react": "4.3.4",
