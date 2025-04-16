@@ -332,8 +332,7 @@ export const StyledRsuitePickerBox = styled.div<CommonPickerFieldStyleProps>`
       margin: 0;
 
       .rs-check-tree-node-custom-icon {
-        margin-top: -3px;
-        margin-left: -6px;
+        margin-top: -2px;
       }
 
       [role='treeitem'] {
@@ -348,11 +347,6 @@ export const StyledRsuitePickerBox = styled.div<CommonPickerFieldStyleProps>`
           white-space: nowrap;
           .rs-check-item-focus {
             background-color: none;
-          }
-
-          &:hover {
-            background-color: ${p => p.theme.color.blueYonder25} !important;
-            color: ${p => p.theme.color.blueYonder} !important;
           }
 
           &.rs-picker-select-menu-item-active {
@@ -371,6 +365,39 @@ export const StyledRsuitePickerBox = styled.div<CommonPickerFieldStyleProps>`
         }
 
         > .rs-check-item {
+          /** !important because it's override by determinate checkbox **/
+          &.rs-checkbox-indeterminate {
+            &:hover {
+              .rs-checkbox-inner {
+                &:before {
+                  background-color: ${p => p.theme.color.blueYonder} !important;
+                  border: solid 2px ${p => p.theme.color.blueYonder} !important;
+                }
+              }
+            }
+            .rs-checkbox-inner {
+              &:before {
+                background-color: ${p => p.theme.color.charcoal} !important;
+                border: solid 2px ${p => p.theme.color.charcoal} !important;
+              }
+            }
+          }
+          &.rs-checkbox-disabled {
+            &:hover {
+              background-color: transparent !important;
+            }
+            label,
+            span {
+              background-color: transparent !important;
+              color: ${p => p.theme.color.lightGray} !important;
+            }
+            &:hover {
+              span:before {
+                background-color: ${p => p.theme.color.gainsboro} !important;
+                border: solid 2px ${p => p.theme.color.lightGray} !important;
+              }
+            }
+          }
           > .rs-checkbox-checker {
             min-height: auto;
 
@@ -408,7 +435,7 @@ export const StyledRsuitePickerBox = styled.div<CommonPickerFieldStyleProps>`
           }
 
           &:hover {
-            background-color: ${p => p.theme.color.blueYonder25};
+            background-color: ${p => p.theme.color.blueYonder25} !important;
 
             > .rs-checkbox-checker {
               > label {
@@ -437,8 +464,6 @@ export const StyledRsuitePickerBox = styled.div<CommonPickerFieldStyleProps>`
           }
 
           &.rs-checkbox-checked {
-            background-color: transparent;
-
             &.rs-check-item-focus {
               background-color: ${p => p.theme.color.blueYonder25} !important;
             }

@@ -1,35 +1,96 @@
 import { describe, expect, it } from '@jest/globals'
 
-import { fromRsuiteValue, findItemByValue, toRsuiteValue } from '../utils'
+import { computeDisabledValues, fromRsuiteValue, getTreeOptionsBySelectedValues, toRsuiteValue } from '../utils'
 
 import type { TreeOption } from '../types'
 import type { ValueType } from 'rsuite/esm/CheckTreePicker'
 
-describe('findItemByValue', () => {
+describe('getTreeOptionsBySelectedValues', () => {
   const options: TreeOption[] = [
-    { children: [{ label: 'Child 1', value: 'c1' }], label: 'Parent 1', value: 'p1' },
-    { children: [{ label: 'Child 2', value: 'c2' }], label: 'Parent 2', value: 'p2' }
+    {
+      children: [
+        { label: 'Acidification des océans', value: 'acidification_oceans' },
+        { label: 'Réchauffement des eaux', value: 'rechauffement_eaux' },
+        { label: 'Blanchissement des coraux', value: 'blanchissement_coraux' }
+      ],
+      label: 'Changement climatique et océan',
+      value: 'changement_climatique_ocean'
+    },
+    {
+      children: [
+        { label: 'Déchets plastiques', value: 'dechets_plastiques' },
+        { label: 'Pollution chimique', value: 'pollution_chimique' }
+      ],
+      label: 'Pollution marine',
+      value: 'pollution_marine'
+    }
   ]
 
-  it('should find item and its parent', () => {
-    const result = findItemByValue(options, 'c1')
-    expect(result).toEqual({
-      item: { label: 'Child 1', value: 'c1' },
-      parent: { children: [{ label: 'Child 1', value: 'c1' }], label: 'Parent 1', value: 'p1' }
-    })
+  it('should return filtered options with selected children only', () => {
+    const selectedValues = ['acidification_oceans', 'pollution_chimique']
+
+    const result = getTreeOptionsBySelectedValues(selectedValues, options)
+
+    expect(result).toEqual([
+      {
+        children: [{ label: 'Acidification des océans', value: 'acidification_oceans' }],
+        label: 'Changement climatique et océan',
+        value: 'changement_climatique_ocean'
+      },
+      {
+        children: [{ label: 'Pollution chimique', value: 'pollution_chimique' }],
+        label: 'Pollution marine',
+        value: 'pollution_marine'
+      }
+    ])
   })
 
-  it('should return undefined if value not found', () => {
-    const result = findItemByValue(options, 'not_found')
-    expect(result).toBeUndefined()
+  it('should return an empty array if no selected values match', () => {
+    const selectedValues: string[] = []
+
+    const result = getTreeOptionsBySelectedValues(selectedValues, options)
+
+    expect(result).toEqual([])
   })
 
-  it('should find root level item without parent', () => {
-    const result = findItemByValue(options, 'p1')
-    expect(result).toEqual({
-      item: { children: [{ label: 'Child 1', value: 'c1' }], label: 'Parent 1', value: 'p1' },
-      parent: undefined
-    })
+  it('should return top-level options if their value matches', () => {
+    const selectedValues = ['changement_climatique_ocean']
+
+    const result = getTreeOptionsBySelectedValues(selectedValues, options)
+
+    expect(result).toEqual([
+      {
+        children: [
+          { label: 'Acidification des océans', value: 'acidification_oceans' },
+          { label: 'Réchauffement des eaux', value: 'rechauffement_eaux' },
+          { label: 'Blanchissement des coraux', value: 'blanchissement_coraux' }
+        ],
+        label: 'Changement climatique et océan',
+        value: 'changement_climatique_ocean'
+      }
+    ])
+  })
+
+  it('should handle undefined selectedValues by returning an empty array', () => {
+    const selectedValues = undefined
+
+    const result = getTreeOptionsBySelectedValues(selectedValues, options)
+
+    expect(result).toEqual([])
+  })
+
+  it('should handle options without children and still match top-level values', () => {
+    const optionsWithNoChildren: TreeOption[] = [
+      { label: 'Éducation et sensibilisation', value: 'education_sensibilisation' }
+    ]
+
+    const selectedValues = ['education_sensibilisation']
+
+    const result = getTreeOptionsBySelectedValues(selectedValues, optionsWithNoChildren)
+
+    expect(result).toEqual([
+      { children: [], label: 'Éducation et sensibilisation', value: 'education_sensibilisation' }
+    ])
   })
 })
 
@@ -56,56 +117,64 @@ describe('fromRsuiteValue', () => {
     const result = fromRsuiteValue([], options)
     expect(result).toBeUndefined()
   })
-
-  it('should handle unselect', () => {
-    const values: ValueType = ['p1']
-    const previousValues: ValueType = ['p1', 'c1']
-    const result = fromRsuiteValue(values, options, previousValues)
-
-    expect(result).toEqual([
-      {
-        children: [],
-        label: 'Parent 1',
-        value: 'p1'
-      }
-    ])
-  })
 })
 
 describe('toRsuiteValue', () => {
-  it('should flatten values from structured tree', () => {
+  it('should flatten children values and childless values from structured tree', () => {
     const uiValues: TreeOption[] = [
       {
-        children: [{ label: 'Child 1', value: 'c1' }],
-        label: 'Parent 1',
-        value: 'p1'
-      }
-    ]
-
-    const result = toRsuiteValue(uiValues)
-    expect(result).toEqual(['p1', 'c1'])
-  })
-
-  it('should return undefined when input is undefined', () => {
-    expect(toRsuiteValue(undefined)).toBeUndefined()
-  })
-
-  it('should handle multiple parents with children', () => {
-    const uiValues: TreeOption[] = [
-      {
-        children: [{ label: 'Child 1', value: 'c1' }],
+        children: [
+          { label: 'Child 1', value: 'c1' },
+          { label: 'Child 2', value: 'c2' }
+        ],
         label: 'Parent 1',
         value: 'p1'
       },
       {
-        children: [{ label: 'Child 2', value: 'c2' }],
         label: 'Parent 2',
         value: 'p2'
       }
     ]
 
     const result = toRsuiteValue(uiValues)
-    expect(result).toEqual(expect.arrayContaining(['p1', 'c1', 'p2', 'c2']))
-    expect(result).toHaveLength(4)
+    expect(result).toEqual(['p2', 'c1', 'c2'])
+  })
+
+  it('should return undefined when input is undefined', () => {
+    expect(toRsuiteValue(undefined)).toBeUndefined()
+  })
+})
+
+describe('computeDisabledValues', () => {
+  const uiValues: TreeOption[] = [
+    {
+      children: [
+        { label: 'Child 1', value: 'c1' },
+        { label: 'Child 2', value: 'c2' }
+      ],
+      label: 'Parent 1',
+      value: 'p1'
+    },
+    {
+      label: 'Parent 2',
+      value: 'p2'
+    }
+  ]
+
+  it('should return empty array if multi-select is true', () => {
+    const result = computeDisabledValues(true, ['p1'], uiValues, 'children')
+    expect(result).toEqual([])
+  })
+
+  it('should disable non-selected options and their children when multi-select is false', () => {
+    const result = computeDisabledValues(false, ['p1'], uiValues, 'children')
+    // B, C, B1 are not selected
+    expect(result).toEqual(['p2'])
+  })
+
+  it('should handle case when selected option has no children', () => {
+    const result = computeDisabledValues(false, ['p2'], uiValues, 'children')
+    // A, B, A1, A2, B1 are not selected
+    expect(result).toEqual(['p1', 'c1', 'c2'])
   })
 })

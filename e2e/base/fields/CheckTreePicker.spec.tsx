@@ -3,13 +3,52 @@ import { useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
 import { StoryBox } from '../../../.storybook/components/StoryBox'
-import TAGS from '../../../.storybook/data/tags.json'
+import { TAGS } from '../../../.storybook/data/tags'
 import { useFieldControl } from '../../../src'
 import { mountAndWait, outputShouldBe, outputShouldNotBe } from '../utils'
 
-import type { TreeOption } from '@fields/CheckTreePicker/types'
+const options = TAGS()
 
-const options = TAGS! as TreeOption[]
+const seaPollutionValue = [
+  {
+    children: [
+      {
+        label: 'Déchets plastiques',
+        value: 'dechets_plastiques'
+      },
+      {
+        label: 'Marées noires',
+        value: 'marees_noires'
+      },
+      {
+        label: 'Rejets industriels',
+        value: 'rejets_industriels'
+      },
+      {
+        label: 'Pollution chimique',
+        value: 'pollution_chimique'
+      },
+      {
+        label: 'Microplastiques',
+        value: 'microplastiques'
+      },
+      {
+        label: 'Contamination radioactive',
+        value: 'contamination_radioactive'
+      },
+      {
+        label: 'Pollution sonore sous-marine',
+        value: 'pollution_sonore'
+      },
+      {
+        label: 'Eutrophisation',
+        value: 'eutrophisation'
+      }
+    ],
+    label: 'Pollution marine',
+    value: 'pollution_marine'
+  }
+]
 function CheckTreePickerStory({ value, ...otherProps }: CheckTreePickerProps) {
   const [outputValue, setOutputValue] = useState<any>('∅')
 
@@ -42,7 +81,7 @@ describe('fields/CheckTreePicker', () => {
 
     cy.fill('A check tree picker', ['Pollution marine'])
 
-    outputShouldBe([{ children: [], label: 'Pollution marine', value: 'pollution_marine' }])
+    outputShouldBe(seaPollutionValue)
 
     cy.fill('A check tree picker', ['Marées noires'])
 
@@ -74,6 +113,98 @@ describe('fields/CheckTreePicker', () => {
     outputShouldBe(undefined)
   })
 
+  it('Should fill, change and clear the check picker with modified children key', () => {
+    const customOptions = [
+      {
+        label: 'Entry 1',
+        subTags: [
+          { label: 'Subtag 1', value: 3 },
+          { label: 'Subtag 2', value: 4 }
+        ],
+        value: 1
+      },
+      {
+        label: 'Entry 2',
+        subTags: [
+          { label: 'Subtag 3', value: 5 },
+          { label: 'Subtag 4', value: 6 }
+        ],
+        value: 2
+      }
+    ]
+    mountAndWait(
+      <StoryBox>
+        <CheckTreePickerStory {...commonProps} childrenKey="subTags" options={customOptions} />
+      </StoryBox>
+    )
+
+    outputShouldNotBe()
+
+    cy.fill('A check tree picker', ['Subtag 3'])
+
+    // eslint-disable-next-line sort-keys-fix/sort-keys-fix
+    outputShouldBe([{ subTags: [{ label: 'Subtag 3', value: 5 }], label: 'Entry 2', value: 2 }])
+
+    cy.fill('A check tree picker', ['Entry 1'])
+    outputShouldBe([
+      {
+        subTags: [
+          { label: 'Subtag 1', value: 3 },
+          { label: 'Subtag 2', value: 4 }
+        ],
+        // eslint-disable-next-line sort-keys-fix/sort-keys-fix
+        label: 'Entry 1',
+        value: 1
+      }
+    ])
+
+    cy.fill('A check tree picker', undefined)
+
+    outputShouldBe(undefined)
+  })
+
+  it('Should disabled all other options when multi selected is off', () => {
+    mountAndWait(
+      <StoryBox>
+        <CheckTreePickerStory {...commonProps} isMultiSelect={false} />
+      </StoryBox>
+    )
+
+    cy.fill('A check tree picker', ['Protection des coraux'])
+
+    outputShouldBe([
+      {
+        children: [{ label: 'Protection des coraux', value: 'protection_coraux' }],
+        label: 'Biodiversité marine',
+        value: 'biodiversite_marine'
+      }
+    ])
+
+    cy.get('.rs-picker')
+      .click()
+      .get('.rs-picker-popup')
+      .find('[role="treeitem"]')
+      .first()
+      .within(() => {
+        cy.get('input').then(inputs => {
+          inputs.each((_, input) => {
+            const label = Cypress.$(input).closest('label').text().trim()
+            if (label !== 'Protection des coraux') {
+              cy.wrap(input).should('be.disabled')
+            }
+          })
+        })
+      })
+
+    outputShouldBe([
+      {
+        children: [{ label: 'Protection des coraux', value: 'protection_coraux' }],
+        label: 'Biodiversité marine',
+        value: 'biodiversite_marine'
+      }
+    ])
+  })
+
   it('Should select parent when selecting child', () => {
     mountAndWait(
       <StoryBox>
@@ -86,13 +217,7 @@ describe('fields/CheckTreePicker', () => {
     cy.get('.rs-picker').click().get('.rs-picker-popup').find('[role="treeitem"]').contains('Pollution marine').click()
     cy.clickOutside()
 
-    outputShouldBe([
-      {
-        children: [],
-        label: 'Pollution marine',
-        value: 'pollution_marine'
-      }
-    ])
+    outputShouldBe(seaPollutionValue)
 
     cy.get('.rs-picker').click().get('.rs-picker-popup').find('[role="treeitem"]').contains('Pollution marine').click()
 
@@ -123,7 +248,7 @@ describe('fields/CheckTreePicker', () => {
 
     cy.fill('A check tree picker', ['Pollution marine'])
 
-    outputShouldBe([{ children: [], label: 'Pollution marine', value: 'pollution_marine' }])
+    outputShouldBe(seaPollutionValue)
   })
 
   it('Should fill the check picker with `searchable`', () => {

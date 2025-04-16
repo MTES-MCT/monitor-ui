@@ -3,28 +3,25 @@
 
 import { action } from '@storybook/addon-actions'
 import { Formik } from 'formik'
-import { FormikCheckTreePicker, type FormikCheckTreePickerProps } from 'formiks/FormikCheckTreePicker'
+import { FormikLinkInput, type FormikLinkInputProps } from 'formiks/FormikLinkInput'
 import { omit } from 'lodash'
 import { useMemo, useState } from 'react'
 
 import { Output } from '../../.storybook/components/Output'
-import { TAGS } from '../../.storybook/data/tags'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { FormikEffect } from '../../src'
-import CheckTreePickerStoryMeta from '../fields/CheckTreePicker.stories'
+import LinkInputStoryMeta from '../fields/LinkInput.stories'
 
-import type { FormikCheckPickerProps } from '../../src'
-import type { TreeOption } from '@fields/CheckTreePicker/types'
 import type { Meta } from '@storybook/react'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-const meta: Meta<FormikCheckTreePickerProps> = {
-  title: 'Formiks/FormikCheckTreePicker',
-  component: FormikCheckTreePicker as any,
+const meta: Meta<FormikLinkInputProps> = {
+  title: 'Formiks/FormikLinkInput',
+  component: FormikLinkInput,
 
-  argTypes: omit(CheckTreePickerStoryMeta.argTypes, ['error', 'onChange', 'value']),
+  argTypes: omit(LinkInputStoryMeta.argTypes, ['error', 'onChange', 'value']),
 
-  args: omit(CheckTreePickerStoryMeta.args, ['error', 'onChange', 'value']),
+  args: omit({ name: 'link', ...LinkInputStoryMeta.args }, ['error', 'onChange', 'value']),
 
   decorators: [
     generateStoryDecorator({
@@ -37,8 +34,13 @@ const meta: Meta<FormikCheckTreePickerProps> = {
 
 export default meta
 
-export function _FormikCheckTreePicker(props: FormikCheckPickerProps) {
-  const [outputValue, setOutputValue] = useState<{ myCheckTreePicker?: TreeOption[] }>()
+export function _FormikLinkInput(props: FormikLinkInputProps) {
+  const [outputValue, setOutputValue] = useState<
+    | {
+        myLinkInput?: string
+      }
+    | '∅'
+  >('∅')
 
   const key = useMemo(() => props.name, [props.name])
 
@@ -48,11 +50,11 @@ export function _FormikCheckTreePicker(props: FormikCheckPickerProps) {
         <>
           <FormikEffect onChange={setOutputValue} />
 
-          <FormikCheckTreePicker {...props} isMultiSelect={false} options={TAGS(props.childrenKey)} />
+          <FormikLinkInput {...props} />
         </>
       </Formik>
 
-      {outputValue && <Output value={outputValue} />}
+      {outputValue !== '∅' && <Output value={outputValue} />}
     </>
   )
 }

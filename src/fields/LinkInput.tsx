@@ -8,7 +8,7 @@ import { StyledIMaskInput } from './shared/StyledIMaskInput'
 
 import type { Promisable } from 'type-fest'
 
-export type PhoneInputProps = {
+export type LinkInputProps = {
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean
@@ -23,24 +23,10 @@ export type PhoneInputProps = {
   value: string | undefined
 } & Omit<ComponentProps<'input'>, 'onChange' | 'value'>
 
-const internationalFormat = {
-  definitions: { '#': /[1-9]/, '@': /0/ },
-  mask: '`@@ #[00] 000 000 000 000'
-}
-
-const internationalFrenchFormat = {
-  definitions: { '@': /0/ },
-  mask: '`@@ 00 00 00 00 00'
-}
-
-const frenchFormat = { definitions: { '#': /[1-9]/, '@': /0/ }, mask: '`@# 00 00 00 00' }
-
-const defaultFormat = { definitions: { '#': /[1-9]/, '+': /[+\d]/ }, mask: '`+00 000 000 000 000 000' }
-
 /**
  * FIXME (01/07/2024): This lib has probably a bug, I opened an issue : https://github.com/uNmAnNeR/imaskjs/issues/1053
  */
-export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
+export const LinkInput = forwardRef<HTMLInputElement, LinkInputProps>(
   (
     {
       disabled = false,
@@ -63,7 +49,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
     useFieldUndefineEffect(isUndefinedWhenDisabled && !!disabled, undefined, () => onChange(''))
 
     return (
-      <Field className="Field-PhoneInput">
+      <Field className="Field-LinkInput">
         <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={name}>
           {label}
         </Label>
@@ -74,31 +60,22 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
           $isLight={isLight}
           $isReadOnly={readOnly}
           $isTransparent={isTransparent}
-          disabled={disabled}
-          dispatch={(appended, dynamicMasked) => {
-            const phoneNumber = (dynamicMasked.unmaskedValue + appended).replace(/\s+/g, '')
-
-            if (phoneNumber.startsWith('00')) {
-              if (value && value.length === 12 && phoneNumber === value) {
-                return dynamicMasked.compiledMasks[1]
-              }
-
-              return dynamicMasked.compiledMasks[0]
+          blocks={{
+            r: {
+              mask: '*',
+              repeat: Infinity
             }
-            if (phoneNumber.startsWith('0') && value && value.length <= 10 && phoneNumber === value) {
-              return dynamicMasked.compiledMasks[2]
-            }
-
-            return dynamicMasked.compiledMasks[3]
           }}
+          disabled={disabled}
           id={name}
-          mask={[internationalFormat, internationalFrenchFormat, frenchFormat, defaultFormat]}
+          lazy
+          mask="https://www.r"
           onAccept={(nextValue: string) => {
             onChange(nextValue || undefined)
           }}
           overwrite={false}
-          type="tel"
-          unmask
+          type="text"
+          unmask={false}
           value={value}
           {...props}
         />
