@@ -1,3 +1,14 @@
+## [24.17.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.17.0...v24.17.1) (2025-05-02)
+
+### Buid System & Dependencies
+
+* **deps:** bump @tanstack/react-table ([652fa3c](https://github.com/MTES-MCT/monitor-ui/commit/652fa3cf4dd1b9bd67168f088aff1cb00b6f307b))
+* **dev-deps:** bump the all-non-major-dependencies group ([44922f2](https://github.com/MTES-MCT/monitor-ui/commit/44922f2e4127eb1eac1e3060eedd6cc45e6731c9))
+* **dev-deps:** bump the all-non-major-dependencies group ([b31336b](https://github.com/MTES-MCT/monitor-ui/commit/b31336b8dabfe48747548aa5198a559ac6dc77b6))
+* **dev-deps:** bump the non-major-dev-dependencies group across 1 directory with 17 updates ([c2ae567](https://github.com/MTES-MCT/monitor-ui/commit/c2ae567788228b0b67a738823a6a1c892bf8979f))
+* **dev-deps:** bump vite ([04cc7d4](https://github.com/MTES-MCT/monitor-ui/commit/04cc7d4b90f0f317fe481da26890c86c8412d9b4))
+* **dev-deps:** bump vite in the npm_and_yarn group ([3aef1de](https://github.com/MTES-MCT/monitor-ui/commit/3aef1de215e81c39cf2880c3e486ee2a4537b098))
+
 ## [24.16.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.15.1...v24.16.0) (2025-04-02)
 
 ### Features
