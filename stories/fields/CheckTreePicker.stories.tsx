@@ -52,7 +52,10 @@ const meta: Meta<CheckTreePickerProps> = {
     isMultiSelect: true,
     readOnly: false,
     searchable: true,
-    virtualized: false
+    virtualized: false,
+    childrenKey: 'subThemes',
+    valueKey: 'id',
+    labelKey: 'name'
   },
 
   decorators: [
@@ -78,7 +81,7 @@ export function _CheckTreePicker(props: CheckTreePickerProps) {
       <CheckTreePicker
         {...props}
         onChange={controlledOnChange}
-        options={TAGS(props.childrenKey)}
+        options={TAGS(props.childrenKey, props.labelKey, props.valueKey)}
         searchable
         value={controlledValue}
         virtualized
