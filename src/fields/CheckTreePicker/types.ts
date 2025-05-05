@@ -1,6 +1,4 @@
-export type TreeOption =
-  | ({
-      label: string
-      value: string | number
-    } & Record<string, TreeOption[] | undefined>)
-  | { label: string; value: string | number }
+// default is {label: string, value: string | number, children: [{label: string, value: string | number}]}
+export type TreeOption = {
+  [key: string]: string | number | TreeOption[] | undefined
+}

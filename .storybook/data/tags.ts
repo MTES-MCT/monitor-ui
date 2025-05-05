@@ -1,72 +1,72 @@
-export const TAGS = (childrenKey: string = 'children') => [
+export const TAGS = (childrenKey: string = 'children', labelKey = 'label', valueKey = 'value') => [
   {
-    label: 'Pollution marine',
-    value: 'pollution_marine',
+    [labelKey]: 'Pollution marine hduiazhdiu azbiudh aiuzdhiuza hduiazh iuhd zaiohdoiazh oidzah oazhd oazh oidaho hoah ',
+    [valueKey]: 'pollution_marine',
     [childrenKey]: [
-      { label: 'Déchets plastiques', value: 'dechets_plastiques' },
-      { label: 'Marées noires', value: 'marees_noires' },
-      { label: 'Rejets industriels', value: 'rejets_industriels' },
-      { label: 'Pollution chimique', value: 'pollution_chimique' },
-      { label: 'Microplastiques', value: 'microplastiques' },
-      { label: 'Contamination radioactive', value: 'contamination_radioactive' },
-      { label: 'Pollution sonore sous-marine', value: 'pollution_sonore' },
-      { label: 'Eutrophisation', value: 'eutrophisation' }
+      { [labelKey]: 'Déchets plastiques', [valueKey]: 'dechets_plastiques' },
+      { [labelKey]: 'Marées noires', [valueKey]: 'marees_noires' },
+      { [labelKey]: 'Rejets industriels', [valueKey]: 'rejets_industriels' },
+      { [labelKey]: 'Pollution chimique', [valueKey]: 'pollution_chimique' },
+      { [labelKey]: 'Microplastiques', [valueKey]: 'microplastiques' },
+      { [labelKey]: 'Contamination radioactive', [valueKey]: 'contamination_radioactive' },
+      { [labelKey]: 'Pollution sonore sous-marine', [valueKey]: 'pollution_sonore' },
+      { [labelKey]: 'Eutrophisation', [valueKey]: 'eutrophisation' }
     ]
   },
   {
-    label: 'Biodiversité marine',
-    value: 'biodiversite_marine',
+    [labelKey]: 'Biodiversité marine',
+    [valueKey]: 'biodiversite_marine',
     [childrenKey]: [
-      { label: 'Protection des coraux', value: 'protection_coraux' },
-      { label: 'Espèces en danger', value: 'especes_en_danger' },
-      { label: 'Écosystèmes marins', value: 'ecosystemes_marins' },
-      { label: 'Pêche durable', value: 'peche_durable' },
-      { label: 'Faune abyssale', value: 'faune_abyssale' },
-      { label: 'Récifs artificiels', value: 'recifs_artificiels' },
-      { label: 'Herbiers marins', value: 'herbiers_marins' },
-      { label: 'Migrations animales marines', value: 'migrations_animales' }
+      { [labelKey]: 'Protection des coraux', [valueKey]: 'protection_coraux' },
+      { [labelKey]: 'Espèces en danger', [valueKey]: 'especes_en_danger' },
+      { [labelKey]: 'Écosystèmes marins', [valueKey]: 'ecosystemes_marins' },
+      { [labelKey]: 'Pêche durable', [valueKey]: 'peche_durable' },
+      { [labelKey]: 'Faune abyssale', [valueKey]: 'faune_abyssale' },
+      { [labelKey]: 'Récifs artificiels', [valueKey]: 'recifs_artificiels' },
+      { [labelKey]: 'Herbiers marins', [valueKey]: 'herbiers_marins' },
+      { [labelKey]: 'Migrations animales marines', [valueKey]: 'migrations_animales' }
     ]
   },
   {
-    label: 'Changement climatique et océan',
-    value: 'changement_climatique_ocean',
+    [labelKey]: 'Changement climatique et océan',
+    [valueKey]: 'changement_climatique_ocean',
     [childrenKey]: [
-      { label: 'Acidification des océans', value: 'acidification_oceans' },
-      { label: 'Réchauffement des eaux', value: 'rechauffement_eaux' },
-      { label: 'Montée du niveau de la mer', value: 'montee_niveau_mer' },
-      { label: 'Blanchissement des coraux', value: 'blanchissement_coraux' },
-      { label: 'Fonte des glaciers', value: 'fonte_glaciers' },
-      { label: 'Changements de courants marins', value: 'changements_courants' },
-      { label: 'Perturbation des cycles de reproduction', value: 'perturbation_reproduction' },
-      { label: 'Émissions de gaz à effet de serre marins', value: 'emissions_gaz_marins' }
+      { [labelKey]: 'Acidification des océans', [valueKey]: 'acidification_oceans' },
+      { [labelKey]: 'Réchauffement des eaux', [valueKey]: 'rechauffement_eaux' },
+      { [labelKey]: 'Montée du niveau de la mer', [valueKey]: 'montee_niveau_mer' },
+      { [labelKey]: 'Blanchissement des coraux', [valueKey]: 'blanchissement_coraux' },
+      { [labelKey]: 'Fonte des glaciers', [valueKey]: 'fonte_glaciers' },
+      { [labelKey]: 'Changements de courants marins', [valueKey]: 'changements_courants' },
+      { [labelKey]: 'Perturbation des cycles de reproduction', [valueKey]: 'perturbation_reproduction' },
+      { [labelKey]: 'Émissions de gaz à effet de serre marins', [valueKey]: 'emissions_gaz_marins' }
     ]
   },
   {
-    label: 'Activités humaines et océan',
-    value: 'activites_humaines_ocean',
+    [labelKey]: 'Activités humaines et océan',
+    [valueKey]: 'activites_humaines_ocean',
     [childrenKey]: [
-      { label: 'Tourisme responsable', value: 'tourisme_responsable' },
-      { label: 'Énergies marines renouvelables', value: 'energies_marines' },
-      { label: 'Transport maritime durable', value: 'transport_maritime' },
-      { label: 'Aquaculture responsable', value: 'aquaculture_responsable' },
-      { label: 'Exploitation minière sous-marine', value: 'exploitation_miniere' },
-      { label: 'Réglementation des eaux internationales', value: 'reglementation_eaux' },
-      { label: 'Protection des zones marines', value: 'protection_zones_marines' },
-      { label: 'Gestion des ressources marines', value: 'gestion_ressources_marines' }
+      { [labelKey]: 'Tourisme responsable', [valueKey]: 'tourisme_responsable' },
+      { [labelKey]: 'Énergies marines renouvelables', [valueKey]: 'energies_marines' },
+      { [labelKey]: 'Transport maritime durable', [valueKey]: 'transport_maritime' },
+      { [labelKey]: 'Aquaculture responsable', [valueKey]: 'aquaculture_responsable' },
+      { [labelKey]: 'Exploitation minière sous-marine', [valueKey]: 'exploitation_miniere' },
+      { [labelKey]: 'Réglementation des eaux internationales', [valueKey]: 'reglementation_eaux' },
+      { [labelKey]: 'Protection des zones marines', [valueKey]: 'protection_zones_marines' },
+      { [labelKey]: 'Gestion des ressources marines', [valueKey]: 'gestion_ressources_marines' }
     ]
   },
   {
-    label: 'Technologies et innovations marines',
-    value: 'technologies_innovations_marines',
+    [labelKey]: 'Technologies et innovations marines',
+    [valueKey]: 'technologies_innovations_marines',
     [childrenKey]: [
-      { label: 'Robotique sous-marine', value: 'robotique_sous_marine' },
-      { label: 'Cartographie des fonds marins', value: 'cartographie_fonds_marins' },
-      { label: 'Biotechnologies marines', value: 'biotechnologies_marines' },
-      { label: 'Surveillance des océans', value: 'surveillance_oceans' }
+      { [labelKey]: 'Robotique sous-marine', [valueKey]: 'robotique_sous_marine' },
+      { [labelKey]: 'Cartographie des fonds marins', [valueKey]: 'cartographie_fonds_marins' },
+      { [labelKey]: 'Biotechnologies marines', [valueKey]: 'biotechnologies_marines' },
+      { [labelKey]: 'Surveillance des océans', [valueKey]: 'surveillance_oceans' }
     ]
   },
   {
-    label: 'Éducation et sensibilisation',
-    value: 'education_sensibilisation'
+    [labelKey]: 'Éducation et sensibilisation',
+    [valueKey]: 'education_sensibilisation'
   }
 ]
