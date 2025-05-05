@@ -1,6 +1,12 @@
 import { describe, expect, it } from '@jest/globals'
 
-import { computeDisabledValues, fromRsuiteValue, getTreeOptionsBySelectedValues, toRsuiteValue } from '../utils'
+import {
+  computeDisabledValues,
+  fromRsuiteValue,
+  getOptionsToDisplay,
+  getTreeOptionsBySelectedValues,
+  toRsuiteValue
+} from '../utils'
 
 import type { TreeOption } from '../types'
 import type { ValueType } from 'rsuite/esm/CheckTreePicker'
@@ -176,5 +182,95 @@ describe('computeDisabledValues', () => {
     const result = computeDisabledValues(false, ['p2'], uiValues, 'children')
     // A, B, A1, A2, B1 are not selected
     expect(result).toEqual(['p1', 'c1', 'c2'])
+  })
+})
+
+describe('getOptionsToDisplay', () => {
+  const allOptions: TreeOption[] = [
+    {
+      children: [
+        { label: 'Child 1', value: 'child1' },
+        { label: 'Child 2', value: 'child2' }
+      ],
+      label: 'Parent 1',
+      value: 'parent1'
+    },
+    {
+      children: [
+        { label: 'Child 3', value: 'child3' },
+        { label: 'Child 4', value: 'child4' }
+      ],
+      label: 'Parent 2',
+      value: 'parent2'
+    },
+    {
+      label: 'Orphan Option',
+      value: 'orphan'
+    }
+  ]
+
+  it('returns parent if all children are selected', () => {
+    const selected = [
+      { label: 'Child 1', value: 'child1' },
+      { label: 'Child 2', value: 'child2' }
+    ]
+
+    const result = getOptionsToDisplay(allOptions, selected)
+    expect(result).toEqual([
+      {
+        children: [
+          { label: 'Child 1', value: 'child1' },
+          { label: 'Child 2', value: 'child2' }
+        ],
+        label: 'Parent 1',
+        value: 'parent1'
+      }
+    ])
+  })
+
+  it('returns orphan child if its parent is not fully selected', () => {
+    const selected = [
+      { label: 'Child 3', value: 'child3' } // child4 is missing
+    ]
+
+    const result = getOptionsToDisplay(allOptions, selected)
+    expect(result).toEqual([{ label: 'Child 3', value: 'child3' }])
+  })
+
+  it('returns mixed: one parent complete, one orphan child', () => {
+    const selected = [
+      { label: 'Child 1', value: 'child1' },
+      { label: 'Child 2', value: 'child2' },
+      { label: 'Child 3', value: 'child3' }
+    ]
+
+    const result = getOptionsToDisplay(allOptions, selected)
+    expect(result).toEqual([
+      {
+        children: [
+          { label: 'Child 1', value: 'child1' },
+          { label: 'Child 2', value: 'child2' }
+        ],
+        label: 'Parent 1',
+        value: 'parent1'
+      },
+      { label: 'Child 3', value: 'child3' }
+    ])
+  })
+
+  it('returns ungrouped option if selected and has no parent', () => {
+    const selected = [{ label: 'Orphan Option', value: 'orphan' }]
+    const result = getOptionsToDisplay(allOptions, selected)
+    expect(result).toEqual([{ label: 'Orphan Option', value: 'orphan' }])
+  })
+
+  it('returns empty array if selectedOptions is empty', () => {
+    const result = getOptionsToDisplay(allOptions, [])
+    expect(result).toEqual([])
+  })
+
+  it('returns empty array if allOptions is empty', () => {
+    const result = getOptionsToDisplay([], [{ label: 'Child 1', value: 'child1' }])
+    expect(result).toEqual([])
   })
 })
