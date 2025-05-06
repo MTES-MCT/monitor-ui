@@ -1,3 +1,9 @@
+## [24.18.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.18.0...v24.18.1) (2025-05-06)
+
+### Bug Fixes
+
+* **components:** add min-height to rsuite combobox ([38d72f6](https://github.com/MTES-MCT/monitor-ui/commit/38d72f6a7294d7f6fef8449573a4ff4eadd3eadb))
+
 ## [24.18.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.17.1...v24.18.0) (2025-05-06)
 
 ### Features
