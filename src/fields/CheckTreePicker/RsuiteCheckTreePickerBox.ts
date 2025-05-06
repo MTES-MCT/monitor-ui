@@ -190,6 +190,10 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
       padding: 0;
       margin: 0;
 
+      .rs-check-tree-node {
+        padding: 0 !important;
+      }
+
       .rs-check-tree-node-custom-icon {
         margin-top: -2px;
       }
@@ -197,6 +201,7 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
       [role='treeitem'] {
         display: flex;
         align-items: center;
+
         .rs-check-item {
           width: 100%;
           color: ${p => p.theme.color.gunMetal};
@@ -239,6 +244,9 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
                 background-color: ${p => p.theme.color.charcoal} !important;
                 border: solid 2px ${p => p.theme.color.charcoal} !important;
               }
+              &:after {
+                margin-left: 11px !important;
+              }
             }
           }
           &.rs-checkbox-disabled {
@@ -263,21 +271,21 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
             > label {
               color: ${p => p.theme.color.gunMetal};
               font-size: 13px !important;
-              line-height: 1;
               overflow: hidden;
               text-overflow: ellipsis;
               white-space: nowrap;
               padding: 1px 0;
 
               > .rs-check-tree-node-label-content {
-                margin-left: 38px;
                 background-color: initial;
                 color: initial;
+                padding: 3px 8px 6px 44px;
+                width: 100%;
               }
 
               > .rs-checkbox-wrapper {
                 height: auto;
-                left: 8px;
+                left: 0px;
                 top: 7px !important;
                 margin-left: 14px;
 
@@ -286,7 +294,10 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
                     background-color: ${p => p.theme.color.gainsboro};
                     border: solid 2px ${p => p.theme.color.lightGray};
                     border-radius: 0;
-                    margin-right: 8px;
+                    margin-left: 8px;
+                  }
+                  &:after {
+                    margin-left: 13px;
                   }
                 }
               }
@@ -357,6 +368,30 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
                         background-color: ${p => p.theme.color.blueYonder};
                         border: solid 2px ${p => p.theme.color.blueYonder};
                       }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        /* childrens */
+        &[aria-level='2'] {
+          > .rs-check-item {
+            > .rs-checkbox-checker {
+              > label {
+                > .rs-check-tree-node-label-content {
+                  padding-left: 60px;
+                }
+
+                > .rs-checkbox-wrapper {
+                  > .rs-checkbox-inner {
+                    &:before {
+                      margin-left: 24px;
+                    }
+                    &:after {
+                      margin-left: 29px;
                     }
                   }
                 }
