@@ -187,37 +187,40 @@ export function CheckTreePicker({
             const optionsToDisplay = getOptionsToDisplay(options, [...parents, ...children], childrenKey, valueKey)
 
             return (
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                {optionsToDisplay.map(option => {
-                  const isParent = option[childrenKey] !== undefined && (option[childrenKey] as TreeOption[]).length > 0
+              <Wrapper>
+                <SubWrapper>
+                  {optionsToDisplay.map(option => {
+                    const isParent =
+                      option[childrenKey] !== undefined && (option[childrenKey] as TreeOption[]).length > 0
 
-                  return (
-                    <div key={option[valueKey] as string | number} style={{ display: 'flex', gap: '1px' }}>
-                      <span style={{ background: 'white', padding: '2px 8px' }}>
-                        {option[labelKey] as string}
-                        {isParent && ' (Tout)'}
-                      </span>
-                      <Button
-                        accent={Accent.TERTIARY}
-                        Icon={Icon.Close}
-                        onClick={e => {
-                          removeOptions(
-                            isParent
-                              ? (option[childrenKey] as TreeOption[]).flatMap(
-                                  child => child[valueKey] as string | number
-                                )
-                              : [option[valueKey] as string | number],
-                            e
-                          )
-                        }}
-                        size={Size.SMALL}
-                        tabIndex={0}
-                        title={`Retirer ${option[labelKey]}`}
-                      />
-                    </div>
-                  )
-                })}
-              </div>
+                    return (
+                      <SelectedOptionContainer key={option[valueKey] as string | number}>
+                        <SelectedOptionLabel>
+                          {option[labelKey] as string}
+                          {isParent && ' (Tout)'}
+                        </SelectedOptionLabel>
+                        <StyledButton
+                          accent={Accent.TERTIARY}
+                          Icon={Icon.Close}
+                          onClick={e => {
+                            removeOptions(
+                              isParent
+                                ? (option[childrenKey] as TreeOption[]).flatMap(
+                                    child => child[valueKey] as string | number
+                                  )
+                                : [option[valueKey] as string | number],
+                              e
+                            )
+                          }}
+                          size={Size.SMALL}
+                          tabIndex={0}
+                          title={`Retirer ${option[labelKey]}`}
+                        />
+                      </SelectedOptionContainer>
+                    )
+                  })}
+                </SubWrapper>
+              </Wrapper>
             )
           }}
           size={originalProps.size ?? 'sm'}
@@ -233,4 +236,54 @@ export function CheckTreePicker({
 const Bold = styled.span`
   font-weight: bold;
   margin-right: 4px;
+`
+const StyledButton = styled(Button)`
+  padding: 0 3px;
+
+  &:hover,
+  &._hover {
+    background-color: ${p => p.theme.color.white};
+    border: 1px solid ${p => p.theme.color.white};
+    color: ${p => p.theme.color.maximumRed};
+  }
+
+  &:active,
+  &._active {
+    background-color: ${p => p.theme.color.white};
+    border: 1px solid ${p => p.theme.color.white};
+    color: ${p => p.theme.color.maximumRed};
+  }
+
+  > .Element-IconBox {
+    margin-right: 0px;
+    > svg {
+      height: 10px;
+      width: 10px;
+    }
+  }
+`
+const Wrapper = styled.div`
+  display: contents;
+`
+const SubWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: calc(100% - 6px);
+`
+
+const SelectedOptionContainer = styled.div`
+  display: flex;
+  gap: 1px;
+  padding-top: 1px;
+  max-width: calc(100% - 6px);
+`
+const SelectedOptionLabel = styled.span`
+  background-color: ${p => p.theme.color.white};
+  font-size: 11px;
+  padding: 2px 8px 1px 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+  white-space: nowrap;
 `
