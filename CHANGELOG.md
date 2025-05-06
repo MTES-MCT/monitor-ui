@@ -1,3 +1,22 @@
+## [24.18.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.17.1...v24.18.0) (2025-05-06)
+
+### Features
+
+* **components:** add option display props. refacto to use override value, label and children key ([266d620](https://github.com/MTES-MCT/monitor-ui/commit/266d6201f61cdd70cf0c6fefef2b9fa4e6f9d28f))
+* **components:** add option display props. refacto to use override value, label and children key ([728ec63](https://github.com/MTES-MCT/monitor-ui/commit/728ec63e106ad5d164be5f74b316a1efc51a7625))
+
+### Bug Fixes
+
+* **components:** move checkpicker css ([ce6c3f9](https://github.com/MTES-MCT/monitor-ui/commit/ce6c3f9b692b2a75f092049aa36177af4e00e686))
+* **components:** move computing disabled values on value setting instead of onChange. Fix formik story ([5e3cf81](https://github.com/MTES-MCT/monitor-ui/commit/5e3cf813299a038165f3cca6627678ce31353db1))
+* **fields:** fix checktreepicker style ([2706b3d](https://github.com/MTES-MCT/monitor-ui/commit/2706b3d08a5af32e9dc7b802955672700e1ebd02))
+* **fields:** fix style with isLight and isTransparent props ([ee4d1db](https://github.com/MTES-MCT/monitor-ui/commit/ee4d1dbee3f9520f9e8f706c55354c1038f1c5b6))
+
+### Buid System & Dependencies
+
+* **deps:** bump @babel/runtime in the non-major-dependencies group ([5828afa](https://github.com/MTES-MCT/monitor-ui/commit/5828afae412d302a136c07767568e1c04437e279))
+* **dev-deps:** bump the all-non-major-dependencies group ([651d1e6](https://github.com/MTES-MCT/monitor-ui/commit/651d1e60730c0685c9e84454ae411c2aed740a8c))
+
 ## [24.17.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.17.0...v24.17.1) (2025-05-02)
 
 ### Buid System & Dependencies
