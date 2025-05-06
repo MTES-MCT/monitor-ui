@@ -1,4 +1,4 @@
-import type { CommonChoiceFieldStyleProps, CommonFieldStyleProps, PseudoState } from './types'
+import type { CommonChoiceFieldStyleProps, PseudoState } from './types'
 
 export function getChoiceFieldBackgroundColorFactoryForState(pseudoState: PseudoState) {
   return (props: CommonChoiceFieldStyleProps) => {
@@ -81,7 +81,7 @@ export function getChoiceFieldBorderColorFactoryForState(pseudoState: PseudoStat
 }
 
 export function getFieldBackgroundColorFactory() {
-  return (props: CommonFieldStyleProps) => {
+  return (props: { [key: string]: any; theme: any }) => {
     switch (true) {
       case props.$isDisabled:
         return props.theme.color.cultured
@@ -105,7 +105,7 @@ export function getFieldBackgroundColorFactory() {
 }
 
 export function getFieldBorderColorFactoryForState(pseudoState: PseudoState) {
-  return (props: CommonFieldStyleProps) => {
+  return (props: { [key: string]: any; theme: any }) => {
     switch (true) {
       case props.$hasError:
         return props.theme.color.maximumRed
@@ -141,7 +141,7 @@ export function getFieldBorderColorFactoryForState(pseudoState: PseudoState) {
 }
 
 export function getFieldPlaceholderColorFactoryForState(pseudoState: PseudoState) {
-  return (props: CommonFieldStyleProps) => {
+  return (props: { [key: string]: any; theme: any }) => {
     switch (true) {
       case props.$hasError:
         return props.theme.color.maximumRed
