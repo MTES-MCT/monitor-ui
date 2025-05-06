@@ -13,7 +13,6 @@ import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDeco
 import { FormikEffect } from '../../src'
 import CheckTreePickerStoryMeta from '../fields/CheckTreePicker.stories'
 
-import type { FormikCheckPickerProps } from '../../src'
 import type { TreeOption } from '@fields/CheckTreePicker/types'
 import type { Meta } from '@storybook/react'
 
@@ -37,7 +36,7 @@ const meta: Meta<FormikCheckTreePickerProps> = {
 
 export default meta
 
-export function _FormikCheckTreePicker(props: FormikCheckPickerProps) {
+export function _FormikCheckTreePicker(props: FormikCheckTreePickerProps) {
   const [outputValue, setOutputValue] = useState<{ myCheckTreePicker?: TreeOption[] }>()
 
   const key = useMemo(() => props.name, [props.name])
@@ -48,7 +47,11 @@ export function _FormikCheckTreePicker(props: FormikCheckPickerProps) {
         <>
           <FormikEffect onChange={setOutputValue} />
 
-          <FormikCheckTreePicker {...props} isMultiSelect={false} options={TAGS(props.childrenKey)} />
+          <FormikCheckTreePicker
+            {...props}
+            isMultiSelect={false}
+            options={TAGS(props.childrenKey, props.labelKey, props.valueKey)}
+          />
         </>
       </Formik>
 

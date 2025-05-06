@@ -1,6 +1,6 @@
 export const TAGS = (childrenKey: string = 'children', labelKey = 'label', valueKey = 'value') => [
   {
-    [labelKey]: 'Pollution marine hduiazhdiu azbiudh aiuzdhiuza hduiazh iuhd zaiohdoiazh oidzah oazhd oazh oidaho hoah ',
+    [labelKey]: 'Pollution marine',
     [valueKey]: 'pollution_marine',
     [childrenKey]: [
       { [labelKey]: 'Déchets plastiques', [valueKey]: 'dechets_plastiques' },

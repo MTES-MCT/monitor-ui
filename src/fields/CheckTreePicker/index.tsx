@@ -16,8 +16,8 @@ import styled from 'styled-components'
 import { CheckTreePickerBox } from './CheckTreePickerBox'
 import {
   computeDisabledValues,
-  getOptionsToDisplay,
   fromRsuiteValue,
+  getOptionsToDisplay,
   getTreeOptionsBySelectedValues,
   toRsuiteValue
 } from './utils'
@@ -90,11 +90,18 @@ export function CheckTreePicker({
     forceUpdate()
   }, [forceUpdate])
 
-  const rsuiteValue = useMemo(() => toRsuiteValue(value, childrenKey, valueKey), [childrenKey, value, valueKey])
+  const [disabledValues, setDisabledValues] = useState<ValueType>([])
 
-  const [disabledValues, setDisabledValues] = useState<ValueType>(
-    computeDisabledValues(isMultiSelect, rsuiteValue, options, childrenKey, valueKey, labelKey)
-  )
+  const rsuiteValue = useMemo(() => {
+    const nextRsuiteValue = toRsuiteValue(value, childrenKey, valueKey)
+    if (!isMultiSelect && nextRsuiteValue) {
+      setDisabledValues(computeDisabledValues(isMultiSelect, nextRsuiteValue, options, childrenKey, valueKey, labelKey))
+    } else {
+      setDisabledValues([])
+    }
+
+    return nextRsuiteValue
+  }, [childrenKey, isMultiSelect, labelKey, options, value, valueKey])
 
   const handleChange = useCallback(
     (nextValue: ValueType) => {
@@ -104,15 +111,9 @@ export function CheckTreePicker({
 
       const formattedValues = fromRsuiteValue(nextValue, options, childrenKey, valueKey, labelKey)
 
-      if (!isMultiSelect && formattedValues) {
-        setDisabledValues(computeDisabledValues(isMultiSelect, nextValue, options, childrenKey, valueKey, labelKey))
-      } else {
-        setDisabledValues([])
-      }
-
       onChange(formattedValues)
     },
-    [childrenKey, isMultiSelect, labelKey, onChange, options, valueKey]
+    [childrenKey, labelKey, onChange, options, valueKey]
   )
 
   const removeOptions = (valuesToRemove: ValueType, e: React.MouseEvent<HTMLButtonElement>) => {

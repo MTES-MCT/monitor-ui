@@ -38,7 +38,6 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
       font-size: 13px;
       min-height: 30px;
       height: auto;
-      max-height: 66px;
       line-height: 1.3846;
       padding: 3.5px 40px 3.5px 8px !important;
 
