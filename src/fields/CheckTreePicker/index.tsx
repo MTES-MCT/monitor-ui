@@ -195,11 +195,12 @@ export function CheckTreePicker({
 
                     return (
                       <SelectedOptionContainer key={option[valueKey] as string | number}>
-                        <SelectedOptionLabel>
+                        <SelectedOptionLabel $isLight={isLight || isTransparent} title={option[labelKey] as string}>
                           {option[labelKey] as string}
                           {isParent && ' (Tout)'}
                         </SelectedOptionLabel>
                         <StyledButton
+                          $isLight={isLight || isTransparent}
                           accent={Accent.TERTIARY}
                           Icon={Icon.Close}
                           onClick={e => {
@@ -237,20 +238,21 @@ const Bold = styled.span`
   font-weight: bold;
   margin-right: 4px;
 `
-const StyledButton = styled(Button)`
+const StyledButton = styled(Button)<{ $isLight?: boolean }>`
   padding: 0 3px;
+  background-color: ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
 
   &:hover,
   &._hover {
-    background-color: ${p => p.theme.color.white};
-    border: 1px solid ${p => p.theme.color.white};
+    background-color: ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
+    border: 1px solid ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
     color: ${p => p.theme.color.maximumRed};
   }
 
   &:active,
   &._active {
-    background-color: ${p => p.theme.color.white};
-    border: 1px solid ${p => p.theme.color.white};
+    background-color: ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
+    border: 1px solid ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
     color: ${p => p.theme.color.maximumRed};
   }
 
@@ -278,8 +280,8 @@ const SelectedOptionContainer = styled.div`
   padding-top: 1px;
   max-width: calc(100% - 6px);
 `
-const SelectedOptionLabel = styled.span`
-  background-color: ${p => p.theme.color.white};
+const SelectedOptionLabel = styled.span<{ $isLight?: boolean }>`
+  background-color: ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
   font-size: 11px;
   padding: 2px 8px 1px 8px;
   overflow: hidden;
