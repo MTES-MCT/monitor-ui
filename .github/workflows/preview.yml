@@ -31,7 +31,7 @@ jobs:
         uses: ./.github/actions/install
       - name: Publish
         id: publish
-        uses: chromaui/action@v11
+        uses: chromaui/action@v12
         with:
           buildScriptName: 'build:storybook'
           externals: src/assets/**
