@@ -279,7 +279,7 @@ const SelectedOptionContainer = styled.div`
   display: flex;
   gap: 1px;
   padding-top: 1px;
-  max-width: calc(100% - 6px);
+  max-width: 100%;
 `
 const SelectedOptionLabel = styled.span<{ $isLight?: boolean }>`
   background-color: ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
