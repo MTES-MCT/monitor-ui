@@ -1,3 +1,16 @@
+## [24.18.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.18.1...v24.18.2) (2025-05-27)
+
+### Bug Fixes
+
+* **components:** set option label value width to 100% ([b0a2f36](https://github.com/MTES-MCT/monitor-ui/commit/b0a2f36bff3ec82b3291a2f6221dc845ca5c46b7))
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @tsconfig/vite-react in /e2e/release/sample ([16a80b4](https://github.com/MTES-MCT/monitor-ui/commit/16a80b4e057ee6ced04197bafeea6d6ca6e70ebc))
+* **dev-deps:** bump the all-non-major-dependencies group ([94ff1ef](https://github.com/MTES-MCT/monitor-ui/commit/94ff1efaa6de766f1df857d4b37e708caeaadea5))
+* **dev-deps:** bump the all-non-major-dependencies group ([da28697](https://github.com/MTES-MCT/monitor-ui/commit/da286978952e1ace52ca84a3d6781fcf3c285ac1))
+* **dev-deps:** bump the all-non-major-dependencies group ([bfae7c2](https://github.com/MTES-MCT/monitor-ui/commit/bfae7c2ddfb142672b306693ca3799f96f8fdf80))
+
 ## [24.18.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.18.0...v24.18.1) (2025-05-06)
 
 ### Bug Fixes
