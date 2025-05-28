@@ -43,7 +43,6 @@ export function cleanCollectionDiacritics<T extends AnyObject = AnyObject>(
 
     // This type check is a safeguard against unexpected values (a non-string value would otherwise throw an error)
     if (typeof get(collectionKeyAsPath, collectionItem) !== 'string') {
-      console.warn(`"${collectionKeyAsPath}" is not a string (value: \`${collectionItemPropValue}\`).`)
 
       return collectionItem
     }
