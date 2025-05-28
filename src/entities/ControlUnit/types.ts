@@ -137,7 +137,7 @@ export namespace ControlUnit {
     [ControlUnitResourceType.NO_RESOURCE]: 'Aucun moyen',
     [ControlUnitResourceType.OTHER]: 'Autre',
     [ControlUnitResourceType.PATROL_BOAT]: 'Patrouilleur',
-    [ControlUnitResourceType.PEDESTRIAN]: 'Piéton',
+    [ControlUnitResourceType.PEDESTRIAN]: 'Pédestre',
     [ControlUnitResourceType.PIROGUE]: 'Pirogue',
     [ControlUnitResourceType.RIGID_HULL]: 'Coque rigide',
     [ControlUnitResourceType.SEA_SCOOTER]: 'Scooter de mer',
