@@ -1,3 +1,9 @@
+## [24.19.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.18.2...v24.19.0) (2025-05-29)
+
+### Features
+
+* **types:** change label for ControlUnitResourceType.PEDESTRIAN ([5882134](https://github.com/MTES-MCT/monitor-ui/commit/5882134fbf31c7d08edefb65ea10adc68f065a4d))
+
 ## [24.18.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.18.1...v24.18.2) (2025-05-27)
 
 ### Bug Fixes
