@@ -39,11 +39,8 @@ export function cleanCollectionDiacritics<T extends AnyObject = AnyObject>(
   // Now that we have a list of prop paths, we want to generate a list of transformers
   // able for remove diacritics of a collection item, one transformer per collection item prop path.
   const collectionItemTransformers = collectionKeysAsPaths.map(collectionKeyAsPath => (collectionItem: T): T => {
-    const collectionItemPropValue = get(collectionKeyAsPath, collectionItem)
-
     // This type check is a safeguard against unexpected values (a non-string value would otherwise throw an error)
     if (typeof get(collectionKeyAsPath, collectionItem) !== 'string') {
-
       return collectionItem
     }
 
