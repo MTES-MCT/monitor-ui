@@ -1,3 +1,15 @@
+## [24.19.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.19.0...v24.19.1) (2025-06-02)
+
+### Bug Fixes
+
+* **utils:** fix unnecessary variable ([cfb9b01](https://github.com/MTES-MCT/monitor-ui/commit/cfb9b01bdf93cc2b71a0802e389b99c720417848))
+* **utils:** remove unecessary console warn ([d9a09e9](https://github.com/MTES-MCT/monitor-ui/commit/d9a09e9fd0a45479fed00e30aa57f748968a974a))
+
+### Buid System & Dependencies
+
+* **deps:** upgrade cypress peer deps ([e3a6ab7](https://github.com/MTES-MCT/monitor-ui/commit/e3a6ab76df4cdccdf4768f95b9e9e8a08a033541))
+* **dev-deps:** bump the all-non-major-dependencies group ([ae037e7](https://github.com/MTES-MCT/monitor-ui/commit/ae037e7e1dd5145b87b501d302f78c86884b7a58))
+
 ## [24.19.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.18.2...v24.19.0) (2025-05-29)
 
 ### Features
