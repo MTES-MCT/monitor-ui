@@ -18,6 +18,7 @@ import {
   computeDisabledValues,
   fromRsuiteValue,
   getOptionsToDisplay,
+  getParentRsuiteValue,
   getTreeOptionsBySelectedValues,
   toRsuiteValue
 } from './utils'
@@ -91,6 +92,10 @@ export function CheckTreePicker({
   }, [forceUpdate])
 
   const [disabledValues, setDisabledValues] = useState<ValueType>([])
+  const uncheckableValues = useMemo(
+    () => getParentRsuiteValue(options, valueKey, childrenKey),
+    [options, childrenKey, valueKey]
+  )
 
   const rsuiteValue = useMemo(() => {
     const nextRsuiteValue = toRsuiteValue(value, childrenKey, valueKey)
@@ -226,6 +231,7 @@ export function CheckTreePicker({
             )
           }}
           size={originalProps.size ?? 'sm'}
+          uncheckableItemValues={uncheckableValues}
           value={rsuiteValue ?? []}
           valueKey={valueKey}
           {...originalProps}
@@ -259,6 +265,7 @@ const StyledButton = styled(Button)<{ $isLight?: boolean }>`
 
   > .Element-IconBox {
     margin-right: 0px;
+
     > svg {
       height: 10px;
       width: 10px;
