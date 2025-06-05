@@ -14,7 +14,6 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
   }
 
   ${p => getCheckPickerInputCss(p)}
-
   > .rs-picker-popup {
     border: solid 1px ${p => p.theme.color.gainsboro};
     border-radius: 0;
@@ -61,6 +60,7 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
         }
       }
     }
+
     > .rs-check-tree {
       padding: 0;
       margin: 0;
@@ -84,6 +84,7 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
+
           .rs-check-item-focus {
             background-color: transparent;
           }
@@ -105,6 +106,7 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
 
         > .rs-check-item {
           /** !important because it's override by determinate checkbox **/
+
           &.rs-checkbox-indeterminate {
             &:hover {
               .rs-checkbox-inner {
@@ -114,25 +116,30 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
                 }
               }
             }
+
             .rs-checkbox-inner {
               &:before {
                 background-color: ${p => p.theme.color.charcoal} !important;
                 border: solid 2px ${p => p.theme.color.charcoal} !important;
               }
+
               &:after {
                 margin-left: 11px !important;
               }
             }
           }
+
           &.rs-checkbox-disabled {
             &:hover {
               background-color: transparent !important;
             }
+
             label,
             span {
               background-color: transparent !important;
               color: ${p => p.theme.color.lightGray} !important;
             }
+
             &:hover {
               span:before {
                 background-color: ${p => p.theme.color.gainsboro} !important;
@@ -140,6 +147,7 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
               }
             }
           }
+
           > .rs-checkbox-checker {
             min-height: auto;
 
@@ -154,15 +162,14 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
               > .rs-check-tree-node-label-content {
                 background-color: initial;
                 color: initial;
-                padding: 3px 8px 6px 44px;
+                padding: 3px 8px 6px 8px;
                 width: 100%;
               }
 
               > .rs-checkbox-wrapper {
                 height: auto;
-                left: 0px;
+                left: 14px;
                 top: 7px !important;
-                margin-left: 14px;
 
                 > .rs-checkbox-inner {
                   &:before {
@@ -171,6 +178,7 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
                     border-radius: 0;
                     margin-left: 8px;
                   }
+
                   &:after {
                     margin-left: 13px;
                   }
@@ -252,21 +260,47 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
         }
 
         /* childrens */
-        &[aria-level='2'] {
+
+        &[aria-level='1'] {
           > .rs-check-item {
             > .rs-checkbox-checker {
               > label {
                 > .rs-check-tree-node-label-content {
-                  padding-left: 60px;
+                  margin-left: 20px;
                 }
 
                 > .rs-checkbox-wrapper {
                   > .rs-checkbox-inner {
                     &:before {
-                      margin-left: 24px;
+                      margin-left: -8px;
                     }
+
                     &:after {
-                      margin-left: 29px;
+                      margin-left: -3px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        &[aria-level='2'] {
+          > .rs-check-item {
+            > .rs-checkbox-checker {
+              > label {
+                > .rs-check-tree-node-label-content {
+                  margin-left: 45px;
+                }
+
+                > .rs-checkbox-wrapper {
+                  > .rs-checkbox-inner {
+                    &:before {
+                      margin-left: 15px;
+                    }
+
+                    &:after {
+                      margin-left: 20px;
                     }
                   }
                 }

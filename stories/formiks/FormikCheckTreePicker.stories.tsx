@@ -43,7 +43,15 @@ export function _FormikCheckTreePicker(props: FormikCheckTreePickerProps) {
 
   return (
     <>
-      <Formik key={key} initialValues={{}} onSubmit={action('onSubmit')}>
+      <Formik
+        key={key}
+        initialValues={{
+          args: {
+            isMultiSelect: false
+          }
+        }}
+        onSubmit={action('onSubmit')}
+      >
         <>
           <FormikEffect onChange={setOutputValue} />
 
@@ -54,7 +62,6 @@ export function _FormikCheckTreePicker(props: FormikCheckTreePickerProps) {
           />
         </>
       </Formik>
-
       {outputValue && <Output value={outputValue} />}
     </>
   )

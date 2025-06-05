@@ -53,6 +53,20 @@ export function getTreeOptionsBySelectedValues(
   return options.map(getOption).filter((option): option is TreeOption => option !== undefined)
 }
 
+export function getParentRsuiteValue(
+  options: TreeOption[] | undefined,
+  valueKey: string = 'value',
+  childrenKey: string = 'children'
+): ValueType {
+  if (!options) {
+    return []
+  }
+
+  return options
+    .filter(option => ((option[childrenKey] as TreeOption[]) ?? []).length > 0)
+    .flatMap(option => option[valueKey] as string | number)
+}
+
 export function toRsuiteValue(
   uiValues: TreeOption[] | undefined,
   childrenKey: string = 'children',
@@ -99,6 +113,7 @@ export function computeDisabledValues(
 
   return [...valuesToDisabled, ...subValuesToDisabled]
 }
+
 export function getOptionsToDisplay(
   allOptions: TreeOption[],
   selectedOptions: TreeOption[],

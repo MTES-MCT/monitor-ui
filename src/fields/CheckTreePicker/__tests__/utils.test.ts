@@ -4,6 +4,7 @@ import {
   computeDisabledValues,
   fromRsuiteValue,
   getOptionsToDisplay,
+  getParentRsuiteValue,
   getTreeOptionsBySelectedValues,
   toRsuiteValue
 } from '../utils'
@@ -272,5 +273,44 @@ describe('getOptionsToDisplay', () => {
   it('returns empty array if allOptions is empty', () => {
     const result = getOptionsToDisplay([], [{ label: 'Child 1', value: 'child1' }])
     expect(result).toEqual([])
+  })
+})
+
+describe('getParentRsuiteValue', () => {
+  it('returns an empty array if options are empty', () => {
+    const result = getParentRsuiteValue(undefined)
+    expect(result).toEqual([])
+  })
+
+  it('returns an empty array none of the nodes got child', () => {
+    const options = [{ value: '1' }, { value: '2' }]
+    const result = getParentRsuiteValue(options)
+    expect(result).toEqual([])
+  })
+
+  it('return value of node that got children', () => {
+    const options = [
+      { children: [{ value: '1.1' }], value: '1' },
+      { value: '2' },
+      { children: [{ value: '3.1' }, { value: '3.2' }], value: '3' }
+    ]
+    const result = getParentRsuiteValue(options)
+    expect(result).toEqual(['1', '3'])
+  })
+
+  it('should use custom key if specified', () => {
+    const options = [{ customChildren: [{ customValue: 'A.1' }], customValue: 'A' }, { customValue: 'B' }]
+    const result = getParentRsuiteValue(options as TreeOption[], 'customValue', 'customChildren')
+    expect(result).toEqual(['A'])
+  })
+
+  it('ignore childless nodes', () => {
+    const options = [
+      { children: [], value: '1' },
+      { children: undefined, value: '2' },
+      { children: [{ value: '3.1' }], value: '3' }
+    ]
+    const result = getParentRsuiteValue(options)
+    expect(result).toEqual(['3'])
   })
 })
