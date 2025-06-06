@@ -67,6 +67,12 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
 
       .rs-check-tree-node {
         padding: 0 !important;
+        &:hover {
+          background-color: ${p => p.theme.color.blueYonder25};
+        }
+      }
+      .rs-check-tree-node-expand-icon-wrapper {
+        width: 100%;
       }
 
       .rs-check-tree-node-custom-icon {
@@ -170,6 +176,10 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
                 height: auto;
                 left: 14px;
                 top: 7px !important;
+
+                &:before {
+                  border: none;
+                }
 
                 > .rs-checkbox-inner {
                   &:before {
