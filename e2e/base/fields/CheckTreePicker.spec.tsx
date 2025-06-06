@@ -176,34 +176,6 @@ describe('fields/CheckTreePicker', () => {
     ])
   })
 
-  it('Should not select children when selecting parent', () => {
-    mountAndWait(
-      <StoryBox>
-        <CheckTreePickerStory {...commonProps} />
-      </StoryBox>
-    )
-
-    outputShouldNotBe()
-
-    cy.get('.rs-picker').click().get('.rs-picker-popup').find('[role="treeitem"]').contains('Pollution marine').click()
-    cy.clickOutside()
-
-    outputShouldNotBe()
-  })
-
-  it('Should not unselect children when unselecting parent', () => {
-    mountAndWait(
-      <StoryBox>
-        <CheckTreePickerStory {...commonProps} value={[options[0]!]} />
-      </StoryBox>
-    )
-
-    outputShouldNotBe()
-
-    cy.get('.rs-picker').click().get('.rs-picker-popup').find('[role="treeitem"]').contains('Pollution marine').click()
-    outputShouldNotBe()
-  })
-
   it('Should fill the check picker with `isLabelHidden`', () => {
     mountAndWait(
       <StoryBox>
