@@ -1,3 +1,18 @@
+## [24.20.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.19.1...v24.20.0) (2025-06-09)
+
+### Features
+
+* **components:** remove checkbox of 1st node of checktreepicker ([49f8af6](https://github.com/MTES-MCT/monitor-ui/commit/49f8af65aa9e48e812d29f9cda67b8de1fb7a575))
+
+### Bug Fixes
+
+* **cypress:** delete useless tests ([2543b5a](https://github.com/MTES-MCT/monitor-ui/commit/2543b5ad1261896a71eaedda08865b2effadf35b))
+* **fields:** fix style ([65ec0f9](https://github.com/MTES-MCT/monitor-ui/commit/65ec0f9215b944300bdc2b70ac7ee30faae44a5c))
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump the all-non-major-dependencies group ([c9149bd](https://github.com/MTES-MCT/monitor-ui/commit/c9149bd665ae8a6195fca0d653053ec7541f1085))
+
 ## [24.19.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.19.0...v24.19.1) (2025-06-02)
 
 ### Bug Fixes
