@@ -6,7 +6,6 @@ export function PointsCloud({ color, size, title, ...nativeProps }: IconProps) {
   return (
     <IconBox $color={color} $size={size} title={title}>
       <svg fill="none" height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
-        <rect fill="white" height="20" width="20" />
         <path
           d="M8 7.5C8 8.88071 6.88071 10 5.5 10C4.11929 10 3 8.88071 3 7.5C3 6.11929 4.11929 5 5.5 5C6.88071 5 8 6.11929 8 7.5Z"
           fill="black"
