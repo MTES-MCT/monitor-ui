@@ -1,3 +1,9 @@
+## [24.21.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.21.1...v24.21.2) (2025-06-10)
+
+### Bug Fixes
+
+* **icons:** fix PointsCloud color ([9b7950f](https://github.com/MTES-MCT/monitor-ui/commit/9b7950f65686f932c31a5533657603dc98622e5b))
+
 ## [24.21.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.21.0...v24.21.1) (2025-06-10)
 
 ### Bug Fixes
