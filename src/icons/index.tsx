@@ -68,6 +68,7 @@ import { Pinpoint } from './Pinpoint'
 import { PinpointHide } from './PinpointHide'
 import { Plane } from './Plane'
 import { Plus } from './Plus'
+import { PointsCloud } from './PointsCloud'
 import { Reject } from './Reject'
 import { Report } from './Report'
 import { Rescue } from './Rescue'
@@ -173,6 +174,7 @@ export {
   PinpointHide,
   Plane,
   Plus,
+  PointsCloud,
   Reject,
   Report,
   Rescue,
