@@ -1,3 +1,9 @@
+## [24.21.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.21.0...v24.21.1) (2025-06-10)
+
+### Bug Fixes
+
+* **icons:** delete background ([4a771d3](https://github.com/MTES-MCT/monitor-ui/commit/4a771d331471ff98ab4456cbe897bf0a501216d5))
+
 ## [24.21.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.20.0...v24.21.0) (2025-06-10)
 
 ### Features
