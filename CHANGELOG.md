@@ -1,3 +1,9 @@
+## [24.21.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.20.0...v24.21.0) (2025-06-10)
+
+### Features
+
+* **icons:** add PointsCloud icon ([0c103ea](https://github.com/MTES-MCT/monitor-ui/commit/0c103eaa7d8a851c6d912f6895d9c9e37f745220))
+
 ## [24.20.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.19.1...v24.20.0) (2025-06-09)
 
 ### Features
