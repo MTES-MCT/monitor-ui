@@ -1,3 +1,11 @@
+## [24.21.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.21.2...v24.21.3) (2025-06-11)
+
+### Bug Fixes
+
+* **fields:** add one more numeric to seconds to dmd coordinates input ([8bf3786](https://github.com/MTES-MCT/monitor-ui/commit/8bf37863df4ea5c670c4ee91fdf38f76cb43e335))
+* **fields:** fix modification of dd input after first output ([7bbf95c](https://github.com/MTES-MCT/monitor-ui/commit/7bbf95c83571209e2f6c35487ee4b511978652ec))
+* **fields:** fix update of dd input from props ([ca6f597](https://github.com/MTES-MCT/monitor-ui/commit/ca6f597aa784e81f21c9b9b1a115187845b17e74))
+
 ## [24.21.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.21.1...v24.21.2) (2025-06-10)
 
 ### Bug Fixes
