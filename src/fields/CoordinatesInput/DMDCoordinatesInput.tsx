@@ -52,9 +52,9 @@ export function DMDCoordinatesInput({
     setError('')
 
     // eslint-disable-next-line no-underscore-dangle
-    const latitude = mask._unmaskedValue.substring(0, 7)
+    const latitude = mask._unmaskedValue.substring(0, 8)
     // eslint-disable-next-line no-underscore-dangle
-    const longitude = mask._unmaskedValue.substring(7, mask._unmaskedValue.length)
+    const longitude = mask._unmaskedValue.substring(8, mask._unmaskedValue.length)
     const NS = latitude[latitude.length - 1].toUpperCase()
     if (!['N', 'S'].includes(NS)) {
       setError('La latitude doit être N ou S')
@@ -68,7 +68,7 @@ export function DMDCoordinatesInput({
       return
     }
     const latitudeMinutes = parseInt(latitude.substring(2, 4), 10)
-    const latitudeSeconds = parseInt(latitude.substring(4, 6), 10)
+    const latitudeSeconds = parseInt(latitude.substring(4, 7), 10)
 
     const EW = longitude[longitude.length - 1].toUpperCase()
     if (!['E', 'W'].includes(EW)) {
@@ -83,10 +83,10 @@ export function DMDCoordinatesInput({
       return
     }
     const longitudeMinutes = parseInt(longitude.substring(3, 5), 10)
-    const longitudeSeconds = parseInt(longitude.substring(5, 7), 10)
+    const longitudeSeconds = parseInt(longitude.substring(5, 8), 10)
 
-    const dLatitude = dmsToDecimal(latitudeDegrees, latitudeMinutes + 10 ** -2 * latitudeSeconds, 0, NS, 6)
-    const dLongitude = dmsToDecimal(longitudeDegrees, longitudeMinutes + 10 ** -2 * longitudeSeconds, 0, EW, 6)
+    const dLatitude = dmsToDecimal(latitudeDegrees, latitudeMinutes + 10 ** -3 * latitudeSeconds, 0, NS, 6)
+    const dLongitude = dmsToDecimal(longitudeDegrees, longitudeMinutes + 10 ** -3 * longitudeSeconds, 0, EW, 6)
 
     if (isNumeric(dLatitude) && isNumeric(dLongitude)) {
       onChange([dLatitude as number, dLongitude as number], coordinates)
@@ -101,7 +101,7 @@ export function DMDCoordinatesInput({
         data-cy="dmd-coordinates-input"
         disabled={disabled}
         lazy={false}
-        mask="00° 00.00′ a 000° 00.00′ a"
+        mask="00° 00.000′ a 000° 00.000′ a"
         name={name}
         // @ts-ignore
         onAccept={(_, mask) => setValue(mask.value)}
