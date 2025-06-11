@@ -137,5 +137,8 @@ context('Story', () => {
     cy.getDataCy('coordinates-dd-input-lon').type('1.0555')
 
     outputShouldBe([46.441369, 1.0555])
+
+    cy.getDataCy('coordinates-dd-input-lat').type('{backspace}{backspace}{backspace}123')
+    outputShouldBe([46.441123, 1.0555])
   })
 })
