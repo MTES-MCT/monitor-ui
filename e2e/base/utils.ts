@@ -1,4 +1,4 @@
-import { mount } from 'cypress/react18'
+import { mount } from 'cypress/react'
 
 // TODO This would be nice if we found a cleaner way to wait for effective rendering.
 // Maybe by allowing virtual dom testing in Cypress config?

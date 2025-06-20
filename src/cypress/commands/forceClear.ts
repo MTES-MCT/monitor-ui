@@ -1,7 +1,7 @@
 export function forceClear<Subject = any>(
   this: Mocha.Context,
   subject: Subject,
-  options: Partial<Cypress.ClearOptions> = {}
+  options: Partial<Cypress.CheckClearOptions> = {}
 ): Cypress.Chainable<Subject> {
   Cypress.log({
     consoleProps: () => ({

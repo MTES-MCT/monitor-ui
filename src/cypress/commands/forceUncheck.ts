@@ -1,7 +1,7 @@
 export function forceUncheck<Subject = any>(
   this: Mocha.Context,
   subject: Subject,
-  options: Partial<Cypress.CheckOptions> = {}
+  options: Partial<Cypress.CheckClearOptions> = {}
 ): Cypress.Chainable<Subject> {
   Cypress.log({
     consoleProps: () => ({
