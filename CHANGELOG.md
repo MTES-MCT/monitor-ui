@@ -1,3 +1,9 @@
+## [24.22.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.22.0...v24.22.1) (2025-06-20)
+
+### Bug Fixes
+
+* **elements:** fix key in FingerprintLoader ([07d0238](https://github.com/MTES-MCT/monitor-ui/commit/07d02383381618d35b4456a359347c616fc88221))
+
 ## [24.22.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.21.3...v24.22.0) (2025-06-20)
 
 ### Features
