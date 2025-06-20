@@ -19,7 +19,8 @@ export function FingerprintLoader({
   const ringBase = outerRingSize / ringsNum
 
   function generateRings(num) {
-    return Array.from({ length: num }).map(value => <div key={value as number} className="spinner-ring" />)
+    // eslint-disable-next-line react/no-array-index-key
+    return Array.from({ length: num }).map((_, index) => <div key={index} className="spinner-ring" />)
   }
 
   return (
