@@ -1,3 +1,19 @@
+## [24.22.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.21.3...v24.22.0) (2025-06-20)
+
+### Features
+
+* **elements:** add loaders FingerprintLoader and FulfillingBouncingCircleLoader ([297e9b5](https://github.com/MTES-MCT/monitor-ui/commit/297e9b55f6f1c625dff48b53847953362ed3ed36))
+
+### Bug Fixes
+
+* **cypress:** fix typing ([b0b16e0](https://github.com/MTES-MCT/monitor-ui/commit/b0b16e0a949c63779cd123177dfb24209523bb24))
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @types/node in /e2e/release/sample ([70e0215](https://github.com/MTES-MCT/monitor-ui/commit/70e02154700f650e8588d6d300475852fdcf8c92))
+* **dev-deps:** bump cypress from 13.17.0 to 14.4.1 ([3381bfc](https://github.com/MTES-MCT/monitor-ui/commit/3381bfc4185d137f4317960c7485b1201cc24ad6))
+* **dev-deps:** bump the all-non-major-dependencies group ([1acb8b7](https://github.com/MTES-MCT/monitor-ui/commit/1acb8b712190cdbeebeff7f7b87f7a2bebc17919))
+
 ## [24.21.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.21.2...v24.21.3) (2025-06-11)
 
 ### Bug Fixes
