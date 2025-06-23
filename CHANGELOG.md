@@ -1,3 +1,14 @@
+## [24.22.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.22.1...v24.22.2) (2025-06-23)
+
+### Bug Fixes
+
+* **elements:** fix style ([0a9b230](https://github.com/MTES-MCT/monitor-ui/commit/0a9b230d123163cedf6080351ff56bd49af8a44e))
+
+### Buid System & Dependencies
+
+* **deps:** bump the non-major-dependencies group with 2 updates ([ca63864](https://github.com/MTES-MCT/monitor-ui/commit/ca63864c8c3b0c034cac77f0e30bab2a9d1d4359))
+* **dev-deps:** bump the all-non-major-dependencies group ([c14d180](https://github.com/MTES-MCT/monitor-ui/commit/c14d180ede5b07565cbb059e56423735f8ee633b))
+
 ## [24.22.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.22.0...v24.22.1) (2025-06-20)
 
 ### Bug Fixes
