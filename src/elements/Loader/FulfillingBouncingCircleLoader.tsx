@@ -33,6 +33,10 @@ const BouncingCircle = styled.div<{ $animationDuration: number; $color: string; 
   position: relative;
   animation: fulfilling-bouncing-circle-spinner-animation infinite ${p => p.$animationDuration}ms ease;
 
+  * {
+    box-sizing: border-box;
+  }
+
   .orbit {
     height: ${p => p.$size}px;
     width: ${p => p.$size}px;
