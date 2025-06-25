@@ -38,9 +38,9 @@ context('Base', () => {
 
     outputShouldBe('abcd')
 
-    cy.fill('A textarea', 'abcde')
+    cy.fill('A textarea', 'abcde{enter}abc')
 
-    outputShouldBe('abcde')
+    outputShouldBe('abcde\nabc')
 
     cy.fill('A textarea', undefined)
 
@@ -67,6 +67,16 @@ context('Base', () => {
     cy.fill('A textarea', undefined)
 
     outputShouldBe(undefined)
+  })
+
+  it('Should fill the textarea with `value="abc\ndef"`', () => {
+    mountAndWait(
+      <StoryBox>
+        <TextareaStory {...commonProps} value="abc\ndef" />
+      </StoryBox>
+    )
+
+    cy.get('textarea').should('have.value', 'abc\ndef')
   })
 
   it('Should fill the textarea with `isLabelHidden`', () => {

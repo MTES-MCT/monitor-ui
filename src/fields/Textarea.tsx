@@ -75,6 +75,8 @@ export function Textarea({
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && !!disabled, onChange)
 
+  const normalizedValue = (value ?? '').replace(/\\n/g, '\n')
+
   return (
     <Field className={controlledClassname} style={style}>
       <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={originalProps.name}>
@@ -96,7 +98,7 @@ export function Textarea({
         onChange={handleChange}
         readOnly={readOnly}
         rows={rows}
-        value={value ?? ''}
+        value={normalizedValue}
         {...originalProps}
       />
 
