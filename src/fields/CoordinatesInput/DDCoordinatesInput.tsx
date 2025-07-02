@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { usePrevious } from '@hooks/usePrevious'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import { isNumeric } from '../../utils/isNumeric'
@@ -33,6 +34,20 @@ export function DDCoordinatesInput({ coordinates, disabled, name, onChange, read
   const [latitudeError, setLatitudeError] = useState<string | undefined>(undefined)
   const [longitudeError, setLongitudeError] = useState<string | undefined>(undefined)
 
+  const previousCoordinates = usePrevious(coordinates)
+
+  useEffect(() => {
+    if (!coordinates || coordinates === previousCoordinates) {
+      return
+    }
+
+    const stringLatitude = coordinates?.[0]?.toString()
+    setLatitude(stringLatitude)
+
+    const stringLongitude = coordinates?.[1]?.toString()
+    setLongitude(stringLongitude)
+  }, [coordinates, previousCoordinates])
+
   const handleLatitudeChange = (value: string) => {
     setLatitudeError(undefined)
 
@@ -49,7 +64,9 @@ export function DDCoordinatesInput({ coordinates, disabled, name, onChange, read
     }
 
     if (isNumeric(longitude) && isNumeric(value)) {
-      onChange([+value, +longitude])
+      if (!value.endsWith('.')) {
+        onChange([+value, +longitude])
+      }
     } else {
       onChange(undefined)
     }
@@ -72,7 +89,9 @@ export function DDCoordinatesInput({ coordinates, disabled, name, onChange, read
     }
 
     if (isNumeric(latitude) && isNumeric(value)) {
-      onChange([+latitude, +value])
+      if (!value.endsWith('.')) {
+        onChange([+latitude, +value])
+      }
     } else {
       onChange(undefined)
     }
