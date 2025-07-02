@@ -35,11 +35,11 @@ export function DDCoordinatesInput({ coordinates, disabled, name, onChange, read
 
   const handleLatitudeChange = (value: string) => {
     setLatitudeError(undefined)
-    setLatitude(value)
 
     if (isValueTooLong(value)) {
       return
     }
+    setLatitude(value)
 
     if (!!value && !isNumeric(value)) {
       setLatitudeError('Champ Latitude incorrect')
@@ -57,11 +57,12 @@ export function DDCoordinatesInput({ coordinates, disabled, name, onChange, read
 
   const handleLongitudeChange = (value: string) => {
     setLongitudeError(undefined)
-    setLongitude(value)
 
     if (isValueTooLong(value)) {
       return
     }
+
+    setLongitude(value)
 
     if (!!value && !isNumeric(value)) {
       setLongitudeError('Champ Longitude incorrect')
