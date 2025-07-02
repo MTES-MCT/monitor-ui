@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 
 import { isNumeric } from '../../utils/isNumeric'
@@ -32,11 +32,6 @@ export function DDCoordinatesInput({ coordinates, disabled, name, onChange, read
   const [longitude, setLongitude] = useState<string | undefined>(coordinates?.[1]?.toString())
   const [latitudeError, setLatitudeError] = useState<string | undefined>(undefined)
   const [longitudeError, setLongitudeError] = useState<string | undefined>(undefined)
-
-  useEffect(() => {
-    setLatitude(coordinates?.[0]?.toString())
-    setLongitude(coordinates?.[1]?.toString())
-  }, [coordinates])
 
   const handleLatitudeChange = (value: string) => {
     setLatitudeError(undefined)
