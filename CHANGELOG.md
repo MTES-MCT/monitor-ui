@@ -1,3 +1,16 @@
+## [24.22.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.22.2...v24.22.3) (2025-07-02)
+
+### Bug Fixes
+
+* **fields:** don't trigger onChange function if value finish with an `.` ([d8de952](https://github.com/MTES-MCT/monitor-ui/commit/d8de952116cd3cc979e9bfa19d1dfd5de6178bc7))
+* **fields:** fix dd coordinates input ([7cbaa2f](https://github.com/MTES-MCT/monitor-ui/commit/7cbaa2f976a009bd7aa7b554489526e441e55842))
+* **fields:** set latitude or longitude after checking if value is too long ([a934a9b](https://github.com/MTES-MCT/monitor-ui/commit/a934a9b46ce7787d5577911cf525d159e981563e))
+
+### Buid System & Dependencies
+
+* **deps:** bump @tanstack/react-virtual ([94103ef](https://github.com/MTES-MCT/monitor-ui/commit/94103efc011f8aecdd49af0f1a7745574bf1d0db))
+* **dev-deps:** bump the non-major-dev-dependencies group with 30 updates ([54db2e3](https://github.com/MTES-MCT/monitor-ui/commit/54db2e368daf1d591c63a3075cb952f10e6f4cf6))
+
 ## [24.22.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.22.1...v24.22.2) (2025-06-23)
 
 ### Bug Fixes
