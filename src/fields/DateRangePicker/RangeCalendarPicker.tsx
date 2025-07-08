@@ -43,8 +43,8 @@ export function RangeCalendarPicker({
   // It's called "first" and "second" because the calendar can also be picked from right to left,
   // that's why we sort these first and second dates before calling `onChange()`
   // in order to distinguish the start date from the end date
-  const selectedFirstUtcDate = useRef<Date>()
-  const selectedSecondUtcDate = useRef<Date>()
+  const selectedFirstUtcDate = useRef<Date | undefined>(undefined)
+  const selectedSecondUtcDate = useRef<Date | undefined>(undefined)
 
   const { forceUpdate } = useForceUpdate()
 
