@@ -6,7 +6,7 @@ import { StoryBox } from '../components/StoryBox'
 
 import type { NewWindowContextValue } from '../../src'
 import type { StoryContext, StoryFn, StrictArgs } from '@storybook/react'
-import type { CSSProperties, ForwardedRef, MutableRefObject } from 'react'
+import type { CSSProperties, ForwardedRef } from 'react'
 
 type PseudoStateClassname = '_hover' | '_focus' | '_active'
 
@@ -26,7 +26,7 @@ export function generateStoryDecorator({
   }
 } = {}) {
   return function StoryDecorator(Story: StoryFn, { args }: StoryContext) {
-    const newWindowRef = useRef() as MutableRefObject<HTMLDivElement>
+    const newWindowRef = useRef(undefined) as any
 
     const [hasGainsboroBackground, setHasGainsboroBackground] = useState(false)
     const [isNewWindowOpen, setIsNewWindowOpen] = useState(false)
@@ -73,11 +73,13 @@ export function generateStoryDecorator({
       setHasGainsboroBackground(hadGainsboroBackground => !hadGainsboroBackground)
     }
 
+
     return (
       <>
         {!isNewWindowOpen && (
           <OuterBox style={{}}>
             <InnerBox style={innerBoxStyle}>
+               {/*@ts-ignore*/}
               <Story />
             </InnerBox>
           </OuterBox>
@@ -148,7 +150,7 @@ function NewWindowStoryWrapperWithRef(
   const newWindowContextProviderValue: NewWindowContextValue = useMemo(
     () => ({
       newWindowContainerRef: wrapperRef.current
-        ? (wrapperRef as MutableRefObject<HTMLDivElement>)
+        ? (wrapperRef as any)
         : { current: window.document.createElement('div') }
     }),
 
@@ -177,9 +179,10 @@ function NewWindowStoryWrapperWithRef(
 
 const NewWindowStoryWrapper = forwardRef(NewWindowStoryWrapperWithRef)
 
-function NewWindowStory({ Story, storyArgs }: { Story: StoryFn; storyArgs: StrictArgs }) {
+function NewWindowStory({ Story, storyArgs }: Readonly<{ Story: StoryFn; storyArgs: StrictArgs }>) {
   const { newWindowContainerRef } = useNewWindow()
 
+  // @ts-ignore
   return <Story args={{ ...storyArgs, baseContainer: newWindowContainerRef.current }} />
 }
 

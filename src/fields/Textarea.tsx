@@ -16,7 +16,7 @@ import { useKey } from '../hooks/useKey'
 import { normalizeString } from '../utils/normalizeString'
 
 import type { CommonFieldStyleProps } from './shared/types'
-import type { MutableRefObject, TextareaHTMLAttributes } from 'react'
+import type { TextareaHTMLAttributes } from 'react'
 import type { Promisable } from 'type-fest'
 
 export type TextareaProps = Omit<
@@ -55,7 +55,7 @@ export function Textarea({
   value,
   ...originalProps
 }: TextareaProps) {
-  const inputRef = useRef() as MutableRefObject<HTMLTextAreaElement>
+  const inputRef = useRef(undefined) as any
 
   const controlledClassname = useMemo(() => classnames('Field-Textarea', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
@@ -67,7 +67,7 @@ export function Textarea({
       return
     }
 
-    const nextValue = inputRef.current.value
+    const nextValue = inputRef.current?.value
     const normalizedNextValue = nextValue.trim().length ? nextValue : undefined
 
     onChange(normalizedNextValue)

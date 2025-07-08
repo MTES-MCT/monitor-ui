@@ -6,7 +6,7 @@ import { useForceUpdate } from '@hooks/useForceUpdate'
 import { normalizeString } from '@utils/normalizeString'
 import classnames from 'classnames'
 import { Chevron } from 'icons'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { type RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   CheckTreePicker as RsuiteCheckTreePicker,
   type CheckTreePickerProps as RsuiteCheckTreePickerProps
@@ -130,7 +130,7 @@ export function CheckTreePicker({
 
   return (
     <CheckTreePickerBox
-      boxRef={boxRef}
+      boxRef={boxRef as RefObject<HTMLDivElement>}
       className={controlledClassName}
       disabled={disabled}
       error={controlledError}

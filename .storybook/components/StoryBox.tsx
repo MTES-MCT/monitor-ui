@@ -48,6 +48,7 @@ export function StoryBox({ children }) {
 export function withStoryBox(Story: StoryFn<any>) {
   return (
     <StoryBox>
+      {/*@ts-ignore*/}
       <Story />
     </StoryBox>
   )
