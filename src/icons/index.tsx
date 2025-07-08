@@ -17,6 +17,7 @@ import { ClockDashed } from './ClockDashed'
 import { Close } from './Close'
 import { Comment } from './Comment'
 import { Confirm } from './Confirm'
+import { Contact } from './Contact'
 import { ControlUnit } from './ControlUnit'
 import { ControlUnitFilled } from './ControlUnitFilled'
 import { Delete } from './Delete'
@@ -40,11 +41,13 @@ import { FleetSegment } from './FleetSegment'
 import { Focus } from './Focus'
 import { FocusVessel } from './FocusVessel'
 import { FocusZones } from './FocusZones'
+import { GroupPerson } from './GroupPerson'
 import { Hide } from './Hide'
 import { Info } from './Info'
 import { Infringement } from './Infringement'
 import { Invalid } from './Invalid'
 import { Landmark } from './Landmark'
+import { License } from './License'
 import { Link } from './Link'
 import { List } from './List'
 import { ListLines } from './ListLines'
@@ -123,6 +126,7 @@ export {
   Close,
   Comment,
   Confirm,
+  Contact,
   ControlUnit,
   ControlUnitFilled,
   Delete,
@@ -146,11 +150,13 @@ export {
   Focus,
   FocusVessel,
   FocusZones,
+  GroupPerson,
   Hide,
   Info,
   Infringement,
   Invalid,
   Landmark,
+  License,
   Link,
   List,
   ListLines,
