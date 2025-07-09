@@ -3166,7 +3166,7 @@ __metadata:
     vite-tsconfig-paths: "npm:5.1.4"
     yup: "npm:1.6.1"
   peerDependencies:
-    "@sentry/react": ^7.0.0 || ^8.0.0
+    "@sentry/react": ^7.0.0 || ^8.0.0 || ^9.0.0
     "@tanstack/react-table": ^8.0.0
     "@tanstack/react-virtual": ^3.0.0
     cypress: ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0
