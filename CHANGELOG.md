@@ -1,3 +1,9 @@
+## [24.24.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.23.0...v24.24.0) (2025-07-09)
+
+### Features
+
+* **libs:** bump to React 19 ([df44917](https://github.com/MTES-MCT/monitor-ui/commit/df44917734a7faf36723cee2f7c42bb44e32d663))
+
 ## [24.23.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.22.3...v24.23.0) (2025-07-09)
 
 ### Features
