@@ -1,3 +1,9 @@
+## [24.25.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.24.0...v24.25.0) (2025-07-09)
+
+### Features
+
+* **libs:** bump to jest v30 ([7ea2996](https://github.com/MTES-MCT/monitor-ui/commit/7ea2996c71de1836e60cc83b7cec0b9262228c82))
+
 ## [24.24.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.23.0...v24.24.0) (2025-07-09)
 
 ### Features
