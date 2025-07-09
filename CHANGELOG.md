@@ -1,3 +1,15 @@
+## [24.23.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.22.3...v24.23.0) (2025-07-09)
+
+### Features
+
+* **icons:** add License, GroupPerson and Contact icons ([f74c1d6](https://github.com/MTES-MCT/monitor-ui/commit/f74c1d655b17fc2461a3691fa32261b3c6080c80))
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump the all-non-major-dependencies group across 1 directory with 6 updates ([d24804f](https://github.com/MTES-MCT/monitor-ui/commit/d24804ff99f63af541d29fa08eb0826ef3613d86))
+* **dev-deps:** bump the non-major-dev-dependencies group across 1 directory with 11 updates ([1da37d1](https://github.com/MTES-MCT/monitor-ui/commit/1da37d13ac4d8cd340f138eb78d17db3f5af9655))
+* **dev-deps:** bump vite from 6.3.5 to 7.0.0 in /e2e/release/sample ([46512c3](https://github.com/MTES-MCT/monitor-ui/commit/46512c3f15a7213debbe827ec0f78839f95f8b6e))
+
 ## [24.22.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.22.2...v24.22.3) (2025-07-02)
 
 ### Bug Fixes
