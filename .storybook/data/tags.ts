@@ -66,6 +66,32 @@ export const TAGS = (childrenKey: string = 'children', labelKey = 'label', value
     ]
   },
   {
+    [labelKey]: 'Rejet',
+    [valueKey]: 'rejet',
+    [childrenKey]: [
+      { [labelKey]: 'Autre rejet', [valueKey]: 'autre_rejet' },
+      { [labelKey]: 'Avitaillement, soutage, transbordement', [valueKey]: 'avitaillement_soutage_transbordement' },
+      { [labelKey]: 'Carénage sauvage', [valueKey]: 'carénage_sauvage' },
+      { [labelKey]: 'Eaux de ballast', [valueKey]: 'eaux_de_ballast' },
+      { [labelKey]: 'Jet de déchet (macro déchet)', [valueKey]: 'jet_de_déchet_(macro_déchet)' },
+      { [labelKey]: "Rejet d'hydrocarbure", [valueKey]: 'rejet_d_hydrocarbure' },
+      { [labelKey]: 'Rejets atmosphérique', [valueKey]: 'rejets_atmosphérique' }
+    ]
+  },
+  {
+    [labelKey]: 'Travaux en milieu marin',
+    [valueKey]: 'travaux_en_milieu_marin',
+    [childrenKey]: [
+      { [labelKey]: 'Autres travaux en mer', [valueKey]: 'autres_travaux_en_mer' },
+      { [labelKey]: 'Chantier marin', [valueKey]: 'chantier_marin' },
+      { [labelKey]: 'Chantier portuaire', [valueKey]: 'chantier_portuaire' },
+      { [labelKey]: 'Clapage', [valueKey]: 'clapage' },
+      { [labelKey]: 'Dragage', [valueKey]: 'dragage' },
+      { [labelKey]: 'Extraction de granulats ', [valueKey]: 'extraction_de_granulats ' },
+      { [labelKey]: 'Travaux réglementés par AMP', [valueKey]: 'travaux_réglementés_par_AMP' }
+    ]
+  },
+  {
     [labelKey]: 'Éducation et sensibilisation',
     [valueKey]: 'education_sensibilisation'
   }

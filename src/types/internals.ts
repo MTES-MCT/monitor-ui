@@ -3,7 +3,7 @@
  */
 
 import type { OptionValueType } from './definitions'
-import type { ItemDataType } from 'rsuite/esm/@types/common'
+import type { ItemDataType } from 'rsuite/esm/internals/types'
 
 /**
  * Since Rsuite restricts the `value` property of `ItemDataType` (equivalent to `Option`) to `string | number`,
