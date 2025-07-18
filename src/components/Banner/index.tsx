@@ -27,6 +27,7 @@ export type BannerProps = {
   top: string
   withAutomaticClosing?: boolean | undefined
 }
+
 export function Banner({
   children,
   className = undefined,
@@ -44,7 +45,7 @@ export function Banner({
 }: Readonly<BannerProps>) {
   const timeoutIdRef = useRef<NodeJS.Timeout | undefined>(undefined)
   const controlledClassName = classNames('Component-Banner', className)
-  const [isHidden, setIsHidden] = useState<boolean>(!!isHiddenByDefault)
+  const [isHidden, setIsHidden] = useState<boolean>(isHiddenByDefault)
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false)
   const [isCollapsing, setIsCollapsing] = useState<boolean>(false)
   const [hasCollapsed, setHasCollapsed] = useState<boolean>(false)
@@ -155,7 +156,6 @@ const Wrapper = styled.div<{
   left: 0;
   max-width: 100%;
   min-width: 100%;
-  padding: 0 2rem;
   position: ${p => (p.$isFixed ? 'fixed' : 'absolute')};
   top: ${p => `${p.$top}`};
   transition: height ${ANIMATION_DURATION_IN_MS}ms ease;
@@ -166,6 +166,7 @@ const Wrapper = styled.div<{
 interface ContentWrapperProps {
   $level: Level
 }
+
 const ContentWrapper = styled.div<ContentWrapperProps>`
   align-self: center;
   color: ${(p: ContentWrapperProps) => getBannerPalette(p.$level).color};
@@ -173,10 +174,12 @@ const ContentWrapper = styled.div<ContentWrapperProps>`
   font-size: 16px;
   font-weight: 500;
   text-align: center;
+  padding-left: 2rem;
 `
 
 const ButtonWrapper = styled.div`
   align-self: center;
+  padding-right: 2rem;
 `
 const StyledLinkButton = styled(LinkButton)<{
   $level: Level
