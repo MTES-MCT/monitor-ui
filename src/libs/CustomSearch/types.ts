@@ -15,6 +15,8 @@ export type CustomSearchOptions = Partial<{
   /** Cache search index to avoid Must be unique in the entire application. */
   cacheKey: string | undefined
 
+  childrenKey?: any
+
   /**
    * Indicates whether comparisons should be case sensitive.
    *
@@ -58,7 +60,6 @@ export type CustomSearchOptions = Partial<{
    * @see https://fusejs.io/api/options.html#threshold
    */
   threshold: number
-
   /** Invalidate cached index when the collection changes. */
   withCacheInvalidation: boolean
 }>

@@ -3,7 +3,7 @@
  */
 
 import type { SVGProps } from 'react'
-import type { ItemDataType } from 'rsuite/esm/@types/common'
+import type { ItemDataType } from 'rsuite/esm/internals/types'
 
 /** Any enum with string values. */
 export type AnyEnum = {
