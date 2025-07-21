@@ -1,3 +1,15 @@
+## [24.25.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.25.0...v24.25.1) (2025-07-21)
+
+### Bug Fixes
+
+* **components:** swap padding to internal banner elements to prevent overflowing ([238bd1c](https://github.com/MTES-MCT/monitor-ui/commit/238bd1c419fbfc14b0cc9595c9ba07948e7653e2))
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @tsconfig/vite-react in /e2e/release/sample ([4c07abe](https://github.com/MTES-MCT/monitor-ui/commit/4c07abef10c1a5c35080455d6506cf7d7d5f5ec5))
+* **dev-deps:** bump the all-non-major-dependencies group ([f1d1fc7](https://github.com/MTES-MCT/monitor-ui/commit/f1d1fc7cbf55a6243d18061a934ad85649b2ee6c))
+* **dev-deps:** bump the all-non-major-dependencies group ([5bdde47](https://github.com/MTES-MCT/monitor-ui/commit/5bdde47134b79f5013efe6d4215ced3e8631cc7d))
+
 ## [24.25.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.24.0...v24.25.0) (2025-07-09)
 
 ### Features
