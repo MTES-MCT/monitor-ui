@@ -40,7 +40,7 @@ const RestyledRsuiteCheckbox = styled(StyledRsuiteCheckbox)`
     padding: 0;
 
     > label {
-      > .rs-checkbox-wrapper {
+      > .rs-checkbox-control {
         bottom: 0;
         top: 3px;
 

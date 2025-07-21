@@ -226,7 +226,7 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
               text-overflow: ellipsis;
               white-space: nowrap;
 
-              > .rs-checkbox-wrapper {
+              > .rs-checkbox-control {
                 height: auto;
                 left: 8px;
                 top: 8px !important;
@@ -249,7 +249,7 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
               > label {
                 color: ${p.theme.color.blueYonder};
 
-                > .rs-checkbox-wrapper {
+                > .rs-checkbox-control {
                   > .rs-checkbox-inner {
                     &:before {
                       background-color: ${p.theme.color.blueYonder25};
@@ -283,7 +283,7 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
                 color: ${p.theme.color.gunMetal};
                 font-weight: 500;
 
-                > .rs-checkbox-wrapper {
+                > .rs-checkbox-control {
                   > .rs-checkbox-inner {
                     &:before {
                       background-color: ${p.theme.color.charcoal};
@@ -302,7 +302,7 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
                 > label {
                   color: ${p.theme.color.blueYonder};
 
-                  > .rs-checkbox-wrapper {
+                  > .rs-checkbox-control {
                     > .rs-checkbox-inner {
                       &:before {
                         background-color: ${p.theme.color.blueYonder};

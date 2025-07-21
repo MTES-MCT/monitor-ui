@@ -19,7 +19,7 @@ const Table = styled(SimpleTable.Table)<{
         > .rs-checkbox {
           > .rs-checkbox-checker {
             > label {
-              > .rs-checkbox-wrapper {
+              > .rs-checkbox-control {
                 left: -8px;
               }
             }
