@@ -80,7 +80,7 @@ const StyledRsuiteRadio = styled(RsuiteRadio)<CommonChoiceFieldStyleProps>`
       line-height: 1;
       transition: color 0.2s linear;
 
-      > .rs-radio-wrapper {
+      > .rs-radio-control {
         left: 0;
         top: 2px;
 
@@ -117,7 +117,7 @@ const StyledRsuiteRadio = styled(RsuiteRadio)<CommonChoiceFieldStyleProps>`
       > label {
         color: ${getChoiceFieldBorderColorFactoryForState('hover')};
 
-        > .rs-radio-wrapper {
+        > .rs-radio-control {
           > .rs-radio-inner {
             &:before {
               background-color: ${p =>
@@ -136,7 +136,7 @@ const StyledRsuiteRadio = styled(RsuiteRadio)<CommonChoiceFieldStyleProps>`
       > label {
         color: ${getChoiceFieldBorderColorFactoryForState('focus')};
 
-        > .rs-radio-wrapper {
+        > .rs-radio-control {
           > .rs-radio-inner {
             &:before {
               background-color: ${p =>
@@ -155,7 +155,7 @@ const StyledRsuiteRadio = styled(RsuiteRadio)<CommonChoiceFieldStyleProps>`
       > label {
         color: ${getChoiceFieldBorderColorFactoryForState('active')};
 
-        > .rs-radio-wrapper {
+        > .rs-radio-control {
           > .rs-radio-inner {
             &:before {
               background-color: ${p =>

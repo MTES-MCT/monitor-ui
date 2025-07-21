@@ -1,7 +1,7 @@
 import { getSelectedOptionValuesFromSelectedRsuiteDataItemValues } from '@utils/getSelectedOptionValuesFromSelectedRsuiteDataItemValues'
 import classnames from 'classnames'
 import { StyledRsuitePickerBox } from 'fields/shared/StyledRsuitePickerBox'
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { TagPicker, type TagPickerProps } from 'rsuite'
 import styled from 'styled-components'
 
@@ -101,7 +101,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
     [customSearchMinQueryLength, optionValueKey, rsuiteData]
   )
 
-  const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
+  const renderMenuItem = useCallback((_, item) => <span title={item.label}>{item.label}</span>, [])
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
