@@ -1,4 +1,5 @@
 import { getSelectedOptionValuesFromSelectedRsuiteDataItemValues } from '@utils/getSelectedOptionValuesFromSelectedRsuiteDataItemValues'
+import { handleCustomSearch } from '@utils/handleCustomSearch'
 import classnames from 'classnames'
 import { StyledRsuitePickerBox } from 'fields/shared/StyledRsuitePickerBox'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -85,18 +86,14 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 
   const handleSearch = useCallback(
     (nextQuery: string) => {
-      if (!customSearchRef.current || nextQuery.trim().length < customSearchMinQueryLength) {
-        setControlledRsuiteData(rsuiteData)
-
-        return
-      }
-
-      const nextControlledRsuiteData =
-        nextQuery.trim().length >= customSearchMinQueryLength
-          ? getRsuiteDataItemsFromOptions(customSearchRef.current.find(nextQuery), optionValueKey)
-          : rsuiteData
-
-      setControlledRsuiteData(nextControlledRsuiteData)
+      const results = handleCustomSearch(
+        customSearchRef,
+        nextQuery,
+        rsuiteData,
+        customSearchMinQueryLength,
+        optionValueKey
+      )
+      setControlledRsuiteData(results)
     },
     [customSearchMinQueryLength, optionValueKey, rsuiteData]
   )

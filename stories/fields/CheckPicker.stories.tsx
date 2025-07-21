@@ -15,6 +15,52 @@ import { CheckPicker, useFieldControl, type CheckPickerProps } from '../../src'
 
 import type { Meta } from '@storybook/react'
 
+export const checkTreePickerArgsType = {
+  customSearch: ARG_TYPE.NO_CONTROL_INPUT,
+  customSearchMinQueryLength: ARG_TYPE.OPTIONAL_NUMBER_NO_CONTROL_INPUT,
+  error: ARG_TYPE.OPTIONAL_STRING,
+  isErrorMessageHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+  isLabelHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
+  isLight: ARG_TYPE.OPTIONAL_BOOLEAN,
+  isRequired: ARG_TYPE.OPTIONAL_BOOLEAN,
+  isTransparent: ARG_TYPE.OPTIONAL_BOOLEAN,
+  isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
+  options: ARG_TYPE.NO_CONTROL_INPUT,
+  optionValueKey: ARG_TYPE.OPTIONAL_OPTION_VALUE_KEY,
+  placeholder: ARG_TYPE.OPTIONAL_STRING,
+  popupWidth: ARG_TYPE.OPTIONAL_NUMBER,
+  readOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
+  searchable: ARG_TYPE.BOOLEAN,
+  value: {
+    ...ARG_TYPE.OPTIONAL_OPTION_VALUES,
+    mapping: {
+      ...FAKE_STRING_OPTIONS_AS_MAPPING,
+      // eslint-disable-next-line object-shorthand
+      undefined: undefined
+    },
+    options: [...FAKE_STRING_OPTIONS_AS_LABELS, undefined]
+  }
+}
+
+export const checkTreePickerArgs = {
+  disabled: false,
+  error: '',
+  isErrorMessageHidden: false,
+  isLabelHidden: false,
+  isLight: false,
+  isRequired: true,
+  isTransparent: false,
+  isUndefinedWhenDisabled: false,
+  label: 'A check picker. Pick some options:',
+  name: 'myCheckPicker',
+  options: FAKE_STRING_OPTIONS,
+  optionValueKey: undefined,
+  placeholder: 'Pick some options',
+  popupWidth: undefined,
+  readOnly: false,
+  searchable: true,
+  virtualized: false
+}
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<CheckPickerProps<string>> = {
   ...META_DEFAULTS,
@@ -22,52 +68,9 @@ const meta: Meta<CheckPickerProps<string>> = {
   title: 'Fields/CheckPicker',
   component: CheckPicker,
 
-  argTypes: {
-    customSearch: ARG_TYPE.NO_CONTROL_INPUT,
-    customSearchMinQueryLength: ARG_TYPE.OPTIONAL_NUMBER_NO_CONTROL_INPUT,
-    error: ARG_TYPE.OPTIONAL_STRING,
-    isErrorMessageHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
-    isLabelHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
-    isLight: ARG_TYPE.OPTIONAL_BOOLEAN,
-    isRequired: ARG_TYPE.OPTIONAL_BOOLEAN,
-    isTransparent: ARG_TYPE.OPTIONAL_BOOLEAN,
-    isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
-    options: ARG_TYPE.NO_CONTROL_INPUT,
-    optionValueKey: ARG_TYPE.OPTIONAL_OPTION_VALUE_KEY,
-    placeholder: ARG_TYPE.OPTIONAL_STRING,
-    popupWidth: ARG_TYPE.OPTIONAL_NUMBER,
-    readOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
-    searchable: ARG_TYPE.BOOLEAN,
-    value: {
-      ...ARG_TYPE.OPTIONAL_OPTION_VALUES,
-      options: [...FAKE_STRING_OPTIONS_AS_LABELS, undefined],
-      mapping: {
-        ...FAKE_STRING_OPTIONS_AS_MAPPING,
-        // eslint-disable-next-line object-shorthand
-        undefined: undefined
-      }
-    }
-  },
+  argTypes: checkTreePickerArgsType,
 
-  args: {
-    disabled: false,
-    error: '',
-    isErrorMessageHidden: false,
-    isLabelHidden: false,
-    isLight: false,
-    isRequired: true,
-    isTransparent: false,
-    isUndefinedWhenDisabled: false,
-    label: 'A check picker. Pick some options:',
-    name: 'myCheckPicker',
-    options: FAKE_STRING_OPTIONS,
-    optionValueKey: undefined,
-    placeholder: 'Pick some options',
-    popupWidth: undefined,
-    readOnly: false,
-    searchable: true,
-    virtualized: false
-  },
+  args: checkTreePickerArgs,
 
   decorators: [
     generateStoryDecorator({

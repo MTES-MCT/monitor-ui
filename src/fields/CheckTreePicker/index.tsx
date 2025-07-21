@@ -242,11 +242,11 @@ export function CheckTreePicker({
             />
           )}
           renderTreeNode={item => {
-            if (typeof item.name !== 'string') {
-              return item.name
+            if (typeof item[labelKey] !== 'string') {
+              return item[labelKey]
             }
 
-            return <AccentInsensitiveHighlight label={item.name} query={searchKeyword} />
+            return <AccentInsensitiveHighlight label={item[labelKey]} query={searchKeyword} />
           }}
           renderValue={() => {
             const parents = getTreeOptionsBySelectedValues(rsuiteValue, options, childrenKey, valueKey, labelKey)
