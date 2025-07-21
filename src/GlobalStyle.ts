@@ -88,6 +88,7 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 1.3846;
   }
 
+  .rs-highlight-mark,
   mark {
     border-radius: 0;
     margin: 0;
