@@ -1,6 +1,6 @@
 import { getSelectedOptionValuesFromSelectedRsuiteDataItemValues } from '@utils/getSelectedOptionValuesFromSelectedRsuiteDataItemValues'
 import classnames from 'classnames'
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode, type RefObject } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, type RefObject } from 'react'
 import { CheckPicker as RsuiteCheckPicker, type CheckPickerProps as RsuiteCheckPickerProps } from 'rsuite'
 
 import { useFieldUndefineEffect } from '../hooks/useFieldUndefineEffect'
@@ -97,7 +97,7 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
     [customSearchMinQueryLength, optionValueKey, rsuiteData]
   )
 
-  const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
+  const renderMenuItem = useCallback((_, item) => <span title={item.label}>{item.label}</span>, [])
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 

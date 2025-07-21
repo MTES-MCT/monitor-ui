@@ -89,15 +89,15 @@ context('Without time inputs', () => {
 
     cy.get('button[aria-label="Previous month"]').first().click()
     cy.get('div[role="gridcell"][title="11/12/2023"]').click()
-    cy.get('div[role="gridcell"][title="08/01/2024"]').click()
+    cy.get('div[role="gridcell"][title="08/04/2024"]').click()
 
     cy.get('input[aria-label="Jour de début"]').should('have.value', '11')
     cy.get('input[aria-label="Mois de début"]').should('have.value', '12')
     cy.get('input[aria-label="Année de début"]').should('have.value', '2023')
     cy.get('input[aria-label="Jour de fin"]').should('have.value', '08')
-    cy.get('input[aria-label="Mois de fin"]').should('have.value', '01')
+    cy.get('input[aria-label="Mois de fin"]').should('have.value', '04')
     cy.get('input[aria-label="Année de fin"]').should('have.value', '2024')
-    outputShouldBe(['2023-12-11T00:00:00.000Z', '2024-01-08T23:59:59.000Z'])
+    outputShouldBe(['2023-12-11T00:00:00.000Z', '2024-04-08T23:59:59.000Z'])
   })
 })
 
@@ -215,16 +215,16 @@ context('With time inputs', () => {
 
     cy.get('button[aria-label="Previous month"]').first().click()
     cy.get('div[role="gridcell"][title="11/12/2023"]').click()
-    cy.get('div[role="gridcell"][title="08/01/2024"]').click()
+    cy.get('div[role="gridcell"][title="08/04/2024"]').click()
 
     cy.get('input[aria-label="Heure de début"]').should('have.focus')
     cy.get('input[aria-label="Jour de début"]').should('have.value', '11')
     cy.get('input[aria-label="Mois de début"]').should('have.value', '12')
     cy.get('input[aria-label="Année de début"]').should('have.value', '2023')
     cy.get('input[aria-label="Jour de fin"]').should('have.value', '08')
-    cy.get('input[aria-label="Mois de fin"]').should('have.value', '01')
+    cy.get('input[aria-label="Mois de fin"]').should('have.value', '04')
     cy.get('input[aria-label="Année de fin"]').should('have.value', '2024')
-    outputShouldBe(['2023-12-11T13:34:00.000Z', '2024-01-08T23:56:59.000Z'])
+    outputShouldBe(['2023-12-11T13:34:00.000Z', '2024-04-08T23:56:59.000Z'])
   })
 })
 

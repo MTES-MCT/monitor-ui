@@ -1,6 +1,6 @@
 import { getSelectedOptionValueFromSelectedRsuiteDataItemValue } from '@utils/getSelectedOptionValueFromSelectedRsuiteDataItemValue'
 import classnames from 'classnames'
-import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { SelectPicker as RsuiteSelectPicker, type SelectPickerProps as RsuiteSelectPickerProps } from 'rsuite'
 
 import { StyledRsuitePickerBox } from './shared/StyledRsuitePickerBox'
@@ -126,7 +126,7 @@ export function Select<OptionValue extends OptionValueType = string>({
     [customSearchMinQueryLength, optionValueKey, rsuiteData]
   )
 
-  const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
+  const renderMenuItem = useCallback((_, item) => <span title={item.label}>{item.label}</span>, [])
 
   const disabledItemValues = useMemo(
     () => (controlledRsuiteData ?? rsuiteData).filter(option => option.isDisabled).map(option => option.value),
