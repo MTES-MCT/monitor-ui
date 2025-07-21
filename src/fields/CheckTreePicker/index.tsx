@@ -122,9 +122,14 @@ export function CheckTreePicker({
 
         const children = item[childrenKey] as TreeOption[] | undefined
 
+        const formattedItem = {
+          [labelKey]: item[labelKey],
+          [valueKey]: item[valueKey],
+          ...(children?.length && children?.length > 0 && { [childrenKey]: item[childrenKey] })
+        }
         if (!acc.has(parentId)) {
-          acc.set(parentId, { ...item })
-        } else if (children?.length) {
+          acc.set(parentId, { ...formattedItem })
+        } else if (children?.length && children?.length > 0) {
           const existing = acc.get(parentId)!
           if (!existing[childrenKey]) {
             existing[childrenKey] = []
@@ -144,7 +149,7 @@ export function CheckTreePicker({
 
       return Array.from(parentMap.values())
     },
-    [childrenKey, valueKey]
+    [childrenKey, valueKey, labelKey]
   )
 
   const handleSearch = useCallback(
