@@ -124,7 +124,7 @@ export const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyl
       line-height: 1;
       transition: color 0.2s linear;
 
-      > .rs-checkbox-wrapper {
+      > .rs-checkbox-control {
         left: 0;
         top: 2px;
 
@@ -160,7 +160,7 @@ export const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyl
       > label {
         color: ${getChoiceFieldBorderColorFactoryForState('hover')};
 
-        > .rs-checkbox-wrapper {
+        > .rs-checkbox-control {
           > .rs-checkbox-inner {
             &:before {
               background-color: ${getChoiceFieldBackgroundColorFactoryForState('hover')};
@@ -176,7 +176,7 @@ export const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyl
       > label {
         color: ${getChoiceFieldBorderColorFactoryForState('focus')};
 
-        > .rs-checkbox-wrapper {
+        > .rs-checkbox-control {
           > .rs-checkbox-inner {
             &:before {
               background-color: ${getChoiceFieldBackgroundColorFactoryForState('focus')};
@@ -192,7 +192,7 @@ export const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyl
       > label {
         color: ${getChoiceFieldBorderColorFactoryForState('active')};
 
-        > .rs-checkbox-wrapper {
+        > .rs-checkbox-control {
           > .rs-checkbox-inner {
             &:before {
               background-color: ${getChoiceFieldBackgroundColorFactoryForState('active')};
