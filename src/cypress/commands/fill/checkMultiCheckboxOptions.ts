@@ -22,7 +22,11 @@ export function checkMultiCheckboxOptions(
   }
 
   values.forEach(value => {
-    cy.wrap(fieldsetElement).find('label').contains(value).find('input[type="checkbox"]').check({ force })
+    cy.wrap(fieldsetElement)
+      .contains('.rs-checkbox-label', value)
+      .closest('.rs-checkbox')
+      .find('input[type="checkbox"]')
+      .check({ force })
   })
 
   cy.wait(250)

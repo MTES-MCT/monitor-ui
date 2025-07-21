@@ -1,4 +1,5 @@
 import { Accent, Icon, Size } from '@constants'
+import { AccentInsensitiveHighlight } from '@elements/AccentInsensitiveHighlight'
 import { Button } from '@elements/Button'
 import { IconButton } from '@elements/IconButton'
 import { useFieldUndefineEffect } from '@hooks/useFieldUndefineEffect'
@@ -87,7 +88,7 @@ export function CheckTreePicker({
   const controlledClassName = useMemo(() => classnames('Field-CheckTreePicker', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = Boolean(controlledError)
-
+  const [searchKeyword, setSearchKeyword] = useState('')
   const { forceUpdate } = useForceUpdate()
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
@@ -148,6 +149,7 @@ export function CheckTreePicker({
 
   const handleSearch = useCallback(
     (nextQuery: string) => {
+      setSearchKeyword(nextQuery)
       if (!customSearchRef.current || nextQuery.trim().length < customSearchMinQueryLength) {
         setControlledOptions(options)
 
@@ -239,6 +241,13 @@ export function CheckTreePicker({
               style={{ transform: isExpanded ? 'rotate(0)' : 'rotate(-90deg)' }}
             />
           )}
+          renderTreeNode={item => {
+            if (typeof item.name !== 'string') {
+              return item.name
+            }
+
+            return <AccentInsensitiveHighlight label={item.name} query={searchKeyword} />
+          }}
           renderValue={() => {
             const parents = getTreeOptionsBySelectedValues(rsuiteValue, options, childrenKey, valueKey, labelKey)
             const children = parents.flatMap(parent => parent[childrenKey] as TreeOption[])
