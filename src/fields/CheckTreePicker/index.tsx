@@ -239,12 +239,14 @@ export function CheckTreePicker({
           onSearch={handleSearch}
           readOnly={readOnly}
           renderTreeIcon={(_, isExpanded) => (
-            <IconButton
-              accent={Accent.TERTIARY}
-              Icon={Chevron}
-              size={Size.SMALL}
-              style={{ transform: isExpanded ? 'rotate(0)' : 'rotate(-90deg)' }}
-            />
+            <IconExpander>
+              <IconButton
+                accent={Accent.TERTIARY}
+                Icon={Chevron}
+                size={Size.SMALL}
+                style={{ transform: isExpanded ? 'rotate(0)' : 'rotate(-90deg)' }}
+              />
+            </IconExpander>
           )}
           renderTreeNode={item => {
             if (typeof item[labelKey] !== 'string') {
@@ -354,6 +356,16 @@ const StyledButton = styled(Button)<{ $isLight?: boolean }>`
     }
   }
 `
+
+const IconExpander = styled.div`
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+`
+
 const Wrapper = styled.div`
   display: contents;
 `

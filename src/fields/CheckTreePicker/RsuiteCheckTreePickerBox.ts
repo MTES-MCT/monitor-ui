@@ -64,21 +64,21 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
 
     .rs-check-tree-view {
       padding: 2px 0;
+
       .rs-check-tree-node {
         padding: 0 !important;
+
         &:hover {
           background-color: ${p => p.theme.color.blueYonder25};
         }
       }
+
       .rs-check-tree-node-focus {
         background-color: ${p => p.theme.color.blueYonder25} !important;
       }
 
       .rs-tree-node-toggle {
-        display: inline-block;
-        position: absolute;
-        width: 100%;
-        z-index: 1;
+        width: 22px;
       }
 
       [role='treeitem'] {
@@ -157,6 +157,7 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
 
           > .rs-checkbox-checker {
             left: -15px;
+
             > label {
               font-size: 13px !important;
 
@@ -186,6 +187,7 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
           &:hover {
             background-color: ${p => p.theme.color.blueYonder25} !important;
             color: ${p => p.theme.color.blueYonder};
+
             > .rs-checkbox-checker {
               > label {
                 color: ${p => p.theme.color.blueYonder};
@@ -254,7 +256,9 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
             }
           }
         }
+
         /* childrens */
+
         &[aria-level='1'] {
           > .rs-check-item {
             > .rs-checkbox-checker {
@@ -264,13 +268,15 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
                     &:before {
                       margin-left: 0;
                     }
+
                     &:after {
                       left: 0;
                     }
                   }
                 }
+
                 .rs-checkbox-label {
-                  margin-left: 35px;
+                  margin-left: 20px;
                 }
               }
             }
@@ -279,6 +285,7 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
 
         &[aria-level='2'] {
           margin-left: 20px;
+
           > .rs-check-item {
             > .rs-checkbox-checker {
               > label {
