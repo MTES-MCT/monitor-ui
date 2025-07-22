@@ -8,6 +8,7 @@ import { AttentionFilled } from './AttentionFilled'
 import { Bullseye } from './Bullseye'
 import { Calendar } from './Calendar'
 import { Car } from './Car'
+import { Chart } from './Chart'
 import { Check } from './Check'
 import { Chevron } from './Chevron'
 import { Circle } from './Circle'
@@ -117,6 +118,7 @@ export {
   Bullseye,
   Calendar,
   Car,
+  Chart,
   Check,
   Chevron,
   Circle,
