@@ -1,3 +1,14 @@
+## [24.26.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.25.1...v24.26.0) (2025-07-22)
+
+### Features
+
+* **icons:** add chart icon ([8a3ce2d](https://github.com/MTES-MCT/monitor-ui/commit/8a3ce2d898c30171fa01f6e3a5133b8ee758f57f))
+
+### Bug Fixes
+
+* **icons:** fix chart icon name ([a1ffd21](https://github.com/MTES-MCT/monitor-ui/commit/a1ffd21b15c5e496d79493f08b4b074b50141bc8))
+* **icons:** fix icons current color ([402bd0e](https://github.com/MTES-MCT/monitor-ui/commit/402bd0e78e0c488d40fd43796442efba285c7d5c))
+
 ## [24.25.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.25.0...v24.25.1) (2025-07-21)
 
 ### Bug Fixes
