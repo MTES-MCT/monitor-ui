@@ -156,7 +156,7 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
           }
 
           > .rs-checkbox-checker {
-            left: -15px;
+            left: -10px;
 
             > label {
               font-size: 13px !important;
