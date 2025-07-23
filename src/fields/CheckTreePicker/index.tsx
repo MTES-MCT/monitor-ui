@@ -235,6 +235,7 @@ export function CheckTreePicker({
           onChange={handleChange}
           onClose={() => {
             setControlledOptions(options)
+            setSearchKeyword('')
           }}
           onSearch={handleSearch}
           readOnly={readOnly}
