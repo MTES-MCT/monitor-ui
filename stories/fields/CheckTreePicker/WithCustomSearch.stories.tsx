@@ -1,11 +1,11 @@
 import { CheckTreePicker, type CheckTreePickerProps } from '@fields/CheckTreePicker'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
 import { ARG_TYPE, META_DEFAULTS } from '../../../.storybook/constants'
 import { TAGS } from '../../../.storybook/data/tags'
 import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
-import { useFieldControl, CustomSearch } from '../../../src'
+import { useFieldControl } from '../../../src'
 
 import type { TreeOption } from '@fields/CheckTreePicker/types'
 import type { Meta } from '@storybook/react'
@@ -73,21 +73,7 @@ const meta: Meta<CheckTreePickerProps> = {
 export default meta
 
 export function WithCustomSearch(props: CheckTreePickerProps) {
-  const options = TAGS(props.childrenKey, props.labelKey, props.valueKey)
-  const customSearchRef = useRef(
-    new CustomSearch(
-      options,
-      [
-        {
-          name: 'name'
-        },
-        {
-          name: 'subThemes.name'
-        }
-      ],
-      { childrenKey: props.childrenKey, isStrict: true }
-    )
-  )
+  const options = TAGS(props.childrenKey, props.labelKey, props.valueKey) as TreeOption[]
 
   const [outputValue, setOutputValue] = useState<TreeOption[]>()
 
@@ -97,7 +83,6 @@ export function WithCustomSearch(props: CheckTreePickerProps) {
     <>
       <CheckTreePicker
         {...props}
-        customSearch={customSearchRef.current}
         onChange={controlledOnChange}
         options={options}
         searchable
