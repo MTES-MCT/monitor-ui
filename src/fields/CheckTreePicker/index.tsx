@@ -4,6 +4,7 @@ import { Button } from '@elements/Button'
 import { IconButton } from '@elements/IconButton'
 import { useFieldUndefineEffect } from '@hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '@hooks/useForceUpdate'
+import { CustomSearch } from '@libs/CustomSearch'
 import { normalizeString } from '@utils/normalizeString'
 import classnames from 'classnames'
 import { Chevron } from 'icons'
@@ -25,7 +26,6 @@ import {
 } from './utils'
 
 import type { TreeOption } from './types'
-import type { CustomSearch } from '@libs/CustomSearch'
 import type { ValueType } from 'rsuite/esm/CheckTreePicker'
 import type { Promisable } from 'type-fest'
 
@@ -84,16 +84,33 @@ export function CheckTreePicker({
 }: CheckTreePickerProps) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
-  const customSearchRef = useRef(customSearch)
   const controlledClassName = useMemo(() => classnames('Field-CheckTreePicker', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = Boolean(controlledError)
   const [searchKeyword, setSearchKeyword] = useState('')
   const { forceUpdate } = useForceUpdate()
 
+  const localCustomSearch = useMemo(
+    () =>
+      customSearch ??
+      new CustomSearch(
+        options,
+        [
+          {
+            name: [labelKey]
+          },
+          {
+            name: [`${childrenKey}.${labelKey}`]
+          }
+        ],
+        { childrenKey, isStrict: true, withCacheInvalidation: true }
+      ),
+    [customSearch, options, labelKey, childrenKey]
+  )
+
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
-  const [controlledOptions, setControlledOptions] = useState(customSearch ? options : [])
+  const [controlledOptions, setControlledOptions] = useState(originalProps.searchable ? options : [])
 
   const [disabledValues, setDisabledValues] = useState<ValueType>([])
   const uncheckableValues = useMemo(
@@ -155,13 +172,13 @@ export function CheckTreePicker({
   const handleSearch = useCallback(
     (nextQuery: string) => {
       setSearchKeyword(nextQuery)
-      if (!customSearchRef.current || nextQuery.trim().length < customSearchMinQueryLength) {
+      if (!localCustomSearch || nextQuery.trim().length < customSearchMinQueryLength) {
         setControlledOptions(options)
 
         return
       }
 
-      const searchResults = customSearchRef.current.find(nextQuery)
+      const searchResults = localCustomSearch.find(nextQuery)
       const foundOptions = searchResults
         .flatMap(({ id }) => fromRsuiteValue([id], options, childrenKey, valueKey, labelKey))
         .map(item => {
@@ -179,7 +196,16 @@ export function CheckTreePicker({
 
       setControlledOptions(merged)
     },
-    [childrenKey, customSearchMinQueryLength, labelKey, mergeResultsByParent, options, value, valueKey]
+    [
+      childrenKey,
+      customSearchMinQueryLength,
+      labelKey,
+      localCustomSearch,
+      mergeResultsByParent,
+      options,
+      value,
+      valueKey
+    ]
   )
   const handleChange = useCallback(
     (nextValue: ValueType) => {
@@ -227,7 +253,7 @@ export function CheckTreePicker({
           cascade
           childrenKey={childrenKey}
           container={boxRef.current}
-          data={customSearch ? controlledOptions : options}
+          data={originalProps.searchable ? controlledOptions : options}
           disabled={disabled}
           disabledItemValues={disabledValues}
           id={originalProps.name}
@@ -314,7 +340,7 @@ export function CheckTreePicker({
               </Wrapper>
             )
           }}
-          searchBy={(customSearch ? () => true : undefined) as any}
+          searchBy={(originalProps.searchable ? () => true : undefined) as any}
           size={originalProps.size ?? 'sm'}
           uncheckableItemValues={uncheckableValues}
           value={rsuiteValue ?? []}

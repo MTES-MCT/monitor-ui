@@ -82,7 +82,7 @@ export function _CheckTreePicker(props: CheckTreePickerProps) {
         {...props}
         onChange={controlledOnChange}
         options={TAGS(props.childrenKey, props.labelKey, props.valueKey)}
-        searchable
+        searchable={false}
         value={controlledValue}
         virtualized
       />
