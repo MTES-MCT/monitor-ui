@@ -112,11 +112,11 @@ export function Select<OptionValue extends OptionValueType = string>({
   const handleSearch = useCallback(
     (nextQuery: string) => {
       const results = handleCustomSearch(
+        customSearchMinQueryLength,
         customSearchRef,
         nextQuery,
-        rsuiteData,
-        customSearchMinQueryLength,
-        optionValueKey
+        optionValueKey,
+        rsuiteData
       )
       setControlledRsuiteData(results)
     },
