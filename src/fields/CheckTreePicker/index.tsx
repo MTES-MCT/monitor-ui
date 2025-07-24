@@ -391,6 +391,7 @@ const IconExpander = styled.div`
   z-index: 1;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `
 
 const Wrapper = styled.div`

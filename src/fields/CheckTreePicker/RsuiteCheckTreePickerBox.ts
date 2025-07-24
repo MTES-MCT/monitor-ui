@@ -66,8 +66,6 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
       padding: 2px 0;
 
       .rs-check-tree-node {
-        padding: 0 !important;
-
         &:hover {
           background-color: ${p => p.theme.color.blueYonder25};
         }
@@ -79,6 +77,10 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
 
       .rs-tree-node-toggle {
         width: 22px;
+      }
+
+      .rs-tree-node-toggle-placeholder {
+        width: 12px;
       }
 
       [role='treeitem'] {
@@ -156,8 +158,6 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
           }
 
           > .rs-checkbox-checker {
-            left: -10px;
-
             > label {
               font-size: 13px !important;
 
@@ -260,23 +260,14 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
         /* childrens */
 
         &[aria-level='1'] {
+          width: 90%;
+
           > .rs-check-item {
             > .rs-checkbox-checker {
               > label {
-                .rs-checkbox-control {
-                  > .rs-checkbox-inner {
-                    &:before {
-                      margin-left: 0;
-                    }
-
-                    &:after {
-                      left: 0;
-                    }
-                  }
-                }
-
                 .rs-checkbox-label {
-                  margin-left: 20px;
+                  width: 100%;
+                  padding-left: 20px;
                 }
               }
             }
@@ -284,13 +275,15 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
         }
 
         &[aria-level='2'] {
-          margin-left: 20px;
+          margin-left: 8px;
+          width: 90%;
 
           > .rs-check-item {
             > .rs-checkbox-checker {
               > label {
                 .rs-checkbox-label {
-                  margin-left: 20px;
+                  width: 100%;
+                  padding-left: 20px;
                 }
               }
             }
