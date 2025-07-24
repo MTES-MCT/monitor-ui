@@ -188,6 +188,7 @@ export const StyledRsuiteCalendarBox = styled.div<{
         }
 
         > .rs-picker-daterange-content > .rs-picker-daterange-calendar-group > .rs-calendar-month-view,
+        > .rs-picker-daterange-content > .rs-picker-daterange-calendar-single > .rs-calendar-month-view,
         > .rs-calendar-month-view {
           .rs-calendar-month-dropdown-scroll {
             > div {
