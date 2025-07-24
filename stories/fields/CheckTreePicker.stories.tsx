@@ -51,7 +51,7 @@ const meta: Meta<CheckTreePickerProps> = {
     popupWidth: undefined,
     isMultiSelect: true,
     readOnly: false,
-    searchable: true,
+    searchable: false,
     virtualized: false,
     childrenKey: 'subThemes',
     valueKey: 'id',
@@ -76,16 +76,11 @@ export function _CheckTreePicker(props: CheckTreePickerProps) {
 
   const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
 
+  const options = TAGS(props.childrenKey, props.labelKey, props.valueKey)
+
   return (
     <>
-      <CheckTreePicker
-        {...props}
-        onChange={controlledOnChange}
-        options={TAGS(props.childrenKey, props.labelKey, props.valueKey)}
-        searchable={false}
-        value={controlledValue}
-        virtualized
-      />
+      <CheckTreePicker {...props} onChange={controlledOnChange} options={options} value={controlledValue} virtualized />
 
       <Output value={outputValue} />
     </>

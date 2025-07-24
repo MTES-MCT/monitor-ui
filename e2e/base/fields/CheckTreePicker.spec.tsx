@@ -209,7 +209,6 @@ describe('fields/CheckTreePicker', () => {
     )
 
     outputShouldNotBe()
-
     cy.fill('A check tree picker', ['Marées noires', 'Protection des coraux'])
 
     outputShouldBe([
