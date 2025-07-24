@@ -1,6 +1,7 @@
+import { Field } from '@elements/Field'
 import { useKey } from '@hooks/useKey'
 import classnames from 'classnames'
-import { useMemo, type CSSProperties } from 'react'
+import { type CSSProperties, useMemo } from 'react'
 import { Radio as RsuiteRadio } from 'rsuite'
 import styled from 'styled-components'
 
@@ -9,7 +10,6 @@ import {
   getChoiceFieldBorderColorFactoryForState,
   getFieldBackgroundColorFactory
 } from './shared/utils'
-import { Field } from '../elements/Field'
 
 import type { CommonChoiceFieldStyleProps } from './shared/types'
 import type { RadioProps as RsuiteRadioProps } from 'rsuite'
@@ -21,10 +21,12 @@ export type RadioProps = Omit<RsuiteRadioProps, 'as' | 'checked' | 'defaultCheck
   hasError?: boolean | undefined
   isLight?: boolean | undefined
   isTransparent?: boolean | undefined
+  labelPosition: 'left' | 'right'
   name: string
   readOnly?: boolean | undefined
   style?: CSSProperties | undefined
 }
+
 export function Radio({
   checked = false,
   className,
@@ -32,6 +34,7 @@ export function Radio({
   hasError = false,
   isLight = false,
   isTransparent = false,
+  labelPosition = 'right',
   name,
   readOnly = false,
   style,
@@ -50,6 +53,7 @@ export function Radio({
         $isLight={isLight}
         $isReadOnly={readOnly}
         $isTransparent={isTransparent}
+        $labelPosition={labelPosition}
         checked={checked}
         disabled={disabled}
         name={name}
@@ -100,6 +104,7 @@ const StyledRsuiteRadio = styled(RsuiteRadio)<CommonChoiceFieldStyleProps>`
           }
 
           /* Dot */
+
           &:after {
             background-color: ${p =>
               p.$isReadOnly ? p.theme.color.charcoal : getChoiceFieldBorderColorFactoryForState('default')(p)};

@@ -41,6 +41,7 @@ const meta: Meta<CheckboxProps> = {
     isTransparent: false,
     isUndefinedWhenDisabled: false,
     label: 'A checkbox. Check me!',
+    labelPosition: 'right',
     name: 'myCheckbox',
     readOnly: false
   },
