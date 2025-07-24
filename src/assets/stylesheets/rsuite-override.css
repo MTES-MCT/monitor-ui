@@ -156,11 +156,9 @@
   z-index: 99;
 }
 
-
 .rs-modal-body {
   padding: 20px 25px 0 25px !important;
 }
-
 
 .rs-modal-full .rs-modal-dialog {
   width: 100%;
@@ -192,8 +190,6 @@
   font-weight: normal;
 }
 
-
-
 .rs-modal-header-close {
   background: unset;
   right: 10px !important;
@@ -202,7 +198,14 @@
   color: var(--gainsboro) !important;
 }
 
-
 .rs-plaintext {
   font-size: 13px !important;
+}
+
+.rs-highlight-mark,
+mark {
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  background-color: #cccfd6;
 }
