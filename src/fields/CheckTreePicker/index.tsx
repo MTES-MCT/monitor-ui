@@ -180,7 +180,7 @@ export function CheckTreePicker({
 
       const searchResults = localCustomSearch.find(nextQuery)
       const foundOptions = searchResults
-        .flatMap(({ id }) => fromRsuiteValue([id], options, childrenKey, valueKey, labelKey))
+        .flatMap(option => fromRsuiteValue([option[valueKey]], options, childrenKey, valueKey, labelKey))
         .map(item => {
           const children = item?.[childrenKey] as TreeOption[] | undefined
 
