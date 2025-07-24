@@ -1,3 +1,9 @@
+## [24.27.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.27.0...v24.27.1) (2025-07-24)
+
+### Bug Fixes
+
+* **fields:** fix Calendar style ([f011158](https://github.com/MTES-MCT/monitor-ui/commit/f0111582cb21a615129800c9428357617f53abe4))
+
 ## [24.27.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.26.0...v24.27.0) (2025-07-24)
 
 ### Features
