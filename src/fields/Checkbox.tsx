@@ -1,6 +1,6 @@
 import { useKey } from '@hooks/useKey'
 import classnames from 'classnames'
-import { useCallback, useMemo, type CSSProperties } from 'react'
+import React, { type CSSProperties, useCallback, useMemo } from 'react'
 import { Checkbox as RsuiteCheckbox } from 'rsuite'
 import styled from 'styled-components'
 
@@ -33,12 +33,14 @@ export type CheckboxProps = Omit<RsuiteCheckboxProps, 'as' | 'checked' | 'defaul
   isLight?: boolean | undefined
   isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
-  label: string
+  label: string | React.ReactNode
+  labelPosition?: 'left' | 'right'
   name: string
   onChange?: (isChecked: boolean | undefined) => Promisable<void>
   readOnly?: boolean | undefined
   style?: CSSProperties | undefined
 }
+
 export function Checkbox({
   checked = false,
   className,
@@ -52,6 +54,7 @@ export function Checkbox({
   isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
+  labelPosition = 'right',
   name,
   onChange,
   readOnly = false,
@@ -74,7 +77,7 @@ export function Checkbox({
     [onChange]
   )
 
-  useFieldUndefineEffect(isUndefinedWhenDisabled && !!disabled, onChange)
+  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
   return (
     <Field className={controlledClassName} style={style}>
@@ -86,6 +89,7 @@ export function Checkbox({
         $isLight={isLight}
         $isReadOnly={readOnly}
         $isTransparent={isTransparent}
+        $labelPosition={labelPosition}
         checked={checked}
         disabled={disabled}
         id={name}
@@ -112,8 +116,9 @@ export const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyl
   > .rs-checkbox-checker,
   &.rs-checkbox-indeterminate > .rs-checkbox-checker {
     min-height: unset;
-    padding: 0 0 0 24px;
+    padding: 0;
 
+    ${$p => ($p.$labelPosition === 'right' ? 'padding-left: 24px;' : 'padding-right: 24px;')}
     > label {
       /* TODO Check that with Adeline. */
       color: ${p =>
@@ -125,7 +130,7 @@ export const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyl
       transition: color 0.2s linear;
 
       > .rs-checkbox-control {
-        left: 0;
+        ${$p => ($p.$labelPosition === 'right' ? 'left: 0;' : 'left: unset; right: 0;')}
         top: 2px;
 
         &:before {
@@ -143,6 +148,7 @@ export const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyl
           }
 
           /* Checkmark */
+
           &:after {
             border-color: ${p =>
               (p.$isReadOnly ?? p.$isTransparent) ? p.theme.color.charcoal : p.theme.color.cultured};

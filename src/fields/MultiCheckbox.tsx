@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { isEqual } from 'lodash'
-import { useCallback, useMemo, type CSSProperties } from 'react'
+import { type CSSProperties, useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 
 import { Checkbox } from './Checkbox'
@@ -32,6 +32,7 @@ export type MultiCheckboxProps<OptionValue extends OptionValueType = string> = {
   style?: CSSProperties | undefined
   value?: OptionValue[] | undefined
 }
+
 export function MultiCheckbox<OptionValue extends OptionValueType = string>({
   className,
   disabled = false,
@@ -85,7 +86,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
       legend={label}
       style={style}
     >
-      <ChecboxesBox key={key} $isInline={isInline}>
+      <CheckboxesBox key={key} $isInline={isInline}>
         {options.map((option, index) => (
           <Checkbox
             key={JSON.stringify(option.value)}
@@ -100,14 +101,14 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
             readOnly={readOnly}
           />
         ))}
-      </ChecboxesBox>
+      </CheckboxesBox>
 
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
     </Fieldset>
   )
 }
 
-const ChecboxesBox = styled.div<{
+const CheckboxesBox = styled.div<{
   $isInline: boolean
 }>`
   color: ${p => p.theme.color.gunMetal};

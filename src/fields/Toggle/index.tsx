@@ -31,6 +31,7 @@ export type ToggleProps = Omit<RSuiteToggleProps, 'as' | 'checked' | 'defaultChe
   name: string
   onChange?: (isChecked: boolean) => void
 }
+
 export function Toggle({
   checked = false,
   className,
@@ -97,6 +98,7 @@ const StyledToggle = styled(RsuiteToggle)<CommonChoiceFieldStyleProps>`
     min-width: 30px;
 
     /* Thumb */
+
     &:after {
       background-color: ${getToggleThumbColorFactoryForState('default')};
       top: 2px;
@@ -104,6 +106,7 @@ const StyledToggle = styled(RsuiteToggle)<CommonChoiceFieldStyleProps>`
       width: 10px;
       margin-left: 0px;
     }
+
     .rs-toggle-inner {
       margin-left: 20px;
     }
@@ -144,6 +147,7 @@ const StyledToggle = styled(RsuiteToggle)<CommonChoiceFieldStyleProps>`
       &:after {
         margin-left: -13px;
       }
+
       .rs-toggle-inner {
         margin-right: 20px;
       }
