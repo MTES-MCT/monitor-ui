@@ -12,6 +12,7 @@ export type CommonFieldStyleProps = {
 
 export type CommonChoiceFieldStyleProps = CommonFieldStyleProps & {
   $isChecked: boolean
+  $labelPosition?: 'left' | 'right'
 }
 
 export type CommonPickerFieldStyleProps = CommonFieldStyleProps & {

@@ -1,7 +1,7 @@
 import { getSelectedOptionValueFromSelectedRsuiteDataItemValue } from '@utils/getSelectedOptionValueFromSelectedRsuiteDataItemValue'
 import classnames from 'classnames'
 import { eq } from 'lodash'
-import { useCallback, useMemo, type CSSProperties, type ReactNode, type SyntheticEvent } from 'react'
+import { type CSSProperties, type ReactNode, type SyntheticEvent, useCallback, useMemo } from 'react'
 import { RadioGroup as RsuiteRadioGroup } from 'rsuite'
 import styled from 'styled-components'
 
@@ -30,6 +30,7 @@ export type MultiRadioProps<OptionValue extends OptionValueType = string> = {
   isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
+  labelPosition?: 'left' | 'right'
   name: string
   onChange?: (nextValue: OptionValue | undefined) => Promisable<void>
   optionValueKey?: keyof OptionValue
@@ -39,6 +40,7 @@ export type MultiRadioProps<OptionValue extends OptionValueType = string> = {
   style?: CSSProperties | undefined
   value?: OptionValue | undefined
 }
+
 export function MultiRadio<OptionValue extends OptionValueType = string>({
   className,
   disabled = false,
@@ -51,6 +53,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
+  labelPosition = 'right',
   name,
   onChange,
   options,
@@ -114,6 +117,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
             hasError={hasError}
             isLight={isLight}
             isTransparent={isTransparent}
+            labelPosition={labelPosition}
             name={name}
             readOnly={readOnly}
             value={rsuiteDataItem.value}

@@ -31,6 +31,7 @@ const meta: Meta<RadioProps> = {
     isLight: false,
     isTransparent: false,
     name: 'myRadio',
+    labelPosition: 'right',
     readOnly: false
   },
 
