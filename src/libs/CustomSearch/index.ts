@@ -58,7 +58,6 @@ export class CustomSearch<T extends AnyObject = AnyObject> {
     )
     this.#isDiacriticSensitive = isDiacriticSensitive
     this.#isStrict = isStrict
-    // this.#originalCollection = collection
     this.#childrenKey = childrenKey
 
     this.#originalCollection = flatOriginalCollection
