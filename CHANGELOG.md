@@ -1,3 +1,9 @@
+## [24.27.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.27.1...v24.27.2) (2025-07-24)
+
+### Bug Fixes
+
+* **fields:** fix DateRangePicker when hasSingleCalendar is true ([41d2638](https://github.com/MTES-MCT/monitor-ui/commit/41d2638e5bf2ae9853e07ef36f05babefbabb82e))
+
 ## [24.27.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.27.0...v24.27.1) (2025-07-24)
 
 ### Bug Fixes
