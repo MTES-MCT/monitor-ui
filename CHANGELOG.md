@@ -1,3 +1,37 @@
+## [24.27.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.26.0...v24.27.0) (2025-07-24)
+
+### Features
+
+* **elements:** create AccentInsensitiveHighlight component ([b805b00](https://github.com/MTES-MCT/monitor-ui/commit/b805b0052ed78e49275adfa69e183134d0a85132))
+* **fields:** add CustomSearch in componenent ([ee81465](https://github.com/MTES-MCT/monitor-ui/commit/ee81465b30c96411d216a8f1b75e289f3ba5a046))
+* **fields:** update checkTreePicker with customSearch ([753deb1](https://github.com/MTES-MCT/monitor-ui/commit/753deb1ccd849632fe49bd46c7f9dbecc8b09fb8))
+
+### Styles
+
+* **fields:** fix position ([11b3831](https://github.com/MTES-MCT/monitor-ui/commit/11b383152be641cbef8473972648374baf159cfa))
+* **fields:** fix style ([2c93f0b](https://github.com/MTES-MCT/monitor-ui/commit/2c93f0b936ed03a1bc4cd79440afceedcf6cb569))
+
+### Bug Fixes
+
+* **components:** fix checktreepicker ellipsis ([e99c6dc](https://github.com/MTES-MCT/monitor-ui/commit/e99c6dc58ddc41a051050b3ae8770890b678d858))
+* **components:** fix checktreepicker iconExpanding, leading to margin issues ([464004a](https://github.com/MTES-MCT/monitor-ui/commit/464004a225a3b175f730e0839032aaf427c18fa0))
+* **fields:** changes after code review ([2418a34](https://github.com/MTES-MCT/monitor-ui/commit/2418a349d5f6c2da4efbe1541df44a0bd61317ae))
+* **fields:** fix  renderMenuItem ([17d20a9](https://github.com/MTES-MCT/monitor-ui/commit/17d20a9ef072e04753e3c1da7c267d2791895cbe))
+* **fields:** fix foundOptions function ([f7b5adb](https://github.com/MTES-MCT/monitor-ui/commit/f7b5adbb0174778933af46bd0510a9a2970036e0))
+* **fields:** fix selected parent with no children ([b8ebdd9](https://github.com/MTES-MCT/monitor-ui/commit/b8ebdd9fba32c38b38841909331af660c27869dc))
+* **fields:** fix value for fromRsuiteValue function ([6902247](https://github.com/MTES-MCT/monitor-ui/commit/69022471d2c4440a8c39876f393f8386c46877aa))
+* **fields:** reset searchKeyworld on close ([fefb30c](https://github.com/MTES-MCT/monitor-ui/commit/fefb30c84a369e590a83bfb053aa7ce64c26f42f))
+* **global:** fix checkbox UI ([282d971](https://github.com/MTES-MCT/monitor-ui/commit/282d971804392363d9024813ba0db1b16864eae4))
+
+### Code Refactoring
+
+* **fields:** refactor to avoid duplicate code ([baa7298](https://github.com/MTES-MCT/monitor-ui/commit/baa7298fe3cda2995b1a7964d4f929cf3aaabd06))
+
+### Buid System & Dependencies
+
+* **deps:** bump form-data in the npm_and_yarn group ([5cb8e08](https://github.com/MTES-MCT/monitor-ui/commit/5cb8e08ed6c58cbf5a8b3d89157fee2327e4e254))
+* **dev-deps:** bump form-data ([975a24d](https://github.com/MTES-MCT/monitor-ui/commit/975a24d30f5b532132f27da568fcd25331104ade))
+
 ## [24.26.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.25.1...v24.26.0) (2025-07-22)
 
 ### Features
