@@ -1,3 +1,13 @@
+## [24.27.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.27.2...v24.27.3) (2025-07-28)
+
+### Bug Fixes
+
+* **components:** label can be a React.node and can be placed on right or left ([50f510b](https://github.com/MTES-MCT/monitor-ui/commit/50f510b2ee0d44b446dd27c892d33aa06c1a9382))
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump the all-non-major-dependencies group ([55fb208](https://github.com/MTES-MCT/monitor-ui/commit/55fb20823d50a83f42ca27e7f3c1b22804d8a433))
+
 ## [24.27.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.27.1...v24.27.2) (2025-07-24)
 
 ### Bug Fixes
