@@ -345,6 +345,7 @@ export function CheckTreePicker({
           uncheckableItemValues={uncheckableValues}
           value={rsuiteValue ?? []}
           valueKey={valueKey}
+          virtualized
           {...originalProps}
         />
       )}

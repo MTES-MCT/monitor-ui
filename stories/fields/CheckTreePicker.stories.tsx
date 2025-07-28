@@ -80,7 +80,7 @@ export function _CheckTreePicker(props: CheckTreePickerProps) {
 
   return (
     <>
-      <CheckTreePicker {...props} onChange={controlledOnChange} options={options} value={controlledValue} virtualized />
+      <CheckTreePicker {...props} onChange={controlledOnChange} options={options} value={controlledValue} />
 
       <Output value={outputValue} />
     </>
