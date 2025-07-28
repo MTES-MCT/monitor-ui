@@ -209,3 +209,7 @@ mark {
   padding: 0;
   background-color: #cccfd6;
 }
+
+.rs-text {
+  font-family: Marianne, sans-serif;
+}
