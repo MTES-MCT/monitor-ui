@@ -1,3 +1,13 @@
+## [24.28.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.27.3...v24.28.0) (2025-07-28)
+
+### Features
+
+* **icons:** add two icons ([c1ac70c](https://github.com/MTES-MCT/monitor-ui/commit/c1ac70c17e5882996c1971b8c27ae6e846c11257))
+
+### Bug Fixes
+
+* **icons:** remove list filled icon ([c6a6814](https://github.com/MTES-MCT/monitor-ui/commit/c6a68141f1bc9d22d27d032e01264712e1f733c5))
+
 ## [24.27.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.27.2...v24.27.3) (2025-07-28)
 
 ### Bug Fixes
