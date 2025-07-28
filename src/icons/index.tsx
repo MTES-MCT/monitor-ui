@@ -51,7 +51,6 @@ import { Landmark } from './Landmark'
 import { License } from './License'
 import { Link } from './Link'
 import { List } from './List'
-import { ListFilled } from './ListFilled'
 import { ListLines } from './ListLines'
 import { Logout } from './Logout'
 import { MapLayers } from './MapLayers'
@@ -163,7 +162,6 @@ export {
   License,
   Link,
   List,
-  ListFilled,
   ListLines,
   Logout,
   MapLayers,
