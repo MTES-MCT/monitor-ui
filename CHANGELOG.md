@@ -1,3 +1,10 @@
+## [24.28.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.28.0...v24.28.1) (2025-07-28)
+
+### Bug Fixes
+
+* **global:** fix dropdown items font ([e3cd533](https://github.com/MTES-MCT/monitor-ui/commit/e3cd5331fa4e88ec5de800cc19bcf017889e445c))
+* **tables:** fix checkbox in tables ([d6e7299](https://github.com/MTES-MCT/monitor-ui/commit/d6e7299a5b333e45f808d007f308a2cb17b7e53a))
+
 ## [24.28.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.27.3...v24.28.0) (2025-07-28)
 
 ### Features
