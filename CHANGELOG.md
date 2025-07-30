@@ -1,3 +1,9 @@
+## [24.29.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.28.1...v24.29.0) (2025-07-30)
+
+### Features
+
+* **fields:** set virtualized and searchable props to true by default ([875f52b](https://github.com/MTES-MCT/monitor-ui/commit/875f52bb9fc3c4f8d39a64f071be5b456c4a5a57))
+
 ## [24.28.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.28.0...v24.28.1) (2025-07-28)
 
 ### Bug Fixes
