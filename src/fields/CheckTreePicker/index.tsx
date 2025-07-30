@@ -86,6 +86,7 @@ export function CheckTreePicker({
   const boxRef = useRef<HTMLDivElement | null>(null)
   const controlledClassName = useMemo(() => classnames('Field-CheckTreePicker', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
+  const isSearchable = originalProps.searchable ?? true
   const hasError = Boolean(controlledError)
   const [searchKeyword, setSearchKeyword] = useState('')
   const { forceUpdate } = useForceUpdate()
@@ -110,7 +111,7 @@ export function CheckTreePicker({
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
-  const [controlledOptions, setControlledOptions] = useState(originalProps.searchable ? options : [])
+  const [controlledOptions, setControlledOptions] = useState(isSearchable ? options : [])
 
   const [disabledValues, setDisabledValues] = useState<ValueType>([])
   const uncheckableValues = useMemo(
@@ -253,7 +254,7 @@ export function CheckTreePicker({
           cascade
           childrenKey={childrenKey}
           container={boxRef.current}
-          data={originalProps.searchable ? controlledOptions : options}
+          data={isSearchable ? controlledOptions : options}
           disabled={disabled}
           disabledItemValues={disabledValues}
           id={originalProps.name}
@@ -340,8 +341,8 @@ export function CheckTreePicker({
               </Wrapper>
             )
           }}
-          searchable={originalProps.searchable ?? true}
-          searchBy={(originalProps.searchable ? () => true : undefined) as any}
+          searchable={isSearchable}
+          searchBy={(isSearchable ? () => true : undefined) as any}
           size={originalProps.size ?? 'sm'}
           uncheckableItemValues={uncheckableValues}
           value={rsuiteValue ?? []}
