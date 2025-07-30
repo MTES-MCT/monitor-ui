@@ -1,3 +1,9 @@
+## [24.29.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.29.0...v24.29.1) (2025-07-30)
+
+### Bug Fixes
+
+* **fields:** fix isSearchable props in CheckTreePicker ([3e0ac2e](https://github.com/MTES-MCT/monitor-ui/commit/3e0ac2e0db12050e3d5cb90c518075561229f32c))
+
 ## [24.29.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.28.1...v24.29.0) (2025-07-30)
 
 ### Features
