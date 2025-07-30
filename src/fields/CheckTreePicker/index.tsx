@@ -340,11 +340,13 @@ export function CheckTreePicker({
               </Wrapper>
             )
           }}
+          searchable={originalProps.searchable ?? true}
           searchBy={(originalProps.searchable ? () => true : undefined) as any}
           size={originalProps.size ?? 'sm'}
           uncheckableItemValues={uncheckableValues}
           value={rsuiteValue ?? []}
           valueKey={valueKey}
+          virtualized={originalProps.virtualized ?? true}
           {...originalProps}
         />
       )}

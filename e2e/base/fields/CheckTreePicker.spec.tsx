@@ -27,7 +27,8 @@ describe('fields/CheckTreePicker', () => {
   const commonProps: CheckTreePickerProps = {
     label: 'A check tree picker',
     name: 'myCheckTreePicker',
-    options
+    options,
+    virtualized: false
   }
 
   it('Should fill, change and clear the check picker', () => {

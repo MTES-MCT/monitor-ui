@@ -81,14 +81,7 @@ export function WithCustomSearch(props: CheckTreePickerProps) {
 
   return (
     <>
-      <CheckTreePicker
-        {...props}
-        onChange={controlledOnChange}
-        options={options}
-        searchable
-        value={controlledValue}
-        virtualized
-      />
+      <CheckTreePicker {...props} onChange={controlledOnChange} options={options} value={controlledValue} />
       <Output value={outputValue} />
     </>
   )
