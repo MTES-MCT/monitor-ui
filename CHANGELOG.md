@@ -11,6 +11,12 @@
 * **dev-deps:** bump the all-non-major-dependencies group ([a25b35b](https://github.com/MTES-MCT/monitor-ui/commit/a25b35b757b9f8dc0c3271b38c36d80486ce4159))
 * **dev-deps:** bump tmp ([81a5301](https://github.com/MTES-MCT/monitor-ui/commit/81a5301c81b51efd05ae6dd71dd3ea3e478b3909))
 
+## [24.29.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.29.1...v24.29.2) (2025-07-31)
+
+### Bug Fixes
+
+* **fields:** fix rsuite error ([6c2c048](https://github.com/MTES-MCT/monitor-ui/commit/6c2c048865ea6a1e4782648e59dce3e487292bb2))
+
 ## [24.29.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.29.0...v24.29.1) (2025-07-30)
 
 ### Bug Fixes
