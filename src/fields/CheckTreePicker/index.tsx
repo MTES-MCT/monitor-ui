@@ -18,6 +18,7 @@ import styled from 'styled-components'
 import { CheckTreePickerBox } from './CheckTreePickerBox'
 import {
   computeDisabledValues,
+  deepCloneExtensible,
   fromRsuiteValue,
   getOptionsToDisplay,
   getParentRsuiteValue,
@@ -128,7 +129,7 @@ export function CheckTreePicker({
     }
 
     return nextRsuiteValue
-  }, [childrenKey, isMultiSelect, labelKey, options, value, valueKey])
+  }, [childrenKey, isMultiSelect, options, value, valueKey, labelKey])
 
   const mergeResultsByParent = useCallback(
     (items: TreeOption[]): TreeOption[] => {
@@ -145,17 +146,21 @@ export function CheckTreePicker({
           [valueKey]: item[valueKey],
           ...(children?.length && children?.length > 0 && { [childrenKey]: item[childrenKey] })
         }
-        if (!acc.has(parentId)) {
-          acc.set(parentId, { ...formattedItem })
-        } else if (children?.length && children?.length > 0) {
-          const existing = acc.get(parentId)!
+        const existing = acc.get(parentId)
+        if (!existing) {
+          acc.set(parentId, formattedItem)
+        } else if (
+          formattedItem[childrenKey] &&
+          Array.isArray(formattedItem[childrenKey]) &&
+          formattedItem[childrenKey].length > 0
+        ) {
           if (!existing[childrenKey]) {
             existing[childrenKey] = []
           }
           const existingChildren = Array.isArray(existing[childrenKey]) ? (existing[childrenKey] as TreeOption[]) : []
           const seen = new Set(existingChildren.map(child => child[valueKey]))
 
-          children.forEach(child => {
+          formattedItem[childrenKey].forEach(child => {
             if (!seen.has(child[valueKey])) {
               existingChildren.push(child)
             }
@@ -193,7 +198,7 @@ export function CheckTreePicker({
 
       // Add all selected values to the results
       const selectedOptions = value ?? []
-      const merged = mergeResultsByParent([...foundOptions, ...selectedOptions])
+      const merged = mergeResultsByParent([...foundOptions, ...selectedOptions].map(item => deepCloneExtensible(item)))
 
       setControlledOptions(merged)
     },
@@ -217,7 +222,7 @@ export function CheckTreePicker({
       const formattedValues = fromRsuiteValue(nextValue, options, childrenKey, valueKey, labelKey)
       onChange(formattedValues)
     },
-    [childrenKey, labelKey, onChange, options, valueKey]
+    [childrenKey, onChange, options, valueKey, labelKey]
   )
 
   const removeOptions = (valuesToRemove: ValueType, e: React.MouseEvent<HTMLButtonElement>) => {
