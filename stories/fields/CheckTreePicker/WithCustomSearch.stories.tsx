@@ -51,8 +51,6 @@ const meta: Meta<CheckTreePickerProps> = {
     popupWidth: undefined,
     isMultiSelect: true,
     readOnly: false,
-    searchable: true,
-    virtualized: false,
     childrenKey: 'subThemes',
     valueKey: 'id',
     labelKey: 'name'
