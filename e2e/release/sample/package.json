@@ -10,7 +10,7 @@
     "start": "vite preview"
   },
   "dependencies": {
-    "@sentry/react": "9.42.0",
+    "@sentry/react": "10.0.0",
     "cypress": "14.5.3",
     "formik": "2.4.6",
     "react": "18.3.1",
