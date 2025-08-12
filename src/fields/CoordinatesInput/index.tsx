@@ -7,7 +7,7 @@ import { normalizeString } from '@utils/normalizeString'
 import classnames from 'classnames'
 import { getFieldBackgroundColorFactory, getFieldBorderColorFactoryForState } from 'fields/shared/utils'
 import { noop } from 'lodash'
-import { useCallback, useMemo, useState, type CSSProperties } from 'react'
+import { useCallback, useId, useMemo, useState, type CSSProperties } from 'react'
 import styled from 'styled-components'
 
 import { DDCoordinatesInput } from './DDCoordinatesInput'
@@ -55,6 +55,7 @@ export function CoordinatesInput({
   style
 }: CoordinatesInputProps) {
   const [clearCounter, setClearCounter] = useState(0)
+  const coordinatesInputId = useId()
 
   const controlledErrors = useMemo(() => {
     if (!error) {
@@ -81,6 +82,7 @@ export function CoordinatesInput({
             coordinates={defaultValue}
             coordinatesFormat={CoordinatesFormat.DEGREES_MINUTES_SECONDS}
             disabled={disabled}
+            id={coordinatesInputId}
             name={name}
             onChange={onChange}
             readOnly={readOnly}
@@ -94,6 +96,7 @@ export function CoordinatesInput({
             coordinates={defaultValue}
             coordinatesFormat={CoordinatesFormat.DEGREES_MINUTES_DECIMALS}
             disabled={disabled}
+            id={coordinatesInputId}
             name={name}
             onChange={onChange}
             readOnly={readOnly}
@@ -106,6 +109,7 @@ export function CoordinatesInput({
             key={key}
             coordinates={defaultValue}
             disabled={disabled}
+            id={coordinatesInputId}
             name={name}
             onChange={nextCoordinates => onChange(nextCoordinates, defaultValue)}
             readOnly={readOnly}
@@ -115,7 +119,7 @@ export function CoordinatesInput({
       default:
         return undefined
     }
-  }, [defaultValue, disabled, key, onChange, coordinatesFormat, name, readOnly])
+  }, [defaultValue, disabled, coordinatesInputId, key, onChange, coordinatesFormat, name, readOnly])
 
   const clearField = useCallback(() => {
     setClearCounter(count => count + 1)
@@ -132,6 +136,7 @@ export function CoordinatesInput({
       $isRequired={isRequired}
       $isTransparent={isTransparent}
       className={controlledClassName}
+      id={coordinatesInputId}
       isLegendHidden={isLabelHidden}
       legend={label}
       style={style}

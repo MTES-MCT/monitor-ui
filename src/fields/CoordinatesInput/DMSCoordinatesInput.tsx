@@ -12,6 +12,7 @@ type DMSCoordinatesInputProps = {
   coordinates: Coordinates | undefined
   coordinatesFormat: CoordinatesFormat
   disabled: boolean
+  id: string
   name: string
   onChange: (nextCoordinates: Coordinates | undefined, coordinates: Coordinates | undefined) => void
   readOnly: boolean
@@ -20,6 +21,7 @@ export function DMSCoordinatesInput({
   coordinates,
   coordinatesFormat,
   disabled,
+  id,
   name,
   onChange,
   readOnly
@@ -50,6 +52,7 @@ export function DMSCoordinatesInput({
         data-cy="dms-coordinates-input"
         ddPrecision={DECIMAL_PRECISION}
         disabled={disabled}
+        id={id}
         name={name}
         onChange={(_, { dd }) => update(dd)}
         readOnly={readOnly}

@@ -20,6 +20,7 @@ export type DateInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
   baseContainer: Document | HTMLDivElement | undefined
   // TODO Check why TS thinks there is no `disabled` prop in `NumberInputProps`.
   disabled: boolean
+  id?: string
   isCompact: boolean
   isEndDate?: boolean | undefined
   isForcedFocused: boolean
@@ -46,6 +47,7 @@ function DateInputWithRef(
   {
     baseContainer,
     disabled = false,
+    id,
     isCompact,
     isEndDate = false,
     isForcedFocused,
@@ -187,6 +189,7 @@ function DateInputWithRef(
           ref={dayInputRef}
           aria-label={`Jour${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
           disabled={disabled}
+          id={id ?? name}
           isLight={isLight}
           max={31}
           min={1}
