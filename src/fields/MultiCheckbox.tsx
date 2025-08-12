@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { isEqual } from 'lodash'
-import { type CSSProperties, useCallback, useMemo } from 'react'
+import { type CSSProperties, useCallback, useId, useMemo } from 'react'
 import styled from 'styled-components'
 
 import { Checkbox } from './Checkbox'
@@ -57,7 +57,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([value, disabled, name])
-
+  const checkboxId = useId()
   const handleChange = useCallback(
     (nextOptionValue: OptionValue, isChecked: boolean) => {
       if (!onChange) {
@@ -81,6 +81,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
     <Fieldset
       className={controlledClassName}
       disabled={disabled}
+      id={checkboxId}
       isLegendHidden={isLabelHidden}
       isRequired={isRequired}
       legend={label}

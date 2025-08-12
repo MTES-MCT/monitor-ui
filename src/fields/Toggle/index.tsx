@@ -1,6 +1,6 @@
 import { useFieldUndefineEffect } from '@hooks/useFieldUndefineEffect'
 import classNames from 'classnames'
-import { useMemo } from 'react'
+import { useId, useMemo } from 'react'
 import { Toggle as RsuiteToggle, type ToggleProps as RSuiteToggleProps } from 'rsuite'
 import styled from 'styled-components'
 
@@ -50,6 +50,7 @@ export function Toggle({
   style,
   ...originalProps
 }: ToggleProps) {
+  const toggleId = useId()
   const controlledClassName = useMemo(() => classNames('Field-Toggle', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
 
@@ -60,7 +61,7 @@ export function Toggle({
 
   return (
     <Field className={controlledClassName} style={style}>
-      <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={originalProps.name}>
+      <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={toggleId}>
         {label}
       </Label>
       <StyledToggle
@@ -74,6 +75,7 @@ export function Toggle({
         checked={checked}
         data-cy={dataCy}
         disabled={disabled}
+        id={toggleId}
         onChange={isChecked => onChange?.(isChecked)}
         readOnly={readOnly}
         {...originalProps}

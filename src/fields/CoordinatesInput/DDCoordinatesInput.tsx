@@ -11,6 +11,7 @@ const DECIMAL_PRECISION = 6
 type DDCoordinatesInputProps = {
   coordinates: Coordinates | undefined
   disabled: boolean
+  id: string
   name: string
   onChange: (nextCoordinates: Coordinates | undefined) => void
   readOnly: boolean
@@ -28,7 +29,7 @@ function toControlledValue(value: string | number | undefined): string | undefin
   return value ? `${value}` : undefined
 }
 
-export function DDCoordinatesInput({ coordinates, disabled, name, onChange, readOnly }: DDCoordinatesInputProps) {
+export function DDCoordinatesInput({ coordinates, disabled, id, name, onChange, readOnly }: DDCoordinatesInputProps) {
   const [latitude, setLatitude] = useState<string | undefined>(coordinates?.[0]?.toString())
   const [longitude, setLongitude] = useState<string | undefined>(coordinates?.[1]?.toString())
   const [latitudeError, setLatitudeError] = useState<string | undefined>(undefined)
@@ -102,6 +103,7 @@ export function DDCoordinatesInput({ coordinates, disabled, name, onChange, read
       <DDInput
         data-cy="coordinates-dd-input-lat"
         disabled={disabled}
+        id={id}
         name={`${name}-latitude`}
         onChange={e => handleLatitudeChange(e.target.value)}
         placeholder="Latitude"

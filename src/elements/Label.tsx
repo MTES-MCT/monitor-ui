@@ -15,7 +15,6 @@ export const Label = styled.label.attrs<LabelProps, LabelProps>(props => ({
   color: ${p =>
     // eslint-disable-next-line no-nested-ternary
     p.$isDisabled ? p.theme.color.lightGray : p.$hasError ? p.theme.color.maximumRed : p.theme.color.slateGray};
-  display: ${p => (p.$isHidden ? 'none' : 'block')};
   font-size: 13px;
   line-height: 1.3846;
   margin-bottom: 4px;
@@ -26,4 +25,12 @@ export const Label = styled.label.attrs<LabelProps, LabelProps>(props => ({
         content:" *";
         color: ${p.theme.color.maximumRed};
       }`}
+  ${p =>
+    p.$isHidden &&
+    `
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+    `}
 `
