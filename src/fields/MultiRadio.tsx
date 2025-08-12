@@ -1,7 +1,7 @@
 import { getSelectedOptionValueFromSelectedRsuiteDataItemValue } from '@utils/getSelectedOptionValueFromSelectedRsuiteDataItemValue'
 import classnames from 'classnames'
 import { eq } from 'lodash'
-import { type CSSProperties, type ReactNode, type SyntheticEvent, useCallback, useMemo } from 'react'
+import { type CSSProperties, type ReactNode, type SyntheticEvent, useCallback, useId, useMemo } from 'react'
 import { RadioGroup as RsuiteRadioGroup } from 'rsuite'
 import styled from 'styled-components'
 
@@ -68,6 +68,8 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
   const key = useKey([disabled, name])
+  const multiradioId = useId()
+
   const selectedRsuiteValue = useMemo(
     // eslint-disable-next-line no-null/no-null
     () => (value !== undefined ? getRsuiteDataItemValueFromOptionValue(value, optionValueKey) : null),
@@ -97,6 +99,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
     <Fieldset
       className={controlledClassName}
       disabled={disabled}
+      id={multiradioId}
       isLegendHidden={isLabelHidden}
       isRequired={isRequired}
       legend={label}

@@ -16,6 +16,7 @@ type DMDCoordinatesInputProps = {
   coordinates: Coordinates | undefined
   coordinatesFormat: CoordinatesFormat
   disabled: boolean
+  id: string
   name: string
   onChange: (nextCoordinates: Coordinates, coordinates: Coordinates | undefined) => void
   readOnly: boolean
@@ -25,6 +26,7 @@ export function DMDCoordinatesInput({
   coordinates,
   coordinatesFormat,
   disabled,
+  id,
   name,
   onChange,
   readOnly
@@ -100,6 +102,7 @@ export function DMDCoordinatesInput({
       <UntypedIMaskInput
         data-cy="dmd-coordinates-input"
         disabled={disabled}
+        id={id}
         lazy={false}
         mask="00° 00.000′ a 000° 00.000′ a"
         name={name}

@@ -11,7 +11,7 @@ import { remove } from '@utils/remove'
 import classnames from 'classnames'
 import { getFieldBackgroundColorFactory } from 'fields/shared/utils'
 import { isEqual } from 'lodash'
-import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
+import { useCallback, useEffect, useId, useMemo, useRef, useState, type CSSProperties } from 'react'
 import styled from 'styled-components'
 
 import { Delete, Edit, Plus, SelectRectangle } from '../../icons'
@@ -68,6 +68,7 @@ export function MultiZoneEditor({
   style
 }: MultiZoneEditorProps) {
   const prevDefaultValueRef = useRef(defaultValue)
+  const multizoneId = useId()
 
   const [zones, setZones] = useState(defaultValue)
 
@@ -134,6 +135,7 @@ export function MultiZoneEditor({
     <Fieldset
       className={controlledClassName}
       disabled={disabled}
+      id={multizoneId}
       isLegendHidden={isLabelHidden}
       isRequired={isRequired}
       legend={label}
