@@ -1,7 +1,7 @@
 import { getSelectedOptionValueFromSelectedRsuiteDataItemValue } from '@utils/getSelectedOptionValueFromSelectedRsuiteDataItemValue'
 import { handleCustomSearch } from '@utils/handleCustomSearch'
 import classnames from 'classnames'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 import { SelectPicker as RsuiteSelectPicker, type SelectPickerProps as RsuiteSelectPickerProps } from 'rsuite'
 
 import { StyledRsuitePickerBox } from './shared/StyledRsuitePickerBox'
@@ -77,8 +77,11 @@ export function Select<OptionValue extends OptionValueType = string>({
 }: SelectProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
+  const comboboxRef = useRef<HTMLElement | undefined>(undefined)
   /** Instance of `CustomSearch` */
   const customSearchRef = useRef(customSearch)
+
+  const selectId = useId()
 
   const controlledClassname = useMemo(() => classnames('Field-Select', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
@@ -138,7 +141,13 @@ export function Select<OptionValue extends OptionValueType = string>({
 
   return (
     <Field className={controlledClassname} style={style}>
-      <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={originalProps.name}>
+      <Label
+        $isDisabled={disabled}
+        $isHidden={isLabelHidden}
+        $isRequired={isRequired}
+        id={selectId}
+        onClick={() => comboboxRef.current?.focus()}
+      >
         {label}
       </Label>
 
@@ -154,6 +163,13 @@ export function Select<OptionValue extends OptionValueType = string>({
         {boxRef.current && (
           <RsuiteSelectPicker
             key={key}
+            ref={el => {
+              if (el) {
+                const combobox = el.root?.querySelector<HTMLElement>('[role="combobox"]')
+                comboboxRef.current = combobox ?? undefined
+                combobox?.setAttribute('aria-labelledby', selectId)
+              }
+            }}
             cleanable={isCleanable}
             container={boxRef.current}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
@@ -161,7 +177,7 @@ export function Select<OptionValue extends OptionValueType = string>({
             data={controlledRsuiteData ?? rsuiteData}
             disabled={disabled}
             disabledItemValues={disabledItemValues}
-            id={originalProps.name}
+            id={selectId}
             onChange={handleChange}
             onSearch={handleSearch}
             // `as any` because we customized `ItemDataType` type by adding `optionValue`,
