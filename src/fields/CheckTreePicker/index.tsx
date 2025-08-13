@@ -11,6 +11,7 @@ import { Chevron } from 'icons'
 import React, { type RefObject, type SyntheticEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   CheckTreePicker as RsuiteCheckTreePicker,
+  type PickerHandle,
   type CheckTreePickerProps as RsuiteCheckTreePickerProps
 } from 'rsuite'
 import styled from 'styled-components'
@@ -87,6 +88,8 @@ export function CheckTreePicker({
 }: CheckTreePickerProps) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
+  // eslint-disable-next-line no-null/no-null
+  const treeRef = useRef<PickerHandle | null>(null)
   const controlledClassName = useMemo(() => classnames('Field-CheckTreePicker', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const isSearchable = originalProps.searchable ?? true
@@ -256,13 +259,20 @@ export function CheckTreePicker({
       isRequired={isRequired}
       isTransparent={isTransparent}
       label={label}
-      name={originalProps.name}
+      onLabelClick={() => {
+        if (!treeRef.current) {
+          return
+        }
+        treeRef.current.open?.()
+        treeRef.current.target?.focus?.()
+      }}
       popupWidth={popupWidth}
       readOnly={readOnly}
       style={style}
     >
       {boxRef.current && (
         <RsuiteCheckTreePicker
+          ref={treeRef}
           cascade
           childrenKey={childrenKey}
           container={boxRef.current}
