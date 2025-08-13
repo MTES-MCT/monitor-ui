@@ -17,7 +17,7 @@ interface CheckPickerBoxProps {
   isRequired?: boolean
   isTransparent: boolean
   label: string
-  name: string
+  onLabelClick: () => void
   popupWidth: number | undefined
   readOnly: boolean
   style: React.CSSProperties | undefined
@@ -36,14 +36,14 @@ export function CheckTreePickerBox({
   isRequired,
   isTransparent,
   label,
-  name,
+  onLabelClick,
   popupWidth,
   readOnly,
   style
 }: CheckPickerBoxProps) {
   return (
     <Field className={className} style={style}>
-      <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={name}>
+      <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} onClick={onLabelClick}>
         {label}
       </Label>
 
