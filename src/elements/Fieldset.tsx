@@ -2,27 +2,27 @@ import classnames from 'classnames'
 import { type FieldsetHTMLAttributes, useMemo } from 'react'
 import styled, { css } from 'styled-components'
 
-import { Label } from './Label'
+import { Legend } from './Legend'
 
 export type FieldsetProps = Omit<FieldsetHTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange' | 'value'> & {
   hasBorder?: boolean | undefined
   hasError?: boolean | undefined
-  id: string
   isLegendHidden?: boolean | undefined
   isLight?: boolean | undefined
   isRequired?: boolean | undefined
   legend?: string | undefined
+  onLegendClick?: (e: React.MouseEvent<HTMLLegendElement>) => void
 }
 export function Fieldset({
   children,
   className,
   hasBorder = false,
   hasError = false,
-  id,
   isLegendHidden = false,
   isLight = false,
   isRequired = false,
   legend,
+  onLegendClick,
   ...nativeProps
 }: FieldsetProps) {
   const hasLegend = useMemo(() => Boolean(legend), [legend])
@@ -30,15 +30,15 @@ export function Fieldset({
   return (
     <Box className={classnames('Element-Fieldset', className)} {...nativeProps}>
       {legend && (
-        <Label
+        <Legend
+          $disabled={nativeProps.disabled}
           $hasError={hasError}
-          $isDisabled={nativeProps.disabled}
           $isHidden={isLegendHidden}
           $isRequired={isRequired}
-          htmlFor={id}
+          onClick={onLegendClick}
         >
           {legend}
-        </Label>
+        </Legend>
       )}
 
       <InnerBox $hasBorder={hasBorder} $hasLegend={hasLegend} $isLight={isLight} className="Element-Fieldset__InnerBox">

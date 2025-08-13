@@ -21,7 +21,7 @@
 import { usePressEscapeEffect } from '@hooks/usePressEscapeEffect'
 import classnames from 'classnames'
 import { isEqual } from 'lodash'
-import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { DateInput } from './DateInput'
@@ -147,7 +147,6 @@ export function DateRangePicker({
   const endTimeInputRef = useRef<TimeInputRef>(null)
   /* eslint-enable no-null/no-null */
 
-  const dateInputId = useId()
   const hasMountedRef = useRef(false)
 
   const selectedStartDateTimeAsDayjsRef = useRef(defaultValue ? customDayjs(defaultValue[0]) : undefined)
@@ -484,9 +483,13 @@ export function DateRangePicker({
       isLegendHidden={isLabelHidden}
       isRequired={isRequired}
       legend={label}
+      onLegendClick={e => {
+        e.stopPropagation()
+        openRangeCalendarPicker()
+        startDateInputRef.current?.focus()
+      }}
       style={style}
       {...nativeProps}
-      id={dateInputId}
     >
       <Box
         $hasError={hasError}
@@ -500,7 +503,6 @@ export function DateRangePicker({
             ref={startDateInputRef}
             baseContainer={baseContainer ?? undefined}
             disabled={disabled}
-            id={dateInputId}
             isCompact={isCompact}
             isForcedFocused={isRangeCalendarPickerOpen}
             isLight={isLight}

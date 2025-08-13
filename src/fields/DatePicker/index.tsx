@@ -25,7 +25,7 @@ import { usePrevious } from '@hooks/usePrevious'
 import { customDayjs } from '@utils/customDayjs'
 import { normalizeString } from '@utils/normalizeString'
 import classnames from 'classnames'
-import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { CalendarPicker } from './CalendarPicker'
@@ -130,8 +130,6 @@ export function DatePicker({
   const dateInputRef = useRef<DateInputRef | null>(null)
   const timeInputRef = useRef<TimeInputRef | null>(null)
   /* eslint-enable no-null/no-null */
-
-  const datePickerId = useId()
 
   const hasMountedRef = useRef(false)
   const selectedUtcDateAsDayjsRef = useRef(defaultValue ? customDayjs(defaultValue) : undefined)
@@ -333,9 +331,13 @@ export function DatePicker({
       isLegendHidden={isLabelHidden}
       isRequired={isRequired}
       legend={label}
+      onLegendClick={e => {
+        e.stopPropagation()
+        openCalendarPicker()
+        dateInputRef.current?.focus()
+      }}
       style={style}
       {...nativeProps}
-      id={datePickerId}
     >
       <Box
         ref={boxRef}
@@ -350,7 +352,6 @@ export function DatePicker({
             ref={dateInputRef}
             baseContainer={baseContainer ?? undefined}
             disabled={disabled}
-            id={datePickerId}
             isCompact={isCompact}
             isEndDate={isEndDate}
             isForcedFocused={isRangeCalendarPickerOpen}
