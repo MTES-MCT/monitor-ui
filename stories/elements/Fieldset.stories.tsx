@@ -8,7 +8,6 @@ import type { Meta } from '@storybook/react'
 const args: FieldsetProps = {
   disabled: false,
   hasBorder: false,
-  id: 'fieldset-id',
   isLegendHidden: false,
   isLight: false,
   isRequired: false,

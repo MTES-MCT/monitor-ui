@@ -130,8 +130,7 @@ context('Story', () => {
 
         cy.fill(commonProps.label, '8317920035')
 
-        cy.get(`#${commonProps.name}`).type('{moveToStart}').type('00')
-
+        cy.get(`[name="${commonProps.name}"]`).type('{moveToStart}').type('00')
         outputShouldBe('008317920035')
       })
 
@@ -146,7 +145,7 @@ context('Story', () => {
 
         cy.fill(commonProps.label, '8317920035')
 
-        cy.get(`#${commonProps.name}`).type('{moveToStart}').type('0')
+        cy.get(`[name="${commonProps.name}"]`).type('{moveToStart}').type('0')
 
         outputShouldBe('08317920035')
       })
