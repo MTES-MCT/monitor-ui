@@ -483,6 +483,11 @@ export function DateRangePicker({
       isLegendHidden={isLabelHidden}
       isRequired={isRequired}
       legend={label}
+      onLegendClick={e => {
+        e.stopPropagation()
+        openRangeCalendarPicker()
+        startDateInputRef.current?.focus()
+      }}
       style={style}
       {...nativeProps}
     >

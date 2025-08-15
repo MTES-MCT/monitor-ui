@@ -2,7 +2,7 @@ import { Field } from '@elements/Field'
 import { FieldError } from '@elements/FieldError'
 import { Label } from '@elements/Label'
 import { useFieldUndefineEffect } from '@hooks/useFieldUndefineEffect'
-import { forwardRef, type ComponentProps } from 'react'
+import { forwardRef, useId, type ComponentProps } from 'react'
 
 import { StyledIMaskInput } from './shared/StyledIMaskInput'
 
@@ -46,11 +46,12 @@ export const LinkInput = forwardRef<HTMLInputElement, LinkInputProps>(
     },
     ref
   ) => {
+    const linkInputId = useId()
     useFieldUndefineEffect(isUndefinedWhenDisabled && !!disabled, undefined, () => onChange(''))
 
     return (
       <Field className="Field-LinkInput">
-        <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={name}>
+        <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={linkInputId}>
           {label}
         </Label>
         <StyledIMaskInput
@@ -67,9 +68,10 @@ export const LinkInput = forwardRef<HTMLInputElement, LinkInputProps>(
             }
           }}
           disabled={disabled}
-          id={name}
+          id={linkInputId}
           lazy
           mask="https://www.r"
+          name={name}
           onAccept={(nextValue: string) => {
             onChange(nextValue || undefined)
           }}

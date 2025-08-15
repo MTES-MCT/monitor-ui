@@ -11,6 +11,7 @@ export type FieldsetProps = Omit<FieldsetHTMLAttributes<HTMLFieldSetElement>, 'd
   isLight?: boolean | undefined
   isRequired?: boolean | undefined
   legend?: string | undefined
+  onLegendClick?: (e: React.MouseEvent<HTMLLegendElement>) => void
 }
 export function Fieldset({
   children,
@@ -21,6 +22,7 @@ export function Fieldset({
   isLight = false,
   isRequired = false,
   legend,
+  onLegendClick,
   ...nativeProps
 }: FieldsetProps) {
   const hasLegend = useMemo(() => Boolean(legend), [legend])
@@ -33,6 +35,7 @@ export function Fieldset({
           $hasError={hasError}
           $isHidden={isLegendHidden}
           $isRequired={isRequired}
+          onClick={onLegendClick}
         >
           {legend}
         </Legend>

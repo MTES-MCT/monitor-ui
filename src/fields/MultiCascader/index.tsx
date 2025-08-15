@@ -1,7 +1,11 @@
 import classnames from 'classnames'
 import { StyledRsuitePickerBox } from 'fields/shared/StyledRsuitePickerBox'
 import { useCallback, useEffect, useMemo, useRef, type ReactNode } from 'react'
-import { MultiCascader as RsuiteMultiCascader, type MultiCascaderProps as RsuiteMultiCascaderProps } from 'rsuite'
+import {
+  MultiCascader as RsuiteMultiCascader,
+  type PickerHandle,
+  type MultiCascaderProps as RsuiteMultiCascaderProps
+} from 'rsuite'
 import styled from 'styled-components'
 
 import {
@@ -62,6 +66,8 @@ export function MultiCascader<OptionValue extends OptionValueType = string>({
 }: MultiCascaderProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
+  // eslint-disable-next-line no-null/no-null
+  const treeRef = useRef<PickerHandle | null>(null)
 
   const controlledClassName = useMemo(() => classnames('Field-MultiCascader', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
@@ -100,7 +106,18 @@ export function MultiCascader<OptionValue extends OptionValueType = string>({
 
   return (
     <Field className={controlledClassName} style={style}>
-      <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={originalProps.name}>
+      <Label
+        $isDisabled={disabled}
+        $isHidden={isLabelHidden}
+        $isRequired={isRequired}
+        onClick={() => {
+          if (!treeRef.current) {
+            return
+          }
+          treeRef.current.open?.()
+          treeRef.current.target?.focus?.()
+        }}
+      >
         {label}
       </Label>
 
@@ -117,6 +134,7 @@ export function MultiCascader<OptionValue extends OptionValueType = string>({
         {boxRef.current && (
           <RsuiteMultiCascader
             key={key}
+            ref={treeRef}
             container={boxRef.current}
             data={rsuiteTreeItems}
             disabled={disabled}

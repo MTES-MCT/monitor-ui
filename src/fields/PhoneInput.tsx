@@ -2,7 +2,7 @@ import { Field } from '@elements/Field'
 import { FieldError } from '@elements/FieldError'
 import { Label } from '@elements/Label'
 import { useFieldUndefineEffect } from '@hooks/useFieldUndefineEffect'
-import { forwardRef, type ComponentProps } from 'react'
+import { forwardRef, useId, type ComponentProps } from 'react'
 
 import { StyledIMaskInput } from './shared/StyledIMaskInput'
 
@@ -60,11 +60,12 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
     },
     ref
   ) => {
+    const phoneInputId = useId()
     useFieldUndefineEffect(isUndefinedWhenDisabled && !!disabled, undefined, () => onChange(''))
 
     return (
       <Field className="Field-PhoneInput">
-        <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={name}>
+        <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={phoneInputId}>
           {label}
         </Label>
         <StyledIMaskInput
@@ -91,8 +92,9 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
 
             return dynamicMasked.compiledMasks[3]
           }}
-          id={name}
+          id={phoneInputId}
           mask={[internationalFormat, internationalFrenchFormat, frenchFormat, defaultFormat]}
+          name={name}
           onAccept={(nextValue: string) => {
             onChange(nextValue || undefined)
           }}
