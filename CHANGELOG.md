@@ -1,3 +1,16 @@
+## [24.30.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.29.2...v24.30.0) (2025-08-15)
+
+### Features
+
+* **fields:** add onSearchProp on CheckTreePicker component ([82ae2f8](https://github.com/MTES-MCT/monitor-ui/commit/82ae2f8f5ae0aaf187620f3a653f03aa2c661266))
+
+### Buid System & Dependencies
+
+* **deps:** bump tmp from 0.2.3 to 0.2.4 in the npm_and_yarn group ([7f0b488](https://github.com/MTES-MCT/monitor-ui/commit/7f0b48863c60f700b978866370a001bdb7db7463))
+* **dev-deps:** bump @sentry/react in /e2e/release/sample ([e93ab4d](https://github.com/MTES-MCT/monitor-ui/commit/e93ab4d5b75d9d3de77c5bccd5d814aca050d3ef))
+* **dev-deps:** bump the all-non-major-dependencies group ([a25b35b](https://github.com/MTES-MCT/monitor-ui/commit/a25b35b757b9f8dc0c3271b38c36d80486ce4159))
+* **dev-deps:** bump tmp ([81a5301](https://github.com/MTES-MCT/monitor-ui/commit/81a5301c81b51efd05ae6dd71dd3ea3e478b3909))
+
 ## [24.29.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.29.0...v24.29.1) (2025-07-30)
 
 ### Bug Fixes
