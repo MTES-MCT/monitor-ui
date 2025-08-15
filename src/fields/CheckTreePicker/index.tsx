@@ -8,7 +8,7 @@ import { CustomSearch } from '@libs/CustomSearch'
 import { normalizeString } from '@utils/normalizeString'
 import classnames from 'classnames'
 import { Chevron } from 'icons'
-import React, { type RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { type RefObject, type SyntheticEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   CheckTreePicker as RsuiteCheckTreePicker,
   type CheckTreePickerProps as RsuiteCheckTreePickerProps
@@ -47,6 +47,7 @@ export type CheckTreePickerProps = Omit<
   label: string
   name: string
   onChange?: (nextValue: any[] | undefined) => Promisable<void>
+  onSearch?: (query: string, event: SyntheticEvent<Element, Event>) => void
   options: TreeOption[]
   popupWidth?: number | undefined
   renderedChildrenValue?: string
@@ -72,6 +73,7 @@ export function CheckTreePicker({
   label,
   labelKey = 'label',
   onChange,
+  onSearch,
   options,
   popupWidth,
   readOnly = false,
@@ -176,7 +178,7 @@ export function CheckTreePicker({
   )
 
   const handleSearch = useCallback(
-    (nextQuery: string) => {
+    (nextQuery: string, event: SyntheticEvent<Element, Event>) => {
       setSearchKeyword(nextQuery)
       if (!localCustomSearch || nextQuery.trim().length < customSearchMinQueryLength) {
         setControlledOptions(options)
@@ -201,6 +203,10 @@ export function CheckTreePicker({
       const merged = mergeResultsByParent([...foundOptions, ...selectedOptions].map(item => deepCloneExtensible(item)))
 
       setControlledOptions(merged)
+
+      if (onSearch) {
+        onSearch(nextQuery, event)
+      }
     },
     [
       childrenKey,
@@ -208,6 +214,7 @@ export function CheckTreePicker({
       labelKey,
       localCustomSearch,
       mergeResultsByParent,
+      onSearch,
       options,
       value,
       valueKey
