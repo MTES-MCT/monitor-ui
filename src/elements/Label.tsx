@@ -32,6 +32,7 @@ export const Label = styled.label.attrs<LabelProps, LabelProps>(props => ({
       width: 1px;
       height: 1px;
       padding: 0;
+      margin: 0;
       overflow: hidden;
     `}
 `
