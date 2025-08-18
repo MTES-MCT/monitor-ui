@@ -1,3 +1,9 @@
+## [24.31.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.0...v24.31.1) (2025-08-18)
+
+### Bug Fixes
+
+* **components:** remove label margin when isHidden is true ([043bb9a](https://github.com/MTES-MCT/monitor-ui/commit/043bb9a5aad708739a629e916c23f15d52d22009))
+
 ## [24.31.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.30.1...v24.31.0) (2025-08-18)
 
 ### Features
