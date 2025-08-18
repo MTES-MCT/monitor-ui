@@ -1,3 +1,16 @@
+## [24.31.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.30.1...v24.31.0) (2025-08-18)
+
+### Features
+
+* **fields:** focus on inputs when label is clicked and hide label instead of not displaying it ([086febd](https://github.com/MTES-MCT/monitor-ui/commit/086febdab9cef5caf3f851a9922e8caa96cf28a7))
+* **fields:** focus on list after label click in combobox, list or tree components ([f178df6](https://github.com/MTES-MCT/monitor-ui/commit/f178df65cfa6adc4f493c678f225cb7aa3f03942))
+* **fields:** focus on select when user click on label ([b9dce90](https://github.com/MTES-MCT/monitor-ui/commit/b9dce900fbbaa18234e9d4f2253aef8170ab3bc0))
+* **fields:** open calendar and focus on input after legend click ([c865597](https://github.com/MTES-MCT/monitor-ui/commit/c865597d0301a0a7a164b5c1a8d039b65c8e3f23))
+
+### Bug Fixes
+
+* **cypress:** fix tests e2e ([e59cc32](https://github.com/MTES-MCT/monitor-ui/commit/e59cc32e1e0b172bd6afdf72a116cffc3daf062e))
+
 ## [24.30.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.29.2...v24.30.0) (2025-08-15)
 
 ### Features
