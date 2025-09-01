@@ -10,7 +10,7 @@
     "start": "vite preview"
   },
   "dependencies": {
-    "@sentry/react": "10.5.0",
+    "@sentry/react": "10.8.0",
     "cypress": "15.0.0",
     "formik": "2.4.6",
     "react": "18.3.1",
@@ -23,7 +23,7 @@
     "@types/node": "24.3.0",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
-    "@vitejs/plugin-react": "5.0.1",
+    "@vitejs/plugin-react": "5.0.2",
     "prettier": "3.6.2",
     "typescript": "5.6.2",
     "vite": "7.1.3",
