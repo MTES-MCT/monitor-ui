@@ -82,8 +82,6 @@ export function Search<OptionValue extends OptionValueType = string>({
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
   const currentQueryRef = useRef('')
-  /** Instance of `CustomSearch` */
-  const customSearchRef = useRef(customSearch)
   const mustSkipNextChange = useRef(false)
 
   const controlledClassName = useMemo(() => classnames('Field-Search', className), [className])
@@ -134,7 +132,7 @@ export function Search<OptionValue extends OptionValueType = string>({
           onQuery(nextQuery.length > 0 ? nextQuery : undefined)
         }
 
-        if (!customSearchRef.current || nextQuery.trim().length < customSearchMinQueryLength) {
+        if (!customSearch || nextQuery.trim().length < customSearchMinQueryLength) {
           setControlledRsuiteData(rsuiteData)
 
           forceUpdate()
@@ -144,7 +142,7 @@ export function Search<OptionValue extends OptionValueType = string>({
 
         const nextControlledRsuiteData =
           nextQuery.trim().length >= customSearchMinQueryLength
-            ? getRsuiteDataItemsFromOptions(customSearchRef.current.find(nextQuery), optionValueKey)
+            ? getRsuiteDataItemsFromOptions(customSearch.find(nextQuery), optionValueKey)
             : rsuiteData
 
         setControlledRsuiteData(nextControlledRsuiteData)
@@ -152,7 +150,7 @@ export function Search<OptionValue extends OptionValueType = string>({
         forceUpdate()
       }, 0)
     },
-    [customSearchMinQueryLength, forceUpdate, onQuery, optionValueKey, rsuiteData]
+    [customSearch, customSearchMinQueryLength, forceUpdate, onQuery, optionValueKey, rsuiteData]
   )
 
   const handleSelect = useCallback(
