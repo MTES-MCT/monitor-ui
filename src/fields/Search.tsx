@@ -115,7 +115,7 @@ export function Search<OptionValue extends OptionValueType = string>({
 
   // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
   // that's why we send this "always true" filter to disable Rsuite SelectPicker internal search filtering
-  const filterBy: any = customSearch ? () => true : undefined
+  const filterBy: any = customSearch && currentQueryRef.current.length > 0 ? () => true : undefined
 
   const handleChange = useCallback(
     (nextQuery: string) => {
