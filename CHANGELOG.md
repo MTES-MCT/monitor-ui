@@ -1,3 +1,16 @@
+## [24.31.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.1...v24.31.2) (2025-09-03)
+
+### Bug Fixes
+
+* **fields:** delete customSearch ref and use customSearch property ([08271a7](https://github.com/MTES-MCT/monitor-ui/commit/08271a722dc7de51617cbd7da029e3e699a26d0f))
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @vitejs/plugin-react in /e2e/release/sample ([fbbe29d](https://github.com/MTES-MCT/monitor-ui/commit/fbbe29ddefa60b224b08dc9e39d4b9b9baca0856))
+* **dev-deps:** bump cypress in /e2e/release/sample ([4b7691a](https://github.com/MTES-MCT/monitor-ui/commit/4b7691a4aa3fc75288620b256ca00061c77fdb97))
+* **dev-deps:** bump the all-non-major-dependencies group ([15c9e87](https://github.com/MTES-MCT/monitor-ui/commit/15c9e87c4183050687f93a9f18f1b180a858595f))
+* **dev-deps:** bump the all-non-major-dependencies group ([21267c4](https://github.com/MTES-MCT/monitor-ui/commit/21267c4a0dfdea501c70b8ba6848d27337c0fa0a))
+
 ## [24.31.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.0...v24.31.1) (2025-08-18)
 
 ### Bug Fixes
