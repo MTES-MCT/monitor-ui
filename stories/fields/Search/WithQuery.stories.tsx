@@ -42,7 +42,7 @@ export function WithQuery(props: SearchProps) {
 
   const onQuery = async value => {
     const results: Record<string, any>[] = await ky
-      .get(`https://api.openbrewerydb.org/breweries?by_name=${value}`)
+      .get(`https://api.openbrewerydb.org/v1/breweries?by_name=${value}`)
       .json()
 
     const dataFormatted = results
