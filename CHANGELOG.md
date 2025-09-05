@@ -1,3 +1,9 @@
+## [24.31.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.2...v24.31.3) (2025-09-05)
+
+### Bug Fixes
+
+* **fields:** don't display default options when input is focused with no search text ([60f3789](https://github.com/MTES-MCT/monitor-ui/commit/60f3789a830c379696e718ccbdc6604fa7ffa74b))
+
 ## [24.31.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.1...v24.31.2) (2025-09-03)
 
 ### Bug Fixes
