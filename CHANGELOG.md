@@ -1,3 +1,9 @@
+## [24.31.4](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.3...v24.31.4) (2025-09-05)
+
+### Bug Fixes
+
+* **fields:** fix search component to display value correctly ([f258c52](https://github.com/MTES-MCT/monitor-ui/commit/f258c52db45a5aae87dbdd0fd25d1922f7f38214))
+
 ## [24.31.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.2...v24.31.3) (2025-09-05)
 
 ### Bug Fixes
