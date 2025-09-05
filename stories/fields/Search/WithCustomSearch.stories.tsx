@@ -1,5 +1,7 @@
 import { useRef, useState } from 'react'
+import styled from 'styled-components'
 
+import { Description } from '../../../.storybook/components/Description'
 import { Output } from '../../../.storybook/components/Output'
 import SPECIES from '../../../.storybook/data/species.json'
 import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
@@ -41,17 +43,17 @@ const meta: Meta<SearchProps> = {
 export default meta
 
 export function WithCustomSearch(props: SearchProps) {
-  const [outputValue, setOutputValue] = useState<any | undefined | '∅'>('∅')
-
-  const optionsRef = useRef(
+  const [objectOutputValue, setObjectOutputValue] = useState<any | undefined>(undefined)
+  const [simpleOutputValue, setSimpleOutputValue] = useState<any | undefined>(undefined)
+  const objectOptionsRef = useRef(
     (SPECIES as Specy[]).map(specy => ({
       label: `${specy.code} - ${specy.name}`,
       value: specy
     }))
   )
-  const customSearchRef = useRef(
+  const objectCustomSearchRef = useRef(
     new CustomSearch(
-      optionsRef.current,
+      objectOptionsRef.current,
       [
         {
           name: 'value.code',
@@ -66,17 +68,63 @@ export function WithCustomSearch(props: SearchProps) {
     )
   )
 
-  return (
-    <>
-      <Search
-        {...props}
-        customSearch={customSearchRef.current}
-        onChange={setOutputValue}
-        options={optionsRef.current}
-        optionValueKey="code"
-      />
+  const simpleOptionsRef = useRef(
+    (SPECIES as Specy[]).map(specy => ({
+      label: `${specy.code} - ${specy.name}`,
+      value: specy.name
+    }))
+  )
 
-      {outputValue !== '∅' && <Output value={outputValue} />}
-    </>
+  const simpleCustomSearchRef = useRef(
+    new CustomSearch(
+      simpleOptionsRef.current,
+      [
+        {
+          name: 'value',
+          weight: 0.9
+        },
+        {
+          name: 'label',
+          weight: 0.1
+        }
+      ],
+      { isStrict: false, shouldIgnoreLocation: true }
+    )
+  )
+
+  return (
+    <Container>
+      <div>
+        <Description>With object value</Description>
+        <Search
+          {...props}
+          customSearch={objectCustomSearchRef.current}
+          onChange={setObjectOutputValue}
+          options={objectOptionsRef.current}
+          optionValueKey="name"
+          value={objectOutputValue}
+        />
+
+        {objectOutputValue !== undefined && <Output value={objectOutputValue} />}
+      </div>
+      <div>
+        <Description>With simple value</Description>
+        <Search
+          {...props}
+          customSearch={simpleCustomSearchRef.current}
+          onChange={setSimpleOutputValue}
+          options={simpleOptionsRef.current}
+          value={simpleOutputValue}
+        />
+
+        {simpleOutputValue !== undefined && <Output value={simpleOutputValue} />}
+      </div>
+    </Container>
   )
 }
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+`

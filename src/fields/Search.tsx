@@ -94,11 +94,25 @@ export function Search<OptionValue extends OptionValueType = string>({
 
   const { forceUpdate } = useForceUpdate()
 
-  const selectedOption = useMemo(
-    () => getSelectedOptionFromOptionValue<OptionValue>(options, value, optionValueKey),
-    [options, optionValueKey, value]
-  )
-  const rsuiteValue = currentQueryRef.current.length > 0 ? currentQueryRef.current : (selectedOption?.label ?? '')
+  const selectedOption = useMemo(() => {
+    if (!value) {
+      return undefined
+    }
+
+    if (onQuery) {
+      if (optionValueKey) {
+        return value[optionValueKey]
+      }
+
+      return value
+    }
+
+    const option = getSelectedOptionFromOptionValue<OptionValue>(options, value, optionValueKey)
+
+    return option?.label
+  }, [value, onQuery, options, optionValueKey])
+
+  const rsuiteValue = currentQueryRef.current.length > 0 ? currentQueryRef.current : (selectedOption ?? '')
 
   const clear = useCallback(() => {
     if (onChange) {
@@ -212,7 +226,7 @@ export function Search<OptionValue extends OptionValueType = string>({
             onSelect={handleSelect as any}
             readOnly={readOnly}
             renderMenuItem={renderMenuItem as any}
-            value={rsuiteValue}
+            value={rsuiteValue as string}
             {...originalProps}
           />
         )}
