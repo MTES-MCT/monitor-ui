@@ -65,13 +65,13 @@ const meta: Meta<SearchProps<Value>> = {
 export default meta
 
 export function WithOptionsAndCustomMenuItem(props: SearchProps<Value>) {
-  const [outputValue, setOutputValue] = useState<any | undefined | '∅'>('∅')
+  const [outputValue, setOutputValue] = useState<any | undefined>(undefined)
 
   return (
     <>
-      <Search<Value> {...props} onChange={setOutputValue} />
+      <Search<Value> {...props} onChange={setOutputValue} value={outputValue} />
 
-      {outputValue !== '∅' && <Output value={outputValue} />}
+      {outputValue !== undefined && <Output value={outputValue} />}
     </>
   )
 }

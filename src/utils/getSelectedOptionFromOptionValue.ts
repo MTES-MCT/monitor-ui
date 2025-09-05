@@ -12,7 +12,6 @@ export function getSelectedOptionFromOptionValue<OptionValue extends OptionValue
   selectedOptionValue: OptionValue | undefined,
   optionValueKey?: keyof OptionValue | undefined
 ): Option<OptionValue> | undefined {
-  // eslint-disable-next-line no-null/no-null
   if (selectedOptionValue === undefined) {
     return undefined
   }
