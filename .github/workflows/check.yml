@@ -21,9 +21,9 @@ jobs:
         with:
           fetch-depth: 100
       - name: Setup
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24
       - name: Install
         uses: ./.github/actions/install
       - name: Lint commits (last 100)
@@ -39,9 +39,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
       - name: Setup
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24
       - name: Install
         uses: ./.github/actions/install
       - name: Type
@@ -55,9 +55,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24
       - name: Install
         uses: ./.github/actions/install
       - name: Test
