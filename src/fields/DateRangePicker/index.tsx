@@ -52,7 +52,7 @@ import { normalizeString } from '../../utils/normalizeString'
 
 import type { DateAsStringRange, DateRange } from '../../types/definitions'
 import type { CommonFieldStyleProps } from 'fields/shared/types'
-import type { HTMLAttributes } from 'react'
+import type { HTMLAttributes, JSX } from 'react'
 import type { Promisable } from 'type-fest'
 
 /**

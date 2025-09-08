@@ -5,7 +5,7 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 import { GlobalStyle, THEME } from '../../src'
 
-import type { StoryFn } from '@storybook/react'
+import type { StoryFn } from '@storybook/react-vite'
 
 const CustomGlobalStyle: any = createGlobalStyle`
   * {

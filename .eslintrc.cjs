@@ -22,7 +22,7 @@ const BOOLEAN_UPPER_PREFIXES = [
 ]
 
 module.exports = {
-  extends: ['airbnb', 'airbnb/hooks', 'airbnb-typescript', 'prettier'],
+  extends: ['airbnb', 'airbnb/hooks', 'airbnb-typescript', 'prettier', 'plugin:storybook/recommended'],
   plugins: ['prettier', 'sort-keys-fix', 'sort-destructure-keys', 'typescript-sort-keys', 'no-null'],
   env: {
     browser: true,

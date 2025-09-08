@@ -8,7 +8,7 @@ import { useCallback, useMemo, useRef, useState } from 'react'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Accent, Button, Icon, IconButton, Size, SimpleTable } from '../../src'
 
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 const fakeData1 = Array(100).fill({
   closedBy: 'TIM',

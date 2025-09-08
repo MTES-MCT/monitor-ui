@@ -40,7 +40,7 @@ import {
 
 import type { DateInputRef, DateTuple, TimeInputRef, TimeTuple } from '../DateRangePicker/types'
 import type { CommonFieldStyleProps } from 'fields/shared/types'
-import type { HTMLAttributes } from 'react'
+import type { HTMLAttributes, JSX } from 'react'
 import type { Promisable } from 'type-fest'
 
 /**

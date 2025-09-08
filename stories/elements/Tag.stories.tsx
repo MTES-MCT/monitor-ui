@@ -4,7 +4,7 @@ import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDeco
 import { Accent, Icon, THEME, Tag } from '../../src'
 
 import type { TagProps } from '../../src'
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 const args: TagProps = {
   accent: Accent.PRIMARY,

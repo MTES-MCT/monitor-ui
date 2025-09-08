@@ -14,7 +14,7 @@ import {
 import { Icon as MonitorUiIcon, MultiRadio, useFieldControl } from '../../src'
 
 import type { IconProps, MultiRadioProps, Option } from '../../src'
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 type InterestPointOptionValueType = {
   Icon: FunctionComponent<IconProps>

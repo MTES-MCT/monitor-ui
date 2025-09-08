@@ -8,7 +8,7 @@ import React from 'react'
 // import { DocumentationBox } from './components/DocumentationBox'
 import { withStoryBox } from './components/StoryBox'
 
-import type { Preview } from '@storybook/react'
+import type { Preview } from '@storybook/react-vite'
 
 import 'react-toastify/dist/ReactToastify.css'
 import 'rsuite/dist/rsuite.min.css'
@@ -30,7 +30,9 @@ const preview: Preview = {
       toc: {
         disable: false,
         headingSelector: 'h1, h2, h3'
-      }
+      },
+
+      codePanel: true
     },
     layout: 'fullscreen',
     options: {

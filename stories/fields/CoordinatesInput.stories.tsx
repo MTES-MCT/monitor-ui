@@ -10,7 +10,7 @@ import { getArrayFromEnum } from '../../.storybook/utils/getArrayFromEnum'
 import { CoordinatesFormat, CoordinatesInput } from '../../src'
 
 import type { CoordinatesInputProps } from '../../src/fields/CoordinatesInput'
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<CoordinatesInputProps> = {

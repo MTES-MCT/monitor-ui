@@ -8,6 +8,7 @@ import {
 } from '../fields/DateRangePicker'
 
 import type { DateAsStringRange, DateRange } from '@types_/definitions'
+import type { JSX } from 'react'
 
 const UntypedDateRangePicker: any = DateRangePicker
 

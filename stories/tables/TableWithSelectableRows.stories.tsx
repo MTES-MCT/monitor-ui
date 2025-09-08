@@ -10,7 +10,7 @@ import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDeco
 import { Accent, Dropdown, Icon, IconButton, THEME, TableWithSelectableRows, Tag } from '../../src'
 import { Link } from '../../src/icons'
 
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 /* eslint-disable no-null/no-null */
 const fakeData1 = Array(5).fill({
