@@ -1,8 +1,8 @@
 {
   "private": true,
   "engines": {
-    "node": ">=20",
-    "npm": "10"
+    "node": ">=24",
+    "npm": "11"
   },
   "scripts": {
     "dev": "rm -Rf ./build && vite",
