@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
 import { defineConfig } from 'cypress'
+import { devServer } from '@cypress/vite-dev-server'
 import { platform } from 'os'
+import viteConfig from '../vite.config.cypress'
 
 const DOMAIN = platform() === 'darwin' ? '0.0.0.0' : 'localhost'
 const IS_CI = !!process.env.CI
@@ -9,9 +11,12 @@ const IS_CI = !!process.env.CI
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({
   component: {
-    devServer: {
-      bundler: 'vite',
-      framework: 'react'
+    devServer(devServerConfig) {
+      return devServer({
+        ...devServerConfig,
+        framework: 'react',
+        viteConfig: viteConfig
+      })
     },
     indexHtmlFile: `config/cypress/support/component-index.html`,
     specPattern: 'e2e/base/**/*.spec.tsx',

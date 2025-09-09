@@ -137,10 +137,3 @@ We added `@babel/runtime` in `package.json` dependencies to fix this error:
 @rsuite/icons tried to access @babel/runtime, but it isn't declared in its dependencies;
 this makes the require call ambiguous and unsound.
 ```
-
-We added `prop-types` in `package.json` dependencies to fix this error:
-
-```
-ModuleNotFoundError: Module not found: Error:
-Can't resolve 'prop-types' in '.../monitor-ui/.yarn/__virtual__/.../@rsuite/icons/lib'
-```
