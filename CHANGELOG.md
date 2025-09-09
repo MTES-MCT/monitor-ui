@@ -1,3 +1,10 @@
+## [24.31.5](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.4...v24.31.5) (2025-09-09)
+
+### Bug Fixes
+
+* **fields:** delete omit "renderMenuItem" from Select component and create stories ([fc4b72c](https://github.com/MTES-MCT/monitor-ui/commit/fc4b72c7e3563a1fd92f14e30ed4d396c44b4718))
+* **fields:** delete omit "renderValue" from Select component ([8e945c5](https://github.com/MTES-MCT/monitor-ui/commit/8e945c561e3c7c9cd1d3af4ad74334c698f8babb))
+
 ## [24.31.4](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.3...v24.31.4) (2025-09-05)
 
 ### Bug Fixes
