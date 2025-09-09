@@ -21,11 +21,12 @@ import { getRsuiteDataItemsFromOptions } from '../utils/getRsuiteDataItemsFromOp
 import { getRsuiteDataItemValueFromOptionValue } from '../utils/getRsuiteDataItemValueFromOptionValue'
 import { normalizeString } from '../utils/normalizeString'
 
+import type { ItemDataType } from 'rsuite/esm/internals/types'
 import type { Promisable } from 'type-fest'
 
 export type SelectProps<OptionValue extends OptionValueType = string> = Omit<
   RsuiteSelectPickerProps<any>,
-  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderMenuItem' | 'value' | 'valueKey'
+  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'value' | 'valueKey'
 > & {
   customSearch?: CustomSearch<Option<OptionValue>>
   /** Minimum search query length required to trigger custom search filtering. */
@@ -120,7 +121,16 @@ export function Select<OptionValue extends OptionValueType = string>({
     [customSearchMinQueryLength, optionValueKey, rsuiteData]
   )
 
-  const renderMenuItem = useCallback((_, item) => <span title={item.label}>{item.label}</span>, [])
+  const renderMenuItem = useCallback(
+    (itemLabel: React.ReactNode, item: ItemDataType) => {
+      if (originalProps.renderMenuItem) {
+        return originalProps.renderMenuItem(itemLabel, item)
+      }
+
+      return <span title={typeof item.label === 'string' ? item.label : undefined}>{item.label}</span>
+    },
+    [originalProps]
+  )
 
   const disabledItemValues = useMemo(
     () => (controlledRsuiteData ?? rsuiteData).filter(option => option.isDisabled).map(option => option.value),
