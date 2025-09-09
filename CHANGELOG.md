@@ -1,3 +1,9 @@
+## [24.31.6](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.5...v24.31.6) (2025-09-09)
+
+### Bug Fixes
+
+* **fields:** delete omit "container" prop in Select component ([4eb8b31](https://github.com/MTES-MCT/monitor-ui/commit/4eb8b31154e28ab6da75235afa86732a2b50199e))
+
 ## [24.31.5](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.4...v24.31.5) (2025-09-09)
 
 ### Bug Fixes

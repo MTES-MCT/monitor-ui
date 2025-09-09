@@ -26,7 +26,7 @@ import type { Promisable } from 'type-fest'
 
 export type SelectProps<OptionValue extends OptionValueType = string> = Omit<
   RsuiteSelectPickerProps<any>,
-  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'value' | 'valueKey'
+  'as' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'value' | 'valueKey'
 > & {
   customSearch?: CustomSearch<Option<OptionValue>>
   /** Minimum search query length required to trigger custom search filtering. */
