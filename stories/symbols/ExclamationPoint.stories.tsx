@@ -2,7 +2,7 @@ import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDeco
 import { ExclamationPoint, THEME } from '../../src'
 
 import type { ExclamationPointProps } from '../../src'
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 const args: ExclamationPointProps = {
   backgroundColor: THEME.color.goldenPoppy,

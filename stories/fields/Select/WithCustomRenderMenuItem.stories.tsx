@@ -10,7 +10,7 @@ import {
 } from '../../../__mocks__/fake_options'
 import { Icon, Select, useFieldControl, type SelectProps } from '../../../src'
 
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 const args: SelectProps<string> = {
   disabled: false,

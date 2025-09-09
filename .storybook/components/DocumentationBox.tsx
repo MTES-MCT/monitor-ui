@@ -25,10 +25,6 @@ const CustomGlobalStyle = createGlobalStyle`
 
       /* TOC */
       > div:last-child {
-        min-width: 240px;
-        max-width: 240px;
-        width: 240px;
-
         > div {
           width: 100%;
         }

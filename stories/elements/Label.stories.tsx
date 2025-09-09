@@ -3,7 +3,7 @@ import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDeco
 import { Label } from '../../src'
 
 import type { LabelProps } from '../../src'
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 const args: LabelProps = {
   $isDisabled: false,

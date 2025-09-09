@@ -3,7 +3,7 @@ import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDeco
 import { Legend } from '../../src'
 
 import type { LegendProps } from '../../src'
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 const args: LegendProps = {
   $disabled: false,

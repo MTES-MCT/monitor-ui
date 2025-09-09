@@ -1,4 +1,4 @@
-import { action } from '@storybook/addon-actions'
+import { action } from 'storybook/actions'
 import styled from 'styled-components'
 
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
@@ -6,7 +6,7 @@ import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDeco
 import { SingleTag } from '../../src'
 
 import type { SingleTagProps } from '../../src'
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 const args: SingleTagProps = {
   children: 'A single deletable tag',

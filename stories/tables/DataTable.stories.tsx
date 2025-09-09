@@ -7,7 +7,7 @@ import {
 } from '../../__mocks__/fake_table_columns_and_data'
 import { DataTable, type DataTableProps } from '../../src'
 
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 const args: DataTableProps<FakeBasicTableDataItem> = {
   columns: FAKE_BASIC_TABLE_COLUMNS,
