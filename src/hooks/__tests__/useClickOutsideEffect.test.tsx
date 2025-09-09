@@ -1,5 +1,6 @@
 import { describe, expect, it } from '@jest/globals'
-import { fireEvent, render } from '@testing-library/react'
+import { render } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { useRef } from 'react'
 
 import { useClickOutsideEffect } from '../useClickOutsideEffect'
@@ -20,22 +21,24 @@ function MockComponent({ action }) {
 }
 
 describe('hooks/useClickOutsideEffect()', () => {
-  it('calls action when clicking outside the referenced element', () => {
+  const user = userEvent.setup()
+
+  it('calls action when clicking outside the referenced element', async () => {
     const action = jest.fn()
 
     const { getByTestId } = render(<MockComponent action={action} />)
 
-    fireEvent.click(getByTestId('outside'))
+    await user.click(getByTestId('outside'))
 
     expect(action).toHaveBeenCalled()
   })
 
-  it('does not call action when clicking inside the referenced element', () => {
+  it('does not call action when clicking inside the referenced element', async () => {
     const action = jest.fn()
 
     const { getByTestId } = render(<MockComponent action={action} />)
 
-    fireEvent.click(getByTestId('inside'))
+    await user.click(getByTestId('inside'))
 
     expect(action).not.toHaveBeenCalled()
   })

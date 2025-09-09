@@ -5,7 +5,7 @@ import { Accent, Button, NewWindow, Size, THEME, useNewWindow, NewWindowContext 
 import { StoryBox } from '../components/StoryBox'
 
 import type { NewWindowContextValue } from '../../src'
-import type { StoryContext, StoryFn, StrictArgs } from '@storybook/react'
+import type { StoryContext, StoryFn, StrictArgs } from '@storybook/react-vite'
 import type { CSSProperties, ForwardedRef } from 'react'
 
 type PseudoStateClassname = '_hover' | '_focus' | '_active'

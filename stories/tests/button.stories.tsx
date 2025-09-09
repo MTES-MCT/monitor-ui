@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Output } from '../../.storybook/components/Output'
 import { Button, type ButtonProps } from '../../src'
 
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<ButtonProps> = {

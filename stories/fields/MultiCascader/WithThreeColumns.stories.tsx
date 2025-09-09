@@ -11,7 +11,7 @@ import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryD
 import { MultiCascader, useFieldControl } from '../../../src'
 
 import type { MultiCascaderProps } from '../../../src'
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 const args: MultiCascaderProps<FakeCity> = {
   disabled: false,

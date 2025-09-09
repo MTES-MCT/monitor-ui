@@ -5,7 +5,7 @@ import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryD
 import { Search } from '../../../src'
 
 import type { SearchProps } from '../../../src'
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 type Value = {
   name: string

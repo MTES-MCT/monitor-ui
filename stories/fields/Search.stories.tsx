@@ -14,7 +14,7 @@ import {
 import { Search, useFieldControl } from '../../src'
 
 import type { SearchProps } from '../../src'
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<SearchProps> = {

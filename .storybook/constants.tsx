@@ -3,7 +3,7 @@ import { fromPairs } from 'lodash'
 import { getArrayFromEnum } from './utils/getArrayFromEnum'
 import { Accent, Icon, Level, Size, TagBullet } from '../src'
 
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 export const ACCENTS_AS_ARRAY = getArrayFromEnum(Accent)
 export const ICONS_AS_ARRAY = Object.keys(Icon)

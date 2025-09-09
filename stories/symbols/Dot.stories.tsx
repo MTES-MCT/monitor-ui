@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Dot, THEME, type DotProps } from '../../src'
 
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<DotProps> = {

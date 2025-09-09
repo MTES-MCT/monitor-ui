@@ -6,7 +6,7 @@ import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDeco
 import { Accent, Button, Level, Message } from '../../src'
 
 import type { MessageProps } from '../../src'
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<MessageProps> = {

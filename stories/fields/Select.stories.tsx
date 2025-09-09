@@ -13,7 +13,7 @@ import {
 } from '../../__mocks__/fake_options'
 import { Select, useFieldControl, type SelectProps } from '../../src'
 
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<SelectProps> = {

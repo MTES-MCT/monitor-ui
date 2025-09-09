@@ -5,7 +5,7 @@ import SPECIES from '../../../.storybook/data/species.json'
 import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
 import { MultiSelect, type MultiSelectProps, useFieldControl, CustomSearch } from '../../../src'
 
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 type Specy = {
   code: string

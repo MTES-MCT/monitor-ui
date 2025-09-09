@@ -1,7 +1,7 @@
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Figure, type FigureProps } from '../../src'
 
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 const args: FigureProps = {}
 

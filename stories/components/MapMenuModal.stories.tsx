@@ -4,7 +4,7 @@ import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDeco
 import { Accent, Button, Icon } from '../../src'
 import { MapMenuDialog } from '../../src/components/MapMenuDialog'
 
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<{}> = {

@@ -2,7 +2,7 @@ import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDeco
 import { Accent, Tag, TagGroup } from '../../src'
 
 import type { TagGroupProps } from '../../src'
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 const args: TagGroupProps = {}
 

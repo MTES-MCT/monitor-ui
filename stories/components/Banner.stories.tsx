@@ -1,4 +1,4 @@
-import { fn } from '@storybook/test'
+import { fn } from 'storybook/test'
 import styled from 'styled-components'
 
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
@@ -7,7 +7,7 @@ import { Level, THEME } from '../../src'
 import { Banner } from '../../src/components/Banner'
 
 import type { BannerProps } from '../../src/components/Banner'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<BannerProps> = {

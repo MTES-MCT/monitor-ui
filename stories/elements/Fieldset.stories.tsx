@@ -3,7 +3,7 @@ import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDeco
 import { Fieldset } from '../../src'
 
 import type { FieldsetProps } from '../../src'
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 const args: FieldsetProps = {
   disabled: false,
