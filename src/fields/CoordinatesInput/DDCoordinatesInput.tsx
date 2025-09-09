@@ -1,3 +1,4 @@
+import { usePrevious } from '@hooks/usePrevious'
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
@@ -10,6 +11,7 @@ const DECIMAL_PRECISION = 6
 type DDCoordinatesInputProps = {
   coordinates: Coordinates | undefined
   disabled: boolean
+  id: string
   name: string
   onChange: (nextCoordinates: Coordinates | undefined) => void
   readOnly: boolean
@@ -27,24 +29,33 @@ function toControlledValue(value: string | number | undefined): string | undefin
   return value ? `${value}` : undefined
 }
 
-export function DDCoordinatesInput({ coordinates, disabled, name, onChange, readOnly }: DDCoordinatesInputProps) {
+export function DDCoordinatesInput({ coordinates, disabled, id, name, onChange, readOnly }: DDCoordinatesInputProps) {
   const [latitude, setLatitude] = useState<string | undefined>(coordinates?.[0]?.toString())
   const [longitude, setLongitude] = useState<string | undefined>(coordinates?.[1]?.toString())
   const [latitudeError, setLatitudeError] = useState<string | undefined>(undefined)
   const [longitudeError, setLongitudeError] = useState<string | undefined>(undefined)
 
+  const previousCoordinates = usePrevious(coordinates)
+
   useEffect(() => {
-    setLatitude(coordinates?.[0]?.toString())
-    setLongitude(coordinates?.[1]?.toString())
-  }, [coordinates])
+    if (!coordinates || coordinates === previousCoordinates) {
+      return
+    }
+
+    const stringLatitude = coordinates?.[0]?.toString()
+    setLatitude(stringLatitude)
+
+    const stringLongitude = coordinates?.[1]?.toString()
+    setLongitude(stringLongitude)
+  }, [coordinates, previousCoordinates])
 
   const handleLatitudeChange = (value: string) => {
     setLatitudeError(undefined)
-    setLatitude(value)
 
     if (isValueTooLong(value)) {
       return
     }
+    setLatitude(value)
 
     if (!!value && !isNumeric(value)) {
       setLatitudeError('Champ Latitude incorrect')
@@ -54,7 +65,9 @@ export function DDCoordinatesInput({ coordinates, disabled, name, onChange, read
     }
 
     if (isNumeric(longitude) && isNumeric(value)) {
-      onChange([+value, +longitude])
+      if (!value.endsWith('.')) {
+        onChange([+value, +longitude])
+      }
     } else {
       onChange(undefined)
     }
@@ -62,11 +75,12 @@ export function DDCoordinatesInput({ coordinates, disabled, name, onChange, read
 
   const handleLongitudeChange = (value: string) => {
     setLongitudeError(undefined)
-    setLongitude(value)
 
     if (isValueTooLong(value)) {
       return
     }
+
+    setLongitude(value)
 
     if (!!value && !isNumeric(value)) {
       setLongitudeError('Champ Longitude incorrect')
@@ -76,7 +90,9 @@ export function DDCoordinatesInput({ coordinates, disabled, name, onChange, read
     }
 
     if (isNumeric(latitude) && isNumeric(value)) {
-      onChange([+latitude, +value])
+      if (!value.endsWith('.')) {
+        onChange([+latitude, +value])
+      }
     } else {
       onChange(undefined)
     }
@@ -87,6 +103,7 @@ export function DDCoordinatesInput({ coordinates, disabled, name, onChange, read
       <DDInput
         data-cy="coordinates-dd-input-lat"
         disabled={disabled}
+        id={id}
         name={`${name}-latitude`}
         onChange={e => handleLatitudeChange(e.target.value)}
         placeholder="Latitude"

@@ -8,6 +8,36 @@ import {
 
 import type { CommonPickerFieldStyleProps } from './types'
 
+const getSearchInputCss = (p: CommonPickerFieldStyleProps) => css`
+  padding: 8px;
+
+  > .rs-input-group {
+    background-color: ${p.theme.color.white};
+    border: solid 1px ${p.theme.color.lightGray};
+    border-radius: 0;
+
+    > [role='searchbox'] {
+      color: ${p.theme.color.gunMetal};
+      caret-color: ${p.theme.color.gunMetal};
+      font-size: 13px;
+      line-height: 1;
+      padding: 1px 8px 5px 8px;
+
+      &::placeholder {
+        color: transparent;
+      }
+    }
+
+    > .rs-input-group-addon {
+      line-height: 1;
+      padding: 4px 8px 4px 4px;
+
+      > svg {
+        color: ${p.theme.color.lightGray};
+      }
+    }
+  }
+`
 export const getCheckPickerInputCss = (p: CommonPickerFieldStyleProps) => css`
   > .rs-picker-toggle-wrapper,
   > .rs-auto-complete {
@@ -146,39 +176,17 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
       width: 100%;
     `};
 
-    > .rs-search-box {
-      padding: 8px;
-
-      > .rs-input-group {
-        background-color: ${p.theme.color.white};
-        border: solid 1px ${p.theme.color.lightGray};
-        border-radius: 0;
-
-        > [role='searchbox'] {
-          color: ${p.theme.color.gunMetal};
-          caret-color: ${p.theme.color.gunMetal};
-          font-size: 13px;
-          line-height: 1;
-          padding: 1px 8px 5px 8px;
-
-          &::placeholder {
-            color: transparent;
-          }
-        }
-
-        > .rs-input-group-addon {
-          line-height: 1;
-          padding: 4px 8px 4px 4px;
-
-          > svg {
-            color: ${p.theme.color.lightGray};
-          }
-        }
+    > .rs-cascade-search-view {
+      > .rs-search-box {
+        ${getSearchInputCss(p)}
       }
+    }
+    > .rs-search-box {
+      ${getSearchInputCss(p)}
     }
 
     > div[role='listbox'],
-    > .rs-picker-cascader-menu-items {
+    > .rs-cascade-tree-items {
       padding: 0;
       margin: 0;
 
@@ -226,7 +234,7 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
               text-overflow: ellipsis;
               white-space: nowrap;
 
-              > .rs-checkbox-wrapper {
+              > .rs-checkbox-control {
                 height: auto;
                 left: 8px;
                 top: 8px !important;
@@ -249,7 +257,7 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
               > label {
                 color: ${p.theme.color.blueYonder};
 
-                > .rs-checkbox-wrapper {
+                > .rs-checkbox-control {
                   > .rs-checkbox-inner {
                     &:before {
                       background-color: ${p.theme.color.blueYonder25};
@@ -283,7 +291,7 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
                 color: ${p.theme.color.gunMetal};
                 font-weight: 500;
 
-                > .rs-checkbox-wrapper {
+                > .rs-checkbox-control {
                   > .rs-checkbox-inner {
                     &:before {
                       background-color: ${p.theme.color.charcoal};
@@ -302,7 +310,7 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
                 > label {
                   color: ${p.theme.color.blueYonder};
 
-                  > .rs-checkbox-wrapper {
+                  > .rs-checkbox-control {
                     > .rs-checkbox-inner {
                       &:before {
                         background-color: ${p.theme.color.blueYonder};

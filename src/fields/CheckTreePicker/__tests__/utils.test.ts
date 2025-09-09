@@ -2,6 +2,7 @@ import { describe, expect, it } from '@jest/globals'
 
 import {
   computeDisabledValues,
+  deepCloneExtensible,
   fromRsuiteValue,
   getOptionsToDisplay,
   getParentRsuiteValue,
@@ -312,5 +313,21 @@ describe('getParentRsuiteValue', () => {
     ]
     const result = getParentRsuiteValue(options)
     expect(result).toEqual(['3'])
+  })
+
+  describe('deepCloneExtensible', () => {
+    it('should clone an object with extensible properties', () => {
+      const obj = { a: 1, b: 2 }
+      const cloned = deepCloneExtensible(obj)
+      expect(cloned).toEqual(obj)
+      expect(Object.isExtensible(cloned)).toBe(true)
+    })
+
+    it('should clone nested objects', () => {
+      const obj = { a: { b: 2 }, c: 3 }
+      const cloned = deepCloneExtensible(obj)
+      expect(cloned).toEqual(obj)
+      expect(Object.isExtensible(cloned.a)).toBe(true)
+    })
   })
 })

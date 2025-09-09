@@ -1,14 +1,17 @@
 import { Accent, Icon, Size } from '@constants'
+import { AccentInsensitiveHighlight } from '@elements/AccentInsensitiveHighlight'
 import { Button } from '@elements/Button'
 import { IconButton } from '@elements/IconButton'
 import { useFieldUndefineEffect } from '@hooks/useFieldUndefineEffect'
 import { useForceUpdate } from '@hooks/useForceUpdate'
+import { CustomSearch } from '@libs/CustomSearch'
 import { normalizeString } from '@utils/normalizeString'
 import classnames from 'classnames'
 import { Chevron } from 'icons'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { type RefObject, type SyntheticEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   CheckTreePicker as RsuiteCheckTreePicker,
+  type PickerHandle,
   type CheckTreePickerProps as RsuiteCheckTreePickerProps
 } from 'rsuite'
 import styled from 'styled-components'
@@ -16,6 +19,7 @@ import styled from 'styled-components'
 import { CheckTreePickerBox } from './CheckTreePickerBox'
 import {
   computeDisabledValues,
+  deepCloneExtensible,
   fromRsuiteValue,
   getOptionsToDisplay,
   getParentRsuiteValue,
@@ -31,6 +35,8 @@ export type CheckTreePickerProps = Omit<
   RsuiteCheckTreePickerProps,
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderMenuItem' | 'value'
 > & {
+  customSearch?: CustomSearch
+  customSearchMinQueryLength?: number
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
@@ -42,6 +48,7 @@ export type CheckTreePickerProps = Omit<
   label: string
   name: string
   onChange?: (nextValue: any[] | undefined) => Promisable<void>
+  onSearch?: (query: string, event: SyntheticEvent<Element, Event>) => void
   options: TreeOption[]
   popupWidth?: number | undefined
   renderedChildrenValue?: string
@@ -53,6 +60,8 @@ export type CheckTreePickerProps = Omit<
 export function CheckTreePicker({
   childrenKey = 'children',
   className,
+  customSearch,
+  customSearchMinQueryLength = 1,
   disabled = false,
   error,
   isErrorMessageHidden = false,
@@ -65,6 +74,7 @@ export function CheckTreePicker({
   label,
   labelKey = 'label',
   onChange,
+  onSearch,
   options,
   popupWidth,
   readOnly = false,
@@ -78,18 +88,36 @@ export function CheckTreePicker({
 }: CheckTreePickerProps) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
-
+  // eslint-disable-next-line no-null/no-null
+  const treeRef = useRef<PickerHandle | null>(null)
   const controlledClassName = useMemo(() => classnames('Field-CheckTreePicker', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
+  const isSearchable = originalProps.searchable ?? true
   const hasError = Boolean(controlledError)
-
+  const [searchKeyword, setSearchKeyword] = useState('')
   const { forceUpdate } = useForceUpdate()
+
+  const localCustomSearch = useMemo(
+    () =>
+      customSearch ??
+      new CustomSearch(
+        options,
+        [
+          {
+            name: [labelKey]
+          },
+          {
+            name: [`${childrenKey}.${labelKey}`]
+          }
+        ],
+        { childrenKey, isStrict: true, withCacheInvalidation: true }
+      ),
+    [customSearch, options, labelKey, childrenKey]
+  )
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
-  useEffect(() => {
-    forceUpdate()
-  }, [forceUpdate])
+  const [controlledOptions, setControlledOptions] = useState(isSearchable ? options : [])
 
   const [disabledValues, setDisabledValues] = useState<ValueType>([])
   const uncheckableValues = useMemo(
@@ -106,8 +134,95 @@ export function CheckTreePicker({
     }
 
     return nextRsuiteValue
-  }, [childrenKey, isMultiSelect, labelKey, options, value, valueKey])
+  }, [childrenKey, isMultiSelect, options, value, valueKey, labelKey])
 
+  const mergeResultsByParent = useCallback(
+    (items: TreeOption[]): TreeOption[] => {
+      const parentMap = items.reduce((acc, item) => {
+        const parentId = item[valueKey] as string
+        if (!parentId) {
+          return acc
+        }
+
+        const children = item[childrenKey] as TreeOption[] | undefined
+
+        const formattedItem = {
+          [labelKey]: item[labelKey],
+          [valueKey]: item[valueKey],
+          ...(children?.length && children?.length > 0 && { [childrenKey]: item[childrenKey] })
+        }
+        const existing = acc.get(parentId)
+        if (!existing) {
+          acc.set(parentId, formattedItem)
+        } else if (
+          formattedItem[childrenKey] &&
+          Array.isArray(formattedItem[childrenKey]) &&
+          formattedItem[childrenKey].length > 0
+        ) {
+          if (!existing[childrenKey]) {
+            existing[childrenKey] = []
+          }
+          const existingChildren = Array.isArray(existing[childrenKey]) ? (existing[childrenKey] as TreeOption[]) : []
+          const seen = new Set(existingChildren.map(child => child[valueKey]))
+
+          formattedItem[childrenKey].forEach(child => {
+            if (!seen.has(child[valueKey])) {
+              existingChildren.push(child)
+            }
+          })
+        }
+
+        return acc
+      }, new Map<string, TreeOption>())
+
+      return Array.from(parentMap.values())
+    },
+    [childrenKey, valueKey, labelKey]
+  )
+
+  const handleSearch = useCallback(
+    (nextQuery: string, event: SyntheticEvent<Element, Event>) => {
+      setSearchKeyword(nextQuery)
+      if (!localCustomSearch || nextQuery.trim().length < customSearchMinQueryLength) {
+        setControlledOptions(options)
+
+        return
+      }
+
+      const searchResults = localCustomSearch.find(nextQuery)
+      const foundOptions = searchResults
+        .flatMap(option => fromRsuiteValue([option[valueKey]], options, childrenKey, valueKey, labelKey))
+        .map(item => {
+          const children = item?.[childrenKey] as TreeOption[] | undefined
+
+          return !children || children.length === 0
+            ? { [labelKey]: item?.[labelKey], [valueKey]: item?.[valueKey] }
+            : item
+        })
+        .filter((result): result is TreeOption => result !== undefined)
+
+      // Add all selected values to the results
+      const selectedOptions = value ?? []
+      const merged = mergeResultsByParent([...foundOptions, ...selectedOptions].map(item => deepCloneExtensible(item)))
+
+      setControlledOptions(merged)
+
+      if (onSearch) {
+        onSearch(nextQuery, event)
+      }
+    },
+    [
+      childrenKey,
+      customSearchMinQueryLength,
+      labelKey,
+      localCustomSearch,
+      mergeResultsByParent,
+      onSearch,
+      options,
+      value,
+      valueKey
+    ]
+  )
   const handleChange = useCallback(
     (nextValue: ValueType) => {
       if (!onChange) {
@@ -115,10 +230,9 @@ export function CheckTreePicker({
       }
 
       const formattedValues = fromRsuiteValue(nextValue, options, childrenKey, valueKey, labelKey)
-
       onChange(formattedValues)
     },
-    [childrenKey, labelKey, onChange, options, valueKey]
+    [childrenKey, onChange, options, valueKey, labelKey]
   )
 
   const removeOptions = (valuesToRemove: ValueType, e: React.MouseEvent<HTMLButtonElement>) => {
@@ -128,9 +242,13 @@ export function CheckTreePicker({
     handleChange(valueToUpdate ?? [])
   }
 
+  useEffect(() => {
+    forceUpdate()
+  }, [forceUpdate])
+
   return (
     <CheckTreePickerBox
-      boxRef={boxRef}
+      boxRef={boxRef as RefObject<HTMLDivElement>}
       className={controlledClassName}
       disabled={disabled}
       error={controlledError}
@@ -141,40 +259,55 @@ export function CheckTreePicker({
       isRequired={isRequired}
       isTransparent={isTransparent}
       label={label}
-      name={originalProps.name}
+      onLabelClick={() => {
+        if (!treeRef.current) {
+          return
+        }
+        treeRef.current.open?.()
+        treeRef.current.target?.focus?.()
+      }}
       popupWidth={popupWidth}
       readOnly={readOnly}
       style={style}
     >
       {boxRef.current && (
         <RsuiteCheckTreePicker
+          ref={treeRef}
           cascade
           childrenKey={childrenKey}
           container={boxRef.current}
-          data={options}
+          data={isSearchable ? controlledOptions : options}
           disabled={disabled}
           disabledItemValues={disabledValues}
           id={originalProps.name}
           labelKey={labelKey}
           onChange={handleChange}
+          onClose={() => {
+            setControlledOptions(options)
+            setSearchKeyword('')
+          }}
+          onSearch={handleSearch}
           readOnly={readOnly}
-          renderTreeIcon={({ expand }) => (
-            <IconButton
-              accent={Accent.TERTIARY}
-              Icon={Chevron}
-              size={Size.SMALL}
-              style={{ transform: expand ? 'rotate(0)' : 'rotate(-90deg)' }}
-            />
+          renderTreeIcon={(_, isExpanded) => (
+            <IconExpander>
+              <IconButton
+                accent={Accent.TERTIARY}
+                Icon={Chevron}
+                size={Size.SMALL}
+                style={{ transform: isExpanded ? 'rotate(0)' : 'rotate(-90deg)' }}
+              />
+            </IconExpander>
           )}
+          renderTreeNode={item => {
+            if (typeof item[labelKey] !== 'string') {
+              return item[labelKey]
+            }
+
+            return <AccentInsensitiveHighlight label={item[labelKey]} query={searchKeyword} />
+          }}
           renderValue={() => {
-            const children = getTreeOptionsBySelectedValues(
-              rsuiteValue,
-              options,
-              childrenKey,
-              valueKey,
-              labelKey
-            ).flatMap(treeOption => treeOption[childrenKey] as TreeOption[])
             const parents = getTreeOptionsBySelectedValues(rsuiteValue, options, childrenKey, valueKey, labelKey)
+            const children = parents.flatMap(parent => parent[childrenKey] as TreeOption[])
             if (!shouldShowLabels) {
               return (
                 <>
@@ -230,10 +363,13 @@ export function CheckTreePicker({
               </Wrapper>
             )
           }}
+          searchable={isSearchable}
+          searchBy={(isSearchable ? () => true : undefined) as any}
           size={originalProps.size ?? 'sm'}
           uncheckableItemValues={uncheckableValues}
           value={rsuiteValue ?? []}
           valueKey={valueKey}
+          virtualized={false}
           {...originalProps}
         />
       )}
@@ -272,6 +408,17 @@ const StyledButton = styled(Button)<{ $isLight?: boolean }>`
     }
   }
 `
+
+const IconExpander = styled.div`
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`
+
 const Wrapper = styled.div`
   display: contents;
 `

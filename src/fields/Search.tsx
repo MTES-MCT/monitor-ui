@@ -82,8 +82,6 @@ export function Search<OptionValue extends OptionValueType = string>({
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
   const currentQueryRef = useRef('')
-  /** Instance of `CustomSearch` */
-  const customSearchRef = useRef(customSearch)
   const mustSkipNextChange = useRef(false)
 
   const controlledClassName = useMemo(() => classnames('Field-Search', className), [className])
@@ -96,11 +94,25 @@ export function Search<OptionValue extends OptionValueType = string>({
 
   const { forceUpdate } = useForceUpdate()
 
-  const selectedOption = useMemo(
-    () => getSelectedOptionFromOptionValue<OptionValue>(options, value, optionValueKey),
-    [options, optionValueKey, value]
-  )
-  const rsuiteValue = currentQueryRef.current.length > 0 ? currentQueryRef.current : (selectedOption?.label ?? '')
+  const selectedOption = useMemo(() => {
+    if (!value) {
+      return undefined
+    }
+
+    if (onQuery) {
+      if (optionValueKey) {
+        return value[optionValueKey]
+      }
+
+      return value
+    }
+
+    const option = getSelectedOptionFromOptionValue<OptionValue>(options, value, optionValueKey)
+
+    return option?.label
+  }, [value, onQuery, options, optionValueKey])
+
+  const rsuiteValue = currentQueryRef.current.length > 0 ? currentQueryRef.current : (selectedOption ?? '')
 
   const clear = useCallback(() => {
     if (onChange) {
@@ -117,7 +129,7 @@ export function Search<OptionValue extends OptionValueType = string>({
 
   // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
   // that's why we send this "always true" filter to disable Rsuite SelectPicker internal search filtering
-  const filterBy: any = customSearch ? () => true : undefined
+  const filterBy: any = customSearch && currentQueryRef.current.length > 0 ? () => true : undefined
 
   const handleChange = useCallback(
     (nextQuery: string) => {
@@ -134,7 +146,7 @@ export function Search<OptionValue extends OptionValueType = string>({
           onQuery(nextQuery.length > 0 ? nextQuery : undefined)
         }
 
-        if (!customSearchRef.current || nextQuery.trim().length < customSearchMinQueryLength) {
+        if (!customSearch || nextQuery.trim().length < customSearchMinQueryLength) {
           setControlledRsuiteData(rsuiteData)
 
           forceUpdate()
@@ -144,7 +156,7 @@ export function Search<OptionValue extends OptionValueType = string>({
 
         const nextControlledRsuiteData =
           nextQuery.trim().length >= customSearchMinQueryLength
-            ? getRsuiteDataItemsFromOptions(customSearchRef.current.find(nextQuery), optionValueKey)
+            ? getRsuiteDataItemsFromOptions(customSearch.find(nextQuery), optionValueKey)
             : rsuiteData
 
         setControlledRsuiteData(nextControlledRsuiteData)
@@ -152,7 +164,7 @@ export function Search<OptionValue extends OptionValueType = string>({
         forceUpdate()
       }, 0)
     },
-    [customSearchMinQueryLength, forceUpdate, onQuery, optionValueKey, rsuiteData]
+    [customSearch, customSearchMinQueryLength, forceUpdate, onQuery, optionValueKey, rsuiteData]
   )
 
   const handleSelect = useCallback(
@@ -214,7 +226,7 @@ export function Search<OptionValue extends OptionValueType = string>({
             onSelect={handleSelect as any}
             readOnly={readOnly}
             renderMenuItem={renderMenuItem as any}
-            value={rsuiteValue}
+            value={rsuiteValue as string}
             {...originalProps}
           />
         )}

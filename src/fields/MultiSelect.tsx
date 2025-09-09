@@ -1,8 +1,9 @@
 import { getSelectedOptionValuesFromSelectedRsuiteDataItemValues } from '@utils/getSelectedOptionValuesFromSelectedRsuiteDataItemValues'
+import { handleCustomSearch } from '@utils/handleCustomSearch'
 import classnames from 'classnames'
 import { StyledRsuitePickerBox } from 'fields/shared/StyledRsuitePickerBox'
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import { TagPicker, type TagPickerProps } from 'rsuite'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { TagPicker, type PickerHandle, type TagPickerProps } from 'rsuite'
 import styled from 'styled-components'
 
 import { Field } from '../elements/Field'
@@ -49,6 +50,8 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 }: MultiSelectProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
+  // eslint-disable-next-line no-null/no-null
+  const listboxRef = useRef<PickerHandle | null>(null)
   /** Instance of `CustomSearch` */
   const customSearchRef = useRef(customSearch)
 
@@ -85,23 +88,19 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 
   const handleSearch = useCallback(
     (nextQuery: string) => {
-      if (!customSearchRef.current || nextQuery.trim().length < customSearchMinQueryLength) {
-        setControlledRsuiteData(rsuiteData)
-
-        return
-      }
-
-      const nextControlledRsuiteData =
-        nextQuery.trim().length >= customSearchMinQueryLength
-          ? getRsuiteDataItemsFromOptions(customSearchRef.current.find(nextQuery), optionValueKey)
-          : rsuiteData
-
-      setControlledRsuiteData(nextControlledRsuiteData)
+      const results = handleCustomSearch(
+        customSearchMinQueryLength,
+        customSearchRef,
+        nextQuery,
+        optionValueKey,
+        rsuiteData
+      )
+      setControlledRsuiteData(results)
     },
     [customSearchMinQueryLength, optionValueKey, rsuiteData]
   )
 
-  const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
+  const renderMenuItem = useCallback((_, item) => <span title={item.label}>{item.label}</span>, [])
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
@@ -111,7 +110,18 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 
   return (
     <Field className={controlledClassName} style={style}>
-      <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={originalProps.name}>
+      <Label
+        $isDisabled={disabled}
+        $isHidden={isLabelHidden}
+        $isRequired={isRequired}
+        onClick={() => {
+          if (!listboxRef.current) {
+            return
+          }
+          listboxRef.current.open?.()
+          listboxRef.current.target?.focus?.()
+        }}
+      >
         {label}
       </Label>
 
@@ -127,6 +137,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
         {boxRef.current && (
           <TagPicker
             key={key}
+            ref={listboxRef}
             container={boxRef.current}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
             // when we don't, we don't need to control that and just pass the non-internally-controlled `rsuiteData`

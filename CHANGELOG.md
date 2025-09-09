@@ -1,3 +1,229 @@
+## [24.31.5](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.4...v24.31.5) (2025-09-09)
+
+### Bug Fixes
+
+* **fields:** delete omit "renderMenuItem" from Select component and create stories ([fc4b72c](https://github.com/MTES-MCT/monitor-ui/commit/fc4b72c7e3563a1fd92f14e30ed4d396c44b4718))
+* **fields:** delete omit "renderValue" from Select component ([8e945c5](https://github.com/MTES-MCT/monitor-ui/commit/8e945c561e3c7c9cd1d3af4ad74334c698f8babb))
+
+## [24.31.4](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.3...v24.31.4) (2025-09-05)
+
+### Bug Fixes
+
+* **fields:** fix search component to display value correctly ([f258c52](https://github.com/MTES-MCT/monitor-ui/commit/f258c52db45a5aae87dbdd0fd25d1922f7f38214))
+
+## [24.31.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.2...v24.31.3) (2025-09-05)
+
+### Bug Fixes
+
+* **fields:** don't display default options when input is focused with no search text ([60f3789](https://github.com/MTES-MCT/monitor-ui/commit/60f3789a830c379696e718ccbdc6604fa7ffa74b))
+
+## [24.31.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.1...v24.31.2) (2025-09-03)
+
+### Bug Fixes
+
+* **fields:** delete customSearch ref and use customSearch property ([08271a7](https://github.com/MTES-MCT/monitor-ui/commit/08271a722dc7de51617cbd7da029e3e699a26d0f))
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @vitejs/plugin-react in /e2e/release/sample ([fbbe29d](https://github.com/MTES-MCT/monitor-ui/commit/fbbe29ddefa60b224b08dc9e39d4b9b9baca0856))
+* **dev-deps:** bump cypress in /e2e/release/sample ([4b7691a](https://github.com/MTES-MCT/monitor-ui/commit/4b7691a4aa3fc75288620b256ca00061c77fdb97))
+* **dev-deps:** bump the all-non-major-dependencies group ([15c9e87](https://github.com/MTES-MCT/monitor-ui/commit/15c9e87c4183050687f93a9f18f1b180a858595f))
+* **dev-deps:** bump the all-non-major-dependencies group ([21267c4](https://github.com/MTES-MCT/monitor-ui/commit/21267c4a0dfdea501c70b8ba6848d27337c0fa0a))
+
+## [24.31.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.0...v24.31.1) (2025-08-18)
+
+### Bug Fixes
+
+* **components:** remove label margin when isHidden is true ([043bb9a](https://github.com/MTES-MCT/monitor-ui/commit/043bb9a5aad708739a629e916c23f15d52d22009))
+
+## [24.31.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.30.1...v24.31.0) (2025-08-18)
+
+### Features
+
+* **fields:** focus on inputs when label is clicked and hide label instead of not displaying it ([086febd](https://github.com/MTES-MCT/monitor-ui/commit/086febdab9cef5caf3f851a9922e8caa96cf28a7))
+* **fields:** focus on list after label click in combobox, list or tree components ([f178df6](https://github.com/MTES-MCT/monitor-ui/commit/f178df65cfa6adc4f493c678f225cb7aa3f03942))
+* **fields:** focus on select when user click on label ([b9dce90](https://github.com/MTES-MCT/monitor-ui/commit/b9dce900fbbaa18234e9d4f2253aef8170ab3bc0))
+* **fields:** open calendar and focus on input after legend click ([c865597](https://github.com/MTES-MCT/monitor-ui/commit/c865597d0301a0a7a164b5c1a8d039b65c8e3f23))
+
+### Bug Fixes
+
+* **cypress:** fix tests e2e ([e59cc32](https://github.com/MTES-MCT/monitor-ui/commit/e59cc32e1e0b172bd6afdf72a116cffc3daf062e))
+
+## [24.30.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.29.2...v24.30.0) (2025-08-15)
+
+### Features
+
+* **fields:** add onSearchProp on CheckTreePicker component ([82ae2f8](https://github.com/MTES-MCT/monitor-ui/commit/82ae2f8f5ae0aaf187620f3a653f03aa2c661266))
+
+### Buid System & Dependencies
+
+* **deps:** bump tmp from 0.2.3 to 0.2.4 in the npm_and_yarn group ([7f0b488](https://github.com/MTES-MCT/monitor-ui/commit/7f0b48863c60f700b978866370a001bdb7db7463))
+* **dev-deps:** bump @sentry/react in /e2e/release/sample ([e93ab4d](https://github.com/MTES-MCT/monitor-ui/commit/e93ab4d5b75d9d3de77c5bccd5d814aca050d3ef))
+* **dev-deps:** bump the all-non-major-dependencies group ([a25b35b](https://github.com/MTES-MCT/monitor-ui/commit/a25b35b757b9f8dc0c3271b38c36d80486ce4159))
+* **dev-deps:** bump tmp ([81a5301](https://github.com/MTES-MCT/monitor-ui/commit/81a5301c81b51efd05ae6dd71dd3ea3e478b3909))
+
+## [24.29.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.29.1...v24.29.2) (2025-07-31)
+
+### Bug Fixes
+
+* **fields:** fix rsuite error ([6c2c048](https://github.com/MTES-MCT/monitor-ui/commit/6c2c048865ea6a1e4782648e59dce3e487292bb2))
+
+## [24.29.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.29.0...v24.29.1) (2025-07-30)
+
+### Bug Fixes
+
+* **fields:** fix isSearchable props in CheckTreePicker ([3e0ac2e](https://github.com/MTES-MCT/monitor-ui/commit/3e0ac2e0db12050e3d5cb90c518075561229f32c))
+
+## [24.29.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.28.1...v24.29.0) (2025-07-30)
+
+### Features
+
+* **fields:** set virtualized and searchable props to true by default ([875f52b](https://github.com/MTES-MCT/monitor-ui/commit/875f52bb9fc3c4f8d39a64f071be5b456c4a5a57))
+
+## [24.28.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.28.0...v24.28.1) (2025-07-28)
+
+### Bug Fixes
+
+* **global:** fix dropdown items font ([e3cd533](https://github.com/MTES-MCT/monitor-ui/commit/e3cd5331fa4e88ec5de800cc19bcf017889e445c))
+* **tables:** fix checkbox in tables ([d6e7299](https://github.com/MTES-MCT/monitor-ui/commit/d6e7299a5b333e45f808d007f308a2cb17b7e53a))
+
+## [24.28.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.27.3...v24.28.0) (2025-07-28)
+
+### Features
+
+* **icons:** add two icons ([c1ac70c](https://github.com/MTES-MCT/monitor-ui/commit/c1ac70c17e5882996c1971b8c27ae6e846c11257))
+
+### Bug Fixes
+
+* **icons:** remove list filled icon ([c6a6814](https://github.com/MTES-MCT/monitor-ui/commit/c6a68141f1bc9d22d27d032e01264712e1f733c5))
+
+## [24.27.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.27.2...v24.27.3) (2025-07-28)
+
+### Bug Fixes
+
+* **components:** label can be a React.node and can be placed on right or left ([50f510b](https://github.com/MTES-MCT/monitor-ui/commit/50f510b2ee0d44b446dd27c892d33aa06c1a9382))
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump the all-non-major-dependencies group ([55fb208](https://github.com/MTES-MCT/monitor-ui/commit/55fb20823d50a83f42ca27e7f3c1b22804d8a433))
+
+## [24.27.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.27.1...v24.27.2) (2025-07-24)
+
+### Bug Fixes
+
+* **fields:** fix DateRangePicker when hasSingleCalendar is true ([41d2638](https://github.com/MTES-MCT/monitor-ui/commit/41d2638e5bf2ae9853e07ef36f05babefbabb82e))
+
+## [24.27.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.27.0...v24.27.1) (2025-07-24)
+
+### Bug Fixes
+
+* **fields:** fix Calendar style ([f011158](https://github.com/MTES-MCT/monitor-ui/commit/f0111582cb21a615129800c9428357617f53abe4))
+
+## [24.27.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.26.0...v24.27.0) (2025-07-24)
+
+### Features
+
+* **elements:** create AccentInsensitiveHighlight component ([b805b00](https://github.com/MTES-MCT/monitor-ui/commit/b805b0052ed78e49275adfa69e183134d0a85132))
+* **fields:** add CustomSearch in componenent ([ee81465](https://github.com/MTES-MCT/monitor-ui/commit/ee81465b30c96411d216a8f1b75e289f3ba5a046))
+* **fields:** update checkTreePicker with customSearch ([753deb1](https://github.com/MTES-MCT/monitor-ui/commit/753deb1ccd849632fe49bd46c7f9dbecc8b09fb8))
+
+### Styles
+
+* **fields:** fix position ([11b3831](https://github.com/MTES-MCT/monitor-ui/commit/11b383152be641cbef8473972648374baf159cfa))
+* **fields:** fix style ([2c93f0b](https://github.com/MTES-MCT/monitor-ui/commit/2c93f0b936ed03a1bc4cd79440afceedcf6cb569))
+
+### Bug Fixes
+
+* **components:** fix checktreepicker ellipsis ([e99c6dc](https://github.com/MTES-MCT/monitor-ui/commit/e99c6dc58ddc41a051050b3ae8770890b678d858))
+* **components:** fix checktreepicker iconExpanding, leading to margin issues ([464004a](https://github.com/MTES-MCT/monitor-ui/commit/464004a225a3b175f730e0839032aaf427c18fa0))
+* **fields:** changes after code review ([2418a34](https://github.com/MTES-MCT/monitor-ui/commit/2418a349d5f6c2da4efbe1541df44a0bd61317ae))
+* **fields:** fix  renderMenuItem ([17d20a9](https://github.com/MTES-MCT/monitor-ui/commit/17d20a9ef072e04753e3c1da7c267d2791895cbe))
+* **fields:** fix foundOptions function ([f7b5adb](https://github.com/MTES-MCT/monitor-ui/commit/f7b5adbb0174778933af46bd0510a9a2970036e0))
+* **fields:** fix selected parent with no children ([b8ebdd9](https://github.com/MTES-MCT/monitor-ui/commit/b8ebdd9fba32c38b38841909331af660c27869dc))
+* **fields:** fix value for fromRsuiteValue function ([6902247](https://github.com/MTES-MCT/monitor-ui/commit/69022471d2c4440a8c39876f393f8386c46877aa))
+* **fields:** reset searchKeyworld on close ([fefb30c](https://github.com/MTES-MCT/monitor-ui/commit/fefb30c84a369e590a83bfb053aa7ce64c26f42f))
+* **global:** fix checkbox UI ([282d971](https://github.com/MTES-MCT/monitor-ui/commit/282d971804392363d9024813ba0db1b16864eae4))
+
+### Code Refactoring
+
+* **fields:** refactor to avoid duplicate code ([baa7298](https://github.com/MTES-MCT/monitor-ui/commit/baa7298fe3cda2995b1a7964d4f929cf3aaabd06))
+
+### Buid System & Dependencies
+
+* **deps:** bump form-data in the npm_and_yarn group ([5cb8e08](https://github.com/MTES-MCT/monitor-ui/commit/5cb8e08ed6c58cbf5a8b3d89157fee2327e4e254))
+* **dev-deps:** bump form-data ([975a24d](https://github.com/MTES-MCT/monitor-ui/commit/975a24d30f5b532132f27da568fcd25331104ade))
+
+## [24.26.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.25.1...v24.26.0) (2025-07-22)
+
+### Features
+
+* **icons:** add chart icon ([8a3ce2d](https://github.com/MTES-MCT/monitor-ui/commit/8a3ce2d898c30171fa01f6e3a5133b8ee758f57f))
+
+### Bug Fixes
+
+* **icons:** fix chart icon name ([a1ffd21](https://github.com/MTES-MCT/monitor-ui/commit/a1ffd21b15c5e496d79493f08b4b074b50141bc8))
+* **icons:** fix icons current color ([402bd0e](https://github.com/MTES-MCT/monitor-ui/commit/402bd0e78e0c488d40fd43796442efba285c7d5c))
+
+## [24.25.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.25.0...v24.25.1) (2025-07-21)
+
+### Bug Fixes
+
+* **components:** swap padding to internal banner elements to prevent overflowing ([238bd1c](https://github.com/MTES-MCT/monitor-ui/commit/238bd1c419fbfc14b0cc9595c9ba07948e7653e2))
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump @tsconfig/vite-react in /e2e/release/sample ([4c07abe](https://github.com/MTES-MCT/monitor-ui/commit/4c07abef10c1a5c35080455d6506cf7d7d5f5ec5))
+* **dev-deps:** bump the all-non-major-dependencies group ([f1d1fc7](https://github.com/MTES-MCT/monitor-ui/commit/f1d1fc7cbf55a6243d18061a934ad85649b2ee6c))
+* **dev-deps:** bump the all-non-major-dependencies group ([5bdde47](https://github.com/MTES-MCT/monitor-ui/commit/5bdde47134b79f5013efe6d4215ced3e8631cc7d))
+
+## [24.25.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.24.0...v24.25.0) (2025-07-09)
+
+### Features
+
+* **libs:** bump to jest v30 ([7ea2996](https://github.com/MTES-MCT/monitor-ui/commit/7ea2996c71de1836e60cc83b7cec0b9262228c82))
+
+## [24.24.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.23.0...v24.24.0) (2025-07-09)
+
+### Features
+
+* **libs:** bump to React 19 ([df44917](https://github.com/MTES-MCT/monitor-ui/commit/df44917734a7faf36723cee2f7c42bb44e32d663))
+
+## [24.23.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.22.3...v24.23.0) (2025-07-09)
+
+### Features
+
+* **icons:** add License, GroupPerson and Contact icons ([f74c1d6](https://github.com/MTES-MCT/monitor-ui/commit/f74c1d655b17fc2461a3691fa32261b3c6080c80))
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump the all-non-major-dependencies group across 1 directory with 6 updates ([d24804f](https://github.com/MTES-MCT/monitor-ui/commit/d24804ff99f63af541d29fa08eb0826ef3613d86))
+* **dev-deps:** bump the non-major-dev-dependencies group across 1 directory with 11 updates ([1da37d1](https://github.com/MTES-MCT/monitor-ui/commit/1da37d13ac4d8cd340f138eb78d17db3f5af9655))
+* **dev-deps:** bump vite from 6.3.5 to 7.0.0 in /e2e/release/sample ([46512c3](https://github.com/MTES-MCT/monitor-ui/commit/46512c3f15a7213debbe827ec0f78839f95f8b6e))
+
+## [24.22.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.22.2...v24.22.3) (2025-07-02)
+
+### Bug Fixes
+
+* **fields:** don't trigger onChange function if value finish with an `.` ([d8de952](https://github.com/MTES-MCT/monitor-ui/commit/d8de952116cd3cc979e9bfa19d1dfd5de6178bc7))
+* **fields:** fix dd coordinates input ([7cbaa2f](https://github.com/MTES-MCT/monitor-ui/commit/7cbaa2f976a009bd7aa7b554489526e441e55842))
+* **fields:** set latitude or longitude after checking if value is too long ([a934a9b](https://github.com/MTES-MCT/monitor-ui/commit/a934a9b46ce7787d5577911cf525d159e981563e))
+
+### Buid System & Dependencies
+
+* **deps:** bump @tanstack/react-virtual ([94103ef](https://github.com/MTES-MCT/monitor-ui/commit/94103efc011f8aecdd49af0f1a7745574bf1d0db))
+* **dev-deps:** bump the non-major-dev-dependencies group with 30 updates ([54db2e3](https://github.com/MTES-MCT/monitor-ui/commit/54db2e368daf1d591c63a3075cb952f10e6f4cf6))
+
+## [24.22.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.22.1...v24.22.2) (2025-06-23)
+
+### Bug Fixes
+
+* **elements:** fix style ([0a9b230](https://github.com/MTES-MCT/monitor-ui/commit/0a9b230d123163cedf6080351ff56bd49af8a44e))
+
+### Buid System & Dependencies
+
+* **deps:** bump the non-major-dependencies group with 2 updates ([ca63864](https://github.com/MTES-MCT/monitor-ui/commit/ca63864c8c3b0c034cac77f0e30bab2a9d1d4359))
+* **dev-deps:** bump the all-non-major-dependencies group ([c14d180](https://github.com/MTES-MCT/monitor-ui/commit/c14d180ede5b07565cbb059e56423735f8ee633b))
+
 ## [24.22.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.22.0...v24.22.1) (2025-06-20)
 
 ### Bug Fixes

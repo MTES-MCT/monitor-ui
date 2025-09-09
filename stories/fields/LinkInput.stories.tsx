@@ -22,6 +22,7 @@ const meta: Meta<LinkInputProps> = {
   },
 
   args: {
+    name: 'link-input',
     disabled: false,
     error: '',
     isRequired: false,

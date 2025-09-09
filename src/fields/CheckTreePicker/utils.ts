@@ -13,6 +13,23 @@ export function fromRsuiteValue(
   return formattedTree.length > 0 ? formattedTree : undefined
 }
 
+export function deepCloneExtensible<T>(obj: T): T {
+  if (Array.isArray(obj)) {
+    return obj.map(item => deepCloneExtensible(item)) as unknown as T
+  }
+
+  // eslint-disable-next-line no-null/no-null
+  if (obj !== null && typeof obj === 'object') {
+    return Object.keys(obj).reduce((acc, key) => {
+      acc[key] = deepCloneExtensible((obj as any)[key])
+
+      return acc
+    }, {} as any) as T
+  }
+
+  return obj
+}
+
 export function getTreeOptionsBySelectedValues(
   selectedValues: ValueType | undefined,
   options: TreeOption[],

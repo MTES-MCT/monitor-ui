@@ -1,7 +1,12 @@
 import { getSelectedOptionValueFromSelectedRsuiteDataItemValue } from '@utils/getSelectedOptionValueFromSelectedRsuiteDataItemValue'
+import { handleCustomSearch } from '@utils/handleCustomSearch'
 import classnames from 'classnames'
-import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { SelectPicker as RsuiteSelectPicker, type SelectPickerProps as RsuiteSelectPickerProps } from 'rsuite'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import {
+  SelectPicker as RsuiteSelectPicker,
+  type SelectPickerProps as RsuiteSelectPickerProps,
+  type PickerHandle
+} from 'rsuite'
 
 import { StyledRsuitePickerBox } from './shared/StyledRsuitePickerBox'
 import { Field } from '../elements/Field'
@@ -16,20 +21,12 @@ import { getRsuiteDataItemsFromOptions } from '../utils/getRsuiteDataItemsFromOp
 import { getRsuiteDataItemValueFromOptionValue } from '../utils/getRsuiteDataItemValueFromOptionValue'
 import { normalizeString } from '../utils/normalizeString'
 
+import type { ItemDataType } from 'rsuite/esm/internals/types'
 import type { Promisable } from 'type-fest'
 
 export type SelectProps<OptionValue extends OptionValueType = string> = Omit<
   RsuiteSelectPickerProps<any>,
-  | 'as'
-  | 'container'
-  | 'data'
-  | 'defaultValue'
-  | 'id'
-  | 'onChange'
-  | 'renderMenuItem'
-  | 'renderValue'
-  | 'value'
-  | 'valueKey'
+  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'value' | 'valueKey'
 > & {
   customSearch?: CustomSearch<Option<OptionValue>>
   /** Minimum search query length required to trigger custom search filtering. */
@@ -76,6 +73,8 @@ export function Select<OptionValue extends OptionValueType = string>({
 }: SelectProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
+  // eslint-disable-next-line no-null/no-null
+  const comboboxRef = useRef<PickerHandle | null>(null)
   /** Instance of `CustomSearch` */
   const customSearchRef = useRef(customSearch)
 
@@ -110,23 +109,28 @@ export function Select<OptionValue extends OptionValueType = string>({
 
   const handleSearch = useCallback(
     (nextQuery: string) => {
-      if (!customSearchRef.current || nextQuery.trim().length < customSearchMinQueryLength) {
-        setControlledRsuiteData(rsuiteData)
-
-        return
-      }
-
-      const nextControlledRsuiteData =
-        nextQuery.trim().length >= customSearchMinQueryLength
-          ? getRsuiteDataItemsFromOptions(customSearchRef.current.find(nextQuery), optionValueKey)
-          : rsuiteData
-
-      setControlledRsuiteData(nextControlledRsuiteData)
+      const results = handleCustomSearch(
+        customSearchMinQueryLength,
+        customSearchRef,
+        nextQuery,
+        optionValueKey,
+        rsuiteData
+      )
+      setControlledRsuiteData(results)
     },
     [customSearchMinQueryLength, optionValueKey, rsuiteData]
   )
 
-  const renderMenuItem = useCallback((node: ReactNode) => <span title={String(node)}>{String(node)}</span>, [])
+  const renderMenuItem = useCallback(
+    (itemLabel: React.ReactNode, item: ItemDataType) => {
+      if (originalProps.renderMenuItem) {
+        return originalProps.renderMenuItem(itemLabel, item)
+      }
+
+      return <span title={typeof item.label === 'string' ? item.label : undefined}>{item.label}</span>
+    },
+    [originalProps]
+  )
 
   const disabledItemValues = useMemo(
     () => (controlledRsuiteData ?? rsuiteData).filter(option => option.isDisabled).map(option => option.value),
@@ -141,7 +145,19 @@ export function Select<OptionValue extends OptionValueType = string>({
 
   return (
     <Field className={controlledClassname} style={style}>
-      <Label $isDisabled={disabled} $isHidden={isLabelHidden} $isRequired={isRequired} htmlFor={originalProps.name}>
+      <Label
+        $isDisabled={disabled}
+        $isHidden={isLabelHidden}
+        $isRequired={isRequired}
+        onClick={() => {
+          if (!comboboxRef.current) {
+            return
+          }
+
+          comboboxRef.current.open?.()
+          comboboxRef.current?.target?.focus?.()
+        }}
+      >
         {label}
       </Label>
 
@@ -157,6 +173,7 @@ export function Select<OptionValue extends OptionValueType = string>({
         {boxRef.current && (
           <RsuiteSelectPicker
             key={key}
+            ref={comboboxRef}
             cleanable={isCleanable}
             container={boxRef.current}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
@@ -164,7 +181,6 @@ export function Select<OptionValue extends OptionValueType = string>({
             data={controlledRsuiteData ?? rsuiteData}
             disabled={disabled}
             disabledItemValues={disabledItemValues}
-            id={originalProps.name}
             onChange={handleChange}
             onSearch={handleSearch}
             // `as any` because we customized `ItemDataType` type by adding `optionValue`,

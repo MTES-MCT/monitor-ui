@@ -8,6 +8,7 @@ import { AttentionFilled } from './AttentionFilled'
 import { Bullseye } from './Bullseye'
 import { Calendar } from './Calendar'
 import { Car } from './Car'
+import { Chart } from './Chart'
 import { Check } from './Check'
 import { Chevron } from './Chevron'
 import { Circle } from './Circle'
@@ -17,6 +18,7 @@ import { ClockDashed } from './ClockDashed'
 import { Close } from './Close'
 import { Comment } from './Comment'
 import { Confirm } from './Confirm'
+import { Contact } from './Contact'
 import { ControlUnit } from './ControlUnit'
 import { ControlUnitFilled } from './ControlUnitFilled'
 import { Delete } from './Delete'
@@ -40,16 +42,19 @@ import { FleetSegment } from './FleetSegment'
 import { Focus } from './Focus'
 import { FocusVessel } from './FocusVessel'
 import { FocusZones } from './FocusZones'
+import { GroupPerson } from './GroupPerson'
 import { Hide } from './Hide'
 import { Info } from './Info'
 import { Infringement } from './Infringement'
 import { Invalid } from './Invalid'
 import { Landmark } from './Landmark'
+import { License } from './License'
 import { Link } from './Link'
 import { List } from './List'
 import { ListLines } from './ListLines'
 import { Logout } from './Logout'
 import { MapLayers } from './MapLayers'
+import { MapSettings } from './MapSettings'
 import { MeasureAngle } from './MeasureAngle'
 import { MeasureBrokenLine } from './MeasureBrokenLine'
 import { MeasureCircle } from './MeasureCircle'
@@ -114,6 +119,7 @@ export {
   Bullseye,
   Calendar,
   Car,
+  Chart,
   Check,
   Chevron,
   Circle,
@@ -123,6 +129,7 @@ export {
   Close,
   Comment,
   Confirm,
+  Contact,
   ControlUnit,
   ControlUnitFilled,
   Delete,
@@ -146,16 +153,19 @@ export {
   Focus,
   FocusVessel,
   FocusZones,
+  GroupPerson,
   Hide,
   Info,
   Infringement,
   Invalid,
   Landmark,
+  License,
   Link,
   List,
   ListLines,
   Logout,
   MapLayers,
+  MapSettings,
   MeasureAngle,
   MeasureBrokenLine,
   MeasureCircle,

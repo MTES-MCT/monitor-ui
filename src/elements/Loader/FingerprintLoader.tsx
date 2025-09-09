@@ -51,6 +51,10 @@ const RingLoader = styled.div<{
   overflow: hidden;
   position: relative;
 
+  * {
+    box-sizing: border-box;
+  }
+
   .spinner-ring {
     position: absolute;
     border-radius: 50%;

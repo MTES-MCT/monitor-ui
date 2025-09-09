@@ -1,6 +1,8 @@
 import ky from 'ky'
 import { useState } from 'react'
+import styled from 'styled-components'
 
+import { Description } from '../../../.storybook/components/Description'
 import { Output } from '../../../.storybook/components/Output'
 import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
 import { Search } from '../../../src'
@@ -37,28 +39,86 @@ const meta: Meta<SearchProps> = {
 export default meta
 
 export function WithQuery(props: SearchProps) {
-  const [outputValue, setOutputValue] = useState<any | undefined | '∅'>('∅')
-  const [options, setOptions] = useState<{ label: any; value: any }[]>([])
+  const [objectOutputValue, setObjectOutputValue] = useState<any | undefined>(undefined)
+  const [optionsWithObjectValue, setOptionsWithObjectValue] = useState<{ label: any; value: any }[]>([])
+
+  const [simpleOutputValue, setSimpleOutputValue] = useState<any | undefined>(undefined)
+  const [optionsWithSimpleValue, setOptionsWithSimpleValue] = useState<{ label: any; value: any }[]>([])
 
   const onQuery = async value => {
-    const results: Record<string, any>[] = await ky
-      .get(`https://api.openbrewerydb.org/breweries?by_name=${value}`)
-      .json()
+    if (!value) {
+      setOptionsWithObjectValue([])
 
+      return
+    }
+
+    const results: Record<string, any>[] = await ky
+      .get(`https://api.openbrewerydb.org/v1/breweries?by_name=${value}`)
+      .json()
     const dataFormatted = results
-      ? results.map(({ id, name }) => ({
+      ? results?.map(({ id, name }) => ({
+          label: name,
+          value: {
+            id,
+            name
+          }
+        }))
+      : []
+    setOptionsWithObjectValue(dataFormatted)
+  }
+
+  const onSimpleQuery = async value => {
+    if (!value) {
+      setOptionsWithSimpleValue([])
+
+      return
+    }
+
+    const results: Record<string, any>[] = await ky
+      .get(`https://api.openbrewerydb.org/v1/breweries?by_name=${value}`)
+      .json()
+    const dataFormatted = results
+      ? results?.map(({ id, name }) => ({
           label: name,
           value: id
         }))
       : []
-    setOptions(dataFormatted)
+    setOptionsWithSimpleValue(dataFormatted)
   }
 
   return (
-    <>
-      <Search {...props} onChange={setOutputValue} onQuery={onQuery} options={options} />
+    <Container>
+      <div>
+        <Description>With object value</Description>
+        <Search
+          {...props}
+          onChange={setObjectOutputValue}
+          onQuery={onQuery}
+          options={optionsWithObjectValue}
+          optionValueKey="id"
+          value={objectOutputValue}
+        />
 
-      {outputValue !== '∅' && <Output value={outputValue} />}
-    </>
+        {objectOutputValue !== undefined && <Output value={objectOutputValue} />}
+      </div>
+      <div>
+        <Description>With simple value</Description>
+        <Search
+          {...props}
+          onChange={setSimpleOutputValue}
+          onQuery={onSimpleQuery}
+          options={optionsWithSimpleValue}
+          value={simpleOutputValue}
+        />
+
+        {simpleOutputValue !== undefined && <Output value={simpleOutputValue} />}
+      </div>
+    </Container>
   )
 }
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+`

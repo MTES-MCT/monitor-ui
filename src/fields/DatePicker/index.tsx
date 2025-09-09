@@ -331,6 +331,11 @@ export function DatePicker({
       isLegendHidden={isLabelHidden}
       isRequired={isRequired}
       legend={label}
+      onLegendClick={e => {
+        e.stopPropagation()
+        openCalendarPicker()
+        dateInputRef.current?.focus()
+      }}
       style={style}
       {...nativeProps}
     >
@@ -398,9 +403,7 @@ export function DatePicker({
   )
 }
 
-const StyledFieldset = styled(Fieldset)<{
-  $isRightAligned: boolean
-}>`
+const StyledFieldset = styled(Fieldset)<{ $isRightAligned: boolean }>`
   > .Element-Fieldset__InnerBox {
     width: ${p => (p.$isRightAligned ? 'auto' : '100%')};
   }

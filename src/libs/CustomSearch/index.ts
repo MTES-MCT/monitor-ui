@@ -17,12 +17,14 @@ export class CustomSearch<T extends AnyObject = AnyObject> {
   #isDiacriticSensitive: boolean
   /** See {@link CustomSearchOptions.isStrict}. */
   #isStrict: boolean
+  #childrenKey?: keyof T
 
   constructor(
     collection: T[],
     keys: Array<CustomSearchKey<T>>,
     {
       cacheKey,
+      childrenKey,
       isCaseSensitive = false,
       isDiacriticSensitive = false,
       isStrict = false,
@@ -37,11 +39,12 @@ export class CustomSearch<T extends AnyObject = AnyObject> {
     // - the cache record is invalidated because the collection hash has changed IF `withCacheInvalidation` is `true`
     const maybeCacheRecord = findCacheRecord(collection, cacheKey, withCacheInvalidation)
 
+    const flatOriginalCollection = this.#flattenCollection(collection, childrenKey)
+
     const normalizedCollection: T[] =
       (maybeCacheRecord?.normalizedCollection ?? isDiacriticSensitive)
-        ? collection
-        : cleanCollectionDiacritics(collection, keys)
-
+        ? flatOriginalCollection
+        : cleanCollectionDiacritics(flatOriginalCollection, keys)
     this.#fuse = new Fuse(
       normalizedCollection,
       {
@@ -55,7 +58,9 @@ export class CustomSearch<T extends AnyObject = AnyObject> {
     )
     this.#isDiacriticSensitive = isDiacriticSensitive
     this.#isStrict = isStrict
-    this.#originalCollection = collection
+    this.#childrenKey = childrenKey
+
+    this.#originalCollection = flatOriginalCollection
 
     // If a cache key was provided
     // and the cache record was either nonexistent or invalidated,
@@ -96,13 +101,58 @@ export class CustomSearch<T extends AnyObject = AnyObject> {
           .join(' ')
       : normalizedQuery
 
-    return (
-      this.#fuse
+    if (!this.#childrenKey) {
+      return this.#fuse
         .search(extendedQuery, limit ? { limit } : undefined)
-        // We remap to the original collection since the normalized collection can have some accents removed
-        // (because of the internal `CustomSearch` diacritic-less normalization)
         .map(({ refIndex }) => this.#originalCollection[refIndex] as T)
-    )
+    }
+
+    // Tree collection: recursive filter
+    return this.#recursiveFilter(this.#originalCollection, extendedQuery, limit)
+  }
+
+  /**
+   * Recursively filters tree nodes based on the search.
+   */
+  #recursiveFilter(nodes: T[], extendedQuery: string, limit?: number): T[] {
+    return nodes
+      .map(node => {
+        const children = this.#childrenKey ? (node[this.#childrenKey] as T[] | undefined) : undefined
+
+        let matchedChildren: T[] | undefined
+        if (children && Array.isArray(children)) {
+          matchedChildren = this.#recursiveFilter(children, extendedQuery)
+        }
+
+        const isNodeMatched = this.#fuse
+          .search(extendedQuery, limit ? { limit } : undefined)
+          .some(result => this.#originalCollection[result.refIndex] === node)
+
+        if (isNodeMatched || (matchedChildren && matchedChildren.length > 0)) {
+          return {
+            ...node,
+            ...(matchedChildren ? { [this.#childrenKey!]: matchedChildren } : {})
+          }
+        }
+
+        return undefined
+      })
+      .filter((n): n is T => n !== undefined)
+  }
+
+  #flattenCollection(collection: T[], childrenKey: keyof T): T[] {
+    return collection.reduce<T[]>((flat, item) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { [childrenKey]: _, ...itemWithoutChildren } = item
+      flat.push(itemWithoutChildren as T)
+
+      const children = item[childrenKey] as T[] | undefined
+      if (children?.length) {
+        flat.push(...this.#flattenCollection(children, childrenKey))
+      }
+
+      return flat
+    }, [])
   }
 }
 
