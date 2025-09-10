@@ -1,3 +1,19 @@
+## [24.32.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.6...v24.32.0) (2025-09-10)
+
+### Features
+
+* **libs:** bump to storybook9 ([5b40758](https://github.com/MTES-MCT/monitor-ui/commit/5b40758a56b237e98dc0cb252d03b8ca43d5c19c))
+
+### Bug Fixes
+
+* **global:** fix release job ([505d3be](https://github.com/MTES-MCT/monitor-ui/commit/505d3be91727a1038695d28154161fb7a7e780f8))
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump the all-non-major-dependencies group across 1 directory with 4 updates ([26b7529](https://github.com/MTES-MCT/monitor-ui/commit/26b7529fee0e9538709ed80350ddf520772e0b53))
+* **dev-deps:** bump vite ([df3bf4e](https://github.com/MTES-MCT/monitor-ui/commit/df3bf4e8391344a02fda79d2afdb1e555683560f))
+* **dev-deps:** bump vite in the npm_and_yarn group across 1 directory ([9ad6fa6](https://github.com/MTES-MCT/monitor-ui/commit/9ad6fa6ab37c8b5ff8bba835d74d253b4cae6f63))
+
 ## [24.31.6](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.5...v24.31.6) (2025-09-09)
 
 ### Bug Fixes
