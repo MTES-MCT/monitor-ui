@@ -1,4 +1,4 @@
-import { isEmpty } from 'lodash'
+import isEmpty from 'lodash/isEmpty'
 
 /**
  * Checks if a value is empty or not, including strings with only whitespaces.

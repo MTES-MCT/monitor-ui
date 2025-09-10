@@ -1,4 +1,4 @@
-import { fromPairs } from 'lodash'
+import fromPairs from 'lodash/fromPairs'
 
 import { LOREM_IPSUM } from './fake_text'
 

@@ -1,4 +1,4 @@
-import { fromPairs } from 'lodash'
+import fromPairs from "lodash/fromPairs"
 
 import { getArrayFromEnum } from './utils/getArrayFromEnum'
 import { Accent, Icon, Level, Size, TagBullet } from '../src'

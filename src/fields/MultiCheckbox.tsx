@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { isEqual } from 'lodash'
+import isEqual from 'lodash/isEqual'
 import { type CSSProperties, useCallback, useId, useMemo } from 'react'
 import styled from 'styled-components'
 

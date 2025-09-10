@@ -1,5 +1,5 @@
 import { Formik } from 'formik'
-import { noop } from 'lodash'
+import noop from 'lodash/noop'
 import { useState, type ReactNode } from 'react'
 
 import { INITIAL_VALUES } from './constants'

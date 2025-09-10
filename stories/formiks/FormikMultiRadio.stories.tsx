@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
 import { Formik } from 'formik'
-import { omit } from 'lodash'
+import omit from 'lodash/omit'
 import { useMemo, useState } from 'react'
 import { action } from 'storybook/actions'
 
