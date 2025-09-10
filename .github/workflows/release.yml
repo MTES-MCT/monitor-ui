@@ -12,10 +12,6 @@ jobs:
         with:
           fetch-depth: 200
           persist-credentials: false
-      - name: Setup
-        uses: actions/setup-node@v5
-        with:
-          node-version: 24
       - name: Install
         uses: ./.github/actions/install
       - name: Build
