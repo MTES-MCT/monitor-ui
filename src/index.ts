@@ -11,7 +11,6 @@ import 'dayjs/plugin/updateLocale'
 import 'dayjs/plugin/utc'
 
 export { GlobalStyle } from './GlobalStyle'
-export { OnlyFontGlobalStyle } from './OnlyFontGlobalStyle'
 export { THEME } from './theme'
 export { ThemeProvider } from './ThemeProvider'
 
