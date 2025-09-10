@@ -45,6 +45,13 @@ jobs:
       id-token: write
       pages: write
     steps:
+      - name: Enable Corepack and Yarn 4
+        shell: bash
+        run: |
+          corepack enable
+          corepack prepare yarn@4.9.0 --activate
+          yarn --version
+
       - name: Deploy
         uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
         with:
