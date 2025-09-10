@@ -2,7 +2,7 @@ import { Accent, Icon, Level, Size } from '@constants'
 import { IconButton } from '@elements/IconButton'
 import { LinkButton } from '@elements/LinkButton'
 import classNames from 'classnames'
-import { isString } from 'lodash'
+import isString from 'lodash/isString'
 import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import styled, { css, type CSSProperties } from 'styled-components'
 

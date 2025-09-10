@@ -10,7 +10,7 @@ import { normalizeString } from '@utils/normalizeString'
 import { remove } from '@utils/remove'
 import classnames from 'classnames'
 import { getFieldBackgroundColorFactory } from 'fields/shared/utils'
-import { isEqual } from 'lodash'
+import isEqual from 'lodash/isEqual'
 import { useCallback, useEffect, useId, useMemo, useRef, useState, type CSSProperties } from 'react'
 import styled from 'styled-components'
 

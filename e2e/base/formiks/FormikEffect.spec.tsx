@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 
 import { Formik, type FormikConfig } from 'formik'
-import { noop } from 'lodash'
+import noop from 'lodash/noop'
 import { useState } from 'react'
 import * as yup from 'yup'
 
