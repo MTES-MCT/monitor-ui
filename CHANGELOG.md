@@ -1,3 +1,9 @@
+## [24.32.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.32.0...v24.32.1) (2025-09-10)
+
+### Bug Fixes
+
+* **global:** fix release job ([dc0b0a1](https://github.com/MTES-MCT/monitor-ui/commit/dc0b0a1f46540edb8a417a3da4494b4d7de198be))
+
 ## [24.32.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.31.6...v24.32.0) (2025-09-10)
 
 ### Features
