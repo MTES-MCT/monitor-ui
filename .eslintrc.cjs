@@ -36,11 +36,10 @@ module.exports = {
     '/config/',
     '/coverage/',
     '/dist/',
-    '/e2e/release/sample/',
+    '/e2e/',
     '/scripts/',
     '/storybook-static/',
-    '.eslintrc.cjs',
-    'rollup.config.js'
+    '.eslintrc.cjs'
   ],
   rules: {
     curly: ['error', 'all'],
