@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        containers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        containers: [1]
     steps:
       - name: Cache Cypress
         uses: actions/cache@v3
@@ -44,11 +44,11 @@ jobs:
           record: true
           tag: components
           browser: firefox
-          headed: true
+          headed: false
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          DEBUG: '@cypress/github-action'
+          DEBUG: 'vite:*'
 
   # Release build sanity check with Cypress
   test_e2e_release:
@@ -73,7 +73,7 @@ jobs:
           record: true
           tag: release
           browser: firefox
-          headed: true
+          headed: false
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
