@@ -4,7 +4,7 @@ import {
   getFieldBorderColorFactoryForState,
   getFieldPlaceholderColorFactoryForState
 } from 'fields/shared/utils'
-import { isEqual } from 'lodash'
+import isEqual from 'lodash/isEqual'
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 

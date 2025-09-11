@@ -1,5 +1,5 @@
 import { LinkInput, type LinkInputProps } from '@fields/LinkInput'
-import { noop } from 'lodash'
+import noop from 'lodash/noop'
 import { useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'

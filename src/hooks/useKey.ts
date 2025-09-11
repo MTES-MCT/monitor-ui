@@ -1,4 +1,4 @@
-import { isEqual } from 'lodash'
+import isEqual from 'lodash/isEqual'
 import { useRef } from 'react'
 
 import { usePrevious } from './usePrevious'

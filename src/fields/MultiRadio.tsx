@@ -1,6 +1,6 @@
 import { getSelectedOptionValueFromSelectedRsuiteDataItemValue } from '@utils/getSelectedOptionValueFromSelectedRsuiteDataItemValue'
 import classnames from 'classnames'
-import { eq } from 'lodash'
+import eq from 'lodash/eq'
 import { type CSSProperties, type ReactNode, type SyntheticEvent, useCallback, useId, useMemo } from 'react'
 import { RadioGroup as RsuiteRadioGroup } from 'rsuite'
 import styled from 'styled-components'
