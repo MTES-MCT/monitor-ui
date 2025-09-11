@@ -35,7 +35,14 @@ export default defineConfig({
     ]
   },
 
+  optimizeDeps: {
+    entries: ['cypress/**/*']
+  },
+
   server: {
-    port: 3000
+    port: 3000,
+    warmup: {
+      clientFiles: ['cypress/support/*']
+    }
   }
 })

@@ -15,7 +15,13 @@ export default defineConfig({
       return devServer({
         ...devServerConfig,
         framework: 'react',
-        viteConfig: viteConfig
+        viteConfig: {
+          ...viteConfig,
+          optimizeDeps: {
+            entries: ['cypress/**/*']
+          },
+          ser
+        },
       })
     },
     indexHtmlFile: `config/cypress/support/component-index.html`,
