@@ -161,3 +161,6 @@ dist
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Intellij
+.idea/

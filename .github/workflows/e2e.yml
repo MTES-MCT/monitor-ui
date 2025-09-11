@@ -43,7 +43,7 @@ jobs:
           parallel: true
           record: true
           tag: components
-          browser: electron
+          browser: firefox
           headed: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
@@ -72,6 +72,8 @@ jobs:
           parallel: false
           record: true
           tag: release
+          browser: firefox
+          headed: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
