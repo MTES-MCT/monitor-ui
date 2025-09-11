@@ -3,6 +3,7 @@ import { useField } from 'formik'
 import { DatePicker } from '../fields/DatePicker'
 
 import type { DatePickerProps, DatePickerWithDateDateProps, DatePickerWithStringDateProps } from '../fields/DatePicker'
+import type { JSX } from 'react'
 
 const UntypedDatePicker: any = DatePicker
 

@@ -20,6 +20,13 @@ jobs:
       matrix:
         containers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     steps:
+      - name: Cache Cypress
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/Cypress
+            ~/.vite
+          key: ${{ runner.os }}-cypress-${{ hashFiles('package-lock.json') }}
       - name: Checkout
         if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
         uses: actions/checkout@v5
@@ -33,9 +40,11 @@ jobs:
           component: true
           config-file: config/cypress.config.ts
           install: false
-          parallel: true
+          parallel: false
           record: true
           tag: components
+          browser: firefox
+          headed: false
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -46,6 +55,13 @@ jobs:
     if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
     runs-on: ubuntu-latest
     steps:
+      - name: Cache Cypress
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/Cypress
+            ~/.vite
+          key: ${{ runner.os }}-cypress-${{ hashFiles('package-lock.json') }}
       - name: Checkout
         uses: actions/checkout@v5
       - name: Install
@@ -59,9 +75,11 @@ jobs:
         with:
           config-file: config/cypress.config.ts
           install: false
-          parallel: false
+          parallel: true
           record: true
           tag: release
+          browser: firefox
+          headed: false
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

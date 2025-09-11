@@ -25,7 +25,7 @@ import { usePrevious } from '@hooks/usePrevious'
 import { customDayjs } from '@utils/customDayjs'
 import { normalizeString } from '@utils/normalizeString'
 import classnames from 'classnames'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { type JSX, useCallback, useEffect, useMemo, useRef, useState, type HTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
 
 import { CalendarPicker } from './CalendarPicker'
@@ -40,7 +40,6 @@ import {
 
 import type { DateInputRef, DateTuple, TimeInputRef, TimeTuple } from '../DateRangePicker/types'
 import type { CommonFieldStyleProps } from 'fields/shared/types'
-import type { HTMLAttributes } from 'react'
 import type { Promisable } from 'type-fest'
 
 /**

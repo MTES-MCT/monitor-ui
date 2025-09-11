@@ -8,4 +8,4 @@ cp ./CHANGELOG.md ./dist/CHANGELOG.md
 cp ./LICENSE ./dist/LICENSE
 cp ./README.md ./dist/README.md
 
-cp ./src/cypress/global.d.ts ./dist/cypress/global.d.ts
+cp ./config/cypress/support/index.d.ts ./dist/global.d.ts

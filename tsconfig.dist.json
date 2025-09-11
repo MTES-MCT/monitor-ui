@@ -11,14 +11,12 @@
     ".storybook/*",
     "config/*",
     "dist/*",
-    "e2e/*",
     "node_modules/*",
     "scripts/*",
     "src/cypress/*",
     "stories/*",
     "storybook-static/*",
     ".eslintrc.cjs",
-    "rollup.config.js",
     "**/*.test.ts"
   ]
 }

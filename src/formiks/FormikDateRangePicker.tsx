@@ -1,4 +1,5 @@
 import { useField } from 'formik'
+import { type JSX } from 'react'
 
 import {
   DateRangePicker,
