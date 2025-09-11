@@ -1,5 +1,6 @@
-import { GlobalStyle, ThemeProvider } from '@mtes-mct/monitor-ui'
+/* eslint-disable-file */
 import React from 'react'
+import { GlobalStyle, ThemeProvider } from '@mtes-mct/monitor-ui'
 import ReactDOM from 'react-dom/client'
 
 import App from './App'
@@ -12,7 +13,6 @@ root.render(
   <React.StrictMode>
     <ThemeProvider>
       <GlobalStyle />
-
       <App />
     </ThemeProvider>
   </React.StrictMode>

@@ -1,4 +1,5 @@
 {
+  "extends": "@tsconfig/vite-react",
   "compilerOptions": {
     "allowJs": true,
     "allowUnreachableCode": false,
@@ -10,6 +11,7 @@
     "declaration": true,
     "declarationDir": "./dist",
     "declarationMap": true,
+    "erasableSyntaxOnly": false,
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
@@ -55,8 +57,8 @@
     "config/*",
     "coverage/*",
     "dist/*",
-    "e2e/release/sample/*",
     "node_modules/*",
+    "e2e/*",
     "scripts/*",
     "storybook-static/*",
     ".eslintrc.cjs"

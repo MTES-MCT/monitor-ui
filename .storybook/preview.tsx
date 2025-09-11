@@ -10,8 +10,11 @@ import { withStoryBox } from './components/StoryBox'
 
 import type { Preview } from '@storybook/react-vite'
 
+// @ts-ignore
 import 'react-toastify/dist/ReactToastify.css'
+// @ts-ignore
 import 'rsuite/dist/rsuite.min.css'
+// @ts-ignore
 import '../src/assets/stylesheets/rsuite-override.css'
 
 const preview: Preview = {
