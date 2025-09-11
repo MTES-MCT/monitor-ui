@@ -20,6 +20,10 @@ jobs:
       matrix:
         containers: [1]
     steps:
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
       - name: Cache Cypress
         uses: actions/cache@v3
         with:
@@ -48,7 +52,7 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          DEBUG: vite:*,cypress:*
+          DEBUG: vite:*,cypress:server:cypress
 
   # Release build sanity check with Cypress
   test_e2e_release:
