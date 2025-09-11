@@ -40,7 +40,7 @@ jobs:
           component: true
           config-file: config/cypress.config.ts
           install: false
-          parallel: true
+          parallel: false
           record: true
           tag: components
           browser: firefox
