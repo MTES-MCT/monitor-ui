@@ -20,7 +20,6 @@ export default defineConfig({
           optimizeDeps: {
             entries: ['cypress/**/*']
           },
-          ser
         },
       })
     },
