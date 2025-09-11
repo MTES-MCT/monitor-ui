@@ -40,7 +40,8 @@ module.exports = {
     '/scripts/',
     '/storybook-static/',
     '.eslintrc.cjs',
-    'rollup.config.js'
+    'rollup.config.js',
+    '/e2e/release/sample/vite.config.ts',
   ],
   rules: {
     curly: ['error', 'all'],
@@ -162,6 +163,7 @@ module.exports = {
   overrides: [
     {
       files: ['./e2e/**/*.ts', './e2e/**/*.tsx'],
+      excludedFiles: ['**/vite.config.ts'],
       plugins: ['cypress', 'mocha'],
       env: {
         browser: false,

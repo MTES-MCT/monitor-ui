@@ -1,4 +1,5 @@
 {
+  "extends": "@tsconfig/vite-react",
   "compilerOptions": {
     "allowJs": true,
     "allowUnreachableCode": false,
