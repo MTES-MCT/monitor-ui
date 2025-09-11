@@ -1,6 +1,6 @@
-import { throwError } from 'cypress/utils/throwError'
+import { throwError } from '../../utils/throwError'
 
-export function pickMultiCascaderOptions(
+export function pickMultiSelectOptions(
   fieldElement: HTMLDivElement,
   values: string[] | undefined,
   label: string,
@@ -12,7 +12,7 @@ export function pickMultiCascaderOptions(
       'Applied to': fieldElement,
       Elements: 1
     }),
-    name: 'pickMultiCascaderOptions'
+    name: 'pickMultiSelectOptions'
   })
 
   cy.wrap(fieldElement).scrollIntoView({ offset: { left: 0, top: -100 } })
@@ -32,30 +32,21 @@ export function pickMultiCascaderOptions(
 
   // Wait for the picker to open
   cy.wrap(fieldElement)
-    .find('.rs-picker-popup')
+    .get('.rs-picker-popup')
     .then(([rsuitePickerPopupElement]) => {
       if (!rsuitePickerPopupElement) {
         throwError(`Could not find '.rs-picker-popup' in in field with label "${label}". Did the picker open?`)
       }
 
-      // Search for the value if there is a search input
-      const maybeSearchInput = rsuitePickerPopupElement.querySelector('input[role="searchbox"]')
-      if (!maybeSearchInput) {
-        throwError(
-          throwError(
-            `\`cy.fill()\` can't handle the MultiCascader with \`<label>\` "${label}" because it's not \`searchable\`.`
-          )
-        )
-      }
       values.forEach(value => {
-        cy.wrap(rsuitePickerPopupElement)
-          .find('input[role="searchbox"]')
-          .clear()
-          .type(value, { delay, force })
-          .wait(250)
+        // Search for the value if there is a search input
+        const maybeSearchInput = fieldElement.querySelector('.rs-picker-search-input > input')
+        if (maybeSearchInput) {
+          cy.wrap(fieldElement).find('.rs-picker-search-input > input').type(value, { delay, force }).wait(250)
+        }
 
         cy.wrap(rsuitePickerPopupElement)
-          .find('[role="treeitem"]')
+          .find('[role="option"]')
           .contains(value)
           .first()
           .scrollIntoView()

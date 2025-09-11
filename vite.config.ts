@@ -29,7 +29,6 @@ export default defineConfig({
 
       // Two entry points: main and Cypress helpers
       entry: {
-        'cypress/index': path.resolve(__dirname, 'src/cypress/index.ts'),
         index: path.resolve(__dirname, 'src/index.ts')
       },
 

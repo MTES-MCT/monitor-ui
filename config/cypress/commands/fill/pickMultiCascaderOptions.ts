@@ -1,19 +1,18 @@
-import { throwError } from 'cypress/utils/throwError'
+import { throwError } from '../../utils/throwError'
 
-export function pickCheckPickerOptions(
+export function pickMultiCascaderOptions(
   fieldElement: HTMLDivElement,
   values: string[] | undefined,
   label: string,
   force: boolean,
-  delay: number,
-  role: string = 'option'
+  delay: number
 ) {
   Cypress.log({
     consoleProps: () => ({
       'Applied to': fieldElement,
       Elements: 1
     }),
-    name: 'pickCheckPickerOptions'
+    name: 'pickMultiCascaderOptions'
   })
 
   cy.wrap(fieldElement).scrollIntoView({ offset: { left: 0, top: -100 } })
@@ -41,17 +40,22 @@ export function pickCheckPickerOptions(
 
       // Search for the value if there is a search input
       const maybeSearchInput = rsuitePickerPopupElement.querySelector('input[role="searchbox"]')
+      if (!maybeSearchInput) {
+        throwError(
+          throwError(
+            `\`cy.fill()\` can't handle the MultiCascader with \`<label>\` "${label}" because it's not \`searchable\`.`
+          )
+        )
+      }
       values.forEach(value => {
-        if (maybeSearchInput) {
-          cy.wrap(rsuitePickerPopupElement)
-            .find('input[role="searchbox"]')
-            .clear()
-            .type(value, { delay, force })
-            .wait(250)
-        }
+        cy.wrap(rsuitePickerPopupElement)
+          .find('input[role="searchbox"]')
+          .clear()
+          .type(value, { delay, force })
+          .wait(250)
 
         cy.wrap(rsuitePickerPopupElement)
-          .find(`[role="${role}"]`)
+          .find('[role="treeitem"]')
           .contains(value)
           .first()
           .scrollIntoView()

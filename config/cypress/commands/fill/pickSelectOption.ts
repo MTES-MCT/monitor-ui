@@ -1,4 +1,4 @@
-import { throwError } from 'cypress/utils/throwError'
+import { throwError } from '../../utils/throwError'
 
 export function pickSelectOption(
   fieldElement: HTMLDivElement,
