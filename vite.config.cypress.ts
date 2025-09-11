@@ -8,10 +8,7 @@ import viteTsconfigPaths from 'vite-tsconfig-paths'
 // https://vitejs.dev/config/
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({
-  build: {
-    cssMinify: false,
-    outDir: './build'
-  },
+  mode: 'test',
 
   plugins: [
     react(),
@@ -35,14 +32,8 @@ export default defineConfig({
     ]
   },
 
-  optimizeDeps: {
-    entries: ['cypress/**/*']
-  },
-
   server: {
     port: 3000,
-    warmup: {
-      clientFiles: ['cypress/support/*']
-    }
+    strictPort: true
   }
 })

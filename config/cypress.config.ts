@@ -17,15 +17,12 @@ export default defineConfig({
         framework: 'react',
         viteConfig: {
           ...viteConfig,
-          optimizeDeps: {
-            entries: ['cypress/**/*']
-          },
         },
       })
     },
     indexHtmlFile: `config/cypress/support/component-index.html`,
     specPattern: 'e2e/base/**/*.spec.tsx',
-    supportFile: 'config/cypress/support/e2e.ts'
+    supportFile: 'config/cypress/support/component.ts'
   },
   e2e: {
     baseUrl: `http://${DOMAIN}:3000`,
