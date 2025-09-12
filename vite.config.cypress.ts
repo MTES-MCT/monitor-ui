@@ -32,8 +32,16 @@ export default defineConfig({
     ]
   },
 
+  optimizeDeps: {
+    entries: ['e2e/base/**/*.spec.tsx']
+  },
+
   server: {
     port: 3000,
-    strictPort: true
+    strictPort: true,
+    watch: {
+      usePolling: true, // more reliable in CI
+      interval: 500
+    }
   }
 })

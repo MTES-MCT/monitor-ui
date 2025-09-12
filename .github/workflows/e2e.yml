@@ -35,7 +35,8 @@ jobs:
         uses: ./.github/actions/install
       - name: Test
         if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
-        run: xvfb-run -a yarn cypress run --browser chrome --config-file ./config/cypress.config.ts --component --record
+        run:
+          xvfb-run -a yarn cypress run --browser chromium --config-file ./config/cypress.config.ts --component --record
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
