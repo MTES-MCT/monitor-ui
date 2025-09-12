@@ -35,27 +35,28 @@ jobs:
         uses: ./.github/actions/install
       - name: Test
         if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
-        run: yarn cypress run --browser firefox --config-file ./config/cypress.config.ts --component --record
+        run:
+          xvfb-run -a yarn cypress run --browser firefox --config-file ./config/cypress.config.ts --component --record
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           DEBUG: cypress:server:cypress
-      - name: Test old
-        if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
-        uses: cypress-io/github-action@v6
-        with:
-          component: true
-          config-file: config/cypress.config.ts
-          install: false
-          parallel: false
-          record: true
-          tag: components
-          browser: firefox
-          headed: false
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          DEBUG: vite:*,cypress:server:cypress
+  #      - name: Test old
+  #        if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
+  #        uses: cypress-io/github-action@v6
+  #        with:
+  #          component: true
+  #          config-file: config/cypress.config.ts
+  #          install: false
+  #          parallel: false
+  #          record: true
+  #          tag: components
+  #          browser: firefox
+  #          headed: false
+  #        env:
+  #          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+  #          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+  #          DEBUG: vite:*,cypress:server:cypress
 
   # Release build sanity check with Cypress
   test_e2e_release:
