@@ -20,10 +20,6 @@ jobs:
       matrix:
         containers: [1]
     steps:
-      - name: Setup Node
-        uses: actions/setup-node@v5
-        with:
-          node-version: 24
       - name: Cache Cypress
         uses: actions/cache@v3
         with:
@@ -49,6 +45,7 @@ jobs:
           tag: components
           browser: firefox
           headed: false
+          node-version: 24 # 👈 force Node 24 inside the action
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -78,6 +75,7 @@ jobs:
           tag: release
           browser: firefox
           headed: false
+          node-version: 24 # 👈 force Node 24 inside the action
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
