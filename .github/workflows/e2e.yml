@@ -20,6 +20,13 @@ jobs:
       matrix:
         containers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     steps:
+      - name: Cache Cypress
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/Cypress
+            ~/.vite
+          key: ${{ runner.os }}-cypress-${{ hashFiles('package-lock.json') }}
       - name: Checkout
         if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
         uses: actions/checkout@v5
@@ -28,17 +35,27 @@ jobs:
         uses: ./.github/actions/install
       - name: Test
         if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
-        uses: cypress-io/github-action@v6
-        with:
-          component: true
-          config-file: config/cypress.config.ts
-          install: false
-          parallel: true
-          record: true
-          tag: components
+        run: yarn cypress run --browser firefox --config-file ./config/cypress.config.ts --component --record
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          DEBUG: cypress:server:cypress
+  #      - name: Test old
+  #        if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
+  #        uses: cypress-io/github-action@v6
+  #        with:
+  #          component: true
+  #          config-file: config/cypress.config.ts
+  #          install: false
+  #          parallel: false
+  #          record: true
+  #          tag: components
+  #          browser: firefox
+  #          headed: false
+  #        env:
+  #          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+  #          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+  #          DEBUG: vite:*,cypress:server:cypress
 
   # Release build sanity check with Cypress
   test_e2e_release:
@@ -46,6 +63,13 @@ jobs:
     if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
     runs-on: ubuntu-latest
     steps:
+      - name: Cache Cypress
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/Cypress
+            ~/.vite
+          key: ${{ runner.os }}-cypress-${{ hashFiles('package-lock.json') }}
       - name: Checkout
         uses: actions/checkout@v5
       - name: Install
@@ -55,13 +79,20 @@ jobs:
           yarn test:e2e:release:setup &
           bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:3000)" != "200" ]]; do sleep 5; done'
       - name: Test
-        uses: cypress-io/github-action@v6
-        with:
-          config-file: config/cypress.config.ts
-          install: false
-          parallel: false
-          record: true
-          tag: release
+        run: yarn cypress run --browser firefox --config-file ./config/cypress.config.ts --tag release --record
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+#      - name: Test
+#        uses: cypress-io/github-action@v6
+#        with:
+#          config-file: config/cypress.config.ts
+#          install: false
+#          parallel: false
+#          record: true
+#          tag: release
+#          browser: firefox
+#          headed: false
+#        env:
+#          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+#          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

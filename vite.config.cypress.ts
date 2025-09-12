@@ -13,7 +13,7 @@ export default defineConfig({
   plugins: [
     react(),
     viteTsconfigPaths({
-      projects: ['../../../tsconfig.json']
+      projects: ['./tsconfig.json']
     })
   ],
 
@@ -22,18 +22,18 @@ export default defineConfig({
       // 1) Map assets subpath (must come before or use exact-match root alias)
       {
         find: /^@mtes-mct\/monitor-ui\/assets\/(.*)$/,
-        replacement: fileURLToPath(new URL('../../../src/assets/$1', import.meta.url))
+        replacement: fileURLToPath(new URL('./src/assets/$1', import.meta.url))
       },
       // 2) Map the package root to the source entry (exact match)
       {
         find: /^@mtes-mct\/monitor-ui$/,
-        replacement: fileURLToPath(new URL('../../../src/index.ts', import.meta.url))
+        replacement: fileURLToPath(new URL('./src/index.ts', import.meta.url))
       }
     ]
   },
 
   optimizeDeps: {
-    entries: ['../*.spec.ts']
+    entries: ['e2e/base/**/*.spec.tsx', 'e2e/release/**/*.spec.tsx']
   },
 
   server: {

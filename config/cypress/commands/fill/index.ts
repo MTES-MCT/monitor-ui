@@ -1,4 +1,4 @@
-import { findElementParentBySelector } from 'cypress/utils/findElementParentBySelector'
+import { findElementParentBySelector } from '../../utils/findElementParentBySelector'
 
 import { checkCheckbox } from './checkCheckbox'
 import { checkMultiCheckboxOptions } from './checkMultiCheckboxOptions'

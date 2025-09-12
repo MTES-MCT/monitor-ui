@@ -1,3 +1,2 @@
-import '../../../src/cypress'
-
-import '../../../src/assets/stylesheets/rsuite-override.css'
+import './commands'
+// import '../../../src/assets/stylesheets/rsuite-override.css'

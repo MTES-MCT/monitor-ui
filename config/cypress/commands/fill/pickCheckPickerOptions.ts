@@ -1,18 +1,19 @@
-import { throwError } from 'cypress/utils/throwError'
+import { throwError } from '../../utils/throwError'
 
-export function pickMultiSelectOptions(
+export function pickCheckPickerOptions(
   fieldElement: HTMLDivElement,
   values: string[] | undefined,
   label: string,
   force: boolean,
-  delay: number
+  delay: number,
+  role: string = 'option'
 ) {
   Cypress.log({
     consoleProps: () => ({
       'Applied to': fieldElement,
       Elements: 1
     }),
-    name: 'pickMultiSelectOptions'
+    name: 'pickCheckPickerOptions'
   })
 
   cy.wrap(fieldElement).scrollIntoView({ offset: { left: 0, top: -100 } })
@@ -32,21 +33,25 @@ export function pickMultiSelectOptions(
 
   // Wait for the picker to open
   cy.wrap(fieldElement)
-    .get('.rs-picker-popup')
+    .find('.rs-picker-popup')
     .then(([rsuitePickerPopupElement]) => {
       if (!rsuitePickerPopupElement) {
         throwError(`Could not find '.rs-picker-popup' in in field with label "${label}". Did the picker open?`)
       }
 
+      // Search for the value if there is a search input
+      const maybeSearchInput = rsuitePickerPopupElement.querySelector('input[role="searchbox"]')
       values.forEach(value => {
-        // Search for the value if there is a search input
-        const maybeSearchInput = fieldElement.querySelector('.rs-picker-search-input > input')
         if (maybeSearchInput) {
-          cy.wrap(fieldElement).find('.rs-picker-search-input > input').type(value, { delay, force }).wait(250)
+          cy.wrap(rsuitePickerPopupElement)
+            .find('input[role="searchbox"]')
+            .clear()
+            .type(value, { delay, force })
+            .wait(250)
         }
 
         cy.wrap(rsuitePickerPopupElement)
-          .find('[role="option"]')
+          .find(`[role="${role}"]`)
           .contains(value)
           .first()
           .scrollIntoView()
