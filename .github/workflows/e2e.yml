@@ -35,8 +35,7 @@ jobs:
         uses: ./.github/actions/install
       - name: Test
         if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
-        run:
-          xvfb-run -a yarn cypress run --browser firefox --config-file ./config/cypress.config.ts --component --record
+        run: yarn cypress run --browser firefox --config-file ./config/cypress.config.ts --component --record
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -64,6 +63,13 @@ jobs:
     if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
     runs-on: ubuntu-latest
     steps:
+      - name: Cache Cypress
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/Cypress
+            ~/.vite
+          key: ${{ runner.os }}-cypress-${{ hashFiles('package-lock.json') }}
       - name: Checkout
         uses: actions/checkout@v5
       - name: Install
