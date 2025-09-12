@@ -36,7 +36,7 @@ jobs:
       - name: Test
         if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
         run:
-          xvfb-run -a yarn cypress run --browser chromium --config-file ./config/cypress.config.ts --component --record
+          xvfb-run -a yarn cypress run --browser firefox --config-file ./config/cypress.config.ts --component --record
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -73,16 +73,21 @@ jobs:
           yarn test:e2e:release:setup &
           bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:3000)" != "200" ]]; do sleep 5; done'
       - name: Test
-        uses: cypress-io/github-action@v6
-        with:
-          config-file: config/cypress.config.ts
-          install: false
-          parallel: false
-          record: true
-          tag: release
-          browser: firefox
-          headed: false
-          node-version: 24 # 👈 force Node 24 inside the action
+        run:
+          xvfb-run -a yarn cypress run --browser firefox --config-file ./config/cypress.config.ts --tag release --record
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+#      - name: Test
+#        uses: cypress-io/github-action@v6
+#        with:
+#          config-file: config/cypress.config.ts
+#          install: false
+#          parallel: false
+#          record: true
+#          tag: release
+#          browser: firefox
+#          headed: false
+#        env:
+#          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+#          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
