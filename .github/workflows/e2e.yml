@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        containers: [1]
+        containers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     steps:
       - name: Cache Cypress
         uses: actions/cache@v3
@@ -79,8 +79,7 @@ jobs:
           yarn test:e2e:release:setup &
           bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:3000)" != "200" ]]; do sleep 5; done'
       - name: Test
-        run:
-          xvfb-run -a yarn cypress run --browser firefox --config-file ./config/cypress.config.ts --tag release --record
+        run: yarn cypress run --browser firefox --config-file ./config/cypress.config.ts --tag release --record
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

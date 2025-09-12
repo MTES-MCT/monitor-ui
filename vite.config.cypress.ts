@@ -33,7 +33,7 @@ export default defineConfig({
   },
 
   optimizeDeps: {
-    entries: ['e2e/base/**/*.spec.tsx']
+    entries: ['e2e/base/**/*.spec.tsx', 'e2e/release/**/*.spec.tsx']
   },
 
   server: {
