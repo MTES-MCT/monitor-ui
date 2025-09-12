@@ -39,7 +39,7 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          DEBUG: vite:*,cypress:server:cypress
+          DEBUG: cypress:server:cypress
       - name: Test old
         if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
         uses: cypress-io/github-action@v6
