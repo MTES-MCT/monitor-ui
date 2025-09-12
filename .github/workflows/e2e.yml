@@ -35,6 +35,13 @@ jobs:
         uses: ./.github/actions/install
       - name: Test
         if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
+        run: yarn cypress run --browser firefox --config-file ./config/cypress.config.ts --component --record
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          DEBUG: vite:*,cypress:server:cypress
+      - name: Test old
+        if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
         uses: cypress-io/github-action@v6
         with:
           component: true
@@ -45,7 +52,6 @@ jobs:
           tag: components
           browser: firefox
           headed: false
-          node-version: 24 # 👈 force Node 24 inside the action
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
