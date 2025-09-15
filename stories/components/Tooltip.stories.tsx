@@ -7,7 +7,7 @@ import { Tooltip } from 'components/Tooltip/Tooltip'
 
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 
-import type { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react-vite'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<{}> = {
