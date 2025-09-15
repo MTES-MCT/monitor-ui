@@ -3,7 +3,7 @@
 
 import { Formik } from 'formik'
 import { FormikLinkInput, type FormikLinkInputProps } from 'formiks/FormikLinkInput'
-import omit from 'lodash/omit'
+import { omit } from 'lodash-es'
 import { useMemo, useState } from 'react'
 import { action } from 'storybook/actions'
 

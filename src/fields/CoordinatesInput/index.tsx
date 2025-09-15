@@ -6,7 +6,7 @@ import { useKey } from '@hooks/useKey'
 import { normalizeString } from '@utils/normalizeString'
 import classnames from 'classnames'
 import { getFieldBackgroundColorFactory, getFieldBorderColorFactoryForState } from 'fields/shared/utils'
-import noop from 'lodash/noop'
+import { noop } from 'lodash-es'
 import { useCallback, useId, useMemo, useState, type CSSProperties } from 'react'
 import styled from 'styled-components'
 

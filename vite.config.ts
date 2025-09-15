@@ -52,6 +52,6 @@ export default defineConfig({
   plugins: [
     react(), // React 19-friendly; supports Vite 7 and Oxc transform in recent versions
     tsconfigPaths(), // makes tsconfig "paths" work in Vite
-    analyzer({ analyzerMode: 'static', summary: true, openAnalyzer: false }) // bundle analyser
+    analyzer({ analyzerMode: 'static', summary: true, openAnalyzer: true }) // bundle analyser
   ]
 })

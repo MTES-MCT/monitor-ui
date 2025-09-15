@@ -1,4 +1,4 @@
-import isEmpty from 'lodash/isEmpty'
+import { isEmpty } from 'lodash-es'
 import { useCallback, useMemo } from 'react'
 import CoordinateInput from 'react-coordinate-input'
 import styled from 'styled-components'
