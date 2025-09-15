@@ -1,4 +1,4 @@
-import merge from 'lodash/merge'
+import { merge } from 'lodash-es'
 import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components'
 
 import { THEME, type Theme } from './theme'

@@ -1,6 +1,6 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 
-import fromPairs from 'lodash/fromPairs'
+import { fromPairs } from 'lodash-es'
 
 import { LOREM_IPSUM } from './fake_text'
 

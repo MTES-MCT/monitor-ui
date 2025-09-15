@@ -1,5 +1,5 @@
 import { promises as fs } from 'fs'
-import _ from 'lodash'
+import _ from 'lodash-es'
 
 const distPackageExtraProps = {
   bugs: {

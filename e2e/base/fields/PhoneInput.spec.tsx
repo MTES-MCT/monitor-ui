@@ -1,4 +1,4 @@
-import noop from 'lodash/noop'
+import { noop } from 'lodash-es'
 import { useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'

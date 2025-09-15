@@ -1,4 +1,4 @@
-import { noop } from 'lodash'
+import { noop } from 'lodash-es'
 
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'

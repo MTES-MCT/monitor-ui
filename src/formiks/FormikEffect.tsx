@@ -1,5 +1,5 @@
 import { useFormikContext } from 'formik'
-import isEqual from 'lodash/isEqual'
+import { isEqual } from 'lodash-es'
 import { useEffect } from 'react'
 
 import { usePrevious } from '../hooks/usePrevious'

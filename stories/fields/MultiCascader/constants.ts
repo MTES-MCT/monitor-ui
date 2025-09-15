@@ -1,7 +1,7 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 
 import { faker } from '@faker-js/faker'
-import fromPairs from 'lodash/fromPairs'
+import { fromPairs } from 'lodash-es'
 
 import type { TreeOption } from '../../../src'
 

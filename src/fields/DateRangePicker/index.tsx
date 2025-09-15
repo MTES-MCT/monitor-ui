@@ -20,7 +20,7 @@
 
 import { usePressEscapeEffect } from '@hooks/usePressEscapeEffect'
 import classnames from 'classnames'
-import isEqual from 'lodash/isEqual'
+import { isEqual } from 'lodash-es'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 

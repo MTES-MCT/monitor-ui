@@ -64,7 +64,7 @@ describe('libs/CustomSearch.find()', () => {
 
     const result = customSearch.find('me')
 
-    expect(result[0]).toMatchObject({ code: 'ME', description: 'mémo' })
+    expect(result[0]).toMatchObject({ code: 'ME', description: 'memo' })
   })
 
   it('should return the expected length and first item when searching with/without diacritics', () => {
@@ -74,12 +74,12 @@ describe('libs/CustomSearch.find()', () => {
     const firstResult = customSearch.find('emoi')
 
     expect(firstResult).toHaveLength(4)
-    expect(firstResult[0]).toMatchObject({ code: 'MF', description: 'mémoire' })
+    expect(firstResult[0]).toMatchObject({ code: 'MF', description: 'memoire' })
 
     const secondResult = customSearch.find('ÊMOÏ')
 
     expect(secondResult).toHaveLength(4)
-    expect(secondResult[0]).toMatchObject({ code: 'MF', description: 'mémoire' })
+    expect(secondResult[0]).toMatchObject({ code: 'MF', description: 'memoire' })
   })
 
   it('should return the expected length and item when enabling `isStrict`', () => {
@@ -92,7 +92,7 @@ describe('libs/CustomSearch.find()', () => {
     const result = customSearch.find('emoi')
 
     expect(result).toHaveLength(1)
-    expect(result).toMatchObject([{ code: 'MF', description: 'mémoire' }])
+    expect(result).toMatchObject([{ code: 'MF', description: 'memoire' }])
   })
 
   it('should return all the matching items by default', () => {

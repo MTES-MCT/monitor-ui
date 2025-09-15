@@ -1,5 +1,5 @@
 import diacritics from 'diacritics'
-import { flow, get, update } from 'lodash/fp'
+import { flow, get, update } from 'lodash-es'
 
 import type { CustomSearchKey } from '../libs/CustomSearch/types'
 import type { AnyObject } from '../types/definitions'
@@ -40,11 +40,11 @@ export function cleanCollectionDiacritics<T extends AnyObject = AnyObject>(
   // able for remove diacritics of a collection item, one transformer per collection item prop path.
   const collectionItemTransformers = collectionKeysAsPaths.map(collectionKeyAsPath => (collectionItem: T): T => {
     // This type check is a safeguard against unexpected values (a non-string value would otherwise throw an error)
-    if (typeof get(collectionKeyAsPath, collectionItem) !== 'string') {
+    if (typeof get(collectionItem, collectionKeyAsPath) !== 'string') {
       return collectionItem
     }
 
-    return update(collectionKeyAsPath, diacritics.remove, collectionItem)
+    return update(collectionItem, collectionKeyAsPath, diacritics.remove)
   })
 
   // We can then generate a single function piping all these collection item transformers...
