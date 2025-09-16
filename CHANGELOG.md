@@ -1,3 +1,19 @@
+## [24.33.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.32.1...v24.33.0) (2025-09-16)
+
+### Features
+
+* **components:** add Tooltip ([8d75f6d](https://github.com/MTES-MCT/monitor-ui/commit/8d75f6d7b3e30091b8c086987300e574cfd3c216))
+* **components:** add Tooltip orientation ([67e3b62](https://github.com/MTES-MCT/monitor-ui/commit/67e3b626ef41163bb228364859ba0f4f585f12b0))
+* **global:** reduce amount of fonts to reduce bundle size ([92a3bf8](https://github.com/MTES-MCT/monitor-ui/commit/92a3bf8c82419de76d70c82b99ba0acc21353c10))
+
+### Bug Fixes
+
+* **libs:** update lodash imports ([45bbba4](https://github.com/MTES-MCT/monitor-ui/commit/45bbba45a3af2a43eefba85b0ec17e35d5508eed))
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump the all-non-major-dependencies group ([162f01d](https://github.com/MTES-MCT/monitor-ui/commit/162f01dd3e725bc8a547677db9f9eb806382d39d))
+
 ## [24.32.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.32.0...v24.32.1) (2025-09-10)
 
 ### Bug Fixes
