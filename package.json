@@ -124,7 +124,7 @@
     "jest-environment-node": "30.0.4",
     "json-stringify-deterministic": "1.0.12",
     "ky": "1.8.1",
-    "lint-staged": "15.5.1",
+    "lint-staged": "16.1.6",
     "lodash": "4.17.21",
     "ol": "10.6.1",
     "postcss": "8.5.6",
