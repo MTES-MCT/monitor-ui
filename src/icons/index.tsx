@@ -86,6 +86,7 @@ import { SelectRectangle } from './SelectRectangle'
 import { SelectZone } from './SelectZone'
 import { Semaphore } from './Semaphore'
 import { Send } from './Send'
+import { Settings } from './Settings'
 import { ShowErsMessages } from './ShowErsMessages'
 import { ShowXml } from './ShowXml'
 import { SortingArrows } from './SortingArrows'
@@ -197,6 +198,7 @@ export {
   SelectZone,
   Semaphore,
   Send,
+  Settings,
   ShowErsMessages,
   ShowXml,
   SortSelectedDown,
