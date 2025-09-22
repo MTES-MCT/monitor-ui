@@ -30,7 +30,7 @@ export default defineConfig({
     specPattern: 'e2e/release/**/*.spec.ts',
     supportFile: 'config/cypress/support/e2e.ts'
   },
-  projectId: 'qnpjm2',
+  projectId: 'juvjsi',
   retries: {
     openMode: 0,
     // Normally all e2e tests are perfectly non-flaky.
