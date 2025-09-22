@@ -22,5 +22,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           MERGE_LABELS: ''
           MERGE_METHOD: rebase
-          UPDATE_RETRIES: 6
+          UPDATE_RETRIES: 0
           UPDATE_RETRY_SLEEP: 10000
