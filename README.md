@@ -94,15 +94,15 @@ Please read the [contributing document](CONTRIBUTING.md) for setup and contribut
 [img-coverage]: https://img.shields.io/codecov/c/github/MTES-MCT/monitor-ui?flag=unit&style=for-the-badge
 [img-documentation]: https://img.shields.io/badge/StoryBook-Docs-007ec6?logo=storybook&style=for-the-badge
 [img-e2e-tests]:
-  https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/qnpjm2/main&label=E2E&logo=cypress&style=for-the-badge
+  https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/juvjsi/main&label=E2E&logo=cypress&style=for-the-badge
 [img-license]: https://img.shields.io/github/license/MTES-MCT/monitor-ui?style=for-the-badge
 [img-npm]: https://img.shields.io/npm/v/@mtes-mct/monitor-ui?style=for-the-badge
 [img-unit-tests]:
   https://img.shields.io/github/actions/workflow/status/MTES-MCT/monitor-ui/check.yml?branch=main&label=Unit&style=for-the-badge
 [lnk-coverage]: https://app.codecov.io/gh/MTES-MCT/monitor-ui
 [lnk-documentation]: https://mtes-mct.github.io/monitor-ui/?path=/docs/introduction--documentation
-[lnk-e2e-tests]: https://cloud.cypress.io/projects/qnpjm2/runs
-[lnk-e2e-tests]: https://cloud.cypress.io/projects/qnpjm2/runs
+[lnk-e2e-tests]: https://cloud.cypress.io/projects/juvjsi/runs
+[lnk-e2e-tests]: https://cloud.cypress.io/projects/juvjsi/runs
 [lnk-github-monitorenv]: https://github.com/MTES-MCT/monitorenv
 [lnk-github-monitorfish]: https://github.com/MTES-MCT/monitorfish
 [lnk-github-rapportnav]: https://github.com/MTES-MCT/rapportnav2
