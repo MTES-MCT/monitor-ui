@@ -1,5 +1,4 @@
 /* eslint-disable import/no-extraneous-dependencies, sort-keys-fix/sort-keys-fix, @typescript-eslint/naming-convention */
-
 import react from '@vitejs/plugin-react'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
@@ -24,17 +23,12 @@ export default defineConfig({
   build: {
     emptyOutDir: true,
     lib: {
-      // Optional: align CSS filename with entry if you emit CSS
-      // cssFileName: entryName => `${entryName}.css`,
-
-      // Two entry points: main and Cypress helpers
       entry: {
-        index: path.resolve(__dirname, 'src/index.ts')
+        index: path.resolve(__dirname, 'src/index.ts'),
+        'cypress/index': path.resolve(__dirname, 'src/cypress/index.ts')
       },
-
       // Control file names to get dist/index.js and dist/cypress/index.js
       fileName: (_format, entryName) => `${entryName}.js`,
-
       // Only ES, like the current Rollup config
       formats: ['es']
     },
@@ -44,14 +38,31 @@ export default defineConfig({
       external: isExternal,
       output: {
         // Match current behavior (single bundle per entry)
-        preserveModules: false
+        preserveModules: false,
+        // Handle assets like .woff2 files - inline them like your Rollup config
+        assetFileNames: assetInfo => {
+          if (assetInfo.names?.[0]?.endsWith('.woff2')) {
+            // Inline font files (equivalent to url plugin with limit: Infinity)
+            return '[name][extname]'
+          }
+
+          return 'assets/[name]-[hash][extname]'
+        }
       }
     },
-    sourcemap: false
+    sourcemap: false,
+    // Handle CSS imports (equivalent to rollup-plugin-import-css)
+    cssCodeSplit: false,
+    // Inline assets under any size (equivalent to url plugin limit: Infinity for .woff2)
+    assetsInlineLimit: filePath => (filePath.endsWith('.woff2') ? false : undefined) // Keep default for other assets, handle .woff2 via assetFileNames
   },
   plugins: [
     react(), // React 19-friendly; supports Vite 7 and Oxc transform in recent versions
     tsconfigPaths(), // makes tsconfig "paths" work in Vite
-    analyzer({ analyzerMode: 'static', summary: true, openAnalyzer: true }) // bundle analyser
-  ]
+    analyzer({ analyzerMode: 'static', summary: true, openAnalyzer: false }) // bundle analyser
+  ],
+  // Ensure proper resolution of extensions (equivalent to nodeResolve extensions)
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.mjs', '.cjs']
+  }
 })

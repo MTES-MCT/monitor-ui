@@ -1,1 +1,3 @@
-import './commands'
+import { registerMonitorUiCustomCommands } from '../../../src/cypress'
+
+registerMonitorUiCustomCommands()
