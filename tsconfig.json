@@ -52,7 +52,7 @@
     "useUnknownInCatchVariables": true,
     "verbatimModuleSyntax": true
   },
-  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", ".storybook/**/*", "vite.config.ts"],
+  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", ".storybook/**/*"],
   "exclude": [
     "config/*",
     "coverage/*",
@@ -62,5 +62,6 @@
     "scripts/*",
     "storybook-static/*",
     ".eslintrc.cjs"
+    //    "vite.config.ts"
   ]
 }

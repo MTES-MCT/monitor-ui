@@ -10,12 +10,7 @@ import viteTsconfigPaths from 'vite-tsconfig-paths'
 export default defineConfig({
   mode: 'test',
 
-  plugins: [
-    react(),
-    viteTsconfigPaths({
-      projects: ['./tsconfig.json']
-    })
-  ],
+  plugins: [react(), viteTsconfigPaths()],
 
   resolve: {
     alias: [

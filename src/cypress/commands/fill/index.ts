@@ -1,5 +1,3 @@
-import { findElementParentBySelector } from '../../utils/findElementParentBySelector'
-
 import { checkCheckbox } from './checkCheckbox'
 import { checkMultiCheckboxOptions } from './checkMultiCheckboxOptions'
 import { checkMultiRadioOption } from './checkMultiRadioOption'
@@ -24,6 +22,7 @@ import {
   assertStringOrUndefined
 } from './utils'
 import { findElementByText } from '../../utils/findElementByText'
+import { findElementParentBySelector } from '../../utils/findElementParentBySelector'
 import { throwError } from '../../utils/throwError'
 
 let TOTAL_RETRIES: number

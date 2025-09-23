@@ -39,7 +39,7 @@ module.exports = {
     '/e2e/',
     '/scripts/',
     '/storybook-static/',
-    '.eslintrc.cjs'
+    '.eslintrc.cjs',
   ],
   rules: {
     curly: ['error', 'all'],

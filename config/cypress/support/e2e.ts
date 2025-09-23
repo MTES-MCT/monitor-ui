@@ -1,3 +1,3 @@
-// config/cypress/support/e2e.ts
-import './commands'
+import { registerMonitorUiCustomCommands } from '../../../src/cypress'
 
+registerMonitorUiCustomCommands()
