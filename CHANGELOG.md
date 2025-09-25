@@ -1,3 +1,17 @@
+## [24.34.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.34.0...v24.34.1) (2025-09-25)
+
+### Bug Fixes
+
+* **global:** fix cypress export ([b877a60](https://github.com/MTES-MCT/monitor-ui/commit/b877a6044d57ffd0723ee0e8da312d5b2856baec))
+
+### Buid System & Dependencies
+
+* **dev-deps:** bump the all-non-major-dependencies group ([a32ebd1](https://github.com/MTES-MCT/monitor-ui/commit/a32ebd1879d2d4fb9f5444249f3f9720713b4465))
+
+### Documentation
+
+* fix readme cypress links ([2b67682](https://github.com/MTES-MCT/monitor-ui/commit/2b676824228b1e333ce89ec73bbb9acadc305dce))
+
 ## [24.33.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.32.1...v24.33.0) (2025-09-16)
 
 ### Features
