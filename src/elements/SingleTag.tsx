@@ -12,6 +12,7 @@ export type SingleTagProps = HTMLAttributes<HTMLDivElement> & {
   children: string
   onDelete: () => Promisable<void>
 }
+
 export function SingleTag({ accent = Accent.PRIMARY, children, className, onDelete, ...nativeProps }: SingleTagProps) {
   // TODO Remove `Component-SingleTag` in a next major/breaking version.
   const controlledClassName = classnames('Component-SingleTag', 'Element-SingleTag', className)
@@ -27,7 +28,7 @@ export function SingleTag({ accent = Accent.PRIMARY, children, className, onDele
       return (
         <Box className={controlledClassName} {...nativeProps}>
           <SecondaryText>{children}</SecondaryText>
-          <SecondaryIconButton onClick={handleDelete}>
+          <SecondaryIconButton aria-label="Supprimer ce tag" onClick={handleDelete}>
             <Close size={10} />
           </SecondaryIconButton>
         </Box>
@@ -38,7 +39,7 @@ export function SingleTag({ accent = Accent.PRIMARY, children, className, onDele
       return (
         <Box className={controlledClassName} {...nativeProps}>
           <PrimaryText>{children}</PrimaryText>
-          <PrimaryIconButton onClick={handleDelete}>
+          <PrimaryIconButton aria-label="Supprimer ce tag" onClick={handleDelete}>
             <Close size={10} />
           </PrimaryIconButton>
         </Box>
