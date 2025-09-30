@@ -1,3 +1,9 @@
+## [24.34.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.34.1...v24.34.2) (2025-09-30)
+
+### Bug Fixes
+
+* **components:** add aria-label to SingleTag.tsx ([2a722d1](https://github.com/MTES-MCT/monitor-ui/commit/2a722d1bd947aef80a9f943bcc564a69727cf8a4))
+
 ## [24.34.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.34.0...v24.34.1) (2025-09-25)
 
 ### Bug Fixes
