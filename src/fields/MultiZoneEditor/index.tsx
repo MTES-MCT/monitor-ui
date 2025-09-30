@@ -11,7 +11,7 @@ import { remove } from '@utils/remove'
 import classnames from 'classnames'
 import { getFieldBackgroundColorFactory } from 'fields/shared/utils'
 import { isEqual } from 'lodash-es'
-import { useCallback, useEffect, useId, useMemo, useRef, useState, type CSSProperties } from 'react'
+import { type CSSProperties, useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 
 import { Delete, Edit, Plus, SelectRectangle } from '../../icons'
@@ -43,6 +43,7 @@ export type MultiZoneEditorProps = {
   readOnly?: boolean | undefined
   style?: CSSProperties | undefined
 }
+
 export function MultiZoneEditor({
   addButtonLabel,
   className,
@@ -172,12 +173,17 @@ export function MultiZoneEditor({
               </Link>
             </ZoneBox>
 
-            <IconButton accent={Accent.SECONDARY} Icon={Edit} onClick={() => editZone(index, zone)} />
             <IconButton
               accent={Accent.SECONDARY}
-              aria-label="Supprimer cette zone"
+              Icon={Edit}
+              onClick={() => editZone(index, zone)}
+              title="Modifier cette zone"
+            />
+            <IconButton
+              accent={Accent.SECONDARY}
               Icon={Delete}
               onClick={() => deleteZone(index)}
+              title="Supprimer cette zone"
             />
           </Row>
         ))}
@@ -219,6 +225,7 @@ const Link = styled.a`
     margin: -2px 0 0 8px;
     text-decoration: underline;
   }
+
   &:hover {
     color: ${p => p.theme.color.gunMetal};
   }
