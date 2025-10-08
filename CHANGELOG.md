@@ -1,3 +1,9 @@
+## [24.34.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.34.2...v24.34.3) (2025-10-08)
+
+### Bug Fixes
+
+* **components:** add title to edit button ([d0eee66](https://github.com/MTES-MCT/monitor-ui/commit/d0eee6673e4a486cb55693f90b8b4acd66a179f3))
+
 ## [24.34.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.34.1...v24.34.2) (2025-09-30)
 
 ### Bug Fixes
