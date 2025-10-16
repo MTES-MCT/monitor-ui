@@ -1,3 +1,9 @@
+## [24.34.4](https://github.com/MTES-MCT/monitor-ui/compare/v24.34.3...v24.34.4) (2025-10-16)
+
+### Bug Fixes
+
+* **fields:** fix select item when custom search available ([82914bb](https://github.com/MTES-MCT/monitor-ui/commit/82914bbdcff692d9c4741654675326607f0b97af))
+
 ## [24.34.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.34.2...v24.34.3) (2025-10-08)
 
 ### Bug Fixes
