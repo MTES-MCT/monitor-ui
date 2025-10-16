@@ -2,6 +2,7 @@
 
 import diacritics from 'diacritics'
 import Fuse from 'fuse.js'
+import { cloneDeep } from 'lodash-es'
 
 import { findCacheRecord, storeCacheRecord } from './cache'
 import { cleanCollectionDiacritics } from '../../utils/cleanCollectionDiacritics'
@@ -44,7 +45,7 @@ export class CustomSearch<T extends AnyObject = AnyObject> {
     const normalizedCollection: T[] =
       (maybeCacheRecord?.normalizedCollection ?? isDiacriticSensitive)
         ? flatOriginalCollection
-        : cleanCollectionDiacritics(flatOriginalCollection, keys)
+        : cleanCollectionDiacritics(cloneDeep(flatOriginalCollection), keys)
     this.#fuse = new Fuse(
       normalizedCollection,
       {
