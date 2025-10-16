@@ -59,7 +59,7 @@ export default meta
 
 export function WithCustomSearch(props: CheckPickerProps<Specy>) {
   const optionsRef = useRef(
-    (SPECIES as Specy[]).map(specy => ({
+    (SPECIES as Specy[]).slice(0, 10000).map(specy => ({
       label: `${specy.code} - ${specy.name}`,
       value: specy
     }))

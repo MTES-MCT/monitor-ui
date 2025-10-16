@@ -79,8 +79,6 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
         : []
       const normalizedNextValue = nextValue.length > 0 ? nextValue : undefined
 
-      setControlledRsuiteData(rsuiteData)
-
       onChange(normalizedNextValue)
     },
     [onChange, rsuiteData]
@@ -99,6 +97,12 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
     },
     [customSearchMinQueryLength, optionValueKey, rsuiteData]
   )
+
+  const handleExit = () => {
+    if (customSearch) {
+      setControlledRsuiteData(rsuiteData)
+    }
+  }
 
   const renderMenuItem = useCallback((_, item) => <span title={item.label}>{item.label}</span>, [])
 
@@ -142,6 +146,7 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
           disabled={disabled}
           id={originalProps.name}
           onChange={handleChange}
+          onExit={handleExit}
           onSearch={handleSearch}
           readOnly={readOnly}
           renderMenuItem={renderMenuItem}
