@@ -7,6 +7,7 @@ import { Attention } from './Attention'
 import { AttentionFilled } from './AttentionFilled'
 import { Bullseye } from './Bullseye'
 import { Calendar } from './Calendar'
+import { CalendarRepetition } from './CalendarRepetition'
 import { Car } from './Car'
 import { Chart } from './Chart'
 import { Check } from './Check'
@@ -119,6 +120,7 @@ export {
   AttentionFilled,
   Bullseye,
   Calendar,
+  CalendarRepetition,
   Car,
   Chart,
   Check,
