@@ -1,3 +1,9 @@
+## [24.34.5](https://github.com/MTES-MCT/monitor-ui/compare/v24.34.4...v24.34.5) (2025-10-17)
+
+### Bug Fixes
+
+* **libs:** fix customSearch ([057982e](https://github.com/MTES-MCT/monitor-ui/commit/057982e077eb73d708d8e6afe7b1257f90dd6bd8))
+
 ## [24.34.4](https://github.com/MTES-MCT/monitor-ui/compare/v24.34.3...v24.34.4) (2025-10-16)
 
 ### Bug Fixes
