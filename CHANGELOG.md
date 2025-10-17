@@ -1,3 +1,9 @@
+## [24.35.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.34.5...v24.35.0) (2025-10-17)
+
+### Features
+
+* **icons:** add calendarRepetition icon ([f082a35](https://github.com/MTES-MCT/monitor-ui/commit/f082a356d81e1670ee588484bdd4a1190654ed78))
+
 ## [24.34.5](https://github.com/MTES-MCT/monitor-ui/compare/v24.34.4...v24.34.5) (2025-10-17)
 
 ### Bug Fixes
