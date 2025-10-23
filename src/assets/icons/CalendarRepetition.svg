@@ -1,14 +1,27 @@
-<svg id="Calendar_repetition" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+<svg id="Calendar_repetition" xmlns="http://www.w3.org/2000/svg" width="20"
+     height="20" viewBox="0 0 20 20">
   <defs>
     <clipPath id="clip-path">
+      <rect id="Rectangle_6987" data-name="Rectangle 6987" width="20" height="20" transform="translate(0 0)"
+            fill="#707785"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
       <rect id="Rectangle_6986" data-name="Rectangle 6986" width="20" height="20" fill="none"/>
     </clipPath>
   </defs>
-  <path id="Tracé_1890" data-name="Tracé 1890" d="M12,0V2H5V0H3V2H0V18H9V16H2V8H15V9h2V2H14V0Z" transform="translate(0)" fill="#707785"/>
-  <g id="Groupe_5859" data-name="Groupe 5859" transform="translate(0)">
-    <g id="Groupe_5858" data-name="Groupe 5858" clip-path="url(#clip-path)">
-      <path id="Tracé_1891" data-name="Tracé 1891" d="M18.5,10.5v.971A4.918,4.918,0,0,0,15,10a5,5,0,1,0,4.745,6.5H17.583a3,3,0,1,1-.366-3.5H16v1.5h4v-4Z" fill="#707785"/>
-      <rect id="Rectangle_6985" data-name="Rectangle 6985" width="13" height="2" transform="translate(2 4)" fill="#fff"/>
+  <g id="Groupe_5860" data-name="Groupe 5860" transform="translate(0 0)">
+    <g id="Groupe_5860-2" data-name="Groupe 5860" clip-path="url(#clip-path)">
+      <path id="Tracé_1892" data-name="Tracé 1892"
+            d="M18.5,10.5v.971A4.917,4.917,0,0,0,15,10a5,5,0,1,0,4.744,6.5H17.582a3,3,0,1,1-.366-3.5H16v1.5h4v-4H18.5Z"
+            fill="#707785"/>
+      <path id="Tracé_1893" data-name="Tracé 1893" d="M14,2V0H12V2H5V0H3V2H0V18H9V16H2V8H15V9h2V2Zm1,4H2V4H15Z"
+            fill="#707785"/>
+    </g>
+  </g>
+  <g id="Groupe_5859" data-name="Groupe 5859" transform="translate(0 0)">
+    <g id="Groupe_5858" data-name="Groupe 5858" clip-path="url(#clip-path-2)">
+      <rect id="Rectangle_6985" data-name="Rectangle 6985" width="13" height="2" transform="translate(2 4)"
+            fill="none"/>
     </g>
   </g>
 </svg>
