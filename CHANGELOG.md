@@ -1,3 +1,9 @@
+## [24.35.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.35.0...v24.35.1) (2025-10-23)
+
+### Bug Fixes
+
+* **icons:** modifying CalendarRepetition.svg ([a5590c1](https://github.com/MTES-MCT/monitor-ui/commit/a5590c155c8d19eed1eac2a42101765379f8d9d2))
+
 ## [24.35.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.34.5...v24.35.0) (2025-10-17)
 
 ### Features
