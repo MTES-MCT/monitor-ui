@@ -1,6 +1,6 @@
-import { StyledRsuiteCheckbox } from '@fields/Checkbox'
+import { Checkbox } from '@fields/Checkbox'
 import { stopMouseEventPropagation } from '@utils/stopMouseEventPropagation'
-import { useCallback, type ChangeEvent, type HTMLProps } from 'react'
+import { type ChangeEvent, type HTMLProps, useCallback } from 'react'
 import { type CheckboxProps as RsuiteCheckboxProps } from 'rsuite'
 import styled from 'styled-components'
 
@@ -10,6 +10,7 @@ export type RowCheckboxProps = Omit<RsuiteCheckboxProps, 'onClick' | 'onChange'>
   // TODO Maybe replace that with a `((isChecked: boolean) => Promisable<void>) | undefined` for consistency with other boolean fields?
   onChange?: ((event: ChangeEvent<HTMLInputElement>) => void) | undefined
 }
+
 export function RowCheckbox({ onChange, ...nativeProps }: RowCheckboxProps & HTMLProps<HTMLInputElement>) {
   const handleOnChange = useCallback(
     (_value: ValueType | undefined, _checked: boolean, event: ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +33,7 @@ export function RowCheckbox({ onChange, ...nativeProps }: RowCheckboxProps & HTM
   )
 }
 
-const RestyledRsuiteCheckbox = styled(StyledRsuiteCheckbox)`
+const RestyledRsuiteCheckbox = styled(Checkbox)`
   vertical-align: top;
 
   > .rs-checkbox-checker,

@@ -50,7 +50,7 @@ const meta: Meta<SearchProps<Value>> = {
         value: { name: 'A Very Very Long  Option', subValue: 'A_VERY_VERY_LONG_OPTION' }
       }
     ],
-    optionValueKey: 'name' as any,
+    optionValueKey: 'name',
     placeholder: 'Type "first"'
   },
 
