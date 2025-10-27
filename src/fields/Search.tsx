@@ -1,4 +1,4 @@
-import { Accent, Size, Icon } from '@constants'
+import { Accent, Icon, Size } from '@constants'
 import { Field } from '@elements/Field'
 import { FieldError } from '@elements/FieldError'
 import { IconButton } from '@elements/IconButton'
@@ -10,7 +10,7 @@ import { getRsuiteDataItemsFromOptions } from '@utils/getRsuiteDataItemsFromOpti
 import { getSelectedOptionFromOptionValue } from '@utils/getSelectedOptionFromOptionValue'
 import { normalizeString } from '@utils/normalizeString'
 import classnames from 'classnames'
-import { type ElementType, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { type ElementType, type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AutoComplete as RsuiteAutoComplete } from 'rsuite'
 import styled from 'styled-components'
 
@@ -52,6 +52,7 @@ export type SearchProps<OptionValue extends OptionValueType = string> = Omit<
   size?: Size | undefined
   value?: OptionValue | undefined
 }
+
 export function Search<OptionValue extends OptionValueType = string>({
   className,
   customSearch = undefined,
@@ -81,38 +82,34 @@ export function Search<OptionValue extends OptionValueType = string>({
 }: SearchProps<OptionValue>) {
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
-  const currentQueryRef = useRef('')
-  const mustSkipNextChange = useRef(false)
 
-  const controlledClassName = useMemo(() => classnames('Field-Search', className), [className])
-  const controlledError = useMemo(() => normalizeString(error), [error])
-  const hasError = useMemo(() => Boolean(controlledError), [controlledError])
-  const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
-
-  // Only used when `customSearch` prop is set
-  const [controlledRsuiteData, setControlledRsuiteData] = useState(customSearch ? rsuiteData : undefined)
-
-  const { forceUpdate } = useForceUpdate()
-
-  const selectedOption = useMemo(() => {
+  const defaultOption = useMemo(() => {
     if (!value) {
       return undefined
     }
 
-    if (onQuery) {
-      if (optionValueKey) {
-        return value[optionValueKey]
-      }
+    return getSelectedOptionFromOptionValue<OptionValue>(options, value, optionValueKey)
+  }, [value, optionValueKey, options])
 
-      return value
+  const [query, setQuery] = useState<string>(defaultOption?.label ?? '')
+  // Ref to prevent OnChange to trigger when we send optionValue from OnSelect
+  const isSelecting = useRef(false)
+  const controlledClassName = useMemo(() => classnames('Field-Search', className), [className])
+  const controlledError = useMemo(() => normalizeString(error), [error])
+  const hasError = useMemo(() => Boolean(controlledError), [controlledError])
+  const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
+  const { forceUpdate } = useForceUpdate()
+
+  // Only used when `customSearch` prop is set
+  const [controlledRsuiteData, setControlledRsuiteData] = useState(customSearch ? rsuiteData : undefined)
+
+  // Set default value
+  useEffect(() => {
+    if (onChange) {
+      onChange(defaultOption?.value)
     }
-
-    const option = getSelectedOptionFromOptionValue<OptionValue>(options, value, optionValueKey)
-
-    return option?.label
-  }, [value, onQuery, options, optionValueKey])
-
-  const rsuiteValue = currentQueryRef.current.length > 0 ? currentQueryRef.current : (selectedOption ?? '')
+    setQuery(defaultOption?.label ?? '')
+  }, [defaultOption, onChange])
 
   const clear = useCallback(() => {
     if (onChange) {
@@ -122,67 +119,49 @@ export function Search<OptionValue extends OptionValueType = string>({
       onQuery(undefined)
     }
 
-    currentQueryRef.current = ''
-
-    forceUpdate()
-  }, [forceUpdate, onChange, onQuery])
+    setQuery('')
+  }, [onChange, onQuery])
 
   // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
   // that's why we send this "always true" filter to disable Rsuite SelectPicker internal search filtering
-  const filterBy: any = customSearch && currentQueryRef.current.length > 0 ? () => true : undefined
+  const filterBy: any = customSearch && query.length > 0 ? () => true : undefined
 
   const handleChange = useCallback(
     (nextQuery: string) => {
-      setTimeout(() => {
-        if (mustSkipNextChange.current) {
-          mustSkipNextChange.current = false
+      if (isSelecting.current) {
+        isSelecting.current = false
 
-          return
-        }
+        return
+      }
+      setQuery(nextQuery)
 
-        currentQueryRef.current = nextQuery
-
-        if (onQuery) {
-          onQuery(nextQuery.length > 0 ? nextQuery : undefined)
-        }
-
-        if (!customSearch || nextQuery.trim().length < customSearchMinQueryLength) {
-          setControlledRsuiteData(rsuiteData)
-
-          forceUpdate()
-
-          return
-        }
-
-        const nextControlledRsuiteData =
-          nextQuery.trim().length >= customSearchMinQueryLength
-            ? getRsuiteDataItemsFromOptions(customSearch.find(nextQuery), optionValueKey)
-            : rsuiteData
-
-        setControlledRsuiteData(nextControlledRsuiteData)
-
-        forceUpdate()
-      }, 0)
+      if (onQuery) {
+        onQuery(query.length > 0 ? query : undefined)
+      }
     },
-    [customSearch, customSearchMinQueryLength, forceUpdate, onQuery, optionValueKey, rsuiteData]
+    [onQuery, query]
   )
 
+  useEffect(() => {
+    if (customSearch) {
+      const nextControlledRsuiteData =
+        query.trim().length >= customSearchMinQueryLength
+          ? getRsuiteDataItemsFromOptions(customSearch.find(query), optionValueKey)
+          : rsuiteData
+
+      setControlledRsuiteData(nextControlledRsuiteData)
+    }
+  }, [forceUpdate, customSearch, customSearchMinQueryLength, optionValueKey, query, rsuiteData])
+
   const handleSelect = useCallback(
-    (_value: any, nextRsuiteDataItem: RsuiteDataItem<OptionValue>) => {
-      mustSkipNextChange.current = true
-
+    (_value: any, nextOption: RsuiteDataItem<OptionValue> | undefined) => {
       if (onChange) {
-        onChange(nextRsuiteDataItem.optionValue)
+        isSelecting.current = true
+        onChange(nextOption?.optionValue)
       }
-      if (onQuery) {
-        onQuery(undefined)
-      }
-
-      currentQueryRef.current = ''
-
-      forceUpdate()
+      setQuery(nextOption?.label ?? '')
     },
-    [forceUpdate, onChange, onQuery]
+    [onChange]
   )
 
   const renderMenuItem = useCallback(
@@ -222,16 +201,20 @@ export function Search<OptionValue extends OptionValueType = string>({
             disabled={disabled}
             filterBy={filterBy}
             id={originalProps.name}
-            onChange={handleChange}
-            onSelect={handleSelect as any}
+            onChange={(nextValue: string) => handleChange(nextValue)}
+            onSelect={(nextValue: any, nextOption: any, event) => {
+              event.preventDefault()
+              event.stopPropagation()
+              handleSelect(nextValue, nextOption)
+            }}
             readOnly={readOnly}
             renderMenuItem={renderMenuItem as any}
-            value={rsuiteValue as string}
+            value={query}
             {...originalProps}
           />
         )}
 
-        {rsuiteValue && (
+        {query && (
           <>
             <StyledCloseButton
               $isSearchIconHidden={isSearchIconHidden}

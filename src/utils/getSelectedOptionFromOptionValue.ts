@@ -18,12 +18,10 @@ export function getSelectedOptionFromOptionValue<OptionValue extends OptionValue
 
   const selectedOptionValueKeyValue = getOptionValueKeyValueFromOptionValue(selectedOptionValue, optionValueKey)
 
-  const selectedOption = ensure(
+  return ensure(
     allOptions.find(
       option => getOptionValueKeyValueFromOptionValue(option.value, optionValueKey) === selectedOptionValueKeyValue
     ),
     'selectedOption'
   )
-
-  return selectedOption
 }
