@@ -26,7 +26,7 @@ const OPTIONS_TYPES = {
 /* eslint-enable sort-keys-fix/sort-keys-fix */
 
 function SearchStory({ value, ...otherProps }: SearchProps) {
-  const [outputValue, setOutputValue] = useState<any>('∅')
+  const [outputValue, setOutputValue] = useState<any | undefined>(undefined)
 
   const { controlledOnChange, controlledValue } = useFieldControl(value, setOutputValue)
 
@@ -34,7 +34,7 @@ function SearchStory({ value, ...otherProps }: SearchProps) {
     <StoryBox>
       <Search onChange={controlledOnChange} value={controlledValue} {...otherProps} />
 
-      {outputValue !== '∅' && <Output value={outputValue} />}
+      {outputValue !== undefined && <Output value={outputValue} />}
     </StoryBox>
   )
 }
@@ -70,6 +70,24 @@ describe('fields/Search', () => {
         cy.fill('A search', 'second')
 
         outputShouldBe(options[1].value)
+      })
+
+      it('Should fill, change and clear the search with initial value', () => {
+        mountAndWait(
+          <StoryBox>
+            <SearchStory {...commonProps} value={options[0].value} />
+          </StoryBox>
+        )
+
+        outputShouldBe(options[0].value)
+
+        cy.fill('A search', 'second')
+
+        outputShouldBe(options[1].value)
+
+        cy.fill('A search', undefined)
+
+        outputShouldNotBe()
       })
     })
   })

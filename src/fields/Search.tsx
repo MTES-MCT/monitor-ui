@@ -84,7 +84,7 @@ export function Search<OptionValue extends OptionValueType = string>({
   const boxRef = useRef<HTMLDivElement | null>(null)
 
   const defaultOption = useMemo(() => {
-    if (!value) {
+    if (value === undefined) {
       return undefined
     }
 
