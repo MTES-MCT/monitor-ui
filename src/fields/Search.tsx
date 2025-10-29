@@ -83,15 +83,13 @@ export function Search<OptionValue extends OptionValueType = string>({
   // eslint-disable-next-line no-null/no-null
   const boxRef = useRef<HTMLDivElement | null>(null)
 
-  const defaultOption = useMemo(() => {
-    if (value === undefined) {
-      return undefined
-    }
+  const [query, setQuery] = useState<string>('')
 
-    return getSelectedOptionFromOptionValue<OptionValue>(options, value, optionValueKey)
-  }, [value, optionValueKey, options])
+  const defaultOption = useMemo(
+    () => getSelectedOptionFromOptionValue<OptionValue>(options, value, optionValueKey),
+    [value, options, optionValueKey]
+  )
 
-  const [query, setQuery] = useState<string>(defaultOption?.label ?? '')
   // Ref to prevent OnChange to trigger when we send optionValue from OnSelect
   const isSelecting = useRef(false)
   const controlledClassName = useMemo(() => classnames('Field-Search', className), [className])
@@ -105,10 +103,10 @@ export function Search<OptionValue extends OptionValueType = string>({
 
   // Set default value
   useEffect(() => {
-    if (onChange) {
-      onChange(defaultOption?.value)
+    if (onChange && defaultOption?.value !== undefined) {
+      onChange(defaultOption.value)
     }
-    setQuery(defaultOption?.label ?? '')
+    setQuery(previousQuery => defaultOption?.label ?? previousQuery)
   }, [defaultOption, onChange])
 
   const clear = useCallback(() => {
@@ -136,10 +134,10 @@ export function Search<OptionValue extends OptionValueType = string>({
       setQuery(nextQuery)
 
       if (onQuery) {
-        onQuery(query.length > 0 ? query : undefined)
+        onQuery(nextQuery.length > 0 ? nextQuery : undefined)
       }
     },
-    [onQuery, query]
+    [onQuery]
   )
 
   useEffect(() => {
@@ -159,7 +157,7 @@ export function Search<OptionValue extends OptionValueType = string>({
         isSelecting.current = true
         onChange(nextOption?.optionValue)
       }
-      setQuery(nextOption?.label ?? '')
+      setQuery('')
     },
     [onChange]
   )
