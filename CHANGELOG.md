@@ -1,3 +1,11 @@
+## [24.35.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.35.1...v24.35.2) (2025-10-30)
+
+### Bug Fixes
+
+* **components:** force default option ([0e61ec8](https://github.com/MTES-MCT/monitor-ui/commit/0e61ec887da4016f06e0547d4d27a7b65d428a26))
+* **components:** synchronizing async options with autocomplete ([13ddc78](https://github.com/MTES-MCT/monitor-ui/commit/13ddc788a0c94ad8da51433a349633a0fc880a27))
+* **cypress:** fix Search tests ([2c88f4e](https://github.com/MTES-MCT/monitor-ui/commit/2c88f4e55df1b78478614d05beaa45ff4732b304))
+
 ## [24.35.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.35.0...v24.35.1) (2025-10-23)
 
 ### Bug Fixes
