@@ -1,3 +1,9 @@
+## [24.35.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.35.2...v24.35.3) (2025-11-03)
+
+### Bug Fixes
+
+* **components:** fix default option if undefined ([1baf98f](https://github.com/MTES-MCT/monitor-ui/commit/1baf98fef8fc759f541f24b83db5f699d570b676))
+
 ## [24.35.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.35.1...v24.35.2) (2025-10-30)
 
 ### Bug Fixes
