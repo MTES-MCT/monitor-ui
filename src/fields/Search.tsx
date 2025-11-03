@@ -85,10 +85,13 @@ export function Search<OptionValue extends OptionValueType = string>({
 
   const [query, setQuery] = useState<string>('')
 
-  const defaultOption = useMemo(
-    () => getSelectedOptionFromOptionValue<OptionValue>(options, value, optionValueKey),
-    [value, options, optionValueKey]
-  )
+  const defaultOption = useMemo(() => {
+    if (value === undefined) {
+      return undefined
+    }
+
+    return getSelectedOptionFromOptionValue<OptionValue>(options, value, optionValueKey)
+  }, [value, options, optionValueKey])
 
   // Ref to prevent OnChange to trigger when we send optionValue from OnSelect
   const isSelecting = useRef(false)
