@@ -1,5 +1,3 @@
-import { ensure } from '@utils/ensure'
-
 import { getOptionValueKeyValueFromOptionValue } from './getOptionValueKeyValueFromOptionValue'
 
 import type { Option, OptionValueType } from '@types_/definitions'
@@ -12,16 +10,13 @@ export function getSelectedOptionFromOptionValue<OptionValue extends OptionValue
   selectedOptionValue: OptionValue | undefined,
   optionValueKey?: keyof OptionValue | undefined
 ): Option<OptionValue> | undefined {
-  if (selectedOptionValue === undefined) {
+  if (selectedOptionValue === undefined || allOptions.length === 0) {
     return undefined
   }
 
   const selectedOptionValueKeyValue = getOptionValueKeyValueFromOptionValue(selectedOptionValue, optionValueKey)
 
-  return ensure(
-    allOptions.find(
-      option => getOptionValueKeyValueFromOptionValue(option.value, optionValueKey) === selectedOptionValueKeyValue
-    ),
-    'selectedOption'
+  return allOptions.find(
+    option => getOptionValueKeyValueFromOptionValue(option.value, optionValueKey) === selectedOptionValueKeyValue
   )
 }
