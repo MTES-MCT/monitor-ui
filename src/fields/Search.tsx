@@ -93,7 +93,7 @@ export function Search<OptionValue extends OptionValueType = string>({
     return getSelectedOptionFromOptionValue<OptionValue>(options, value, optionValueKey)
   }, [value, options, optionValueKey])
 
-  // Ref to prevent OnChange to trigger when we send optionValue from OnSelect
+  // Ref to prevent OnChange to trigger when we select an option
   const isSelecting = useRef(false)
   const controlledClassName = useMemo(() => classnames('Field-Search', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
@@ -106,11 +106,16 @@ export function Search<OptionValue extends OptionValueType = string>({
 
   // Set default value
   useEffect(() => {
-    if (onChange && defaultOption?.value !== undefined) {
+    if (!defaultOption) {
+      return
+    }
+    setQuery(previousQuery => defaultOption.label ?? previousQuery)
+
+    if (onChange && defaultOption.value !== undefined) {
       onChange(defaultOption.value)
     }
-    setQuery(previousQuery => defaultOption?.label ?? previousQuery)
-  }, [defaultOption, onChange])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultOption])
 
   const clear = useCallback(() => {
     if (onChange) {
