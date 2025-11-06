@@ -1,3 +1,9 @@
+## [24.35.4](https://github.com/MTES-MCT/monitor-ui/compare/v24.35.3...v24.35.4) (2025-11-06)
+
+### Bug Fixes
+
+* **components:** do not throw error when options are empty. remove OnChange from dependencies array ([e3a081f](https://github.com/MTES-MCT/monitor-ui/commit/e3a081f0b9d78b347d1eef6c3e54ad76a9541117))
+
 ## [24.35.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.35.2...v24.35.3) (2025-11-03)
 
 ### Bug Fixes
