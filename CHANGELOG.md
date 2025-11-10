@@ -1,3 +1,9 @@
+## [24.35.5](https://github.com/MTES-MCT/monitor-ui/compare/v24.35.4...v24.35.5) (2025-11-10)
+
+### Bug Fixes
+
+* **components:** fix RowCheckbox.tsx ([1025f52](https://github.com/MTES-MCT/monitor-ui/commit/1025f52000a7821d21d67f76269171b5cf89b81a))
+
 ## [24.35.4](https://github.com/MTES-MCT/monitor-ui/compare/v24.35.3...v24.35.4) (2025-11-06)
 
 ### Bug Fixes
