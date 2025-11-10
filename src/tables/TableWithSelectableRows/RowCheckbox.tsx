@@ -1,4 +1,4 @@
-import { Checkbox } from '@fields/Checkbox'
+import { StyledRsuiteCheckbox } from '@fields/Checkbox'
 import { stopMouseEventPropagation } from '@utils/stopMouseEventPropagation'
 import { type ChangeEvent, type HTMLProps, useCallback } from 'react'
 import { type CheckboxProps as RsuiteCheckboxProps } from 'rsuite'
@@ -33,7 +33,7 @@ export function RowCheckbox({ onChange, ...nativeProps }: RowCheckboxProps & HTM
   )
 }
 
-const RestyledRsuiteCheckbox = styled(Checkbox)`
+const RestyledRsuiteCheckbox = styled(StyledRsuiteCheckbox)`
   vertical-align: top;
 
   > .rs-checkbox-checker,
