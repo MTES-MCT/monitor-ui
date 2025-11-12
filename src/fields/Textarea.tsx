@@ -37,6 +37,7 @@ export type TextareaProps = Omit<
   readOnly?: boolean | undefined
   value?: string | undefined
 }
+
 export function Textarea({
   className,
   disabled = false,
@@ -112,7 +113,7 @@ const StyledRsuiteInput = styled(RsuiteInput)<CommonFieldStyleProps>`
   ${p => p.$isReadOnly && `cursor: default;`}
   font-size: 13px;
   font-weight: 500;
-  padding: 7px 8px;
+  padding: 7px 0 8px;
   width: 100%;
   min-width: 100%;
   max-width: 100%;
