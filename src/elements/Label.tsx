@@ -34,5 +34,7 @@ export const Label = styled.label.attrs<LabelProps, LabelProps>(props => ({
       padding: 0;
       margin: 0;
       overflow: hidden;
+      position: absolute;
+      left: -10000px;
     `}
 `
