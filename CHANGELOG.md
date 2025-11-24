@@ -1,3 +1,13 @@
+## [24.36.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.35.5...v24.36.0) (2025-11-24)
+
+### Features
+
+* **components:** add Marianne-Light ([36f85c4](https://github.com/MTES-MCT/monitor-ui/commit/36f85c44331029a8f0008468818cde2ce85d95ed))
+
+### Bug Fixes
+
+* **components:** label hidden as absolute to prevent 1px height to break style ([790262e](https://github.com/MTES-MCT/monitor-ui/commit/790262e0bedde993026f0871e715985b526702d7))
+
 ## [24.35.5](https://github.com/MTES-MCT/monitor-ui/compare/v24.35.4...v24.35.5) (2025-11-10)
 
 ### Bug Fixes
