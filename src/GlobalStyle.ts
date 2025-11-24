@@ -3,6 +3,8 @@ import { createGlobalStyle } from 'styled-components'
 // @ts-ignore
 import MarianneBold from './assets/fonts/Marianne-Bold.woff2'
 // @ts-ignore
+import MarianneLight from './assets/fonts/Marianne-Light.woff2'
+// @ts-ignore
 import MarianneMedium from './assets/fonts/Marianne-Medium.woff2'
 // @ts-ignore
 import MarianneRegular from './assets/fonts/Marianne-Regular.woff2'
@@ -14,6 +16,13 @@ import OpenSansRegular from './assets/fonts/OpenSans-Regular.woff2'
 export const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: Marianne;
+    font-weight: 300;
+    font-display: swap;
+    src: local('Marianne-Light'), url(${MarianneLight}) format('woff2');
+  }
+
+  @font-face {
+    font-family: Marianne;
     font-weight: normal;
     font-display: swap;
     src: local('Marianne'), local('Marianne-Regular'), url(${MarianneRegular}) format('woff2');
@@ -23,7 +32,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: Marianne;
     font-weight: 500;
     font-display: swap;
-    src:local('Marianne-Medium'), url(${MarianneMedium}) format('woff2');
+    src: local('Marianne-Medium'), url(${MarianneMedium}) format('woff2');
   }
 
   @font-face {
@@ -31,7 +40,7 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: italic;
     font-display: swap;
-    src:local('Marianne-Regular_Italic'), url(${MarianneItalic}) format('woff2');
+    src: local('Marianne-Regular_Italic'), url(${MarianneItalic}) format('woff2');
   }
 
   @font-face {
