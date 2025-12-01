@@ -49,7 +49,8 @@ describe('fields/CheckTreePicker', () => {
         children: [
           {
             label: 'Microplastiques',
-            value: 'microplastiques'
+            value: 'microplastiques',
+            children: []
           }
         ],
         label: 'Pollution marine',
@@ -61,7 +62,7 @@ describe('fields/CheckTreePicker', () => {
 
     outputShouldBe([
       {
-        children: [{ label: 'Marées noires', value: 'marees_noires' }],
+        children: [{ label: 'Marées noires', value: 'marees_noires', children: [] }],
         label: 'Pollution marine',
         value: 'pollution_marine'
       }
@@ -71,12 +72,12 @@ describe('fields/CheckTreePicker', () => {
 
     outputShouldBe([
       {
-        children: [{ label: 'Marées noires', value: 'marees_noires' }],
+        children: [{ label: 'Marées noires', value: 'marees_noires', children: [] }],
         label: 'Pollution marine',
         value: 'pollution_marine'
       },
       {
-        children: [{ label: 'Protection des coraux', value: 'protection_coraux' }],
+        children: [{ label: 'Protection des coraux', value: 'protection_coraux', children: [] }],
         label: 'Biodiversité marine',
         value: 'biodiversite_marine'
       }
@@ -92,16 +93,16 @@ describe('fields/CheckTreePicker', () => {
       {
         label: 'Entry 1',
         subTags: [
-          { label: 'Subtag 1', value: 3 },
-          { label: 'Subtag 2', value: 4 }
+          { label: 'Subtag 1', value: 3, subTags: [] },
+          { label: 'Subtag 2', value: 4, subTags: [] }
         ],
         value: 1
       },
       {
         label: 'Entry 2',
         subTags: [
-          { label: 'Subtag 3', value: 5 },
-          { label: 'Subtag 4', value: 6 }
+          { label: 'Subtag 3', value: 5, subTags: [] },
+          { label: 'Subtag 4', value: 6, subTags: [] }
         ],
         value: 2
       }
@@ -117,14 +118,14 @@ describe('fields/CheckTreePicker', () => {
     cy.fill('A check tree picker', ['Subtag 3'])
 
     // eslint-disable-next-line sort-keys-fix/sort-keys-fix
-    outputShouldBe([{ subTags: [{ label: 'Subtag 3', value: 5 }], label: 'Entry 2', value: 2 }])
+    outputShouldBe([{ subTags: [{ label: 'Subtag 3', value: 5, subTags: [] }], label: 'Entry 2', value: 2 }])
 
     cy.fill('A check tree picker', ['Subtag 1', 'Subtag 2'])
     outputShouldBe([
       {
         subTags: [
-          { label: 'Subtag 1', value: 3 },
-          { label: 'Subtag 2', value: 4 }
+          { label: 'Subtag 1', value: 3, subTags: [] },
+          { label: 'Subtag 2', value: 4, subTags: [] }
         ],
         // eslint-disable-next-line sort-keys-fix/sort-keys-fix
         label: 'Entry 1',
@@ -148,7 +149,7 @@ describe('fields/CheckTreePicker', () => {
 
     outputShouldBe([
       {
-        children: [{ label: 'Protection des coraux', value: 'protection_coraux' }],
+        children: [{ label: 'Protection des coraux', value: 'protection_coraux', children: [] }],
         label: 'Biodiversité marine',
         value: 'biodiversite_marine'
       }
@@ -172,7 +173,7 @@ describe('fields/CheckTreePicker', () => {
 
     outputShouldBe([
       {
-        children: [{ label: 'Protection des coraux', value: 'protection_coraux' }],
+        children: [{ label: 'Protection des coraux', value: 'protection_coraux', children: [] }],
         label: 'Biodiversité marine',
         value: 'biodiversite_marine'
       }
@@ -195,7 +196,8 @@ describe('fields/CheckTreePicker', () => {
         children: [
           {
             label: 'Microplastiques',
-            value: 'microplastiques'
+            value: 'microplastiques',
+            children: []
           }
         ],
         label: 'Pollution marine',
@@ -216,12 +218,12 @@ describe('fields/CheckTreePicker', () => {
 
     outputShouldBe([
       {
-        children: [{ label: 'Marées noires', value: 'marees_noires' }],
+        children: [{ label: 'Marées noires', value: 'marees_noires', children: [] }],
         label: 'Pollution marine',
         value: 'pollution_marine'
       },
       {
-        children: [{ label: 'Protection des coraux', value: 'protection_coraux' }],
+        children: [{ label: 'Protection des coraux', value: 'protection_coraux', children: [] }],
         label: 'Biodiversité marine',
         value: 'biodiversite_marine'
       }
