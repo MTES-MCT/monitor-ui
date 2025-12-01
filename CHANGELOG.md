@@ -1,3 +1,9 @@
+## [24.37.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.36.0...v24.37.0) (2025-12-01)
+
+### Features
+
+* **icons:** add Vessels icons (pro and leisure) ([f8e16d7](https://github.com/MTES-MCT/monitor-ui/commit/f8e16d7657824de9e199b7b6b760f15107e9c445))
+
 ## [24.36.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.35.5...v24.36.0) (2025-11-24)
 
 ### Features
