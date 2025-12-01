@@ -46,12 +46,9 @@ async function generateIcon({ count, index, svgIconPath, template }) {
   console.log('Generating icons index…')
 
   const iconNames = svgIconPaths.map(getIconNameFromIconPath)
-  const tsIconsIndexSource = [
-    iconNames.map(iconName => `import { ${iconName} } from './${iconName}'`).join('\n'),
-    'export {',
-    iconNames.map(iconName => `  ${iconName},`).join('\n'),
-    '}'
-  ].join('\n')
+  const tsIconsIndexSource = [iconNames.map(iconName => `export { ${iconName} } from './${iconName}'`).join('\n')].join(
+    '\n'
+  )
 
   await fs.writeFile('./src/icons/index.tsx', tsIconsIndexSource, 'utf-8')
 

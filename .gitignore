@@ -162,5 +162,8 @@ dist
 !.yarn/sdks
 !.yarn/versions
 
+# Macos
+.DS_Store
+
 # Intellij
 .idea/
