@@ -94,7 +94,7 @@ export const RsuiteCheckTreePickerBox = styled.div<RsuiteCheckTreePickerBoxProps
 
       .rs-tree-node-toggle {
         width: 22px;
-        padding-left: 4px;
+        ${p => p.$isSelect && 'padding-left: 4px;'}
       }
 
       .rs-tree-node-toggle-placeholder {
@@ -290,7 +290,7 @@ export const RsuiteCheckTreePickerBox = styled.div<RsuiteCheckTreePickerBoxProps
               > label {
                 .rs-checkbox-label {
                   width: 100%;
-                  padding-left: 14px;
+                  padding-left: ${p => p.$isSelect ? 14 : 20}px;
                 }
               }
             }
@@ -306,7 +306,7 @@ export const RsuiteCheckTreePickerBox = styled.div<RsuiteCheckTreePickerBoxProps
               > label {
                 .rs-checkbox-label {
                   width: 100%;
-                  padding-left: 8px;
+                  padding-left: ${p => p.$isSelect ? 8 : 20}px;
                   ${p => p.$isThreeLevels && 'font-weight: 600;'}
                 }
 
