@@ -42,12 +42,12 @@ describe('getTreeOptionsBySelectedValues', () => {
 
     expect(result).toEqual([
       {
-        children: [{ label: 'Acidification des océans', value: 'acidification_oceans' }],
+        children: [{ children: [], label: 'Acidification des océans', value: 'acidification_oceans' }],
         label: 'Changement climatique et océan',
         value: 'changement_climatique_ocean'
       },
       {
-        children: [{ label: 'Pollution chimique', value: 'pollution_chimique' }],
+        children: [{ children: [], label: 'Pollution chimique', value: 'pollution_chimique' }],
         label: 'Pollution marine',
         value: 'pollution_marine'
       }
@@ -70,9 +70,9 @@ describe('getTreeOptionsBySelectedValues', () => {
     expect(result).toEqual([
       {
         children: [
-          { label: 'Acidification des océans', value: 'acidification_oceans' },
-          { label: 'Réchauffement des eaux', value: 'rechauffement_eaux' },
-          { label: 'Blanchissement des coraux', value: 'blanchissement_coraux' }
+          { children: [], label: 'Acidification des océans', value: 'acidification_oceans' },
+          { children: [], label: 'Réchauffement des eaux', value: 'rechauffement_eaux' },
+          { children: [], label: 'Blanchissement des coraux', value: 'blanchissement_coraux' }
         ],
         label: 'Changement climatique et océan',
         value: 'changement_climatique_ocean'
@@ -115,7 +115,7 @@ describe('fromRsuiteValue', () => {
 
     expect(result).toEqual([
       {
-        children: [{ label: 'Child 1', value: 'c1' }],
+        children: [{ children: [], label: 'Child 1', value: 'c1' }],
         label: 'Parent 1',
         value: 'p1'
       }
