@@ -15,6 +15,8 @@ interface CheckPickerBoxProps {
   isLabelHidden?: boolean
   isLight: boolean
   isRequired?: boolean
+  isSelect?: boolean
+  isThreeLevels?: boolean
   isTransparent: boolean
   label: string
   onLabelClick: () => void
@@ -34,6 +36,8 @@ export function CheckTreePickerBox({
   isLabelHidden,
   isLight,
   isRequired,
+  isSelect = false,
+  isThreeLevels = false,
   isTransparent,
   label,
   onLabelClick,
@@ -53,6 +57,8 @@ export function CheckTreePickerBox({
         $isDisabled={disabled}
         $isLight={isLight}
         $isReadOnly={readOnly}
+        $isSelect={isSelect}
+        $isThreeLevels={isThreeLevels}
         $isTransparent={isTransparent}
         $popupWidth={popupWidth}
       >

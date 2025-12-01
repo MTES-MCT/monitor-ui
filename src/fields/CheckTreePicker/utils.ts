@@ -37,6 +37,20 @@ export function getTreeOptionsBySelectedValues(
   valueKey: string | number = 'value',
   labelKey: string = 'label'
 ): TreeOption[] {
+  function preserveChildrenStructure(option: TreeOption): TreeOption {
+    const children = option[childrenKey] as TreeOption[] | undefined
+    const baseOption: TreeOption = {
+      [labelKey]: option[labelKey],
+      [valueKey]: option[valueKey]
+    } as TreeOption
+
+    if (children && Array.isArray(children)) {
+      baseOption[childrenKey] = children.map(child => preserveChildrenStructure(child)) as any
+    }
+
+    return baseOption
+  }
+
   function getOption(option: TreeOption): TreeOption | undefined {
     const children = option[childrenKey] as TreeOption[] | undefined
     if (children && Array.isArray(children)) {
@@ -46,7 +60,7 @@ export function getTreeOptionsBySelectedValues(
 
       if (filteredChildren.length > 0) {
         return {
-          [childrenKey]: filteredChildren.map(child => ({ [labelKey]: child[labelKey], [valueKey]: child[valueKey] })),
+          [childrenKey]: filteredChildren,
           [labelKey]: option[labelKey],
           [valueKey]: option[valueKey]
         } as TreeOption
@@ -54,14 +68,7 @@ export function getTreeOptionsBySelectedValues(
     }
 
     if (selectedValues?.includes(option[valueKey] as string | number)) {
-      return {
-        [childrenKey]: ((option[childrenKey] as TreeOption[]) ?? []).map(child => ({
-          [labelKey]: child[labelKey],
-          [valueKey]: child[valueKey]
-        })),
-        [labelKey]: option[labelKey],
-        [valueKey]: option[valueKey]
-      } as TreeOption
+      return preserveChildrenStructure(option)
     }
 
     return undefined
@@ -79,9 +86,21 @@ export function getParentRsuiteValue(
     return []
   }
 
-  return options
-    .filter(option => ((option[childrenKey] as TreeOption[]) ?? []).length > 0)
-    .flatMap(option => option[valueKey] as string | number)
+  const parentValues: (string | number)[] = []
+
+  function collectParents(items: TreeOption[]) {
+    items.forEach(option => {
+      const children = (option[childrenKey] as TreeOption[] | undefined) ?? []
+      if (children.length > 0) {
+        parentValues.push(option[valueKey] as string | number)
+        collectParents(children)
+      }
+    })
+  }
+
+  collectParents(options)
+
+  return parentValues
 }
 
 export function toRsuiteValue(
@@ -92,16 +111,26 @@ export function toRsuiteValue(
   if (!uiValues) {
     return undefined
   }
-  // set only childless and children values
-  const rsuiteValues = uiValues
-    .filter(uiValue => uiValue[childrenKey] === undefined || (uiValue[childrenKey] as TreeOption[]).length === 0)
-    .flatMap(option => option[valueKey] as string | number)
 
-  const rsuiteChildrenValues = uiValues.flatMap(uiValue =>
-    ((uiValue[childrenKey] as TreeOption[]) ?? []).flatMap(child => child[valueKey] as string | number)
-  )
+  const rsuiteValues: (string | number)[] = []
 
-  return [...rsuiteValues, ...rsuiteChildrenValues]
+  const collectValues = (items: TreeOption[]) => {
+    items.forEach(item => {
+      const children = item[childrenKey] as TreeOption[] | undefined
+
+      // Add leaf node values (nodes without children)
+      if (!children || children.length === 0) {
+        rsuiteValues.push(item[valueKey] as string | number)
+      } else {
+        // Recursively collect from children
+        collectValues(children)
+      }
+    })
+  }
+
+  collectValues(uiValues)
+
+  return rsuiteValues.length > 0 ? rsuiteValues : undefined
 }
 
 export function computeDisabledValues(
@@ -162,4 +191,27 @@ export function getOptionsToDisplay(
   allOptions.forEach(findChildren)
 
   return result
+}
+
+export function hasThreeLevels(options: TreeOption[], childrenKey: string = 'children'): boolean {
+  if (!options || options.length === 0) {
+    return false
+  }
+
+  function checkDepth(items: TreeOption[], currentDepth: number): boolean {
+    if (currentDepth >= 3) {
+      return true
+    }
+
+    return items.some(item => {
+      const children = item[childrenKey] as TreeOption[] | undefined
+      if (children && Array.isArray(children) && children.length > 0) {
+        return checkDepth(children, currentDepth + 1)
+      }
+
+      return false
+    })
+  }
+
+  return checkDepth(options, 1)
 }

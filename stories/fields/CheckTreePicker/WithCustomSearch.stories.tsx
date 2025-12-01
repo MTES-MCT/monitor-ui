@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
 import { ARG_TYPE, META_DEFAULTS } from '../../../.storybook/constants'
-import { TAGS } from '../../../.storybook/data/tags'
+import { ENV_TAGS } from '../../../.storybook/data/ENV_TAGS'
 import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
 import { useFieldControl } from '../../../src'
 
@@ -23,6 +23,7 @@ const meta: Meta<CheckTreePickerProps> = {
     isLabelHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
     isLight: ARG_TYPE.OPTIONAL_BOOLEAN,
     isRequired: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isSelect: ARG_TYPE.OPTIONAL_BOOLEAN,
     isTransparent: ARG_TYPE.OPTIONAL_BOOLEAN,
     isUndefinedWhenDisabled: ARG_TYPE.OPTIONAL_BOOLEAN,
     options: ARG_TYPE.NO_CONTROL_INPUT,
@@ -71,7 +72,7 @@ const meta: Meta<CheckTreePickerProps> = {
 export default meta
 
 export function WithCustomSearch(props: CheckTreePickerProps) {
-  const options = TAGS(props.childrenKey, props.labelKey, props.valueKey) as TreeOption[]
+  const options = ENV_TAGS(props.childrenKey, props.labelKey, props.valueKey) as TreeOption[]
 
   const [outputValue, setOutputValue] = useState<TreeOption[]>()
 

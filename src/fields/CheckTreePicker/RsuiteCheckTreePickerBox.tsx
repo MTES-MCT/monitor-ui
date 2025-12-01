@@ -3,13 +3,22 @@ import styled from 'styled-components'
 
 import type { CommonPickerFieldStyleProps } from '@fields/shared/types'
 
-export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
+interface RsuiteCheckTreePickerBoxProps extends CommonPickerFieldStyleProps {
+  $isSelect?: boolean
+  $isThreeLevels?: boolean
+}
+
+export const RsuiteCheckTreePickerBox = styled.div<RsuiteCheckTreePickerBoxProps>`
   position: relative;
   user-select: none;
   width: 100%;
 
   * {
     ${p => p.$isReadOnly && `cursor: default !important;`}
+  }
+
+  mark {
+    background-color: ${p => p.theme.color.goldenPoppy25};
   }
 
   ${p => getCheckPickerInputCss(p)}
@@ -65,7 +74,15 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
     .rs-check-tree-view {
       padding: 2px 0;
 
+      .rs-check-tree-node-children
+        .rs-check-tree-node-children
+        .rs-check-tree-group:has([role='treeitem'][aria-level='3']) {
+        ${p => p.$isSelect && 'padding-left: 39px;'}
+      }
+
       .rs-check-tree-node {
+        ${p => p.$isSelect && `&:has(.rs-checkbox-checked) { background-color: ${p.theme.color.blueYonder25}; }`}
+
         &:hover {
           background-color: ${p => p.theme.color.blueYonder25};
         }
@@ -77,10 +94,15 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
 
       .rs-tree-node-toggle {
         width: 22px;
+        padding-left: 4px;
       }
 
       .rs-tree-node-toggle-placeholder {
         width: 12px;
+      }
+
+      .rs-check-tree-node:has([aria-level='3']) .rs-tree-node-toggle-placeholder {
+        ${p => p.$isSelect && 'width: 0;'}
       }
 
       [role='treeitem'] {
@@ -119,6 +141,7 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
           &.rs-checkbox-indeterminate {
             &:hover {
               .rs-checkbox-inner {
+                ${p => p.$isSelect && 'display: none;'}
                 &:before {
                   background-color: ${p => p.theme.color.blueYonder} !important;
                   border: solid 2px ${p => p.theme.color.blueYonder} !important;
@@ -267,7 +290,7 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
               > label {
                 .rs-checkbox-label {
                   width: 100%;
-                  padding-left: 20px;
+                  padding-left: 14px;
                 }
               }
             }
@@ -283,7 +306,32 @@ export const RsuiteCheckTreePickerBox = styled.div<CommonPickerFieldStyleProps>`
               > label {
                 .rs-checkbox-label {
                   width: 100%;
-                  padding-left: 20px;
+                  padding-left: 8px;
+                  ${p => p.$isThreeLevels && 'font-weight: 600;'}
+                }
+
+                > .rs-checkbox-control {
+                  ${p => p.$isSelect && 'display: none;'}
+                }
+              }
+            }
+          }
+        }
+
+        &[aria-level='3'] {
+          ${p => (p.$isSelect ? 'margin-left: 0;' : 'margin-left: 16px;')}
+          width: ${p => (p.$isSelect ? '100%' : '90%')};
+
+          > .rs-check-item {
+            > .rs-checkbox-checker {
+              > label {
+                .rs-checkbox-label {
+                  width: 100%;
+                  ${p => (p.$isSelect ? 'padding-left: 0;' : 'padding-left: 20px;')}
+                }
+
+                > .rs-checkbox-control {
+                  ${p => p.$isSelect && 'display: none;'}
                 }
               }
             }

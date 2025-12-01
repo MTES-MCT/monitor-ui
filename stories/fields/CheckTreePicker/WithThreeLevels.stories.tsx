@@ -1,20 +1,20 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { CheckTreePicker, type CheckTreePickerProps } from '@fields/CheckTreePicker'
 import { useState } from 'react'
 
-import { Output } from '../../.storybook/components/Output'
-import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
-import { ENV_TAGS } from '../../.storybook/data/ENV_TAGS'
-import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
-import { useFieldControl } from '../../src'
+import { Output } from '../../../.storybook/components/Output'
+import { ARG_TYPE, META_DEFAULTS } from '../../../.storybook/constants'
+import { FISHING_REGULATIONS } from '../../../.storybook/data/FISHING_REGULATIONS'
+import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
+import { useFieldControl } from '../../../src'
 
 import type { TreeOption } from '@fields/CheckTreePicker/types'
 import type { Meta } from '@storybook/react-vite'
+
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<CheckTreePickerProps> = {
   ...META_DEFAULTS,
 
-  title: 'Fields/CheckTreePicker',
+  title: 'Fields/CheckTreePicker (variations)',
   component: CheckTreePicker,
 
   argTypes: {
@@ -52,8 +52,6 @@ const meta: Meta<CheckTreePickerProps> = {
     popupWidth: undefined,
     isMultiSelect: true,
     readOnly: false,
-    searchable: false,
-    virtualized: false,
     childrenKey: 'subThemes',
     valueKey: 'id',
     labelKey: 'name'
@@ -68,21 +66,21 @@ const meta: Meta<CheckTreePickerProps> = {
     })
   ]
 }
+
 /* eslint-enable sort-keys-fix/sort-keys-fix */
 
 export default meta
 
-export function _CheckTreePicker(props: CheckTreePickerProps) {
+export function WithThreeLevels(props: CheckTreePickerProps) {
+  const options = FISHING_REGULATIONS(props.childrenKey, props.labelKey, props.valueKey) as TreeOption[]
+
   const [outputValue, setOutputValue] = useState<TreeOption[]>()
 
   const { controlledOnChange, controlledValue } = useFieldControl(props.value, setOutputValue)
 
-  const options = ENV_TAGS(props.childrenKey, props.labelKey, props.valueKey)
-
   return (
     <>
-      <CheckTreePicker {...props} onChange={controlledOnChange} options={options} value={controlledValue} virtualized />
-
+      <CheckTreePicker {...props} isSelect onChange={controlledOnChange} options={options} value={controlledValue} />
       <Output value={outputValue} />
     </>
   )
