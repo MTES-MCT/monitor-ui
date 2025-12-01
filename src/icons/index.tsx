@@ -1,229 +1,113 @@
-import { Account } from './Account'
-import { ActivityFeed } from './ActivityFeed'
-import { Alert } from './Alert'
-import { Anchor } from './Anchor'
-import { Archive } from './Archive'
-import { Attention } from './Attention'
-import { AttentionFilled } from './AttentionFilled'
-import { Bullseye } from './Bullseye'
-import { Calendar } from './Calendar'
-import { CalendarRepetition } from './CalendarRepetition'
-import { Car } from './Car'
-import { Chart } from './Chart'
-import { Check } from './Check'
-import { Chevron } from './Chevron'
-import { Circle } from './Circle'
-import { CircleFilled } from './CircleFilled'
-import { Clock } from './Clock'
-import { ClockDashed } from './ClockDashed'
-import { Close } from './Close'
-import { Comment } from './Comment'
-import { Confirm } from './Confirm'
-import { Contact } from './Contact'
-import { ControlUnit } from './ControlUnit'
-import { ControlUnitFilled } from './ControlUnitFilled'
-import { Delete } from './Delete'
-import { Display } from './Display'
-import { Document } from './Document'
-import { DoubleChevron } from './DoubleChevron'
-import { Download } from './Download'
-import { Drapeau } from './Drapeau'
-import { Duplicate } from './Duplicate'
-import { Edit } from './Edit'
-import { EditUnbordered } from './EditUnbordered'
-import { Expand } from './Expand'
-import { ExternalLink } from './ExternalLink'
-import { Favorite } from './Favorite'
-import { FilledArrow } from './FilledArrow'
-import { Filter } from './Filter'
-import { FilterBis } from './FilterBis'
-import { Fishery } from './Fishery'
-import { FishingEngine } from './FishingEngine'
-import { FleetSegment } from './FleetSegment'
-import { Focus } from './Focus'
-import { FocusVessel } from './FocusVessel'
-import { FocusZones } from './FocusZones'
-import { GroupPerson } from './GroupPerson'
-import { Hide } from './Hide'
-import { Info } from './Info'
-import { Infringement } from './Infringement'
-import { Invalid } from './Invalid'
-import { Landmark } from './Landmark'
-import { License } from './License'
-import { Link } from './Link'
-import { List } from './List'
-import { ListLines } from './ListLines'
-import { Logout } from './Logout'
-import { MapLayers } from './MapLayers'
-import { MapSettings } from './MapSettings'
-import { MeasureAngle } from './MeasureAngle'
-import { MeasureBrokenLine } from './MeasureBrokenLine'
-import { MeasureCircle } from './MeasureCircle'
-import { MeasureLine } from './MeasureLine'
-import { Minus } from './Minus'
-import { MissionAction } from './MissionAction'
-import { More } from './More'
-import { NewFeatures } from './NewFeatures'
-import { Note } from './Note'
-import { Observation } from './Observation'
-import { Offline } from './Offline'
-import { Phone } from './Phone'
-import { Pin } from './Pin'
-import { PinFilled } from './PinFilled'
-import { Pinpoint } from './Pinpoint'
-import { PinpointHide } from './PinpointHide'
-import { Plane } from './Plane'
-import { Plus } from './Plus'
-import { PointsCloud } from './PointsCloud'
-import { Reject } from './Reject'
-import { Report } from './Report'
-import { Rescue } from './Rescue'
-import { Reset } from './Reset'
-import { Save } from './Save'
-import { Search } from './Search'
-import { SelectCircle } from './SelectCircle'
-import { SelectPolygon } from './SelectPolygon'
-import { SelectRectangle } from './SelectRectangle'
-import { SelectZone } from './SelectZone'
-import { Semaphore } from './Semaphore'
-import { Send } from './Send'
-import { Settings } from './Settings'
-import { ShowErsMessages } from './ShowErsMessages'
-import { ShowXml } from './ShowXml'
-import { SortingArrows } from './SortingArrows'
-import { SortingChevrons } from './SortingChevrons'
-import { SortSelectedDown } from './SortSelectedDown'
-import { SortSelectedUp } from './SortSelectedUp'
-import { Stroke } from './Stroke'
-import { Subscription } from './Subscription'
-import { Summary } from './Summary'
-import { Tag } from './Tag'
-import { Target } from './Target'
-import { Unlink } from './Unlink'
-import { Unlock } from './Unlock'
-import { Vessel } from './Vessel'
-import { VesselGroups } from './VesselGroups'
-import { VesselLeisure } from './VesselLeisure'
-import { VesselList } from './VesselList'
-import { VesselPro } from './VesselPro'
-import { VesselTrackSettings } from './VesselTrackSettings'
-import { ViewOnMap } from './ViewOnMap'
-import { VigilanceAreas } from './VigilanceAreas'
-import { Vms } from './Vms'
-import { Warning } from './Warning'
-
-export {
-  Account,
-  ActivityFeed,
-  Alert,
-  Anchor,
-  Archive,
-  Attention,
-  AttentionFilled,
-  Bullseye,
-  Calendar,
-  CalendarRepetition,
-  Car,
-  Chart,
-  Check,
-  Chevron,
-  Circle,
-  CircleFilled,
-  Clock,
-  ClockDashed,
-  Close,
-  Comment,
-  Confirm,
-  Contact,
-  ControlUnit,
-  ControlUnitFilled,
-  Delete,
-  Display,
-  Document,
-  DoubleChevron,
-  Download,
-  Drapeau,
-  Duplicate,
-  Edit,
-  EditUnbordered,
-  Expand,
-  ExternalLink,
-  Favorite,
-  FilledArrow,
-  Filter,
-  FilterBis,
-  Fishery,
-  FishingEngine,
-  FleetSegment,
-  Focus,
-  FocusVessel,
-  FocusZones,
-  GroupPerson,
-  Hide,
-  Info,
-  Infringement,
-  Invalid,
-  Landmark,
-  License,
-  Link,
-  List,
-  ListLines,
-  Logout,
-  MapLayers,
-  MapSettings,
-  MeasureAngle,
-  MeasureBrokenLine,
-  MeasureCircle,
-  MeasureLine,
-  Minus,
-  MissionAction,
-  More,
-  NewFeatures,
-  Note,
-  Observation,
-  Offline,
-  Phone,
-  Pin,
-  PinFilled,
-  Pinpoint,
-  PinpointHide,
-  Plane,
-  Plus,
-  PointsCloud,
-  Reject,
-  Report,
-  Rescue,
-  Reset,
-  Save,
-  Search,
-  SelectCircle,
-  SelectPolygon,
-  SelectRectangle,
-  SelectZone,
-  Semaphore,
-  Send,
-  Settings,
-  ShowErsMessages,
-  ShowXml,
-  SortSelectedDown,
-  SortSelectedUp,
-  SortingArrows,
-  SortingChevrons,
-  Stroke,
-  Subscription,
-  Summary,
-  Tag,
-  Target,
-  Unlink,
-  Unlock,
-  Vessel,
-  VesselGroups,
-  VesselLeisure,
-  VesselList,
-  VesselPro,
-  VesselTrackSettings,
-  ViewOnMap,
-  VigilanceAreas,
-  Vms,
-  Warning
-}
+export { Account } from './Account'
+export { ActivityFeed } from './ActivityFeed'
+export { Alert } from './Alert'
+export { Anchor } from './Anchor'
+export { Archive } from './Archive'
+export { Attention } from './Attention'
+export { AttentionFilled } from './AttentionFilled'
+export { Bullseye } from './Bullseye'
+export { Calendar } from './Calendar'
+export { CalendarRepetition } from './CalendarRepetition'
+export { Car } from './Car'
+export { Chart } from './Chart'
+export { Check } from './Check'
+export { Chevron } from './Chevron'
+export { Circle } from './Circle'
+export { CircleFilled } from './CircleFilled'
+export { Clock } from './Clock'
+export { ClockDashed } from './ClockDashed'
+export { Close } from './Close'
+export { Comment } from './Comment'
+export { Confirm } from './Confirm'
+export { Contact } from './Contact'
+export { ControlUnit } from './ControlUnit'
+export { ControlUnitFilled } from './ControlUnitFilled'
+export { Delete } from './Delete'
+export { Display } from './Display'
+export { Document } from './Document'
+export { DoubleChevron } from './DoubleChevron'
+export { Download } from './Download'
+export { Drapeau } from './Drapeau'
+export { Duplicate } from './Duplicate'
+export { Edit } from './Edit'
+export { EditUnbordered } from './EditUnbordered'
+export { Expand } from './Expand'
+export { ExternalLink } from './ExternalLink'
+export { Favorite } from './Favorite'
+export { FilledArrow } from './FilledArrow'
+export { Filter } from './Filter'
+export { FilterBis } from './FilterBis'
+export { Fishery } from './Fishery'
+export { FishingEngine } from './FishingEngine'
+export { FleetSegment } from './FleetSegment'
+export { Focus } from './Focus'
+export { FocusVessel } from './FocusVessel'
+export { FocusZones } from './FocusZones'
+export { GroupPerson } from './GroupPerson'
+export { Hide } from './Hide'
+export { Info } from './Info'
+export { Infringement } from './Infringement'
+export { Invalid } from './Invalid'
+export { Landmark } from './Landmark'
+export { License } from './License'
+export { Link } from './Link'
+export { List } from './List'
+export { ListLines } from './ListLines'
+export { Logout } from './Logout'
+export { MapLayers } from './MapLayers'
+export { MapSettings } from './MapSettings'
+export { MeasureAngle } from './MeasureAngle'
+export { MeasureBrokenLine } from './MeasureBrokenLine'
+export { MeasureCircle } from './MeasureCircle'
+export { MeasureLine } from './MeasureLine'
+export { Minus } from './Minus'
+export { MissionAction } from './MissionAction'
+export { More } from './More'
+export { NewFeatures } from './NewFeatures'
+export { Note } from './Note'
+export { Observation } from './Observation'
+export { Offline } from './Offline'
+export { Phone } from './Phone'
+export { Pin } from './Pin'
+export { PinFilled } from './PinFilled'
+export { Pinpoint } from './Pinpoint'
+export { PinpointHide } from './PinpointHide'
+export { Plane } from './Plane'
+export { Plus } from './Plus'
+export { PointsCloud } from './PointsCloud'
+export { Reject } from './Reject'
+export { Report } from './Report'
+export { Rescue } from './Rescue'
+export { Reset } from './Reset'
+export { Save } from './Save'
+export { Search } from './Search'
+export { SelectCircle } from './SelectCircle'
+export { SelectPolygon } from './SelectPolygon'
+export { SelectRectangle } from './SelectRectangle'
+export { SelectZone } from './SelectZone'
+export { Semaphore } from './Semaphore'
+export { Send } from './Send'
+export { Settings } from './Settings'
+export { ShowErsMessages } from './ShowErsMessages'
+export { ShowXml } from './ShowXml'
+export { SortSelectedDown } from './SortSelectedDown'
+export { SortSelectedUp } from './SortSelectedUp'
+export { SortingArrows } from './SortingArrows'
+export { SortingChevrons } from './SortingChevrons'
+export { Stroke } from './Stroke'
+export { Subscription } from './Subscription'
+export { Summary } from './Summary'
+export { Tag } from './Tag'
+export { Target } from './Target'
+export { Unlink } from './Unlink'
+export { Unlock } from './Unlock'
+export { Vessel } from './Vessel'
+export { VesselGroups } from './VesselGroups'
+export { VesselLeisure } from './VesselLeisure'
+export { VesselList } from './VesselList'
+export { VesselPro } from './VesselPro'
+export { VesselTrackSettings } from './VesselTrackSettings'
+export { ViewOnMap } from './ViewOnMap'
+export { VigilanceAreas } from './VigilanceAreas'
+export { Vms } from './Vms'
+export { Warning } from './Warning'
