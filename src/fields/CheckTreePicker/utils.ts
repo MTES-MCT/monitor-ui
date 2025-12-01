@@ -37,7 +37,7 @@ export function getTreeOptionsBySelectedValues(
   valueKey: string | number = 'value',
   labelKey: string = 'label'
 ): TreeOption[] {
-  function preserveChildrenStructure(option: TreeOption, isRootLevel: boolean = false): TreeOption {
+  function preserveChildrenStructure(option: TreeOption): TreeOption {
     const children = option[childrenKey] as TreeOption[] | undefined
     const baseOption: TreeOption = {
       [labelKey]: option[labelKey],
@@ -45,9 +45,9 @@ export function getTreeOptionsBySelectedValues(
     } as TreeOption
 
     if (children && Array.isArray(children)) {
-      baseOption[childrenKey] = children.map(child => preserveChildrenStructure(child, false)) as any
-    } else if (isRootLevel) {
-      // Only add empty children array for root-level options without children
+      baseOption[childrenKey] = children.map(child => preserveChildrenStructure(child)) as any
+    } else {
+      // Always add empty children array for consistency
       baseOption[childrenKey] = [] as any
     }
 
@@ -71,12 +71,7 @@ export function getTreeOptionsBySelectedValues(
     }
 
     if (selectedValues?.includes(option[valueKey] as string | number)) {
-      // Check if this is a root-level option (no parent in the current context)
-      const isRootLevel = !options.some(opt =>
-        (opt[childrenKey] as TreeOption[] | undefined)?.some(child => child[valueKey] === option[valueKey])
-      )
-
-      return preserveChildrenStructure(option, isRootLevel)
+      return preserveChildrenStructure(option)
     }
 
     return undefined
