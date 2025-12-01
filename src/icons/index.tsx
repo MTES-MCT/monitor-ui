@@ -103,7 +103,9 @@ import { Unlink } from './Unlink'
 import { Unlock } from './Unlock'
 import { Vessel } from './Vessel'
 import { VesselGroups } from './VesselGroups'
+import { VesselLeisure } from './VesselLeisure'
 import { VesselList } from './VesselList'
+import { VesselPro } from './VesselPro'
 import { VesselTrackSettings } from './VesselTrackSettings'
 import { ViewOnMap } from './ViewOnMap'
 import { VigilanceAreas } from './VigilanceAreas'
@@ -216,7 +218,9 @@ export {
   Unlock,
   Vessel,
   VesselGroups,
+  VesselLeisure,
   VesselList,
+  VesselPro,
   VesselTrackSettings,
   ViewOnMap,
   VigilanceAreas,
