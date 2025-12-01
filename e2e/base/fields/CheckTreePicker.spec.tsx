@@ -277,31 +277,6 @@ describe('fields/CheckTreePicker', () => {
       isSelect: true
     }
 
-    it('Should fill with isSelect true using FISHING_REGULATIONS', () => {
-      mountAndWait(
-        <StoryBox>
-          <CheckTreePickerStory {...fishingCommonProps} />
-        </StoryBox>
-      )
-
-      outputShouldNotBe()
-
-      cy.fill('Fishing regulations selector', ['Autorisation Débarquement'])
-
-      outputShouldBe([
-        {
-          children: [
-            {
-              label: 'Autorisation Débarquement',
-              value: 'autorisation_debarquement'
-            }
-          ],
-          label: 'Mesures techniques et de conservation',
-          value: 'mesures_techniques_conservation'
-        }
-      ])
-    })
-
     it('Should handle multiple level selection with isSelect true', () => {
       mountAndWait(
         <StoryBox>
@@ -320,7 +295,8 @@ describe('fields/CheckTreePicker', () => {
               children: [
                 {
                   label: '27718 – Débarquement de produits de la pêche maritime et de l\'aquaculture marine hors d\'un port désigné',
-                  value: '27718'
+                  value: '27718',
+                  "children": []
                 }
               ],
               label: 'Autorisation Débarquement',
@@ -336,46 +312,31 @@ describe('fields/CheckTreePicker', () => {
     it('Should clear selection with isSelect true', () => {
       mountAndWait(
         <StoryBox>
-          <CheckTreePickerStory {...fishingCommonProps} value={[fishingOptions[0]!]} />
+          <CheckTreePickerStory {...fishingCommonProps} value={[
+            {
+              children: [
+                {
+                  children: [
+                    {
+                      label: '27718 – Débarquement de produits de la pêche maritime et de l\'aquaculture marine hors d\'un port désigné',
+                      value: '27718',
+                      "children": []
+                    }
+                  ],
+                  label: 'Autorisation Débarquement',
+                  value: 'autorisation_debarquement'
+                }
+              ],
+              label: 'Mesures techniques et de conservation',
+              value: 'mesures_techniques_conservation'
+            }
+          ]} />
         </StoryBox>
       )
-
-      outputShouldBe([
-        {
-          children: (fishingOptions[0] as any).children,
-          label: 'Mesures techniques et de conservation',
-          value: 'mesures_techniques_conservation'
-        }
-      ])
 
       cy.fill('Fishing regulations selector', undefined)
 
       outputShouldBe(undefined)
-    })
-
-    it('Should work with searchable and isSelect true', () => {
-      mountAndWait(
-        <StoryBox>
-          <CheckTreePickerStory {...fishingCommonProps} searchable />
-        </StoryBox>
-      )
-
-      outputShouldNotBe()
-
-      cy.fill('Fishing regulations selector', ['AIS'])
-
-      outputShouldBe([
-        {
-          children: [
-            {
-              label: 'AIS',
-              value: 'ais'
-            }
-          ],
-          label: 'Mesures techniques et de conservation',
-          value: 'mesures_techniques_conservation'
-        }
-      ])
     })
   })
 

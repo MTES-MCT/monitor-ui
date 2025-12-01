@@ -236,16 +236,12 @@ export function CheckTreePicker({
       return
     }
 
-    if (isSelect && rsuiteValue && rsuiteValue.length > 0) {
-      const filteredValue = nextValue.filter(item => !rsuiteValue.includes(item))
-      const formattedValues = fromRsuiteValue(filteredValue, options, childrenKey, valueKey, labelKey)
-      onChange(formattedValues)
-      treeRef.current?.close?.()
+    const hasExistingSelection = rsuiteValue && rsuiteValue.length > 0
+    const shouldFilterToNewValues = isSelect && hasExistingSelection
 
-      return
-    }
+    const valuesToProcess = shouldFilterToNewValues ? nextValue.filter(item => !rsuiteValue.includes(item)) : nextValue
 
-    const formattedValues = fromRsuiteValue(nextValue, options, childrenKey, valueKey, labelKey)
+    const formattedValues = fromRsuiteValue(valuesToProcess, options, childrenKey, valueKey, labelKey)
     onChange(formattedValues)
 
     if (isSelect) {
