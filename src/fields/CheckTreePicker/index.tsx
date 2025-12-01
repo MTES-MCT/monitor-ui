@@ -24,8 +24,10 @@ import {
   getOptionsToDisplay,
   getParentRsuiteValue,
   getTreeOptionsBySelectedValues,
+  hasThreeLevels,
   toRsuiteValue
 } from './utils'
+import { getFormattedNodePath } from './utils/getNodePath'
 
 import type { TreeOption } from './types'
 import type { ValueType } from 'rsuite/esm/CheckTreePicker'
@@ -43,6 +45,7 @@ export type CheckTreePickerProps = Omit<
   isLight?: boolean | undefined
   isMultiSelect?: boolean
   isRequired?: boolean | undefined
+  isSelect?: boolean | undefined
   isTransparent?: boolean | undefined
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
@@ -69,6 +72,7 @@ export function CheckTreePicker({
   isLight = false,
   isMultiSelect = true,
   isRequired = false,
+  isSelect = false,
   isTransparent = false,
   isUndefinedWhenDisabled = false,
   label,
@@ -108,6 +112,9 @@ export function CheckTreePicker({
           },
           {
             name: [`${childrenKey}.${labelKey}`]
+          },
+          {
+            name: [`${childrenKey}.${childrenKey}.${labelKey}`]
           }
         ],
         { childrenKey, isStrict: true, withCacheInvalidation: true }
@@ -223,17 +230,28 @@ export function CheckTreePicker({
       valueKey
     ]
   )
-  const handleChange = useCallback(
-    (nextValue: ValueType) => {
-      if (!onChange) {
-        return
-      }
 
-      const formattedValues = fromRsuiteValue(nextValue, options, childrenKey, valueKey, labelKey)
+  const handleChange = (nextValue: ValueType) => {
+    if (!onChange) {
+      return
+    }
+
+    if (isSelect && rsuiteValue && rsuiteValue.length > 0) {
+      const filteredValue = nextValue.filter(item => !rsuiteValue.includes(item))
+      const formattedValues = fromRsuiteValue(filteredValue, options, childrenKey, valueKey, labelKey)
       onChange(formattedValues)
-    },
-    [childrenKey, onChange, options, valueKey, labelKey]
-  )
+      treeRef.current?.close?.()
+
+      return
+    }
+
+    const formattedValues = fromRsuiteValue(nextValue, options, childrenKey, valueKey, labelKey)
+    onChange(formattedValues)
+
+    if (isSelect) {
+      treeRef.current?.close?.()
+    }
+  }
 
   const removeOptions = (valuesToRemove: ValueType, e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
@@ -257,6 +275,8 @@ export function CheckTreePicker({
       isLabelHidden={isLabelHidden}
       isLight={isLight}
       isRequired={isRequired}
+      isSelect={isSelect}
+      isThreeLevels={hasThreeLevels(options, childrenKey)}
       isTransparent={isTransparent}
       label={label}
       onLabelClick={() => {
@@ -306,6 +326,18 @@ export function CheckTreePicker({
             return <AccentInsensitiveHighlight label={item[labelKey]} query={searchKeyword} />
           }}
           renderValue={() => {
+            if (isSelect && rsuiteValue && rsuiteValue.length > 0) {
+              const formattedPath = getFormattedNodePath(
+                rsuiteValue[0] as string | number,
+                options,
+                childrenKey,
+                valueKey,
+                labelKey
+              )
+
+              return <span title={formattedPath}>{formattedPath}</span>
+            }
+
             const parents = getTreeOptionsBySelectedValues(rsuiteValue, options, childrenKey, valueKey, labelKey)
             const children = parents.flatMap(parent => parent[childrenKey] as TreeOption[])
             if (!shouldShowLabels) {

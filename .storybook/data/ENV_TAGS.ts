@@ -1,4 +1,4 @@
-export const TAGS = (childrenKey: string = 'children', labelKey = 'label', valueKey = 'value') => [
+export const ENV_TAGS = (childrenKey: string = 'children', labelKey = 'label', valueKey = 'value') => [
   {
     [labelKey]: 'Pollution marine',
     [valueKey]: 'pollution_marine',

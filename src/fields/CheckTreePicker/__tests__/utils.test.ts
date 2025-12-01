@@ -7,6 +7,7 @@ import {
   getOptionsToDisplay,
   getParentRsuiteValue,
   getTreeOptionsBySelectedValues,
+  hasThreeLevels,
   toRsuiteValue
 } from '../utils'
 
@@ -329,5 +330,96 @@ describe('getParentRsuiteValue', () => {
       expect(cloned).toEqual(obj)
       expect(Object.isExtensible(cloned.a)).toBe(true)
     })
+  })
+})
+
+describe('hasThreeLevels', () => {
+  it('should return true when data has 3 levels', () => {
+    const options: TreeOption[] = [
+      {
+        children: [
+          {
+            children: [{ label: 'Level 3', value: 'level3' }],
+            label: 'Level 2',
+            value: 'level2'
+          }
+        ],
+        label: 'Level 1',
+        value: 'level1'
+      }
+    ]
+
+    const result = hasThreeLevels(options)
+    expect(result).toBe(true)
+  })
+
+  it('should return false when data has only 2 levels', () => {
+    const options: TreeOption[] = [
+      {
+        children: [{ label: 'Level 2', value: 'level2' }],
+        label: 'Level 1',
+        value: 'level1'
+      }
+    ]
+
+    const result = hasThreeLevels(options)
+    expect(result).toBe(false)
+  })
+
+  it('should return false when data has only 1 level', () => {
+    const options: TreeOption[] = [{ label: 'Level 1', value: 'level1' }]
+
+    const result = hasThreeLevels(options)
+    expect(result).toBe(false)
+  })
+
+  it('should return false when options are empty', () => {
+    const options: TreeOption[] = []
+
+    const result = hasThreeLevels(options)
+    expect(result).toBe(false)
+  })
+
+  it('should return true when one branch has 3 levels among multiple branches', () => {
+    const options: TreeOption[] = [
+      {
+        children: [{ label: 'Level 2 A', value: 'level2a' }],
+        label: 'Level 1 A',
+        value: 'level1a'
+      },
+      {
+        children: [
+          {
+            children: [{ label: 'Level 3 B', value: 'level3b' }],
+            label: 'Level 2 B',
+            value: 'level2b'
+          }
+        ],
+        label: 'Level 1 B',
+        value: 'level1b'
+      }
+    ]
+
+    const result = hasThreeLevels(options)
+    expect(result).toBe(true)
+  })
+
+  it('should work with custom childrenKey', () => {
+    const options: any[] = [
+      {
+        customChildren: [
+          {
+            customChildren: [{ label: 'Level 3', value: 'level3' }],
+            label: 'Level 2',
+            value: 'level2'
+          }
+        ],
+        label: 'Level 1',
+        value: 'level1'
+      }
+    ]
+
+    const result = hasThreeLevels(options, 'customChildren')
+    expect(result).toBe(true)
   })
 })

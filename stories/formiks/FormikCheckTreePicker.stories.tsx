@@ -8,7 +8,7 @@ import { useMemo, useState } from 'react'
 import { action } from 'storybook/actions'
 
 import { Output } from '../../.storybook/components/Output'
-import { TAGS } from '../../.storybook/data/tags'
+import { ENV_TAGS } from '../../.storybook/data/ENV_TAGS'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { FormikEffect } from '../../src'
 import CheckTreePickerStoryMeta from '../fields/CheckTreePicker.stories'
@@ -58,7 +58,7 @@ export function _FormikCheckTreePicker(props: FormikCheckTreePickerProps) {
           <FormikCheckTreePicker
             {...props}
             isMultiSelect={false}
-            options={TAGS(props.childrenKey, props.labelKey, props.valueKey)}
+            options={ENV_TAGS(props.childrenKey, props.labelKey, props.valueKey)}
           />
         </>
       </Formik>
