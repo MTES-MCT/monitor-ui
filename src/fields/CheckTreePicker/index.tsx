@@ -153,10 +153,12 @@ export function CheckTreePicker({
 
         const children = item[childrenKey] as TreeOption[] | undefined
 
-        const formattedItem = {
+        const formattedItem: any = {
           [labelKey]: item[labelKey],
-          [valueKey]: item[valueKey],
-          ...(children?.length && children?.length > 0 && { [childrenKey]: item[childrenKey] })
+          [valueKey]: item[valueKey]
+        }
+        if (children?.length && children?.length > 0) {
+          formattedItem[childrenKey] = item[childrenKey]
         }
         const existing = acc.get(parentId)
         if (!existing) {
