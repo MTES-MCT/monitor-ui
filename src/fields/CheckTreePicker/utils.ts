@@ -46,9 +46,6 @@ export function getTreeOptionsBySelectedValues(
 
     if (children && Array.isArray(children)) {
       baseOption[childrenKey] = children.map(child => preserveChildrenStructure(child)) as any
-    } else {
-      // Always add empty children array for consistency
-      baseOption[childrenKey] = [] as any
     }
 
     return baseOption
