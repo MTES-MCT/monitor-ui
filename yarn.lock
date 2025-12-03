@@ -2915,7 +2915,7 @@ __metadata:
     type-fest: "npm:4.41.0"
     typescript: "npm:5.8.3"
     use-debounce: "npm:10.0.5"
-    vite: "npm:^7.1.0"
+    vite: "npm:^7.1.11"
     vite-bundle-analyzer: "npm:^1.2.3"
     vite-tsconfig-paths: "npm:^5.1.4"
     yup: "npm:1.6.1"
@@ -17417,9 +17417,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^7.1.0":
-  version: 7.1.5
-  resolution: "vite@npm:7.1.5"
+"vite@npm:^7.1.11":
+  version: 7.2.6
+  resolution: "vite@npm:7.2.6"
   dependencies:
     esbuild: "npm:^0.25.0"
     fdir: "npm:^6.5.0"
@@ -17468,7 +17468,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10c0/782d2f20c25541b26d1fb39bef5f194149caff39dc25b7836e25f049ca919f2e2ce186bddb21f3f20f6195354b3579ec637a8ca08d65b117f8b6f81e3e730a9c
+  checksum: 10c0/d444a159ab8f0f854d596d1938f201b449d59ed4d336e587be9dc89005467214d85848c212c2495f76a8421372ffe4d061d023d659600f1aaa3ba5ac13e804f7
   languageName: node
   linkType: hard
 
