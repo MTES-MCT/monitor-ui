@@ -1,3 +1,18 @@
+## [24.38.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.37.0...v24.38.0) (2025-12-03)
+
+### Features
+
+* **fields:** add isSelect to check tree picker ([6b8666e](https://github.com/MTES-MCT/monitor-ui/commit/6b8666e668f39b8a386162077900d2d4eb36d14e))
+
+### Bug Fixes
+
+* **fields:** apply linter ([c59a40a](https://github.com/MTES-MCT/monitor-ui/commit/c59a40a91717a682ae9af88e7b7b76a03a222812))
+* **fields:** fix margins of check tree picker ([7016727](https://github.com/MTES-MCT/monitor-ui/commit/7016727c5542f4a19a22b05d0697afc387e47f30))
+* **fields:** fix tests and add default childrens prop ([e2367f1](https://github.com/MTES-MCT/monitor-ui/commit/e2367f10a08236c4ba762aba5a0fa675a25cc231))
+* **fields:** fix unit tests ([578ba9e](https://github.com/MTES-MCT/monitor-ui/commit/578ba9e2894ed5056746d4912f7a2ab7d2e785df))
+* **fields:** remove js files ([6e693b5](https://github.com/MTES-MCT/monitor-ui/commit/6e693b51653903391a0cbd0db94dcb7009566730))
+* **fields:** remove leaf node children ([9ec660f](https://github.com/MTES-MCT/monitor-ui/commit/9ec660f673427da8e32d21debbcf150910816efa))
+
 ## [24.37.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.36.0...v24.37.0) (2025-12-01)
 
 ### Features
