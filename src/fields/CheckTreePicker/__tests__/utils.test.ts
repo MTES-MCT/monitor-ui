@@ -39,6 +39,44 @@ describe('getTreeOptionsBySelectedValues', () => {
     }
   ]
 
+  it('should return filtered options with numbers', () => {
+    const numberOptions: TreeOption[] = [
+      {
+        children: [
+          { label: 'Acidification des océans', value: '123_1511' },
+          { label: 'Réchauffement des eaux', value: '456_1511' },
+          { label: 'Blanchissement des coraux', value: '789_1511' }
+        ],
+        label: 'Changement climatique et océan',
+        value: 'changement_climatique_ocean'
+      },
+      {
+        children: [
+          { label: 'Déchets plastiques', value: '458_1235' },
+          { label: 'Pollution chimique', value: '568_151' }
+        ],
+        label: 'Pollution marine',
+        value: 'pollution_marine'
+      }
+    ]
+    const selectedValues = ['123_1511', '458_1235']
+
+    const result = getTreeOptionsBySelectedValues(selectedValues, numberOptions, true)
+
+    expect(result).toEqual([
+      {
+        children: [{ label: 'Acidification des océans', value: 123 }],
+        label: 'Changement climatique et océan',
+        value: 'changement_climatique_ocean'
+      },
+      {
+        children: [{ label: 'Déchets plastiques', value: 458 }],
+        label: 'Pollution marine',
+        value: 'pollution_marine'
+      }
+    ])
+  })
+
   it('should return filtered options with selected children only', () => {
     const selectedValues = ['acidification_oceans', 'pollution_chimique']
 
@@ -97,7 +135,7 @@ describe('getTreeOptionsBySelectedValues', () => {
               {
                 label:
                   "27718 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors d'un port désigné",
-                value: '27718'
+                value: 27718
               }
             ],
             label: 'Autorisation Débarquement',
