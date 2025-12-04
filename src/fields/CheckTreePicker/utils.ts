@@ -18,12 +18,12 @@ export function generateUniqueIds(
   valueKey: string | number = 'value',
   labelKey: string = 'label'
 ): TreeOption[] {
-  function processNode(option: TreeOption, parentLabel?: string): TreeOption {
+  function processNode(option: TreeOption, parentLabel?: string | number): TreeOption {
     const label = option[labelKey] as string
     const value = option[valueKey] as string | number
     const children = option[childrenKey] as TreeOption[] | undefined
 
-    const uniqueValue = parentLabel ? `${value}_${getHash(parentLabel)}` : value
+    const uniqueValue = parentLabel ? `${value}_${getHash(String(parentLabel))}` : value
 
     const processedNode: TreeOption = {
       ...option,
@@ -44,6 +44,7 @@ export function generateUniqueIds(
 export function fromRsuiteValue(
   selectedValues: ValueType,
   allOptions: TreeOption[],
+  isConvertingOriginalValues: boolean = false,
   childrenKey: string = 'children',
   valueKey: string | number = 'value',
   labelKey: string = 'label'
@@ -51,7 +52,7 @@ export function fromRsuiteValue(
   const formattedTree = getTreeOptionsBySelectedValues(
     selectedValues,
     allOptions,
-    true,
+    isConvertingOriginalValues,
     childrenKey,
     valueKey,
     labelKey
@@ -332,4 +333,83 @@ export function hasThreeLevels(options: TreeOption[], childrenKey: string = 'chi
   }
 
   return checkDepth(options, 1)
+}
+
+export function mergeResultsByParent(
+  items: TreeOption[],
+  childrenKey: string = 'children',
+  valueKey: string = 'value',
+  labelKey: string = 'label'
+): TreeOption[] {
+  // First, collect all children from all items to merge recursively
+  const allChildren: TreeOption[] = []
+  items.forEach(item => {
+    const children = item[childrenKey] as TreeOption[] | undefined
+    if (children && children.length > 0) {
+      allChildren.push(...children)
+    }
+  })
+
+  // Merge items at current level
+  const parentMap = items.reduce((acc, item) => {
+    const parentId = item[valueKey] as string
+    if (!parentId) {
+      return acc
+    }
+
+    const children = item[childrenKey] as TreeOption[] | undefined
+
+    const formattedItem: any = {
+      [labelKey]: item[labelKey],
+      [valueKey]: item[valueKey]
+    }
+    if (children?.length && children?.length > 0) {
+      formattedItem[childrenKey] = item[childrenKey]
+    }
+    const existing = acc.get(parentId)
+    if (!existing) {
+      acc.set(parentId, formattedItem)
+    } else if (
+      formattedItem[childrenKey] &&
+      Array.isArray(formattedItem[childrenKey]) &&
+      formattedItem[childrenKey].length > 0
+    ) {
+      if (!existing[childrenKey]) {
+        existing[childrenKey] = []
+      }
+      const existingChildren = Array.isArray(existing[childrenKey]) ? (existing[childrenKey] as TreeOption[]) : []
+      const seen = new Set(existingChildren.map(child => child[valueKey]))
+
+      formattedItem[childrenKey].forEach(child => {
+        if (!seen.has(child[valueKey])) {
+          existingChildren.push(child)
+        }
+      })
+    }
+
+    return acc
+  }, new Map<string, TreeOption>())
+
+  // Recursively merge children if any exist
+  const result = Array.from(parentMap.values())
+  if (allChildren.length > 0) {
+    const mergedChildren = mergeResultsByParent(allChildren, childrenKey, valueKey, labelKey)
+
+    // Replace children in result with merged children
+    return result.map(item => {
+      const itemChildren = item[childrenKey] as TreeOption[] | undefined
+      if (itemChildren && itemChildren.length > 0) {
+        const relevantChildren = mergedChildren.filter(child => itemChildren.some(c => c[valueKey] === child[valueKey]))
+
+        return {
+          ...item,
+          [childrenKey]: relevantChildren
+        }
+      }
+
+      return item
+    })
+  }
+
+  return result
 }
