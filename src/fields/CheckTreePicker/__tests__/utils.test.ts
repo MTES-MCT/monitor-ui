@@ -1,9 +1,12 @@
 import { describe, expect, it } from '@jest/globals'
 
+import { FISHING_REGULATIONS_UNIQUE } from '../../../../.storybook/data/FISHING_REGULATIONS_UNIQUE'
 import {
   computeDisabledValues,
   deepCloneExtensible,
+  flattenAllDescendants,
   fromRsuiteValue,
+  generateUniqueIds,
   getOptionsToDisplay,
   getParentRsuiteValue,
   getTreeOptionsBySelectedValues,
@@ -76,6 +79,32 @@ describe('getTreeOptionsBySelectedValues', () => {
         ],
         label: 'Changement climatique et océan',
         value: 'changement_climatique_ocean'
+      }
+    ])
+  })
+
+  it('should return leaf values of three levels options', () => {
+    const selectedValues = ['27718_1585249700']
+
+    const result = getTreeOptionsBySelectedValues(selectedValues, FISHING_REGULATIONS_UNIQUE(), true)
+
+    expect(result).toEqual([
+      {
+        children: [
+          {
+            children: [
+              {
+                label:
+                  "27718 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors d'un port désigné",
+                value: '27718'
+              }
+            ],
+            label: 'Autorisation Débarquement',
+            value: 'autorisation_debarquement'
+          }
+        ],
+        label: 'Mesures techniques et de conservation',
+        value: 'mesures_techniques_conservation'
       }
     ])
   })
@@ -157,26 +186,29 @@ describe('toRsuiteValue', () => {
   })
 
   it('should extract leaf node values from 3-level tree', () => {
-    const tree: TreeOption[] = [
+    const treeValue: TreeOption[] = [
       {
         children: [
           {
             children: [
-              { label: 'Level 3a', value: 'l3a' },
-              { label: 'Level 3b', value: 'l3b' }
+              {
+                label:
+                  "27718 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors d'un port désigné",
+                value: '27718'
+              }
             ],
-            label: 'Level 2',
-            value: 'l2'
+            label: 'Autorisation Débarquement',
+            value: 'autorisation_debarquement'
           }
         ],
-        label: 'Level 1',
-        value: 'l1'
+        label: 'Mesures techniques et de conservation',
+        value: 'mesures_techniques_conservation'
       }
     ]
 
-    const result = toRsuiteValue(tree)
+    const result = toRsuiteValue(treeValue, FISHING_REGULATIONS_UNIQUE())
 
-    expect(result).toEqual(['l3a', 'l3b'])
+    expect(result).toEqual(['27718_1585249700'])
   })
 
   it('should handle mixed leaf and parent nodes', () => {
@@ -226,7 +258,7 @@ describe('toRsuiteValue', () => {
       }
     ]
 
-    const result = toRsuiteValue(tree, 'subItems')
+    const result = toRsuiteValue(tree, undefined, 'subItems')
 
     expect(result).toEqual(['child'])
   })
@@ -240,7 +272,7 @@ describe('toRsuiteValue', () => {
       }
     ]
 
-    const result = toRsuiteValue(tree, 'children', 'id')
+    const result = toRsuiteValue(tree, [], 'children', 'id')
 
     expect(result).toEqual(['child'])
   })
@@ -294,31 +326,6 @@ describe('toRsuiteValue', () => {
     const result = toRsuiteValue(tree)
 
     expect(result).toEqual(['b1c1', 'b1c2', 'b2c1'])
-  })
-
-  it('should handle real-world fishing regulations data', () => {
-    const tree: TreeOption[] = [
-      {
-        id: 'mesures_techniques_conservation',
-        name: 'Mesures techniques et de conservation',
-        subThemes: [
-          {
-            id: 'autorisation_debarquement',
-            name: 'Autorisation Débarquement',
-            subThemes: [
-              {
-                id: '27718',
-                name: '27718 – Débarquement'
-              }
-            ]
-          }
-        ]
-      }
-    ]
-
-    const result = toRsuiteValue(tree, 'subThemes', 'id')
-
-    expect(result).toEqual(['27718'])
   })
 })
 
@@ -443,6 +450,36 @@ describe('getOptionsToDisplay', () => {
   it('returns empty array if allOptions is empty', () => {
     const result = getOptionsToDisplay([], [{ label: 'Child 1', value: 'child1' }])
     expect(result).toEqual([])
+  })
+
+  it('returns options with three level node', () => {
+    const fishingOptionsUnique = FISHING_REGULATIONS_UNIQUE()
+    const result = getOptionsToDisplay(fishingOptionsUnique, [
+      {
+        label:
+          "27718 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors d'un port désigné",
+        value: '27718_1585249700'
+      },
+      {
+        label:
+          "27718 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors d'un port désigné",
+        value: '27718_3033183864'
+      }
+    ])
+
+    // With unique ID support, duplicate values are now allowed (supporting same leaf in multiple parents)
+    expect(result).toEqual([
+      {
+        label:
+          "27718 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors d'un port désigné",
+        value: '27718_1585249700'
+      },
+      {
+        label:
+          "27718 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors d'un port désigné",
+        value: '27718_3033183864'
+      }
+    ])
   })
 })
 
@@ -589,5 +626,332 @@ describe('hasThreeLevels', () => {
 
     const result = hasThreeLevels(options, 'customChildren')
     expect(result).toBe(true)
+  })
+})
+
+describe('generateUniqueIds', () => {
+  describe('two-level node structure', () => {
+    it('should generate unique IDs by concatenating parent and child values', () => {
+      const options: TreeOption[] = [
+        {
+          children: [
+            { label: 'Item 1', value: 'item1' },
+            { label: 'Item 2', value: 'item2' }
+          ],
+          label: 'Category 1',
+          value: 'cat1'
+        },
+        {
+          children: [{ label: 'Item 3', value: 'item3' }],
+          label: 'Category 2',
+          value: 'cat2'
+        }
+      ]
+
+      const result = generateUniqueIds(options)
+
+      expect(result).toEqual([
+        {
+          children: [
+            { label: 'Item 1', value: 'item1_2933931776' },
+            { label: 'Item 2', value: 'item2_2933931776' }
+          ],
+          label: 'Category 1',
+          value: 'cat1'
+        },
+        {
+          children: [{ label: 'Item 3', value: 'item3_2950709392' }],
+          label: 'Category 2',
+          value: 'cat2'
+        }
+      ])
+    })
+
+    it('should preserve labels while updating values', () => {
+      const options: TreeOption[] = [
+        {
+          children: [{ label: 'Original Label', value: 'child' }],
+          label: 'Parent',
+          value: 'parent'
+        }
+      ]
+
+      const result = generateUniqueIds(options)
+
+      expect(result[0].children?.[0].label).toBe('Original Label')
+      expect(result[0].children?.[0].value).toBe('child_1323991664')
+    })
+
+    it('should handle multiple categories with overlapping child values', () => {
+      const options: TreeOption[] = [
+        {
+          children: [
+            { label: 'Apple', value: 'apple' },
+            { label: 'Banana', value: 'banana' }
+          ],
+          label: 'Fruits',
+          value: 'fruits'
+        },
+        {
+          children: [
+            { label: 'Apple', value: 'apple' }, // Same value, different category
+            { label: 'Carrot', value: 'carrot' }
+          ],
+          label: 'Vegetables',
+          value: 'vegetables'
+        }
+      ]
+
+      const result = generateUniqueIds(options)
+
+      expect(result[0].children?.[0].value).toBe('apple_61751600')
+      expect(result[1].children?.[0].value).toBe('apple_3899441852')
+    })
+  })
+
+  describe('three_level node structure', () => {
+    it('should generate nested unique IDs across three levels', () => {
+      const options: TreeOption[] = [
+        {
+          children: [
+            {
+              children: [
+                { label: 'Level 3A', value: 'l3a' },
+                { label: 'Level 3B', value: 'l3b' }
+              ],
+              label: 'Level 2A',
+              value: 'l2a'
+            },
+            {
+              children: [{ label: 'Level 3C', value: 'l3c' }],
+              label: 'Level 2B',
+              value: 'l2b'
+            }
+          ],
+          label: 'Level 1',
+          value: 'l1'
+        }
+      ]
+
+      const result = generateUniqueIds(options)
+
+      expect(result).toEqual([
+        {
+          children: [
+            {
+              children: [
+                { label: 'Level 3A', value: 'l3a_1422926260' },
+                { label: 'Level 3B', value: 'l3b_1422926260' }
+              ],
+              label: 'Level 2A',
+              value: 'l2a_973861232'
+            },
+            {
+              children: [{ label: 'Level 3C', value: 'l3c_1439703878' }],
+              label: 'Level 2B',
+              value: 'l2b_973861232'
+            }
+          ],
+          label: 'Level 1',
+          value: 'l1'
+        }
+      ])
+    })
+
+    it('should handle multiple three_level branches independently', () => {
+      const options: TreeOption[] = [
+        {
+          children: [
+            {
+              children: [{ label: 'Item A1', value: 'itemA1' }],
+              label: 'Sub A1',
+              value: 'subA1'
+            }
+          ],
+          label: 'Branch A',
+          value: 'branchA'
+        },
+        {
+          children: [
+            {
+              children: [{ label: 'Item B1', value: 'itemB1' }],
+              label: 'Sub B1',
+              value: 'subB1'
+            }
+          ],
+          label: 'Branch B',
+          value: 'branchB'
+        }
+      ]
+
+      const result = generateUniqueIds(options)
+
+      expect(result[0].children?.[0].children?.[0].value).toBe('itemA1_1191707679')
+      expect(result[1].children?.[0].children?.[0].value).toBe('itemB1_3456833339')
+    })
+
+    it('should handle mixed two and three level structures in the same tree', () => {
+      const options: TreeOption[] = [
+        {
+          children: [{ label: 'Child', value: 'child' }],
+          label: 'TwoLevel',
+          value: 'two'
+        },
+        {
+          children: [
+            {
+              children: [{ label: 'DeepChild', value: 'deepChild' }],
+              label: 'Middle',
+              value: 'middle'
+            }
+          ],
+          label: 'ThreeLevel',
+          value: 'three'
+        }
+      ]
+
+      const result = generateUniqueIds(options)
+
+      expect(result[0].children?.[0].value).toBe('child_3914105676')
+      expect(result[1].children?.[0].children?.[0].value).toBe('deepChild_1275583012')
+    })
+  })
+
+  describe('custom keys', () => {
+    it('should work with custom childrenKey', () => {
+      const options: any[] = [
+        {
+          label: 'Parent',
+          subItems: [{ label: 'Child', value: 'child' }],
+          value: 'parent'
+        }
+      ]
+
+      const result = generateUniqueIds(options, 'subItems')
+
+      expect(result[0].subItems?.[0].value).toBe('child_1323991664')
+    })
+
+    it('should work with custom valueKey and labelKey', () => {
+      const options: any[] = [
+        {
+          children: [{ id: 'child_id', name: 'Child' }],
+          id: 'parent_id',
+          name: 'Parent'
+        }
+      ]
+
+      const result = generateUniqueIds(options, 'children', 'id', 'name')
+
+      expect(result[0].children?.[0].id).toBe('child_id_1676928284')
+    })
+  })
+
+  describe('edge cases', () => {
+    it('should handle empty children array', () => {
+      const options: TreeOption[] = [
+        {
+          children: [],
+          label: 'Parent',
+          value: 'parent'
+        }
+      ]
+
+      const result = generateUniqueIds(options)
+
+      expect(result[0].children).toEqual([])
+    })
+
+    it('should handle nodes without children', () => {
+      const options: TreeOption[] = [{ label: 'Leaf', value: 'leaf' }]
+
+      const result = generateUniqueIds(options)
+
+      expect(result[0].value).toBe('leaf')
+      expect(result[0].children).toBeUndefined()
+    })
+
+    it('should preserve additional properties on nodes', () => {
+      const options: any[] = [
+        {
+          children: [{ extra: 'info', label: 'Child', value: 'child' }],
+          custom: 'data',
+          disabled: true,
+          label: 'Parent',
+          value: 'parent'
+        }
+      ]
+
+      const result = generateUniqueIds(options)
+
+      expect(result[0].disabled).toBe(true)
+      expect(result[0].custom).toBe('data')
+      expect(result[0].children?.[0].extra).toBe('info')
+    })
+  })
+})
+
+describe('flattenAllDescendants', () => {
+  it('should return empty array for nodes without children', () => {
+    const nodes: TreeOption[] = [
+      { label: 'Leaf 1', value: 'leaf1' },
+      { label: 'Leaf 2', value: 'leaf2' }
+    ]
+    const result = flattenAllDescendants(nodes)
+    expect(result).toEqual([])
+  })
+
+  it('should flatten 2-level tree', () => {
+    const nodes: TreeOption[] = [
+      {
+        children: [
+          { label: 'Child 1', value: 'child1' },
+          { label: 'Child 2', value: 'child2' }
+        ],
+        label: 'Parent 1',
+        value: 'parent1'
+      }
+    ]
+
+    const result = flattenAllDescendants(nodes)
+
+    expect(result).toEqual([
+      { label: 'Child 1', value: 'child1' },
+      { label: 'Child 2', value: 'child2' }
+    ])
+  })
+
+  it('should flatten 3-level tree with all descendants', () => {
+    const nodes: TreeOption[] = [
+      {
+        children: [
+          {
+            children: [
+              { label: 'Grandchild 1', value: 'gc1' },
+              { label: 'Grandchild 2', value: 'gc2' }
+            ],
+            label: 'Child 1',
+            value: 'child1'
+          }
+        ],
+        label: 'Parent',
+        value: 'parent'
+      }
+    ]
+
+    const result = flattenAllDescendants(nodes)
+
+    expect(result).toEqual([
+      {
+        children: [
+          { label: 'Grandchild 1', value: 'gc1' },
+          { label: 'Grandchild 2', value: 'gc2' }
+        ],
+        label: 'Child 1',
+        value: 'child1'
+      },
+      { label: 'Grandchild 1', value: 'gc1' },
+      { label: 'Grandchild 2', value: 'gc2' }
+    ])
   })
 })

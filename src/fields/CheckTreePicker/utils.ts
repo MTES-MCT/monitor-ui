@@ -1,6 +1,46 @@
 import type { TreeOption } from './types'
 import type { ValueType } from 'rsuite/esm/CheckTreePicker'
 
+function getHash(str: string) {
+  let hash = 0
+  for (let i = 0; i < str.length; i += 1) {
+    // eslint-disable-next-line no-bitwise
+    hash = (hash ^ str.charCodeAt(i)) * 16777619
+  }
+
+  // eslint-disable-next-line no-bitwise
+  return hash >>> 0
+}
+
+export function generateUniqueIds(
+  options: TreeOption[],
+  childrenKey: string = 'children',
+  valueKey: string | number = 'value',
+  labelKey: string = 'label'
+): TreeOption[] {
+  function processNode(option: TreeOption, parentLabel?: string): TreeOption {
+    const label = option[labelKey] as string
+    const value = option[valueKey] as string | number
+    const children = option[childrenKey] as TreeOption[] | undefined
+
+    const uniqueValue = parentLabel ? `${value}_${getHash(parentLabel)}` : value
+
+    const processedNode: TreeOption = {
+      ...option,
+      [labelKey]: label,
+      [valueKey]: uniqueValue
+    }
+
+    if (children && Array.isArray(children)) {
+      processedNode[childrenKey] = children.map(child => processNode(child, value)) as any
+    }
+
+    return processedNode
+  }
+
+  return options.map(option => processNode(option))
+}
+
 export function fromRsuiteValue(
   selectedValues: ValueType,
   allOptions: TreeOption[],
@@ -8,7 +48,14 @@ export function fromRsuiteValue(
   valueKey: string | number = 'value',
   labelKey: string = 'label'
 ): TreeOption[] | undefined {
-  const formattedTree = getTreeOptionsBySelectedValues(selectedValues, allOptions, childrenKey, valueKey, labelKey)
+  const formattedTree = getTreeOptionsBySelectedValues(
+    selectedValues,
+    allOptions,
+    true,
+    childrenKey,
+    valueKey,
+    labelKey
+  )
 
   return formattedTree.length > 0 ? formattedTree : undefined
 }
@@ -33,6 +80,7 @@ export function deepCloneExtensible<T>(obj: T): T {
 export function getTreeOptionsBySelectedValues(
   selectedValues: ValueType | undefined,
   options: TreeOption[],
+  isConvertingOriginalValues: boolean = false,
   childrenKey: string = 'children',
   valueKey: string | number = 'value',
   labelKey: string = 'label'
@@ -41,7 +89,10 @@ export function getTreeOptionsBySelectedValues(
     const children = option[childrenKey] as TreeOption[] | undefined
     const baseOption: TreeOption = {
       [labelKey]: option[labelKey],
-      [valueKey]: option[valueKey]
+      [valueKey]:
+        typeof option[valueKey] === 'string' && isConvertingOriginalValues
+          ? option[valueKey].replace(/_\d+$/, '')
+          : option[valueKey]
     } as TreeOption
 
     if (children && Array.isArray(children)) {
@@ -53,6 +104,7 @@ export function getTreeOptionsBySelectedValues(
 
   function getOption(option: TreeOption): TreeOption | undefined {
     const children = option[childrenKey] as TreeOption[] | undefined
+
     if (children && Array.isArray(children)) {
       const filteredChildren = children
         .map(getOption)
@@ -62,7 +114,10 @@ export function getTreeOptionsBySelectedValues(
         return {
           [childrenKey]: filteredChildren,
           [labelKey]: option[labelKey],
-          [valueKey]: option[valueKey]
+          [valueKey]:
+            typeof option[valueKey] === 'string' && isConvertingOriginalValues
+              ? option[valueKey].replace(/_\d+$/, '')
+              : option[valueKey]
         } as TreeOption
       }
     }
@@ -105,6 +160,7 @@ export function getParentRsuiteValue(
 
 export function toRsuiteValue(
   uiValues: TreeOption[] | undefined,
+  optionsWithIds?: TreeOption[],
   childrenKey: string = 'children',
   valueKey: string = 'value'
 ): ValueType | undefined {
@@ -114,21 +170,68 @@ export function toRsuiteValue(
 
   const rsuiteValues: (string | number)[] = []
 
-  const collectValues = (items: TreeOption[]) => {
-    items.forEach(item => {
-      const children = item[childrenKey] as TreeOption[] | undefined
+  // Helper function to find a matching option by value path in the options tree
+  const findOptionByPath = (
+    valuePath: (string | number)[],
+    options?: TreeOption[],
+    currentIndex: number = 0
+  ): TreeOption | undefined => {
+    if (!options || currentIndex >= valuePath.length) {
+      return undefined
+    }
+
+    const targetValue = valuePath[currentIndex]
+
+    return options.reduce((found: TreeOption | undefined, option) => {
+      if (found) {
+        return found
+      }
+
+      // Extract the base value without hash for comparison
+      const optionValue = option[valueKey] as string | number
+      const baseOptionValue = typeof optionValue === 'string' ? optionValue.replace(/_\d+$/, '') : optionValue
+
+      if (baseOptionValue === targetValue) {
+        // If this is the last value in the path, we found it
+        if (currentIndex === valuePath.length - 1) {
+          return option
+        }
+
+        // Otherwise, continue searching in children
+        const children = option[childrenKey] as TreeOption[] | undefined
+        if (children && children.length > 0) {
+          return findOptionByPath(valuePath, children, currentIndex + 1)
+        }
+      }
+
+      return undefined
+    }, undefined)
+  }
+
+  // Build value paths for each leaf node
+  const collectValues = (uiItems: TreeOption[], currentPath: (string | number)[] = []) => {
+    uiItems.forEach(uiItem => {
+      const children = uiItem[childrenKey] as TreeOption[] | undefined
+      const uiValue = uiItem[valueKey] as string | number
+      const newPath = [...currentPath, uiValue]
 
       // Add leaf node values (nodes without children) first
       if (!children || children.length === 0) {
-        rsuiteValues.push(item[valueKey] as string | number)
+        // Find the matching option with the hash suffix using the full path
+        const matchingOption = findOptionByPath(newPath, optionsWithIds)
+        const valueToUse = matchingOption?.[valueKey] ?? uiValue
+        rsuiteValues.push(valueToUse as string | number)
       }
     })
 
     // Then recursively collect from children
-    items.forEach(item => {
-      const children = item[childrenKey] as TreeOption[] | undefined
+    uiItems.forEach(uiItem => {
+      const children = uiItem[childrenKey] as TreeOption[] | undefined
+      const uiValue = uiItem[valueKey] as string | number
+      const newPath = [...currentPath, uiValue]
+
       if (children && children.length > 0) {
-        collectValues(children)
+        collectValues(children, newPath)
       }
     })
   }
@@ -150,7 +253,7 @@ export function computeDisabledValues(
     return []
   }
 
-  const selectedOptions = getTreeOptionsBySelectedValues(value, options, childrenKey, valueKey, labelKey)
+  const selectedOptions = getTreeOptionsBySelectedValues(value, options, false, childrenKey, valueKey, labelKey)
 
   const valuesToDisabled: ValueType = options
     .filter(option => selectedOptions.some(selectedOption => selectedOption[valueKey] !== option[valueKey]))
@@ -165,6 +268,14 @@ export function computeDisabledValues(
   return [...valuesToDisabled, ...subValuesToDisabled]
 }
 
+export function flattenAllDescendants(nodes: TreeOption[], childrenKey: string = 'children'): TreeOption[] {
+  return nodes.flatMap(node => {
+    const nodeChildren = (node[childrenKey] as TreeOption[]) || []
+
+    return [...nodeChildren, ...flattenAllDescendants(nodeChildren, childrenKey)]
+  })
+}
+
 export function getOptionsToDisplay(
   allOptions: TreeOption[],
   selectedOptions: TreeOption[],
@@ -175,18 +286,20 @@ export function getOptionsToDisplay(
 
   const result: TreeOption[] = []
 
-  function findChildren(option: TreeOption) {
+  function findChildren(option: TreeOption): void {
     const children = option[childrenKey] as TreeOption[] | undefined
     const value = option[valueKey] as string | number
 
     if (children && children.length > 0) {
+      // Check if all children are selected BEFORE recursion
       const hasAllChildrenSelected = children.every(child => selectedMap.has(child[valueKey] as string | number))
 
       if (hasAllChildrenSelected) {
         result.push(option) // on garde le parent seulement
         children.forEach(child => selectedMap.delete(child[valueKey] as string | number))
       } else {
-        children.forEach(findChildren) // on descend chercher les enfants partiellement sélectionnés
+        // Only recurse if not all children are selected
+        children.forEach(findChildren)
       }
     } else if (selectedMap.has(value)) {
       result.push(option) // enfant orphelin sélectionné

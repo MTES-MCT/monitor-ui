@@ -82,6 +82,15 @@ describe('fields/CheckTreePicker', () => {
       }
     ])
 
+    cy.fill('A check tree picker', ['Éducation et sensibilisation'])
+
+    outputShouldBe([
+      {
+        label: 'Éducation et sensibilisation',
+        value: 'education_sensibilisation'
+      }
+    ])
+
     cy.fill('A check tree picker', undefined)
 
     outputShouldBe(undefined)

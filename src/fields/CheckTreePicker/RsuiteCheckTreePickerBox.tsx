@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import type { CommonPickerFieldStyleProps } from '@fields/shared/types'
 
 interface RsuiteCheckTreePickerBoxProps extends CommonPickerFieldStyleProps {
+  $hasThreeLevels?: boolean
   $isSelect?: boolean
-  $isThreeLevels?: boolean
 }
 
 export const RsuiteCheckTreePickerBox = styled.div<RsuiteCheckTreePickerBoxProps>`
@@ -290,7 +290,7 @@ export const RsuiteCheckTreePickerBox = styled.div<RsuiteCheckTreePickerBoxProps
               > label {
                 .rs-checkbox-label {
                   width: 100%;
-                  padding-left: ${p => (p.$isSelect ? 14 : 20)}px;
+                  padding-left: ${p => (p.$hasThreeLevels ? 14 : 20)}px;
                 }
               }
             }
@@ -306,8 +306,8 @@ export const RsuiteCheckTreePickerBox = styled.div<RsuiteCheckTreePickerBoxProps
               > label {
                 .rs-checkbox-label {
                   width: 100%;
-                  padding-left: ${p => (p.$isSelect ? 8 : 20)}px;
-                  ${p => p.$isThreeLevels && 'font-weight: 600;'}
+                  padding-left: ${p => (p.$hasThreeLevels ? 8 : 20)}px;
+                  ${p => p.$hasThreeLevels && 'font-weight: 600;'}
                 }
 
                 > .rs-checkbox-control {
