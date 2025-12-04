@@ -1,4 +1,4 @@
-export const FISHING_REGULATIONS = (childrenKey: string = 'children', labelKey = 'label', valueKey = 'value') => [
+export const FISHING_REGULATIONS_UNIQUE = (childrenKey: string = 'children', labelKey = 'label', valueKey = 'value') => [
   {
     [labelKey]: 'Mesures techniques et de conservation',
     [valueKey]: 'mesures_techniques_conservation',
@@ -9,19 +9,19 @@ export const FISHING_REGULATIONS = (childrenKey: string = 'children', labelKey =
         [childrenKey]: [
           {
             [labelKey]: '27718 – Débarquement de produits de la pêche maritime et de l\'aquaculture marine hors d\'un port désigné',
-            [valueKey]: '27718'
+            [valueKey]: '27718_1585249700'
           },
           {
             [labelKey]: '27715 – Débarquement sans autorisation de produits de la pêche maritime et de l\'aquaculture marine',
-            [valueKey]: '27715'
+            [valueKey]: '27715_1585249700'
           },
           {
             [labelKey]: '27721 – Débarquement de produits de la pêche maritime et de l\'aquaculture marine hors des horaires autorises',
-            [valueKey]: '27721'
+            [valueKey]: '27721_1585249700'
           },
           {
             [labelKey]: '10400 – Débarquement de produits de pêche maritime et d\'aquaculture marine en dehors des lieux déterminés',
-            [valueKey]: '10400'
+            [valueKey]: '10400_1585249700'
           }
         ]
       },
@@ -31,19 +31,19 @@ export const FISHING_REGULATIONS = (childrenKey: string = 'children', labelKey =
         [childrenKey]: [
           {
             [labelKey]: '27718 – Débarquement de produits de la pêche maritime et de l\'aquaculture marine hors d\'un port désigné',
-            [valueKey]: '27718'
+            [valueKey]: '27718_3033183864'
           },
           {
             [labelKey]: '27715 – Débarquement sans autorisation de produits de la pêche maritime et de l\'aquaculture marine',
-            [valueKey]: '27715'
+            [valueKey]: '27715_3033183864'
           },
           {
             [labelKey]: '27721 – Débarquement de produits de la pêche maritime et de l\'aquaculture marine hors des horaires autorises',
-            [valueKey]: '27721'
+            [valueKey]: '27721_3033183864'
           },
           {
             [labelKey]: '10400 – Débarquement de produits de pêche maritime et d\'aquaculture marine en dehors des lieux déterminés',
-            [valueKey]: '10400'
+            [valueKey]: '10400_3033183864'
           }
         ]
       }
@@ -59,19 +59,19 @@ export const FISHING_REGULATIONS = (childrenKey: string = 'children', labelKey =
         [childrenKey]: [
           {
             [labelKey]: '27718 – Débarquement de produits de la pêche maritime et de l\'aquaculture marine hors d\'un port désigné',
-            [valueKey]: '27718'
+            [valueKey]: '27718_3274225560'
           },
           {
             [labelKey]: '27715 – Débarquement sans autorisation de produits de la pêche maritime et de l\'aquaculture marine',
-            [valueKey]: '27715'
+            [valueKey]: '27715_3274225560'
           },
           {
             [labelKey]: '27721 – Débarquement de produits de la pêche maritime et de l\'aquaculture marine hors des horaires autorises',
-            [valueKey]: '27721'
+            [valueKey]: '27721_3274225560'
           },
           {
             [labelKey]: '10400 – Débarquement de produits de pêche maritime et d\'aquaculture marine en dehors des lieux déterminés',
-            [valueKey]: '10400'
+            [valueKey]: '10400_3274225560'
           }
         ]
       },
@@ -81,19 +81,19 @@ export const FISHING_REGULATIONS = (childrenKey: string = 'children', labelKey =
         [childrenKey]: [
           {
             [labelKey]: '27718 – Débarquement de produits de la pêche maritime et de l\'aquaculture marine hors d\'un port désigné',
-            [valueKey]: '27718'
+            [valueKey]: '27718_1374382264'
           },
           {
             [labelKey]: '27715 – Débarquement sans autorisation de produits de la pêche maritime et de l\'aquaculture marine',
-            [valueKey]: '27715'
+            [valueKey]: '27715_1374382264'
           },
           {
             [labelKey]: '27721 – Débarquement de produits de la pêche maritime et de l\'aquaculture marine hors des horaires autorises',
-            [valueKey]: '27721'
+            [valueKey]: '27721_1374382264'
           },
           {
             [labelKey]: '10400 – Débarquement de produits de pêche maritime et d\'aquaculture marine en dehors des lieux déterminés',
-            [valueKey]: '10400'
+            [valueKey]: '10400_1374382264'
           }
         ]
       }

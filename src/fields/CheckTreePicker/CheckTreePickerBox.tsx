@@ -11,12 +11,12 @@ interface CheckPickerBoxProps {
   disabled: boolean
   error: string | undefined
   hasError: boolean
+  hasThreeLevels?: boolean
   isErrorMessageHidden: boolean
   isLabelHidden?: boolean
   isLight: boolean
   isRequired?: boolean
   isSelect?: boolean
-  isThreeLevels?: boolean
   isTransparent: boolean
   label: string
   onLabelClick: () => void
@@ -32,12 +32,12 @@ export function CheckTreePickerBox({
   disabled,
   error,
   hasError,
+  hasThreeLevels = false,
   isErrorMessageHidden,
   isLabelHidden,
   isLight,
   isRequired,
   isSelect = false,
-  isThreeLevels = false,
   isTransparent,
   label,
   onLabelClick,
@@ -54,11 +54,11 @@ export function CheckTreePickerBox({
       <RsuiteCheckTreePickerBox
         ref={boxRef}
         $hasError={hasError}
+        $hasThreeLevels={hasThreeLevels}
         $isDisabled={disabled}
         $isLight={isLight}
         $isReadOnly={readOnly}
         $isSelect={isSelect}
-        $isThreeLevels={isThreeLevels}
         $isTransparent={isTransparent}
         $popupWidth={popupWidth}
       >

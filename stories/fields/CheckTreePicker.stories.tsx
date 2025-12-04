@@ -45,6 +45,7 @@ const meta: Meta<CheckTreePickerProps> = {
     isLight: false,
     isRequired: true,
     isTransparent: false,
+    isSelect: false,
     isUndefinedWhenDisabled: false,
     label: 'A check tree picker. Pick some options:',
     name: 'myCheckTreePicker',

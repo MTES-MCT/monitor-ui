@@ -20,7 +20,9 @@ import { CheckTreePickerBox } from './CheckTreePickerBox'
 import {
   computeDisabledValues,
   deepCloneExtensible,
+  flattenAllDescendants,
   fromRsuiteValue,
+  generateUniqueIds,
   getOptionsToDisplay,
   getParentRsuiteValue,
   getTreeOptionsBySelectedValues,
@@ -124,24 +126,32 @@ export function CheckTreePicker({
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
 
-  const [controlledOptions, setControlledOptions] = useState(isSearchable ? options : [])
-
-  const [disabledValues, setDisabledValues] = useState<ValueType>([])
-  const uncheckableValues = useMemo(
-    () => getParentRsuiteValue(options, valueKey, childrenKey),
+  // Generate unique IDs for options to support duplicate values in multiple categories
+  const optionsWithIds = useMemo(
+    () => generateUniqueIds(options, childrenKey, valueKey),
     [options, childrenKey, valueKey]
   )
 
+  const [controlledOptions, setControlledOptions] = useState(isSearchable ? optionsWithIds : [])
+
+  const [disabledValues, setDisabledValues] = useState<ValueType>([])
+  const uncheckableValues = useMemo(
+    () => getParentRsuiteValue(optionsWithIds, valueKey, childrenKey),
+    [optionsWithIds, childrenKey, valueKey]
+  )
+
   const rsuiteValue = useMemo(() => {
-    const nextRsuiteValue = toRsuiteValue(value, childrenKey, valueKey)
+    const nextRsuiteValue = toRsuiteValue(value, optionsWithIds, childrenKey, valueKey)
     if (!isMultiSelect && nextRsuiteValue) {
-      setDisabledValues(computeDisabledValues(isMultiSelect, nextRsuiteValue, options, childrenKey, valueKey, labelKey))
+      setDisabledValues(
+        computeDisabledValues(isMultiSelect, nextRsuiteValue, optionsWithIds, childrenKey, valueKey, labelKey)
+      )
     } else {
       setDisabledValues([])
     }
 
     return nextRsuiteValue
-  }, [childrenKey, isMultiSelect, options, value, valueKey, labelKey])
+  }, [childrenKey, isMultiSelect, optionsWithIds, value, valueKey, labelKey])
 
   const mergeResultsByParent = useCallback(
     (items: TreeOption[]): TreeOption[] => {
@@ -177,6 +187,7 @@ export function CheckTreePicker({
           formattedItem[childrenKey].forEach(child => {
             if (!seen.has(child[valueKey])) {
               existingChildren.push(child)
+              seen.add(childId)
             }
           })
         }
@@ -193,14 +204,14 @@ export function CheckTreePicker({
     (nextQuery: string, event: SyntheticEvent<Element, Event>) => {
       setSearchKeyword(nextQuery)
       if (!localCustomSearch || nextQuery.trim().length < customSearchMinQueryLength) {
-        setControlledOptions(options)
+        setControlledOptions(optionsWithIds)
 
         return
       }
 
       const searchResults = localCustomSearch.find(nextQuery)
       const foundOptions = searchResults
-        .flatMap(option => fromRsuiteValue([option[valueKey]], options, childrenKey, valueKey, labelKey))
+        .flatMap(option => fromRsuiteValue([option[valueKey]], optionsWithIds, childrenKey, valueKey, labelKey))
         .map(item => {
           const children = item?.[childrenKey] as TreeOption[] | undefined
 
@@ -227,7 +238,7 @@ export function CheckTreePicker({
       localCustomSearch,
       mergeResultsByParent,
       onSearch,
-      options,
+      optionsWithIds,
       value,
       valueKey
     ]
@@ -243,7 +254,7 @@ export function CheckTreePicker({
 
     const valuesToProcess = shouldFilterToNewValues ? nextValue.filter(item => !rsuiteValue.includes(item)) : nextValue
 
-    const formattedValues = fromRsuiteValue(valuesToProcess, options, childrenKey, valueKey, labelKey)
+    const formattedValues = fromRsuiteValue(valuesToProcess, optionsWithIds, childrenKey, valueKey, labelKey)
     onChange(formattedValues)
 
     if (isSelect) {
@@ -269,12 +280,12 @@ export function CheckTreePicker({
       disabled={disabled}
       error={controlledError}
       hasError={hasError}
+      hasThreeLevels={hasThreeLevels(options, childrenKey)}
       isErrorMessageHidden={isErrorMessageHidden}
       isLabelHidden={isLabelHidden}
       isLight={isLight}
       isRequired={isRequired}
       isSelect={isSelect}
-      isThreeLevels={hasThreeLevels(options, childrenKey)}
       isTransparent={isTransparent}
       label={label}
       onLabelClick={() => {
@@ -294,14 +305,14 @@ export function CheckTreePicker({
           cascade
           childrenKey={childrenKey}
           container={boxRef.current}
-          data={isSearchable ? controlledOptions : options}
+          data={isSearchable ? controlledOptions : optionsWithIds}
           disabled={disabled}
           disabledItemValues={disabledValues}
           id={originalProps.name}
           labelKey={labelKey}
           onChange={handleChange}
           onClose={() => {
-            setControlledOptions(options)
+            setControlledOptions(optionsWithIds)
             setSearchKeyword('')
           }}
           onSearch={handleSearch}
@@ -327,7 +338,7 @@ export function CheckTreePicker({
             if (isSelect && rsuiteValue && rsuiteValue.length > 0) {
               const formattedPath = getFormattedNodePath(
                 rsuiteValue[0] as string | number,
-                options,
+                optionsWithIds,
                 childrenKey,
                 valueKey,
                 labelKey
@@ -336,24 +347,33 @@ export function CheckTreePicker({
               return <span title={formattedPath}>{formattedPath}</span>
             }
 
-            const parents = getTreeOptionsBySelectedValues(rsuiteValue, options, childrenKey, valueKey, labelKey)
-            const children = parents.flatMap(parent => parent[childrenKey] as TreeOption[])
+            const parents = getTreeOptionsBySelectedValues(
+              rsuiteValue,
+              optionsWithIds,
+              false,
+              childrenKey,
+              valueKey,
+              labelKey
+            )
+            const allDescendants = flattenAllDescendants(parents, childrenKey)
+            const selectedOptions = [...parents, ...allDescendants].filter(Boolean)
+
             if (!shouldShowLabels) {
               return (
                 <>
                   <span className="rs-picker-value-list" title={renderedValue}>
                     {renderedValue} <Bold>({parents.length})</Bold>
                   </span>
-                  {children.length > 0 && (
+                  {allDescendants.length > 0 && (
                     <span className="rs-picker-value-list" title={renderedChildrenValue}>
-                      {renderedChildrenValue} <Bold>({children.length})</Bold>
+                      {renderedChildrenValue} <Bold>({allDescendants.length})</Bold>
                     </span>
                   )}
                 </>
               )
             }
 
-            const optionsToDisplay = getOptionsToDisplay(options, [...parents, ...children], childrenKey, valueKey)
+            const optionsToDisplay = getOptionsToDisplay(optionsWithIds, selectedOptions, childrenKey, valueKey)
 
             return (
               <Wrapper>

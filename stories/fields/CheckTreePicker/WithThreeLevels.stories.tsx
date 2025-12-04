@@ -43,6 +43,7 @@ const meta: Meta<CheckTreePickerProps> = {
     isErrorMessageHidden: false,
     isLabelHidden: false,
     isLight: false,
+    isSelect: true,
     isRequired: true,
     isTransparent: false,
     isUndefinedWhenDisabled: false,
@@ -80,7 +81,7 @@ export function WithThreeLevels(props: CheckTreePickerProps) {
 
   return (
     <>
-      <CheckTreePicker {...props} isSelect onChange={controlledOnChange} options={options} value={controlledValue} />
+      <CheckTreePicker {...props} onChange={controlledOnChange} options={options} value={controlledValue} />
       <Output value={outputValue} />
     </>
   )
