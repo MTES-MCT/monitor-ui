@@ -88,11 +88,16 @@ export function getTreeOptionsBySelectedValues(
 ): TreeOption[] {
   function preserveChildrenStructure(option: TreeOption): TreeOption {
     const children = option[childrenKey] as TreeOption[] | undefined
+
     const baseOption: TreeOption = {
       [labelKey]: option[labelKey],
       [valueKey]:
         typeof option[valueKey] === 'string' && isConvertingOriginalValues
-          ? option[valueKey].replace(/_\d+$/, '')
+          ? (() => {
+              const stripped = option[valueKey].replace(/_\d+$/, '')
+
+              return /^\d+$/.test(stripped) ? Number(stripped) : stripped
+            })()
           : option[valueKey]
     } as TreeOption
 
@@ -117,7 +122,11 @@ export function getTreeOptionsBySelectedValues(
           [labelKey]: option[labelKey],
           [valueKey]:
             typeof option[valueKey] === 'string' && isConvertingOriginalValues
-              ? option[valueKey].replace(/_\d+$/, '')
+              ? (() => {
+                  const stripped = option[valueKey].replace(/_\d+$/, '')
+
+                  return /^\d+$/.test(stripped) ? Number(stripped) : stripped
+                })()
               : option[valueKey]
         } as TreeOption
       }

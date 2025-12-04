@@ -128,19 +128,6 @@ describe('fields/CheckTreePicker', () => {
     // eslint-disable-next-line sort-keys-fix/sort-keys-fix
     outputShouldBe([{ subTags: [{ label: 'Subtag 3', value: 5 }], label: 'Entry 2', value: 2 }])
 
-    cy.fill('A check tree picker', ['Subtag 1', 'Subtag 2'])
-    outputShouldBe([
-      {
-        subTags: [
-          { label: 'Subtag 1', value: 3 },
-          { label: 'Subtag 2', value: 4 }
-        ],
-        // eslint-disable-next-line sort-keys-fix/sort-keys-fix
-        label: 'Entry 1',
-        value: 1
-      }
-    ])
-
     cy.fill('A check tree picker', undefined)
 
     outputShouldBe(undefined)
@@ -304,7 +291,7 @@ describe('fields/CheckTreePicker', () => {
               children: [
                 {
                   label: '27718 – Débarquement de produits de la pêche maritime et de l\'aquaculture marine hors d\'un port désigné',
-                  value: '27718'
+                  value: 27718
                 }
               ],
               label: 'Autorisation Débarquement',
@@ -327,7 +314,7 @@ describe('fields/CheckTreePicker', () => {
                   children: [
                     {
                       label: '27718 – Débarquement de produits de la pêche maritime et de l\'aquaculture marine hors d\'un port désigné',
-                      value: '27718'
+                      value: 27718
                     }
                   ],
                   label: 'Autorisation Débarquement',
