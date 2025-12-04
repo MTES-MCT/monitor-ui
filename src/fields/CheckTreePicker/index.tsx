@@ -27,6 +27,7 @@ import {
   getParentRsuiteValue,
   getTreeOptionsBySelectedValues,
   hasThreeLevels,
+  mergeResultsByParent,
   toRsuiteValue
 } from './utils'
 import { getFormattedNodePath } from './utils/getNodePath'
@@ -103,11 +104,19 @@ export function CheckTreePicker({
   const [searchKeyword, setSearchKeyword] = useState('')
   const { forceUpdate } = useForceUpdate()
 
+  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
+
+  // Generate unique IDs for options to support duplicate values in multiple categories
+  const optionsWithIds = useMemo(
+    () => generateUniqueIds(options, childrenKey, valueKey),
+    [options, childrenKey, valueKey]
+  )
+
   const localCustomSearch = useMemo(
     () =>
       customSearch ??
       new CustomSearch(
-        options,
+        optionsWithIds,
         [
           {
             name: [labelKey]
@@ -121,15 +130,7 @@ export function CheckTreePicker({
         ],
         { childrenKey, isStrict: true, withCacheInvalidation: true }
       ),
-    [customSearch, options, labelKey, childrenKey]
-  )
-
-  useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
-
-  // Generate unique IDs for options to support duplicate values in multiple categories
-  const optionsWithIds = useMemo(
-    () => generateUniqueIds(options, childrenKey, valueKey),
-    [options, childrenKey, valueKey]
+    [customSearch, optionsWithIds, labelKey, childrenKey]
   )
 
   const [controlledOptions, setControlledOptions] = useState(isSearchable ? optionsWithIds : [])
@@ -153,53 +154,6 @@ export function CheckTreePicker({
     return nextRsuiteValue
   }, [childrenKey, isMultiSelect, optionsWithIds, value, valueKey, labelKey])
 
-  const mergeResultsByParent = useCallback(
-    (items: TreeOption[]): TreeOption[] => {
-      const parentMap = items.reduce((acc, item) => {
-        const parentId = item[valueKey] as string
-        if (!parentId) {
-          return acc
-        }
-
-        const children = item[childrenKey] as TreeOption[] | undefined
-
-        const formattedItem: any = {
-          [labelKey]: item[labelKey],
-          [valueKey]: item[valueKey]
-        }
-        if (children?.length && children?.length > 0) {
-          formattedItem[childrenKey] = item[childrenKey]
-        }
-        const existing = acc.get(parentId)
-        if (!existing) {
-          acc.set(parentId, formattedItem)
-        } else if (
-          formattedItem[childrenKey] &&
-          Array.isArray(formattedItem[childrenKey]) &&
-          formattedItem[childrenKey].length > 0
-        ) {
-          if (!existing[childrenKey]) {
-            existing[childrenKey] = []
-          }
-          const existingChildren = Array.isArray(existing[childrenKey]) ? (existing[childrenKey] as TreeOption[]) : []
-          const seen = new Set(existingChildren.map(child => child[valueKey]))
-
-          formattedItem[childrenKey].forEach(child => {
-            if (!seen.has(child[valueKey])) {
-              existingChildren.push(child)
-              seen.add(childId)
-            }
-          })
-        }
-
-        return acc
-      }, new Map<string, TreeOption>())
-
-      return Array.from(parentMap.values())
-    },
-    [childrenKey, valueKey, labelKey]
-  )
-
   const handleSearch = useCallback(
     (nextQuery: string, event: SyntheticEvent<Element, Event>) => {
       setSearchKeyword(nextQuery)
@@ -211,7 +165,7 @@ export function CheckTreePicker({
 
       const searchResults = localCustomSearch.find(nextQuery)
       const foundOptions = searchResults
-        .flatMap(option => fromRsuiteValue([option[valueKey]], optionsWithIds, childrenKey, valueKey, labelKey))
+        .flatMap(option => fromRsuiteValue([option[valueKey]], optionsWithIds, false, childrenKey, valueKey, labelKey))
         .map(item => {
           const children = item?.[childrenKey] as TreeOption[] | undefined
 
@@ -222,8 +176,14 @@ export function CheckTreePicker({
         .filter((result): result is TreeOption => result !== undefined)
 
       // Add all selected values to the results
-      const selectedOptions = value ?? []
-      const merged = mergeResultsByParent([...foundOptions, ...selectedOptions].map(item => deepCloneExtensible(item)))
+      const selectedOptions =
+        fromRsuiteValue(rsuiteValue ?? [], optionsWithIds, false, childrenKey, valueKey, labelKey) ?? []
+      const merged = mergeResultsByParent(
+        [...foundOptions, ...selectedOptions].map(item => deepCloneExtensible(item)),
+        childrenKey,
+        valueKey,
+        labelKey
+      )
 
       setControlledOptions(merged)
 
@@ -236,10 +196,9 @@ export function CheckTreePicker({
       customSearchMinQueryLength,
       labelKey,
       localCustomSearch,
-      mergeResultsByParent,
       onSearch,
       optionsWithIds,
-      value,
+      rsuiteValue,
       valueKey
     ]
   )
@@ -254,7 +213,7 @@ export function CheckTreePicker({
 
     const valuesToProcess = shouldFilterToNewValues ? nextValue.filter(item => !rsuiteValue.includes(item)) : nextValue
 
-    const formattedValues = fromRsuiteValue(valuesToProcess, optionsWithIds, childrenKey, valueKey, labelKey)
+    const formattedValues = fromRsuiteValue(valuesToProcess, optionsWithIds, true, childrenKey, valueKey, labelKey)
     onChange(formattedValues)
 
     if (isSelect) {

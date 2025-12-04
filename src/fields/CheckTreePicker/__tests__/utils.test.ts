@@ -11,6 +11,7 @@ import {
   getParentRsuiteValue,
   getTreeOptionsBySelectedValues,
   hasThreeLevels,
+  mergeResultsByParent,
   toRsuiteValue
 } from '../utils'
 
@@ -678,8 +679,8 @@ describe('generateUniqueIds', () => {
 
       const result = generateUniqueIds(options)
 
-      expect(result[0].children?.[0].label).toBe('Original Label')
-      expect(result[0].children?.[0].value).toBe('child_1323991664')
+      expect(result[0]?.children?.[0].label).toBe('Original Label')
+      expect(result[0]?.children?.[0].value).toBe('child_1323991664')
     })
 
     it('should handle multiple categories with overlapping child values', () => {
@@ -704,8 +705,8 @@ describe('generateUniqueIds', () => {
 
       const result = generateUniqueIds(options)
 
-      expect(result[0].children?.[0].value).toBe('apple_61751600')
-      expect(result[1].children?.[0].value).toBe('apple_3899441852')
+      expect(result[0]?.children?.[0].value).toBe('apple_61751600')
+      expect(result[1]?.children?.[0].value).toBe('apple_3899441852')
     })
   })
 
@@ -786,8 +787,8 @@ describe('generateUniqueIds', () => {
 
       const result = generateUniqueIds(options)
 
-      expect(result[0].children?.[0].children?.[0].value).toBe('itemA1_1191707679')
-      expect(result[1].children?.[0].children?.[0].value).toBe('itemB1_3456833339')
+      expect(result[0]?.children?.[0].children?.[0].value).toBe('itemA1_1191707679')
+      expect(result[1]?.children?.[0].children?.[0].value).toBe('itemB1_3456833339')
     })
 
     it('should handle mixed two and three level structures in the same tree', () => {
@@ -812,8 +813,8 @@ describe('generateUniqueIds', () => {
 
       const result = generateUniqueIds(options)
 
-      expect(result[0].children?.[0].value).toBe('child_3914105676')
-      expect(result[1].children?.[0].children?.[0].value).toBe('deepChild_1275583012')
+      expect(result[0]?.children?.[0].value).toBe('child_3914105676')
+      expect(result[1]?.children?.[0].children?.[0].value).toBe('deepChild_1275583012')
     })
   })
 
@@ -829,7 +830,7 @@ describe('generateUniqueIds', () => {
 
       const result = generateUniqueIds(options, 'subItems')
 
-      expect(result[0].subItems?.[0].value).toBe('child_1323991664')
+      expect(result[0]?.subItems?.[0].value).toBe('child_1323991664')
     })
 
     it('should work with custom valueKey and labelKey', () => {
@@ -843,7 +844,7 @@ describe('generateUniqueIds', () => {
 
       const result = generateUniqueIds(options, 'children', 'id', 'name')
 
-      expect(result[0].children?.[0].id).toBe('child_id_1676928284')
+      expect(result[0]?.children?.[0].id).toBe('child_id_1676928284')
     })
   })
 
@@ -859,7 +860,7 @@ describe('generateUniqueIds', () => {
 
       const result = generateUniqueIds(options)
 
-      expect(result[0].children).toEqual([])
+      expect(result[0]?.children).toEqual([])
     })
 
     it('should handle nodes without children', () => {
@@ -867,8 +868,8 @@ describe('generateUniqueIds', () => {
 
       const result = generateUniqueIds(options)
 
-      expect(result[0].value).toBe('leaf')
-      expect(result[0].children).toBeUndefined()
+      expect(result[0]?.value).toBe('leaf')
+      expect(result[0]?.children).toBeUndefined()
     })
 
     it('should preserve additional properties on nodes', () => {
@@ -884,9 +885,9 @@ describe('generateUniqueIds', () => {
 
       const result = generateUniqueIds(options)
 
-      expect(result[0].disabled).toBe(true)
-      expect(result[0].custom).toBe('data')
-      expect(result[0].children?.[0].extra).toBe('info')
+      expect(result[0]?.disabled).toBe(true)
+      expect(result[0]?.custom).toBe('data')
+      expect(result[0]?.children?.[0].extra).toBe('info')
     })
   })
 })
@@ -952,6 +953,210 @@ describe('flattenAllDescendants', () => {
       },
       { label: 'Grandchild 1', value: 'gc1' },
       { label: 'Grandchild 2', value: 'gc2' }
+    ])
+  })
+})
+
+describe('mergeResultsByParent', () => {
+  it('should merge items with the same parent value', () => {
+    const items: TreeOption[] = [
+      {
+        children: [{ label: 'Child A', value: 'childA' }],
+        label: 'Parent 1',
+        value: 'parent1'
+      },
+      {
+        children: [{ label: 'Child B', value: 'childB' }],
+        label: 'Parent 1',
+        value: 'parent1'
+      }
+    ]
+
+    const result = mergeResultsByParent(items)
+
+    expect(result).toEqual([
+      {
+        children: [
+          { label: 'Child A', value: 'childA' },
+          { label: 'Child B', value: 'childB' }
+        ],
+        label: 'Parent 1',
+        value: 'parent1'
+      }
+    ])
+  })
+
+  it('should not duplicate children with the same value', () => {
+    const items: TreeOption[] = [
+      {
+        children: [
+          { label: 'Child A', value: 'childA' },
+          { label: 'Child B', value: 'childB' }
+        ],
+        label: 'Parent 1',
+        value: 'parent1'
+      },
+      {
+        children: [
+          { label: 'Child A', value: 'childA' },
+          { label: 'Child C', value: 'childC' }
+        ],
+        label: 'Parent 1',
+        value: 'parent1'
+      }
+    ]
+
+    const result = mergeResultsByParent(items)
+
+    expect(result).toEqual([
+      {
+        children: [
+          { label: 'Child A', value: 'childA' },
+          { label: 'Child B', value: 'childB' },
+          { label: 'Child C', value: 'childC' }
+        ],
+        label: 'Parent 1',
+        value: 'parent1'
+      }
+    ])
+  })
+
+  it('should handle 3-level tree structure', () => {
+    const items: TreeOption[] = [
+      {
+        children: [
+          {
+            children: [
+              { label: 'Leaf 1A', value: 'leaf1A' },
+              { label: 'Leaf 1B', value: 'leaf1B' }
+            ],
+            label: 'Middle 1',
+            value: 'middle1'
+          }
+        ],
+        label: 'Root',
+        value: 'root'
+      },
+      {
+        children: [
+          {
+            children: [{ label: 'Leaf 2A', value: 'leaf2A' }],
+            label: 'Middle 1',
+            value: 'middle1'
+          }
+        ],
+        label: 'Root',
+        value: 'root'
+      },
+      {
+        children: [
+          {
+            children: [{ label: 'Leaf 3A', value: 'leaf3A' }],
+            label: 'Middle 2',
+            value: 'middle2'
+          }
+        ],
+        label: 'Root',
+        value: 'root'
+      }
+    ]
+
+    const result = mergeResultsByParent(items)
+
+    expect(result).toEqual([
+      {
+        children: [
+          {
+            children: [
+              { label: 'Leaf 1A', value: 'leaf1A' },
+              { label: 'Leaf 1B', value: 'leaf1B' },
+              { label: 'Leaf 2A', value: 'leaf2A' }
+            ],
+            label: 'Middle 1',
+            value: 'middle1'
+          },
+          {
+            children: [{ label: 'Leaf 3A', value: 'leaf3A' }],
+            label: 'Middle 2',
+            value: 'middle2'
+          }
+        ],
+        label: 'Root',
+        value: 'root'
+      }
+    ])
+  })
+
+  it('should handle items without children', () => {
+    const items: TreeOption[] = [
+      { label: 'Item 1', value: 'item1' },
+      { label: 'Item 2', value: 'item2' }
+    ]
+
+    const result = mergeResultsByParent(items)
+
+    expect(result).toEqual([
+      { label: 'Item 1', value: 'item1' },
+      { label: 'Item 2', value: 'item2' }
+    ])
+  })
+
+  it('should handle empty array', () => {
+    const items: TreeOption[] = []
+    const result = mergeResultsByParent(items)
+    expect(result).toEqual([])
+  })
+
+  it('should work with custom keys', () => {
+    const items: any[] = [
+      {
+        customLabel: 'Parent 1',
+        customValue: 'parent1',
+        subItems: [{ customLabel: 'Child A', customValue: 'childA' }]
+      },
+      {
+        customLabel: 'Parent 1',
+        customValue: 'parent1',
+        subItems: [{ customLabel: 'Child B', customValue: 'childB' }]
+      }
+    ]
+
+    const result = mergeResultsByParent(items, 'subItems', 'customValue', 'customLabel')
+
+    expect(result).toEqual([
+      {
+        customLabel: 'Parent 1',
+        customValue: 'parent1',
+        subItems: [
+          { customLabel: 'Child A', customValue: 'childA' },
+          { customLabel: 'Child B', customValue: 'childB' }
+        ]
+      }
+    ])
+  })
+
+  it('should skip items with empty or undefined value', () => {
+    const items: TreeOption[] = [
+      {
+        children: [{ label: 'Child A', value: 'childA' }],
+        label: 'Parent 1',
+        value: ''
+      },
+      {
+        children: [{ label: 'Child B', value: 'childB' }],
+        label: 'Parent 2',
+        value: 'parent2'
+      }
+    ]
+
+    const result = mergeResultsByParent(items)
+
+    expect(result).toEqual([
+      {
+        children: [{ label: 'Child B', value: 'childB' }],
+        label: 'Parent 2',
+        value: 'parent2'
+      }
     ])
   })
 })
