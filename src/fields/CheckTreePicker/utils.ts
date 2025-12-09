@@ -201,7 +201,11 @@ export function toRsuiteValue(
       const optionValue = option[valueKey] as string | number
       const baseOptionValue = typeof optionValue === 'string' ? optionValue.replace(/_\d+$/, '') : optionValue
 
-      if (baseOptionValue === targetValue) {
+      // Normalize both values to strings for comparison to handle string/number mismatches
+      const normalizedBaseValue = String(baseOptionValue)
+      const normalizedTargetValue = String(targetValue)
+
+      if (normalizedBaseValue === normalizedTargetValue) {
         // If this is the last value in the path, we found it
         if (currentIndex === valuePath.length - 1) {
           return option

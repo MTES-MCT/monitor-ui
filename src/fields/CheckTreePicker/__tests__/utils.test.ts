@@ -77,6 +77,93 @@ describe('getTreeOptionsBySelectedValues', () => {
     ])
   })
 
+  it('should return filtered options with string and spaces', () => {
+    const numberOptions: TreeOption[] = [
+      {
+        children: [
+          {
+            children: [
+              {
+                label: "27718 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors",
+                value: "27718 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors_1511"
+              },
+              {
+                label: "27715 – Débarquement sans autorisation de produits de la pêche maritime et de l'aquaculture",
+                value:
+                  "27715 – Débarquement sans autorisation de produits de la pêche maritime et de l'aquaculture_1511"
+              },
+              {
+                label: "27721 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors",
+                value: "27721 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors_1511"
+              }
+            ],
+            label: 'Sous-groupe 1',
+            value: 'Sous-groupe 1'
+          },
+          {
+            children: [
+              {
+                label: "27718 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors",
+                value: "27718 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors_9865"
+              },
+              {
+                label: "27715 – Débarquement sans autorisation de produits de la pêche maritime et de l'aquaculture",
+                value:
+                  "27715 – Débarquement sans autorisation de produits de la pêche maritime et de l'aquaculture_9865"
+              },
+              {
+                label: "27721 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors",
+                value: "27721 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors_9865"
+              }
+            ],
+            label: 'Sous-groupe 2',
+            value: 'Sous-groupe 2'
+          }
+        ],
+        label: 'Changement climatique et océan',
+        value: 'changement_climatique_ocean'
+      },
+      {
+        children: [
+          {
+            children: [
+              { label: 'Déchets plastiques', value: 'Déchets plastiques_1235' },
+              { label: 'Pollution chimique', value: 'Pollution chimique_151' }
+            ],
+            label: 'Sous-groupe 1',
+            value: 'Sous-groupe 1'
+          }
+        ],
+        label: 'Pollution marine',
+        value: 'pollution_marine'
+      }
+    ]
+    const selectedValues = [
+      "27718 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors_1511"
+    ]
+
+    const result = getTreeOptionsBySelectedValues(selectedValues, numberOptions, true)
+
+    expect(result).toEqual([
+      {
+        children: [
+          {
+            children: [
+              {
+                label: "27718 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors",
+                value: "27718 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors"
+              }
+            ],
+            label: 'Sous-groupe 1',
+            value: 'Sous-groupe 1'
+          }
+        ],
+        label: 'Changement climatique et océan',
+        value: 'changement_climatique_ocean'
+      }
+    ])
+  })
+
   it('should return filtered options with selected children only', () => {
     const selectedValues = ['acidification_oceans', 'pollution_chimique']
 
@@ -452,6 +539,37 @@ describe('getOptionsToDisplay', () => {
 
     const result = getOptionsToDisplay(allOptions, selected)
     expect(result).toEqual([{ label: 'Child 3', value: 'child3' }])
+  })
+
+  it('returns orphan child if its parent is not fully selected When value is string', () => {
+    const selected = [
+      { label: 'Child 3', value: 'Child 3_456789' } // child4 is missing
+    ]
+    const allOptionsWithString: TreeOption[] = [
+      {
+        children: [
+          { label: 'Child 1', value: 'Child 1_123456' },
+          { label: 'Child 2', value: 'Child 2_123456' }
+        ],
+        label: 'Parent 1',
+        value: 'Parent 1'
+      },
+      {
+        children: [
+          { label: 'Child 3', value: 'Child 3_456789' },
+          { label: 'Child 4', value: 'Child 4_456789' }
+        ],
+        label: 'Parent 2',
+        value: 'Parent 2'
+      },
+      {
+        label: 'Orphan Option',
+        value: 'Orphan Option'
+      }
+    ]
+
+    const result = getOptionsToDisplay(allOptionsWithString, selected)
+    expect(result).toEqual([{ label: 'Child 3', value: 'Child 3_456789' }])
   })
 
   it('returns mixed: one parent complete, one orphan child', () => {
