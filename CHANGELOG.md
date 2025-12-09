@@ -1,3 +1,11 @@
+## [24.38.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.38.0...v24.38.1) (2025-12-09)
+
+### Bug Fixes
+
+* **fields:** allow selection of object with the same leaf values ([f7fe1b5](https://github.com/MTES-MCT/monitor-ui/commit/f7fe1b5bf6223e7e7ef05799779307e1398b6810))
+* **fields:** fix search and merge of 3 levels tree ([3fcc6a9](https://github.com/MTES-MCT/monitor-ui/commit/3fcc6a91b27f2fea29b4c64a25ce4718424edeba))
+* **fields:** return a number if the input value was a number ([ca22507](https://github.com/MTES-MCT/monitor-ui/commit/ca22507286dd0efbe5e9e83917ff01041207d619))
+
 ## [24.38.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.37.0...v24.38.0) (2025-12-03)
 
 ### Features
