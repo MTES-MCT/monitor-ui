@@ -2,6 +2,11 @@ name: Release
 
 on: workflow_dispatch
 
+permissions:
+  id-token: write  # Required for OIDC
+  contents: write # to be able to publish a GitHub release
+  pull-requests: write # to be able to comment on released pull requests
+
 jobs:
   release:
     name: Release
@@ -19,7 +24,6 @@ jobs:
       - name: Release
         run: yarn semantic-release
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           # TODO Check if both are really needed.
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
