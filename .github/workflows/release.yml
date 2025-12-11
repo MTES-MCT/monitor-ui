@@ -26,7 +26,6 @@ jobs:
         env:
           # TODO Check if both are really needed.
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Get version
         id: get_version
         run: echo ::set-output name=version::$(npm pkg get version | sed 's/"//g')
