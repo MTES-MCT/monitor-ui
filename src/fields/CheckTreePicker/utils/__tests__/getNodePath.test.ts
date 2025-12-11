@@ -139,6 +139,100 @@ describe('CheckTreePicker/utils/getNodePath', () => {
       expect(result).toHaveLength(3)
       expect(result[2]?.id).toBe('l3')
     })
+
+    it('should find node when searching with number for string value', () => {
+      const result = getNodePath(7061 as any, MOCK_TREE)
+
+      expect(result).toHaveLength(3)
+      expect(result[0]?.value).toBe('mesures_techniques_conservation')
+      expect(result[1]?.value).toBe('zone_interdite')
+      expect(result[2]?.value).toBe('7061')
+    })
+
+    it('should find node when searching with string for number value', () => {
+      const treeWithNumbers: TreeOption[] = [
+        {
+          children: [
+            {
+              children: [{ label: 'Item 1', value: 123 }],
+              label: 'Category',
+              value: 100
+            }
+          ],
+          label: 'Root',
+          value: 1
+        }
+      ]
+
+      const result = getNodePath('123', treeWithNumbers)
+
+      expect(result).toHaveLength(3)
+      expect(result[2]?.value).toBe(123)
+    })
+
+    it('should find node with hash suffix when searching without suffix', () => {
+      const treeWithHashSuffix: TreeOption[] = [
+        {
+          children: [
+            {
+              children: [
+                {
+                  label: 'Item with hash',
+                  value: '27718_123' // Value with hash suffix
+                }
+              ],
+              label: 'Category',
+              value: 'cat_456'
+            }
+          ],
+          label: 'Root',
+          value: 'root_789'
+        }
+      ]
+
+      // Search without hash suffix
+      const result = getNodePath('27718', treeWithHashSuffix)
+
+      expect(result).toHaveLength(3)
+      expect(result[2]?.value).toBe('27718_123')
+      expect(result[2]?.label).toBe('Item with hash')
+    })
+
+    it('should find correct node among duplicates with hash suffixes', () => {
+      const treeWithDuplicates: TreeOption[] = [
+        {
+          children: [
+            {
+              children: [{ label: 'First occurrence', value: '27718_1' }],
+              label: 'Category 1',
+              value: 'cat1'
+            }
+          ],
+          label: 'Root 1',
+          value: 'root1'
+        },
+        {
+          children: [
+            {
+              children: [{ label: 'Second occurrence', value: '27718_2' }],
+              label: 'Category 2',
+              value: 'cat2'
+            }
+          ],
+          label: 'Root 2',
+          value: 'root2'
+        }
+      ]
+
+      // Should find the first occurrence
+      const result = getNodePath('27718', treeWithDuplicates)
+
+      expect(result).toHaveLength(3)
+      expect(result[0]?.value).toBe('root1')
+      expect(result[1]?.value).toBe('cat1')
+      expect(result[2]?.value).toBe('27718_1')
+      expect(result[2]?.label).toBe('First occurrence')
+    })
   })
 
   describe('formatNodePath()', () => {
@@ -251,6 +345,42 @@ describe('CheckTreePicker/utils/getNodePath', () => {
 
       expect(result).toBe(
         "Mesures techniques et de conservation / Autorisation Débarquement / 27718 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors d'un port désigné"
+      )
+    })
+
+    it('should return formatted path when searching with number for string value', () => {
+      const result = getFormattedNodePath(27718 as any, MOCK_TREE)
+
+      expect(result).toBe(
+        "Mesures techniques et de conservation / Autorisation Débarquement / 27718 – Débarquement hors d'un port désigné"
+      )
+    })
+
+    it('should return formatted path for node with hash suffix', () => {
+      const treeWithHashSuffix: TreeOption[] = [
+        {
+          children: [
+            {
+              children: [
+                {
+                  label: "27718 – Débarquement hors d'un port désigné",
+                  value: '27718_123' // Value with hash suffix
+                }
+              ],
+              label: 'Autorisation Débarquement',
+              value: 'autorisation_debarquement'
+            }
+          ],
+          label: 'Mesures techniques et de conservation',
+          value: 'mesures_techniques_conservation'
+        }
+      ]
+
+      // Search without hash suffix
+      const result = getFormattedNodePath('27718', treeWithHashSuffix)
+
+      expect(result).toBe(
+        "Mesures techniques et de conservation / Autorisation Débarquement / 27718 – Débarquement hors d'un port désigné"
       )
     })
   })

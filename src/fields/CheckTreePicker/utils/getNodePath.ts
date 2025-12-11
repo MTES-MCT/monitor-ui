@@ -22,7 +22,15 @@ export function getNodePath(
     for (const node of nodes) {
       path.push(node)
 
-      if (node[valueKey] === value) {
+      // Extract the base value without hash suffix for comparison
+      const nodeValue = node[valueKey] as string | number
+      const baseNodeValue = typeof nodeValue === 'string' ? nodeValue.replace(/_\d+$/, '') : nodeValue
+
+      // Normalize both values to strings for comparison to handle string/number mismatches
+      const normalizedNodeValue = String(baseNodeValue)
+      const normalizedTargetValue = String(value)
+
+      if (normalizedNodeValue === normalizedTargetValue) {
         return true
       }
 
