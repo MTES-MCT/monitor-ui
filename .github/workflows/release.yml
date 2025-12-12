@@ -23,9 +23,6 @@ jobs:
         run: yarn build
       - name: Remove any generated .npmrc
         run: rm -f $NPM_CONFIG_USERCONFIG
-      - name: Get .npmrc
-        id: get_npmrc
-        run: cat /home/runner/work/_temp/.npmrc
       - name: Release
         run: yarn semantic-release
         env:
