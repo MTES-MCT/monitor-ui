@@ -28,6 +28,7 @@ jobs:
         env:
           NPM_CONFIG_USERCONFIG: ''
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NODE_AUTH_TOKEN: ''
       - name: Get version
         id: get_version
         run: echo ::set-output name=version::$(npm pkg get version | sed 's/"//g')
