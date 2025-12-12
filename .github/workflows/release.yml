@@ -27,6 +27,7 @@ jobs:
         run: yarn semantic-release
         env:
           NPM_CONFIG_USERCONFIG: ''
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Get version
         id: get_version
         run: echo ::set-output name=version::$(npm pkg get version | sed 's/"//g')
