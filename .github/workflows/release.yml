@@ -21,9 +21,8 @@ jobs:
         uses: ./.github/actions/install
       - name: Build
         run: yarn build
-      - name: Get .npmrc
-        id: get_npmrc
-        run: cat /home/runner/work/_temp/.npmrc
+      - name: Remove any generated .npmrc
+        run: rm -f $NPM_CONFIG_USERCONFIG
       - name: Release
         run: yarn semantic-release
         env:
