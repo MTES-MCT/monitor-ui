@@ -1,3 +1,23 @@
+## [24.38.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.38.1...v24.38.2) (2025-12-15)
+
+### Bug Fixes
+
+* **fields:** fix compare in check tree picker ([8bf8dd9](https://github.com/MTES-MCT/monitor-ui/commit/8bf8dd90712477f84e5982443402fc5f9a74d8ce))
+* **libs:** add NPM_TOKEN ([626ac09](https://github.com/MTES-MCT/monitor-ui/commit/626ac095ce23dc05b48cb8be3330d5416c0f2ee7))
+* **libs:** change env variable to NPM_TOKEN ([eee2b56](https://github.com/MTES-MCT/monitor-ui/commit/eee2b566c882a0da9f4823439b651641d9b73575))
+* **libs:** check .npmrc file ([a5f3b56](https://github.com/MTES-MCT/monitor-ui/commit/a5f3b5645d6be8f00cff33b09a458211a663047c))
+* **libs:** redo github token ([ad64a5a](https://github.com/MTES-MCT/monitor-ui/commit/ad64a5a1a94dbb98ce8eb238d8264b862d7b2dc0))
+* **libs:** remove .npmrc auth ([b3ac8d0](https://github.com/MTES-MCT/monitor-ui/commit/b3ac8d08fa834cf8b0b1f2a267d95a9da18bea85))
+* **libs:** remove .npmrc auth ([02ecef0](https://github.com/MTES-MCT/monitor-ui/commit/02ecef026413913adce693c7a31582159268b53c))
+* **libs:** remove .npmrc file if generated to prevent token auth ([99049a1](https://github.com/MTES-MCT/monitor-ui/commit/99049a1087e855d77b3732e0c59bccbf5cda6204))
+* **libs:** remove .npmrc file if generated to prevent token auth ([8b7b843](https://github.com/MTES-MCT/monitor-ui/commit/8b7b8435b09f5997c41c207cf986e08416652398))
+* **libs:** remove get .npmrc step ([67044a8](https://github.com/MTES-MCT/monitor-ui/commit/67044a896ad246bb7a1bf3ecb5d0371d90b5f40a))
+* **libs:** remove NODE_AUTH_TOKEN ([cb8d52b](https://github.com/MTES-MCT/monitor-ui/commit/cb8d52ba19533dfa60227100b94499ebb451ea05))
+* **libs:** remove registry to prevent generate .npmrc ([bd7b64f](https://github.com/MTES-MCT/monitor-ui/commit/bd7b64fc17f100659e04aa3e1502432e4caac612))
+* **libs:** set provenance to use CI/CD ([2615adc](https://github.com/MTES-MCT/monitor-ui/commit/2615adcaa8439e6dede459d6928d55184c39b013))
+* **libs:** set publish config into package.json ([149982e](https://github.com/MTES-MCT/monitor-ui/commit/149982ed57b6d096de84f0a45de5e991bed174a9))
+* **libs:** set publish config into package.json ([c404414](https://github.com/MTES-MCT/monitor-ui/commit/c404414b551f76c9dc69dc7f518033707578a589))
+
 ## [24.38.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.38.0...v24.38.1) (2025-12-09)
 
 ### Bug Fixes
