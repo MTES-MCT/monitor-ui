@@ -170,10 +170,5 @@
       "bash -c 'npm run test:type'"
     ]
   },
-  "packageManager": "yarn@4.9.0",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "tag": "latest",
-    "provenance": true
-  }
+  "packageManager": "yarn@4.9.0"
 }
