@@ -7,6 +7,9 @@ permissions:
   contents: write # to be able to publish a GitHub release
   pull-requests: write # to be able to comment on released pull requests
 
+env:
+  NPM_CONFIG_PROVENANCE: true
+
 jobs:
   release:
     name: Release
@@ -21,10 +24,16 @@ jobs:
         uses: ./.github/actions/install
       - name: Build
         run: yarn build
+      - name: Clean npm auth
+        run: |
+          npm config delete //registry.npmjs.org/:_authToken || true
+          npm config delete _authToken || true
+          unset NODE_AUTH_TOKEN
       - name: Release
         run: yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_90_DAYS_TOKEN }}
       - name: Get version
         id: get_version
         run: echo ::set-output name=version::$(npm pkg get version | sed 's/"//g')
