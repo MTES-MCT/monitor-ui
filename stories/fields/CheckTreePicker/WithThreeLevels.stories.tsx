@@ -1,9 +1,9 @@
 import { CheckTreePicker, type CheckTreePickerProps } from '@fields/CheckTreePicker'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
 import { ARG_TYPE, META_DEFAULTS } from '../../../.storybook/constants'
-import { FISHING_REGULATIONS } from '../../../.storybook/data/FISHING_REGULATIONS'
+import { EXTENDED_FISHING_REGULATIONS } from '../../../.storybook/data/EXTENDED_FISHING_REGULATIONS'
 import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
 import { useFieldControl } from '../../../src'
 
@@ -51,11 +51,8 @@ const meta: Meta<CheckTreePickerProps> = {
     name: 'myCheckTreePicker',
     placeholder: 'Pick some options',
     popupWidth: undefined,
-    isMultiSelect: true,
-    readOnly: false,
-    childrenKey: 'subThemes',
-    valueKey: 'id',
-    labelKey: 'name'
+    isMultiSelect: false,
+    readOnly: false
   },
 
   decorators: [
@@ -73,7 +70,19 @@ const meta: Meta<CheckTreePickerProps> = {
 export default meta
 
 export function WithThreeLevels(props: CheckTreePickerProps) {
-  const options = FISHING_REGULATIONS(props.childrenKey, props.labelKey, props.valueKey) as TreeOption[]
+  const [options, setOptions] = useState<TreeOption[]>([])
+
+  // We mimic a fetch
+  useEffect(() => {
+    const fetchOptions = async () => {
+      await new Promise(resolve => {
+        setTimeout(resolve, 200)
+      })
+      setOptions(EXTENDED_FISHING_REGULATIONS as TreeOption[])
+    }
+
+    fetchOptions()
+  }, [])
 
   const [outputValue, setOutputValue] = useState<TreeOption[]>()
 

@@ -112,6 +112,12 @@ export function CheckTreePicker({
     [options, childrenKey, valueKey]
   )
 
+  useEffect(() => {
+    if (isSearchable) {
+      setControlledOptions(optionsWithIds)
+    }
+  }, [optionsWithIds, isSearchable])
+
   const localCustomSearch = useMemo(
     () =>
       customSearch ??
