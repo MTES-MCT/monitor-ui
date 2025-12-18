@@ -1,3 +1,9 @@
+## [24.38.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.38.2...v24.38.3) (2025-12-18)
+
+### Bug Fixes
+
+* **fields:** fix check tree picker options refresh ([8b7cf7c](https://github.com/MTES-MCT/monitor-ui/commit/8b7cf7ca2519171a80d33f24e97b593b5a2c0fed))
+
 ## [24.38.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.38.1...v24.38.2) (2025-12-15)
 
 ### Bug Fixes
