@@ -298,6 +298,20 @@ export function getOptionsToDisplay(
 ): TreeOption[] {
   const selectedMap = new Map(selectedOptions.map(opt => [opt[valueKey] as string | number, opt]))
 
+  // Build a set of leaf selections - nodes that don't have their children in the selected set
+  // These are the actual user selections, not intermediate ancestors
+  const leafSelections = new Set<string | number>()
+  selectedOptions.forEach(opt => {
+    const children = opt[childrenKey] as TreeOption[] | undefined
+    const hasSelectedChildren =
+      children && children.length > 0 && children.some(child => selectedMap.has(child[valueKey] as string | number))
+
+    // If this node has no children in the selected set, it's a leaf selection
+    if (!hasSelectedChildren) {
+      leafSelections.add(opt[valueKey] as string | number)
+    }
+  })
+
   const result: TreeOption[] = []
 
   function findChildren(option: TreeOption): void {
@@ -305,8 +319,8 @@ export function getOptionsToDisplay(
     const value = option[valueKey] as string | number
 
     if (children && children.length > 0) {
-      // Check if all children are selected BEFORE recursion
-      const hasAllChildrenSelected = children.every(child => selectedMap.has(child[valueKey] as string | number))
+      // Check if all children are actual leaf selections (not just ancestors)
+      const hasAllChildrenSelected = children.every(child => leafSelections.has(child[valueKey] as string | number))
 
       if (hasAllChildrenSelected) {
         result.push(option) // on garde le parent seulement

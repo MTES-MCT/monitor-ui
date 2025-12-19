@@ -638,6 +638,53 @@ describe('getOptionsToDisplay', () => {
       }
     ])
   })
+
+  it('returns grandchild when parent has only one child (not marked as "Tout")', () => {
+    // Simulates the REG data structure where intermediate levels have only one child
+    const singleChildHierarchy: TreeOption[] = [
+      {
+        children: [
+          {
+            children: [
+              { label: '1,5 - 3 MN : Autorisation chalut à panneaux', value: 'rule1' },
+              { label: '3 - 12 MN : Autorisation chalut à panneaux', value: 'rule2' }
+            ],
+            label: 'Corse - Chaluts',
+            value: 'corse_chaluts'
+          }
+        ],
+        label: 'Reg. MED',
+        value: 'reg_med'
+      }
+    ]
+
+    // Simulate what getTreeOptionsBySelectedValues returns: full ancestor chain
+    const selected = [
+      {
+        children: [
+          {
+            children: [{ label: '1,5 - 3 MN : Autorisation chalut à panneaux', value: 'rule1' }],
+            label: 'Corse - Chaluts',
+            value: 'corse_chaluts'
+          }
+        ],
+        label: 'Reg. MED',
+        value: 'reg_med'
+      },
+      {
+        children: [{ label: '1,5 - 3 MN : Autorisation chalut à panneaux', value: 'rule1' }],
+        label: 'Corse - Chaluts',
+        value: 'corse_chaluts'
+      },
+      { label: '1,5 - 3 MN : Autorisation chalut à panneaux', value: 'rule1' }
+    ]
+
+    const result = getOptionsToDisplay(singleChildHierarchy, selected)
+
+    // Should return only the selected leaf, not the parent with "(Tout)"
+    // even though "Corse - Chaluts" is the only child of "Reg. MED"
+    expect(result).toEqual([{ label: '1,5 - 3 MN : Autorisation chalut à panneaux', value: 'rule1' }])
+  })
 })
 
 describe('getParentRsuiteValue', () => {
