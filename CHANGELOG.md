@@ -1,3 +1,9 @@
+## [24.38.4](https://github.com/MTES-MCT/monitor-ui/compare/v24.38.3...v24.38.4) (2025-12-19)
+
+### Bug Fixes
+
+* **fields:** fix selection of value when leaf has only one parent in check tree picker ([0abfc9c](https://github.com/MTES-MCT/monitor-ui/commit/0abfc9cce97534a0b8318450bd3d7a3ba986928f))
+
 ## [24.38.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.38.1...v24.38.2) (2025-12-15)
 
 ### Bug Fixes
