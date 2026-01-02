@@ -106,7 +106,7 @@ export function Banner({
       className={controlledClassName}
       onMouseEnter={enterHover}
       onMouseLeave={leaveHover}
-      style={style}
+      style={style as any}
     >
       {!isHidden && !isCollapsed && (
         <>
