@@ -39,7 +39,7 @@ jobs:
         with:
           component: true
           config-file: config/cypress.config.ts
-          install: false
+          install: true
           parallel: false
           record: true
           tag: components
