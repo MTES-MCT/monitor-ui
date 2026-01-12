@@ -1,3 +1,9 @@
+## [24.39.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.38.4...v24.39.0) (2026-01-12)
+
+### Features
+
+* **global:** add new regulatory colors ([c3f5ca4](https://github.com/MTES-MCT/monitor-ui/commit/c3f5ca48b83c04694cf77a81cd7e25fac0cb0481))
+
 ## [24.38.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.38.1...v24.38.2) (2025-12-15)
 
 ### Bug Fixes
