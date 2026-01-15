@@ -1,3 +1,9 @@
+## [24.40.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.39.0...v24.40.0) (2026-01-15)
+
+### Features
+
+* **icons:** add Copy.svg ([d717e9f](https://github.com/MTES-MCT/monitor-ui/commit/d717e9f5103750ca56f8cf276e5bb68293bf95a8))
+
 ## [24.39.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.38.4...v24.39.0) (2026-01-12)
 
 ### Features
