@@ -1,3 +1,9 @@
+## [24.41.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.40.0...v24.41.0) (2026-01-20)
+
+### Features
+
+* **icons:** add vessel tabs icons ([19d2fc9](https://github.com/MTES-MCT/monitor-ui/commit/19d2fc9040b8d28c2cfe0cc0518514e882a76e75))
+
 ## [24.40.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.39.0...v24.40.0) (2026-01-15)
 
 ### Features
