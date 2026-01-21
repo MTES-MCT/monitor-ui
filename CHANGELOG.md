@@ -1,3 +1,13 @@
+## [24.42.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.41.0...v24.42.0) (2026-01-21)
+
+### ⚠ BREAKING CHANGES
+
+* **fields:** rename MultiZoneEditor To MultiLocationEditor, refacto props
+
+### Features
+
+* **fields:** refactor MultiZoneEditor ([c41b601](https://github.com/MTES-MCT/monitor-ui/commit/c41b60112a702e5f3097d5a964f1940198999364))
+
 ## [24.41.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.40.0...v24.41.0) (2026-01-20)
 
 ### Features
