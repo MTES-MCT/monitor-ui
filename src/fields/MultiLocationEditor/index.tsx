@@ -1,5 +1,3 @@
-// TODO Clean, split and finalize this component.
-
 import { Accent } from '@constants'
 import { Button } from '@elements/Button'
 import { FieldError } from '@elements/FieldError'
@@ -11,7 +9,7 @@ import { remove } from '@utils/remove'
 import classnames from 'classnames'
 import { getFieldBackgroundColorFactory } from 'fields/shared/utils'
 import { isEqual } from 'lodash-es'
-import { type CSSProperties, useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
+import { type CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 
 import { Delete, Edit, Plus, SelectRectangle } from '../../icons'
@@ -19,14 +17,18 @@ import { Delete, Edit, Plus, SelectRectangle } from '../../icons'
 import type { CommonFieldStyleProps } from 'fields/shared/types'
 import type { Promisable } from 'type-fest'
 
-export type MultiZoneEditorProps = {
-  addButtonLabel: string
+type Options = {
+  buttonLabel: string
+  initialValue: Record<string, any>
+  isButtonDisabled?: boolean
+  onAdd?: (nextLocation: Record<string, any>[], index: number) => Promisable<void>
+}
+
+export type MultiLocationEditorProps = {
   className?: string | undefined
   defaultValue?: Record<string, any>[] | undefined
   disabled?: boolean | undefined
   error?: string | undefined
-  initialZone: Record<string, any>
-  isAddButtonDisabled?: boolean | undefined
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean
   isLight?: boolean | undefined
@@ -35,23 +37,21 @@ export type MultiZoneEditorProps = {
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   labelPropName: string
-  onAdd?: (nextZones: Record<string, any>[], index: number) => Promisable<void>
   onCenter?: (zone: Record<string, any>) => Promisable<void>
   onChange?: (nextZones: Record<string, any>[] | undefined) => Promisable<void>
   onDelete?: (nextZones: Record<string, any>[]) => Promisable<void>
   onEdit?: (zone: Record<string, any>, index: number) => Promisable<void>
+  pointOptions?: Options | undefined
   readOnly?: boolean | undefined
   style?: CSSProperties | undefined
+  zoneOptions?: Options | undefined
 }
 
-export function MultiZoneEditor({
-  addButtonLabel,
+export function MultiLocationEditor({
   className,
   defaultValue = [],
   disabled = false,
   error,
-  initialZone,
-  isAddButtonDisabled = false,
   isErrorMessageHidden = false,
   isLabelHidden = false,
   isLight = false,
@@ -60,34 +60,37 @@ export function MultiZoneEditor({
   isUndefinedWhenDisabled = false,
   label,
   labelPropName,
-  onAdd,
   onCenter,
   onChange,
   onDelete,
   onEdit,
+  pointOptions,
   readOnly = false,
-  style
-}: MultiZoneEditorProps) {
+  style,
+  zoneOptions
+}: MultiLocationEditorProps) {
   const prevDefaultValueRef = useRef(defaultValue)
-  const multizoneId = useId()
 
-  const [zones, setZones] = useState(defaultValue)
+  const [locations, setLocations] = useState(defaultValue)
 
-  const controlledClassName = useMemo(() => classnames('Field-MultiZoneEditor', className), [className])
+  const controlledClassName = useMemo(() => classnames('Field-MultiLocationEditor', className), [className])
   const controlledError = useMemo(() => normalizeString(error), [error])
   const hasError = useMemo(() => Boolean(controlledError), [controlledError])
 
-  const addZone = useCallback(() => {
-    const nextZones = [...zones, initialZone]
+  const add = useCallback(
+    ({ initialValue, onAdd }: Options) => {
+      const nextZones = [...locations, initialValue]
 
-    if (onAdd) {
-      onAdd(nextZones, nextZones.length)
-    }
+      if (onAdd) {
+        onAdd(nextZones, nextZones.length)
+      }
 
-    setZones(nextZones)
-  }, [initialZone, onAdd, zones])
+      setLocations(nextZones)
+    },
+    [locations]
+  )
 
-  const centerZone = useCallback(
+  const centerLocation = useCallback(
     (zone: Record<string, any>) => {
       if (onCenter) {
         onCenter(zone)
@@ -96,30 +99,30 @@ export function MultiZoneEditor({
     [onCenter]
   )
 
-  const deleteZone = useCallback(
+  const deleteLocation = useCallback(
     (index: number) => {
-      const nextZones = remove(index, 1, zones)
+      const nextLocations = remove(index, 1, locations)
 
-      setZones(nextZones)
+      setLocations(nextLocations)
 
       if (onDelete) {
-        onDelete(nextZones)
+        onDelete(nextLocations)
       }
     },
-    [onDelete, zones]
+    [onDelete, locations]
   )
 
-  const editZone = useCallback(
-    (index: number, zone: Record<string, any>) => {
+  const editLocation = useCallback(
+    (index: number, location: Record<string, any>) => {
       if (onEdit) {
-        onEdit(zone, index)
+        onEdit(location, index)
       }
     },
     [onEdit]
   )
 
   const handleDisable = useCallback(() => {
-    setZones([])
+    setLocations([])
   }, [])
 
   useEffect(() => {
@@ -127,7 +130,7 @@ export function MultiZoneEditor({
       return
     }
 
-    setZones(defaultValue)
+    setLocations(defaultValue)
   }, [defaultValue])
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange, handleDisable)
@@ -136,27 +139,41 @@ export function MultiZoneEditor({
     <Fieldset
       className={controlledClassName}
       disabled={disabled}
-      id={multizoneId}
       isLegendHidden={isLabelHidden}
       isRequired={isRequired}
       legend={label}
       style={style}
     >
-      <Button
-        accent={hasError ? Accent.ERROR : Accent.SECONDARY}
-        disabled={disabled || isAddButtonDisabled}
-        Icon={Plus}
-        isFullWidth
-        onClick={addZone}
-      >
-        {addButtonLabel}
-      </Button>
+      <Controls>
+        {pointOptions && (
+          <Button
+            accent={hasError ? Accent.ERROR : Accent.SECONDARY}
+            disabled={disabled || pointOptions.isButtonDisabled === true}
+            Icon={Plus}
+            isFullWidth
+            onClick={() => add(pointOptions)}
+          >
+            {pointOptions.buttonLabel}
+          </Button>
+        )}
 
+        {zoneOptions && (
+          <Button
+            accent={hasError ? Accent.ERROR : Accent.SECONDARY}
+            disabled={disabled || zoneOptions.isButtonDisabled === true}
+            Icon={Plus}
+            isFullWidth
+            onClick={() => add(zoneOptions)}
+          >
+            {zoneOptions.buttonLabel}
+          </Button>
+        )}
+      </Controls>
       <>
-        {zones.map((zone, index) => (
+        {locations.map((zone, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <Row key={`zone-${index}`}>
-            <ZoneBox
+            <LocationBox
               $hasError={hasError}
               $isDisabled={disabled}
               $isLight={isLight}
@@ -167,22 +184,22 @@ export function MultiZoneEditor({
 
               {/* TODO Add `Accent.LINK` accent in @mtes-mct/monitor-ui and use it here. */}
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-              <Link onClick={() => centerZone(zone)}>
+              <Link onClick={() => centerLocation(zone)}>
                 <SelectRectangle />
                 <span>Centrer sur la carte</span>
               </Link>
-            </ZoneBox>
+            </LocationBox>
 
             <IconButton
               accent={Accent.SECONDARY}
               Icon={Edit}
-              onClick={() => editZone(index, zone)}
+              onClick={() => editLocation(index, zone)}
               title="Modifier cette zone"
             />
             <IconButton
               accent={Accent.SECONDARY}
               Icon={Delete}
-              onClick={() => deleteZone(index)}
+              onClick={() => deleteLocation(index)}
               title="Supprimer cette zone"
             />
           </Row>
@@ -194,6 +211,11 @@ export function MultiZoneEditor({
   )
 }
 
+const Controls = styled.div`
+  display: flex;
+  gap: 8px;
+`
+
 const Row = styled.div`
   align-items: center;
   display: flex;
@@ -204,7 +226,7 @@ const Row = styled.div`
   }
 `
 
-const ZoneBox = styled.div<CommonFieldStyleProps>`
+const LocationBox = styled.div<CommonFieldStyleProps>`
   background-color: ${getFieldBackgroundColorFactory()};
   display: flex;
   flex-grow: 1;
