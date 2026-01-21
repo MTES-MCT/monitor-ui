@@ -3,20 +3,20 @@
 
 import { useState } from 'react'
 
-import { Output } from '../../.storybook/components/Output'
-import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
-import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
-import { MultiZoneEditor } from '../../src'
+import { Output } from '../../../.storybook/components/Output'
+import { ARG_TYPE, META_DEFAULTS } from '../../../.storybook/constants'
+import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
+import { MultiLocationEditor } from '../../../src'
 
-import type { MultiZoneEditorProps } from '../../src'
+import type { MultiLocationEditorProps } from '../../../src'
 import type { Meta } from '@storybook/react-vite'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-const meta: Meta<MultiZoneEditorProps> = {
+const meta: Meta<MultiLocationEditorProps> = {
   ...META_DEFAULTS,
 
-  title: 'Fields/MultiZoneEditor',
-  component: MultiZoneEditor,
+  title: 'Fields/MultiLocationEditor/MultiZoneEditor',
+  component: MultiLocationEditor,
 
   argTypes: {
     disabled: ARG_TYPE.OPTIONAL_BOOLEAN,
@@ -31,13 +31,15 @@ const meta: Meta<MultiZoneEditorProps> = {
   },
 
   args: {
-    addButtonLabel: 'Add a zone',
+    zoneOptions: {
+      buttonLabel: 'Add a zone',
+      initialValue: {
+        name: 'Polygone dessiné'
+      }
+    },
     defaultValue: undefined,
     disabled: false,
     error: '',
-    initialZone: {
-      name: 'Polygone dessiné'
-    },
     isErrorMessageHidden: false,
     isLabelHidden: false,
     isLight: false,
@@ -60,12 +62,24 @@ const meta: Meta<MultiZoneEditorProps> = {
 
 export default meta
 
-export function _MultiZoneEditor(props: MultiZoneEditorProps) {
+export function _MultiZoneEditor(props: MultiLocationEditorProps) {
   const [outputValue, setOutputValue] = useState<Record<string, any>[] | undefined | '∅'>('∅')
 
   return (
     <>
-      <MultiZoneEditor {...props} onAdd={setOutputValue} onChange={setOutputValue} onDelete={setOutputValue} />
+      <MultiLocationEditor
+        {...props}
+        onChange={setOutputValue}
+        onDelete={setOutputValue}
+        zoneOptions={
+          props.zoneOptions
+            ? {
+                ...props.zoneOptions,
+                onAdd: setOutputValue
+              }
+            : undefined
+        }
+      />
 
       {outputValue !== '∅' && <Output value={outputValue} />}
     </>
