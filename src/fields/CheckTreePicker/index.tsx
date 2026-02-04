@@ -23,6 +23,7 @@ import {
   fromRsuiteValue,
   generateUniqueIds,
   getOptionsToDisplay,
+  getOptionsWithLazyChildren,
   getParentRsuiteValue,
   getTreeOptionsBySelectedValues,
   hasThreeLevels,
@@ -101,6 +102,7 @@ export function CheckTreePicker({
   const isSearchable = originalProps.searchable ?? true
   const hasError = Boolean(controlledError)
   const [searchKeyword, setSearchKeyword] = useState('')
+  const [expandedValues, setExpandedValues] = useState<(string | number)[]>([])
   const { forceUpdate } = useForceUpdate()
 
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange)
@@ -209,6 +211,23 @@ export function CheckTreePicker({
       valueKey
     ]
   )
+
+  const handleExpand = useCallback(
+    (expandItemValues: (string | number)[]) => {
+      setExpandedValues(expandItemValues)
+    },
+    []
+  )
+
+  const lazyOptions = useMemo(() => {
+    const baseOptions = isSearchable ? controlledOptions : optionsWithIds
+
+    if (searchKeyword) {
+      return baseOptions
+    }
+
+    return getOptionsWithLazyChildren(baseOptions, new Set(expandedValues), childrenKey, valueKey, labelKey)
+  }, [isSearchable, controlledOptions, optionsWithIds, searchKeyword, expandedValues, childrenKey, valueKey, labelKey])
 
   const handleChange = useCallback(
     (nextValue: ValueType) => {
@@ -397,16 +416,19 @@ export function CheckTreePicker({
           cascade
           childrenKey={childrenKey}
           container={boxRef.current}
-          data={isSearchable ? controlledOptions : optionsWithIds}
+          data={lazyOptions}
           disabled={disabled}
           disabledItemValues={disabledValues}
+          expandItemValues={expandedValues}
           id={originalProps.name}
           labelKey={labelKey}
           onChange={handleChange}
           onClose={() => {
             setControlledOptions(optionsWithIds)
             setSearchKeyword('')
+            setExpandedValues([])
           }}
+          onExpand={handleExpand}
           onSearch={handleSearch}
           readOnly={readOnly}
           renderTreeIcon={renderTreeIcon}
