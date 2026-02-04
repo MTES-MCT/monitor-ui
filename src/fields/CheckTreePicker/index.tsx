@@ -19,7 +19,6 @@ import styled from 'styled-components'
 import { CheckTreePickerBox } from './CheckTreePickerBox'
 import {
   computeDisabledValues,
-  deepCloneExtensible,
   flattenAllDescendants,
   fromRsuiteValue,
   generateUniqueIds,
@@ -170,8 +169,10 @@ export function CheckTreePicker({
       }
 
       const searchResults = localCustomSearch.find(nextQuery)
-      const foundOptions = searchResults
-        .flatMap(option => fromRsuiteValue([option[valueKey]], optionsWithIds, false, childrenKey, valueKey, labelKey))
+      const foundValues = searchResults.map(option => option[valueKey] as string | number)
+      const foundOptions = (
+        fromRsuiteValue(foundValues, optionsWithIds, false, childrenKey, valueKey, labelKey) ?? []
+      )
         .map(item => {
           const children = item?.[childrenKey] as TreeOption[] | undefined
 
@@ -185,7 +186,7 @@ export function CheckTreePicker({
       const selectedOptions =
         fromRsuiteValue(rsuiteValue ?? [], optionsWithIds, false, childrenKey, valueKey, labelKey) ?? []
       const merged = mergeResultsByParent(
-        [...foundOptions, ...selectedOptions].map(item => deepCloneExtensible(item)),
+        [...foundOptions, ...selectedOptions],
         childrenKey,
         valueKey,
         labelKey
@@ -209,34 +210,160 @@ export function CheckTreePicker({
     ]
   )
 
-  const handleChange = (nextValue: ValueType) => {
-    if (!onChange) {
-      return
-    }
+  const handleChange = useCallback(
+    (nextValue: ValueType) => {
+      if (!onChange) {
+        return
+      }
 
-    const hasExistingSelection = rsuiteValue && rsuiteValue.length > 0
-    const shouldFilterToNewValues = isSelect && hasExistingSelection
+      const hasExistingSelection = rsuiteValue && rsuiteValue.length > 0
+      const shouldFilterToNewValues = isSelect && hasExistingSelection
 
-    const valuesToProcess = shouldFilterToNewValues ? nextValue.filter(item => !rsuiteValue.includes(item)) : nextValue
+      const valuesToProcess = shouldFilterToNewValues
+        ? nextValue.filter(item => !rsuiteValue.includes(item))
+        : nextValue
 
-    const formattedValues = fromRsuiteValue(valuesToProcess, optionsWithIds, true, childrenKey, valueKey, labelKey)
-    onChange(formattedValues)
+      const formattedValues = fromRsuiteValue(valuesToProcess, optionsWithIds, true, childrenKey, valueKey, labelKey)
+      onChange(formattedValues)
 
-    if (isSelect) {
-      treeRef.current?.close?.()
-    }
-  }
+      if (isSelect) {
+        treeRef.current?.close?.()
+      }
+    },
+    [childrenKey, isSelect, labelKey, onChange, optionsWithIds, rsuiteValue, valueKey]
+  )
 
-  const removeOptions = (valuesToRemove: ValueType, e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation()
+  const removeOptions = useCallback(
+    (valuesToRemove: ValueType, e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation()
 
-    const valueToUpdate = rsuiteValue?.filter(rvalue => !valuesToRemove.includes(rvalue))
-    handleChange(valueToUpdate ?? [])
-  }
+      const valueToUpdate = rsuiteValue?.filter(rvalue => !valuesToRemove.includes(rvalue))
+      handleChange(valueToUpdate ?? [])
+    },
+    [handleChange, rsuiteValue]
+  )
 
   useEffect(() => {
     forceUpdate()
   }, [forceUpdate])
+
+  const renderTreeIcon = useCallback(
+    (_: unknown, isExpanded?: boolean) => (
+      <IconExpander>
+        <IconButton
+          accent={Accent.TERTIARY}
+          Icon={Chevron}
+          size={Size.SMALL}
+          style={{ transform: isExpanded ? 'rotate(0)' : 'rotate(-90deg)' }}
+        />
+      </IconExpander>
+    ),
+    []
+  )
+
+  const renderTreeNode = useCallback(
+    (item: Record<string, unknown>): React.ReactNode => {
+      if (typeof item[labelKey] !== 'string') {
+        return item[labelKey] as React.ReactNode
+      }
+
+      return <AccentInsensitiveHighlight label={item[labelKey]} query={searchKeyword} />
+    },
+    [labelKey, searchKeyword]
+  )
+
+  const renderValue = useCallback(() => {
+    if (isSelect && rsuiteValue && rsuiteValue.length > 0) {
+      const formattedPath = getFormattedNodePath(
+        rsuiteValue[0] as string | number,
+        optionsWithIds,
+        childrenKey,
+        valueKey,
+        labelKey
+      )
+
+      return <span title={formattedPath}>{formattedPath}</span>
+    }
+
+    const parents = getTreeOptionsBySelectedValues(
+      rsuiteValue,
+      optionsWithIds,
+      false,
+      childrenKey,
+      valueKey,
+      labelKey
+    )
+    const allDescendants = flattenAllDescendants(parents, childrenKey)
+    const selectedOptions = [...parents, ...allDescendants].filter(Boolean)
+
+    if (!shouldShowLabels) {
+      return (
+        <>
+          <span className="rs-picker-value-list" title={renderedValue}>
+            {renderedValue} <Bold>({parents.length})</Bold>
+          </span>
+          {allDescendants.length > 0 && (
+            <span className="rs-picker-value-list" title={renderedChildrenValue}>
+              {renderedChildrenValue} <Bold>({allDescendants.length})</Bold>
+            </span>
+          )}
+        </>
+      )
+    }
+
+    const optionsToDisplay = getOptionsToDisplay(optionsWithIds, selectedOptions, childrenKey, valueKey)
+
+    return (
+      <Wrapper>
+        <SubWrapper>
+          {optionsToDisplay.map(option => {
+            const isParent =
+              option[childrenKey] !== undefined && (option[childrenKey] as TreeOption[]).length > 0
+
+            return (
+              <SelectedOptionContainer key={option[valueKey] as string | number}>
+                <SelectedOptionLabel $isLight={isLight || isTransparent} title={option[labelKey] as string}>
+                  {option[labelKey] as string}
+                  {isParent && ' (Tout)'}
+                </SelectedOptionLabel>
+                <StyledButton
+                  $isLight={isLight || isTransparent}
+                  accent={Accent.TERTIARY}
+                  Icon={Icon.Close}
+                  onClick={e => {
+                    removeOptions(
+                      isParent
+                        ? (option[childrenKey] as TreeOption[]).flatMap(
+                            child => child[valueKey] as string | number
+                          )
+                        : [option[valueKey] as string | number],
+                      e
+                    )
+                  }}
+                  size={Size.SMALL}
+                  tabIndex={0}
+                  title={`Retirer ${option[labelKey]}`}
+                />
+              </SelectedOptionContainer>
+            )
+          })}
+        </SubWrapper>
+      </Wrapper>
+    )
+  }, [
+    childrenKey,
+    isLight,
+    isSelect,
+    isTransparent,
+    labelKey,
+    optionsWithIds,
+    removeOptions,
+    renderedChildrenValue,
+    renderedValue,
+    rsuiteValue,
+    shouldShowLabels,
+    valueKey
+  ])
 
   return (
     <CheckTreePickerBox
@@ -282,102 +409,9 @@ export function CheckTreePicker({
           }}
           onSearch={handleSearch}
           readOnly={readOnly}
-          renderTreeIcon={(_, isExpanded) => (
-            <IconExpander>
-              <IconButton
-                accent={Accent.TERTIARY}
-                Icon={Chevron}
-                size={Size.SMALL}
-                style={{ transform: isExpanded ? 'rotate(0)' : 'rotate(-90deg)' }}
-              />
-            </IconExpander>
-          )}
-          renderTreeNode={item => {
-            if (typeof item[labelKey] !== 'string') {
-              return item[labelKey]
-            }
-
-            return <AccentInsensitiveHighlight label={item[labelKey]} query={searchKeyword} />
-          }}
-          renderValue={() => {
-            if (isSelect && rsuiteValue && rsuiteValue.length > 0) {
-              const formattedPath = getFormattedNodePath(
-                rsuiteValue[0] as string | number,
-                optionsWithIds,
-                childrenKey,
-                valueKey,
-                labelKey
-              )
-
-              return <span title={formattedPath}>{formattedPath}</span>
-            }
-
-            const parents = getTreeOptionsBySelectedValues(
-              rsuiteValue,
-              optionsWithIds,
-              false,
-              childrenKey,
-              valueKey,
-              labelKey
-            )
-            const allDescendants = flattenAllDescendants(parents, childrenKey)
-            const selectedOptions = [...parents, ...allDescendants].filter(Boolean)
-
-            if (!shouldShowLabels) {
-              return (
-                <>
-                  <span className="rs-picker-value-list" title={renderedValue}>
-                    {renderedValue} <Bold>({parents.length})</Bold>
-                  </span>
-                  {allDescendants.length > 0 && (
-                    <span className="rs-picker-value-list" title={renderedChildrenValue}>
-                      {renderedChildrenValue} <Bold>({allDescendants.length})</Bold>
-                    </span>
-                  )}
-                </>
-              )
-            }
-
-            const optionsToDisplay = getOptionsToDisplay(optionsWithIds, selectedOptions, childrenKey, valueKey)
-
-            return (
-              <Wrapper>
-                <SubWrapper>
-                  {optionsToDisplay.map(option => {
-                    const isParent =
-                      option[childrenKey] !== undefined && (option[childrenKey] as TreeOption[]).length > 0
-
-                    return (
-                      <SelectedOptionContainer key={option[valueKey] as string | number}>
-                        <SelectedOptionLabel $isLight={isLight || isTransparent} title={option[labelKey] as string}>
-                          {option[labelKey] as string}
-                          {isParent && ' (Tout)'}
-                        </SelectedOptionLabel>
-                        <StyledButton
-                          $isLight={isLight || isTransparent}
-                          accent={Accent.TERTIARY}
-                          Icon={Icon.Close}
-                          onClick={e => {
-                            removeOptions(
-                              isParent
-                                ? (option[childrenKey] as TreeOption[]).flatMap(
-                                    child => child[valueKey] as string | number
-                                  )
-                                : [option[valueKey] as string | number],
-                              e
-                            )
-                          }}
-                          size={Size.SMALL}
-                          tabIndex={0}
-                          title={`Retirer ${option[labelKey]}`}
-                        />
-                      </SelectedOptionContainer>
-                    )
-                  })}
-                </SubWrapper>
-              </Wrapper>
-            )
-          }}
+          renderTreeIcon={renderTreeIcon}
+          renderTreeNode={renderTreeNode}
+          renderValue={renderValue}
           searchable={isSearchable}
           searchBy={(isSearchable ? () => true : undefined) as any}
           size={originalProps.size ?? 'sm'}
