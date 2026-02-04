@@ -1,6 +1,36 @@
 import type { TreeOption } from './types'
 import type { ValueType } from 'rsuite/esm/CheckTreePicker'
 
+export function getOptionsWithLazyChildren(
+  options: TreeOption[],
+  expandedValues: Set<string | number>,
+  childrenKey: string,
+  valueKey: string,
+  labelKey: string
+): TreeOption[] {
+  return options.map(option => {
+    const children = option[childrenKey] as TreeOption[] | undefined
+
+    if (!children || children.length === 0) {
+      return option
+    }
+
+    const value = option[valueKey] as string | number
+
+    if (!expandedValues.has(value)) {
+      return {
+        ...option,
+        [childrenKey]: [{ [valueKey]: `__placeholder__${value}`, [labelKey]: '' }]
+      }
+    }
+
+    return {
+      ...option,
+      [childrenKey]: getOptionsWithLazyChildren(children, expandedValues, childrenKey, valueKey, labelKey)
+    }
+  })
+}
+
 function getHash(str: string) {
   let hash = 0
   for (let i = 0; i < str.length; i += 1) {
