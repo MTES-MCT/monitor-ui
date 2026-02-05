@@ -22,7 +22,8 @@ export function getNodePath(
     for (const node of nodes) {
       path.push(node)
 
-      if (node[valueKey] === value) {
+      console.log(value, node[valueKey])
+      if (value === node[valueKey]) {
         return true
       }
 
