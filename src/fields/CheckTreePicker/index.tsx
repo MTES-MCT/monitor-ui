@@ -64,7 +64,7 @@ export type CheckTreePickerProps = Omit<
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
-  onChange?: (nextValue: TreeOption[] | undefined) => Promisable<void>
+  onChange?: (nextValue: any[] | undefined) => Promisable<void>
   onSearch?: (query: string, event: SyntheticEvent<Element, Event>) => void
   options: TreeOption[]
   popupWidth?: number | undefined
