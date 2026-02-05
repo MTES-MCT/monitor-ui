@@ -22,6 +22,7 @@ const meta: Meta<CheckTreePickerProps> = {
     isErrorMessageHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
     isLabelHidden: ARG_TYPE.OPTIONAL_BOOLEAN,
     isLight: ARG_TYPE.OPTIONAL_BOOLEAN,
+    isLazyLoading: ARG_TYPE.OPTIONAL_BOOLEAN,
     isRequired: ARG_TYPE.OPTIONAL_BOOLEAN,
     isSelect: ARG_TYPE.OPTIONAL_BOOLEAN,
     isTransparent: ARG_TYPE.OPTIONAL_BOOLEAN,
