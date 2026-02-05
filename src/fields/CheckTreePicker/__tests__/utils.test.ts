@@ -8,6 +8,7 @@ import {
   fromRsuiteValue,
   generateUniqueIds,
   getOptionsToDisplay,
+  getOptionsWithLazyChildren,
   getParentRsuiteValue,
   getTreeOptionsBySelectedValues,
   hasThreeLevels,
@@ -1359,6 +1360,283 @@ describe('mergeResultsByParent', () => {
         children: [{ label: 'Child B', value: 'childB' }],
         label: 'Parent 2',
         value: 'parent2'
+      }
+    ])
+  })
+})
+
+describe('getOptionsWithLazyChildren', () => {
+  const defaultChildrenKey = 'children'
+  const defaultValueKey = 'value'
+  const defaultLabelKey = 'label'
+
+  it('should return options unchanged when they have no children', () => {
+    const options: TreeOption[] = [
+      { label: 'Item 1', value: 'item1' },
+      { label: 'Item 2', value: 'item2' }
+    ]
+    const expandedValues = new Set<string | number>()
+
+    const result = getOptionsWithLazyChildren(
+      options,
+      expandedValues,
+      defaultChildrenKey,
+      defaultValueKey,
+      defaultLabelKey
+    )
+
+    expect(result).toEqual(options)
+  })
+
+  it('should replace children with placeholder when parent is not expanded', () => {
+    const options: TreeOption[] = [
+      {
+        children: [
+          { label: 'Child 1', value: 'child1' },
+          { label: 'Child 2', value: 'child2' }
+        ],
+        label: 'Parent 1',
+        value: 'parent1'
+      }
+    ]
+    const expandedValues = new Set<string | number>()
+
+    const result = getOptionsWithLazyChildren(
+      options,
+      expandedValues,
+      defaultChildrenKey,
+      defaultValueKey,
+      defaultLabelKey
+    )
+
+    expect(result).toEqual([
+      {
+        children: [{ label: '', value: '__placeholder__parent1' }],
+        label: 'Parent 1',
+        value: 'parent1'
+      }
+    ])
+  })
+
+  it('should keep children when parent is expanded', () => {
+    const options: TreeOption[] = [
+      {
+        children: [
+          { label: 'Child 1', value: 'child1' },
+          { label: 'Child 2', value: 'child2' }
+        ],
+        label: 'Parent 1',
+        value: 'parent1'
+      }
+    ]
+    const expandedValues = new Set<string | number>(['parent1'])
+
+    const result = getOptionsWithLazyChildren(
+      options,
+      expandedValues,
+      defaultChildrenKey,
+      defaultValueKey,
+      defaultLabelKey
+    )
+
+    expect(result).toEqual([
+      {
+        children: [
+          { label: 'Child 1', value: 'child1' },
+          { label: 'Child 2', value: 'child2' }
+        ],
+        label: 'Parent 1',
+        value: 'parent1'
+      }
+    ])
+  })
+
+  it('should handle mixed expanded and collapsed parents', () => {
+    const options: TreeOption[] = [
+      {
+        children: [{ label: 'Child 1', value: 'child1' }],
+        label: 'Parent 1',
+        value: 'parent1'
+      },
+      {
+        children: [{ label: 'Child 2', value: 'child2' }],
+        label: 'Parent 2',
+        value: 'parent2'
+      }
+    ]
+    const expandedValues = new Set<string | number>(['parent1'])
+
+    const result = getOptionsWithLazyChildren(
+      options,
+      expandedValues,
+      defaultChildrenKey,
+      defaultValueKey,
+      defaultLabelKey
+    )
+
+    expect(result).toEqual([
+      {
+        children: [{ label: 'Child 1', value: 'child1' }],
+        label: 'Parent 1',
+        value: 'parent1'
+      },
+      {
+        children: [{ label: '', value: '__placeholder__parent2' }],
+        label: 'Parent 2',
+        value: 'parent2'
+      }
+    ])
+  })
+
+  it('should recursively process nested children when expanded', () => {
+    const options: TreeOption[] = [
+      {
+        children: [
+          {
+            children: [{ label: 'Grandchild', value: 'grandchild' }],
+            label: 'Child 1',
+            value: 'child1'
+          }
+        ],
+        label: 'Parent 1',
+        value: 'parent1'
+      }
+    ]
+    const expandedValues = new Set<string | number>(['parent1'])
+
+    const result = getOptionsWithLazyChildren(
+      options,
+      expandedValues,
+      defaultChildrenKey,
+      defaultValueKey,
+      defaultLabelKey
+    )
+
+    expect(result).toEqual([
+      {
+        children: [
+          {
+            children: [{ label: '', value: '__placeholder__child1' }],
+            label: 'Child 1',
+            value: 'child1'
+          }
+        ],
+        label: 'Parent 1',
+        value: 'parent1'
+      }
+    ])
+  })
+
+  it('should fully expand nested children when all ancestors are expanded', () => {
+    const options: TreeOption[] = [
+      {
+        children: [
+          {
+            children: [{ label: 'Grandchild', value: 'grandchild' }],
+            label: 'Child 1',
+            value: 'child1'
+          }
+        ],
+        label: 'Parent 1',
+        value: 'parent1'
+      }
+    ]
+    const expandedValues = new Set<string | number>(['parent1', 'child1'])
+
+    const result = getOptionsWithLazyChildren(
+      options,
+      expandedValues,
+      defaultChildrenKey,
+      defaultValueKey,
+      defaultLabelKey
+    )
+
+    expect(result).toEqual([
+      {
+        children: [
+          {
+            children: [{ label: 'Grandchild', value: 'grandchild' }],
+            label: 'Child 1',
+            value: 'child1'
+          }
+        ],
+        label: 'Parent 1',
+        value: 'parent1'
+      }
+    ])
+  })
+
+  it('should handle empty children array', () => {
+    const options: TreeOption[] = [
+      {
+        children: [],
+        label: 'Parent 1',
+        value: 'parent1'
+      }
+    ]
+    const expandedValues = new Set<string | number>()
+
+    const result = getOptionsWithLazyChildren(
+      options,
+      expandedValues,
+      defaultChildrenKey,
+      defaultValueKey,
+      defaultLabelKey
+    )
+
+    expect(result).toEqual([
+      {
+        children: [],
+        label: 'Parent 1',
+        value: 'parent1'
+      }
+    ])
+  })
+
+  it('should handle numeric values', () => {
+    const options: TreeOption[] = [
+      {
+        children: [{ label: 'Child 1', value: 101 }],
+        label: 'Parent 1',
+        value: 100
+      }
+    ]
+    const expandedValues = new Set<string | number>()
+
+    const result = getOptionsWithLazyChildren(
+      options,
+      expandedValues,
+      defaultChildrenKey,
+      defaultValueKey,
+      defaultLabelKey
+    )
+
+    expect(result).toEqual([
+      {
+        children: [{ label: '', value: '__placeholder__100' }],
+        label: 'Parent 1',
+        value: 100
+      }
+    ])
+  })
+
+  it('should work with custom keys', () => {
+    const options: any[] = [
+      {
+        name: 'Parent 1',
+        nodeId: 'p1',
+        subNodes: [{ name: 'Child 1', nodeId: 'c1' }]
+      }
+    ]
+    const expandedValues = new Set<string | number>()
+
+    const result = getOptionsWithLazyChildren(options, expandedValues, 'subNodes', 'nodeId', 'name')
+
+    expect(result).toEqual([
+      {
+        name: 'Parent 1',
+        nodeId: 'p1',
+        subNodes: [{ name: '', nodeId: '__placeholder__p1' }]
       }
     ])
   })
