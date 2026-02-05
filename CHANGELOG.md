@@ -1,3 +1,12 @@
+## [24.42.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.42.0...v24.42.1) (2026-02-05)
+
+### Bug Fixes
+
+* **fields:** add debounce to search of check tree picker ([e20ee58](https://github.com/MTES-MCT/monitor-ui/commit/e20ee588f4980784a7d406d070b5821b5703702f))
+* **fields:** add lazy loading as prop in check tree picker ([f00f979](https://github.com/MTES-MCT/monitor-ui/commit/f00f979bc4ce875b1f3309d9e952e40e6e7c0249))
+* **fields:** improve check tree picker perf ([8f4058d](https://github.com/MTES-MCT/monitor-ui/commit/8f4058dcd740d00202727672a1b632287254eadb))
+* **fields:** lazy render check tree picker options ([1565a1c](https://github.com/MTES-MCT/monitor-ui/commit/1565a1c9d28f617a8bbc1d321898d5d52de74224))
+
 ## [24.42.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.41.0...v24.42.0) (2026-01-21)
 
 ### ⚠ BREAKING CHANGES
