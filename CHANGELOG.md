@@ -1,3 +1,9 @@
+## [24.42.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.42.1...v24.42.2) (2026-02-05)
+
+### Bug Fixes
+
+* **fields:** fix check tree piker onChange type ([eb6a504](https://github.com/MTES-MCT/monitor-ui/commit/eb6a504b618be999f3e539c645a1741eadd5b890))
+
 ## [24.42.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.42.0...v24.42.1) (2026-02-05)
 
 ### Bug Fixes
