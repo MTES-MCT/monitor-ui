@@ -20,7 +20,7 @@ export function getOptionsWithLazyChildren(
     if (!expandedValues.has(value)) {
       return {
         ...option,
-        [childrenKey]: [{ [valueKey]: `__placeholder__${value}`, [labelKey]: '' }]
+        [childrenKey]: [{ [labelKey]: '', [valueKey]: `__placeholder__${value}` }]
       }
     }
 

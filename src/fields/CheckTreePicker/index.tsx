@@ -8,7 +8,17 @@ import { CustomSearch } from '@libs/CustomSearch'
 import { normalizeString } from '@utils/normalizeString'
 import classnames from 'classnames'
 import { Chevron } from 'icons'
-import React, { type RefObject, type SyntheticEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { debounce } from 'lodash-es'
+import React, {
+  type RefObject,
+  type SyntheticEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useTransition
+} from 'react'
 import {
   CheckTreePicker as RsuiteCheckTreePicker,
   type PickerHandle,
@@ -67,7 +77,7 @@ export function CheckTreePicker({
   childrenKey = 'children',
   className,
   customSearch,
-  customSearchMinQueryLength = 1,
+  customSearchMinQueryLength = 2,
   disabled = false,
   error,
   isErrorMessageHidden = false,
@@ -102,6 +112,7 @@ export function CheckTreePicker({
   const isSearchable = originalProps.searchable ?? true
   const hasError = Boolean(controlledError)
   const [searchKeyword, setSearchKeyword] = useState('')
+  const [isPending, startTransition] = useTransition()
   const [expandedValues, setExpandedValues] = useState<(string | number)[]>([])
   const { forceUpdate } = useForceUpdate()
 
@@ -161,73 +172,77 @@ export function CheckTreePicker({
     return nextRsuiteValue
   }, [childrenKey, isMultiSelect, optionsWithIds, value, valueKey, labelKey])
 
+  const debouncedSearch = useMemo(
+    () =>
+      debounce((nextQuery: string) => {
+        startTransition(() => {
+          setSearchKeyword(nextQuery)
+
+          if (!localCustomSearch || nextQuery.trim().length < customSearchMinQueryLength) {
+            setControlledOptions(optionsWithIds)
+
+            return
+          }
+
+          const searchResults = localCustomSearch.find(nextQuery)
+          const foundValues = searchResults.map(option => option[valueKey] as string | number)
+          const foundOptions = (
+            fromRsuiteValue(foundValues, optionsWithIds, false, childrenKey, valueKey, labelKey) ?? []
+          )
+            .map(item => {
+              const children = item?.[childrenKey] as TreeOption[] | undefined
+
+              return !children || children.length === 0
+                ? { [labelKey]: item?.[labelKey], [valueKey]: item?.[valueKey] }
+                : item
+            })
+            .filter((result): result is TreeOption => result !== undefined)
+
+          // Add all selected values to the results
+          const selectedOptions =
+            fromRsuiteValue(rsuiteValue ?? [], optionsWithIds, false, childrenKey, valueKey, labelKey) ?? []
+          const merged = mergeResultsByParent([...foundOptions, ...selectedOptions], childrenKey, valueKey, labelKey)
+
+          setControlledOptions(merged)
+        })
+      }, 150),
+    [childrenKey, customSearchMinQueryLength, labelKey, localCustomSearch, optionsWithIds, rsuiteValue, valueKey]
+  )
+
   const handleSearch = useCallback(
     (nextQuery: string, event: SyntheticEvent<Element, Event>) => {
-      setSearchKeyword(nextQuery)
-      if (!localCustomSearch || nextQuery.trim().length < customSearchMinQueryLength) {
-        setControlledOptions(optionsWithIds)
-
-        return
-      }
-
-      const searchResults = localCustomSearch.find(nextQuery)
-      const foundValues = searchResults.map(option => option[valueKey] as string | number)
-      const foundOptions = (
-        fromRsuiteValue(foundValues, optionsWithIds, false, childrenKey, valueKey, labelKey) ?? []
-      )
-        .map(item => {
-          const children = item?.[childrenKey] as TreeOption[] | undefined
-
-          return !children || children.length === 0
-            ? { [labelKey]: item?.[labelKey], [valueKey]: item?.[valueKey] }
-            : item
-        })
-        .filter((result): result is TreeOption => result !== undefined)
-
-      // Add all selected values to the results
-      const selectedOptions =
-        fromRsuiteValue(rsuiteValue ?? [], optionsWithIds, false, childrenKey, valueKey, labelKey) ?? []
-      const merged = mergeResultsByParent(
-        [...foundOptions, ...selectedOptions],
-        childrenKey,
-        valueKey,
-        labelKey
-      )
-
-      setControlledOptions(merged)
+      debouncedSearch(nextQuery)
 
       if (onSearch) {
         onSearch(nextQuery, event)
       }
     },
-    [
-      childrenKey,
-      customSearchMinQueryLength,
-      labelKey,
-      localCustomSearch,
-      onSearch,
-      optionsWithIds,
-      rsuiteValue,
-      valueKey
-    ]
+    [debouncedSearch, onSearch]
   )
 
-  const handleExpand = useCallback(
-    (expandItemValues: (string | number)[]) => {
-      setExpandedValues(expandItemValues)
-    },
-    []
-  )
+  const handleExpand = useCallback((expandItemValues: (string | number)[]) => {
+    setExpandedValues(expandItemValues)
+  }, [])
 
   const lazyOptions = useMemo(() => {
     const baseOptions = isSearchable ? controlledOptions : optionsWithIds
 
-    if (searchKeyword) {
+    if (searchKeyword.trim().length >= customSearchMinQueryLength) {
       return baseOptions
     }
 
     return getOptionsWithLazyChildren(baseOptions, new Set(expandedValues), childrenKey, valueKey, labelKey)
-  }, [isSearchable, controlledOptions, optionsWithIds, searchKeyword, expandedValues, childrenKey, valueKey, labelKey])
+  }, [
+    isSearchable,
+    controlledOptions,
+    optionsWithIds,
+    searchKeyword,
+    expandedValues,
+    childrenKey,
+    valueKey,
+    labelKey,
+    customSearchMinQueryLength
+  ])
 
   const handleChange = useCallback(
     (nextValue: ValueType) => {
@@ -265,6 +280,8 @@ export function CheckTreePicker({
   useEffect(() => {
     forceUpdate()
   }, [forceUpdate])
+
+  useEffect(() => () => debouncedSearch.cancel(), [debouncedSearch])
 
   const renderTreeIcon = useCallback(
     (_: unknown, isExpanded?: boolean) => (
@@ -304,14 +321,7 @@ export function CheckTreePicker({
       return <span title={formattedPath}>{formattedPath}</span>
     }
 
-    const parents = getTreeOptionsBySelectedValues(
-      rsuiteValue,
-      optionsWithIds,
-      false,
-      childrenKey,
-      valueKey,
-      labelKey
-    )
+    const parents = getTreeOptionsBySelectedValues(rsuiteValue, optionsWithIds, false, childrenKey, valueKey, labelKey)
     const allDescendants = flattenAllDescendants(parents, childrenKey)
     const selectedOptions = [...parents, ...allDescendants].filter(Boolean)
 
@@ -336,8 +346,7 @@ export function CheckTreePicker({
       <Wrapper>
         <SubWrapper>
           {optionsToDisplay.map(option => {
-            const isParent =
-              option[childrenKey] !== undefined && (option[childrenKey] as TreeOption[]).length > 0
+            const isParent = option[childrenKey] !== undefined && (option[childrenKey] as TreeOption[]).length > 0
 
             return (
               <SelectedOptionContainer key={option[valueKey] as string | number}>
@@ -352,9 +361,7 @@ export function CheckTreePicker({
                   onClick={e => {
                     removeOptions(
                       isParent
-                        ? (option[childrenKey] as TreeOption[]).flatMap(
-                            child => child[valueKey] as string | number
-                          )
+                        ? (option[childrenKey] as TreeOption[]).flatMap(child => child[valueKey] as string | number)
                         : [option[valueKey] as string | number],
                       e
                     )
@@ -422,8 +429,10 @@ export function CheckTreePicker({
           expandItemValues={expandedValues}
           id={originalProps.name}
           labelKey={labelKey}
+          loading={isPending}
           onChange={handleChange}
           onClose={() => {
+            debouncedSearch.cancel()
             setControlledOptions(optionsWithIds)
             setSearchKeyword('')
             setExpandedValues([])
