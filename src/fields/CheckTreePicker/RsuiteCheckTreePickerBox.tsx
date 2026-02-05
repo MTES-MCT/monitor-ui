@@ -307,7 +307,6 @@ export const RsuiteCheckTreePickerBox = styled.div<RsuiteCheckTreePickerBoxProps
                 .rs-checkbox-label {
                   width: 100%;
                   padding-left: ${p => (p.$hasThreeLevels ? 8 : 20)}px;
-                  ${p => p.$hasThreeLevels && 'font-weight: 600;'}
                 }
 
                 > .rs-checkbox-control {

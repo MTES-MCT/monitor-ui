@@ -55,6 +55,7 @@ export type CheckTreePickerProps = Omit<
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
   isLabelHidden?: boolean | undefined
+  isLazyLoading?: boolean
   isLight?: boolean | undefined
   isMultiSelect?: boolean
   isRequired?: boolean | undefined
@@ -63,7 +64,7 @@ export type CheckTreePickerProps = Omit<
   isUndefinedWhenDisabled?: boolean | undefined
   label: string
   name: string
-  onChange?: (nextValue: any[] | undefined) => Promisable<void>
+  onChange?: (nextValue: TreeOption[] | undefined) => Promisable<void>
   onSearch?: (query: string, event: SyntheticEvent<Element, Event>) => void
   options: TreeOption[]
   popupWidth?: number | undefined
@@ -82,6 +83,7 @@ export function CheckTreePicker({
   error,
   isErrorMessageHidden = false,
   isLabelHidden = false,
+  isLazyLoading = false,
   isLight = false,
   isMultiSelect = true,
   isRequired = false,
@@ -227,6 +229,10 @@ export function CheckTreePicker({
   const lazyOptions = useMemo(() => {
     const baseOptions = isSearchable ? controlledOptions : optionsWithIds
 
+    if (!isLazyLoading) {
+      return baseOptions
+    }
+
     if (searchKeyword.trim().length >= customSearchMinQueryLength) {
       return baseOptions
     }
@@ -241,7 +247,8 @@ export function CheckTreePicker({
     childrenKey,
     valueKey,
     labelKey,
-    customSearchMinQueryLength
+    customSearchMinQueryLength,
+    isLazyLoading
   ])
 
   const handleChange = useCallback(
@@ -437,15 +444,17 @@ export function CheckTreePicker({
             setSearchKeyword('')
             setExpandedValues([])
           }}
-          onExpand={handleExpand}
+          onExpand={nodes => {
+            handleExpand(nodes as unknown as (string | number)[])
+          }}
           onSearch={handleSearch}
           readOnly={readOnly}
           renderTreeIcon={renderTreeIcon}
           renderTreeNode={renderTreeNode}
           renderValue={renderValue}
           searchable={isSearchable}
-          searchBy={(isSearchable ? () => true : undefined) as any}
           size={originalProps.size ?? 'sm'}
+          {...(isSearchable && { searchBy: () => true })}
           uncheckableItemValues={uncheckableValues}
           value={rsuiteValue ?? []}
           valueKey={valueKey}
