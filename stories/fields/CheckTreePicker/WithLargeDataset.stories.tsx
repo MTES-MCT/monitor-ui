@@ -1,9 +1,9 @@
 import { CheckTreePicker, type CheckTreePickerProps } from '@fields/CheckTreePicker'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
 import { ARG_TYPE, META_DEFAULTS } from '../../../.storybook/constants'
-import { EXTENDED_FISHING_REGULATIONS } from '../../../.storybook/data/EXTENDED_FISHING_REGULATIONS'
+import { generateLargeTreeOptions } from '../../../.storybook/data/generateLargeTreeOptions'
 import { generateStoryDecorator } from '../../../.storybook/utils/generateStoryDecorator'
 import { useFieldControl } from '../../../src'
 
@@ -45,15 +45,15 @@ const meta: Meta<CheckTreePickerProps> = {
     isLabelHidden: false,
     isLazyLoading: true,
     isLight: false,
-    isSelect: true,
+    isSelect: false,
     isRequired: true,
     isTransparent: false,
     isUndefinedWhenDisabled: false,
-    label: 'A check tree picker. Pick some options:',
+    label: 'A check tree picker with 825 options:',
     name: 'myCheckTreePicker',
     placeholder: 'Pick some options',
     popupWidth: undefined,
-    isMultiSelect: false,
+    isMultiSelect: true,
     readOnly: false
   },
 
@@ -71,8 +71,10 @@ const meta: Meta<CheckTreePickerProps> = {
 
 export default meta
 
-export function WithThreeLevels(props: CheckTreePickerProps) {
+export function WithLargeDataset(props: CheckTreePickerProps) {
   const [options, setOptions] = useState<TreeOption[]>([])
+
+  const largeOptions = useMemo(() => generateLargeTreeOptions(), [])
 
   // We mimic a fetch
   useEffect(() => {
@@ -80,11 +82,11 @@ export function WithThreeLevels(props: CheckTreePickerProps) {
       await new Promise(resolve => {
         setTimeout(resolve, 200)
       })
-      setOptions(EXTENDED_FISHING_REGULATIONS as TreeOption[])
+      setOptions(largeOptions)
     }
 
     fetchOptions()
-  }, [])
+  }, [largeOptions])
 
   const [outputValue, setOutputValue] = useState<TreeOption[]>()
 

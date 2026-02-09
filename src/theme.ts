@@ -57,7 +57,7 @@ export const THEME = {
     // Beacon Malfunction
     powderBlue: '#9ED7D9',
     wheat: '#EDD6A4',
-    opal: '#A5BCC0',
+    opal: '#56B38E',
 
     earthYellow: '#E6B771',
 
@@ -71,18 +71,29 @@ export const THEME = {
     lightPeriwinkle: '#CDCFEA',
     aliceBlue: '#EBF0F4',
     lightBlue: '#B9DDE5',
-    lightCyan: '#C7EAE5', // deprecated ?
-    middleBlueGreen: '#91CFC9', // deprecated ?
-    verdigris: '#56B3AB', // deprecated ?
-    viridianGreen: '#01A29D', // deprecated ?
-    paoloVeroneseGreen: '#21977F', // deprecated ?
-    skobeloff: '#01686B', // deprecated ?
-    blueSapphire: '#01536A', // deprecated ?
-    indigoDye: '#033E54', // deprecated ?
+    lightCyan: '#C7EAE5',
+    middleBlueGreen: '#91CFC9',
+    middleBlueGreen2: '#91CFCA',
+    verdigris: '#56B3AB',
+    verdigris2: '#56B0B3',
+    viridianGreen: '#01A29D',
+    paoloVeroneseGreen: '#21977F',
+    skobeloff: '#016B49',
+    blueSapphire: '#016A5E',
+    indigoDye: '#033E54',
     skyBlue: '#77C1DE',
     frenchBlue: '#2E75AB',
     prussianBlue: '#003E54',
     lightCoral: '#FA8282',
+    brightBlue: '#83E3E7',
+    petrol: '#0E737E',
+    turquoise: '#0192A2',
+    brightTurquoise: '#83E7D3',
+    darkPaoloVeroneseGreen: '#0E7E67',
+    basicGreen: '#3EB87B',
+    sage: '#91CFB0',
+    lightGreen: '#C7EAD4',
+    brightGreen: '#83E7A9',
 
     // Vigilance Areas
     rufous: '#A13112',
