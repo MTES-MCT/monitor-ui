@@ -1,5 +1,5 @@
 import { StyledRsuiteCalendarBox } from 'fields/shared/StyledRsuiteCalendarBox'
-import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react'
 import { DateRangePicker as RsuiteDateRangePicker } from 'rsuite'
 
 import { RSUITE_CALENDAR_LOCALE } from './constants'
@@ -31,86 +31,90 @@ type RangeCalendarPickerProps = {
    */
   onChange: (nextUtcDateTupleRange: DateTupleRange) => Promisable<void>
 }
-export function RangeCalendarPicker({
-  defaultValue,
-  hasSingleCalendar = false,
-  isHistorical,
-  isOpen,
-  onChange
-}: RangeCalendarPickerProps) {
-  // eslint-disable-next-line no-null/no-null
-  const boxRef = useRef<HTMLDivElement | null>(null)
-  // It's called "first" and "second" because the calendar can also be picked from right to left,
-  // that's why we sort these first and second dates before calling `onChange()`
-  // in order to distinguish the start date from the end date
-  const selectedFirstUtcDate = useRef<Date | undefined>(undefined)
-  const selectedSecondUtcDate = useRef<Date | undefined>(undefined)
+export const RangeCalendarPicker = forwardRef<HTMLDivElement, RangeCalendarPickerProps>(
+  ({ defaultValue, hasSingleCalendar = false, isHistorical, isOpen, onChange }, ref) => {
+    // eslint-disable-next-line no-null/no-null
+    const boxRef = useRef<HTMLDivElement | null>(null)
+    // It's called "first" and "second" because the calendar can also be picked from right to left,
+    // that's why we sort these first and second dates before calling `onChange()`
+    // in order to distinguish the start date from the end date
+    const selectedFirstUtcDate = useRef<Date | undefined>(undefined)
+    const selectedSecondUtcDate = useRef<Date | undefined>(undefined)
 
-  const { forceUpdate } = useForceUpdate()
+    const { forceUpdate } = useForceUpdate()
 
-  const controlledValue = useMemo(
-    () => (defaultValue ? (sortDates(defaultValue) as DateRange) : undefined),
-    [defaultValue]
-  )
-  const utcTodayAsDayjs = useMemo(() => customDayjs().utc().endOf('day'), [])
-  const shouldDisableDate = useMemo(
-    () => (date: Date) => (isHistorical ? getUtcizedDayjs(date).isAfter(utcTodayAsDayjs) : false),
-    [isHistorical, utcTodayAsDayjs]
-  )
+    const controlledValue = useMemo(
+      () => (defaultValue ? (sortDates(defaultValue) as DateRange) : undefined),
+      [defaultValue]
+    )
+    const utcTodayAsDayjs = useMemo(() => customDayjs().utc().endOf('day'), [])
+    const shouldDisableDate = useMemo(
+      () => (date: Date) => (isHistorical ? getUtcizedDayjs(date).isAfter(utcTodayAsDayjs) : false),
+      [isHistorical, utcTodayAsDayjs]
+    )
 
-  const handleSelect = useCallback(
-    (nextLocalDate: Date) => {
-      // We utcize the date picked by the user
-      const nextUtcDate = getUtcizedDayjs(nextLocalDate).toDate()
+    const handleSelect = useCallback(
+      (nextLocalDate: Date) => {
+        // We utcize the date picked by the user
+        const nextUtcDate = getUtcizedDayjs(nextLocalDate).toDate()
 
-      if (!selectedFirstUtcDate.current || selectedSecondUtcDate.current) {
-        selectedFirstUtcDate.current = nextUtcDate
-        selectedSecondUtcDate.current = undefined
+        if (!selectedFirstUtcDate.current || selectedSecondUtcDate.current) {
+          selectedFirstUtcDate.current = nextUtcDate
+          selectedSecondUtcDate.current = undefined
 
-        return
-      }
+          return
+        }
 
-      const sortedDateRange = sortDates([selectedFirstUtcDate.current, nextUtcDate]) as DateRange
-      const [startDate, endDate] = sortedDateRange
-      const startDateTuple = getDateTupleFromUtcDate(startDate)
-      const endDateTuple = getDateTupleFromUtcDate(endDate)
-      const nextUtcDateTupleRange = [startDateTuple, endDateTuple] as DateTupleRange
+        const sortedDateRange = sortDates([selectedFirstUtcDate.current, nextUtcDate]) as DateRange
+        const [startDate, endDate] = sortedDateRange
+        const startDateTuple = getDateTupleFromUtcDate(startDate)
+        const endDateTuple = getDateTupleFromUtcDate(endDate)
+        const nextUtcDateTupleRange = [startDateTuple, endDateTuple] as DateTupleRange
 
-      selectedSecondUtcDate.current = nextUtcDate
+        selectedSecondUtcDate.current = nextUtcDate
 
-      onChange(nextUtcDateTupleRange)
-    },
-    [onChange]
-  )
+        onChange(nextUtcDateTupleRange)
+      },
+      [onChange]
+    )
 
-  useEffect(() => {
-    // We wait for the <Box /> to render so that `boxRef` is defined
-    // and can be used as a container for <RsuiteDateRangePicker />
-    forceUpdate()
-  }, [forceUpdate])
+    useEffect(() => {
+      // We wait for the <Box /> to render so that `boxRef` is defined
+      // and can be used as a container for <RsuiteDateRangePicker />
+      forceUpdate()
+    }, [forceUpdate])
 
-  return (
-    <StyledRsuiteCalendarBox
-      ref={boxRef}
-      $isDoubleCalendar={!hasSingleCalendar}
-      className="Field-DateRangePicker__RangeCalendarPicker"
-      onClick={stopMouseEventPropagation}
-    >
-      {boxRef.current && (
-        <RsuiteDateRangePicker
-          container={boxRef.current}
-          format="yyyy-MM-dd"
-          locale={RSUITE_CALENDAR_LOCALE}
-          onSelect={handleSelect}
-          open={isOpen}
-          ranges={[]}
-          shouldDisableDate={shouldDisableDate}
-          showOneCalendar={hasSingleCalendar}
-          // `defaultValue` seems to be immediatly cancelled so we come down to using a controlled `value`
-          // eslint-disable-next-line no-null/no-null
-          value={controlledValue ?? null}
-        />
-      )}
-    </StyledRsuiteCalendarBox>
-  )
-}
+    return (
+      <StyledRsuiteCalendarBox
+        ref={element => {
+          boxRef.current = element
+          if (typeof ref === 'function') {
+            ref(element)
+          } else if (ref) {
+            // eslint-disable-next-line no-param-reassign
+            ref.current = element
+          }
+        }}
+        $isDoubleCalendar={!hasSingleCalendar}
+        className="Field-DateRangePicker__RangeCalendarPicker"
+        onClick={stopMouseEventPropagation}
+      >
+        {boxRef.current && (
+          <RsuiteDateRangePicker
+            container={boxRef.current}
+            format="yyyy-MM-dd"
+            locale={RSUITE_CALENDAR_LOCALE}
+            onSelect={handleSelect}
+            open={isOpen}
+            ranges={[]}
+            shouldDisableDate={shouldDisableDate}
+            showOneCalendar={hasSingleCalendar}
+            // `defaultValue` seems to be immediatly cancelled so we come down to using a controlled `value`
+            // eslint-disable-next-line no-null/no-null
+            value={controlledValue ?? null}
+          />
+        )}
+      </StyledRsuiteCalendarBox>
+    )
+  }
+)

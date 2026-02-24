@@ -126,6 +126,7 @@ export function DatePicker({
 }: DatePickerProps) {
   /* eslint-disable no-null/no-null */
   const boxRef = useRef<HTMLDivElement | null>(null)
+  const calendarPickerRef = useRef<HTMLDivElement | null>(null)
   const dateInputRef = useRef<DateInputRef | null>(null)
   const timeInputRef = useRef<TimeInputRef | null>(null)
   /* eslint-enable no-null/no-null */
@@ -295,7 +296,7 @@ export function DatePicker({
     setIsRangeCalendarPickerOpen(true)
   }, [disabled, readOnly])
 
-  useClickOutsideEffect(boxRef, closeCalendarPicker, baseContainer)
+  useClickOutsideEffect([boxRef, calendarPickerRef], closeCalendarPicker, baseContainer)
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange, handleDisable)
   usePressEscapeEffect(closeCalendarPicker, baseContainer)
 
@@ -392,6 +393,7 @@ export function DatePicker({
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
 
       <CalendarPicker
+        ref={calendarPickerRef}
         isHistorical={isHistorical}
         isOpen={isRangeCalendarPickerOpen}
         isRightAligned={isRightAligned}

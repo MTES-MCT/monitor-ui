@@ -1,5 +1,5 @@
 import { StyledRsuiteCalendarBox } from 'fields/shared/StyledRsuiteCalendarBox'
-import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react'
 import { DatePicker as RsuiteDatePicker } from 'rsuite'
 
 import { useForceUpdate } from '../../hooks/useForceUpdate'
@@ -28,57 +28,67 @@ type CalendarPickerProps = {
    */
   value?: Date | undefined
 }
-export function CalendarPicker({ isHistorical, isOpen, isRightAligned, onChange, value }: CalendarPickerProps) {
-  // eslint-disable-next-line no-null/no-null
-  const boxRef = useRef<HTMLDivElement | null>(null)
+export const CalendarPicker = forwardRef<HTMLDivElement, CalendarPickerProps>(
+  ({ isHistorical, isOpen, isRightAligned, onChange, value }, ref) => {
+    // eslint-disable-next-line no-null/no-null
+    const boxRef = useRef<HTMLDivElement | null>(null)
 
-  const { forceUpdate } = useForceUpdate()
+    const { forceUpdate } = useForceUpdate()
 
-  const utcTodayAsDayjs = useMemo(() => customDayjs().utc().endOf('day'), [])
-  const controlledValue = useMemo(() => (value ? getLocalizedDayjs(value).toDate() : undefined), [value])
-  const shouldDisableDate = useMemo(
-    () => (date?: Date) => (date && isHistorical ? getUtcizedDayjs(date).isAfter(utcTodayAsDayjs) : false),
-    [isHistorical, utcTodayAsDayjs]
-  )
+    const utcTodayAsDayjs = useMemo(() => customDayjs().utc().endOf('day'), [])
+    const controlledValue = useMemo(() => (value ? getLocalizedDayjs(value).toDate() : undefined), [value])
+    const shouldDisableDate = useMemo(
+      () => (date?: Date) => (date && isHistorical ? getUtcizedDayjs(date).isAfter(utcTodayAsDayjs) : false),
+      [isHistorical, utcTodayAsDayjs]
+    )
 
-  const handleSelect = useCallback(
-    (nextLocalDate: Date) => {
-      // We utcize the date picked by the user
-      const nextUtcDateAsDayjs = getUtcizedDayjs(nextLocalDate)
-      const nextUtcDateTuple = getUtcDateTupleFromDayjs(nextUtcDateAsDayjs)
+    const handleSelect = useCallback(
+      (nextLocalDate: Date) => {
+        // We utcize the date picked by the user
+        const nextUtcDateAsDayjs = getUtcizedDayjs(nextLocalDate)
+        const nextUtcDateTuple = getUtcDateTupleFromDayjs(nextUtcDateAsDayjs)
 
-      onChange(nextUtcDateTuple)
-    },
-    [onChange]
-  )
+        onChange(nextUtcDateTuple)
+      },
+      [onChange]
+    )
 
-  useEffect(() => {
-    // We wait for the <Box /> to render so that `boxRef` is defined
-    // and can be used as a container for <RsuiteDatePicker />
-    forceUpdate()
-  }, [forceUpdate])
+    useEffect(() => {
+      // We wait for the <Box /> to render so that `boxRef` is defined
+      // and can be used as a container for <RsuiteDatePicker />
+      forceUpdate()
+    }, [forceUpdate])
 
-  return (
-    <StyledRsuiteCalendarBox
-      ref={boxRef}
-      $isRightAligned={isRightAligned}
-      className="Field-DatePicker__CalendarPicker"
-      onClick={stopMouseEventPropagation}
-    >
-      {boxRef.current && (
-        <RsuiteDatePicker
-          container={boxRef.current}
-          format="yyyy-MM-dd"
-          locale={RSUITE_CALENDAR_LOCALE}
-          oneTap
-          onSelect={handleSelect}
-          open={isOpen}
-          ranges={[]}
-          shouldDisableDate={shouldDisableDate}
-          // eslint-disable-next-line no-null/no-null
-          value={controlledValue ?? null}
-        />
-      )}
-    </StyledRsuiteCalendarBox>
-  )
-}
+    return (
+      <StyledRsuiteCalendarBox
+        ref={element => {
+          boxRef.current = element
+          if (typeof ref === 'function') {
+            ref(element)
+          } else if (ref) {
+            // eslint-disable-next-line no-param-reassign
+            ref.current = element
+          }
+        }}
+        $isRightAligned={isRightAligned}
+        className="Field-DatePicker__CalendarPicker"
+        onClick={stopMouseEventPropagation}
+      >
+        {boxRef.current && (
+          <RsuiteDatePicker
+            container={boxRef.current}
+            format="yyyy-MM-dd"
+            locale={RSUITE_CALENDAR_LOCALE}
+            oneTap
+            onSelect={handleSelect}
+            open={isOpen}
+            ranges={[]}
+            shouldDisableDate={shouldDisableDate}
+            // eslint-disable-next-line no-null/no-null
+            value={controlledValue ?? null}
+          />
+        )}
+      </StyledRsuiteCalendarBox>
+    )
+  }
+)
