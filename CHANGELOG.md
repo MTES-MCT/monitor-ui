@@ -1,3 +1,9 @@
+## [24.42.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.42.2...v24.42.3) (2026-02-24)
+
+### Bug Fixes
+
+* **components:** add ref to DatePickers in order to register click outside to close calendars ([64740cc](https://github.com/MTES-MCT/monitor-ui/commit/64740ccf300e0f697a447b2db122807ebbf3cf18))
+
 ## [24.42.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.42.1...v24.42.2) (2026-02-05)
 
 ### Bug Fixes
