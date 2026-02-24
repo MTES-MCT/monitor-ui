@@ -30,10 +30,11 @@ export const useClickOutsideEffect = (
   useEffect(() => {
     const globalContainer = baseContainer ?? window.document
 
-    globalContainer.addEventListener('click', handleClickOutside as any)
+    // Use capture phase so the event is caught before any stopPropagation in bubbling phase
+    globalContainer.addEventListener('click', handleClickOutside as any, true)
 
     return () => {
-      globalContainer.removeEventListener('click', handleClickOutside as any)
+      globalContainer.removeEventListener('click', handleClickOutside as any, true)
     }
   }, [baseContainer, handleClickOutside])
 }

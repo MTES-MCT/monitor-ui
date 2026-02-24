@@ -13,10 +13,11 @@ export function usePressEscapeEffect(callback: () => void, baseContainer?: Docum
   useEffect(() => {
     const globalContainer = (baseContainer ?? window.document) as Document
 
-    globalContainer.addEventListener('keydown', handleKeyDown)
+    // Use capture phase so the event is caught before any stopPropagation in bubbling phase
+    globalContainer.addEventListener('keydown', handleKeyDown, true)
 
     return () => {
-      globalContainer.removeEventListener('keydown', handleKeyDown)
+      globalContainer.removeEventListener('keydown', handleKeyDown, true)
     }
   }, [baseContainer, handleKeyDown])
 }

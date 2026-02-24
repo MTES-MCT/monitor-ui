@@ -142,6 +142,7 @@ export function DateRangePicker({
   ...nativeProps
 }: DateRangePickerProps) {
   /* eslint-disable no-null/no-null */
+  const rangeCalendarPickerRef = useRef<HTMLDivElement>(null)
   const startDateInputRef = useRef<DateInputRef>(null)
   const startTimeInputRef = useRef<TimeInputRef>(null)
   const endDateInputRef = useRef<DateInputRef>(null)
@@ -442,7 +443,11 @@ export function DateRangePicker({
     setIsRangeCalendarPickerOpen(true)
   }, [disabled, readOnly])
 
-  useClickOutsideEffect([endDateInputRef, startDateInputRef], closeRangeCalendarPicker, baseContainer)
+  useClickOutsideEffect(
+    [endDateInputRef, startDateInputRef, rangeCalendarPickerRef],
+    closeRangeCalendarPicker,
+    baseContainer
+  )
   useFieldUndefineEffect(isUndefinedWhenDisabled && disabled, onChange, handleDisable)
   usePressEscapeEffect(closeRangeCalendarPicker, baseContainer)
 
@@ -599,6 +604,7 @@ export function DateRangePicker({
 
       <RangeCalendarPicker
         key={JSON.stringify(rangeCalendarPickerDefaultValue)}
+        ref={rangeCalendarPickerRef}
         defaultValue={rangeCalendarPickerDefaultValue}
         hasSingleCalendar={hasSingleCalendar}
         isHistorical={isHistorical}

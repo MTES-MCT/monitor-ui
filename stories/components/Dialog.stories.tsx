@@ -2,7 +2,7 @@ import { noop } from 'lodash-es'
 
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
-import { Accent, Button, Dialog } from '../../src'
+import { Accent, Button, DateRangePicker, Dialog } from '../../src'
 
 import type { DialogProps } from '../../src'
 import type { Meta } from '@storybook/react-vite'
@@ -34,6 +34,7 @@ export function _Dialog(props: DialogProps) {
       <Dialog.Title>Dialog Title</Dialog.Title>
       <Dialog.Body>
         <p>Dialog body.</p>
+        <DateRangePicker label="Date Range" name="dateRange" />
       </Dialog.Body>
 
       <Dialog.Action>
