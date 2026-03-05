@@ -53,10 +53,14 @@ export const RangeCalendarPicker = forwardRef<HTMLDivElement, RangeCalendarPicke
 
     const { forceUpdate } = useForceUpdate()
 
-    const controlledValue = useMemo(
-      () => (defaultValue ? (sortDates(defaultValue) as DateRange) : undefined),
-      [defaultValue]
-    )
+    const controlledValue = useMemo(() => {
+      // Only pass a value to rsuite when both dates are defined
+      if (!defaultValue?.[0] || !defaultValue?.[1]) {
+        return undefined
+      }
+
+      return sortDates(defaultValue) as DateRange
+    }, [defaultValue])
     const utcTodayAsDayjs = useMemo(() => customDayjs().utc().endOf('day'), [])
     const computedShouldDisableDate = useMemo(
       () =>

@@ -50,7 +50,7 @@ import { usePrevious } from '../../hooks/usePrevious'
 import { customDayjs } from '../../utils/customDayjs'
 import { normalizeString } from '../../utils/normalizeString'
 
-import type { DateAsStringRange, DateRange } from '../../types/definitions'
+import type { DateAsStringRange, DateRange, PartialDateAsStringRange, PartialDateRange } from '../../types/definitions'
 import type { CommonFieldStyleProps } from 'fields/shared/types'
 // @ts-ignore
 import type { JSX, HTMLAttributes } from 'react'
@@ -70,7 +70,10 @@ export interface DateRangePickerProps
   extends Omit<HTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange' | 'placeholder'> {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
-  defaultValue?: DateRange | DateAsStringRange | undefined
+  /**
+   * Initial value for the date range picker. Supports partial ranges where one date can be undefined.
+   */
+  defaultValue?: DateRange | DateAsStringRange | PartialDateRange | PartialDateAsStringRange | undefined
   disabled?: boolean | undefined
   error?: string | undefined
   hasSingleCalendar?: boolean
@@ -163,11 +166,11 @@ export function DateRangePicker({
 
   const hasMountedRef = useRef(false)
 
-  const selectedStartDateTimeAsDayjsRef = useRef(defaultValue ? customDayjs(defaultValue[0]) : undefined)
+  const selectedStartDateTimeAsDayjsRef = useRef(defaultValue?.[0] ? customDayjs(defaultValue[0]) : undefined)
   const selectedStartDateTupleRef = useRef(getUtcDateTupleFromDayjs(selectedStartDateTimeAsDayjsRef.current))
   const selectedStartTimeTupleRef = useRef(getUtcTimeTupleFromDayjs(selectedStartDateTimeAsDayjsRef.current))
 
-  const selectedEndDateTimeAsDayjsRef = useRef(defaultValue ? customDayjs(defaultValue[1]) : undefined)
+  const selectedEndDateTimeAsDayjsRef = useRef(defaultValue?.[1] ? customDayjs(defaultValue[1]) : undefined)
   const selectedEndDateTupleRef = useRef(getUtcDateTupleFromDayjs(selectedEndDateTimeAsDayjsRef.current))
   const selectedEndTimeTupleRef = useRef(getUtcTimeTupleFromDayjs(selectedEndDateTimeAsDayjsRef.current))
 
@@ -484,8 +487,8 @@ export function DateRangePicker({
       return
     }
 
-    selectedStartDateTimeAsDayjsRef.current = defaultValue ? customDayjs(defaultValue[0]) : undefined
-    selectedEndDateTimeAsDayjsRef.current = defaultValue ? customDayjs(defaultValue[1]) : undefined
+    selectedStartDateTimeAsDayjsRef.current = defaultValue?.[0] ? customDayjs(defaultValue[0]) : undefined
+    selectedEndDateTimeAsDayjsRef.current = defaultValue?.[1] ? customDayjs(defaultValue[1]) : undefined
     selectedStartDateTupleRef.current = getUtcDateTupleFromDayjs(selectedStartDateTimeAsDayjsRef.current)
     selectedEndDateTupleRef.current = getUtcDateTupleFromDayjs(selectedEndDateTimeAsDayjsRef.current)
     selectedStartTimeTupleRef.current = getUtcTimeTupleFromDayjs(selectedStartDateTimeAsDayjsRef.current)

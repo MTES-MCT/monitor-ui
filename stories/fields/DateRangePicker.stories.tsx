@@ -16,6 +16,20 @@ import type { Meta } from '@storybook/react-vite'
 
 const { afterToday, allowedMaxDays, allowedRange, beforeToday, combine } = RsuiteDateRangePicker
 
+const DEFAULT_VALUE_OPTIONS = {
+  'End date only (2025-01-31)': [undefined, new Date('2025-01-31T23:59:59.000Z')],
+  'Full range (2025-01-01 to 2025-01-31)': [new Date('2025-01-01T00:00:00.000Z'), new Date('2025-01-31T23:59:59.000Z')],
+  none: undefined,
+  'Start date only (2025-01-01)': [new Date('2025-01-01T00:00:00.000Z'), undefined]
+}
+
+const DEFAULT_VALUE_LABELS = {
+  'End date only (2025-01-31)': '[undefined, 2025-01-31]',
+  'Full range (2025-01-01 to 2025-01-31)': '[2025-01-01, 2025-01-31]',
+  none: 'None (undefined)',
+  'Start date only (2025-01-01)': '[2025-01-01, undefined]'
+}
+
 const SHOULD_DISABLE_DATE_OPTIONS = {
   afterToday: afterToday(),
   'allowedMaxDays(7)': allowedMaxDays(7),
@@ -46,9 +60,14 @@ const meta: Meta<DateRangePickerWithDateDateProps> = {
   argTypes: {
     baseContainer: ARG_TYPE.OPTIONAL_BASE_CONTAINER,
     defaultValue: {
-      ...ARG_TYPE.NO_CONTROL_INPUT,
+      control: {
+        labels: DEFAULT_VALUE_LABELS,
+        type: 'select'
+      },
+      mapping: DEFAULT_VALUE_OPTIONS,
+      options: Object.keys(DEFAULT_VALUE_OPTIONS),
       table: {
-        type: { summary: '[Date, Date] | [string, string] | undefined' }
+        type: { summary: '[Date, Date] | [Date | undefined, Date | undefined] | undefined' }
       }
     },
     disabled: ARG_TYPE.OPTIONAL_BOOLEAN,
