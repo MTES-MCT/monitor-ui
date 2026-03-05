@@ -21,4 +21,36 @@ describe('utils/sortDates()', () => {
 
     expect(result).toStrictEqual([firstDate, secondDate])
   })
+
+  it('should handle array with only start date defined', () => {
+    const dates: Array<Date | undefined> = [firstDate, undefined]
+
+    const result = sortDates(dates)
+
+    expect(result).toStrictEqual([firstDate, undefined])
+  })
+
+  it('should handle array with only end date defined', () => {
+    const dates: Array<Date | undefined> = [undefined, secondDate]
+
+    const result = sortDates(dates)
+
+    expect(result).toStrictEqual([undefined, secondDate])
+  })
+
+  it('should handle array with both dates undefined', () => {
+    const dates: Array<Date | undefined> = [undefined, undefined]
+
+    const result = sortDates(dates)
+
+    expect(result).toStrictEqual([undefined, undefined])
+  })
+
+  it('should return original array for arrays with more than 2 elements and mixed defined/undefined', () => {
+    const dates: Array<Date | undefined> = [firstDate, undefined, secondDate]
+
+    const result = sortDates(dates)
+
+    expect(result).toStrictEqual([firstDate, undefined, secondDate])
+  })
 })

@@ -24,6 +24,8 @@ export type Coordinates = [number, number]
 
 export type DateRange = [Date, Date]
 export type DateAsStringRange = [string, string]
+export type PartialDateRange = [Date | undefined, Date | undefined]
+export type PartialDateAsStringRange = [string | undefined, string | undefined]
 
 export type IconProps = SVGProps<SVGSVGElement> & {
   color?: string | undefined
