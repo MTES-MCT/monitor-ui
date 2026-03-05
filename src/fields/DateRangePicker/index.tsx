@@ -54,7 +54,10 @@ import type { DateAsStringRange, DateRange } from '../../types/definitions'
 import type { CommonFieldStyleProps } from 'fields/shared/types'
 // @ts-ignore
 import type { JSX, HTMLAttributes } from 'react'
+import type { DisabledDateFunction } from 'rsuite/esm/DateRangePicker/types'
 import type { Promisable } from 'type-fest'
+
+export type { DisabledDateFunction } from 'rsuite/esm/DateRangePicker/types'
 
 /**
  * @description
@@ -99,6 +102,14 @@ export interface DateRangePickerProps
     | ((nextValue: DateRange | undefined) => Promisable<void>)
     | ((nextValue: DateAsStringRange | undefined) => Promisable<void>)
   readOnly?: boolean
+  /**
+   * Called when the calendar is rendered and a date is evaluated to determine if it should be disabled.
+   * You can use the utility functions from rsuite: `DateRangePicker.afterToday()`, `DateRangePicker.beforeToday()`,
+   * `DateRangePicker.allowedMaxDays(days)`, `DateRangePicker.combine(...)`, etc.
+   *
+   * @see https://rsuitejs.com/components/date-range-picker/#disabled-date
+   */
+  shouldDisableDate?: DisabledDateFunction | undefined
   withFullDayDefaults?: boolean
   withTime?: boolean
 }
@@ -136,6 +147,7 @@ export function DateRangePicker({
   onChange,
   // eslint-disable-next-line @typescript-eslint/naming-convention
   readOnly = false,
+  shouldDisableDate,
   style,
   withFullDayDefaults = false,
   withTime = false,
@@ -610,6 +622,7 @@ export function DateRangePicker({
         isHistorical={isHistorical}
         isOpen={isRangeCalendarPickerOpen}
         onChange={handleRangeCalendarPickerChange}
+        shouldDisableDate={shouldDisableDate}
       />
     </Fieldset>
   )

@@ -2,6 +2,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
 import { useState } from 'react'
+import { DateRangePicker as RsuiteDateRangePicker } from 'rsuite'
 
 import { Description } from '../../.storybook/components/Description'
 import { Output } from '../../.storybook/components/Output'
@@ -12,6 +13,28 @@ import { DateRangePicker } from '../../src'
 import type { DateRangePickerWithDateDateProps } from '../../src'
 import type { DateAsStringRange, DateRange } from '../../src/types/definitions'
 import type { Meta } from '@storybook/react-vite'
+
+const { afterToday, allowedMaxDays, allowedRange, beforeToday, combine } = RsuiteDateRangePicker
+
+const SHOULD_DISABLE_DATE_OPTIONS = {
+  afterToday: afterToday(),
+  'allowedMaxDays(7)': allowedMaxDays(7),
+  'allowedRange(2025)': allowedRange('2025-01-01', '2025-12-31'),
+  'allowedRange(2026)': allowedRange('2026-01-01', '2026-12-31'),
+  beforeToday: beforeToday(),
+  'combine(allowedMaxDays(7), beforeToday)': combine(allowedMaxDays(7), beforeToday()),
+  none: undefined
+}
+
+const SHOULD_DISABLE_DATE_LABELS = {
+  afterToday: 'afterToday()',
+  'allowedMaxDays(7)': 'allowedMaxDays(7)',
+  'allowedRange(2025)': "allowedRange('2025-01-01', '2025-12-31')",
+  'allowedRange(2026)': "allowedRange('2026-01-01', '2026-12-31')",
+  beforeToday: 'beforeToday()',
+  'combine(allowedMaxDays(7), beforeToday)': 'combine(allowedMaxDays(7), beforeToday())',
+  none: 'None'
+}
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const meta: Meta<DateRangePickerWithDateDateProps> = {
@@ -51,6 +74,19 @@ const meta: Meta<DateRangePickerWithDateDateProps> = {
       }
     },
     readOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
+    shouldDisableDate: {
+      control: {
+        labels: SHOULD_DISABLE_DATE_LABELS,
+        type: 'select'
+      },
+      mapping: SHOULD_DISABLE_DATE_OPTIONS,
+      options: Object.keys(SHOULD_DISABLE_DATE_OPTIONS),
+      table: {
+        type: {
+          summary: 'DisabledDateFunction | undefined'
+        }
+      }
+    },
     withTime: ARG_TYPE.OPTIONAL_BOOLEAN
   },
 
@@ -73,6 +109,7 @@ const meta: Meta<DateRangePickerWithDateDateProps> = {
     name: 'myDateRangePicker',
     minutesRange: undefined,
     readOnly: false,
+    shouldDisableDate: undefined,
     withTime: true
   },
 
@@ -94,6 +131,11 @@ export function _DateRangePicker(props: DateRangePickerWithDateDateProps) {
     <>
       <Description>
         <p>Dates are always picked and displayed in UTC, ignoring you local time zone.</p>
+        <p>
+          Use <code>shouldDisableDate</code> with rsuite utilities: <code>afterToday()</code>,{' '}
+          <code>beforeToday()</code>, <code>allowedRange(start, end)</code>, <code>allowedMaxDays(days)</code>,{' '}
+          <code>combine(...conditions)</code>, etc.
+        </p>
       </Description>
 
       <DateRangePicker {...props} onChange={setOutputValue} />
