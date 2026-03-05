@@ -234,7 +234,11 @@ export type { CheckboxProps } from './fields/Checkbox'
 export type { CheckPickerProps } from './fields/CheckPicker'
 export type { CoordinatesInputProps } from './fields/CoordinatesInput'
 export type { DatePickerWithDateDateProps, DatePickerWithStringDateProps } from './fields/DatePicker'
-export type { DateRangePickerWithDateDateProps, DateRangePickerWithStringDateProps } from './fields/DateRangePicker'
+export type {
+  DateRangePickerWithDateDateProps,
+  DateRangePickerWithStringDateProps,
+  DisabledDateFunction
+} from './fields/DateRangePicker'
 export type { MultiCheckboxProps } from './fields/MultiCheckbox'
 export type { MultiCascaderProps } from './fields/MultiCascader'
 export type { MultiSelectProps } from './fields/MultiSelect'

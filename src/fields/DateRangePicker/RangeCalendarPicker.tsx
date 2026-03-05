@@ -12,6 +12,7 @@ import { stopMouseEventPropagation } from '../../utils/stopMouseEventPropagation
 
 import type { DateTupleRange } from './types'
 import type { DateRange } from '../../types/definitions'
+import type { DisabledDateFunction } from 'rsuite/esm/DateRangePicker/types'
 import type { Promisable } from 'type-fest'
 
 type RangeCalendarPickerProps = {
@@ -23,6 +24,7 @@ type RangeCalendarPickerProps = {
    */
   defaultValue?: DateRange | undefined
   hasSingleCalendar?: boolean
+  /** Only allow past dates until today. */
   isHistorical?: boolean | undefined
   isOpen: boolean
   /**
@@ -30,9 +32,17 @@ type RangeCalendarPickerProps = {
    * Note that `nextUtcdDateTupleRange` is ALREADY utized from the user pick.
    */
   onChange: (nextUtcDateTupleRange: DateTupleRange) => Promisable<void>
+  /**
+   * Called when the calendar is rendered and a date is evaluated to determine if it should be disabled.
+   * You can use the utility functions from rsuite: `DateRangePicker.afterToday()`, `DateRangePicker.beforeToday()`,
+   * `DateRangePicker.allowedMaxDays(days)`, `DateRangePicker.combine(...)`, etc.
+   *
+   * @see https://rsuitejs.com/components/date-range-picker/#disabled-date
+   */
+  shouldDisableDate?: DisabledDateFunction | undefined
 }
 export const RangeCalendarPicker = forwardRef<HTMLDivElement, RangeCalendarPickerProps>(
-  ({ defaultValue, hasSingleCalendar = false, isHistorical, isOpen, onChange }, ref) => {
+  ({ defaultValue, hasSingleCalendar = false, isHistorical, isOpen, onChange, shouldDisableDate }, ref) => {
     // eslint-disable-next-line no-null/no-null
     const boxRef = useRef<HTMLDivElement | null>(null)
     // It's called "first" and "second" because the calendar can also be picked from right to left,
@@ -48,9 +58,11 @@ export const RangeCalendarPicker = forwardRef<HTMLDivElement, RangeCalendarPicke
       [defaultValue]
     )
     const utcTodayAsDayjs = useMemo(() => customDayjs().utc().endOf('day'), [])
-    const shouldDisableDate = useMemo(
-      () => (date: Date) => (isHistorical ? getUtcizedDayjs(date).isAfter(utcTodayAsDayjs) : false),
-      [isHistorical, utcTodayAsDayjs]
+    const computedShouldDisableDate = useMemo(
+      () =>
+        shouldDisableDate ??
+        (isHistorical ? (date: Date) => getUtcizedDayjs(date).isAfter(utcTodayAsDayjs) : undefined),
+      [isHistorical, shouldDisableDate, utcTodayAsDayjs]
     )
 
     const handleSelect = useCallback(
@@ -107,11 +119,11 @@ export const RangeCalendarPicker = forwardRef<HTMLDivElement, RangeCalendarPicke
             onSelect={handleSelect}
             open={isOpen}
             ranges={[]}
-            shouldDisableDate={shouldDisableDate}
             showOneCalendar={hasSingleCalendar}
             // `defaultValue` seems to be immediatly cancelled so we come down to using a controlled `value`
             // eslint-disable-next-line no-null/no-null
             value={controlledValue ?? null}
+            {...(computedShouldDisableDate && { shouldDisableDate: computedShouldDisableDate })}
           />
         )}
       </StyledRsuiteCalendarBox>
