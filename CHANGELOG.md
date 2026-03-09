@@ -1,3 +1,10 @@
+## [24.43.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.42.3...v24.43.0) (2026-03-09)
+
+### Features
+
+* **fields:** dateRangePicker allow undefined ([150259d](https://github.com/MTES-MCT/monitor-ui/commit/150259d3d04bd89378dadb5a947a297c552bfcc3))
+* **fields:** rework shouldDisableDate for DateRangePicker ([9d5cf42](https://github.com/MTES-MCT/monitor-ui/commit/9d5cf42397532b5015528301d4d3cd55e38369a9))
+
 ## [24.42.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.42.2...v24.42.3) (2026-02-24)
 
 ### Bug Fixes
