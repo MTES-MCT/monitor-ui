@@ -1,3 +1,9 @@
+## [24.44.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.43.0...v24.44.0) (2026-03-10)
+
+### Features
+
+* **fields:** datePicker allow disable dates ([c675f12](https://github.com/MTES-MCT/monitor-ui/commit/c675f1281469cfff7e1687158cbac775fca94129))
+
 ## [24.43.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.42.3...v24.43.0) (2026-03-09)
 
 ### Features
