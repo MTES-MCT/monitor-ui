@@ -23,13 +23,17 @@ type CalendarPickerProps = {
    */
   onChange: (nextUtcDateTuple: DateTuple) => Promisable<void>
   /**
+   * Function to disable specific dates. Takes precedence over `isHistorical` if provided.
+   */
+  shouldDisableDate?: ((date: Date) => boolean) | undefined
+  /**
    * @description
    * We expect a UTC Date here and NOT a utcized one.
    */
   value?: Date | undefined
 }
 export const CalendarPicker = forwardRef<HTMLDivElement, CalendarPickerProps>(
-  ({ isHistorical, isOpen, isRightAligned, onChange, value }, ref) => {
+  ({ isHistorical, isOpen, isRightAligned, onChange, shouldDisableDate: shouldDisableDateProp, value }, ref) => {
     // eslint-disable-next-line no-null/no-null
     const boxRef = useRef<HTMLDivElement | null>(null)
 
@@ -37,9 +41,11 @@ export const CalendarPicker = forwardRef<HTMLDivElement, CalendarPickerProps>(
 
     const utcTodayAsDayjs = useMemo(() => customDayjs().utc().endOf('day'), [])
     const controlledValue = useMemo(() => (value ? getLocalizedDayjs(value).toDate() : undefined), [value])
-    const shouldDisableDate = useMemo(
-      () => (date?: Date) => (date && isHistorical ? getUtcizedDayjs(date).isAfter(utcTodayAsDayjs) : false),
-      [isHistorical, utcTodayAsDayjs]
+    const computedShouldDisableDate = useMemo(
+      () =>
+        shouldDisableDateProp ??
+        (isHistorical ? (date: Date) => getUtcizedDayjs(date).isAfter(utcTodayAsDayjs) : undefined),
+      [isHistorical, shouldDisableDateProp, utcTodayAsDayjs]
     )
 
     const handleSelect = useCallback(
@@ -83,9 +89,9 @@ export const CalendarPicker = forwardRef<HTMLDivElement, CalendarPickerProps>(
             onSelect={handleSelect}
             open={isOpen}
             ranges={[]}
-            shouldDisableDate={shouldDisableDate}
             // eslint-disable-next-line no-null/no-null
             value={controlledValue ?? null}
+            {...(computedShouldDisableDate && { shouldDisableDate: computedShouldDisableDate })}
           />
         )}
       </StyledRsuiteCalendarBox>
