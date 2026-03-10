@@ -3,7 +3,7 @@ import { handleCustomSearch } from '@utils/handleCustomSearch'
 import classnames from 'classnames'
 import { StyledRsuitePickerBox } from 'fields/shared/StyledRsuitePickerBox'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { TagPicker, type PickerHandle, type TagPickerProps } from 'rsuite'
+import { type PickerHandle, TagPicker, type TagPickerProps } from 'rsuite'
 import styled from 'styled-components'
 
 import { Field } from '../elements/Field'
@@ -21,12 +21,22 @@ import type { SelectType } from '@types_/commonTypes'
 
 export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omit<
   TagPickerProps,
-  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderMenuItem' | 'value' | 'valueKey'
+  | 'as'
+  | 'container'
+  | 'data'
+  | 'defaultValue'
+  | 'id'
+  | 'onChange'
+  | 'onSearch'
+  | 'renderMenuItem'
+  | 'value'
+  | 'valueKey'
 > &
   SelectType<OptionValue>
 
 export function MultiSelect<OptionValue extends OptionValueType = string>({
   className,
+  customRenderMenuItem,
   customSearch,
   customSearchMinQueryLength = 1,
   disabled = false,
@@ -39,6 +49,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   isUndefinedWhenDisabled = false,
   label,
   onChange,
+  onSearch,
   options,
   optionValueKey,
   popupWidth,
@@ -68,6 +79,16 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
   // Only used when `customSearch` prop is set
   const [controlledRsuiteData, setControlledRsuiteData] = useState(customSearch ? rsuiteData : undefined)
 
+  // if options props changes
+  useEffect(() => {
+    // update customeSearch
+    if (customSearchRef.current) {
+      customSearchRef.current = customSearch
+    }
+    // updated controlled data
+    setControlledRsuiteData(customSearch ? rsuiteData : undefined)
+  }, [customSearch, rsuiteData])
+
   const { forceUpdate } = useForceUpdate()
 
   const handleChange = useCallback(
@@ -88,6 +109,9 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 
   const handleSearch = useCallback(
     (nextQuery: string) => {
+      if (onSearch) {
+        onSearch(nextQuery)
+      }
       const results = handleCustomSearch(
         customSearchMinQueryLength,
         customSearchRef,
@@ -97,7 +121,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
       )
       setControlledRsuiteData(results)
     },
-    [customSearchMinQueryLength, optionValueKey, rsuiteData]
+    [customSearchMinQueryLength, onSearch, optionValueKey, rsuiteData]
   )
 
   const renderMenuItem = useCallback((_, item) => <span title={item.label}>{item.label}</span>, [])
@@ -147,7 +171,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
             onChange={handleChange}
             onSearch={handleSearch}
             readOnly={readOnly}
-            renderMenuItem={renderMenuItem}
+            renderMenuItem={customRenderMenuItem ?? renderMenuItem}
             searchable={!!customSearch || searchable}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
             // that's why we send this "always true" filter to disable Rsuite TagPicker internal search filtering
@@ -165,6 +189,11 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
 
 const Box = styled(StyledRsuitePickerBox)`
   /* Custom Styles */
+
+  .rs-picker-menu-group-title {
+    color: ${p => p.theme.color.slateGray};
+  }
+
   > .rs-picker-toggle-wrapper:not(.rs-picker-disabled) {
     > [role='combobox'] {
       height: 100%;
@@ -185,6 +214,7 @@ const Box = styled(StyledRsuitePickerBox)`
       padding: 0 !important;
 
       /* Selected tags */
+
       > [role='listbox'] {
         > [role='option'] {
           background-color: ${p => (p.$isLight ? p.theme.color.gainsboro : p.theme.color.white)};
@@ -207,6 +237,7 @@ const Box = styled(StyledRsuitePickerBox)`
       }
 
       /* Combobox search input (within) */
+
       > .rs-picker-search {
         > .rs-picker-search-input {
           margin: 3px 0 0;
