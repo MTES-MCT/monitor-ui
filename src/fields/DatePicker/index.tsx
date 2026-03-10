@@ -84,6 +84,12 @@ export interface DatePickerProps
    */
   onChange?: ((nextValue: Date | undefined) => Promisable<void>) | ((nextValue: string | undefined) => Promisable<void>)
   readOnly?: boolean | undefined
+  /**
+   * Function to disable specific dates.
+   *
+   * @see https://rsuitejs.com/components/date-picker/#disabled-date
+   */
+  shouldDisableDate?: ((date: Date) => boolean) | undefined
   withTime?: boolean | undefined
 }
 export interface DatePickerWithDateDateProps extends DatePickerProps {
@@ -120,6 +126,7 @@ export function DatePicker({
   name,
   onChange,
   readOnly = false,
+  shouldDisableDate,
   style,
   withTime = false,
   ...nativeProps
@@ -398,6 +405,7 @@ export function DatePicker({
         isOpen={isRangeCalendarPickerOpen}
         isRightAligned={isRightAligned}
         onChange={handleCalendarPickerChange}
+        shouldDisableDate={shouldDisableDate}
         value={calendarPickerDefaultValue}
       />
     </StyledFieldset>
