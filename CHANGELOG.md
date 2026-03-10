@@ -1,3 +1,66 @@
+## [24.44.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.43.0...v24.44.0) (2026-03-10)
+
+### Features
+
+* **fields:** datePicker allow disable dates ([c675f12](https://github.com/MTES-MCT/monitor-ui/commit/c675f1281469cfff7e1687158cbac775fca94129))
+
+## [24.43.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.42.3...v24.43.0) (2026-03-09)
+
+### Features
+
+* **fields:** dateRangePicker allow undefined ([150259d](https://github.com/MTES-MCT/monitor-ui/commit/150259d3d04bd89378dadb5a947a297c552bfcc3))
+* **fields:** rework shouldDisableDate for DateRangePicker ([9d5cf42](https://github.com/MTES-MCT/monitor-ui/commit/9d5cf42397532b5015528301d4d3cd55e38369a9))
+
+## [24.42.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.42.2...v24.42.3) (2026-02-24)
+
+### Bug Fixes
+
+* **components:** add ref to DatePickers in order to register click outside to close calendars ([64740cc](https://github.com/MTES-MCT/monitor-ui/commit/64740ccf300e0f697a447b2db122807ebbf3cf18))
+
+## [24.42.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.42.1...v24.42.2) (2026-02-05)
+
+### Bug Fixes
+
+* **fields:** fix check tree piker onChange type ([eb6a504](https://github.com/MTES-MCT/monitor-ui/commit/eb6a504b618be999f3e539c645a1741eadd5b890))
+
+## [24.42.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.42.0...v24.42.1) (2026-02-05)
+
+### Bug Fixes
+
+* **fields:** add debounce to search of check tree picker ([e20ee58](https://github.com/MTES-MCT/monitor-ui/commit/e20ee588f4980784a7d406d070b5821b5703702f))
+* **fields:** add lazy loading as prop in check tree picker ([f00f979](https://github.com/MTES-MCT/monitor-ui/commit/f00f979bc4ce875b1f3309d9e952e40e6e7c0249))
+* **fields:** improve check tree picker perf ([8f4058d](https://github.com/MTES-MCT/monitor-ui/commit/8f4058dcd740d00202727672a1b632287254eadb))
+* **fields:** lazy render check tree picker options ([1565a1c](https://github.com/MTES-MCT/monitor-ui/commit/1565a1c9d28f617a8bbc1d321898d5d52de74224))
+
+## [24.42.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.41.0...v24.42.0) (2026-01-21)
+
+### ⚠ BREAKING CHANGES
+
+* **fields:** rename MultiZoneEditor To MultiLocationEditor, refacto props
+
+### Features
+
+* **fields:** refactor MultiZoneEditor ([c41b601](https://github.com/MTES-MCT/monitor-ui/commit/c41b60112a702e5f3097d5a964f1940198999364))
+
+## [24.41.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.40.0...v24.41.0) (2026-01-20)
+
+### Features
+
+* **icons:** add vessel tabs icons ([19d2fc9](https://github.com/MTES-MCT/monitor-ui/commit/19d2fc9040b8d28c2cfe0cc0518514e882a76e75))
+
+## [24.40.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.39.0...v24.40.0) (2026-01-15)
+
+### Features
+
+* **icons:** add Copy.svg ([d717e9f](https://github.com/MTES-MCT/monitor-ui/commit/d717e9f5103750ca56f8cf276e5bb68293bf95a8))
+
+## [24.39.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.38.4...v24.39.0) (2026-01-12)
+
+### Features
+
+* **global:** add new regulatory colors ([c3f5ca4](https://github.com/MTES-MCT/monitor-ui/commit/c3f5ca48b83c04694cf77a81cd7e25fac0cb0481))
+
+
 ## [24.38.4](https://github.com/MTES-MCT/monitor-ui/compare/v24.38.3...v24.38.4) (2025-12-19)
 
 ### Bug Fixes
