@@ -1,3 +1,9 @@
+## [24.45.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.44.0...v24.45.0) (2026-03-12)
+
+### Features
+
+* **fields:** refactor MultiSelect.tsx ([428a22f](https://github.com/MTES-MCT/monitor-ui/commit/428a22f9a47a18467463541e186927717640878f))
+
 ## [24.44.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.43.0...v24.44.0) (2026-03-10)
 
 ### Features
