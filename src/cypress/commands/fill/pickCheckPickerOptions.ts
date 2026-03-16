@@ -45,7 +45,7 @@ export function pickCheckPickerOptions(
         if (maybeSearchInput) {
           cy.wrap(rsuitePickerPopupElement)
             .find('input[role="searchbox"]')
-            .clear()
+            .clear({ force })
             .type(value, { delay, force })
             .wait(250)
         }
