@@ -1,3 +1,9 @@
+## [24.45.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.45.0...v24.45.1) (2026-03-17)
+
+### Bug Fixes
+
+* **fields:** fix missing force in fill clear ([ccd237c](https://github.com/MTES-MCT/monitor-ui/commit/ccd237c1c6f7b63e13f9b69edc577101f28e7458))
+
 ## [24.43.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.42.3...v24.43.0) (2026-03-09)
 
 ### Features
