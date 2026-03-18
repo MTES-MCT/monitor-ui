@@ -17,7 +17,7 @@ type CalendarPickerProps = {
   isHistorical?: boolean | undefined
   isOpen: boolean
   isRightAligned: boolean
-  isTop?: boolean | undefined
+  isTop: boolean
   /**
    * @description
    * Note that `nextUtcDateTuple` is ALREADY utized from the user pick.

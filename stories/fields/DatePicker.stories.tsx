@@ -88,6 +88,7 @@ const meta: Meta<DatePickerWithDateDateProps> = {
         }
       }
     },
+    isCalendarTop: ARG_TYPE.OPTIONAL_BOOLEAN,
     withTime: ARG_TYPE.OPTIONAL_BOOLEAN
   },
 
@@ -96,6 +97,7 @@ const meta: Meta<DatePickerWithDateDateProps> = {
     defaultValue: undefined,
     disabled: false,
     error: '',
+    isCalendarTop: false,
     isCompact: false,
     isEndDate: false,
     isErrorMessageHidden: false,

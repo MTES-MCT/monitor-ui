@@ -55,7 +55,7 @@ export interface DatePickerProps
   defaultValue?: Date | string | undefined
   disabled?: boolean | undefined
   error?: string | undefined
-  isCalendarTop?: boolean | undefined
+  isCalendarTop?: boolean
   isCompact?: boolean | undefined
   /** Set the default time to the end (instead of start) of the day when picking/entering a date. */
   isEndDate?: boolean | undefined

@@ -134,8 +134,7 @@ export const StyledRsuiteCalendarBox = styled.div<{
     font-size: 13px;
     ${p => !p.$isRightAligned && `left: 0 !important;`}
     ${p => !!p.$isRightAligned && `right: 0 !important;`}
-    top: 0 !important;
-    ${p => p.$isTop && `transform: translateY(calc(-100% - 32px));`}
+    top: ${p => (p.$isTop ? -308 : 0)}px !important;
     line-height: 1;
     padding: 0;
     ${p => p.$isDoubleCalendar && `width: 483px;`}
