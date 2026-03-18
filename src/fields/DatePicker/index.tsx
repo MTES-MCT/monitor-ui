@@ -55,6 +55,7 @@ export interface DatePickerProps
   defaultValue?: Date | string | undefined
   disabled?: boolean | undefined
   error?: string | undefined
+  isCalendarTop?: boolean | undefined
   isCompact?: boolean | undefined
   /** Set the default time to the end (instead of start) of the day when picking/entering a date. */
   isEndDate?: boolean | undefined
@@ -110,6 +111,7 @@ export function DatePicker({
   defaultValue,
   disabled = false,
   error,
+  isCalendarTop = false,
   isCompact = false,
   isEndDate = false,
   isErrorMessageHidden = false,
@@ -404,6 +406,7 @@ export function DatePicker({
         isHistorical={isHistorical}
         isOpen={isRangeCalendarPickerOpen}
         isRightAligned={isRightAligned}
+        isTop={isCalendarTop}
         onChange={handleCalendarPickerChange}
         shouldDisableDate={shouldDisableDate}
         value={calendarPickerDefaultValue}
