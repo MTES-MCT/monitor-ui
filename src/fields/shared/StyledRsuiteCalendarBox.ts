@@ -118,6 +118,7 @@ const getHeaderStyle = () => css`
 export const StyledRsuiteCalendarBox = styled.div<{
   $isDoubleCalendar?: boolean
   $isRightAligned?: boolean
+  $isTop?: boolean
 }>`
   font-size: 13px !important;
   position: relative;
@@ -134,6 +135,7 @@ export const StyledRsuiteCalendarBox = styled.div<{
     ${p => !p.$isRightAligned && `left: 0 !important;`}
     ${p => !!p.$isRightAligned && `right: 0 !important;`}
     top: 0 !important;
+    ${p => p.$isTop && `transform: translateY(calc(-100% - 32px));`}
     line-height: 1;
     padding: 0;
     ${p => p.$isDoubleCalendar && `width: 483px;`}

@@ -17,6 +17,7 @@ type CalendarPickerProps = {
   isHistorical?: boolean | undefined
   isOpen: boolean
   isRightAligned: boolean
+  isTop?: boolean | undefined
   /**
    * @description
    * Note that `nextUtcDateTuple` is ALREADY utized from the user pick.
@@ -33,7 +34,7 @@ type CalendarPickerProps = {
   value?: Date | undefined
 }
 export const CalendarPicker = forwardRef<HTMLDivElement, CalendarPickerProps>(
-  ({ isHistorical, isOpen, isRightAligned, onChange, shouldDisableDate: shouldDisableDateProp, value }, ref) => {
+  ({ isHistorical, isOpen, isRightAligned, isTop, onChange, shouldDisableDate: shouldDisableDateProp, value }, ref) => {
     // eslint-disable-next-line no-null/no-null
     const boxRef = useRef<HTMLDivElement | null>(null)
 
@@ -77,6 +78,7 @@ export const CalendarPicker = forwardRef<HTMLDivElement, CalendarPickerProps>(
           }
         }}
         $isRightAligned={isRightAligned}
+        $isTop={isTop}
         className="Field-DatePicker__CalendarPicker"
         onClick={stopMouseEventPropagation}
       >
