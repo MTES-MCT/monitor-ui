@@ -29,6 +29,7 @@ export type TimeInputProps = Pick<NumberInputProps, 'onBack' | 'onPrevious' | 'o
   isEndDate?: boolean | undefined
   isLight: boolean
   isStartDate?: boolean | undefined
+  isTop?: boolean | undefined
   isTransparent: boolean
   minutesRange?: number | undefined
   name: string
@@ -50,6 +51,7 @@ function TimeInputWithRef(
     isEndDate = false,
     isLight,
     isStartDate = false,
+    isTop = false,
     isTransparent,
     minutesRange = 15,
     name,
@@ -258,7 +260,12 @@ function TimeInputWithRef(
       </InputGroup>
 
       {isTimePickerOpen && (
-        <RangedTimePicker filter={timePickerFilter} minutesRange={minutesRange} onChange={handleTimePickerChange} />
+        <RangedTimePicker
+          filter={timePickerFilter}
+          isTop={isTop}
+          minutesRange={minutesRange}
+          onChange={handleTimePickerChange}
+        />
       )}
     </Box>
   )

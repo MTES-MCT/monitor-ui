@@ -384,6 +384,7 @@ export function DatePicker({
               disabled={disabled}
               isCompact={isCompact}
               isLight={isLight}
+              isTop={isCalendarTop}
               isTransparent={isTransparent}
               minutesRange={minutesRange}
               name={name}

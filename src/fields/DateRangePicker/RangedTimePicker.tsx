@@ -9,10 +9,11 @@ import type { Promisable } from 'type-fest'
 
 type RangedTimePickerProps = {
   filter: RegExp
+  isTop?: boolean | undefined
   minutesRange: number
   onChange: (nextTimeTuple: TimeTuple) => Promisable<void>
 }
-export function RangedTimePicker({ filter, minutesRange, onChange }: RangedTimePickerProps) {
+export function RangedTimePicker({ filter, isTop = false, minutesRange, onChange }: RangedTimePickerProps) {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(0)
 
   const rangedTimeOptions = useMemo(() => getRangedTimeOptions(minutesRange), [minutesRange])
@@ -92,7 +93,12 @@ export function RangedTimePicker({ filter, minutesRange, onChange }: RangedTimeP
   }
 
   return (
-    <Box className="Field-DateRangePicker__RangedTimePicker" onClick={stopMouseEventPropagation} role="listbox">
+    <Box
+      $isTop={isTop}
+      className="Field-DateRangePicker__RangedTimePicker"
+      onClick={stopMouseEventPropagation}
+      role="listbox"
+    >
       {filteredRangedTimeOptions.map(({ label, value }, index) => (
         <Option
           key={label}
@@ -110,7 +116,7 @@ export function RangedTimePicker({ filter, minutesRange, onChange }: RangedTimeP
   )
 }
 
-const Box = styled.div`
+const Box = styled.div<{ $isTop: boolean }>`
   background-color: ${p => p.theme.color.white};
   box-shadow: inset 0px 0px 0px 1px ${p => p.theme.color.lightGray};
   display: flex;
@@ -122,7 +128,7 @@ const Box = styled.div`
   /* Non-WebKit Firefox Compatibility */
   scrollbar-color: ${p => p.theme.color.lightGray};
   scrollbar-width: thin;
-  top: 30px;
+  ${p => (p.$isTop ? 'bottom: calc(100% + 4px); top: auto;' : 'top: 30px;')}
   width: 100%;
   z-index: 9999;
 
