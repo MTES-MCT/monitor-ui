@@ -9,11 +9,11 @@ import type { Promisable } from 'type-fest'
 
 type RangedTimePickerProps = {
   filter: RegExp
-  isTop?: boolean | undefined
+  isTop: boolean
   minutesRange: number
   onChange: (nextTimeTuple: TimeTuple) => Promisable<void>
 }
-export function RangedTimePicker({ filter, isTop = false, minutesRange, onChange }: RangedTimePickerProps) {
+export function RangedTimePicker({ filter, isTop, minutesRange, onChange }: RangedTimePickerProps) {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(0)
 
   const rangedTimeOptions = useMemo(() => getRangedTimeOptions(minutesRange), [minutesRange])
