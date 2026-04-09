@@ -1,3 +1,17 @@
+## [24.47.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.46.0...v24.47.0) (2026-04-09)
+
+### Features
+
+* **icons:** add Load icon ([57f388a](https://github.com/MTES-MCT/monitor-ui/commit/57f388a1d0bbe7f3815946f907d0e85c49d9c558))
+
+### Bug Fixes
+
+* **fields:** fix time input displaying on top when isCalendarTop is set ([986360c](https://github.com/MTES-MCT/monitor-ui/commit/986360c88730ba36a3e3d78d35d4bf44aeaf0fee))
+
+### Code Refactoring
+
+* **fields:** remove optional to isTop inner prop ([dec24a7](https://github.com/MTES-MCT/monitor-ui/commit/dec24a7dc26fe879c3bac978f1fbff713ec17bb2))
+
 ## [24.46.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.45.1...v24.46.0) (2026-03-18)
 
 ### Features
