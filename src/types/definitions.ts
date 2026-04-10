@@ -29,8 +29,10 @@ export type PartialDateAsStringRange = [string | undefined, string | undefined]
 
 export type IconProps = SVGProps<SVGSVGElement> & {
   color?: string | undefined
+  secondaryColor?: string
   /** In pixels */
   size?: number | undefined
+  tertiaryColor?: string
   title?: string | undefined
 }
 

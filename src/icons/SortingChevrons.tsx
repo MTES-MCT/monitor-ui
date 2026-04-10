@@ -2,14 +2,14 @@ import { IconBox } from '../elements/IconBox'
 
 import type { IconProps } from '../types/definitions'
 
-export function SortingChevrons({ color, size, title, ...nativeProps }: IconProps) {
+export function SortingChevrons({ color, secondaryColor, size, tertiaryColor, title, ...nativeProps }: IconProps) {
   return (
     <IconBox $color={color} $size={size} title={title}>
       <svg height="20" viewBox="0 0 20 20" width="20" {...nativeProps}>
         <path
           d="M-184.5-110.5-190-105l-5.5-5.5"
           fill="none"
-          stroke="currentColor"
+          stroke={secondaryColor ?? 'currentColor'}
           strokeMiterlimit="10"
           strokeWidth="2"
           transform="translate(200 123)"
@@ -17,7 +17,7 @@ export function SortingChevrons({ color, size, title, ...nativeProps }: IconProp
         <path
           d="M-195.5-115.5l5.5-5.5,5.5,5.5"
           fill="none"
-          stroke="currentColor"
+          stroke={tertiaryColor ?? 'currentColor'}
           strokeMiterlimit="10"
           strokeWidth="2"
           transform="translate(200 123)"
