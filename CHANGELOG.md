@@ -1,9 +1,45 @@
-## [24.45.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.44.0...v24.45.0) (2026-03-12)
+## [24.48.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.47.0...v24.48.0) (2026-04-10)
+
+### Features
+
+* **icons:** add secondary and tertiary color to handle icons colors ([6ac0078](https://github.com/MTES-MCT/monitor-ui/commit/6ac007805b99387aa09696043279607afaf529c4))
+
+## [24.47.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.46.0...v24.47.0) (2026-04-09)
 
 ### Features
 
 * **fields:** refactor MultiSelect.tsx ([428a22f](https://github.com/MTES-MCT/monitor-ui/commit/428a22f9a47a18467463541e186927717640878f))
 
+### Bug Fixes
+
+* **fields:**  fix time input displaying on top when isCalendarTop is set ([986360c](https://github.com/MTES-MCT/monitor-ui/commit/986360c88730ba36a3e3d78d35d4bf44aeaf0fee))
+
+### Code Refactoring
+
+* **fields:** remove optional to isTop inner prop ([dec24a7](https://github.com/MTES-MCT/monitor-ui/releases#:~:text=isTop%20inner%20prop%20(-,dec24a7,-)))
+
+## [24.46.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.45.0...v24.46.0) (2026-03-18)
+
+### Features
+
+* **fields:** add isCalendarTop to date picker ([73412fa](https://github.com/MTES-MCT/monitor-ui/commit/73412fa0c0eadebc5990e7616724a47c8ee1710b))
+
+### Code Refactoring
+
+* **fields:** fix isTop ([3be20e1](https://github.com/MTES-MCT/monitor-ui/commit/3be20e17446e3d39ebf5b2d8d1c066d12133bf6f))
+
+## [24.45.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.45.0...v24.45.1) (2026-03-17)
+
+### Bug Fixes
+
+* **fields:** fix missing force in fill clear ([ccd237c](https://github.com/MTES-MCT/monitor-ui/commit/ccd237c1c6f7b63e13f9b69edc577101f28e7458))
+
+## [24.45.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.44.0...v24.45.0) (2026-03-12)
+
+### Features
+
+* **fields:**  refactor MultiSelect.tsx ([428a22f](https://github.com/MTES-MCT/monitor-ui/commit/428a22f9a47a18467463541e186927717640878f)
+)
 ## [24.44.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.43.0...v24.44.0) (2026-03-10)
 
 ### Features
