@@ -29,7 +29,7 @@ jobs:
           key: ${{ runner.os }}-cypress-${{ hashFiles('package-lock.json') }}
       - name: Checkout
         if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Install
         if: ${{ !startsWith(github.head_ref, 'ci-release-v') }}
         uses: ./.github/actions/install
@@ -63,7 +63,7 @@ jobs:
             ~/.vite
           key: ${{ runner.os }}-cypress-${{ hashFiles('package-lock.json') }}
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Install
         uses: ./.github/actions/install
       - name: Serve Release Sample
