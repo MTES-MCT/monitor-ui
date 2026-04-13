@@ -10,23 +10,23 @@
     "start": "vite preview"
   },
   "dependencies": {
-    "@sentry/react": "^10.12.0",
-    "cypress": "^15.2.0",
-    "formik": "2.4.6",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "@sentry/react": "^10.36.0",
+    "cypress": "^15.9.0",
+    "formik": "2.4.9",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "rsuite": "^5.83.3",
-    "styled-components": "^6.1.19"
+    "styled-components": "^6.3.8"
   },
   "devDependencies": {
-    "@tsconfig/vite-react": "^7.0.1",
+    "@tsconfig/vite-react": "^7.0.2",
     "@types/node": "^24.5.2",
-    "@types/react": "^19.1.12",
-    "@types/react-dom": "^19.1.9",
-    "@vitejs/plugin-react": "^5.0.3",
-    "prettier": "3.6.2",
+    "@types/react": "^19.2.9",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
+    "prettier": "3.8.1",
     "typescript": "^5.9.2",
-    "vite": "^7.1.6",
+    "vite": "^7.3.1",
     "vite-tsconfig-paths": "^5.1.4"
   }
 }
