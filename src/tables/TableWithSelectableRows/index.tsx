@@ -54,7 +54,7 @@ const Head = styled(SimpleTable.Head)`
 const Th = styled(SimpleTable.Th)`
   background-color: ${p => p.theme.color.white};
   line-height: 22px;
-  padding: 9px 16px;
+  padding: 10px;
 `
 
 const SortContainer = styled(SimpleTable.SortContainer)`
@@ -69,10 +69,10 @@ const BodyTr = styled(SimpleTable.BodyTr)<{
     border-bottom: 1px solid ${p => (p.$isHighlighted ? p.theme.color.blueGray : p.theme.color.lightGray)};
     border-right: none;
     border-top: 1px solid ${p => (p.$isHighlighted ? p.theme.color.blueGray : p.theme.color.lightGray)};
+
     ${p =>
       !!p.$isHighlighted &&
       `box-shadow: 0 -1px 0 ${p.theme.color.blueGray} inset, 0 1px 0 ${p.theme.color.blueGray} inset;`}
-
     &:first-child {
       border-left: 1px solid ${p => (p.$isHighlighted ? p.theme.color.blueGray : p.theme.color.lightGray)};
       ${p =>
@@ -95,7 +95,7 @@ const Td = styled(SimpleTable.Td)<{
 }>`
   background-color: ${p => p.theme.color.cultured};
   ${p => !!p.$hasRightBorder && `border-right: 1px solid ${p.theme.color.lightGray} !important;`}
-  padding: 9px 16px;
+  padding: 10px;
 `
 
 export const TableWithSelectableRows = {
