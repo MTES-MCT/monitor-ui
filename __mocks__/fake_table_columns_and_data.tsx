@@ -26,6 +26,7 @@ export type FakeBasicTableDataItem = {
   firstName: string
   id: number
   lastName: string
+  subRows?: FakeBasicTableDataItem[]
 }
 export const FAKE_BASIC_TABLE_DATA: FakeBasicTableDataItem[] = [
   { firstName: 'Alice', id: 1, lastName: 'Smith' },
@@ -33,6 +34,19 @@ export const FAKE_BASIC_TABLE_DATA: FakeBasicTableDataItem[] = [
   { firstName: 'Charlie', id: 3, lastName: 'Williams' },
   { firstName: 'David', id: 4, lastName: 'Brown' },
   { firstName: 'Emily', id: 5, lastName: 'Jones' },
+  { firstName: 'Fiona', id: 6, lastName: 'Garcia' },
+  { firstName: 'George', id: 7, lastName: 'Miller' },
+  { firstName: 'Hannah', id: 8, lastName: 'Davis' },
+  { firstName: 'Ivan', id: 9, lastName: 'Rodriguez' },
+  { firstName: 'Jenny', id: 10, lastName: 'Martinez' }
+]
+
+export const FAKE_BASIC_TABLE_DATA_WITH_SUBROWS: FakeBasicTableDataItem[] = [
+  { firstName: 'Alice', id: 1, lastName: 'Smith', subRows: [{ firstName: 'Fiona', id: 6, lastName: 'Garcia' }] },
+  { firstName: 'Bob', id: 2, lastName: 'Johnson', subRows: [{ firstName: 'George', id: 7, lastName: 'Miller' }] },
+  { firstName: 'Charlie', id: 3, lastName: 'Williams', subRows: [{ firstName: 'Hannah', id: 8, lastName: 'Davis' }] },
+  { firstName: 'David', id: 4, lastName: 'Brown', subRows: [{ firstName: 'Ivan', id: 9, lastName: 'Rodriguez' }] },
+  { firstName: 'Emily', id: 5, lastName: 'Jones', subRows: [{ firstName: 'Jenny', id: 10, lastName: 'Martinez' }] },
   { firstName: 'Fiona', id: 6, lastName: 'Garcia' },
   { firstName: 'George', id: 7, lastName: 'Miller' },
   { firstName: 'Hannah', id: 8, lastName: 'Davis' },

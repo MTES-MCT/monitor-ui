@@ -67,6 +67,7 @@ const BodyTr = styled.tr`
       background-color: ${p => p.theme.color.blueYonder25};
     }
   }
+
   > td:first-child {
     border-left: 1px solid ${p => p.theme.color.lightGray};
   }

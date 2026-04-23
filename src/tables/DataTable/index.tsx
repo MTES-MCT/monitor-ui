@@ -1,12 +1,13 @@
 import {
   type ColumnDef,
+  getCoreRowModel,
+  getExpandedRowModel,
+  getSortedRowModel,
   type SortingState,
   type TableOptions,
-  getCoreRowModel,
-  getSortedRowModel,
   useReactTable
 } from '@tanstack/react-table'
-import { useState, type ReactNode } from 'react'
+import { type ReactNode, useState } from 'react'
 import styled from 'styled-components'
 
 import { Td } from './Td'
@@ -23,6 +24,7 @@ export type DataTableProps<T extends AnyObject> = {
   tableOptions?: Partial<TableOptions<T>> | undefined
   withoutHead?: boolean | undefined
 }
+
 export function DataTable<T extends AnyObject>({
   columns,
   data,
@@ -31,7 +33,9 @@ export function DataTable<T extends AnyObject>({
   tableOptions,
   withoutHead = false
 }: DataTableProps<T>) {
+  const isExpandable = !!data?.map(item => item.subRows)?.length
   const [sorting, setSorting] = useState<SortingState>(initialSorting)
+  const [expanded, setExpanded] = useState({})
 
   const table = useReactTable({
     columns,
@@ -40,9 +44,15 @@ export function DataTable<T extends AnyObject>({
     enableSortingRemoval: false,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    ...(isExpandable && {
+      getExpandedRowModel: getExpandedRowModel(),
+      getSubRows: (row: any) => row.subRows,
+      onExpandedChange: setExpanded
+    }),
     onSortingChange: setSorting,
     state: {
-      sorting
+      sorting,
+      ...(isExpandable ? { expanded } : {})
     },
     ...tableOptions
   })
@@ -74,7 +84,11 @@ export function DataTable<T extends AnyObject>({
               <TBody $withTopBorder={withoutHead}>
                 {rows.map(row => (
                   // `data-id` is expected by `cy.getTableRowById()` custom command
-                  <SimpleTable.BodyTr key={row.id} data-id={'id' in row.original ? row.original.id : row.id}>
+                  <SimpleTable.BodyTr
+                    key={row.id}
+                    data-id={'id' in row.original ? row.original.id : row.id}
+                    onClick={() => row.toggleExpanded()}
+                  >
                     {row.getVisibleCells().map(cell => (
                       <Td key={cell.id} cell={cell} />
                     ))}
