@@ -1,3 +1,9 @@
+## [24.48.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.48.0...v24.48.1) (2026-04-27)
+
+### Bug Fixes
+
+* **entities:** fix drone label ([2c0a152](https://github.com/MTES-MCT/monitor-ui/commit/2c0a1528107def29e795bb7fcc8448e92de949b5))
+
 ## [24.48.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.47.0...v24.48.0) (2026-04-10)
 
 ### Features
