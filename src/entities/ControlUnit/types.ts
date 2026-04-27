@@ -123,7 +123,7 @@ export namespace ControlUnit {
     [ControlUnitResourceType.AIRPLANE]: 'Avion',
     [ControlUnitResourceType.BARGE]: 'Barge',
     [ControlUnitResourceType.CAR]: 'Voiture',
-    [ControlUnitResourceType.DRONE]: 'Drône',
+    [ControlUnitResourceType.DRONE]: 'Drone',
     [ControlUnitResourceType.EQUESTRIAN]: 'Équestre',
     [ControlUnitResourceType.FAST_BOAT]: 'Vedette',
     [ControlUnitResourceType.FRIGATE]: 'Frégate',
