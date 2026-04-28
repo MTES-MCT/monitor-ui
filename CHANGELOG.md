@@ -1,3 +1,9 @@
+## [24.49.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.48.1...v24.49.0) (2026-04-28)
+
+### Features
+
+* **components:** make datatable expandable with subrows ([dccb580](https://github.com/MTES-MCT/monitor-ui/commit/dccb5808595f5e12424f0207940ccc0098e6ff53))
+
 ## [24.48.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.48.0...v24.48.1) (2026-04-27)
 
 ### Bug Fixes
