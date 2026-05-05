@@ -1,3 +1,9 @@
+## [24.49.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.49.0...v24.49.1) (2026-05-05)
+
+### Bug Fixes
+
+* **libs:** bump cypress ([d195478](https://github.com/MTES-MCT/monitor-ui/commit/d195478eee3aaec96d322a85b5ce5268029d213f))
+
 ## [24.49.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.48.1...v24.49.0) (2026-04-28)
 
 ### Features
