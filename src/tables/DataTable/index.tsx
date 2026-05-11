@@ -50,11 +50,12 @@ export function DataTable<T extends AnyObject>({
       onExpandedChange: setExpanded
     }),
     onSortingChange: setSorting,
+    ...tableOptions,
     state: {
       sorting,
-      ...(isExpandable ? { expanded } : {})
-    },
-    ...tableOptions
+      ...(isExpandable ? { expanded } : {}),
+      ...tableOptions?.state
+    }
   })
 
   const { rows } = table.getRowModel()
