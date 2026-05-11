@@ -1,3 +1,9 @@
+## [24.49.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.49.1...v24.49.2) (2026-05-11)
+
+### Bug Fixes
+
+* **components:** move tableOptions to make it overridable ([258e232](https://github.com/MTES-MCT/monitor-ui/commit/258e232c0f7c65d4500182d42dea8a16f6a59f09))
+
 ## [24.49.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.49.0...v24.49.1) (2026-05-05)
 
 ### Bug Fixes
