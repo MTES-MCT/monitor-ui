@@ -1,3 +1,9 @@
+## [24.50.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.49.2...v24.50.0) (2026-05-19)
+
+### Features
+
+* **icons:** add Lock icon ([96be3bf](https://github.com/MTES-MCT/monitor-ui/commit/96be3bf4b04eb27ea7b2fc724046a1c9e315c1ff))
+
 ## [24.49.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.49.1...v24.49.2) (2026-05-11)
 
 ### Bug Fixes
