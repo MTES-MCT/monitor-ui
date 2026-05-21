@@ -3,7 +3,7 @@
 
 import { Icon } from '@constants'
 import { THEME } from '@theme'
-import { Tooltip } from 'components/Tooltip/Tooltip'
+import { Tooltip } from 'components/Tooltip'
 
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 

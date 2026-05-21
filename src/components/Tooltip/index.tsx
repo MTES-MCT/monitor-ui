@@ -1,14 +1,13 @@
+import { Icon as IconUI } from '@constants'
 import { useNewWindow } from '@hooks/useNewWindow'
 import { THEME } from '@theme'
 import { type FunctionComponent, type ReactNode, useId, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import styled from 'styled-components'
 
-import { Icon as IconUi } from '../..'
-
 import type { IconProps } from '@types_/definitions'
 
-type TooltipType = {
+export type TooltipProps = {
   Icon?: FunctionComponent<IconProps>
   children: ReactNode
   className?: string
@@ -23,12 +22,12 @@ export function Tooltip({
   children,
   className,
   color = THEME.color.slateGray,
-  Icon = IconUi.Info,
+  Icon = IconUI.Info,
   iconSize = 18,
   isSideWindow = false,
   linkText = undefined,
   orientation = 'BOTTOM_RIGHT'
-}: TooltipType) {
+}: TooltipProps) {
   // eslint-disable-next-line no-null/no-null
   const ref = useRef<HTMLDivElement>(null)
   const refLeftPosition = ref.current?.getBoundingClientRect().left ?? 0
