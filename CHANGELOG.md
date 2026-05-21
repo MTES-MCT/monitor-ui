@@ -1,3 +1,9 @@
+## [24.50.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.50.0...v24.50.1) (2026-05-21)
+
+### Bug Fixes
+
+* **components:** fix export ([6ef0c8d](https://github.com/MTES-MCT/monitor-ui/commit/6ef0c8dfa22e38395f867dbf19d4c1c292ba68d6))
+
 ## [24.50.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.49.2...v24.50.0) (2026-05-19)
 
 ### Features
