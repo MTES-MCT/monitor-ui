@@ -1,12 +1,25 @@
+import { Icon } from '@constants'
+import { IconButton } from '@elements/IconButton'
 import styled from 'styled-components'
 
-export const Title = styled.h4`
-  font-size: 125%;
-  font-weight: 500;
-  line-height: 48px;
-  padding-bottom: 2px;
-  height: 48px;
-  color: ${p => p.theme.color.white};
+export function Title({ onClose, title }: { onClose?: () => void; title: string }) {
+  return (
+    <Wrapper>
+      <h4>{title}</h4>
+      {onClose && <IconButton Icon={Icon.Close} onClick={onClose} />}
+    </Wrapper>
+  )
+}
+
+const Wrapper = styled.div`
+  align-items: center;
   background-color: ${p => p.theme.color.charcoal};
-  text-align: center;
+  color: ${p => p.theme.color.white};
+  display: flex;
+
+  justify-content: space-between;
+  padding: 8px 11px 8px 16px;
+  h4 {
+    font-size: 20px;
+  }
 `
