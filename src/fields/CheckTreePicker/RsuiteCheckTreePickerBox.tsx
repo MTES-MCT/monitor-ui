@@ -21,7 +21,7 @@ export const RsuiteCheckTreePickerBox = styled.div<RsuiteCheckTreePickerBoxProps
     background-color: ${p => p.theme.color.goldenPoppy25};
   }
 
-  ${p => getCheckPickerInputCss(p)}
+  ${getCheckPickerInputCss()}
   > .rs-picker-popup {
     border: solid 1px ${p => p.theme.color.gainsboro};
     border-radius: 0;

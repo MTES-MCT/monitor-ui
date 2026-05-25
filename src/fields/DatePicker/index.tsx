@@ -48,8 +48,10 @@ import type { Promisable } from 'type-fest'
  *
  * @private
  */
-export interface DatePickerProps
-  extends Omit<HTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange' | 'placeholder'> {
+export interface DatePickerProps extends Omit<
+  HTMLAttributes<HTMLFieldSetElement>,
+  'defaultValue' | 'onChange' | 'placeholder'
+> {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
   defaultValue?: Date | string | undefined

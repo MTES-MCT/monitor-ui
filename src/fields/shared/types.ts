@@ -1,5 +1,3 @@
-import type { THEME } from '../../theme'
-
 export type CommonFieldStyleProps = {
   $hasError?: boolean
   $isDisabled: boolean
@@ -7,7 +5,6 @@ export type CommonFieldStyleProps = {
   $isReadOnly: boolean
   $isRequired?: boolean
   $isTransparent: boolean
-  theme: typeof THEME
 }
 
 export type CommonChoiceFieldStyleProps = CommonFieldStyleProps & {

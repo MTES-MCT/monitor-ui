@@ -1,3 +1,5 @@
+import { THEME } from '@theme'
+
 import type { CommonChoiceFieldStyleProps, PseudoState } from 'fields/shared/types'
 
 export function getToggleBackgroundColorFactoryForState(pseudoState: PseudoState) {
@@ -8,26 +10,26 @@ export function getToggleBackgroundColorFactoryForState(pseudoState: PseudoState
         return 'transparent'
 
       case props.$hasError:
-        return props.theme.color.maximumRed
+        return THEME.color.maximumRed
 
       case props.$isDisabled:
-        return props.theme.color.lightGray
+        return THEME.color.lightGray
 
       // TODO Check that with Adeline (no XD).
       case props.$isReadOnly:
-        return props.theme.color.lightGray
+        return THEME.color.lightGray
 
       case pseudoState === 'hover':
-        return props.theme.color.blueYonder
+        return THEME.color.blueYonder
 
       case pseudoState === 'focus':
-        return props.theme.color.blueGray
+        return THEME.color.blueGray
 
       case pseudoState === 'active':
-        return props.theme.color.blueGray
+        return THEME.color.blueGray
 
       default:
-        return props.theme.color.charcoal
+        return THEME.color.charcoal
     }
   }
 }
@@ -36,22 +38,22 @@ export function getToggleBorderColorFactoryForState(pseudoState: PseudoState) {
   return (props: CommonChoiceFieldStyleProps) => {
     switch (true) {
       case props.$hasError:
-        return props.theme.color.maximumRed
+        return THEME.color.maximumRed
 
       case props.$isDisabled:
       case props.$isReadOnly:
-        return props.theme.color.lightGray
+        return THEME.color.lightGray
 
       // TODO Check focus border size with Adeline.
       case pseudoState === 'hover':
       case pseudoState === 'focus':
-        return props.theme.color.blueYonder
+        return THEME.color.blueYonder
 
       case pseudoState === 'active':
-        return props.theme.color.blueGray
+        return THEME.color.blueGray
 
       default:
-        return props.theme.color.charcoal
+        return THEME.color.charcoal
     }
   }
 }
@@ -60,24 +62,24 @@ export function getToggleThumbColorFactoryForState(pseudoState: PseudoState) {
   return (props: CommonChoiceFieldStyleProps) => {
     switch (true) {
       case props.$hasError:
-        return props.$isChecked ? props.theme.color.white : props.theme.color.maximumRed
+        return props.$isChecked ? THEME.color.white : THEME.color.maximumRed
 
       case props.$isDisabled:
       case props.$isReadOnly:
-        return props.$isChecked ? props.theme.color.gainsboro : props.theme.color.lightGray
+        return props.$isChecked ? THEME.color.gainsboro : THEME.color.lightGray
 
       case props.$isChecked:
-        return props.theme.color.white
+        return THEME.color.white
 
       case pseudoState === 'hover':
       case pseudoState === 'focus':
-        return props.theme.color.blueYonder
+        return THEME.color.blueYonder
 
       case pseudoState === 'active':
-        return props.theme.color.blueGray
+        return THEME.color.blueGray
 
       default:
-        return props.theme.color.charcoal
+        return THEME.color.charcoal
     }
   }
 }

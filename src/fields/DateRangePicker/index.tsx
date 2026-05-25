@@ -66,8 +66,10 @@ export type { DisabledDateFunction } from 'rsuite/esm/DateRangePicker/types'
  *
  * @private
  */
-export interface DateRangePickerProps
-  extends Omit<HTMLAttributes<HTMLFieldSetElement>, 'defaultValue' | 'onChange' | 'placeholder'> {
+export interface DateRangePickerProps extends Omit<
+  HTMLAttributes<HTMLFieldSetElement>,
+  'defaultValue' | 'onChange' | 'placeholder'
+> {
   /** Used to pass something else than `window.document` as a base container to attach global events listeners. */
   baseContainer?: Document | HTMLDivElement | null | undefined
   /**
