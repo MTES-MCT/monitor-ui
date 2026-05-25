@@ -4,19 +4,14 @@ export const Body = styled.div<{
   $color?: string
 }>`
   background-color: ${p => p.theme.color.white};
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
   display: flex;
   flex-direction: column;
-  padding: 8px 8px 8px 8px;
-  text-align: center;
-  @media (min-width: 740px) {
-    padding: 48px 48px 0px 48px;
-    text-align: center;
-  }
+  max-height: 250px;
+  overflow-y: auto;
+  padding: 24px 24px 0px 24px;
 
   > p {
-    color: ${p => (p.$color ? p.$color : p.theme.color.slateGray)};
+    color: ${p => (p.$color ? p.$color : p.theme.color.gunMetal)};
     padding-top: 2px;
   }
 `
