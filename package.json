@@ -143,7 +143,7 @@
     "type-fest": "4.41.0",
     "typescript": "5.8.3",
     "use-debounce": "10.1.1",
-    "vite": "7.3.2",
+    "vite": "8.0.10",
     "vite-bundle-analyzer": "^1.2.3",
     "vite-tsconfig-paths": "^5.1.4",
     "yup": "1.7.1"
