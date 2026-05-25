@@ -15,12 +15,16 @@ const UntypedDateRangePicker: any = DateRangePicker
 interface FormikDateRangePickerProps extends Omit<DateRangePickerProps, 'defaultValue' | 'error' | 'onChange'> {
   name: string
 }
-export interface FormikDateRangePickerWithDateDateProps
-  extends Omit<DateRangePickerWithDateDateProps, 'defaultValue' | 'error' | 'onChange'> {
+export interface FormikDateRangePickerWithDateDateProps extends Omit<
+  DateRangePickerWithDateDateProps,
+  'defaultValue' | 'error' | 'onChange'
+> {
   name: string
 }
-export interface FormikDateRangePickerWithStringDateProps
-  extends Omit<DateRangePickerWithStringDateProps, 'defaultValue' | 'error' | 'onChange'> {
+export interface FormikDateRangePickerWithStringDateProps extends Omit<
+  DateRangePickerWithStringDateProps,
+  'defaultValue' | 'error' | 'onChange'
+> {
   name: string
 }
 

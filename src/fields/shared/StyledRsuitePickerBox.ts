@@ -1,3 +1,4 @@
+import { THEME } from '@theme'
 import styled, { css } from 'styled-components'
 
 import {
@@ -8,17 +9,17 @@ import {
 
 import type { CommonPickerFieldStyleProps } from './types'
 
-const getSearchInputCss = (p: CommonPickerFieldStyleProps) => css`
+const getSearchInputCss = () => css`
   padding: 8px;
 
   > .rs-input-group {
-    background-color: ${p.theme.color.white};
-    border: solid 1px ${p.theme.color.lightGray};
+    background-color: ${THEME.color.white};
+    border: solid 1px ${THEME.color.lightGray};
     border-radius: 0;
 
     > [role='searchbox'] {
-      color: ${p.theme.color.gunMetal};
-      caret-color: ${p.theme.color.gunMetal};
+      color: ${THEME.color.gunMetal};
+      caret-color: ${THEME.color.gunMetal};
       font-size: 13px;
       line-height: 1;
       padding: 1px 8px 5px 8px;
@@ -33,12 +34,12 @@ const getSearchInputCss = (p: CommonPickerFieldStyleProps) => css`
       padding: 4px 8px 4px 4px;
 
       > svg {
-        color: ${p.theme.color.lightGray};
+        color: ${THEME.color.lightGray};
       }
     }
   }
 `
-export const getCheckPickerInputCss = (p: CommonPickerFieldStyleProps) => css`
+export const getCheckPickerInputCss = () => css`
   > .rs-picker-toggle-wrapper,
   > .rs-auto-complete {
     background-color: transparent;
@@ -112,7 +113,7 @@ export const getCheckPickerInputCss = (p: CommonPickerFieldStyleProps) => css`
 
           /* Selected value(s) */
           > .rs-picker-toggle-value {
-            color: ${p.theme.color.gunMetal};
+            color: ${THEME.color.gunMetal};
             font-weight: 500;
 
             > .rs-picker-value-list {
@@ -124,7 +125,7 @@ export const getCheckPickerInputCss = (p: CommonPickerFieldStyleProps) => css`
             /* Counter badge, if any */
             > .rs-picker-value-count {
               align-items: center;
-              background-color: ${p.theme.color.charcoal};
+              background-color: ${THEME.color.charcoal};
               border-radius: 50%;
               display: flex;
               font-family: 'Open Sans', sans-serif !important;
@@ -162,7 +163,7 @@ export const getCheckPickerInputCss = (p: CommonPickerFieldStyleProps) => css`
 `
 export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
   > .rs-picker-popup {
-    border: solid 1px ${p.theme.color.gainsboro};
+    border: solid 1px ${THEME.color.gainsboro};
     border-radius: 0;
     padding: 0;
 
@@ -178,11 +179,11 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
 
     > .rs-cascade-search-view {
       > .rs-search-box {
-        ${getSearchInputCss(p)}
+        ${getSearchInputCss()}
       }
     }
     > .rs-search-box {
-      ${getSearchInputCss(p)}
+      ${getSearchInputCss()}
     }
 
     > div[role='listbox'],
@@ -194,7 +195,7 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
       [role='option'],
       [role='treeitem'] {
         > .rs-picker-select-menu-item {
-          color: ${p.theme.color.gunMetal};
+          color: ${THEME.color.gunMetal};
           line-height: 1;
           overflow: hidden;
           padding: 8px 8px 11px 8px;
@@ -202,8 +203,8 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
           white-space: nowrap;
 
           &:hover {
-            background-color: ${p.theme.color.blueYonder25};
-            color: ${p.theme.color.blueYonder};
+            background-color: ${THEME.color.blueYonder25};
+            color: ${THEME.color.blueYonder};
           }
 
           &.rs-picker-select-menu-item-active {
@@ -211,13 +212,13 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
             font-weight: 500;
 
             &:hover {
-              background-color: ${p.theme.color.blueYonder25};
+              background-color: ${THEME.color.blueYonder25};
             }
           }
 
           &.rs-picker-select-menu-item-disabled {
             background-color: transparent;
-            color: ${p.theme.color.lightGray};
+            color: ${THEME.color.lightGray};
           }
         }
 
@@ -226,7 +227,7 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
             min-height: auto;
 
             > label {
-              color: ${p.theme.color.gunMetal};
+              color: ${THEME.color.gunMetal};
               font-size: 13px !important;
               line-height: 1;
               overflow: hidden;
@@ -241,8 +242,8 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
 
                 > .rs-checkbox-inner {
                   &:before {
-                    background-color: ${p.theme.color.gainsboro};
-                    border: solid 2px ${p.theme.color.lightGray};
+                    background-color: ${THEME.color.gainsboro};
+                    border: solid 2px ${THEME.color.lightGray};
                     border-radius: 0;
                   }
                 }
@@ -251,17 +252,17 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
           }
 
           &:hover {
-            background-color: ${p.theme.color.blueYonder25};
+            background-color: ${THEME.color.blueYonder25};
 
             > .rs-checkbox-checker {
               > label {
-                color: ${p.theme.color.blueYonder};
+                color: ${THEME.color.blueYonder};
 
                 > .rs-checkbox-control {
                   > .rs-checkbox-inner {
                     &:before {
-                      background-color: ${p.theme.color.blueYonder25};
-                      border: solid 2px ${p.theme.color.blueYonder};
+                      background-color: ${THEME.color.blueYonder25};
+                      border: solid 2px ${THEME.color.blueYonder};
                     }
                   }
                 }
@@ -270,7 +271,7 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
           }
 
           &.rs-check-item-focus {
-            background-color: ${p.theme.color.blueYonder25};
+            background-color: ${THEME.color.blueYonder25};
 
             > .rs-checkbox-checker {
               > label {
@@ -283,19 +284,19 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
             background-color: transparent;
 
             &.rs-check-item-focus {
-              background-color: ${p.theme.color.blueYonder25};
+              background-color: ${THEME.color.blueYonder25};
             }
 
             > .rs-checkbox-checker {
               > label {
-                color: ${p.theme.color.gunMetal};
+                color: ${THEME.color.gunMetal};
                 font-weight: 500;
 
                 > .rs-checkbox-control {
                   > .rs-checkbox-inner {
                     &:before {
-                      background-color: ${p.theme.color.charcoal};
-                      border: solid 2px ${p.theme.color.charcoal};
+                      background-color: ${THEME.color.charcoal};
+                      border: solid 2px ${THEME.color.charcoal};
                     }
                   }
                 }
@@ -304,17 +305,17 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
 
             &:hover,
             &._hover {
-              background-color: ${p.theme.color.blueYonder25};
+              background-color: ${THEME.color.blueYonder25};
 
               > .rs-checkbox-checker {
                 > label {
-                  color: ${p.theme.color.blueYonder};
+                  color: ${THEME.color.blueYonder};
 
                   > .rs-checkbox-control {
                     > .rs-checkbox-inner {
                       &:before {
-                        background-color: ${p.theme.color.blueYonder};
-                        border: solid 2px ${p.theme.color.blueYonder};
+                        background-color: ${THEME.color.blueYonder};
+                        border: solid 2px ${THEME.color.blueYonder};
                       }
                     }
                   }
@@ -337,7 +338,7 @@ export const StyledRsuitePickerBox = styled.div<CommonPickerFieldStyleProps>`
     ${p => p.$isReadOnly && `cursor: default !important;`}
   }
 
-  ${p => getCheckPickerInputCss(p)}
+  ${getCheckPickerInputCss()}
 
   ${p => getCheckPickerMenuCss(p)}
 `
