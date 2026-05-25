@@ -11,8 +11,13 @@ updates:
 
   - package-ecosystem: 'npm'
     directory: '/'
+    cooldown:
+      default-days: 30
+      semver-patch-days: 3
+      semver-minor-days: 7
+      semver-major-days: 30
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
     allow:
       - dependency-type: 'direct'
     versioning-strategy: increase
@@ -35,8 +40,13 @@ updates:
 
   - package-ecosystem: 'npm'
     directory: '/e2e/release/sample'
+    cooldown:
+      default-days: 30
+      semver-patch-days: 3
+      semver-minor-days: 7
+      semver-major-days: 30
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
     allow:
       - dependency-type: 'direct'
     versioning-strategy: increase
@@ -45,7 +55,13 @@ updates:
       prefix: 'build(dev-deps)'
       prefix-development: 'build(dev-deps)'
     labels: ['tech. enhancement']
-    groups:
-      all-non-major-dependencies:
-        update-types: ['minor', 'patch']
     rebase-strategy: 'disabled'
+    groups:
+      non-major-dependencies:
+        applies-to: version-updates
+        dependency-type: production
+        update-types: ['minor', 'patch']
+      non-major-dev-dependencies:
+        applies-to: version-updates
+        dependency-type: development
+        update-types: ['minor', 'patch']
