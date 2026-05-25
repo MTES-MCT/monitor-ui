@@ -29,7 +29,7 @@ jobs:
 
       - name: Publish
         id: publish
-        uses: chromaui/action@v13
+        uses: chromaui/action@v17
         with:
           buildScriptName: 'build:storybook'
           externals: src/assets/**
