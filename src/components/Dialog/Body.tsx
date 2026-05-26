@@ -5,6 +5,7 @@ export const Body = styled.div<{
 }>`
   background-color: ${p => p.theme.color.white};
   display: flex;
+  font-size: 16px;
   flex-direction: column;
   max-height: 250px;
   overflow-y: auto;
