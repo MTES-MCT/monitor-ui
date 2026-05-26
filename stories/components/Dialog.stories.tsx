@@ -31,7 +31,7 @@ export default meta
 export function _Dialog(props: DialogProps) {
   return (
     <Dialog {...props}>
-      <Dialog.Title onClose={noop} title="Dialog Title" />
+      <Dialog.Title onClose={noop}>Dialog Title</Dialog.Title>
       <Dialog.Body>
         <p>Dialog body with large content</p>
         <DateRangePicker label="Date Range" name="dateRange" />
