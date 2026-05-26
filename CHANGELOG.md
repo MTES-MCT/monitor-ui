@@ -1,3 +1,31 @@
+## [24.51.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.50.1...v24.51.0) (2026-05-26)
+
+### Features
+
+* **components:** update Dialog component ([d2b6f83](https://github.com/MTES-MCT/monitor-ui/commit/d2b6f83a5f4d801d196d0659cd4d475f438c0d19))
+
+### Bug Fixes
+
+* **components:** can add children in title ([5d18af6](https://github.com/MTES-MCT/monitor-ui/commit/5d18af63d27560c6d12fed3044a0c1a39e75c191))
+* **components:** update Dialog.Title to consider title as children ([bade645](https://github.com/MTES-MCT/monitor-ui/commit/bade645291421839c9383da904468c2b019c189d))
+* **libs:** disabled dependabot auto-rebase ([986a64a](https://github.com/MTES-MCT/monitor-ui/commit/986a64a9b1faa7e5b2d1454769f0552e0b839abb))
+
+### Buid System & Dependencies
+
+* **deps:** bump the non-major-dependencies group across 1 directory with 2 updates ([62754e6](https://github.com/MTES-MCT/monitor-ui/commit/62754e62b89fd7738196726f8314da1869371248))
+* **deps:** fix errors ([39f5e1a](https://github.com/MTES-MCT/monitor-ui/commit/39f5e1a554110bdf8c3272aafb7615f4f4d7ad1f))
+* **deps:** update dependabot config ([babb4c5](https://github.com/MTES-MCT/monitor-ui/commit/babb4c5509e8f204f1a4b7963ff0fbb4dafcf652))
+* **deps:** updates github actions versions ([175c380](https://github.com/MTES-MCT/monitor-ui/commit/175c380ad8b2de2df964c80f2d863bea4ffc5f3f))
+* **deps:** updates lodash-es, vite and post css dependencies ([7573470](https://github.com/MTES-MCT/monitor-ui/commit/75734701246fbe1d11972d3dd416f24dd942ff0e))
+* **dev-deps:** bump eslint-plugin-mocha from 10.5.0 to 11.2.0 ([6048a56](https://github.com/MTES-MCT/monitor-ui/commit/6048a56bc3b78a00d79fc134c6e95b7cc3879501))
+* **dev-deps:** bump glob from 11.0.3 to 12.0.0 ([4010918](https://github.com/MTES-MCT/monitor-ui/commit/40109188edd16b7393eeb1635307f51e6a6fb5d2))
+* **dev-deps:** bump glob from 12.0.0 to 13.0.6 ([35712f9](https://github.com/MTES-MCT/monitor-ui/commit/35712f9449d9db2b1a44338b93f9168b473fdecf))
+* **dev-deps:** bump storybook from 9.1.5 to 9.1.19 ([404ad2d](https://github.com/MTES-MCT/monitor-ui/commit/404ad2d5a0be06c97cf5e7b8addd99f1b480a70c))
+* **dev-deps:** bump the non-major-dependencies group ([4be95d9](https://github.com/MTES-MCT/monitor-ui/commit/4be95d90f38cbf9e335d04155abb901c1f80dd0a))
+* **dev-deps:** bump the non-major-dev-dependencies group ([d2be6a0](https://github.com/MTES-MCT/monitor-ui/commit/d2be6a0bdc53881a3b7d5308c2f348a1c2cb1b56))
+* **dev-deps:** bump the non-major-dev-dependencies group with 38 updates ([6a7bb27](https://github.com/MTES-MCT/monitor-ui/commit/6a7bb277f4246d6864ab805f0b2e63f54af596b9))
+* **dev-deps:** bump vite-tsconfig-paths in /e2e/release/sample ([993c7d1](https://github.com/MTES-MCT/monitor-ui/commit/993c7d195c4038edf234599d83556832583abb04))
+
 ## [24.50.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.50.0...v24.50.1) (2026-05-21)
 
 ### Bug Fixes
