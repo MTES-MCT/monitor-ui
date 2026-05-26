@@ -1,3 +1,9 @@
+## [24.51.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.51.0...v24.51.1) (2026-05-26)
+
+### Bug Fixes
+
+* **components:** dialog component - fix font-size for body ([5bcd0fc](https://github.com/MTES-MCT/monitor-ui/commit/5bcd0fce3686a7be776d193901786318c58133ee))
+
 ## [24.51.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.50.1...v24.51.0) (2026-05-26)
 
 ### Features
