@@ -1,6 +1,7 @@
 export * as Icon from './icons'
 
 export enum Accent {
+  CAUTION = 'CAUTION',
   ERROR = 'ERROR',
   PRIMARY = 'PRIMARY',
   SECONDARY = 'SECONDARY',
