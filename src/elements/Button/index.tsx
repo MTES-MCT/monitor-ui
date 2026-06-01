@@ -82,6 +82,8 @@ export function Button({
       return <WarningButton {...commonProps} />
     case Accent.ERROR:
       return <ErrorButton {...commonProps} />
+    case Accent.CAUTION:
+      return <CautionButton {...commonProps} />
     default:
       return <PrimaryButton {...commonProps} />
   }
@@ -189,6 +191,45 @@ const ErrorButton = styled(BaseButton)`
     color: ${p => p.theme.color.lightGray};
     > * {
       color: ${p => p.theme.color.lightGray};
+    }
+  }
+`
+
+const CautionButton = styled(BaseButton)`
+  background-color: ${p => p.theme.color.maximumRed};
+  border: 1px solid ${p => p.theme.color.maximumRed};
+  color: ${p => p.theme.color.white};
+  > * {
+    color: ${p => p.theme.color.white};
+  }
+
+  &:hover,
+  &._hover {
+    background-color: #b4000c;
+    border: 1px solid #b4000c;
+    color: ${p => p.theme.color.white};
+    > * {
+      color: ${p => p.theme.color.white};
+    }
+  }
+
+  &:active,
+  &._active {
+    background-color: ${p => p.theme.color.maximumRed15};
+    border: 1px solid ${p => p.theme.color.maximumRed15};
+    color: ${p => p.theme.color.maximumRed};
+    > * {
+      color: ${p => p.theme.color.maximumRed};
+    }
+  }
+
+  &:disabled,
+  &._disabled {
+    background-color: ${p => p.theme.color.lightGray};
+    border: 1px solid ${p => p.theme.color.lightGray};
+    color: ${p => p.theme.color.white};
+    > * {
+      color: ${p => p.theme.color.white};
     }
   }
 `
