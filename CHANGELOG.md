@@ -1,3 +1,9 @@
+## [24.52.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.51.1...v24.52.0) (2026-06-01)
+
+### Features
+
+* **elements:** create caution button ([9160699](https://github.com/MTES-MCT/monitor-ui/commit/9160699da7fdb20640390622c77084969a63c6a3))
+
 ## [24.51.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.51.0...v24.51.1) (2026-05-26)
 
 ### Bug Fixes
