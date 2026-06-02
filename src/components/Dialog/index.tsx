@@ -56,9 +56,8 @@ const Window = styled.div<{
 }>`
   border-radius: 2px;
   bottom: 100px;
-  max-width: 32rem;
   position: ${p => (p.$isAbsolute ? 'absolute' : 'fixed')};
-  width: calc(100% - 2 * 8px);
+  max-width: calc(100% - 2 * 48px);
   z-index: 1;
   @media (min-width: 740px) {
     bottom: auto;

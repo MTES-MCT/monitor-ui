@@ -18,7 +18,6 @@ const Wrapper = styled.div<{ $withTitle: boolean }>`
   background-color: ${p => p.theme.color.charcoal};
   color: ${p => p.theme.color.white};
   display: flex;
-
   justify-content: ${p => (p.$withTitle ? 'space-between' : 'flex-end')};
   padding: 8px 11px 8px 16px;
   h4 {
