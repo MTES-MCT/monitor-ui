@@ -1,3 +1,9 @@
+## [24.52.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.52.0...v24.52.1) (2026-06-02)
+
+### Bug Fixes
+
+* **components:** fix Dialog width ([1c98223](https://github.com/MTES-MCT/monitor-ui/commit/1c982234a8bbd85b3fe82b83cf351c6fc122b456))
+
 ## [24.52.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.51.1...v24.52.0) (2026-06-01)
 
 ### Features
