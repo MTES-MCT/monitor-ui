@@ -15,7 +15,6 @@ import { getRsuiteDataItemValueFromOptionValue } from '../utils/getRsuiteDataIte
 import { normalizeString } from '../utils/normalizeString'
 
 import type { Option, OptionValueType } from '../types/definitions'
-import type { ValueType } from 'rsuite/esm/Radio'
 import type { Promisable } from 'type-fest'
 
 export type MultiRadioProps<OptionValue extends OptionValueType = string> = {
@@ -78,7 +77,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   const rsuiteData = useMemo(() => getRsuiteDataItemsFromOptions(options, optionValueKey), [options, optionValueKey])
 
   const handleChange = useCallback(
-    (nextRsuiteDataItemValue: ValueType, _event: SyntheticEvent<Element, Event>) => {
+    (nextRsuiteDataItemValue: string | number, _event: SyntheticEvent<Element, Event>) => {
       if (!onChange || readOnly) {
         return
       }

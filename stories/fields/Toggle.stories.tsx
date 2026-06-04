@@ -49,7 +49,7 @@ const meta: Meta<ToggleProps> = {
     generateStoryDecorator({
       box: { width: 640 },
       withBackgroundButton: true,
-      withPseudoStateButtons: { targetSelector: '.rs-toggle-presentation' }
+      withPseudoStateButtons: { targetSelector: '.rs-toggle-track' }
     })
   ]
 }

@@ -21,16 +21,7 @@ import type { SelectType } from '@types_/commonTypes'
 
 export type MultiSelectProps<OptionValue extends OptionValueType = string> = Omit<
   TagPickerProps,
-  | 'as'
-  | 'container'
-  | 'data'
-  | 'defaultValue'
-  | 'id'
-  | 'onChange'
-  | 'onSearch'
-  | 'renderMenuItem'
-  | 'value'
-  | 'valueKey'
+  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'onSearch' | 'renderOption' | 'value' | 'valueKey'
 > &
   SelectType<OptionValue>
 
@@ -171,7 +162,7 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
             onChange={handleChange}
             onSearch={handleSearch}
             readOnly={readOnly}
-            renderMenuItem={customRenderMenuItem ?? renderMenuItem}
+            renderOption={customRenderMenuItem ?? renderMenuItem}
             searchable={!!customSearch || searchable}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
             // that's why we send this "always true" filter to disable Rsuite TagPicker internal search filtering
@@ -194,7 +185,8 @@ const Box = styled(StyledRsuitePickerBox)`
     color: ${p => p.theme.color.slateGray};
   }
 
-  > .rs-picker-toggle-wrapper:not(.rs-picker-disabled) {
+  > .rs-picker-toggle-wrapper:not(.rs-picker-disabled):not([data-disabled='true']),
+  > .rs-picker:not(.rs-picker-disabled):not([data-disabled='true']) {
     > [role='combobox'] {
       height: 100%;
       min-height: 30px;

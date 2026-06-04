@@ -1,5 +1,5 @@
 import type { TreeOption } from './types'
-import type { ValueType } from 'rsuite/esm/CheckTreePicker'
+import type { ValueType } from 'rsuite/esm/CheckTreePicker/CheckTreePicker'
 
 export function getOptionsWithLazyChildren(
   options: TreeOption[],

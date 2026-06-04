@@ -72,7 +72,6 @@ const StyledRsuiteRadio = styled(RsuiteRadio)<CommonChoiceFieldStyleProps>`
 
   > .rs-radio-checker {
     min-height: unset;
-    padding: 0 0 0 24px;
 
     > label {
       /* TODO Check that with Adeline. */

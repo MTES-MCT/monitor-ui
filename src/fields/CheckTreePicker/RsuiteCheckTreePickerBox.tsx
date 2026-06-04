@@ -81,14 +81,17 @@ export const RsuiteCheckTreePickerBox = styled.div<RsuiteCheckTreePickerBoxProps
       }
 
       .rs-check-tree-node {
-        ${p => p.$isSelect && `&:has(.rs-checkbox-checked) { background-color: ${p.theme.color.blueYonder25}; }`}
+        ${p =>
+          p.$isSelect &&
+          `&:has(.rs-checkbox-checked), &:has([data-checked=true]) { background-color: ${p.theme.color.blueYonder25}; }`}
 
         &:hover {
           background-color: ${p => p.theme.color.blueYonder25};
         }
       }
 
-      .rs-check-tree-node-focus {
+      .rs-check-tree-node-focus,
+      .rs-check-tree-node:focus {
         background-color: ${p => p.theme.color.blueYonder25} !important;
       }
 
@@ -138,7 +141,17 @@ export const RsuiteCheckTreePickerBox = styled.div<RsuiteCheckTreePickerBoxProps
         > .rs-check-item {
           /** !important because it's override by determinate checkbox **/
 
-          &.rs-checkbox-indeterminate {
+          .rs-checkbox-checker {
+            line-height: 1;
+            min-height: 36px;
+            padding-bottom: 10px;
+            padding-left: 36px;
+            padding-top: 10px;
+            position: relative;
+          }
+
+          &.rs-checkbox-indeterminate,
+          &[data-checked='mixed'] {
             &:hover {
               .rs-checkbox-inner {
                 ${p => p.$isSelect && 'display: none;'}
@@ -161,7 +174,8 @@ export const RsuiteCheckTreePickerBox = styled.div<RsuiteCheckTreePickerBoxProps
             }
           }
 
-          &.rs-checkbox-disabled {
+          &.rs-checkbox-disabled,
+          &[data-disabled='true'] {
             &:hover {
               background-color: transparent !important;
             }
@@ -237,7 +251,8 @@ export const RsuiteCheckTreePickerBox = styled.div<RsuiteCheckTreePickerBoxProps
             }
           }
 
-          &.rs-checkbox-checked {
+          &.rs-checkbox-checked,
+          &[data-checked='true'] {
             &.rs-check-item-focus {
               background-color: ${p => p.theme.color.blueYonder25} !important;
             }
@@ -290,7 +305,7 @@ export const RsuiteCheckTreePickerBox = styled.div<RsuiteCheckTreePickerBoxProps
               > label {
                 .rs-checkbox-label {
                   width: 100%;
-                  padding-left: ${p => (p.$hasThreeLevels ? 14 : 20)}px;
+                  padding-left: ${p => (p.$hasThreeLevels ? 14 : 0)}px;
                 }
               }
             }

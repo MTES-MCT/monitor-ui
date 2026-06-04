@@ -20,7 +20,7 @@ import type { SelectType } from '@types_/commonTypes'
 
 export type CheckPickerProps<OptionValue extends OptionValueType = string> = Omit<
   RsuiteCheckPickerProps<string>,
-  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderMenuItem' | 'value' | 'valueKey'
+  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderOption' | 'value' | 'valueKey'
 > &
   SelectType<OptionValue>
 
@@ -149,7 +149,7 @@ export function CheckPicker<OptionValue extends OptionValueType = string>({
           onExit={handleExit}
           onSearch={handleSearch}
           readOnly={readOnly}
-          renderMenuItem={renderMenuItem}
+          renderOption={renderMenuItem}
           searchable={!!customSearch || searchable}
           // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
           // that's why we send this "always true" filter to disable Rsuite CheckPicker internal search filtering

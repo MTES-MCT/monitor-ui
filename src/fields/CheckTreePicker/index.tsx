@@ -43,12 +43,12 @@ import {
 import { getFormattedNodePath } from './utils/getNodePath'
 
 import type { TreeOption } from './types'
-import type { ValueType } from 'rsuite/esm/CheckTreePicker'
+import type { ValueType } from 'rsuite/esm/CheckTreePicker/CheckTreePicker'
 import type { Promisable } from 'type-fest'
 
 export type CheckTreePickerProps = Omit<
   RsuiteCheckTreePickerProps,
-  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderMenuItem' | 'value'
+  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderOption' | 'value'
 > & {
   customSearch?: CustomSearch
   customSearchMinQueryLength?: number

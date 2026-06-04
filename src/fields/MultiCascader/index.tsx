@@ -27,7 +27,7 @@ import type { Promisable } from 'type-fest'
 
 export type MultiCascaderProps<OptionValue extends OptionValueType = string> = Omit<
   RsuiteMultiCascaderProps,
-  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderMenuItem' | 'value'
+  'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderTreeNode' | 'value'
 > & {
   error?: string | undefined
   isErrorMessageHidden?: boolean | undefined
@@ -141,7 +141,7 @@ export function MultiCascader<OptionValue extends OptionValueType = string>({
             id={originalProps.name}
             onChange={handleChange as any}
             readOnly={readOnly}
-            renderMenuItem={renderMenuItem}
+            renderTreeNode={renderMenuItem}
             searchable={searchable}
             value={selectedTreePositions}
             {...originalProps}

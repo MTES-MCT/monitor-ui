@@ -214,7 +214,7 @@ export function Search<OptionValue extends OptionValueType = string>({
               handleSelect(nextValue, nextOption)
             }}
             readOnly={readOnly}
-            renderMenuItem={renderMenuItem as any}
+            renderOption={renderMenuItem as any}
             value={query}
             {...originalProps}
           />

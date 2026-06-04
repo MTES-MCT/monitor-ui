@@ -21,7 +21,7 @@ import { getRsuiteDataItemsFromOptions } from '../utils/getRsuiteDataItemsFromOp
 import { getRsuiteDataItemValueFromOptionValue } from '../utils/getRsuiteDataItemValueFromOptionValue'
 import { normalizeString } from '../utils/normalizeString'
 
-import type { ItemDataType } from 'rsuite/esm/internals/types'
+import type { Option as RsuiteOption } from 'rsuite/esm/internals/types/picker'
 import type { Promisable } from 'type-fest'
 
 export type SelectProps<OptionValue extends OptionValueType = string> = Omit<
@@ -122,7 +122,7 @@ export function Select<OptionValue extends OptionValueType = string>({
   )
 
   const renderMenuItem = useCallback(
-    (itemLabel: React.ReactNode, item: ItemDataType) => {
+    (itemLabel: React.ReactNode, item: RsuiteOption) => {
       if (originalProps.renderMenuItem) {
         return originalProps.renderMenuItem(itemLabel, item)
       }
@@ -183,10 +183,10 @@ export function Select<OptionValue extends OptionValueType = string>({
             disabledItemValues={disabledItemValues}
             onChange={handleChange}
             onSearch={handleSearch}
-            // `as any` because we customized `ItemDataType` type by adding `optionValue`,
+            // `as any` because we customized `RsuiteOption` type by adding `optionValue`,
             // which generates an optional vs required type conflict
             readOnly={readOnly}
-            renderMenuItem={renderMenuItem}
+            renderOption={renderMenuItem}
             searchable={!!customSearch || searchable}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
             // that's why we send this "always true" filter to disable Rsuite SelectPicker internal search filtering

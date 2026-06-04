@@ -3,7 +3,7 @@
  */
 
 import type { OptionValueType } from './definitions'
-import type { InputItemDataType } from 'rsuite/esm/InputPicker'
+import type { Option as RsuiteOption } from 'rsuite/esm/internals/types/picker'
 
 /**
  * Since Rsuite restricts the `value` property of `ItemDataType` (equivalent to `Option`) to `string | number`,
@@ -12,7 +12,7 @@ import type { InputItemDataType } from 'rsuite/esm/InputPicker'
  * @internal
  */
 export type RsuiteDataItem<OptionValue extends OptionValueType = string> = Omit<
-  InputItemDataType<string>,
+  RsuiteOption<string>,
   'children' | 'label' | 'value'
 > & {
   children?: never
@@ -35,7 +35,7 @@ export type RsuiteDataItem<OptionValue extends OptionValueType = string> = Omit<
 export type RsuiteTreeItem<OptionValue extends OptionValueType = string> =
   | RsuiteTreeLeaf<OptionValue>
   | RsuiteTreeBranch<OptionValue>
-interface RsuiteTreeBase extends Omit<InputItemDataType<string>, 'children' | 'label' | 'value'> {
+interface RsuiteTreeBase extends Omit<RsuiteOption<string>, 'children' | 'label' | 'value'> {
   isDisabled?: boolean
   label: string
   /** Position in the tree path. Example: "0", "0-2", "1-1-3", etc. */
