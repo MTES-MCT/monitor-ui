@@ -1,3 +1,9 @@
+## [24.52.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.52.1...v24.52.2) (2026-06-08)
+
+### Bug Fixes
+
+* **components:** fix Dialog max-height ([5b34004](https://github.com/MTES-MCT/monitor-ui/commit/5b340043859cdd194f36ae3334f33e37a0cc7f0b))
+
 ## [24.52.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.52.0...v24.52.1) (2026-06-02)
 
 ### Bug Fixes
