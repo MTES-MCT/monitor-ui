@@ -8,7 +8,7 @@ export function Title({ children, onClose }: { children?: string | React.ReactNo
   return (
     <Wrapper $withTitle={!!children}>
       {isString ? <h4>{children}</h4> : children}
-      {onClose && <IconButton Icon={Icon.Close} onClick={onClose} />}
+      {onClose && <IconButton Icon={Icon.Close} onClick={onClose} title="Fermer" />}
     </Wrapper>
   )
 }
