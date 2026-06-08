@@ -7,7 +7,7 @@ export const Body = styled.div<{
   display: flex;
   font-size: 16px;
   flex-direction: column;
-  max-height: 280px;
+  max-height: 60vh;
   overflow-y: auto;
   padding: 24px 24px 0px 24px;
 
