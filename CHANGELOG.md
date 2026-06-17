@@ -1,3 +1,9 @@
+## [24.53.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.52.3...v24.53.0) (2026-06-17)
+
+### Features
+
+* **icons:** add crossed fishery icon ([db8e980](https://github.com/MTES-MCT/monitor-ui/commit/db8e98085060964c5158cc5a6f7c5cead5d43260))
+
 ## [24.52.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.52.2...v24.52.3) (2026-06-08)
 
 ### Bug Fixes
