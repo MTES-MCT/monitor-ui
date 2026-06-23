@@ -1,3 +1,9 @@
+## [24.54.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.53.0...v24.54.0) (2026-06-23)
+
+### Features
+
+* **icons:** add new icons ([3052cc8](https://github.com/MTES-MCT/monitor-ui/commit/3052cc86cb4df33a54dbbbea9e803a15331c6752))
+
 ## [24.53.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.52.3...v24.53.0) (2026-06-17)
 
 ### Features
