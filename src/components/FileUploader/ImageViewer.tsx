@@ -63,12 +63,7 @@ export function ImageViewer({ currentIndex, images, isSideWindow = false, onClos
 
         <Content>
           <Slide>
-            {images[localCurrentIndex]?.type.includes('images/') && (
-              <StyledImage alt={images[localCurrentIndex]?.name} src={images[localCurrentIndex]?.image} />
-            )}
-            {images[localCurrentIndex]?.type.includes('application/pdf') && (
-              <iframe src={images[localCurrentIndex]?.image} title={images[localCurrentIndex]?.name} />
-            )}
+            <StyledImage alt={images[localCurrentIndex]?.name} src={images[localCurrentIndex]?.image} />
           </Slide>
         </Content>
         {images.length > 1 && (

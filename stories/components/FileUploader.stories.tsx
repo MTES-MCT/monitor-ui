@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
-import { FileUploader, UploadMode, useFieldControl } from '../../src'
+import { FileUploader as FileUploaderComponent, UploadMode, useFieldControl } from '../../src'
 
 import type { FileUploaderProps } from '../../src/components/FileUploader/FileUploader'
 import type { FileApi } from '../../src/components/FileUploader/types'
@@ -13,7 +13,7 @@ const meta: Meta<FileUploaderProps> = {
   ...META_DEFAULTS,
 
   title: 'Components/FileUploader',
-  component: FileUploader,
+  component: FileUploaderComponent,
 
   argTypes: {
     mode: ARG_TYPE.OPTIONAL_UPLOAD_MODE
@@ -34,7 +34,7 @@ const meta: Meta<FileUploaderProps> = {
 
 export default meta
 
-export function _FileUploader(props: FileUploaderProps) {
+export function FileUploader(props: FileUploaderProps) {
   const [, setOutputValue] = useState<FileApi[] | undefined | '∅'>('∅')
 
   const { controlledOnChange, controlledValue } = useFieldControl(props.files, setOutputValue)
@@ -48,7 +48,7 @@ export function _FileUploader(props: FileUploaderProps) {
 
   return (
     <>
-      <FileUploader
+      <FileUploaderComponent
         files={controlledValue}
         mode={props.mode}
         onDelete={nextFiles => controlledOnChange(nextFiles)}
