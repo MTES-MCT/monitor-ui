@@ -170,13 +170,6 @@ export function FileUploader({
   )
 }
 
-const Text = styled.p<{ $hasError: boolean }>`
-  color: ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.slateGray)};
-  font-style: italic;
-  margin-bottom: 4px;
-  margin-top: 4px;
-`
-
 const Wrapper = styled.div`
   padding: 16px 20px;
 `
@@ -199,6 +192,15 @@ const LoadFileZone = styled.div<{ $isDragging: boolean }>`
     $isDragging &&
     `background-color: ${theme.color.blueYonder25}; border-color: ${theme.color.blueGray}; border-width: 1px;`}
   padding: 16px 20px;
+  font-size: 13px;
+`
+
+const Text = styled.p<{ $hasError: boolean }>`
+  color: ${p => (p.$hasError ? p.theme.color.maximumRed : p.theme.color.slateGray)};
+  font-style: italic;
+  margin-bottom: 4px;
+  margin-top: 4px;
+  font-size: 11px;
 `
 
 const Underline = styled.span`

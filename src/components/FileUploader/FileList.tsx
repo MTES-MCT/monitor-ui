@@ -44,7 +44,7 @@ export function FileList({ files, onDelete }: FileListProps) {
             </span>
             <IconButton
               accent={Accent.TERTIARY}
-              Icon={Icon.Close}
+              Icon={Icon.Attachment}
               onClick={() => onDelete(index)}
               style={{ marginLeft: 'auto' }}
             />
