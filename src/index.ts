@@ -94,7 +94,6 @@ export { Dot } from './symbols/Dot'
 /* -----------------------------------------------------------------------------
   Constants
 */
-
 export {
   Accent,
   Icon,
@@ -106,6 +105,7 @@ export {
   TagBullet,
   WSG84_PROJECTION
 } from './constants'
+export type { UploadMode } from './constants'
 
 /* -----------------------------------------------------------------------------
   Entities
@@ -286,3 +286,8 @@ export type { CustomSearchKey, CustomSearchOptions } from './libs/CustomSearch'
 
 export type { DataTableProps } from './tables/DataTable'
 export type { RowCheckboxProps } from './tables/TableWithSelectableRows/RowCheckbox'
+
+export { FileUploader } from './components/FileUploader/FileUploader'
+export { FileList } from './components/FileUploader/FileList'
+export { FilePreview } from './components/FileUploader/FilePreview'
+export { ImageViewer } from './components/FileUploader/ImageViewer'
