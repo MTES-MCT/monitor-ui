@@ -24,9 +24,9 @@ export function FilePreview({ files, isSideWindow = false, onDelete }: FilePrevi
   return (
     <>
       <PreviewList>
-        {thumbnails?.map((thumbnail, index) => (
+        {thumbnails?.map(thumbnail => (
           <PreviewImagesContainer key={thumbnail.id ?? thumbnail.name}>
-            <StyledImageButton onClick={() => openFileViewer(index)} type="button">
+            <StyledImageButton onClick={() => openFileViewer(thumbnail.index)} type="button">
               <img
                 alt={thumbnail.name}
                 height="82px"
@@ -37,7 +37,7 @@ export function FilePreview({ files, isSideWindow = false, onDelete }: FilePrevi
             <StyledButton
               accent={Accent.SECONDARY}
               Icon={Icon.Delete}
-              onClick={() => onDelete(index)}
+              onClick={() => onDelete(thumbnail.index)}
               size={Size.SMALL}
             />
           </PreviewImagesContainer>

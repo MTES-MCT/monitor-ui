@@ -6,9 +6,9 @@ export enum Orientation {
 export type Thumbnail = {
   id?: string
   image: string
+  index: number
   name: string
   orientation: Orientation
-  type: string
 }
 
 export type FileApi = {

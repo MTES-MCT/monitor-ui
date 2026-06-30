@@ -74,8 +74,7 @@ describe('utils', () => {
       expect(result[0]).toMatchObject({
         image: `data:image/png;base64,${VALID_BASE64}`,
         name: 'photo.png',
-        orientation: Orientation.LANDSCAPE,
-        type: 'image/png'
+        orientation: Orientation.LANDSCAPE
       })
     })
 
@@ -154,7 +153,6 @@ describe('utils', () => {
       const result = await convertImagesToThumbnails(files, container)
 
       expect(result).toHaveLength(1)
-      expect(result[0]?.type).toBe('application/pdf')
     })
   })
 
