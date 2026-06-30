@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
-import { FileUploader, useFieldControl } from '../../src'
+import { FileUploader, UploadMode, useFieldControl } from '../../src'
 
 import type { FileUploaderProps } from '../../src/components/FileUploader/FileUploader'
 import type { FileApi } from '../../src/components/FileUploader/types'
@@ -20,7 +20,8 @@ const meta: Meta<FileUploaderProps> = {
   },
 
   args: {
-    files: undefined
+    files: undefined,
+    mode: UploadMode.FILES
   },
 
   decorators: [

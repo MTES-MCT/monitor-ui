@@ -105,7 +105,7 @@ export {
   TagBullet,
   WSG84_PROJECTION
 } from './constants'
-export type { UploadMode } from './constants'
+export { UploadMode } from './constants'
 
 /* -----------------------------------------------------------------------------
   Entities
