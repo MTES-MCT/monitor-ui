@@ -1,5 +1,6 @@
-import { Accent, Icon } from '@constants'
+import { Accent, Icon, Size } from '@constants'
 import { IconButton } from '@elements/IconButton'
+import { THEME } from '@theme'
 import styled from 'styled-components'
 
 import type { FileApi } from './types'
@@ -31,25 +32,30 @@ export function FileList({ files, onDelete }: FileListProps) {
   return (
     <StyledFileList>
       {files?.map((file, index) => (
-        <li key={file.id}>
-          <FileItem
-            download={file.name}
-            href={`data:${file.mimeType};base64,${file.content}`}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <Icon.Document />
-            <span>
-              {file.name} <FileSize>{humanFileSize(file.size)}</FileSize>
-            </span>
-            <IconButton
-              accent={Accent.TERTIARY}
-              Icon={Icon.Attachment}
-              onClick={() => onDelete(index)}
-              style={{ marginLeft: 'auto' }}
-            />
-          </FileItem>
-        </li>
+        <FileItem key={file.id}>
+          <Icon.Attachment color={THEME.color.slateGray} />
+          <FileInformation>
+            <Filename
+              download={file.name}
+              href={`data:${file.mimeType};base64,${file.content}`}
+              rel="noopener noreferrer"
+              target="_blank"
+              title={file.name}
+            >
+              {file.name}
+            </Filename>
+            <FileSize>{humanFileSize(file.size)}</FileSize>
+          </FileInformation>
+          <IconButton
+            accent={Accent.TERTIARY}
+            color={THEME.color.slateGray}
+            Icon={Icon.Close}
+            onClick={() => onDelete(index)}
+            size={Size.SMALL}
+            style={{ marginLeft: 'auto' }}
+            title="Supprimer"
+          />
+        </FileItem>
       ))}
     </StyledFileList>
   )
@@ -58,20 +64,35 @@ export function FileList({ files, onDelete }: FileListProps) {
 const StyledFileList = styled.ul`
   display: flex;
   flex-direction: column;
+  font-size: 13px;
   gap: 4px;
   list-style-type: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
 `
 
-const FileItem = styled.a`
+const FileItem = styled.li`
   background: ${p => p.theme.color.gainsboro};
-  color: black;
   display: flex;
   gap: 8px;
   padding: 8px 12px;
 `
+
+const FileInformation = styled.div`
+  align-items: baseline;
+  display: flex;
+  font-size: 13px;
+  min-width: 0;
+`
 const FileSize = styled.span`
+  margin-left: 8px;
   white-space: pre;
   color: ${p => p.theme.color.slateGray};
+`
+
+const Filename = styled.a`
+  color: ${p => p.theme.color.charcoal};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `
