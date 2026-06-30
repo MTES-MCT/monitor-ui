@@ -1,4 +1,4 @@
-import {fromPairs} from 'lodash-es'
+import { fromPairs } from 'lodash-es'
 
 import { getArrayFromEnum } from './utils/getArrayFromEnum'
 import { Accent, Icon, Level, Size, TagBullet } from '../src'
@@ -82,6 +82,15 @@ const ARG_TYPE_TYPED: Meta['argTypes'] = {
     table: {
       type: {
         summary: 'boolean | undefined'
+      }
+    }
+  },
+  OPTIONAL_UPLOAD_MODE: {
+    control: 'radio',
+    options: ['IMAGES', 'DOCUMENTS', 'FILES'],
+    table: {
+      type: {
+        summary: 'UploadMode | undefined'
       }
     }
   },

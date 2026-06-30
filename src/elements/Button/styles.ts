@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export function getPrimaryButtonCss() {
   return css`
@@ -57,3 +57,19 @@ export function getSecondaryButtonCss() {
     }
   `
 }
+
+export const TransparentButton = styled.button.attrs(() => ({
+  type: 'button'
+}))`
+  background: transparent;
+  border: 1px solid transparent;
+
+  &:hover {
+    background: transparent;
+    border: 1px solid transparent;
+  }
+
+  width: 100%;
+  height: 100%;
+  padding: 0;
+`
