@@ -1,7 +1,7 @@
 import { Icon, UploadMode } from '@constants'
-import { TransparentButton } from '@elements/Button/styles'
 import { Label } from '@elements/Label'
 import { useNewWindow } from '@hooks/useNewWindow'
+import { THEME } from '@theme'
 import React, { type ChangeEvent, useEffect, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 
@@ -39,7 +39,10 @@ export function FileUploader({
     setFileText(parameter?.warningMessage)
   }, [parameter?.warningMessage])
 
-  const documents = useMemo(() => files?.filter(file => file.mimeType.includes('application/pdf')), [files])
+  const documents = useMemo(
+    () => files?.map((file, index) => ({ ...file, index })).filter(file => file.mimeType.includes('application/pdf')),
+    [files]
+  )
   const { newWindowContainerRef } = useNewWindow()
 
   const uploadFileDisplay = async (filesToUpload: FileList) => {
@@ -94,7 +97,7 @@ export function FileUploader({
   }
 
   const deleteFile = (indexToRemove: number) => {
-    const updatedFiles = (files ?? []).filter((__, index) => index !== indexToRemove)
+    const updatedFiles = (files ?? []).filter((_, index) => index !== indexToRemove)
     areFilesValid(updatedFiles.length, setFileText, mode)
     onDelete(updatedFiles)
   }
@@ -143,12 +146,11 @@ export function FileUploader({
     >
       <Label>{parameter?.title}</Label>
       <Container>
-        <LoadFileZone $isDragging={isDragging}>
+        <LoadFileZone $isDragging={isDragging} onClick={() => inputRef.current?.click()}>
           <Icon.Download />
-          <TransparentButton onClick={() => inputRef.current?.click()}>
+          <span>
             <Underline>Charger</Underline> ou <Underline>glisser-déposer</Underline> {parameter?.suffixMessage}
-          </TransparentButton>
-
+          </span>
           <input
             ref={inputRef}
             accept={parameter?.acceptedFiles}
@@ -180,18 +182,21 @@ const Container = styled.div`
   gap: 8px;
 `
 
-const LoadFileZone = styled.div<{ $isDragging: boolean }>`
+const LoadFileZone = styled.button<{ $isDragging: boolean }>`
   align-items: center;
-  border-width: 1px;
-  border-style: dashed;
+  background: ${THEME.color.white};
+  border: 1px dashed ${THEME.color.charcoal};
   display: flex;
   flex-direction: column;
+  padding: 16px 20px;
   gap: 6px;
   justify-content: center;
   ${({ $isDragging, theme }) =>
-    $isDragging &&
-    `background-color: ${theme.color.blueYonder25}; border-color: ${theme.color.blueGray}; border-width: 1px;`}
-  padding: 16px 20px;
+    $isDragging && `background-color: ${theme.color.blueYonder25}; border: 1px dashed ${theme.color.blueGray};`}
+  &:hover {
+    background-color: ${THEME.color.blueYonder25};
+    border: 1px dashed ${THEME.color.blueGray};
+  }
   font-size: 13px;
 `
 

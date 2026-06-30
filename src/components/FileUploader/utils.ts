@@ -20,15 +20,11 @@ function isValidBase64(str: string): boolean {
   const tail = str.slice(-1000)
   const base64Pattern = /^[A-Za-z0-9+/]*={0,2}$/
 
-  if (!base64Pattern.test(head) || !base64Pattern.test(tail)) {
-    return false
-  }
-
-  return true
+  return !(!base64Pattern.test(head) || !base64Pattern.test(tail))
 }
 export async function convertImagesToThumbnails(files: FileApi[], ref: HTMLElement): Promise<Thumbnail[]> {
   const processedImages = await Promise.all(
-    files.map(async file => {
+    files.map(async (file, index) => {
       try {
         const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/webp', 'application/pdf']
         if (!allowedMimeTypes.includes(file.mimeType)) {
@@ -48,9 +44,9 @@ export async function convertImagesToThumbnails(files: FileApi[], ref: HTMLEleme
 
         return {
           image: base64Image,
+          index,
           name: file.name,
-          orientation: naturalWidth > naturalHeight ? Orientation.LANDSCAPE : Orientation.PORTRAIT,
-          type: file.mimeType
+          orientation: naturalWidth > naturalHeight ? Orientation.LANDSCAPE : Orientation.PORTRAIT
         }
       } catch (error) {
         return undefined

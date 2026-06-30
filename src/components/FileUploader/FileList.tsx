@@ -5,8 +5,10 @@ import styled from 'styled-components'
 
 import type { FileApi } from './types'
 
+type FileWithIndex = FileApi & { index: number }
+
 type FileListProps = {
-  files: FileApi[] | undefined
+  files: FileWithIndex[] | undefined
   onDelete: (index: number) => void
 }
 
@@ -31,7 +33,7 @@ export function FileList({ files, onDelete }: FileListProps) {
 
   return (
     <StyledFileList>
-      {files?.map((file, index) => (
+      {files?.map(file => (
         <FileItem key={file.id}>
           <Icon.Attachment color={THEME.color.slateGray} />
           <FileInformation>
@@ -50,7 +52,7 @@ export function FileList({ files, onDelete }: FileListProps) {
             accent={Accent.TERTIARY}
             color={THEME.color.slateGray}
             Icon={Icon.Close}
-            onClick={() => onDelete(index)}
+            onClick={() => onDelete(file.index)}
             size={Size.SMALL}
             style={{ marginLeft: 'auto' }}
             title="Supprimer"
