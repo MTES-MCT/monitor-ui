@@ -1,3 +1,12 @@
+## [24.55.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.54.0...v24.55.0) (2026-07-01)
+
+### Features
+
+* **components:** add ellipsis to file name and clean up ([2c6559f](https://github.com/MTES-MCT/monitor-ui/commit/2c6559f268705aa126a4e34a31a92ec44a3d246c))
+* **components:** create FileUploader component ([61865ba](https://github.com/MTES-MCT/monitor-ui/commit/61865ba91afb4e4559bd2c01264e37b8e8947853))
+* **components:** fix delete by index. clean Thumbnail type ([3b36bd5](https://github.com/MTES-MCT/monitor-ui/commit/3b36bd53e79af1b7b61e57307339a5651834a52e))
+* **icons:** add Attachment.svg ([2a11112](https://github.com/MTES-MCT/monitor-ui/commit/2a111124d00120436ff18521ce4e711ff7bde63a))
+
 ## [24.54.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.53.0...v24.54.0) (2026-06-23)
 
 ### Features
