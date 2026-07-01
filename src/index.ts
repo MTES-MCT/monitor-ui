@@ -179,6 +179,7 @@ export { pluralize } from './utils/pluralize'
 export { sortCollectionByLocalizedProps } from './utils/sortCollectionByLocalizedProps'
 export { stopMouseEventPropagation } from './utils/stopMouseEventPropagation'
 export { undefine } from './utils/undefine'
+export { convertImagesToThumbnails } from './components/FileUploader/utils'
 
 /* -----------------------------------------------------------------------------
   Type Definitions
