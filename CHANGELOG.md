@@ -1,3 +1,9 @@
+## [24.55.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.55.0...v24.55.1) (2026-07-01)
+
+### Bug Fixes
+
+* **components:** change padding and add classname to overrided default style ([5a4ac95](https://github.com/MTES-MCT/monitor-ui/commit/5a4ac95638994adc995d7a06cd52a838822741cc))
+
 ## [24.55.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.54.0...v24.55.0) (2026-07-01)
 
 ### Features
