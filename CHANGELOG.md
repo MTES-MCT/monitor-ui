@@ -1,3 +1,9 @@
+## [24.55.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.55.1...v24.55.2) (2026-07-01)
+
+### Bug Fixes
+
+* **components:** remove wrapper padding and export hook ([9796ab6](https://github.com/MTES-MCT/monitor-ui/commit/9796ab60f61ff0ca1252d088fc911ffc0b55b037))
+
 ## [24.55.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.55.0...v24.55.1) (2026-07-01)
 
 ### Bug Fixes
