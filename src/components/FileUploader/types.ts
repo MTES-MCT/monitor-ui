@@ -18,8 +18,3 @@ export type FileApi = {
   name: string
   size: number
 }
-
-export type Link = {
-  linkText?: string
-  linkUrl?: string
-}
