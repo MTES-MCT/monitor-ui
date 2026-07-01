@@ -1,3 +1,9 @@
+## [24.55.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.55.2...v24.55.3) (2026-07-01)
+
+### Bug Fixes
+
+* **components:** export convertImagesToThumbnails ([bf1519d](https://github.com/MTES-MCT/monitor-ui/commit/bf1519db24be1f58d15750c7830b19926ace06c3))
+
 ## [24.55.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.55.1...v24.55.2) (2026-07-01)
 
 ### Bug Fixes
