@@ -133,6 +133,7 @@ export { useKey } from './hooks/useKey'
 export { NewWindowContext, useNewWindow } from './hooks/useNewWindow'
 export { usePressEscapeEffect } from './hooks/usePressEscapeEffect'
 export { usePrevious } from './hooks/usePrevious'
+export { useFileConverter } from './components/FileUploader/hook/useFileConverter'
 
 /* -----------------------------------------------------------------------------
   Librairies
@@ -214,6 +215,10 @@ export type { SingleTagProps } from './elements/SingleTag'
 export type { MessageProps } from './components/Message'
 export type { BannerProps } from './components/Banner'
 export type { TooltipProps } from './components/Tooltip'
+export { FileUploader } from './components/FileUploader/FileUploader'
+export { FileList } from './components/FileUploader/FileList'
+export { FilePreview } from './components/FileUploader/FilePreview'
+export { ImageViewer } from './components/FileUploader/ImageViewer'
 
 export type { AccentInsensitiveHighlightProps } from './elements/AccentInsensitiveHighlight'
 export type { ButtonProps } from './elements/Button'
@@ -286,8 +291,3 @@ export type { CustomSearchKey, CustomSearchOptions } from './libs/CustomSearch'
 
 export type { DataTableProps } from './tables/DataTable'
 export type { RowCheckboxProps } from './tables/TableWithSelectableRows/RowCheckbox'
-
-export { FileUploader } from './components/FileUploader/FileUploader'
-export { FileList } from './components/FileUploader/FileList'
-export { FilePreview } from './components/FileUploader/FilePreview'
-export { ImageViewer } from './components/FileUploader/ImageViewer'
