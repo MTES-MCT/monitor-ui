@@ -140,7 +140,7 @@ export function FileUploader({
   }
 
   return (
-    <Wrapper
+    <div
       className={className}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
@@ -171,13 +171,9 @@ export function FileUploader({
           <FilePreview files={files} isSideWindow={isSideWindow} onDelete={index => deleteFile(index)} />
         )}
       </Container>
-    </Wrapper>
+    </div>
   )
 }
-
-const Wrapper = styled.div`
-  padding: 20px;
-`
 
 const Container = styled.div`
   display: flex;
