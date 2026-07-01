@@ -12,15 +12,17 @@ import { areFilesValid, compressImage, createInMemoryImage, fileToBase64, getUpl
 import type { FileApi } from './types'
 
 export type FileUploaderProps = {
+  className?: string
   files: FileApi[] | undefined
   isSideWindow?: boolean
-  mode: UploadMode
+  mode?: UploadMode | undefined
   onDelete: (files: FileApi[]) => void
   onError: (error: string) => void
   onUpload: (files: FileApi[]) => void
 }
 
 export function FileUploader({
+  className,
   files,
   isSideWindow = false,
   mode = UploadMode.IMAGES,
@@ -139,6 +141,7 @@ export function FileUploader({
 
   return (
     <Wrapper
+      className={className}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDragOver={handleDragOver}
@@ -173,7 +176,7 @@ export function FileUploader({
 }
 
 const Wrapper = styled.div`
-  padding: 16px 20px;
+  padding: 20px;
 `
 
 const Container = styled.div`
