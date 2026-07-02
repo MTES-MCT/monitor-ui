@@ -1,3 +1,9 @@
+## [24.55.4](https://github.com/MTES-MCT/monitor-ui/compare/v24.55.3...v24.55.4) (2026-07-02)
+
+### Bug Fixes
+
+* **components:** export types ([de4c952](https://github.com/MTES-MCT/monitor-ui/commit/de4c95252f19893030a1a6ce4923121f1c4ec8ea))
+
 ## [24.55.3](https://github.com/MTES-MCT/monitor-ui/compare/v24.55.2...v24.55.3) (2026-07-01)
 
 ### Bug Fixes
