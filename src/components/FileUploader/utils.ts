@@ -7,8 +7,8 @@ export const IMAGES_WIDTH_PORTRAIT = '57px'
 export const IMAGES_INFORMATIONS_TEXT = '5 photos maximum. Formats autorisés: jpeg, png, webp'
 export const FILES_INFORMATIONS_TEXT = '5 fichiers maximum. Formats autorisés: jpeg, png, webp, pdf'
 export const DOCS_INFORMATIONS_TEXT = '5 documents maximum. Formats autorisés: pdf'
-const IMAGES_INFORMATIONS_LIMIT_MAX_ERROR = "Vous avez atteint le nombre maximum d'images"
-const IMAGES_INFORMATIONS_REACHED_LIMIT_ERROR = 'Vous ne pouvez charger que 5 images au total'
+const IMAGES_INFORMATIONS_LIMIT_MAX_ERROR = 'Vous avez atteint le nombre maximum de fichiers'
+const IMAGES_INFORMATIONS_REACHED_LIMIT_ERROR = 'Vous ne pouvez charger que 5 fichiers au total'
 
 function isValidBase64(str: string): boolean {
   if (str.length % 4 !== 0) {

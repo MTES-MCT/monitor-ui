@@ -203,7 +203,7 @@ describe('utils', () => {
       const result = areFilesValid(6, callback)
 
       expect(result).toBe(false)
-      expect(callback).toHaveBeenCalledWith('Vous ne pouvez charger que 5 images au total')
+      expect(callback).toHaveBeenCalledWith('Vous ne pouvez charger que 5 fichiers au total')
     })
 
     it('returns true and calls the callback with the max-reached error when count === 5', () => {
@@ -212,7 +212,7 @@ describe('utils', () => {
       const result = areFilesValid(5, callback)
 
       expect(result).toBe(true)
-      expect(callback).toHaveBeenCalledWith("Vous avez atteint le nombre maximum d'images")
+      expect(callback).toHaveBeenCalledWith('Vous avez atteint le nombre maximum de fichiers')
     })
 
     it('returns false without calling the callback when none is provided (count > 5, count != 5)', () => {
