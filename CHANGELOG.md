@@ -1,3 +1,9 @@
+## [24.55.5](https://github.com/MTES-MCT/monitor-ui/compare/v24.55.4...v24.55.5) (2026-07-06)
+
+### Bug Fixes
+
+* **components:** do not upload if mode != mime type ([a335ecf](https://github.com/MTES-MCT/monitor-ui/commit/a335ecfc76bc7296cc791707b2f19706625de247))
+
 ## [24.55.4](https://github.com/MTES-MCT/monitor-ui/compare/v24.55.3...v24.55.4) (2026-07-02)
 
 ### Bug Fixes
