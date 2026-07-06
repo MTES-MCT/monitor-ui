@@ -53,7 +53,7 @@ export function FileUploader({
       try {
         await Promise.all(
           Array.from(filesToUpload).map(async file => {
-            if (file.type.startsWith('image/')) {
+            if ((mode === UploadMode.FILES || mode === UploadMode.IMAGES) && file.type.startsWith('image/')) {
               const { container, img } = createInMemoryImage(
                 isSideWindow ? newWindowContainerRef.current : document.body,
                 file
@@ -72,7 +72,11 @@ export function FileUploader({
               }
 
               compressedImages.push(compressedImageForApi)
-            } else {
+            }
+            if (
+              (mode === UploadMode.DOCUMENTS || mode === UploadMode.FILES) &&
+              file.type.startsWith('application/pdf')
+            ) {
               const content = await fileToBase64(file)
               compressedImages.push({
                 content,
