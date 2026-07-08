@@ -191,7 +191,7 @@ const LoadFileZone = styled.button<{ $isDragging: boolean }>`
   border: 1px dashed ${THEME.color.charcoal};
   display: flex;
   flex-direction: column;
-  padding: 16px 20px;
+  padding: 16px 12px;
   gap: 6px;
   justify-content: center;
   ${({ $isDragging, theme }) =>
