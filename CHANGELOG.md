@@ -1,3 +1,9 @@
+## [24.55.6](https://github.com/MTES-MCT/monitor-ui/compare/v24.55.5...v24.55.6) (2026-07-08)
+
+### Bug Fixes
+
+* **components:** modify internal padding ([2ba134b](https://github.com/MTES-MCT/monitor-ui/commit/2ba134bf27379d6168171037432baf7c60354398))
+
 ## [24.55.5](https://github.com/MTES-MCT/monitor-ui/compare/v24.55.4...v24.55.5) (2026-07-06)
 
 ### Bug Fixes
