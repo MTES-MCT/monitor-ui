@@ -116,6 +116,7 @@ const StyledRsuiteInput = styled(RsuiteInput)<CommonFieldStyleProps>`
   width: 100%;
   min-width: 100%;
   max-width: 100%;
+  box-sizing: border-box;
 
   &::placeholder {
     color: ${getFieldPlaceholderColorFactoryForState('default')};
