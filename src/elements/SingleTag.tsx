@@ -39,7 +39,7 @@ export function SingleTag({ accent = Accent.PRIMARY, children, className, onDele
       return (
         <Box className={controlledClassName} {...nativeProps}>
           <PrimaryText>{children}</PrimaryText>
-          <PrimaryIconButton aria-label="Supprimer ce tag" onClick={handleDelete}>
+          <PrimaryIconButton aria-label="Supprimer ce tag" onClick={handleDelete} type="button">
             <Close size={10} />
           </PrimaryIconButton>
         </Box>
