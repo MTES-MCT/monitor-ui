@@ -1,3 +1,9 @@
+## [24.56.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.55.6...v24.56.0) (2026-07-13)
+
+### Features
+
+* **components:** delete button as button ([b4662dc](https://github.com/MTES-MCT/monitor-ui/commit/b4662dc76324ac5e57b623be68a4a76afc6bcfa3))
+
 ## [24.55.6](https://github.com/MTES-MCT/monitor-ui/compare/v24.55.5...v24.55.6) (2026-07-08)
 
 ### Bug Fixes
