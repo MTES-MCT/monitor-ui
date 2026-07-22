@@ -38,7 +38,8 @@ import {
   getTreeOptionsBySelectedValues,
   hasThreeLevels,
   mergeResultsByParent,
-  toRsuiteValue
+  toRsuiteValue,
+  getSearchResultsTree
 } from './utils'
 import { getFormattedNodePath } from './utils/getNodePath'
 
@@ -128,8 +129,9 @@ export function CheckTreePicker({
 
   useEffect(() => {
     if (isSearchable) {
-      setControlledOptions(optionsWithIds)
+      runSearch(searchKeyword)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [optionsWithIds, isSearchable])
 
   const localCustomSearch = useMemo(
@@ -174,41 +176,43 @@ export function CheckTreePicker({
     return nextRsuiteValue
   }, [childrenKey, isMultiSelect, optionsWithIds, value, valueKey, labelKey])
 
+  const runSearch = useCallback(
+    (nextQuery: string) => {
+      if (!localCustomSearch || nextQuery.trim().length < customSearchMinQueryLength) {
+        setControlledOptions(optionsWithIds)
+
+        return
+      }
+
+      const searchResults = localCustomSearch.find(nextQuery)
+      const foundValues = searchResults.map(option => option[valueKey] as string | number)
+      const foundOptions = getSearchResultsTree(foundValues, optionsWithIds, childrenKey, valueKey, labelKey)
+        .map(item => {
+          const children = item?.[childrenKey] as TreeOption[] | undefined
+
+          return !children || children.length === 0
+            ? { [labelKey]: item?.[labelKey], [valueKey]: item?.[valueKey] }
+            : item
+        })
+        .filter((result): result is TreeOption => result !== undefined)
+
+      const selectedOptions =
+        fromRsuiteValue(rsuiteValue ?? [], optionsWithIds, false, childrenKey, valueKey, labelKey) ?? []
+      const merged = mergeResultsByParent([...foundOptions, ...selectedOptions], childrenKey, valueKey, labelKey)
+      setControlledOptions(merged)
+    },
+    [childrenKey, customSearchMinQueryLength, labelKey, localCustomSearch, optionsWithIds, rsuiteValue, valueKey]
+  )
+
   const debouncedSearch = useMemo(
     () =>
       debounce((nextQuery: string) => {
         startTransition(() => {
           setSearchKeyword(nextQuery)
-
-          if (!localCustomSearch || nextQuery.trim().length < customSearchMinQueryLength) {
-            setControlledOptions(optionsWithIds)
-
-            return
-          }
-
-          const searchResults = localCustomSearch.find(nextQuery)
-          const foundValues = searchResults.map(option => option[valueKey] as string | number)
-          const foundOptions = (
-            fromRsuiteValue(foundValues, optionsWithIds, false, childrenKey, valueKey, labelKey) ?? []
-          )
-            .map(item => {
-              const children = item?.[childrenKey] as TreeOption[] | undefined
-
-              return !children || children.length === 0
-                ? { [labelKey]: item?.[labelKey], [valueKey]: item?.[valueKey] }
-                : item
-            })
-            .filter((result): result is TreeOption => result !== undefined)
-
-          // Add all selected values to the results
-          const selectedOptions =
-            fromRsuiteValue(rsuiteValue ?? [], optionsWithIds, false, childrenKey, valueKey, labelKey) ?? []
-          const merged = mergeResultsByParent([...foundOptions, ...selectedOptions], childrenKey, valueKey, labelKey)
-
-          setControlledOptions(merged)
+          runSearch(nextQuery)
         })
       }, 150),
-    [childrenKey, customSearchMinQueryLength, labelKey, localCustomSearch, optionsWithIds, rsuiteValue, valueKey]
+    [runSearch]
   )
 
   const handleSearch = useCallback(
