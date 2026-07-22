@@ -310,7 +310,11 @@ export function CheckTreePicker({
         return item[labelKey] as React.ReactNode
       }
 
-      return <AccentInsensitiveHighlight label={item[labelKey]} query={searchKeyword} />
+      return (
+        <span title={item[labelKey]}>
+          <AccentInsensitiveHighlight label={item[labelKey]} query={searchKeyword} />
+        </span>
+      )
     },
     [labelKey, searchKeyword]
   )
@@ -506,6 +510,14 @@ const IconExpander = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+  /* Its containing rsuite element (.rs-tree-node-custom-icon) collapses to 0x0, so this
+   * absolutely positioned box escapes to the whole row. Without this, it silently intercepts
+   * hover/click on the row's label too, blocking the label's title tooltip. */
+  pointer-events: none;
+
+  > * {
+    pointer-events: auto;
+  }
 `
 
 const Wrapper = styled.div`
