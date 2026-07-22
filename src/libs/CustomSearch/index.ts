@@ -18,7 +18,6 @@ export class CustomSearch<T extends AnyObject = AnyObject> {
   #isDiacriticSensitive: boolean
   /** See {@link CustomSearchOptions.isStrict}. */
   #isStrict: boolean
-  #childrenKey?: keyof T
 
   constructor(
     collection: T[],
@@ -59,7 +58,6 @@ export class CustomSearch<T extends AnyObject = AnyObject> {
     )
     this.#isDiacriticSensitive = isDiacriticSensitive
     this.#isStrict = isStrict
-    this.#childrenKey = childrenKey
 
     this.#originalCollection = flatOriginalCollection
 
@@ -102,43 +100,11 @@ export class CustomSearch<T extends AnyObject = AnyObject> {
           .join(' ')
       : normalizedQuery
 
-    if (!this.#childrenKey) {
-      return this.#fuse
-        .search(extendedQuery, limit ? { limit } : undefined)
-        .map(({ refIndex }) => this.#originalCollection[refIndex] as T)
-    }
-
-    // Tree collection: recursive filter
-    return this.#recursiveFilter(this.#originalCollection, extendedQuery, limit)
-  }
-
-  /**
-   * Recursively filters tree nodes based on the search.
-   */
-  #recursiveFilter(nodes: T[], extendedQuery: string, limit?: number): T[] {
-    return nodes
-      .map(node => {
-        const children = this.#childrenKey ? (node[this.#childrenKey] as T[] | undefined) : undefined
-
-        let matchedChildren: T[] | undefined
-        if (children && Array.isArray(children)) {
-          matchedChildren = this.#recursiveFilter(children, extendedQuery)
-        }
-
-        const isNodeMatched = this.#fuse
-          .search(extendedQuery, limit ? { limit } : undefined)
-          .some(result => this.#originalCollection[result.refIndex] === node)
-
-        if (isNodeMatched || (matchedChildren && matchedChildren.length > 0)) {
-          return {
-            ...node,
-            ...(matchedChildren ? { [this.#childrenKey!]: matchedChildren } : {})
-          }
-        }
-
-        return undefined
-      })
-      .filter((n): n is T => n !== undefined)
+    // `#originalCollection` is already flattened (every tree level pushed as its own entry),
+    // so a single search over it covers every level without a per-node recursive re-search.
+    return this.#fuse
+      .search(extendedQuery, limit ? { limit } : undefined)
+      .map(({ refIndex }) => this.#originalCollection[refIndex] as T)
   }
 
   #flattenCollection(collection: T[], childrenKey: keyof T): T[] {
