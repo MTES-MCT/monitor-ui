@@ -310,7 +310,11 @@ export function CheckTreePicker({
         return item[labelKey] as React.ReactNode
       }
 
-      return <AccentInsensitiveHighlight label={item[labelKey]} query={searchKeyword} />
+      return (
+        <span title={item[labelKey]}>
+          <AccentInsensitiveHighlight label={item[labelKey]} query={searchKeyword} />
+        </span>
+      )
     },
     [labelKey, searchKeyword]
   )
