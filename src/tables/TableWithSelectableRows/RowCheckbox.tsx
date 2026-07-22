@@ -4,8 +4,6 @@ import { type ChangeEvent, type HTMLProps, useCallback } from 'react'
 import { type CheckboxProps as RsuiteCheckboxProps } from 'rsuite'
 import styled from 'styled-components'
 
-import type { ValueType } from 'rsuite/esm/Checkbox'
-
 export type RowCheckboxProps = Omit<RsuiteCheckboxProps, 'onClick' | 'onChange'> & {
   // TODO Maybe replace that with a `((isChecked: boolean) => Promisable<void>) | undefined` for consistency with other boolean fields?
   onChange?: ((event: ChangeEvent<HTMLInputElement>) => void) | undefined
@@ -13,7 +11,7 @@ export type RowCheckboxProps = Omit<RsuiteCheckboxProps, 'onClick' | 'onChange'>
 
 export function RowCheckbox({ onChange, ...nativeProps }: RowCheckboxProps & HTMLProps<HTMLInputElement>) {
   const handleOnChange = useCallback(
-    (_value: ValueType | undefined, _checked: boolean, event: ChangeEvent<HTMLInputElement>) => {
+    (_value: string | number | undefined, _checked: boolean, event: ChangeEvent<HTMLInputElement>) => {
       if (onChange) {
         onChange(event)
       }
@@ -37,7 +35,8 @@ const RestyledRsuiteCheckbox = styled(StyledRsuiteCheckbox)`
   vertical-align: top;
 
   > .rs-checkbox-checker,
-  &.rs-checkbox-indeterminate > .rs-checkbox-checker {
+  &.rs-checkbox-indeterminate > .rs-checkbox-checker,
+  &[data-checked='mixed'] > .rs-checkbox-checker {
     padding: 0;
 
     > label {

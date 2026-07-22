@@ -29,6 +29,7 @@
 
   /* text */
   --rs-text-primary: var(--gunMetal);
+  --rs-text-disabled: var(--lightGray);
 
   /* btn vars */
   --rs-btn-primary-text: var(--white);
@@ -71,26 +72,33 @@
   --rs-toggle-checked-bg: var(--charcoal);
   --rs-toggle-checked-hover-bg: var(--gunMetal);
 
+  /* Calendar */
+  --rs-calendar-cell-selected-hover-bg: var(--blue-gray);
+  --rs-bg-active: var(--blue-gray);
+  --rs-calendar-border-radius: 0;
+
+  --rs-radio-group-spacing: 0;
+
   /* Inputs outlines */
   --rs-state-focus-outline: 0 !important;
 }
 
 /* Tags */
 
-.rs-tag-default {
+.rs-tag {
   font-weight: 500;
 }
 
-.rs-tag-closable.rs-tag-md {
-  padding-right: 32px;
+.rs-tag:has(.rs-tag-icon-close)[data-size=md] {
+  padding-inline-end: 32px;
 }
 
-.rs-tag-md {
+.rs-tag[data-size=md] {
   font-size: 13px;
   line-height: 18px;
   border-radius: 0px;
-  padding-top: 1px;
-  padding-bottom: 3px;
+  padding-block-start: 1px;
+  padding-block-end: 3px;
 }
 
 /* */
@@ -132,13 +140,13 @@
   background: var(--lightGray);
   border: unset;
   top: -6px;
-  margin-left: -5px;
+  margin-inline-start: -5px;
   width: 16px;
   height: 16px;
 }
 
 .rs-slider-graduator {
-  margin-left: -5px;
+  margin-inline-start: -5px;
   margin-top: -10px;
 }
 
@@ -162,7 +170,7 @@
 
 .rs-modal-full .rs-modal-dialog {
   width: 100%;
-  margin-left: 0;
+  margin-inline-start: 0;
 }
 
 .rs-modal-content {
@@ -178,8 +186,8 @@
 }
 
 .rs-modal-header {
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
+  border-start-start-radius: 2px;
+  border-start-end-radius: 2px;
   padding: 5px 14px 8px 14px;
   background: var(--charcoal);
 }
@@ -192,8 +200,8 @@
 
 .rs-modal-header-close {
   background: unset;
-  right: 10px !important;
-  top: 9px !important;
+  inset-inline-end: 10px !important;
+  inset-block-start: 9px !important;
   font-size: 15px !important;
   color: var(--gainsboro) !important;
 }

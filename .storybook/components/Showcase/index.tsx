@@ -25,6 +25,7 @@ const Box = styled.div`
   > h2:not(:first-child),
   > h3:not(:first-child) {
     margin-top: 32px;
+    line-height: 42px;
   }
 `
 

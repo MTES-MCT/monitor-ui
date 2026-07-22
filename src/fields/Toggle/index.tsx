@@ -93,7 +93,7 @@ const StyledToggle = styled(RsuiteToggle)<CommonChoiceFieldStyleProps>`
     user-select: none;
   }
 
-  > .rs-toggle-presentation {
+  > .rs-toggle-track {
     background-color: ${getToggleBackgroundColorFactoryForState('default')} !important;
     border: 1px solid ${getToggleBorderColorFactoryForState('default')};
     height: 16px;
@@ -144,8 +144,9 @@ const StyledToggle = styled(RsuiteToggle)<CommonChoiceFieldStyleProps>`
     }
   }
 
-  &.rs-toggle-checked {
-    .rs-toggle-presentation {
+  &.rs-toggle-checked,
+  &[data-checked='true'] {
+    .rs-toggle-track {
       &:after {
         margin-left: -13px;
       }

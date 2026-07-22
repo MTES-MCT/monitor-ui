@@ -41,15 +41,40 @@ const getSearchInputCss = () => css`
 `
 export const getCheckPickerInputCss = () => css`
   > .rs-picker-toggle-wrapper,
+  > .rs-picker,
+  > .rs-picker-toggle,
   > .rs-auto-complete {
     background-color: transparent;
     border: 0;
     /* Remove focus ring (TagPicker) */
     box-shadow: none;
+    outline: none;
     width: 100%;
 
-    &.rs-picker-disabled {
+    &.rs-picker-disabled,
+    &[data-disabled='true'] {
       opacity: 1;
+    }
+
+    /* v6 TagPicker: border is on root .rs-picker[data-picker=tag], not on the toggle */
+    &[data-picker='tag'] {
+      background-color: ${getFieldBackgroundColorFactory()} !important;
+      border: solid 1px ${getFieldBorderColorFactoryForState('default')} !important;
+      border-radius: 0;
+      box-shadow: none;
+      outline: none;
+      font-size: 13px;
+      min-height: 30px;
+
+      &:hover {
+        border: solid 1px ${getFieldBorderColorFactoryForState('hover')} !important;
+      }
+
+      &:focus-within,
+      &[data-focus='true'] {
+        border: solid 1px ${getFieldBorderColorFactoryForState('focus')} !important;
+        outline: none;
+      }
     }
 
     > [role='combobox'] {
@@ -58,10 +83,12 @@ export const getCheckPickerInputCss = () => css`
       border-radius: 0;
       /* Remove focus ring (Select) */
       box-shadow: none;
+      outline: none;
       font-size: 13px;
       min-height: 30px;
       line-height: 1.3846;
-      padding: 3.5px 40px 3.5px 8px !important;
+      padding: 3.5px 8px !important;
+      width: 100%;
 
       &:hover,
       &._hover {
@@ -81,7 +108,8 @@ export const getCheckPickerInputCss = () => css`
       &._active,
       &:focus,
       &._focus,
-      &.rs-picker-toggle-active {
+      &.rs-picker-toggle-active,
+      &[data-active='true'] {
         border: solid 1px ${getFieldBorderColorFactoryForState('focus')} !important;
 
         > .rs-stack {
@@ -93,7 +121,8 @@ export const getCheckPickerInputCss = () => css`
           }
         }
       }
-      &.rs-picker-toggle-active {
+      &.rs-picker-toggle-active,
+      &[data-active='true'] {
         > .rs-stack {
           > .rs-stack-item {
             > .rs-picker-caret-icon {
@@ -196,6 +225,7 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
       [role='treeitem'] {
         > .rs-picker-select-menu-item {
           color: ${THEME.color.gunMetal};
+          justify-content: flex-start;
           line-height: 1;
           overflow: hidden;
           padding: 8px 8px 11px 8px;
@@ -231,14 +261,13 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
               font-size: 13px !important;
               line-height: 1;
               overflow: hidden;
-              padding: 8.5px 8px 10.5px 36px;
               text-overflow: ellipsis;
               white-space: nowrap;
 
               > .rs-checkbox-control {
                 height: auto;
-                left: 8px;
-                top: 8px !important;
+                left: -4px;
+                top: 4px !important;
 
                 > .rs-checkbox-inner {
                   &:before {
@@ -280,7 +309,8 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
             }
           }
 
-          &.rs-checkbox-checked {
+          &.rs-checkbox-checked,
+          &[data-checked='true'] {
             background-color: transparent;
 
             &.rs-check-item-focus {

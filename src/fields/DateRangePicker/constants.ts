@@ -1,4 +1,4 @@
-import type { DateRangePickerLocale } from 'rsuite'
+import type { DateRangePickerLocale } from 'rsuite/esm/locales'
 
 export const HOURS_AS_OPTIONS = new Array(24).fill(undefined).map((_, index) => ({
   label: String(index).padStart(2, '0'),

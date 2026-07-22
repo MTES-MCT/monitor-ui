@@ -101,6 +101,10 @@ const PrimaryDropdown = styled(RsuiteDropdown as any)<{
     }
   }
 
+  > .rs-dropdown-item {
+    border-radius: 0;
+  }
+
   > .rs-dropdown-menu {
     border-radius: 0;
     padding: 0;

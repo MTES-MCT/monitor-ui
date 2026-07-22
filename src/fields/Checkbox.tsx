@@ -12,7 +12,6 @@ import { normalizeString } from '../utils/normalizeString'
 
 import type { CommonChoiceFieldStyleProps } from './shared/types'
 import type { CheckboxProps as RsuiteCheckboxProps } from 'rsuite'
-import type { ValueType } from 'rsuite/esm/Checkbox'
 import type { Promisable } from 'type-fest'
 
 export type CheckboxProps = Omit<RsuiteCheckboxProps, 'as' | 'checked' | 'defaultChecked' | 'id' | 'onChange'> & {
@@ -67,7 +66,7 @@ export function Checkbox({
   const key = useKey([disabled, name])
 
   const handleChange = useCallback(
-    (_nextValue: ValueType | undefined, isChecked: boolean) => {
+    (_nextValue: string | number | undefined, isChecked: boolean) => {
       if (!onChange) {
         return
       }
@@ -113,10 +112,11 @@ export const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyl
     user-select: none;
   }
 
-  > .rs-checkbox-checker,
-  &.rs-checkbox-indeterminate > .rs-checkbox-checker {
+  .rs-checkbox-checker,
+  &.rs-checkbox-indeterminate > .rs-checkbox-checker,
+  &[data-checked='mixed'] > .rs-checkbox-checker {
     min-height: unset;
-    padding: 0;
+    padding: 0 !important;
 
     ${$p => ($p.$labelPosition === 'right' ? 'padding-left: 24px;' : 'padding-right: 24px;')}
     > label {
@@ -131,7 +131,7 @@ export const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyl
 
       > .rs-checkbox-control {
         ${$p => ($p.$labelPosition === 'right' ? 'left: 0;' : 'left: unset; right: 0;')}
-        top: 2px;
+        //top: 2px;
 
         &:before {
           /* Remove focus ring */

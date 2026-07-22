@@ -17,7 +17,7 @@ import {
 } from '../utils'
 
 import type { TreeOption } from '../types'
-import type { ValueType } from 'rsuite/esm/CheckTreePicker'
+import type { ValueType } from 'rsuite/esm/CheckTreePicker/CheckTreePicker'
 
 describe('getTreeOptionsBySelectedValues', () => {
   const options: TreeOption[] = [

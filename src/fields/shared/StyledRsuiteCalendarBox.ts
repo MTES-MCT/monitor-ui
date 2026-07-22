@@ -34,6 +34,7 @@ const getCalendarTableStyle = () => css`
         > .rs-calendar-table-cell-content {
           align-items: center;
           border-radius: 0;
+          color: ${THEME.color.gunMetal};
           display: flex;
           height: 32px;
           justify-content: center;
@@ -44,9 +45,7 @@ const getCalendarTableStyle = () => css`
             padding: 0 0 2px 0;
           }
         }
-        > .rs-calendar-table-cell-content {
-          color: ${THEME.color.gunMetal};
-        }
+
         &.rs-calendar-table-cell-is-today > .rs-calendar-table-cell-content {
           box-shadow: inset 0 0 0 1px ${THEME.color.blueGray};
         }
@@ -192,71 +191,65 @@ export const StyledRsuiteCalendarBox = styled.div<{
         > .rs-picker-daterange-content > .rs-picker-daterange-calendar-single > .rs-calendar-month-view,
         > .rs-calendar-month-view {
           .rs-calendar-month-dropdown-scroll {
-            > div {
-              > .rs-calendar-month-dropdown-row-wrapper {
-                /* Non-WebKit Firefox Compatibility */
-                scrollbar-color: ${p => p.theme.color.lightGray};
-                scrollbar-width: thin;
+            /* Non-WebKit Firefox Compatibility */
+            scrollbar-color: ${p => p.theme.color.lightGray};
+            scrollbar-width: thin;
 
-                &::-webkit-scrollbar {
-                  -webkit-appearance: none;
+            &::-webkit-scrollbar {
+              -webkit-appearance: none;
+            }
+            &::-webkit-scrollbar:vertical {
+              width: 5px;
+            }
+            &::-webkit-scrollbar-thumb {
+              border: 0;
+              background-color: ${p => p.theme.color.lightGray};
+            }
+            &::-webkit-scrollbar-track {
+              background-color: ${p => p.theme.color.gainsboro};
+            }
+
+            .rs-calendar-month-dropdown-row {
+              border-bottom: solid 1px ${p => p.theme.color.lightGray};
+              padding: 6.5px 0 0 46px;
+
+              > .rs-calendar-month-dropdown-year {
+                color: ${p => p.theme.color.gunMetal};
+                left: 7px;
+                top: 29px;
+
+                &.rs-calendar-month-dropdown-year-active {
+                  color: ${p => p.theme.color.blueGray};
                 }
-                &::-webkit-scrollbar:vertical {
-                  width: 5px;
-                }
-                &::-webkit-scrollbar-thumb {
-                  border: 0;
-                  background-color: ${p => p.theme.color.lightGray};
-                }
-                &::-webkit-scrollbar-track {
-                  background-color: ${p => p.theme.color.gainsboro};
-                }
+              }
 
-                > div {
-                  > .rs-calendar-month-dropdown-row {
-                    border-bottom: solid 1px ${p => p.theme.color.lightGray};
-                    padding: 6.5px 0 0 46px;
+              > .rs-calendar-month-dropdown-list {
+                min-width: unset;
+                width: 168px; /* 28px x 6 */
 
-                    > .rs-calendar-month-dropdown-year {
-                      color: ${p => p.theme.color.gunMetal};
-                      left: 7px;
-                      top: 29px;
+                > .rs-calendar-month-dropdown-cell {
+                  margin: 0 0 4px 0;
 
-                      &.rs-calendar-month-dropdown-year-active {
-                        color: ${p => p.theme.color.blueGray};
-                      }
-                    }
-
-                    > .rs-calendar-month-dropdown-list {
-                      min-width: unset;
-                      width: 168px; /* 28px x 6 */
-
-                      > .rs-calendar-month-dropdown-cell {
-                        margin: 0 0 4px 0;
-
-                        > .rs-calendar-month-dropdown-cell-content {
-                          align-items: center;
-                          border-radius: 0;
-                          color: ${p => p.theme.color.gunMetal};
-                          display: flex;
-                          height: 29px;
-                          justify-content: start;
-                          width: 40px;
-                        }
-                        &:hover > .rs-calendar-month-dropdown-cell-content {
-                          background-color: ${p => p.theme.color.blueYonder25};
-                          color: ${p => p.theme.color.blueYonder};
-                        }
-                        &.rs-calendar-month-dropdown-cell-active > .rs-calendar-month-dropdown-cell-content {
-                          background-color: transparent;
-                          box-shadow: inset 0 0 0 1px ${p => p.theme.color.blueGray};
-                        }
-                        &.disabled > .rs-calendar-month-dropdown-cell-content {
-                          background-color: transparent;
-                          color: ${p => p.theme.color.lightGray};
-                        }
-                      }
-                    }
+                  > .rs-calendar-month-dropdown-cell-content {
+                    align-items: center;
+                    border-radius: 0;
+                    color: ${p => p.theme.color.gunMetal};
+                    display: flex;
+                    height: 29px;
+                    justify-content: start;
+                    width: 40px;
+                  }
+                  &:hover > .rs-calendar-month-dropdown-cell-content {
+                    background-color: ${p => p.theme.color.blueYonder25};
+                    color: ${p => p.theme.color.blueYonder};
+                  }
+                  &.rs-calendar-month-dropdown-cell-active > .rs-calendar-month-dropdown-cell-content {
+                    background-color: transparent;
+                    box-shadow: inset 0 0 0 1px ${p => p.theme.color.blueGray};
+                  }
+                  &.disabled > .rs-calendar-month-dropdown-cell-content {
+                    background-color: transparent;
+                    color: ${p => p.theme.color.lightGray};
                   }
                 }
               }
