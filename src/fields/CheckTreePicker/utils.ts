@@ -108,6 +108,81 @@ export function deepCloneExtensible<T>(obj: T): T {
   return obj
 }
 
+export function getSearchResultsTree(
+  matchedValues: ValueType | undefined,
+  options: TreeOption[],
+  childrenKey: string = 'children',
+  valueKey: string = 'value',
+  labelKey: string = 'label'
+): TreeOption[] {
+  function getOption(option: TreeOption): TreeOption | undefined {
+    const value = option[valueKey] as string | number
+    const children = option[childrenKey] as TreeOption[] | undefined
+    const areSelfMatches = matchedValues?.includes(value)
+
+    // The node itself matches: we keep its entire subtree
+    if (areSelfMatches) {
+      return preserveChildrenStructure(option, false, childrenKey, valueKey, labelKey)
+    }
+
+    if (children && Array.isArray(children) && children.length > 0) {
+      // At least one DIRECT child matches: we keep ALL children
+      const hasDirectMatchingChild = children.some(child => matchedValues?.includes(child[valueKey] as string | number))
+
+      if (hasDirectMatchingChild) {
+        return preserveChildrenStructure(option, false, childrenKey, valueKey, labelKey)
+      }
+
+      // Otherwise we continue searching deeper (e.g., the match is a grandchild)
+      const filteredChildren = children
+        .map(getOption)
+        .filter((childOption): childOption is TreeOption => childOption !== undefined)
+
+      if (filteredChildren.length > 0) {
+        return {
+          [childrenKey]: filteredChildren,
+          [labelKey]: option[labelKey],
+          [valueKey]: value
+        } as TreeOption
+      }
+    }
+
+    return undefined
+  }
+
+  return options.map(getOption).filter((option): option is TreeOption => option !== undefined)
+}
+
+function preserveChildrenStructure(
+  option: TreeOption,
+  isConvertingOriginalValues: boolean = false,
+  childrenKey: string = 'children',
+  valueKey: string | number = 'value',
+  labelKey: string = 'label'
+): TreeOption {
+  const children = option[childrenKey] as TreeOption[] | undefined
+
+  const baseOption: TreeOption = {
+    [labelKey]: option[labelKey],
+    [valueKey]:
+      typeof option[valueKey] === 'string' && isConvertingOriginalValues
+        ? (() => {
+            const stripped = option[valueKey].replace(/_\d+$/, '')
+
+            return /^\d+$/.test(stripped) ? Number(stripped) : stripped
+          })()
+        : option[valueKey]
+  } as TreeOption
+
+  if (children && Array.isArray(children)) {
+    baseOption[childrenKey] = children.map(child =>
+      preserveChildrenStructure(child, isConvertingOriginalValues, childrenKey, valueKey, labelKey)
+    ) as any
+  }
+
+  return baseOption
+}
+
 export function getTreeOptionsBySelectedValues(
   selectedValues: ValueType | undefined,
   options: TreeOption[],
@@ -116,28 +191,6 @@ export function getTreeOptionsBySelectedValues(
   valueKey: string | number = 'value',
   labelKey: string = 'label'
 ): TreeOption[] {
-  function preserveChildrenStructure(option: TreeOption): TreeOption {
-    const children = option[childrenKey] as TreeOption[] | undefined
-
-    const baseOption: TreeOption = {
-      [labelKey]: option[labelKey],
-      [valueKey]:
-        typeof option[valueKey] === 'string' && isConvertingOriginalValues
-          ? (() => {
-              const stripped = option[valueKey].replace(/_\d+$/, '')
-
-              return /^\d+$/.test(stripped) ? Number(stripped) : stripped
-            })()
-          : option[valueKey]
-    } as TreeOption
-
-    if (children && Array.isArray(children)) {
-      baseOption[childrenKey] = children.map(child => preserveChildrenStructure(child)) as any
-    }
-
-    return baseOption
-  }
-
   function getOption(option: TreeOption): TreeOption | undefined {
     const children = option[childrenKey] as TreeOption[] | undefined
 
@@ -163,7 +216,7 @@ export function getTreeOptionsBySelectedValues(
     }
 
     if (selectedValues?.includes(option[valueKey] as string | number)) {
-      return preserveChildrenStructure(option)
+      return preserveChildrenStructure(option, isConvertingOriginalValues, childrenKey, valueKey, labelKey)
     }
 
     return undefined
@@ -327,7 +380,6 @@ export function getOptionsToDisplay(
   valueKey: string = 'value'
 ): TreeOption[] {
   const selectedMap = new Map(selectedOptions.map(opt => [opt[valueKey] as string | number, opt]))
-
   // Build a set of leaf selections - nodes that don't have their children in the selected set
   // These are the actual user selections, not intermediate ancestors
   const leafSelections = new Set<string | number>()
@@ -401,7 +453,6 @@ export function mergeResultsByParent(
   if (items.length === 0) {
     return []
   }
-
   // Group items by their value and collect all their children
   const groupedByValue = new Map<string | number, TreeOption[]>()
 
