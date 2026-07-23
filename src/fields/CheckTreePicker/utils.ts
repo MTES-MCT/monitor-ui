@@ -118,22 +118,33 @@ export function getSearchResultsTree(
   function getOption(option: TreeOption): TreeOption | undefined {
     const value = option[valueKey] as string | number
     const children = option[childrenKey] as TreeOption[] | undefined
-    const areSelfMatches = matchedValues?.includes(value)
-
-    // The node itself matches: we keep its entire subtree
-    if (areSelfMatches) {
+    const hasSelfMatches = matchedValues?.includes(value)
+    if (hasSelfMatches) {
       return preserveChildrenStructure(option, false, childrenKey, valueKey, labelKey)
     }
 
     if (children && Array.isArray(children) && children.length > 0) {
-      // At least one DIRECT child matches: we keep ALL children
       const hasDirectMatchingChild = children.some(child => matchedValues?.includes(child[valueKey] as string | number))
 
       if (hasDirectMatchingChild) {
-        return preserveChildrenStructure(option, false, childrenKey, valueKey, labelKey)
+        const allChildren = children.map(child => {
+          const filteredChild = getOption(child)
+
+          return (
+            filteredChild ?? {
+              [labelKey]: child[labelKey],
+              [valueKey]: child[valueKey]
+            }
+          )
+        })
+
+        return {
+          [childrenKey]: allChildren,
+          [labelKey]: option[labelKey],
+          [valueKey]: value
+        } as TreeOption
       }
 
-      // Otherwise we continue searching deeper (e.g., the match is a grandchild)
       const filteredChildren = children
         .map(getOption)
         .filter((childOption): childOption is TreeOption => childOption !== undefined)
@@ -153,6 +164,16 @@ export function getSearchResultsTree(
   return options.map(getOption).filter((option): option is TreeOption => option !== undefined)
 }
 
+function convertInOriginalValue(option, valueKey, isConvertingOriginalValues) {
+  return typeof option[valueKey] === 'string' && isConvertingOriginalValues
+    ? (() => {
+        const stripped = option[valueKey].replace(/_\d+$/, '')
+
+        return /^\d+$/.test(stripped) ? Number(stripped) : stripped
+      })()
+    : option[valueKey]
+}
+
 function preserveChildrenStructure(
   option: TreeOption,
   isConvertingOriginalValues: boolean = false,
@@ -162,16 +183,10 @@ function preserveChildrenStructure(
 ): TreeOption {
   const children = option[childrenKey] as TreeOption[] | undefined
 
+  const value = convertInOriginalValue(option, valueKey, isConvertingOriginalValues)
   const baseOption: TreeOption = {
     [labelKey]: option[labelKey],
-    [valueKey]:
-      typeof option[valueKey] === 'string' && isConvertingOriginalValues
-        ? (() => {
-            const stripped = option[valueKey].replace(/_\d+$/, '')
-
-            return /^\d+$/.test(stripped) ? Number(stripped) : stripped
-          })()
-        : option[valueKey]
+    [valueKey]: value
   } as TreeOption
 
   if (children && Array.isArray(children)) {
@@ -200,17 +215,12 @@ export function getTreeOptionsBySelectedValues(
         .filter((childOption): childOption is TreeOption => childOption !== undefined) as TreeOption[]
 
       if (filteredChildren.length > 0) {
+        const value = convertInOriginalValue(option, valueKey, isConvertingOriginalValues)
+
         return {
           [childrenKey]: filteredChildren,
           [labelKey]: option[labelKey],
-          [valueKey]:
-            typeof option[valueKey] === 'string' && isConvertingOriginalValues
-              ? (() => {
-                  const stripped = option[valueKey].replace(/_\d+$/, '')
-
-                  return /^\d+$/.test(stripped) ? Number(stripped) : stripped
-                })()
-              : option[valueKey]
+          [valueKey]: value
         } as TreeOption
       }
     }
