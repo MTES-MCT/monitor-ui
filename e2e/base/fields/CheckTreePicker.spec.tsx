@@ -136,7 +136,7 @@ describe('fields/CheckTreePicker', () => {
   it('Should disabled all other options when multi selected is off', () => {
     mountAndWait(
       <StoryBox>
-        <CheckTreePickerStory {...commonProps} isMultiSelect={false} />
+        <CheckTreePickerStory {...commonProps} canSelectMultipleParents={false} />
       </StoryBox>
     )
 
@@ -290,7 +290,8 @@ describe('fields/CheckTreePicker', () => {
             {
               children: [
                 {
-                  label: '27718 – Débarquement de produits de la pêche maritime et de l\'aquaculture marine hors d\'un port désigné',
+                  label:
+                    "27718 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors d'un port désigné",
                   value: 27718
                 }
               ],
@@ -307,24 +308,28 @@ describe('fields/CheckTreePicker', () => {
     it('Should clear selection with isSelect true', () => {
       mountAndWait(
         <StoryBox>
-          <CheckTreePickerStory {...fishingCommonProps} value={[
-            {
-              children: [
-                {
-                  children: [
-                    {
-                      label: '27718 – Débarquement de produits de la pêche maritime et de l\'aquaculture marine hors d\'un port désigné',
-                      value: 27718
-                    }
-                  ],
-                  label: 'Autorisation Débarquement',
-                  value: 'autorisation_debarquement'
-                }
-              ],
-              label: 'Mesures techniques et de conservation',
-              value: 'mesures_techniques_conservation'
-            }
-          ]} />
+          <CheckTreePickerStory
+            {...fishingCommonProps}
+            value={[
+              {
+                children: [
+                  {
+                    children: [
+                      {
+                        label:
+                          "27718 – Débarquement de produits de la pêche maritime et de l'aquaculture marine hors d'un port désigné",
+                        value: 27718
+                      }
+                    ],
+                    label: 'Autorisation Débarquement',
+                    value: 'autorisation_debarquement'
+                  }
+                ],
+                label: 'Mesures techniques et de conservation',
+                value: 'mesures_techniques_conservation'
+              }
+            ]}
+          />
         </StoryBox>
       )
 

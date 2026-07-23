@@ -52,7 +52,7 @@ const meta: Meta<CheckTreePickerProps> = {
     name: 'myCheckTreePicker',
     placeholder: 'Pick some options',
     popupWidth: undefined,
-    isMultiSelect: true,
+    canSelectMultipleParents: true,
     readOnly: false,
     searchable: false,
     virtualized: false,

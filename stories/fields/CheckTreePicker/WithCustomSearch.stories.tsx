@@ -33,6 +33,7 @@ const meta: Meta<CheckTreePickerProps> = {
     readOnly: ARG_TYPE.OPTIONAL_BOOLEAN,
     searchable: ARG_TYPE.BOOLEAN,
     childrenKey: ARG_TYPE.OPTIONAL_STRING,
+    withAllChildrenInResults: ARG_TYPE.OPTIONAL_BOOLEAN,
     value: {
       ...ARG_TYPE.OPTIONAL_OPTION_VALUES
     }
@@ -52,11 +53,12 @@ const meta: Meta<CheckTreePickerProps> = {
     name: 'myCheckTreePicker',
     placeholder: 'Pick some options',
     popupWidth: undefined,
-    isMultiSelect: true,
+    canSelectMultipleParents: true,
     readOnly: false,
     childrenKey: 'subThemes',
     valueKey: 'id',
-    labelKey: 'name'
+    labelKey: 'name',
+    withAllChildrenInResults: true
   },
 
   decorators: [

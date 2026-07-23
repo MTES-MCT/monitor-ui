@@ -38,7 +38,8 @@ import {
   getTreeOptionsBySelectedValues,
   hasThreeLevels,
   mergeResultsByParent,
-  toRsuiteValue
+  toRsuiteValue,
+  getSearchResultsTree
 } from './utils'
 import { getFormattedNodePath } from './utils/getNodePath'
 
@@ -50,6 +51,7 @@ export type CheckTreePickerProps = Omit<
   RsuiteCheckTreePickerProps,
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderMenuItem' | 'value'
 > & {
+  canSelectMultipleParents?: boolean
   customSearch?: CustomSearch
   customSearchMinQueryLength?: number
   error?: string | undefined
@@ -57,7 +59,6 @@ export type CheckTreePickerProps = Omit<
   isLabelHidden?: boolean | undefined
   isLazyLoading?: boolean
   isLight?: boolean | undefined
-  isMultiSelect?: boolean
   isRequired?: boolean | undefined
   isSelect?: boolean | undefined
   isTransparent?: boolean | undefined
@@ -72,9 +73,11 @@ export type CheckTreePickerProps = Omit<
   renderedValue?: string
   shouldShowLabels?: boolean
   value?: TreeOption[] | undefined
+  withAllChildrenInResults?: boolean
 }
 
 export function CheckTreePicker({
+  canSelectMultipleParents = true,
   childrenKey = 'children',
   className,
   customSearch,
@@ -85,7 +88,6 @@ export function CheckTreePicker({
   isLabelHidden = false,
   isLazyLoading = false,
   isLight = false,
-  isMultiSelect = true,
   isRequired = false,
   isSelect = false,
   isTransparent = false,
@@ -103,6 +105,7 @@ export function CheckTreePicker({
   style,
   value,
   valueKey = 'value',
+  withAllChildrenInResults = false,
   ...originalProps
 }: CheckTreePickerProps) {
   // eslint-disable-next-line no-null/no-null
@@ -128,8 +131,9 @@ export function CheckTreePicker({
 
   useEffect(() => {
     if (isSearchable) {
-      setControlledOptions(optionsWithIds)
+      runSearch(searchKeyword)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [optionsWithIds, isSearchable])
 
   const localCustomSearch = useMemo(
@@ -163,52 +167,84 @@ export function CheckTreePicker({
 
   const rsuiteValue = useMemo(() => {
     const nextRsuiteValue = toRsuiteValue(value, optionsWithIds, childrenKey, valueKey)
-    if (!isMultiSelect && nextRsuiteValue) {
+    if (!canSelectMultipleParents && nextRsuiteValue) {
       setDisabledValues(
-        computeDisabledValues(isMultiSelect, nextRsuiteValue, optionsWithIds, childrenKey, valueKey, labelKey)
+        computeDisabledValues(
+          canSelectMultipleParents,
+          nextRsuiteValue,
+          optionsWithIds,
+          childrenKey,
+          valueKey,
+          labelKey
+        )
       )
     } else {
       setDisabledValues([])
     }
 
     return nextRsuiteValue
-  }, [childrenKey, isMultiSelect, optionsWithIds, value, valueKey, labelKey])
+  }, [childrenKey, canSelectMultipleParents, optionsWithIds, value, valueKey, labelKey])
+
+  const runSearch = useCallback(
+    (nextQuery: string) => {
+      if (!localCustomSearch || nextQuery.trim().length < customSearchMinQueryLength) {
+        setControlledOptions(optionsWithIds)
+
+        return
+      }
+
+      const searchResults = localCustomSearch.find(nextQuery)
+      const foundValues = searchResults.map(option => option[valueKey] as string | number)
+      let foundOptions: TreeOption[] = []
+      if (withAllChildrenInResults) {
+        foundOptions = getSearchResultsTree(foundValues, optionsWithIds, childrenKey, valueKey, labelKey)
+      } else {
+        foundOptions = fromRsuiteValue(foundValues, optionsWithIds, false, childrenKey, valueKey, labelKey) ?? []
+      }
+
+      const optionsResult = foundOptions
+        .map(item => {
+          const children = item?.[childrenKey] as TreeOption[] | undefined
+
+          return !children || children.length === 0
+            ? { [labelKey]: item?.[labelKey], [valueKey]: item?.[valueKey] }
+            : item
+        })
+        .filter((result): result is TreeOption => result !== undefined)
+
+      if (isSelect) {
+        setControlledOptions(optionsResult)
+
+        return
+      }
+
+      const selectedOptions =
+        fromRsuiteValue(rsuiteValue ?? [], optionsWithIds, false, childrenKey, valueKey, labelKey) ?? []
+      const merged = mergeResultsByParent([...optionsResult, ...selectedOptions], childrenKey, valueKey, labelKey)
+      setControlledOptions(merged)
+    },
+    [
+      childrenKey,
+      customSearchMinQueryLength,
+      labelKey,
+      localCustomSearch,
+      optionsWithIds,
+      valueKey,
+      rsuiteValue,
+      isSelect,
+      withAllChildrenInResults
+    ]
+  )
 
   const debouncedSearch = useMemo(
     () =>
       debounce((nextQuery: string) => {
         startTransition(() => {
           setSearchKeyword(nextQuery)
-
-          if (!localCustomSearch || nextQuery.trim().length < customSearchMinQueryLength) {
-            setControlledOptions(optionsWithIds)
-
-            return
-          }
-
-          const searchResults = localCustomSearch.find(nextQuery)
-          const foundValues = searchResults.map(option => option[valueKey] as string | number)
-          const foundOptions = (
-            fromRsuiteValue(foundValues, optionsWithIds, false, childrenKey, valueKey, labelKey) ?? []
-          )
-            .map(item => {
-              const children = item?.[childrenKey] as TreeOption[] | undefined
-
-              return !children || children.length === 0
-                ? { [labelKey]: item?.[labelKey], [valueKey]: item?.[valueKey] }
-                : item
-            })
-            .filter((result): result is TreeOption => result !== undefined)
-
-          // Add all selected values to the results
-          const selectedOptions =
-            fromRsuiteValue(rsuiteValue ?? [], optionsWithIds, false, childrenKey, valueKey, labelKey) ?? []
-          const merged = mergeResultsByParent([...foundOptions, ...selectedOptions], childrenKey, valueKey, labelKey)
-
-          setControlledOptions(merged)
+          runSearch(nextQuery)
         })
       }, 150),
-    [childrenKey, customSearchMinQueryLength, labelKey, localCustomSearch, optionsWithIds, rsuiteValue, valueKey]
+    [runSearch]
   )
 
   const handleSearch = useCallback(
