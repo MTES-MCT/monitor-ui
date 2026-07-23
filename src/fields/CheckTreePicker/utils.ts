@@ -119,30 +119,18 @@ export function getSearchResultsTree(
     const value = option[valueKey] as string | number
     const children = option[childrenKey] as TreeOption[] | undefined
     const hasSelfMatches = matchedValues?.includes(value)
+
+    // The node itself matches: we keep its entire subtree
     if (hasSelfMatches) {
       return preserveChildrenStructure(option, false, childrenKey, valueKey, labelKey)
     }
 
     if (children && Array.isArray(children) && children.length > 0) {
+      // At least one DIRECT child matches: we keep ALL children
       const hasDirectMatchingChild = children.some(child => matchedValues?.includes(child[valueKey] as string | number))
 
       if (hasDirectMatchingChild) {
-        const allChildren = children.map(child => {
-          const filteredChild = getOption(child)
-
-          return (
-            filteredChild ?? {
-              [labelKey]: child[labelKey],
-              [valueKey]: child[valueKey]
-            }
-          )
-        })
-
-        return {
-          [childrenKey]: allChildren,
-          [labelKey]: option[labelKey],
-          [valueKey]: value
-        } as TreeOption
+        return preserveChildrenStructure(option, false, childrenKey, valueKey, labelKey)
       }
 
       const filteredChildren = children
