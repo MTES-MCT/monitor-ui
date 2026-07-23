@@ -47,7 +47,7 @@ export function _FormikCheckTreePicker(props: FormikCheckTreePickerProps) {
         key={key}
         initialValues={{
           args: {
-            isMultiSelect: false
+            canSelectMultipleParents: false
           }
         }}
         onSubmit={action('onSubmit')}
@@ -57,7 +57,7 @@ export function _FormikCheckTreePicker(props: FormikCheckTreePickerProps) {
 
           <FormikCheckTreePicker
             {...props}
-            isMultiSelect={false}
+            canSelectMultipleParents={false}
             options={ENV_TAGS(props.childrenKey, props.labelKey, props.valueKey)}
           />
         </>

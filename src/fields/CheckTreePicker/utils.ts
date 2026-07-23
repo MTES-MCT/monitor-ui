@@ -337,14 +337,14 @@ export function toRsuiteValue(
 }
 
 export function computeDisabledValues(
-  isMultiSelect: boolean,
+  canSelectMultipleParents: boolean,
   value: ValueType | undefined,
   options: TreeOption[],
   childrenKey: string = 'children',
   valueKey: string = 'value',
   labelKey: string = 'label'
 ) {
-  if (isMultiSelect) {
+  if (canSelectMultipleParents) {
     return []
   }
 
