@@ -73,6 +73,7 @@ export type CheckTreePickerProps = Omit<
   renderedValue?: string
   shouldShowLabels?: boolean
   value?: TreeOption[] | undefined
+  withAllChildrenInResults?: boolean
 }
 
 export function CheckTreePicker({
@@ -104,6 +105,7 @@ export function CheckTreePicker({
   style,
   value,
   valueKey = 'value',
+  withAllChildrenInResults = false,
   ...originalProps
 }: CheckTreePickerProps) {
   // eslint-disable-next-line no-null/no-null
@@ -186,7 +188,14 @@ export function CheckTreePicker({
 
       const searchResults = localCustomSearch.find(nextQuery)
       const foundValues = searchResults.map(option => option[valueKey] as string | number)
-      const foundOptions = getSearchResultsTree(foundValues, optionsWithIds, childrenKey, valueKey, labelKey)
+      let foundOptions: TreeOption[] = []
+      if (withAllChildrenInResults) {
+        foundOptions = getSearchResultsTree(foundValues, optionsWithIds, childrenKey, valueKey, labelKey)
+      } else {
+        foundOptions = fromRsuiteValue(foundValues, optionsWithIds, false, childrenKey, valueKey, labelKey) ?? []
+      }
+
+      const optionsResult = foundOptions
         .map(item => {
           const children = item?.[childrenKey] as TreeOption[] | undefined
 
@@ -196,12 +205,28 @@ export function CheckTreePicker({
         })
         .filter((result): result is TreeOption => result !== undefined)
 
+      if (isSelect) {
+        setControlledOptions(optionsResult)
+
+        return
+      }
+
       const selectedOptions =
         fromRsuiteValue(rsuiteValue ?? [], optionsWithIds, false, childrenKey, valueKey, labelKey) ?? []
-      const merged = mergeResultsByParent([...foundOptions, ...selectedOptions], childrenKey, valueKey, labelKey)
+      const merged = mergeResultsByParent([...optionsResult, ...selectedOptions], childrenKey, valueKey, labelKey)
       setControlledOptions(merged)
     },
-    [childrenKey, customSearchMinQueryLength, labelKey, localCustomSearch, optionsWithIds, rsuiteValue, valueKey]
+    [
+      childrenKey,
+      customSearchMinQueryLength,
+      labelKey,
+      localCustomSearch,
+      optionsWithIds,
+      valueKey,
+      rsuiteValue,
+      isSelect,
+      withAllChildrenInResults
+    ]
   )
 
   const debouncedSearch = useMemo(
