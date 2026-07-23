@@ -51,6 +51,7 @@ export type CheckTreePickerProps = Omit<
   RsuiteCheckTreePickerProps,
   'as' | 'container' | 'data' | 'defaultValue' | 'id' | 'onChange' | 'renderMenuItem' | 'value'
 > & {
+  canSelectMultipleParents?: boolean
   customSearch?: CustomSearch
   customSearchMinQueryLength?: number
   error?: string | undefined
@@ -58,7 +59,6 @@ export type CheckTreePickerProps = Omit<
   isLabelHidden?: boolean | undefined
   isLazyLoading?: boolean
   isLight?: boolean | undefined
-  isMultiSelect?: boolean
   isRequired?: boolean | undefined
   isSelect?: boolean | undefined
   isTransparent?: boolean | undefined
@@ -77,6 +77,7 @@ export type CheckTreePickerProps = Omit<
 }
 
 export function CheckTreePicker({
+  canSelectMultipleParents = true,
   childrenKey = 'children',
   className,
   customSearch,
@@ -87,7 +88,6 @@ export function CheckTreePicker({
   isLabelHidden = false,
   isLazyLoading = false,
   isLight = false,
-  isMultiSelect = true,
   isRequired = false,
   isSelect = false,
   isTransparent = false,
@@ -167,16 +167,23 @@ export function CheckTreePicker({
 
   const rsuiteValue = useMemo(() => {
     const nextRsuiteValue = toRsuiteValue(value, optionsWithIds, childrenKey, valueKey)
-    if (!isMultiSelect && nextRsuiteValue) {
+    if (!canSelectMultipleParents && nextRsuiteValue) {
       setDisabledValues(
-        computeDisabledValues(isMultiSelect, nextRsuiteValue, optionsWithIds, childrenKey, valueKey, labelKey)
+        computeDisabledValues(
+          canSelectMultipleParents,
+          nextRsuiteValue,
+          optionsWithIds,
+          childrenKey,
+          valueKey,
+          labelKey
+        )
       )
     } else {
       setDisabledValues([])
     }
 
     return nextRsuiteValue
-  }, [childrenKey, isMultiSelect, optionsWithIds, value, valueKey, labelKey])
+  }, [childrenKey, canSelectMultipleParents, optionsWithIds, value, valueKey, labelKey])
 
   const runSearch = useCallback(
     (nextQuery: string) => {
