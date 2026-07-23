@@ -10,6 +10,7 @@ import {
   getOptionsToDisplay,
   getOptionsWithLazyChildren,
   getParentRsuiteValue,
+  getSearchResultsTree,
   getTreeOptionsBySelectedValues,
   hasThreeLevels,
   mergeResultsByParent,
@@ -1637,6 +1638,154 @@ describe('getOptionsWithLazyChildren', () => {
         name: 'Parent 1',
         nodeId: 'p1',
         subNodes: [{ name: '', nodeId: '__placeholder__p1' }]
+      }
+    ])
+  })
+})
+
+describe('getSearchResultsTree', () => {
+  const options: TreeOption[] = [
+    {
+      children: [
+        {
+          children: [
+            { label: 'Grandchild 1', value: 111 },
+            { label: 'Grandchild 2', value: 112 }
+          ],
+          label: 'Child 1',
+          value: 11
+        },
+        {
+          children: [{ label: 'Grandchild 3', value: 121 }],
+          label: 'Child 2',
+          value: 12
+        }
+      ],
+      label: 'Parent 1',
+      value: 1
+    },
+    {
+      children: [
+        {
+          children: [{ label: 'Grandchild 4', value: 211 }],
+          label: 'Child 3',
+          value: 21
+        }
+      ],
+      label: 'Parent 2',
+      value: 2
+    }
+  ]
+
+  it('returns an empty array when nothing matches', () => {
+    expect(getSearchResultsTree([999], options)).toEqual([])
+  })
+
+  it('keeps the whole subtree when a parent matches', () => {
+    expect(getSearchResultsTree([1], options)).toEqual([options[0]])
+  })
+
+  it('keeps the whole subtree when a direct child matches', () => {
+    expect(getSearchResultsTree([11], options)).toEqual([options[0]])
+  })
+
+  it('keeps only the matching branch when a grandchild matches', () => {
+    expect(getSearchResultsTree([111], options)).toEqual([
+      {
+        children: [
+          {
+            children: [
+              {
+                label: 'Grandchild 1',
+                value: 111
+              },
+              {
+                label: 'Grandchild 2',
+                value: 112
+              }
+            ],
+            label: 'Child 1',
+            value: 11
+          }
+        ],
+        label: 'Parent 1',
+        value: 1
+      }
+    ])
+  })
+
+  it('keeps multiple matching branches of the same parent', () => {
+    expect(getSearchResultsTree([111, 121], options)).toEqual([
+      {
+        children: [
+          {
+            children: [
+              {
+                label: 'Grandchild 1',
+                value: 111
+              },
+              {
+                label: 'Grandchild 2',
+                value: 112
+              }
+            ],
+            label: 'Child 1',
+            value: 11
+          },
+          {
+            children: [
+              {
+                label: 'Grandchild 3',
+                value: 121
+              }
+            ],
+            label: 'Child 2',
+            value: 12
+          }
+        ],
+        label: 'Parent 1',
+        value: 1
+      }
+    ])
+  })
+
+  it('keeps matching branches from different parents', () => {
+    expect(getSearchResultsTree([111, 211], options)).toEqual([
+      {
+        children: [
+          {
+            children: [
+              {
+                label: 'Grandchild 1',
+                value: 111
+              },
+              {
+                label: 'Grandchild 2',
+                value: 112
+              }
+            ],
+            label: 'Child 1',
+            value: 11
+          }
+        ],
+        label: 'Parent 1',
+        value: 1
+      },
+      {
+        children: [
+          {
+            children: [
+              {
+                label: 'Grandchild 4',
+                value: 211
+              }
+            ],
+            label: 'Child 3',
+            value: 21
+          }
+        ],
+        label: 'Parent 2',
+        value: 2
       }
     ])
   })
