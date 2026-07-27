@@ -1,3 +1,12 @@
+## [24.56.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.56.0...v24.56.1) (2026-07-27)
+
+### Bug Fixes
+
+* **fields:** show full label on hover for truncated CheckTreePicker items ([32d4b06](https://github.com/MTES-MCT/monitor-ui/commit/32d4b062241ffbe2ee1947de17595895b9fbed2f))
+* **fields:** stop expand-icon overlay from blocking row title tooltip ([e3535cf](https://github.com/MTES-MCT/monitor-ui/commit/e3535cf4e320e2656a5362f5c4a0ca4310c428fb))
+* **libs:** avoid O(n²) fuse search in CustomSearch tree filtering ([e99201f](https://github.com/MTES-MCT/monitor-ui/commit/e99201f4912a0ae65c0af2ee76ece687c245707b))
+* **libs:** remove constraint on unused react-router-dom ([cac84b6](https://github.com/MTES-MCT/monitor-ui/commit/cac84b64e98be14cccce1f0d3ce7e42b964f72ce))
+
 ## [24.56.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.55.6...v24.56.0) (2026-07-13)
 
 ### Features
