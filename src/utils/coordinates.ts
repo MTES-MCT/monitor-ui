@@ -51,8 +51,9 @@ function getDDCoordinates(transformedCoordinates: number[], isForPrint: boolean)
   }
 
   const isNegative = Math.sign(transformedCoordinates[0]) === -1
-  const [longitudeInteger, longitudeDecimals] = transformedCoordinates[0].toString().split('.')
   const precision = isForPrint ? 4 : 6
+  const rounded = Math.abs(transformedCoordinates[0]).toFixed(precision)
+  const [longitudeInteger, longitudeDecimals] = rounded.split('.')
 
   if (!isNumeric(longitudeInteger)) {
     return []
