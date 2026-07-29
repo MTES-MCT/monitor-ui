@@ -1,3 +1,15 @@
+## [24.57.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.56.1...v24.57.0) (2026-07-29)
+
+### Features
+
+* **fields:** add withAllChildrenInResults prop to display all children even if not march with search query ([4d74485](https://github.com/MTES-MCT/monitor-ui/commit/4d744853c8abaf67ce19f1d3655daa0e74d53335))
+* **fields:** update CheckTreePicker to display all children when one match with search query ([1cd69c5](https://github.com/MTES-MCT/monitor-ui/commit/1cd69c5686f7038bccd42a3cb663099ad2635f93))
+
+### Bug Fixes
+
+* **fields:** fix CheTreePicker with large dataset when withAllChildrenInResults is true ([24dea47](https://github.com/MTES-MCT/monitor-ui/commit/24dea47616861e18d077c4a7732193c0f4a8196a))
+* **fields:** rename prop "isMultiSelect" to "canSelectMultipleParents" ([9092287](https://github.com/MTES-MCT/monitor-ui/commit/909228728f47524d0b8b8a909b31d0b1187de56f))
+
 ## [24.56.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.56.0...v24.56.1) (2026-07-27)
 
 ### Bug Fixes
