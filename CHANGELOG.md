@@ -1,3 +1,9 @@
+## [24.57.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.57.0...v24.57.1) (2026-07-30)
+
+### Bug Fixes
+
+* **components:** round before substring to prevent float rounding ([ad45937](https://github.com/MTES-MCT/monitor-ui/commit/ad459374eb61d9599e4727b796d596d92ee9e340))
+
 ## [24.57.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.56.1...v24.57.0) (2026-07-29)
 
 ### Features
