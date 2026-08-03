@@ -1,3 +1,9 @@
+## [24.57.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.57.1...v24.57.2) (2026-08-03)
+
+### Bug Fixes
+
+* **fields:** fix parent title ([53f72cc](https://github.com/MTES-MCT/monitor-ui/commit/53f72cc3b1b02e893539cdc0c4fe4ee547beccfe))
+
 ## [24.57.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.57.0...v24.57.1) (2026-07-30)
 
 ### Bug Fixes
