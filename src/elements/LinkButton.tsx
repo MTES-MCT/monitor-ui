@@ -25,12 +25,12 @@ export function LinkButton({ children, className, Icon, size = Size.NORMAL, ...p
 
 const FONT_SIZE: Record<Size, string> = {
   [Size.LARGE]: '16px',
-  [Size.NORMAL]: '13px',
+  [Size.NORMAL]: '14px',
   [Size.SMALL]: '11px'
 }
 const ICON_SIZE: Record<Size, number> = {
   [Size.LARGE]: 16,
-  [Size.NORMAL]: 13,
+  [Size.NORMAL]: 14,
   [Size.SMALL]: 11
 }
 
@@ -38,14 +38,14 @@ const StyledLinkButton = styled.button<{
   $isDisabled: boolean | undefined
   $size: Size
 }>`
-  align-items: flex-end;
+  align-items: center;
   background: transparent;
   color: ${p => p.theme.color.slateGray};
   cursor: ${p => (p.$isDisabled ? 'none' : 'pointer')};
   display: flex;
   flex-direction: row;
   font-size: ${p => FONT_SIZE[p.$size]};
-  gap: 0.4rem;
+  gap: 0.25rem;
   text-decoration: underline;
 
   &:hover,
