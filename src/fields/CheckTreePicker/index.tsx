@@ -327,8 +327,8 @@ export function CheckTreePicker({
   useEffect(() => () => debouncedSearch.cancel(), [debouncedSearch])
 
   const renderTreeIcon = useCallback(
-    (_: unknown, isExpanded?: boolean) => (
-      <IconExpander>
+    (item: Record<string, unknown>, isExpanded?: boolean) => (
+      <IconExpander title={typeof item[labelKey] === 'string' ? (item[labelKey] as string) : undefined}>
         <IconButton
           accent={Accent.TERTIARY}
           Icon={Chevron}
@@ -337,7 +337,7 @@ export function CheckTreePicker({
         />
       </IconExpander>
     ),
-    []
+    [labelKey]
   )
 
   const renderTreeNode = useCallback(
@@ -546,14 +546,6 @@ const IconExpander = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  /* Its containing rsuite element (.rs-tree-node-custom-icon) collapses to 0x0, so this
-   * absolutely positioned box escapes to the whole row. Without this, it silently intercepts
-   * hover/click on the row's label too, blocking the label's title tooltip. */
-  pointer-events: none;
-
-  > * {
-    pointer-events: auto;
-  }
 `
 
 const Wrapper = styled.div`
