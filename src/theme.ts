@@ -15,7 +15,7 @@ export const THEME = {
     // TODO Make that charcoal object 100 & 50
     charcoal: '#3B4559',
     charcoalShadow: 'rgba(59, 69, 89, 0.5)',
-    slateGray: '#707785',
+    slateGray: '#626A80',
     lightGray: '#CCCFD6',
     gainsboro: '#E5E5EB',
     cultured: '#F7F7FA',
