@@ -1,3 +1,9 @@
+## [24.58.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.57.2...v24.58.0) (2026-08-31)
+
+### Features
+
+* **components:** modify UI LinkButton.tsx ([05609d7](https://github.com/MTES-MCT/monitor-ui/commit/05609d7f306774a83ddc0ffb2c5b3ce2fb3b7288))
+
 ## [24.57.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.57.1...v24.57.2) (2026-08-03)
 
 ### Bug Fixes
