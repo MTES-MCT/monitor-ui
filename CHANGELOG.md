@@ -1,3 +1,9 @@
+## [24.60.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.60.0...v24.60.1) (2026-09-01)
+
+### Bug Fixes
+
+* **global:** modify slate-gray to make it accessible with background ([a4aa186](https://github.com/MTES-MCT/monitor-ui/commit/a4aa1865ac07c911e0c3e0d848512325e4077d72))
+
 ## [24.60.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.59.0...v24.60.0) (2026-09-01)
 
 ### Features
