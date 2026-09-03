@@ -16,7 +16,7 @@ export function LinkButton({ children, className, Icon, size = Size.NORMAL, ...p
   return (
     <StyledLinkButton $isDisabled={props.disabled} $size={size} className={controlledClassName} {...props}>
       <>
-        {Icon && <Icon color={THEME.color.slateGray} size={ICON_SIZE[size]} />}
+        {Icon && <Icon color={THEME.color.charcoal} size={ICON_SIZE[size]} />}
         {children}
       </>
     </StyledLinkButton>
@@ -25,7 +25,7 @@ export function LinkButton({ children, className, Icon, size = Size.NORMAL, ...p
 
 const FONT_SIZE: Record<Size, string> = {
   [Size.LARGE]: '16px',
-  [Size.NORMAL]: '14px',
+  [Size.NORMAL]: '13px',
   [Size.SMALL]: '11px'
 }
 const ICON_SIZE: Record<Size, number> = {
