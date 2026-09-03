@@ -1,3 +1,9 @@
+## [24.60.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.60.1...v24.60.2) (2026-09-03)
+
+### Bug Fixes
+
+* **components:** undo to font-size: 13px ([bf4b1d8](https://github.com/MTES-MCT/monitor-ui/commit/bf4b1d8c3af48381790a084df31626e9f8003efb))
+
 ## [24.60.1](https://github.com/MTES-MCT/monitor-ui/compare/v24.60.0...v24.60.1) (2026-09-01)
 
 ### Bug Fixes
