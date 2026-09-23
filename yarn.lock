@@ -16669,11 +16669,11 @@ __metadata:
   linkType: hard
 
 "systeminformation@npm:^5.31.1":
-  version: 5.31.6
-  resolution: "systeminformation@npm:5.31.6"
+  version: 5.33.8
+  resolution: "systeminformation@npm:5.33.8"
   bin:
     systeminformation: lib/cli.js
-  checksum: 10c0/fb0c9dae20e47277d26f3dd374f14c846567adba15a2bf9715e0a871f912424d31b75f6c27e0c8b819abc3fcd285ae8c1f6468acd8a161f18a1a39b632a01923
+  checksum: 10c0/cc1dd9f5998936b72f0c8fb61fdfe21294e1aa3818c79d3373e27ff65080414b3e93ced80b8ee59fcec8b603854bcd1cbabfdfbd52b75817b11e5056ba5d5ac8
   conditions: (os=darwin | os=linux | os=win32 | os=freebsd | os=openbsd | os=netbsd | os=sunos | os=android)
   languageName: node
   linkType: hard
