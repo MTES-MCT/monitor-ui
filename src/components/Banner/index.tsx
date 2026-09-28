@@ -3,7 +3,7 @@ import { IconButton } from '@elements/IconButton'
 import { LinkButton } from '@elements/LinkButton'
 import classNames from 'classnames'
 import { isString } from 'lodash-es'
-import { type ReactNode, useCallback, useEffect, useRef, useState, type CSSProperties } from 'react'
+import { type CSSProperties, type ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { ANIMATION_DURATION_IN_MS } from './constants'
@@ -126,7 +126,7 @@ export function Banner({
               />
             )}
             {!isClosable && isCollapsible && (
-              <StyledLinkButton $level={level} size={Size.LARGE}>
+              <StyledLinkButton $level={level} size={Size.NORMAL}>
                 Masquer
               </StyledLinkButton>
             )}

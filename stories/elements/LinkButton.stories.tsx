@@ -58,9 +58,6 @@ export function _LinkButton(props: LinkButtonProps) {
               <td>
                 <LinkButton size={Size.NORMAL}>a dummy text</LinkButton>
               </td>
-              <td>
-                <LinkButton size={Size.LARGE}>a dummy text</LinkButton>
-              </td>
             </tr>
             <tr>
               <th>Funky Text</th>
@@ -73,13 +70,6 @@ export function _LinkButton(props: LinkButtonProps) {
                 <LinkButton size={Size.NORMAL}>
                   <span>
                     text with <b>bold</b> emphasis
-                  </span>
-                </LinkButton>
-              </td>
-              <td>
-                <LinkButton size={Size.LARGE}>
-                  <span>
-                    text with <b>bold</b> and <i>italic</i> emphasis
                   </span>
                 </LinkButton>
               </td>
