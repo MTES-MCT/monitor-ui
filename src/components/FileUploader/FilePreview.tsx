@@ -11,7 +11,7 @@ import { IMAGES_WIDTH_LANDSCAPE, IMAGES_WIDTH_PORTRAIT } from './utils'
 type FilePreviewProps = {
   files: FileApi[] | undefined
   isSideWindow: boolean
-  onDelete: (index: number) => void
+  onDelete?: (index: number) => void
 }
 
 export function FilePreview({ files, isSideWindow = false, onDelete }: FilePreviewProps) {
@@ -34,12 +34,14 @@ export function FilePreview({ files, isSideWindow = false, onDelete }: FilePrevi
                 width={thumbnail.orientation === Orientation.LANDSCAPE ? IMAGES_WIDTH_LANDSCAPE : IMAGES_WIDTH_PORTRAIT}
               />
             </StyledImageButton>
-            <StyledButton
-              accent={Accent.SECONDARY}
-              Icon={Icon.Delete}
-              onClick={() => onDelete(thumbnail.index)}
-              size={Size.SMALL}
-            />
+            {onDelete && (
+              <StyledButton
+                accent={Accent.SECONDARY}
+                Icon={Icon.Delete}
+                onClick={() => onDelete(thumbnail.index)}
+                size={Size.SMALL}
+              />
+            )}
           </PreviewImagesContainer>
         ))}
       </PreviewList>
