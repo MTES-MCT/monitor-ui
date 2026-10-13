@@ -1,3 +1,9 @@
+## [24.61.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.60.2...v24.61.0) (2026-10-13)
+
+### Features
+
+* **components:** onDelete is optional in case of readonly FilePreview ([a71d93e](https://github.com/MTES-MCT/monitor-ui/commit/a71d93eccc76c3532924589effaca75257669255))
+
 ## [24.60.2](https://github.com/MTES-MCT/monitor-ui/compare/v24.60.1...v24.60.2) (2026-09-03)
 
 ### Bug Fixes
