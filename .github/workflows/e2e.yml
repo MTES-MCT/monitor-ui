@@ -39,7 +39,7 @@ jobs:
         with:
           component: true
           config-file: config/cypress.config.ts
-          install: false
+          install: true
           parallel: false
           record: true
           tag: components
@@ -74,7 +74,7 @@ jobs:
         uses: cypress-io/github-action@v7
         with:
           config-file: config/cypress.config.ts
-          install: false
+          install: true
           parallel: true
           record: true
           tag: release
