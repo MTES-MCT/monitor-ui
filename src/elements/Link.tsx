@@ -1,5 +1,5 @@
 import { type AnchorHTMLAttributes } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 export type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement>
 

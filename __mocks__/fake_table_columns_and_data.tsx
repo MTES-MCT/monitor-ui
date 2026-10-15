@@ -1,6 +1,24 @@
-import type { ColumnDef } from '@tanstack/react-table'
+import {
+  rowSortingFeature,
+  columnSizingFeature,
+  columnVisibilityFeature,
+  createExpandedRowModel,
+  createSortedRowModel,
+  rowExpandingFeature,
+  tableFeatures,
+  type ColumnDef
+} from '@tanstack/react-table'
 
-export const FAKE_BASIC_TABLE_COLUMNS: Array<ColumnDef<FakeBasicTableDataItem>> = [
+export const dataTableFeatures = tableFeatures({
+  columnSizingFeature,
+  columnVisibilityFeature,
+  expandedRowModel: createExpandedRowModel(),
+  rowExpandingFeature,
+  rowSortingFeature,
+  sortedRowModel: createSortedRowModel()
+})
+
+export const FAKE_BASIC_TABLE_COLUMNS: Array<ColumnDef<typeof dataTableFeatures, FakeBasicTableDataItem>> = [
   {
     accessorFn: row => row.id,
     // eslint-disable-next-line @typescript-eslint/naming-convention

@@ -6,7 +6,7 @@ import {
   type PickerHandle,
   type MultiCascaderProps as RsuiteMultiCascaderProps
 } from 'rsuite'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import {
   countTreeDepth,
@@ -122,7 +122,6 @@ export function MultiCascader<OptionValue extends OptionValueType = string>({
       </Label>
 
       <Box
-        ref={boxRef}
         $columnCount={treeDepth}
         $hasError={hasError}
         $isDisabled={disabled}
@@ -130,17 +129,18 @@ export function MultiCascader<OptionValue extends OptionValueType = string>({
         $isReadOnly={readOnly}
         $isTransparent={isTransparent}
         $popupWidth={popupWidth}
+        ref={boxRef}
       >
         {boxRef.current && (
           <RsuiteMultiCascader
-            key={key}
-            ref={treeRef}
             container={boxRef.current}
             data={rsuiteTreeItems}
             disabled={disabled}
             id={originalProps.name}
+            key={key}
             onChange={handleChange as any}
             readOnly={readOnly}
+            ref={treeRef}
             renderMenuItem={renderMenuItem}
             searchable={searchable}
             value={selectedTreePositions}

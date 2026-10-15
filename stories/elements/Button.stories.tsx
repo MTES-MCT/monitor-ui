@@ -78,7 +78,7 @@ export function _Button(props: ButtonProps) {
                 <tr>
                   <td />
                   {BUTTON_SIZES.map(({ label: sizeLabel }) => (
-                    <th key={sizeLabel} colSpan={2}>
+                    <th colSpan={2} key={sizeLabel}>
                       {sizeLabel}
                     </th>
                   ))}
@@ -93,7 +93,7 @@ export function _Button(props: ButtonProps) {
                     {BUTTON_SIZES.map(({ label: sizeLabel, value: size }) =>
                       BUTTON_ICON_OPTIONS.map(({ icon, key }) => (
                         <td key={`${sizeLabel}-${key}`}>
-                          <Button accent={accent} className={className} Icon={icon} size={size}>
+                          <Button Icon={icon} accent={accent} className={className} size={size}>
                             A button
                           </Button>
                         </td>

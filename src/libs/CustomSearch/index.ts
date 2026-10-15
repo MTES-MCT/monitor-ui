@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-
-import diacritics from 'diacritics'
+import { remove } from 'diacritics'
 import Fuse from 'fuse.js'
 import { cloneDeep } from 'lodash-es'
 
@@ -85,7 +84,7 @@ export class CustomSearch<T extends AnyObject = AnyObject> {
    * @returns       A list of matching items
    */
   find(query: string, limit?: number): T[] {
-    const normalizedQuery = (this.#isDiacriticSensitive ? query : diacritics.remove(query)).trim()
+    const normalizedQuery = (this.#isDiacriticSensitive ? query : remove(query)).trim()
 
     // Here we use Fuse.js `useExtendedSearch` option to avoid fuzziness
     // when `CustomSearch` `isStrict` option is set to `true`.

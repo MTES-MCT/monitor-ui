@@ -16,6 +16,8 @@ updates:
       semver-patch-days: 3
       semver-minor-days: 7
       semver-major-days: 30
+    exclude-paths:
+      - 'yarn.lock'
     schedule:
       interval: 'monthly'
     allow:
@@ -45,6 +47,8 @@ updates:
       semver-patch-days: 3
       semver-minor-days: 7
       semver-major-days: 30
+    exclude-paths:
+      - 'package-lock.json'
     schedule:
       interval: 'monthly'
     allow:

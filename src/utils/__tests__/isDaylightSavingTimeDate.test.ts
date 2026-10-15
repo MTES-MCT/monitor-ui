@@ -1,10 +1,10 @@
 import { describe, expect, it } from '@jest/globals'
-import dayjs from 'dayjs'
+import dayjs, { extend } from 'dayjs'
 import dayjsTimezone from 'dayjs/plugin/timezone'
 
 import { isDaylightSavingTimeDate } from '../isDaylightSavingTimeDate'
 
-dayjs.extend(dayjsTimezone)
+extend(dayjsTimezone)
 
 describe('utils/isDaylightSavingTimeDate()', () => {
   const guessedTimezone = dayjs.tz.guess()

@@ -71,10 +71,10 @@ export function _Tag(props: TagProps) {
         <Tag accent={Accent.TERTIARY}>A tertiary tag</Tag>
 
         <Tag borderColor={THEME.color.slateGray}>A tag with a border</Tag>
-        <Tag backgroundColor={THEME.color.maximumRed15} color={THEME.color.charcoal} Icon={Icon.Confirm} withCircleIcon>
+        <Tag Icon={Icon.Confirm} backgroundColor={THEME.color.maximumRed15} color={THEME.color.charcoal} withCircleIcon>
           A tag with custom colors and circle icon
         </Tag>
-        <Tag backgroundColor={THEME.color.mediumSeaGreen} color={THEME.color.white} Icon={Icon.Link}>
+        <Tag Icon={Icon.Link} backgroundColor={THEME.color.mediumSeaGreen} color={THEME.color.white}>
           A tag with custom colors and icon
         </Tag>
       </Showcase>

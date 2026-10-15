@@ -13,7 +13,7 @@ function MockComponent({ action }) {
 
   return (
     <div data-testid="outside">
-      <div ref={ref} data-testid="inside">
+      <div data-testid="inside" ref={ref}>
         Inside
       </div>
     </div>

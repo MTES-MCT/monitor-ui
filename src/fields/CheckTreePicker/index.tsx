@@ -24,7 +24,7 @@ import {
   type PickerHandle,
   type CheckTreePickerProps as RsuiteCheckTreePickerProps
 } from 'rsuite'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { CheckTreePickerBox } from './CheckTreePickerBox'
 import {
@@ -129,13 +129,6 @@ export function CheckTreePicker({
     [options, childrenKey, valueKey]
   )
 
-  useEffect(() => {
-    if (isSearchable) {
-      runSearch(searchKeyword)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [optionsWithIds, isSearchable])
-
   const localCustomSearch = useMemo(
     () =>
       customSearch ??
@@ -159,33 +152,27 @@ export function CheckTreePicker({
 
   const [controlledOptions, setControlledOptions] = useState(isSearchable ? optionsWithIds : [])
 
-  const [disabledValues, setDisabledValues] = useState<ValueType>([])
   const uncheckableValues = useMemo(
     () => getParentRsuiteValue(optionsWithIds, valueKey, childrenKey),
     [optionsWithIds, childrenKey, valueKey]
   )
 
-  const rsuiteValue = useMemo(() => {
-    const nextRsuiteValue = toRsuiteValue(value, optionsWithIds, childrenKey, valueKey)
-    if (!canSelectMultipleParents && nextRsuiteValue) {
-      setDisabledValues(
-        computeDisabledValues(
-          canSelectMultipleParents,
-          nextRsuiteValue,
-          optionsWithIds,
-          childrenKey,
-          valueKey,
-          labelKey
-        )
-      )
-    } else {
-      setDisabledValues([])
-    }
+  const rsuiteValue = useMemo(
+    () => toRsuiteValue(value, optionsWithIds, childrenKey, valueKey),
+    [childrenKey, optionsWithIds, value, valueKey]
+  )
 
-    return nextRsuiteValue
-  }, [childrenKey, canSelectMultipleParents, optionsWithIds, value, valueKey, labelKey])
+  const disabledValues: ValueType = useMemo(
+    () =>
+      !canSelectMultipleParents && rsuiteValue
+        ? computeDisabledValues(canSelectMultipleParents, rsuiteValue, optionsWithIds, childrenKey, valueKey, labelKey)
+        : [],
+    [childrenKey, canSelectMultipleParents, optionsWithIds, rsuiteValue, valueKey, labelKey]
+  )
 
-  const runSearch = useCallback(
+  // TODO : check why thereis an error with useCallback whitout aliasing
+  const callBackAlias = useCallback
+  const runSearch = callBackAlias(
     (nextQuery: string) => {
       if (!localCustomSearch || nextQuery.trim().length < customSearchMinQueryLength) {
         setControlledOptions(optionsWithIds)
@@ -235,6 +222,13 @@ export function CheckTreePicker({
       withAllChildrenInResults
     ]
   )
+
+  useEffect(() => {
+    if (isSearchable) {
+      runSearch(searchKeyword)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [optionsWithIds, isSearchable])
 
   const debouncedSearch = useMemo(
     () =>
@@ -330,8 +324,8 @@ export function CheckTreePicker({
     (item: Record<string, unknown>, isExpanded?: boolean) => (
       <IconExpander title={typeof item[labelKey] === 'string' ? (item[labelKey] as string) : undefined}>
         <IconButton
-          accent={Accent.TERTIARY}
           Icon={Chevron}
+          accent={Accent.TERTIARY}
           size={Size.SMALL}
           style={{ transform: isExpanded ? 'rotate(0)' : 'rotate(-90deg)' }}
         />
@@ -403,8 +397,8 @@ export function CheckTreePicker({
                 </SelectedOptionLabel>
                 <StyledButton
                   $isLight={isLight || isTransparent}
-                  accent={Accent.TERTIARY}
                   Icon={Icon.Close}
+                  accent={Accent.TERTIARY}
                   onClick={e => {
                     removeOptions(
                       isParent
@@ -466,7 +460,6 @@ export function CheckTreePicker({
     >
       {boxRef.current && (
         <RsuiteCheckTreePicker
-          ref={treeRef}
           cascade
           childrenKey={childrenKey}
           container={boxRef.current}
@@ -489,6 +482,7 @@ export function CheckTreePicker({
           }}
           onSearch={handleSearch}
           readOnly={readOnly}
+          ref={treeRef}
           renderTreeIcon={renderTreeIcon}
           renderTreeNode={renderTreeNode}
           renderValue={renderValue}

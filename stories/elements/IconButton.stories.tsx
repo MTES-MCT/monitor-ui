@@ -77,55 +77,55 @@ function ShowcaseReference() {
           <tr>
             <th>Default</th>
             <td>
-              <IconButton accent={Accent.PRIMARY} className="" Icon={Icon.Search} size={Size.LARGE} />
+              <IconButton Icon={Icon.Search} accent={Accent.PRIMARY} className="" size={Size.LARGE} />
             </td>
             <td>
               <IconButton
+                Icon={Icon.Search}
                 accent={Accent.PRIMARY}
                 badgeNumber={123}
                 className=""
-                Icon={Icon.Search}
                 size={Size.NORMAL}
               />
             </td>
             <td>
-              <IconButton accent={Accent.PRIMARY} className="" Icon={Icon.Search} size={Size.SMALL} />
+              <IconButton Icon={Icon.Search} accent={Accent.PRIMARY} className="" size={Size.SMALL} />
             </td>
           </tr>
           <tr>
             <th>Hover</th>
             <td>
-              <IconButton accent={Accent.PRIMARY} className="_hover" Icon={Icon.Search} size={Size.LARGE} />
+              <IconButton Icon={Icon.Search} accent={Accent.PRIMARY} className="_hover" size={Size.LARGE} />
             </td>
             <td>
-              <IconButton accent={Accent.PRIMARY} className="_hover" Icon={Icon.Search} size={Size.NORMAL} />
+              <IconButton Icon={Icon.Search} accent={Accent.PRIMARY} className="_hover" size={Size.NORMAL} />
             </td>
             <td>
-              <IconButton accent={Accent.PRIMARY} className="_hover" Icon={Icon.Search} size={Size.SMALL} />
+              <IconButton Icon={Icon.Search} accent={Accent.PRIMARY} className="_hover" size={Size.SMALL} />
             </td>
           </tr>
           <tr>
             <th>Active</th>
             <td>
-              <IconButton accent={Accent.PRIMARY} className="_active" Icon={Icon.Search} size={Size.LARGE} />
+              <IconButton Icon={Icon.Search} accent={Accent.PRIMARY} className="_active" size={Size.LARGE} />
             </td>
             <td>
-              <IconButton accent={Accent.PRIMARY} className="_active" Icon={Icon.Search} size={Size.NORMAL} />
+              <IconButton Icon={Icon.Search} accent={Accent.PRIMARY} className="_active" size={Size.NORMAL} />
             </td>
             <td>
-              <IconButton accent={Accent.PRIMARY} className="_active" Icon={Icon.Search} size={Size.SMALL} />
+              <IconButton Icon={Icon.Search} accent={Accent.PRIMARY} className="_active" size={Size.SMALL} />
             </td>
           </tr>
           <tr>
             <th>Disabled</th>
             <td>
-              <IconButton accent={Accent.PRIMARY} className="_disabled" Icon={Icon.Search} size={Size.LARGE} />
+              <IconButton Icon={Icon.Search} accent={Accent.PRIMARY} className="_disabled" size={Size.LARGE} />
             </td>
             <td>
-              <IconButton accent={Accent.PRIMARY} className="_disabled" Icon={Icon.Search} size={Size.NORMAL} />
+              <IconButton Icon={Icon.Search} accent={Accent.PRIMARY} className="_disabled" size={Size.NORMAL} />
             </td>
             <td>
-              <IconButton accent={Accent.PRIMARY} className="_disabled" Icon={Icon.Search} size={Size.SMALL} />
+              <IconButton Icon={Icon.Search} accent={Accent.PRIMARY} className="_disabled" size={Size.SMALL} />
             </td>
           </tr>
         </tbody>
@@ -146,49 +146,49 @@ function ShowcaseReference() {
           <tr>
             <th>Default</th>
             <td>
-              <IconButton accent={Accent.SECONDARY} className="" Icon={Icon.Search} size={Size.LARGE} />
+              <IconButton Icon={Icon.Search} accent={Accent.SECONDARY} className="" size={Size.LARGE} />
             </td>
             <td>
-              <IconButton accent={Accent.SECONDARY} className="" Icon={Icon.Search} size={Size.NORMAL} />
+              <IconButton Icon={Icon.Search} accent={Accent.SECONDARY} className="" size={Size.NORMAL} />
             </td>
             <td>
-              <IconButton accent={Accent.SECONDARY} className="" Icon={Icon.Search} size={Size.SMALL} />
+              <IconButton Icon={Icon.Search} accent={Accent.SECONDARY} className="" size={Size.SMALL} />
             </td>
           </tr>
           <tr>
             <th>Hover</th>
             <td>
-              <IconButton accent={Accent.SECONDARY} className="_hover" Icon={Icon.Search} size={Size.LARGE} />
+              <IconButton Icon={Icon.Search} accent={Accent.SECONDARY} className="_hover" size={Size.LARGE} />
             </td>
             <td>
-              <IconButton accent={Accent.SECONDARY} className="_hover" Icon={Icon.Search} size={Size.NORMAL} />
+              <IconButton Icon={Icon.Search} accent={Accent.SECONDARY} className="_hover" size={Size.NORMAL} />
             </td>
             <td>
-              <IconButton accent={Accent.SECONDARY} className="_hover" Icon={Icon.Search} size={Size.SMALL} />
+              <IconButton Icon={Icon.Search} accent={Accent.SECONDARY} className="_hover" size={Size.SMALL} />
             </td>
           </tr>
           <tr>
             <th>Active</th>
             <td>
-              <IconButton accent={Accent.SECONDARY} className="_active" Icon={Icon.Search} size={Size.LARGE} />
+              <IconButton Icon={Icon.Search} accent={Accent.SECONDARY} className="_active" size={Size.LARGE} />
             </td>
             <td>
-              <IconButton accent={Accent.SECONDARY} className="_active" Icon={Icon.Search} size={Size.NORMAL} />
+              <IconButton Icon={Icon.Search} accent={Accent.SECONDARY} className="_active" size={Size.NORMAL} />
             </td>
             <td>
-              <IconButton accent={Accent.SECONDARY} className="_active" Icon={Icon.Search} size={Size.SMALL} />
+              <IconButton Icon={Icon.Search} accent={Accent.SECONDARY} className="_active" size={Size.SMALL} />
             </td>
           </tr>
           <tr>
             <th>Disabled</th>
             <td>
-              <IconButton accent={Accent.SECONDARY} className="_disabled" Icon={Icon.Search} size={Size.LARGE} />
+              <IconButton Icon={Icon.Search} accent={Accent.SECONDARY} className="_disabled" size={Size.LARGE} />
             </td>
             <td>
-              <IconButton accent={Accent.SECONDARY} className="_disabled" Icon={Icon.Search} size={Size.NORMAL} />
+              <IconButton Icon={Icon.Search} accent={Accent.SECONDARY} className="_disabled" size={Size.NORMAL} />
             </td>
             <td>
-              <IconButton accent={Accent.SECONDARY} className="_disabled" Icon={Icon.Search} size={Size.SMALL} />
+              <IconButton Icon={Icon.Search} accent={Accent.SECONDARY} className="_disabled" size={Size.SMALL} />
             </td>
           </tr>
         </tbody>
@@ -209,49 +209,49 @@ function ShowcaseReference() {
           <tr>
             <th>Default</th>
             <td>
-              <IconButton accent={Accent.TERTIARY} className="" Icon={Icon.Search} size={Size.LARGE} />
+              <IconButton Icon={Icon.Search} accent={Accent.TERTIARY} className="" size={Size.LARGE} />
             </td>
             <td>
-              <IconButton accent={Accent.TERTIARY} className="" Icon={Icon.Search} size={Size.NORMAL} />
+              <IconButton Icon={Icon.Search} accent={Accent.TERTIARY} className="" size={Size.NORMAL} />
             </td>
             <td>
-              <IconButton accent={Accent.TERTIARY} className="" Icon={Icon.Search} size={Size.SMALL} />
+              <IconButton Icon={Icon.Search} accent={Accent.TERTIARY} className="" size={Size.SMALL} />
             </td>
           </tr>
           <tr>
             <th>Hover</th>
             <td>
-              <IconButton accent={Accent.TERTIARY} className="_hover" Icon={Icon.Search} size={Size.LARGE} />
+              <IconButton Icon={Icon.Search} accent={Accent.TERTIARY} className="_hover" size={Size.LARGE} />
             </td>
             <td>
-              <IconButton accent={Accent.TERTIARY} className="_hover" Icon={Icon.Search} size={Size.NORMAL} />
+              <IconButton Icon={Icon.Search} accent={Accent.TERTIARY} className="_hover" size={Size.NORMAL} />
             </td>
             <td>
-              <IconButton accent={Accent.TERTIARY} className="_hover" Icon={Icon.Search} size={Size.SMALL} />
+              <IconButton Icon={Icon.Search} accent={Accent.TERTIARY} className="_hover" size={Size.SMALL} />
             </td>
           </tr>
           <tr>
             <th>Active</th>
             <td>
-              <IconButton accent={Accent.TERTIARY} className="_active" Icon={Icon.Search} size={Size.LARGE} />
+              <IconButton Icon={Icon.Search} accent={Accent.TERTIARY} className="_active" size={Size.LARGE} />
             </td>
             <td>
-              <IconButton accent={Accent.TERTIARY} className="_active" Icon={Icon.Search} size={Size.NORMAL} />
+              <IconButton Icon={Icon.Search} accent={Accent.TERTIARY} className="_active" size={Size.NORMAL} />
             </td>
             <td>
-              <IconButton accent={Accent.TERTIARY} className="_active" Icon={Icon.Search} size={Size.SMALL} />
+              <IconButton Icon={Icon.Search} accent={Accent.TERTIARY} className="_active" size={Size.SMALL} />
             </td>
           </tr>
           <tr>
             <th>Disabled</th>
             <td>
-              <IconButton accent={Accent.TERTIARY} className="_disabled" Icon={Icon.Search} size={Size.LARGE} />
+              <IconButton Icon={Icon.Search} accent={Accent.TERTIARY} className="_disabled" size={Size.LARGE} />
             </td>
             <td>
-              <IconButton accent={Accent.TERTIARY} className="_disabled" Icon={Icon.Search} size={Size.NORMAL} />
+              <IconButton Icon={Icon.Search} accent={Accent.TERTIARY} className="_disabled" size={Size.NORMAL} />
             </td>
             <td>
-              <IconButton accent={Accent.TERTIARY} className="_disabled" Icon={Icon.Search} size={Size.SMALL} />
+              <IconButton Icon={Icon.Search} accent={Accent.TERTIARY} className="_disabled" size={Size.SMALL} />
             </td>
           </tr>
         </tbody>

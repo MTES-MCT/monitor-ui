@@ -41,7 +41,7 @@ export type Filter<T> = (collection: T[]) => T[]
 export type Native = boolean | null | number | string | undefined
 export type NativeAny = boolean | NativeArray | NativeObject | null | number | string | undefined
 export type NativeArray = Array<NativeAny>
-export type NativeObject = { [x: string]: NativeAny } | {}
+export type NativeObject = { [x: string]: NativeAny } | object
 
 export type Option<OptionValue extends OptionValueType = string> = Omit<
   ItemDataType<string>,
@@ -54,8 +54,7 @@ export type Option<OptionValue extends OptionValueType = string> = Omit<
 }
 
 export type TreeOption<OptionValue extends OptionValueType = string> =
-  | TreeLeafOption<OptionValue>
-  | TreeBranchOption<OptionValue>
+  TreeLeafOption<OptionValue> | TreeBranchOption<OptionValue>
 interface BaseOption extends Omit<ItemDataType<string>, 'children' | 'label' | 'value'> {
   isDisabled?: boolean
   label: string

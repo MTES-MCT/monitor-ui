@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import { defineConfig } from 'vite'
-import analyzer from 'vite-bundle-analyzer'
+import { analyzer } from 'vite-bundle-analyzer'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 // Read deps/peerDeps to externalize them (avoid bundling into the library)

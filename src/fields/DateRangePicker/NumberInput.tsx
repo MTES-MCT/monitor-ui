@@ -9,7 +9,7 @@ import {
   type ForwardedRef,
   type InputHTMLAttributes
 } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { usePreventWheelEvent } from '../../hooks/usePreventWheelEvent'
 
@@ -189,12 +189,11 @@ function NumberInputWithRef(
 
   return (
     <StyledNumberInput
-      key={String(value)}
-      ref={inputRef}
       $isLight={isLight}
       $size={size}
       defaultValue={value}
       id={name}
+      key={String(value)}
       maxLength={size}
       onBlur={handleBlur}
       onFocus={handleFocus}
@@ -203,6 +202,7 @@ function NumberInputWithRef(
       onKeyUp={handleKeyUp}
       pattern="\d*"
       placeholder={placeholder}
+      ref={inputRef}
       type="text"
       {...nativeProps}
     />

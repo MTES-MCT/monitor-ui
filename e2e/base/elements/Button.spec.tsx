@@ -1,5 +1,4 @@
-import { composeStories } from '@storybook/testing-react'
-
+import { composeStories } from '@storybook/react-vite'
 import { StoryBox } from '../../../.storybook/components/StoryBox'
 import * as baseStories from '../../../stories/tests/button.stories'
 import { mountAndWait, outputShouldBe } from '../utils'

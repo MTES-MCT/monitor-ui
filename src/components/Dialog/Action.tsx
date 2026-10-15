@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 export const Action = styled.div`
   background-color: ${p => p.theme.color.white};

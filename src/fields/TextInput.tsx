@@ -10,7 +10,7 @@ import { normalizeString } from '@utils/normalizeString'
 import classnames from 'classnames'
 import { type FunctionComponent, useCallback, useMemo } from 'react'
 import { Input as RsuiteInput } from 'rsuite'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Close, Search } from '../icons'
 import { StyledInputBox } from './shared/StyledInputBox'
@@ -101,9 +101,9 @@ export function TextInput({
         $size={size}
       >
         <RsuiteInput
-          key={key}
           disabled={disabled}
           id={name}
+          key={key}
           name={name}
           onChange={handleChange}
           readOnly={readOnly}
@@ -116,9 +116,9 @@ export function TextInput({
             {value && (
               <>
                 <IconButton
+                  Icon={Close}
                   accent={Accent.TERTIARY}
                   color={THEME.color.slateGray}
-                  Icon={Close}
                   onClick={clean}
                   size={Size.SMALL}
                 />

@@ -33,8 +33,7 @@ export type RsuiteDataItem<OptionValue extends OptionValueType = string> = Omit<
  * @internal
  */
 export type RsuiteTreeItem<OptionValue extends OptionValueType = string> =
-  | RsuiteTreeLeaf<OptionValue>
-  | RsuiteTreeBranch<OptionValue>
+  RsuiteTreeLeaf<OptionValue> | RsuiteTreeBranch<OptionValue>
 interface RsuiteTreeBase extends Omit<InputItemDataType<string>, 'children' | 'label' | 'value'> {
   isDisabled?: boolean
   label: string

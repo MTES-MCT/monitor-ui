@@ -44,12 +44,12 @@ export function _FormikCheckTreePicker(props: FormikCheckTreePickerProps) {
   return (
     <>
       <Formik
-        key={key}
         initialValues={{
           args: {
             canSelectMultipleParents: false
           }
         }}
+        key={key}
         onSubmit={action('onSubmit')}
       >
         <>

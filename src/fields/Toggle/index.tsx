@@ -2,7 +2,7 @@ import { useFieldUndefineEffect } from '@hooks/useFieldUndefineEffect'
 import classNames from 'classnames'
 import { useId, useMemo } from 'react'
 import { Toggle as RsuiteToggle, type ToggleProps as RSuiteToggleProps } from 'rsuite'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import {
   getToggleBackgroundColorFactoryForState,
@@ -65,7 +65,6 @@ export function Toggle({
         {label}
       </Label>
       <StyledToggle
-        key={key}
         $hasError={hasError}
         $isChecked={checked}
         $isDisabled={disabled}
@@ -76,6 +75,7 @@ export function Toggle({
         data-cy={dataCy}
         disabled={disabled}
         id={toggleId}
+        key={key}
         onChange={isChecked => onChange?.(isChecked)}
         readOnly={readOnly}
         {...originalProps}

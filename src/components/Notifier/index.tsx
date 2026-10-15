@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react'
 import { ToastContainer, toast, type ToastContainerProps } from 'react-toastify'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { NotificationEvent } from './NotificationEvent'
 

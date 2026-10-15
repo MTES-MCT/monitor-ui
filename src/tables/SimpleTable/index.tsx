@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import { CellLoader } from './CellLoader'
 import { Td } from './Td'

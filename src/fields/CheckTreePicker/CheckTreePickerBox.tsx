@@ -52,7 +52,6 @@ export function CheckTreePickerBox({
       </Label>
 
       <RsuiteCheckTreePickerBox
-        ref={boxRef}
         $hasError={hasError}
         $hasThreeLevels={hasThreeLevels}
         $isDisabled={disabled}
@@ -61,6 +60,7 @@ export function CheckTreePickerBox({
         $isSelect={isSelect}
         $isTransparent={isTransparent}
         $popupWidth={popupWidth}
+        ref={boxRef}
       >
         {children}
       </RsuiteCheckTreePickerBox>

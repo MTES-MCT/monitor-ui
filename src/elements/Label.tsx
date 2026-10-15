@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import type { LabelHTMLAttributes } from 'react'
 

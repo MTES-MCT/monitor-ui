@@ -1,6 +1,6 @@
 import { THEME } from '@theme'
 import classnames from 'classnames'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import type { LoaderProps } from './LoaderProps'
 

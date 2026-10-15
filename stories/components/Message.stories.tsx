@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Showcase } from '../../.storybook/components/Showcase'
 import { ARG_TYPE, LOREM_IPSUM, META_DEFAULTS } from '../../.storybook/constants'

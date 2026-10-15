@@ -6,7 +6,7 @@ import {
 } from 'fields/shared/utils'
 import { isEqual } from 'lodash-es'
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { NumberInput } from './NumberInput'
 import { RangedTimePicker } from './RangedTimePicker'
@@ -200,7 +200,6 @@ function TimeInputWithRef(
 
   return (
     <Box
-      ref={boxRef}
       $hasError={hasFormatError || hasValidationError}
       $isCompact={isCompact}
       $isDisabled={disabled}
@@ -208,11 +207,11 @@ function TimeInputWithRef(
       $isLight={isLight}
       $isReadOnly={readOnly}
       $isTransparent={isTransparent}
+      ref={boxRef}
     >
       <InputGroup>
         <div>
           <NumberInput
-            ref={hourInputRef}
             aria-label={`Heure${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
             disabled={disabled}
             isLight={isLight}
@@ -229,12 +228,12 @@ function TimeInputWithRef(
             onNext={() => minuteInputRef.current?.focus()}
             onPrevious={onPrevious}
             readOnly={readOnly}
+            ref={hourInputRef}
             size={2}
             value={controlledValue && controlledValue[0]}
           />
           :
           <NumberInput
-            ref={minuteInputRef}
             aria-label={`Minute${isStartDate ? ' de début' : ''}${isEndDate ? ' de fin' : ''}`}
             disabled={disabled}
             isLight={isLight}
@@ -251,6 +250,7 @@ function TimeInputWithRef(
             onNext={onNext}
             onPrevious={() => hourInputRef.current?.focus()}
             readOnly={readOnly}
+            ref={minuteInputRef}
             size={2}
             value={controlledValue && controlledValue[1]}
           />

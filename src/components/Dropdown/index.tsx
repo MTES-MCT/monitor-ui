@@ -2,7 +2,7 @@ import { Accent } from '@constants'
 import classnames from 'classnames'
 import { useMemo } from 'react'
 import { Dropdown as RsuiteDropdown } from 'rsuite'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Item } from './Item'
 

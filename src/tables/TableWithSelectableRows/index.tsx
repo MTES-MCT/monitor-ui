@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import { RowCheckbox } from './RowCheckbox'
 import { SimpleTable } from '../SimpleTable'

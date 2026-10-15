@@ -49,13 +49,13 @@ export function CheckPickerBox({
       </Label>
 
       <StyledRsuitePickerBox
-        ref={boxRef}
         $hasError={hasError}
         $isDisabled={disabled}
         $isLight={isLight}
         $isReadOnly={readOnly}
         $isTransparent={isTransparent}
         $popupWidth={popupWidth}
+        ref={boxRef}
       >
         {children}
       </StyledRsuitePickerBox>

@@ -1,4 +1,4 @@
-import diacritics from 'diacritics'
+import { remove } from 'diacritics'
 
 export type AccentInsensitiveHighlightProps = {
   label: string
@@ -8,7 +8,7 @@ export function AccentInsensitiveHighlight({ label, query }: AccentInsensitiveHi
   if (!query) {
     return label
   }
-  const normalize = (str: string) => diacritics.remove(str).toLowerCase().trim()
+  const normalize = (str: string) => remove(str).toLowerCase().trim()
 
   const raw = label
   const normLabel = normalize(raw)

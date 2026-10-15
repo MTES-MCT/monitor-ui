@@ -1,5 +1,5 @@
 import { THEME } from '@theme'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 const getCalendarTableStyle = () => css`
   padding: 8px;

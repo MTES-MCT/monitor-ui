@@ -22,7 +22,17 @@ const BOOLEAN_UPPER_PREFIXES = [
 ]
 
 module.exports = {
-  extends: ['airbnb', 'airbnb/hooks', 'airbnb-typescript', 'prettier', 'plugin:storybook/recommended'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:react-hooks/recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:import/recommended',
+    'plugin:import/typescript',
+    'prettier'
+  ],
   plugins: ['prettier', 'sort-keys-fix', 'sort-destructure-keys', 'typescript-sort-keys', 'no-null'],
   env: {
     browser: true,
@@ -32,22 +42,12 @@ module.exports = {
     ecmaVersion: 2022,
     project: path.join(__dirname, 'tsconfig.json')
   },
-  ignorePatterns: [
-    '/config/',
-    '/coverage/',
-    '/dist/',
-    '/e2e/',
-    '/scripts/',
-    '/storybook-static/',
-    '.eslintrc.cjs',
-  ],
+  ignorePatterns: ['/config/', '/coverage/', '/dist/', '/e2e/', '/scripts/', '/storybook-static/', '.eslintrc.cjs'],
   rules: {
     curly: ['error', 'all'],
     'newline-before-return': 'error',
     'no-console': ['error', { allow: ['error', 'warn'] }],
-
-    '@typescript-eslint/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
-    // We must add PascalCase in formats because ESLint trim the prefix before evaluating the case
+    'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
     // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/naming-convention.md#format-options
     // > Note: As documented above, the prefix is trimmed before format is validated,
     // > therefore PascalCase must be used to allow variables such as isEnabled using the prefix is.
@@ -115,6 +115,7 @@ module.exports = {
       }
     ],
     '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
@@ -122,9 +123,7 @@ module.exports = {
         caughtErrorsIgnorePattern: '^_'
       }
     ],
-    '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/prefer-nullish-coalescing': 'error',
-
     'import/no-default-export': 'error',
     'import/no-extraneous-dependencies': ['error', { devDependencies: true, peerDependencies: true }],
     'import/order': [
@@ -138,25 +137,21 @@ module.exports = {
         'newlines-between': 'always'
       }
     ],
-    'import/prefer-default-export': 'off',
-
     'no-null/no-null': 'error',
-
     'prettier/prettier': 'error',
-
     'react/jsx-no-useless-fragment': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-sort-props': 'error',
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
-    'react/require-default-props': 'off',
-
     'sort-destructure-keys/sort-destructure-keys': ['error', { caseSensitive: false }],
-
     'sort-keys-fix/sort-keys-fix': ['error', 'asc', { caseSensitive: false, natural: false }],
-
     'typescript-sort-keys/interface': 'error',
-    'typescript-sort-keys/string-enum': 'error'
+    'typescript-sort-keys/string-enum': 'error',
+    '@typescript-eslint/no-namespace': 'off',
+    'react-hooks/set-state-in-effect': 'off',
+    'react-hooks/refs': 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off'
   },
   overrides: [
     {
@@ -168,14 +163,12 @@ module.exports = {
       },
       rules: {
         '@typescript-eslint/naming-convention': 'off',
-
         'cypress/no-assigning-return-values': 'error',
         'cypress/no-unnecessary-waiting': 'error',
         'cypress/assertion-before-screenshot': 'error',
         'cypress/no-force': 'error',
         'cypress/no-async-tests': 'error',
         'cypress/no-pause': 'error',
-
         'mocha/no-exclusive-tests': 'error',
         'mocha/no-skipped-tests': 'error'
       }
@@ -190,9 +183,7 @@ module.exports = {
       },
       rules: {
         '@typescript-eslint/naming-convention': 'off',
-
         'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
-
         'jest/no-disabled-tests': 'error',
         'jest/no-focused-tests': 'error',
         'jest/no-identical-title': 'error',
@@ -209,7 +200,6 @@ module.exports = {
       },
       rules: {
         '@typescript-eslint/naming-convention': 'off',
-
         'import/no-extraneous-dependencies': ['error', { devDependencies: true }]
       }
     },
@@ -226,17 +216,20 @@ module.exports = {
     {
       files: ['./stories/**/*.stories.tsx'],
       rules: {
-        'no-underscore-dangle': 'off',
-
         '@typescript-eslint/naming-convention': 'off',
-
-        'import/no-default-export': 'off',
-
-        'jsx-a11y/control-has-associated-label': 'off',
-
-        'react/destructuring-assignment': 'off',
-        'react/function-component-definition': 'off'
+        'import/no-default-export': 'off'
       }
     }
-  ]
+  ],
+  settings: {
+    'import/resolver': {
+      typescript: {
+        project: path.join(__dirname, 'tsconfig.json')
+      },
+      node: true
+    },
+    react: {
+      version: 'detect'
+    }
+  }
 }

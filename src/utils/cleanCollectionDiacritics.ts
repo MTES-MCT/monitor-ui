@@ -1,4 +1,4 @@
-import diacritics from 'diacritics'
+import { remove } from 'diacritics'
 import { flow, get, update } from 'lodash-es'
 
 import type { CustomSearchKey } from '../libs/CustomSearch/types'
@@ -44,7 +44,7 @@ export function cleanCollectionDiacritics<T extends AnyObject = AnyObject>(
       return collectionItem
     }
 
-    return update(collectionItem, collectionKeyAsPath, diacritics.remove)
+    return update(collectionItem, collectionKeyAsPath, remove)
   })
 
   // We can then generate a single function piping all these collection item transformers...

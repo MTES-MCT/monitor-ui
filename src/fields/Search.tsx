@@ -12,7 +12,7 @@ import { normalizeString } from '@utils/normalizeString'
 import classnames from 'classnames'
 import { type ElementType, type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AutoComplete as RsuiteAutoComplete } from 'rsuite'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { StyledInputBox } from './shared/StyledInputBox'
 import { StyledRsuitePickerBox } from './shared/StyledRsuitePickerBox'
@@ -199,14 +199,14 @@ export function Search<OptionValue extends OptionValueType = string>({
       >
         {boxRef.current && (
           <RsuiteAutoComplete
-            key={key}
             container={boxRef.current}
+            data={controlledRsuiteData ?? rsuiteData}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
             // when we don't, we don't need to control that and just pass the non-internally-controlled `rsuiteData`
-            data={controlledRsuiteData ?? rsuiteData}
             disabled={disabled}
             filterBy={filterBy}
             id={originalProps.name}
+            key={key}
             onChange={(nextValue: string) => handleChange(nextValue)}
             onSelect={(nextValue: any, nextOption: any, event) => {
               event.preventDefault()
@@ -225,10 +225,10 @@ export function Search<OptionValue extends OptionValueType = string>({
             <StyledCloseButton
               $isSearchIconHidden={isSearchIconHidden}
               $size={size}
+              Icon={Icon.Close}
               accent={Accent.TERTIARY}
               className="Field-Search__ClearButton"
               color={THEME.color.slateGray}
-              Icon={Icon.Close}
               onClick={clear}
               size={Size.SMALL}
             />
@@ -242,13 +242,13 @@ export function Search<OptionValue extends OptionValueType = string>({
         {!isSearchIconHidden && <Icon.Search color={THEME.color.slateGray} size={20} />}
       </StyledInputBox>
       <StyledRsuitePickerBox
-        ref={boxRef}
         $hasError={hasError}
         $isDisabled={disabled}
         $isLight={isLight}
         $isReadOnly={readOnly}
         $isTransparent={isTransparent}
         $popupWidth={popupWidth}
+        ref={boxRef}
       />
 
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}

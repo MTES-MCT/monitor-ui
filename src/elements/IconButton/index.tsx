@@ -3,7 +3,7 @@ import { type IconProps } from '@types_/definitions'
 import { stopMouseEventPropagation } from '@utils/stopMouseEventPropagation'
 import classnames from 'classnames'
 import { useMemo, type MouseEvent, type ButtonHTMLAttributes, type FunctionComponent, useCallback } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { BaseIconButton, type BaseIconButtonProps } from './BaseIconButton'
 import { getPrimaryButtonCss, getSecondaryButtonCss } from '../Button/styles'
@@ -155,8 +155,8 @@ const BadgeNumber = styled.div<{
   top: -5px;
   line-height: 14px;
   left: ${p => (p.$size ? LEFT_MARGIN[p.$size] : 25)}px;
-  background: ${p => (p.$backgroundColor ? p.$backgroundColor : p.theme.color.maximumRed)};
-  color: ${p => (p.$color ? p.$color : p.theme.color.white)};
+  background: ${p => p.$backgroundColor ?? p.theme.color.maximumRed};
+  color: ${p => p.$color ?? p.theme.color.white};
   font-size: 12px;
   letter-spacing: 0px;
   font-weight: 700;

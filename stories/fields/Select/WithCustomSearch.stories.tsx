@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
 import SPECIES from '../../../.storybook/data/species.json'
@@ -53,27 +53,29 @@ const meta: Meta<SelectProps<Specy>> = {
 export default meta
 
 export function WithCustomSearch(props: SelectProps<Specy>) {
-  const optionsRef = useRef(
+  const [options] = useState(() =>
     (SPECIES as Specy[]).map(specy => ({
       label: `${specy.code} - ${specy.name}`,
       value: specy
     }))
   )
-  const customSearchRef = useRef(
-    new CustomSearch(
-      optionsRef.current,
-      [
-        {
-          name: 'value.code',
-          weight: 0.9
-        },
-        {
-          name: 'value.name',
-          weight: 0.1
-        }
-      ],
-      { isStrict: true }
-    )
+
+  const [customSearch] = useState(
+    () =>
+      new CustomSearch(
+        options,
+        [
+          {
+            name: 'value.code',
+            weight: 0.9
+          },
+          {
+            name: 'value.name',
+            weight: 0.1
+          }
+        ],
+        { isStrict: false }
+      )
   )
 
   const [outputValue, setOutputValue] = useState<Specy | undefined | '∅'>('∅')
@@ -84,13 +86,13 @@ export function WithCustomSearch(props: SelectProps<Specy>) {
     <>
       <Select
         {...props}
-        customSearch={customSearchRef.current}
+        customSearch={customSearch}
         onChange={controlledOnChange}
-        options={optionsRef.current}
+        options={options}
         value={controlledValue}
       />
       <div>
-        <em>Loads a pre-shuffled list of {optionsRef.current.length} species in order to check performances.</em>
+        <em>Loads a pre-shuffled list of {options.length} species in order to check performances.</em>
       </div>
 
       {outputValue !== '∅' && <Output value={outputValue} />}

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 const Box = styled.div`
   border: solid 1px ${p => p.theme.color.lightGray};

@@ -3,7 +3,7 @@ import { type IconProps } from '@types_/definitions'
 import { stopMouseEventPropagation } from '@utils/stopMouseEventPropagation'
 import classnames from 'classnames'
 import { useCallback, useMemo, type MouseEvent, type ButtonHTMLAttributes, type FunctionComponent } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { BaseButton, type BaseButtonProps } from './BaseButton'
 import { getPrimaryButtonCss, getSecondaryButtonCss } from './styles'

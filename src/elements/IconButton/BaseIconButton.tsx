@@ -1,6 +1,6 @@
 import { Size } from '@constants'
 import { type ButtonHTMLAttributes } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 const PADDING: Record<Size, string> = {
   [Size.LARGE]: '7px',

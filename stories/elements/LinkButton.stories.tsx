@@ -115,7 +115,7 @@ export function _LinkButton(props: LinkButtonProps) {
                 </LinkButton>
               </td>
               <td>
-                <LinkButton disabled Icon={Icon.Reset} size={Size.LARGE}>
+                <LinkButton Icon={Icon.Reset} disabled size={Size.LARGE}>
                   a dummy text
                 </LinkButton>
               </td>

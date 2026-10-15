@@ -1,7 +1,5 @@
 import { isEqual } from 'lodash-es'
-import { useCallback, useEffect, useState } from 'react'
-
-import { usePrevious } from './usePrevious'
+import { useCallback, useState } from 'react'
 
 import type { Promisable } from 'type-fest'
 import type { Defined } from 'yup'
@@ -25,9 +23,14 @@ export function useFieldControl<T>(
   onChange: ((nextValue: T) => Promisable<void>) | undefined,
   defaultValueWhenUndefined?: T
 ): UseFieldControlReturn<T> {
-  const previousValue = usePrevious(value)
-
   const [internalValue, setInternalValue] = useState(value)
+  const [previousValue, setPreviousValue] = useState(value)
+
+  // We override `internalValue` each time the `value` prop is updated (adjusting state during render)
+  if (!isEqual(value, previousValue)) {
+    setPreviousValue(value)
+    setInternalValue(value)
+  }
 
   const controlledValue =
     internalValue === undefined && defaultValueWhenUndefined !== undefined ? defaultValueWhenUndefined : internalValue
@@ -43,15 +46,6 @@ export function useFieldControl<T>(
     },
     [onChange]
   )
-
-  // And we override `internalValue` each time the `value` prop is updated
-  useEffect(() => {
-    if (isEqual(value, previousValue)) {
-      return
-    }
-
-    setInternalValue(value)
-  }, [previousValue, value])
 
   return { controlledOnChange, controlledValue }
 }

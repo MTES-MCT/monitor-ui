@@ -1,5 +1,5 @@
 import { action } from 'storybook/actions'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { ARG_TYPE, META_DEFAULTS } from '../../.storybook/constants'
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'

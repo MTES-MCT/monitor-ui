@@ -4,7 +4,7 @@ import { isNumeric } from '@utils/isNumeric'
 import { useEffect, useState } from 'react'
 import { dmsToDecimal } from 'react-coordinate-input'
 import { IMaskInput } from 'react-imask'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import type { Coordinates } from '@types_/definitions'
 
@@ -44,6 +44,7 @@ export function DMDCoordinatesInput({
         .map(coordinate => coordinate.replace(/[°′. ]/g, ''))
         .join('')
 
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setValue(nextValue)
     } else {
       setValue('')
@@ -106,7 +107,6 @@ export function DMDCoordinatesInput({
         lazy={false}
         mask="00° 00.000′ a 000° 00.000′ a"
         name={name}
-        // @ts-ignore
         onAccept={(_, mask) => setValue(mask.value)}
         onComplete={(_, mask) => completeCoordinates(mask)}
         placeholder="__° __.___′ _ ___° __.___′"
