@@ -1,7 +1,7 @@
 /* eslint-disable no-null/no-null, @typescript-eslint/naming-convention */
 
 import { PureComponent, type ReactNode } from 'react'
-import ReactDOM from 'react-dom'
+import { createPortal } from 'react-dom'
 
 import type { Define } from '../types/utilities'
 import type { Promisable } from 'type-fest'
@@ -232,7 +232,7 @@ export class NewWindow extends PureComponent<NewWindowProps, NewWindowState> {
 
     // For some reason `ReactNode` type is inconsistent
     // between `@types/react` (=> `children`) and `react-dom` (=> `ReactDOM.createPortal()`)
-    return ReactDOM.createPortal(children as any, this.container) as any
+    return createPortal(children as any, this.container) as any
   }
 }
 
@@ -279,6 +279,7 @@ function onCopyStyles(source: Document, target: Document | undefined): void {
       // An error here most likely happens when trying to access stylesheets from other domains,
       // which is a CORS violation and should be ignored.
       // eslint-disable-next-line no-console
+      console.error(err)
 
       return
     }

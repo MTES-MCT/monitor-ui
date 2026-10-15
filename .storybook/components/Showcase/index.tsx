@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Subtitle } from './Subtitle'
 import { Table } from './Table'

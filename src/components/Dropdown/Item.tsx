@@ -1,7 +1,7 @@
 import { Accent } from '@constants'
 import { useMemo } from 'react'
 import { Dropdown as RsuiteDropdown } from 'rsuite'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import type { IconProps } from '@types_/definitions'
 import type { FunctionComponent } from 'react'

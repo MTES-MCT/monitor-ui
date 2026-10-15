@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import { StyledRsuitePickerBox } from 'fields/shared/StyledRsuitePickerBox'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { type PickerHandle, TagPicker, type TagPickerProps } from 'rsuite'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Field } from '../elements/Field'
 import { FieldError } from '../elements/FieldError'
@@ -150,32 +150,32 @@ export function MultiSelect<OptionValue extends OptionValueType = string>({
       </Label>
 
       <Box
-        ref={boxRef}
         $hasError={hasError}
         $isDisabled={disabled}
         $isLight={isLight}
         $isReadOnly={readOnly}
         $isTransparent={isTransparent}
         $popupWidth={popupWidth}
+        ref={boxRef}
       >
         {boxRef.current && (
           <TagPicker
-            key={key}
-            ref={listboxRef}
             container={boxRef.current}
-            // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
-            // when we don't, we don't need to control that and just pass the non-internally-controlled `rsuiteData`
             data={controlledRsuiteData ?? rsuiteData}
             disabled={disabled}
+            // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
+            // when we don't, we don't need to control that and just pass the non-internally-controlled `rsuiteData`
             id={originalProps.name}
+            key={key}
             onChange={handleChange}
             onSearch={handleSearch}
             readOnly={readOnly}
+            ref={listboxRef}
             renderMenuItem={customRenderMenuItem ?? renderMenuItem}
-            searchable={!!customSearch || searchable}
             // When we use a custom search, we use `controlledRsuiteData` to provide the matching options (data),
             // that's why we send this "always true" filter to disable Rsuite TagPicker internal search filtering
             searchBy={(customSearch ? () => true : undefined) as any}
+            searchable={!!customSearch || searchable}
             value={selectedRsuiteDataItemValues}
             {...originalProps}
           />

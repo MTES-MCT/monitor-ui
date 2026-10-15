@@ -8,7 +8,7 @@ import classnames from 'classnames'
 import { getFieldBackgroundColorFactory, getFieldBorderColorFactoryForState } from 'fields/shared/utils'
 import { noop } from 'lodash-es'
 import { useCallback, useId, useMemo, useState, type CSSProperties } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { DDCoordinatesInput } from './DDCoordinatesInput'
 import { DMDCoordinatesInput } from './DMDCoordinatesInput'
@@ -78,11 +78,11 @@ export function CoordinatesInput({
       case CoordinatesFormat.DEGREES_MINUTES_SECONDS:
         return (
           <DMSCoordinatesInput
-            key={key}
             coordinates={defaultValue}
             coordinatesFormat={CoordinatesFormat.DEGREES_MINUTES_SECONDS}
             disabled={disabled}
             id={coordinatesInputId}
+            key={key}
             name={name}
             onChange={onChange}
             readOnly={readOnly}
@@ -92,11 +92,11 @@ export function CoordinatesInput({
       case CoordinatesFormat.DEGREES_MINUTES_DECIMALS:
         return (
           <DMDCoordinatesInput
-            key={key}
             coordinates={defaultValue}
             coordinatesFormat={CoordinatesFormat.DEGREES_MINUTES_DECIMALS}
             disabled={disabled}
             id={coordinatesInputId}
+            key={key}
             name={name}
             onChange={onChange}
             readOnly={readOnly}
@@ -106,10 +106,10 @@ export function CoordinatesInput({
       case CoordinatesFormat.DECIMAL_DEGREES:
         return (
           <DDCoordinatesInput
-            key={key}
             coordinates={defaultValue}
             disabled={disabled}
             id={coordinatesInputId}
+            key={key}
             name={name}
             onChange={nextCoordinates => onChange(nextCoordinates, defaultValue)}
             readOnly={readOnly}

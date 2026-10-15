@@ -4,7 +4,7 @@ import {
   getFieldPlaceholderColorFactoryForState
 } from 'fields/shared/utils'
 import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { NumberInput } from './NumberInput'
 import { formatNumberAsDoubleDigit, isHtmlElement } from './utils'
@@ -72,8 +72,7 @@ function DateInputWithRef(
   const yearInputRef = useRef<HTMLInputElement>(null)
   /* eslint-enable no-null/no-null */
 
-  const lastValueBeforeFocusRef = useRef(value)
-
+  const [lastValueBeforeFocus, setLastValueBeforeFocus] = useState(value)
   const [hasFormatError, setHasFormatError] = useState(false)
   const [hasValidationError, setHasValidationError] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
@@ -82,15 +81,15 @@ function DateInputWithRef(
     () => (isHtmlElement(baseContainer) ? baseContainer.ownerDocument : window.document),
     [baseContainer]
   )
-  const controlledValue = useMemo(() => {
-    if (!isFocused) {
-      lastValueBeforeFocusRef.current = value
-    }
 
-    return lastValueBeforeFocusRef.current
-  }, [isFocused, value])
+  // Adjust the state during render while the input is not focused
+  // https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
+  if (!isFocused && lastValueBeforeFocus !== value) {
+    setLastValueBeforeFocus(value)
+  }
 
-  const key = JSON.stringify(lastValueBeforeFocusRef.current)
+  const controlledValue = isFocused ? lastValueBeforeFocus : value
+  const key = JSON.stringify(controlledValue)
 
   useImperativeHandle<DateInputRef, DateInputRef>(ref, () => ({
     box: boxRef.current,
@@ -170,7 +169,6 @@ function DateInputWithRef(
 
   return (
     <Box
-      ref={boxRef}
       $hasError={hasFormatError || hasValidationError}
       $isCompact={isCompact}
       $isDisabled={disabled}
@@ -178,16 +176,16 @@ function DateInputWithRef(
       $isLight={isLight}
       $isReadOnly={readOnly}
       $isTransparent={isTransparent}
+      ref={boxRef}
     >
       <div>
         {isRange && isStartDate && <span>Du </span>}
         {isRange && isEndDate && <span>Au </span>}
         <NumberInput
-          key={`${key}-day`}
-          ref={dayInputRef}
           aria-label={`Jour${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
           disabled={disabled}
           isLight={isLight}
+          key={`${key}-day`}
           max={31}
           min={1}
           name={`${name}Day`}
@@ -201,16 +199,16 @@ function DateInputWithRef(
           onNext={() => monthInputRef.current?.focus()}
           onPrevious={onPrevious}
           readOnly={readOnly}
+          ref={dayInputRef}
           size={2}
           value={controlledValue && controlledValue[2]}
         />
         /
         <NumberInput
-          key={`${key}-month`}
-          ref={monthInputRef}
           aria-label={`Mois${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
           disabled={disabled}
           isLight={isLight}
+          key={`${key}-month`}
           max={12}
           min={1}
           name={`${name}Month`}
@@ -224,16 +222,16 @@ function DateInputWithRef(
           onNext={() => yearInputRef.current?.focus()}
           onPrevious={() => dayInputRef.current?.focus()}
           readOnly={readOnly}
+          ref={monthInputRef}
           size={2}
           value={controlledValue && controlledValue[1]}
         />
         /
         <NumberInput
-          key={`${key}-year`}
-          ref={yearInputRef}
           aria-label={`Année${isRange && isStartDate ? ' de début' : ''}${isRange && isEndDate ? ' de fin' : ''}`}
           disabled={disabled}
           isLight={isLight}
+          key={`${key}-year`}
           name={`${name}Year`}
           onBack={() => monthInputRef.current?.focus()}
           onBlur={handleBlur}
@@ -245,6 +243,7 @@ function DateInputWithRef(
           onNext={onNext}
           onPrevious={() => monthInputRef.current?.focus()}
           readOnly={readOnly}
+          ref={yearInputRef}
           size={4}
           value={controlledValue && controlledValue[0]}
         />

@@ -41,7 +41,7 @@ export function _FormikCheckbox(props: FormikCheckboxProps) {
 
   return (
     <>
-      <Formik key={key} initialValues={{}} onSubmit={action('onSubmit')}>
+      <Formik initialValues={{}} key={key} onSubmit={action('onSubmit')}>
         <>
           <FormikEffect onChange={setOutputValue} />
 

@@ -3,7 +3,7 @@ import { Label } from '@elements/Label'
 import { useNewWindow } from '@hooks/useNewWindow'
 import { THEME } from '@theme'
 import React, { type ChangeEvent, useEffect, useMemo, useRef, useState } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { FileList } from './FileList'
 import { FilePreview } from './FilePreview'
@@ -89,7 +89,7 @@ export function FileUploader({
         )
 
         onUpload([...(files ?? []), ...compressedImages])
-      } catch (error) {
+      } catch (_) {
         const errorMessage = "Un problème est survenu lors de l'ajout du fichier. Veuillez recommencer"
         onError(errorMessage)
       }
@@ -159,11 +159,11 @@ export function FileUploader({
             <Underline>Charger</Underline> ou <Underline>glisser-déposer</Underline> {parameter?.suffixMessage}
           </span>
           <input
-            ref={inputRef}
             accept={parameter?.acceptedFiles}
             hidden
             multiple
             onChange={handleFileSelect}
+            ref={inputRef}
             type="file"
           />
           <Text $hasError={fileText !== parameter?.warningMessage}>{fileText}</Text>

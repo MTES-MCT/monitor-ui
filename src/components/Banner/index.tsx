@@ -4,7 +4,7 @@ import { LinkButton } from '@elements/LinkButton'
 import classNames from 'classnames'
 import { isString } from 'lodash-es'
 import { type ReactNode, useCallback, useEffect, useRef, useState, type CSSProperties } from 'react'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import { ANIMATION_DURATION_IN_MS } from './constants'
 import { getBannerPalette } from './utils'
@@ -119,9 +119,9 @@ export function Banner({
           >
             {isClosable && (
               <IconButton
+                Icon={Icon.Close}
                 accent={Accent.TERTIARY}
                 color={getBannerPalette(level).color}
-                Icon={Icon.Close}
                 title={isClosable ? 'Fermer' : 'Masquer'}
               />
             )}

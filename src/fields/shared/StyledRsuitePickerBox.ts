@@ -1,5 +1,5 @@
 import { THEME } from '@theme'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import {
   getFieldBackgroundColorFactory,
@@ -167,15 +167,17 @@ export const getCheckPickerMenuCss = (p: CommonPickerFieldStyleProps) => css`
     border-radius: 0;
     padding: 0;
 
-    ${p.$popupWidth
-      ? `
+    ${
+      p.$popupWidth
+        ? `
       max-width: ${p.$popupWidth}px;
       min-width: ${p.$popupWidth}px !important;
       width: ${p.$popupWidth}px;
       `
-      : `
+        : `
       width: 100%;
-    `};
+    `
+    };
 
     > .rs-cascade-search-view {
       > .rs-search-box {

@@ -1,6 +1,6 @@
 import { usePrevious } from '@hooks/usePrevious'
 import { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { isNumeric } from '../../utils/isNumeric'
 

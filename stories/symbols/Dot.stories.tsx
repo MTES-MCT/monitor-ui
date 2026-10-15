@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Dot, THEME, type DotProps } from '../../src'

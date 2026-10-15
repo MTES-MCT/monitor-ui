@@ -1,21 +1,22 @@
 import { isEqual } from 'lodash-es'
-import { useRef } from 'react'
+import { useState } from 'react'
 
-import { usePrevious } from './usePrevious'
 import { getPseudoRandomString } from '../utils/getPseudoRandomString'
 
 import type { DependencyList } from 'react'
 
 export function useKey(deps: DependencyList) {
-  const keyRef = useRef<string>(getPseudoRandomString())
+  const [state, setState] = useState<{ deps: DependencyList; key: string }>(() => ({
+    deps,
+    key: getPseudoRandomString()
+  }))
 
-  const prevDeps = usePrevious(deps)
-
-  if (isEqual(deps, prevDeps)) {
-    return keyRef.current
+  if (isEqual(deps, state.deps)) {
+    return state.key
   }
 
-  keyRef.current = getPseudoRandomString()
+  const newKey = getPseudoRandomString()
+  setState({ deps, key: newKey })
 
-  return keyRef.current
+  return newKey
 }

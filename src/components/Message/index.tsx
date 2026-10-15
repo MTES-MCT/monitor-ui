@@ -1,7 +1,7 @@
 import { Level } from '@constants'
 import classnames from 'classnames'
 import { type FunctionComponent, type HTMLAttributes, type ReactNode } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { DEFAUT_ICON, DEFAULT_ICON_COLOR } from './constants'
 import { getStyledCssFromLevel } from './utils'

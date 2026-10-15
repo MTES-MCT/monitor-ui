@@ -19,7 +19,6 @@ const args: DataTableProps<FakeBasicTableDataItem> = {
       id: 'lastName'
     }
   ],
-  tableOptions: undefined,
   withoutHead: false
 }
 

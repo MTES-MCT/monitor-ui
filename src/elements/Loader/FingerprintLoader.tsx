@@ -1,6 +1,6 @@
 import { THEME } from '@theme'
 import classnames from 'classnames'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import type { LoaderProps } from './LoaderProps'
 
@@ -20,7 +20,7 @@ export function FingerprintLoader({
 
   function generateRings(num) {
     // eslint-disable-next-line react/no-array-index-key
-    return Array.from({ length: num }).map((_, index) => <div key={index} className="spinner-ring" />)
+    return Array.from({ length: num }).map((_, index) => <div className="spinner-ring" key={index} />)
   }
 
   return (

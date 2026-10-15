@@ -1,14 +1,19 @@
 import {
   type ColumnDef,
-  getCoreRowModel,
-  getExpandedRowModel,
-  getSortedRowModel,
+  columnVisibilityFeature,
+  columnSizingFeature,
+  createExpandedRowModel,
+  createSortedRowModel,
+  type ExpandedState,
   type SortingState,
   type TableOptions,
-  useReactTable
+  rowExpandingFeature,
+  rowSortingFeature,
+  tableFeatures,
+  useTable
 } from '@tanstack/react-table'
 import { type ReactNode, useState } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Td } from './Td'
 import { Th } from './Th'
@@ -16,13 +21,28 @@ import { SimpleTable } from '../SimpleTable'
 
 import type { AnyObject } from '../../types/definitions'
 
+export const dataTableFeatures = tableFeatures({
+  columnSizingFeature,
+  columnVisibilityFeature,
+  expandedRowModel: createExpandedRowModel(),
+  rowExpandingFeature,
+  rowSortingFeature,
+  sortedRowModel: createSortedRowModel()
+})
+
+export type DataTableFeatures = typeof dataTableFeatures
+
+type DataTableRow = AnyObject & {
+  subRows?: DataTableRow[]
+}
+
 export type DataTableProps<T extends AnyObject> = {
-  columns: Array<ColumnDef<T>>
+  columns: Array<ColumnDef<typeof dataTableFeatures, T>>
   data: T[] | undefined
   emptyLabel?: ReactNode
   initialSorting: SortingState
-  tableOptions?: Partial<TableOptions<T>> | undefined
-  withoutHead?: boolean | undefined
+  tableOptions?: Partial<TableOptions<typeof dataTableFeatures, T>>
+  withoutHead?: boolean
 }
 
 export function DataTable<T extends AnyObject>({
@@ -33,28 +53,23 @@ export function DataTable<T extends AnyObject>({
   tableOptions,
   withoutHead = false
 }: DataTableProps<T>) {
-  const isExpandable = !!data?.map(item => item.subRows)?.length
   const [sorting, setSorting] = useState<SortingState>(initialSorting)
-  const [expanded, setExpanded] = useState({})
+  const [expanded, setExpanded] = useState<ExpandedState>({})
 
-  const table = useReactTable({
+  const table = useTable({
     columns,
     data: data ?? [],
     // eslint-disable-next-line @typescript-eslint/naming-convention
     enableSortingRemoval: false,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    ...(isExpandable && {
-      getExpandedRowModel: getExpandedRowModel(),
-      getSubRows: (row: any) => row.subRows,
-      onExpandedChange: setExpanded
-    }),
+    features: dataTableFeatures,
+    getSubRows: (row: T) => (row as DataTableRow).subRows as T[] | undefined,
+    onExpandedChange: setExpanded,
     onSortingChange: setSorting,
     ...tableOptions,
     state: {
-      sorting,
-      ...(isExpandable ? { expanded } : {}),
-      ...tableOptions?.state
+      ...tableOptions?.state,
+      expanded,
+      sorting
     }
   })
 
@@ -75,7 +90,7 @@ export function DataTable<T extends AnyObject>({
                   {table.getHeaderGroups().map(headerGroup => (
                     <tr key={headerGroup.id}>
                       {headerGroup.headers.map(header => (
-                        <Th key={header.id} header={header} />
+                        <Th header={header} key={header.id} />
                       ))}
                     </tr>
                   ))}
@@ -84,14 +99,18 @@ export function DataTable<T extends AnyObject>({
 
               <TBody $withTopBorder={withoutHead}>
                 {rows.map(row => (
-                  // `data-id` is expected by `cy.getTableRowById()` custom command
                   <SimpleTable.BodyTr
-                    key={row.id}
+                    // `data-id` is expected by `cy.getTableRowById()`
                     data-id={'id' in row.original ? row.original.id : row.id}
-                    onClick={() => row.toggleExpanded()}
+                    key={row.id}
+                    onClick={() => {
+                      if (row.getCanExpand()) {
+                        row.toggleExpanded()
+                      }
+                    }}
                   >
                     {row.getVisibleCells().map(cell => (
-                      <Td key={cell.id} cell={cell} />
+                      <Td cell={cell} key={cell.id} />
                     ))}
                   </SimpleTable.BodyTr>
                 ))}

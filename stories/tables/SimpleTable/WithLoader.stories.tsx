@@ -8,7 +8,7 @@ import { Icon, IconButton, SimpleTable, Size } from '../../../src'
 import type { Meta } from '@storybook/react-vite'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-const meta: Meta<{}> = {
+const meta: Meta = {
   ...META_DEFAULTS,
 
   title: 'Tables/SimpleTable (variations)',

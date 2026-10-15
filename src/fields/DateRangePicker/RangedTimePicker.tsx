@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { getRangedTimeOptions } from './utils'
 import { stopMouseEventPropagation } from '../../utils/stopMouseEventPropagation'
@@ -101,10 +101,10 @@ export function RangedTimePicker({ filter, isTop, minutesRange, onChange }: Rang
     >
       {filteredRangedTimeOptions.map(({ label, value }, index) => (
         <Option
-          key={label}
           $isSelected={index === selectedOptionIndex}
           aria-selected={false}
           className="js-ranged-time-picker-option"
+          key={label}
           onClick={() => onChange(value)}
           role="option"
           tabIndex={-1}

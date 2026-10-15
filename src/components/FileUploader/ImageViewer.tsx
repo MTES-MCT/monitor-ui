@@ -4,7 +4,7 @@ import { useNewWindow } from '@hooks/useNewWindow'
 import { THEME } from '@theme'
 import { useCallback, useState } from 'react'
 import { createPortal } from 'react-dom'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { useEscapeKey } from './hook/useEscapeKey'
 
@@ -43,9 +43,9 @@ export function ImageViewer({ currentIndex, images, isSideWindow = false, onClos
     <>
       <Wrapper>
         <CloseButton
+          Icon={Icon.Close}
           accent={Accent.TERTIARY}
           color={THEME.color.white}
-          Icon={Icon.Close}
           iconSize={30}
           onClick={onClose}
         />
@@ -53,9 +53,9 @@ export function ImageViewer({ currentIndex, images, isSideWindow = false, onClos
         {images.length > 1 && (
           <Navigation
             $isPrev
+            Icon={Icon.FilledArrow}
             accent={Accent.TERTIARY}
             color={THEME.color.white}
-            Icon={Icon.FilledArrow}
             iconSize={40}
             onClick={() => changeImage(-1)}
           />
@@ -69,9 +69,9 @@ export function ImageViewer({ currentIndex, images, isSideWindow = false, onClos
         {images.length > 1 && (
           <Navigation
             $isNext
+            Icon={Icon.FilledArrow}
             accent={Accent.TERTIARY}
             color={THEME.color.white}
-            Icon={Icon.FilledArrow}
             iconSize={40}
             onClick={() => changeImage(1)}
           />

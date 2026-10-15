@@ -1,6 +1,6 @@
 import { Icon } from '@constants'
 import { IconButton } from '@elements/IconButton'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 export function Title({ children, onClose }: { children?: string | React.ReactNode; onClose?: () => void }) {
   const isString = typeof children === 'string'

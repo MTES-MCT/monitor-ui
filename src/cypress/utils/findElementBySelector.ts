@@ -17,11 +17,9 @@ export function findElementBySelector<T extends HTMLElement = HTMLElement>(
   if (inElement) {
     let foundElement
     let foundElementIndex = 0
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     Cypress.$(inElement)
       .find(selector)
-      // eslint-disable-next-line func-names
-      .each(function (this: HTMLElement) {
+      .each((_index, element) => {
         if (!foundElement) {
           if (foundElementIndex < index) {
             foundElementIndex += 1
@@ -29,7 +27,7 @@ export function findElementBySelector<T extends HTMLElement = HTMLElement>(
             return
           }
 
-          foundElement = this
+          foundElement = element
         }
       })
     if (!foundElement && fallbackSelector) {
@@ -45,8 +43,8 @@ export function findElementBySelector<T extends HTMLElement = HTMLElement>(
 
   let foundElement
   let foundElementIndex = 0
-  // eslint-disable-next-line func-names, @typescript-eslint/no-unused-expressions
-  Cypress.$(selector).each(function () {
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+  Cypress.$(selector).each((_index, element) => {
     if (!foundElement) {
       if (foundElementIndex < index) {
         foundElementIndex += 1
@@ -54,7 +52,7 @@ export function findElementBySelector<T extends HTMLElement = HTMLElement>(
         return
       }
 
-      foundElement = this
+      foundElement = element
     }
   })
   if (!foundElement && fallbackSelector) {

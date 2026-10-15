@@ -1,16 +1,18 @@
-import { flexRender, type Header } from '@tanstack/react-table'
+import { flexRender, type Header, type RowData } from '@tanstack/react-table'
 
 import { SortingIcon } from './SortingIcon'
 import { SortingArrows } from '../../icons'
 import { SimpleTable } from '../SimpleTable'
 
+import type { DataTableFeatures } from '.'
 import type { ReactNode } from 'react'
 
-export type ThProps = {
+export type ThProps<TData extends RowData, TValue = unknown> = {
   children?: ReactNode
-  header: Header<any, unknown>
+  header: Header<DataTableFeatures, TData, TValue>
 }
-export function Th({ children, header }: ThProps) {
+
+export function Th<TData extends RowData, TValue = unknown>({ children, header }: ThProps<TData, TValue>) {
   const controlledChildren =
     (children ?? !header.isPlaceholder) ? (
       <SimpleTable.SortContainer

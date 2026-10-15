@@ -102,6 +102,9 @@ export const RangeCalendarPicker = forwardRef<HTMLDivElement, RangeCalendarPicke
 
     return (
       <StyledRsuiteCalendarBox
+        $isDoubleCalendar={!hasSingleCalendar}
+        className="Field-DateRangePicker__RangeCalendarPicker"
+        onClick={stopMouseEventPropagation}
         ref={element => {
           boxRef.current = element
           if (typeof ref === 'function') {
@@ -111,9 +114,6 @@ export const RangeCalendarPicker = forwardRef<HTMLDivElement, RangeCalendarPicke
             ref.current = element
           }
         }}
-        $isDoubleCalendar={!hasSingleCalendar}
-        className="Field-DateRangePicker__RangeCalendarPicker"
-        onClick={stopMouseEventPropagation}
       >
         {boxRef.current && (
           <RsuiteDateRangePicker
@@ -134,3 +134,5 @@ export const RangeCalendarPicker = forwardRef<HTMLDivElement, RangeCalendarPicke
     )
   }
 )
+
+RangeCalendarPicker.displayName = 'RangeCalendarPicker'

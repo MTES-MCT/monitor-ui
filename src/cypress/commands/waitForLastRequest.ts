@@ -9,9 +9,8 @@ export function waitForLastRequest(
     throw new Error(`${maxRequests} requests exceeded`)
   }
 
-  // @ts-ignore
+  // @ts-expect-error Ignore TypeScript errors for the following line as Cypress commands are dynamically added.
   return cy.wait(alias).then(interception => {
-    // @ts-ignore
     const isMatch = Cypress._.isMatch(interception.request, partialRequest)
     if (isMatch) {
       return callback(interception.response)
@@ -20,7 +19,6 @@ export function waitForLastRequest(
     // eslint-disable-next-line no-console
     cy.log('Intercepted request', JSON.stringify(interception.request))
 
-    // @ts-ignore
     return cy.waitForLastRequest(alias, partialRequest, maxRequests, level + 1, callback)
   })
 }
