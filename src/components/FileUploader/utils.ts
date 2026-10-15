@@ -48,7 +48,7 @@ export async function convertImagesToThumbnails(files: FileApi[], ref: HTMLEleme
           name: file.name,
           orientation: naturalWidth > naturalHeight ? Orientation.LANDSCAPE : Orientation.PORTRAIT
         }
-      } catch (error) {
+      } catch (_) {
         return undefined
       }
     })

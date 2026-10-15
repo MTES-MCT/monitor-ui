@@ -2,7 +2,7 @@ import { useKey } from '@hooks/useKey'
 import classnames from 'classnames'
 import React, { type CSSProperties, useCallback, useMemo } from 'react'
 import { Checkbox as RsuiteCheckbox } from 'rsuite'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { getChoiceFieldBackgroundColorFactoryForState, getChoiceFieldBorderColorFactoryForState } from './shared/utils'
 import { Field } from '../elements/Field'
@@ -82,7 +82,6 @@ export function Checkbox({
   return (
     <Field className={controlledClassName} style={style}>
       <StyledRsuiteCheckbox
-        key={key}
         $hasError={hasControlledError}
         $isChecked={checked || indeterminate}
         $isDisabled={disabled}
@@ -94,6 +93,7 @@ export function Checkbox({
         disabled={disabled}
         id={name}
         indeterminate={indeterminate}
+        key={key}
         name={name}
         onChange={handleChange}
         readOnly={readOnly}

@@ -10,7 +10,7 @@ import classnames from 'classnames'
 import { getFieldBackgroundColorFactory } from 'fields/shared/utils'
 import { isEqual } from 'lodash-es'
 import { type CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Delete, Edit, Plus, SelectRectangle } from '../../icons'
 
@@ -147,9 +147,9 @@ export function MultiLocationEditor({
       <Controls>
         {pointOptions && (
           <Button
+            Icon={Plus}
             accent={hasError ? Accent.ERROR : Accent.SECONDARY}
             disabled={disabled || pointOptions.isButtonDisabled === true}
-            Icon={Plus}
             isFullWidth
             onClick={() => add(pointOptions)}
           >
@@ -159,9 +159,9 @@ export function MultiLocationEditor({
 
         {zoneOptions && (
           <Button
+            Icon={Plus}
             accent={hasError ? Accent.ERROR : Accent.SECONDARY}
             disabled={disabled || zoneOptions.isButtonDisabled === true}
-            Icon={Plus}
             isFullWidth
             onClick={() => add(zoneOptions)}
           >
@@ -191,14 +191,14 @@ export function MultiLocationEditor({
             </LocationBox>
 
             <IconButton
-              accent={Accent.SECONDARY}
               Icon={Edit}
+              accent={Accent.SECONDARY}
               onClick={() => editLocation(index, zone)}
               title="Modifier cette zone"
             />
             <IconButton
-              accent={Accent.SECONDARY}
               Icon={Delete}
+              accent={Accent.SECONDARY}
               onClick={() => deleteLocation(index)}
               title="Supprimer cette zone"
             />

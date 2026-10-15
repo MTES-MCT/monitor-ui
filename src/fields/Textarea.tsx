@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import { useCallback, useMemo, useRef } from 'react'
 import { Input as RsuiteInput } from 'rsuite'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import {
   getFieldBackgroundColorFactory,
@@ -82,19 +82,18 @@ export function Textarea({
       </Label>
 
       <StyledRsuiteInput
-        key={key}
-        ref={inputRef}
         $hasError={hasError}
         $isDisabled={disabled}
         $isLight={isLight}
         $isReadOnly={readOnly}
         $isTransparent={isTransparent}
-        // @ts-ignore
         as="textarea"
         disabled={disabled}
         id={originalProps.name}
+        key={key}
         onChange={handleChange}
         readOnly={readOnly}
+        ref={inputRef}
         rows={rows}
         value={value ?? ''}
         {...originalProps}

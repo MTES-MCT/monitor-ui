@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react'
-import styled from 'styled-components'
+import { useState } from 'react'
+import { styled } from 'styled-components'
 
 import { Description } from '../../../.storybook/components/Description'
 import { Output } from '../../../.storybook/components/Output'
@@ -43,53 +43,56 @@ const meta: Meta<SearchProps> = {
 export default meta
 
 export function WithCustomSearch(props: SearchProps) {
-  const [objectOutputValue, setObjectOutputValue] = useState<any | undefined>(undefined)
-  const [simpleOutputValue, setSimpleOutputValue] = useState<any | undefined>(undefined)
-  const objectOptionsRef = useRef(
+  const [objectOutputValue, setObjectOutputValue] = useState<Specy | undefined>(undefined)
+  const [simpleOutputValue, setSimpleOutputValue] = useState<string | undefined>(undefined)
+
+  const [options] = useState(() =>
     (SPECIES as Specy[]).map(specy => ({
       label: `${specy.code} - ${specy.name}`,
       value: specy
     }))
   )
-  const objectCustomSearchRef = useRef(
-    new CustomSearch(
-      objectOptionsRef.current,
-      [
-        {
-          name: 'value.code',
-          weight: 0.9
-        },
-        {
-          name: 'value.name',
-          weight: 0.1
-        }
-      ],
-      { isStrict: false, shouldIgnoreLocation: true }
-    )
+
+  const [customSearch] = useState(
+    () =>
+      new CustomSearch(
+        options,
+        [
+          {
+            name: 'value.code',
+            weight: 0.9
+          },
+          {
+            name: 'value.name',
+            weight: 0.1
+          }
+        ],
+        { isStrict: false, shouldIgnoreLocation: true }
+      )
   )
 
-  const simpleOptionsRef = useRef(
+  const [simpleOptions] = useState(() =>
     (SPECIES as Specy[]).map(specy => ({
       label: `${specy.code} - ${specy.name}`,
       value: specy.name
     }))
   )
-
-  const simpleCustomSearchRef = useRef(
-    new CustomSearch(
-      simpleOptionsRef.current,
-      [
-        {
-          name: 'value',
-          weight: 0.9
-        },
-        {
-          name: 'label',
-          weight: 0.1
-        }
-      ],
-      { isStrict: false, shouldIgnoreLocation: true }
-    )
+  const [simpleCustomSearch] = useState(
+    () =>
+      new CustomSearch(
+        simpleOptions,
+        [
+          {
+            name: 'value.code',
+            weight: 0.9
+          },
+          {
+            name: 'value.name',
+            weight: 0.1
+          }
+        ],
+        { isStrict: false, shouldIgnoreLocation: true }
+      )
   )
 
   return (
@@ -98,10 +101,10 @@ export function WithCustomSearch(props: SearchProps) {
         <Description>With object value</Description>
         <Search
           {...props}
-          customSearch={objectCustomSearchRef.current}
+          customSearch={customSearch}
           onChange={setObjectOutputValue}
-          options={objectOptionsRef.current}
           optionValueKey="name"
+          options={options}
           value={objectOutputValue}
         />
 
@@ -111,9 +114,9 @@ export function WithCustomSearch(props: SearchProps) {
         <Description>With simple value</Description>
         <Search
           {...props}
-          customSearch={simpleCustomSearchRef.current}
+          customSearch={simpleCustomSearch}
           onChange={setSimpleOutputValue}
-          options={simpleOptionsRef.current}
+          options={simpleOptions}
           value={simpleOutputValue}
         />
 

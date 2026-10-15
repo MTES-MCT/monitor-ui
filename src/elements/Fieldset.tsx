@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { type FieldsetHTMLAttributes, useMemo } from 'react'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import { Legend } from './Legend'
 

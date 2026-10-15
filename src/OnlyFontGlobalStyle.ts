@@ -1,22 +1,22 @@
 import { createGlobalStyle } from 'styled-components'
 
-// @ts-ignore
+// @ts-expect-error import of woff2 font file
 import MarianneBold from './assets/fonts/Marianne-Bold.woff2'
-// @ts-ignore
+// @ts-expect-error import of woff2 font file
 import MarianneBoldItalic from './assets/fonts/Marianne-Bold_Italic.woff2'
-// @ts-ignore
+// @ts-expect-error import of woff2 font file
 import MarianneLight from './assets/fonts/Marianne-Light.woff2'
-// @ts-ignore
+// @ts-expect-error import of woff2 font file
 import MarianneLightItalic from './assets/fonts/Marianne-Light_Italic.woff2'
-// @ts-ignore
+// @ts-expect-error import of woff2 font file
 import MarianneMedium from './assets/fonts/Marianne-Medium.woff2'
-// @ts-ignore
+// @ts-expect-error import of woff2 font file
 import MarianneMediumItalic from './assets/fonts/Marianne-Medium_Italic.woff2'
-// @ts-ignore
+// @ts-expect-error import of woff2 font file
 import MarianneRegular from './assets/fonts/Marianne-Regular.woff2'
-// @ts-ignore
+// @ts-expect-error import of woff2 font file
 import MarianneItalic from './assets/fonts/Marianne-Regular_Italic.woff2'
-// @ts-ignore
+// @ts-expect-error import of woff2 font file
 import OpenSansRegular from './assets/fonts/OpenSans-Regular.woff2'
 
 export const OnlyFontGlobalStyle = createGlobalStyle`

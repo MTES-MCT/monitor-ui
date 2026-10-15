@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import { useCallback, useMemo, useRef, type FocusEvent } from 'react'
 import { Input, type InputProps } from 'rsuite'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import {
   getFieldBackgroundColorFactory,
@@ -135,12 +135,12 @@ export function NumberInput({
       {!unit && <InputWithoutUnit key={key} {...commonInputProps} />}
       {!!unit && (
         <InputBoxWithUnit
-          key={key}
           $hasError={hasError}
           $isDisabled={disabled}
           $isLight={isLight}
           $isReadOnly={readOnly}
           $isTransparent={isTransparent}
+          key={key}
         >
           <InputWithUnit {...commonInputProps} />
           {unit}

@@ -1,5 +1,5 @@
 import { getCheckPickerInputCss } from '@fields/shared/StyledRsuitePickerBox'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import type { CommonPickerFieldStyleProps } from '@fields/shared/types'
 

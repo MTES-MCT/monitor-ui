@@ -46,7 +46,7 @@ export function _FormikLinkInput(props: FormikLinkInputProps) {
 
   return (
     <>
-      <Formik key={key} initialValues={{}} onSubmit={action('onSubmit')}>
+      <Formik initialValues={{}} key={key} onSubmit={action('onSubmit')}>
         <>
           <FormikEffect onChange={setOutputValue} />
 

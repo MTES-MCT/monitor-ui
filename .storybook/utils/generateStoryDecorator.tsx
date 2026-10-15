@@ -1,5 +1,5 @@
 import { forwardRef, useEffect, useImperativeHandle, useMemo, useState, useRef } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Accent, Button, NewWindow, Size, THEME, useNewWindow, NewWindowContext } from '../../src'
 import { StoryBox } from '../components/StoryBox'
@@ -73,13 +73,12 @@ export function generateStoryDecorator({
       setHasGainsboroBackground(hadGainsboroBackground => !hadGainsboroBackground)
     }
 
-
     return (
       <>
         {!isNewWindowOpen && (
           <OuterBox style={{}}>
             <InnerBox style={innerBoxStyle}>
-               {/*@ts-ignore*/}
+              {/*@ts-ignore*/}
               <Story />
             </InnerBox>
           </OuterBox>

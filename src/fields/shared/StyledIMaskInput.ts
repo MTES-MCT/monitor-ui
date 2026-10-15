@@ -1,5 +1,5 @@
 import IMaskInput from 'react-imask/input'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import {
   getFieldBackgroundColorFactory,

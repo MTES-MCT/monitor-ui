@@ -1,5 +1,5 @@
 import { UploadMode } from '@constants'
-import { describe, expect, it } from '@jest/globals'
+import { describe, expect, it, jest } from '@jest/globals'
 
 import { Orientation } from '../types'
 import {
@@ -52,7 +52,7 @@ describe('utils', () => {
       // does not actually load images.
       Object.defineProperty(HTMLImageElement.prototype, 'decode', {
         configurable: true,
-        value: jest.fn().mockResolvedValue(undefined)
+        value: jest.fn<HTMLImageElement['decode']>().mockResolvedValue(undefined)
       })
       Object.defineProperty(HTMLImageElement.prototype, 'naturalWidth', {
         configurable: true,
@@ -117,7 +117,7 @@ describe('utils', () => {
     it('filters out files whose image fails to decode', async () => {
       Object.defineProperty(HTMLImageElement.prototype, 'decode', {
         configurable: true,
-        value: jest.fn().mockRejectedValue(new Error('decode failed'))
+        value: jest.fn<HTMLImageElement['decode']>().mockRejectedValue(new Error('decode failed'))
       })
       const files = [makeFile()]
 
@@ -166,7 +166,9 @@ describe('utils', () => {
       Object.defineProperty(img, 'height', { value: 80 })
 
       const drawImageSpy = jest.fn()
-      const toDataURLSpy = jest.fn().mockReturnValue('data:image/jpeg;base64,compressed')
+      const toDataURLSpy = jest
+        .fn<HTMLCanvasElement['toDataURL']>()
+        .mockReturnValue('data:image/jpeg;base64,compressed')
       jest.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({
         drawImage: drawImageSpy
       } as unknown as CanvasRenderingContext2D)
@@ -181,7 +183,8 @@ describe('utils', () => {
 
     it('uses the default quality of 0.3 when none is provided', () => {
       const img = new Image()
-      const toDataURLSpy = jest.fn().mockReturnValue('data:image/png;base64,x')
+      const toDataURLSpy = jest.fn<HTMLCanvasElement['toDataURL']>().mockReturnValue('data:image/png;base64,x')
+
       jest.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({
         drawImage: jest.fn()
       } as unknown as CanvasRenderingContext2D)
@@ -267,7 +270,8 @@ describe('utils', () => {
 
     it('sets img.src via an object URL when a File is provided', () => {
       const fakeUrl = 'blob:fake-url'
-      const createObjectURLSpy = jest.fn().mockReturnValue(fakeUrl)
+
+      const createObjectURLSpy = jest.fn<typeof URL.createObjectURL>().mockReturnValue(fakeUrl)
       global.URL.createObjectURL = createObjectURLSpy
       const file = new File(['content'], 'test.png', { type: 'image/png' })
 
@@ -301,7 +305,7 @@ describe('utils', () => {
     it('rejects when the FileReader errors out', async () => {
       const file = new File(['hello'], 'hello.txt', { type: 'text/plain' })
       const errorEvent = new Event('error')
-      jest.spyOn(FileReader.prototype, 'readAsDataURL').mockImplementation(function (this: FileReader) {
+      jest.spyOn(FileReader.prototype, 'readAsDataURL').mockImplementation(function onError(this: FileReader) {
         this.onerror?.(errorEvent as unknown as ProgressEvent<FileReader>)
       })
 
@@ -310,7 +314,7 @@ describe('utils', () => {
 
     it('resolves with an empty string if the data URL has no comma-separated payload', async () => {
       const file = new File(['x'], 'x.txt', { type: 'text/plain' })
-      jest.spyOn(FileReader.prototype, 'readAsDataURL').mockImplementation(function (this: FileReader) {
+      jest.spyOn(FileReader.prototype, 'readAsDataURL').mockImplementation(function onLoad(this: FileReader) {
         Object.defineProperty(this, 'result', { configurable: true, value: 'no-comma-here' })
         this.onload?.({} as ProgressEvent<FileReader>)
       })

@@ -2,7 +2,7 @@ import { StyledRsuiteCheckbox } from '@fields/Checkbox'
 import { stopMouseEventPropagation } from '@utils/stopMouseEventPropagation'
 import { type ChangeEvent, type HTMLProps, useCallback } from 'react'
 import { type CheckboxProps as RsuiteCheckboxProps } from 'rsuite'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import type { ValueType } from 'rsuite/esm/Checkbox'
 
@@ -11,7 +11,11 @@ export type RowCheckboxProps = Omit<RsuiteCheckboxProps, 'onClick' | 'onChange'>
   onChange?: ((event: ChangeEvent<HTMLInputElement>) => void) | undefined
 }
 
-export function RowCheckbox({ onChange, ...nativeProps }: RowCheckboxProps & HTMLProps<HTMLInputElement>) {
+export function RowCheckbox({
+  as: _as,
+  onChange,
+  ...nativeProps
+}: RowCheckboxProps & Omit<HTMLProps<HTMLInputElement>, 'as'> & { as?: never }) {
   const handleOnChange = useCallback(
     (_value: ValueType | undefined, _checked: boolean, event: ChangeEvent<HTMLInputElement>) => {
       if (onChange) {
@@ -24,8 +28,11 @@ export function RowCheckbox({ onChange, ...nativeProps }: RowCheckboxProps & HTM
   return (
     <RestyledRsuiteCheckbox
       $isChecked={!!nativeProps.checked || !!nativeProps.indeterminate}
-      $isDisabled={nativeProps.disabled}
-      $isReadOnly={nativeProps.readOnly}
+      $isDisabled={!!nativeProps.disabled}
+      $isLight={false}
+      $isReadOnly={!!nativeProps.readOnly}
+      $isTransparent={false}
+      as={_as}
       {...nativeProps}
       onChange={handleOnChange}
       onClick={stopMouseEventPropagation}

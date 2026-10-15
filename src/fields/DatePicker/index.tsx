@@ -26,7 +26,7 @@ import { customDayjs } from '@utils/customDayjs'
 import { normalizeString } from '@utils/normalizeString'
 import classnames from 'classnames'
 import { type JSX, useCallback, useEffect, useMemo, useRef, useState, type HTMLAttributes } from 'react'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import { CalendarPicker } from './CalendarPicker'
 import { DateInput } from '../DateRangePicker/DateInput'
@@ -351,16 +351,15 @@ export function DatePicker({
       {...nativeProps}
     >
       <Box
-        ref={boxRef}
         $hasError={hasError}
         $isDisabled={disabled}
         $isLight={isLight}
         $isReadOnly={readOnly}
         $isTransparent={isTransparent}
+        ref={boxRef}
       >
         <Field>
           <DateInput
-            ref={dateInputRef}
             baseContainer={baseContainer ?? undefined}
             disabled={disabled}
             isCompact={isCompact}
@@ -374,6 +373,7 @@ export function DatePicker({
             onInput={callOnChangeUndefinedIfInputsAreEmpty}
             onNext={handleDateInputNext}
             readOnly={readOnly}
+            ref={dateInputRef}
             value={selectedUtcDateTupleRef.current}
           />
         </Field>
@@ -381,7 +381,6 @@ export function DatePicker({
         {withTime && (
           <Field $isTimeField>
             <TimeInput
-              ref={timeInputRef}
               baseContainer={baseContainer ?? undefined}
               disabled={disabled}
               isCompact={isCompact}
@@ -396,6 +395,7 @@ export function DatePicker({
               onInput={callOnChangeUndefinedIfInputsAreEmpty}
               onPrevious={() => dateInputRef.current?.focus(true)}
               readOnly={readOnly}
+              ref={timeInputRef}
               value={selectedUtcTimeTupleRef.current}
             />
           </Field>
@@ -405,12 +405,12 @@ export function DatePicker({
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
 
       <CalendarPicker
-        ref={calendarPickerRef}
         isHistorical={isHistorical}
         isOpen={isRangeCalendarPickerOpen}
         isRightAligned={isRightAligned}
         isTop={isCalendarTop}
         onChange={handleCalendarPickerChange}
+        ref={calendarPickerRef}
         shouldDisableDate={shouldDisableDate}
         value={calendarPickerDefaultValue}
       />

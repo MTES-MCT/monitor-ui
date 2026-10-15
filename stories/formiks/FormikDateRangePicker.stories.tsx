@@ -52,7 +52,7 @@ export function _FormikDateRangePicker(props: FormikDateRangePickerWithDateDateP
         <p>Dates are always picked and displayed in UTC, ignoring you local time zone.</p>
       </Description>
 
-      <Formik key={key} initialValues={{}} onSubmit={action('onSubmit')}>
+      <Formik initialValues={{}} key={key} onSubmit={action('onSubmit')}>
         <>
           <FormikEffect onChange={setOutputValue} />
 

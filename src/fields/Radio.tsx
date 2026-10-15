@@ -3,7 +3,7 @@ import { useKey } from '@hooks/useKey'
 import classnames from 'classnames'
 import { type CSSProperties, useMemo } from 'react'
 import { Radio as RsuiteRadio } from 'rsuite'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import {
   getChoiceFieldBackgroundColorFactoryForState,
@@ -46,7 +46,6 @@ export function Radio({
   return (
     <Field className={controlledClassName} style={style}>
       <StyledRsuiteRadio
-        key={key}
         $hasError={hasError}
         $isChecked={checked}
         $isDisabled={disabled}
@@ -56,6 +55,7 @@ export function Radio({
         $labelPosition={labelPosition}
         checked={checked}
         disabled={disabled}
+        key={key}
         name={name}
         readOnly={readOnly}
         {...originalProps}

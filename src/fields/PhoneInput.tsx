@@ -69,7 +69,6 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
           {label}
         </Label>
         <StyledIMaskInput
-          ref={ref}
           $hasError={!!error}
           $isDisabled={disabled}
           $isLight={isLight}
@@ -99,6 +98,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
             onChange(nextValue || undefined)
           }}
           overwrite={false}
+          ref={ref}
           type="tel"
           unmask
           value={value}
@@ -109,3 +109,5 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
     )
   }
 )
+
+PhoneInput.displayName = 'PhoneInput'

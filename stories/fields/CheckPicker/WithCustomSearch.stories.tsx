@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
 import { LOREM_IPSUM } from '../../../.storybook/constants'
@@ -13,7 +13,7 @@ type Specy = {
   name: string
 }
 
-const args: CheckPickerProps<{}> = {
+const args: CheckPickerProps = {
   disabled: false,
   error: '',
   isErrorMessageHidden: false,
@@ -34,7 +34,7 @@ const args: CheckPickerProps<{}> = {
 }
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-const meta: Meta<CheckPickerProps<{}>> = {
+const meta: Meta<CheckPickerProps> = {
   title: 'Fields/CheckPicker (variations)',
   component: CheckPicker as any,
 
@@ -58,27 +58,29 @@ const meta: Meta<CheckPickerProps<{}>> = {
 export default meta
 
 export function WithCustomSearch(props: CheckPickerProps<Specy>) {
-  const optionsRef = useRef(
+  const [options] = useState(() =>
     (SPECIES as Specy[]).slice(0, 10000).map(specy => ({
       label: `${specy.code} - ${specy.name}`,
       value: specy
     }))
   )
-  const customSearchRef = useRef(
-    new CustomSearch(
-      optionsRef.current,
-      [
-        {
-          name: 'value.code',
-          weight: 0.9
-        },
-        {
-          name: 'value.name',
-          weight: 0.1
-        }
-      ],
-      { isStrict: true }
-    )
+
+  const [customSearch] = useState(
+    () =>
+      new CustomSearch(
+        options,
+        [
+          {
+            name: 'value.code',
+            weight: 0.9
+          },
+          {
+            name: 'value.name',
+            weight: 0.1
+          }
+        ],
+        { isStrict: false }
+      )
   )
 
   const [outputValue, setOutputValue] = useState<Specy[] | undefined | '∅'>('∅')
@@ -89,10 +91,10 @@ export function WithCustomSearch(props: CheckPickerProps<Specy>) {
     <>
       <CheckPicker
         {...props}
-        customSearch={customSearchRef.current}
+        customSearch={customSearch}
         onChange={controlledOnChange}
-        options={optionsRef.current}
         optionValueKey="code"
+        options={options}
         value={controlledValue}
         virtualized
       />

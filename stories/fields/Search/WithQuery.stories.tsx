@@ -1,6 +1,6 @@
 import ky from 'ky'
 import { useState } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Description } from '../../../.storybook/components/Description'
 import { Output } from '../../../.storybook/components/Output'
@@ -94,8 +94,8 @@ export function WithQuery(props: SearchProps) {
           {...props}
           onChange={setObjectOutputValue}
           onQuery={onQuery}
-          options={optionsWithObjectValue}
           optionValueKey="id"
+          options={optionsWithObjectValue}
           value={objectOutputValue}
         />
 

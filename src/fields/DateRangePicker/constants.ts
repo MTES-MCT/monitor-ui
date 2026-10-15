@@ -28,7 +28,7 @@ export const RSUITE_CALENDAR_LOCALE: DateRangePickerLocale = {
 }
 
 export enum STATUS {
-  'END_DATE' = 'END_DATE',
-  'NO_DATE' = 'NO_DATE',
-  'START_DATE' = 'START_DATE'
+  END_DATE = 'END_DATE',
+  NO_DATE = 'NO_DATE',
+  START_DATE = 'START_DATE'
 }

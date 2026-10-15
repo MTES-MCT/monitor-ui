@@ -53,34 +53,34 @@ export function _Dropdown(props: DropdownProps) {
         <Showcase.Subtitle>With icons</Showcase.Subtitle>
 
         <Dropdown Icon={Icon.Plus} onSelect={setOutputValue} title="A dropdown with icons">
-          <Dropdown.Item eventKey="WE_FOUND_NEMO" Icon={Icon.Fishery}>
+          <Dropdown.Item Icon={Icon.Fishery} eventKey="WE_FOUND_NEMO">
             We found Nemo!
           </Dropdown.Item>
-          <Dropdown.Item eventKey="SECOND_MENU_ITEM" Icon={Icon.FleetSegment}>
+          <Dropdown.Item Icon={Icon.FleetSegment} eventKey="SECOND_MENU_ITEM">
             A fancy boat
           </Dropdown.Item>
-          <Dropdown.Item eventKey="THIRD_MENU_ITEM" Icon={Icon.Search}>
+          <Dropdown.Item Icon={Icon.Search} eventKey="THIRD_MENU_ITEM">
             Search a soul
           </Dropdown.Item>
-          <Dropdown.Item eventKey="A_VERY_VERY_LONG_MENU_ITEM" Icon={Icon.Delete}>
+          <Dropdown.Item Icon={Icon.Delete} eventKey="A_VERY_VERY_LONG_MENU_ITEM">
             Delete the entire universe
           </Dropdown.Item>
         </Dropdown>
 
         <Showcase.Subtitle>With &quot;more&quot; ellipsis</Showcase.Subtitle>
-        <Dropdown accent={Accent.PRIMARY} Icon={Icon.More} onSelect={setOutputValue}>
-          <Dropdown.Item accent={Accent.SECONDARY} eventKey="ARCHIVE" Icon={Icon.Archive} />
-          <Dropdown.Item accent={Accent.SECONDARY} eventKey="DELETE" Icon={Icon.Delete} />
+        <Dropdown Icon={Icon.More} accent={Accent.PRIMARY} onSelect={setOutputValue}>
+          <Dropdown.Item Icon={Icon.Archive} accent={Accent.SECONDARY} eventKey="ARCHIVE" />
+          <Dropdown.Item Icon={Icon.Delete} accent={Accent.SECONDARY} eventKey="DELETE" />
         </Dropdown>
         <br />
-        <Dropdown accent={Accent.SECONDARY} Icon={Icon.More} onSelect={setOutputValue}>
-          <Dropdown.Item accent={Accent.SECONDARY} eventKey="ARCHIVE" Icon={Icon.Archive} />
-          <Dropdown.Item accent={Accent.SECONDARY} eventKey="DELETE" Icon={Icon.Delete} />
+        <Dropdown Icon={Icon.More} accent={Accent.SECONDARY} onSelect={setOutputValue}>
+          <Dropdown.Item Icon={Icon.Archive} accent={Accent.SECONDARY} eventKey="ARCHIVE" />
+          <Dropdown.Item Icon={Icon.Delete} accent={Accent.SECONDARY} eventKey="DELETE" />
         </Dropdown>
         <br />
-        <Dropdown accent={Accent.TERTIARY} Icon={Icon.More} onSelect={setOutputValue}>
-          <Dropdown.Item accent={Accent.SECONDARY} eventKey="ARCHIVE" Icon={Icon.Archive} />
-          <Dropdown.Item accent={Accent.SECONDARY} eventKey="DELETE" Icon={Icon.Delete} />
+        <Dropdown Icon={Icon.More} accent={Accent.TERTIARY} onSelect={setOutputValue}>
+          <Dropdown.Item Icon={Icon.Archive} accent={Accent.SECONDARY} eventKey="ARCHIVE" />
+          <Dropdown.Item Icon={Icon.Delete} accent={Accent.SECONDARY} eventKey="DELETE" />
         </Dropdown>
       </Showcase>
     </>

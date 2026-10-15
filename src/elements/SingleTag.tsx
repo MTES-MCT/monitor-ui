@@ -1,7 +1,7 @@
 import { Accent } from '@constants'
 import classnames from 'classnames'
 import { type HTMLAttributes, useCallback } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Close } from '../icons'
 

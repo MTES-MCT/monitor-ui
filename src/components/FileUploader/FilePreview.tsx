@@ -1,7 +1,7 @@
 import { Accent, Icon, Size } from '@constants'
 import { Button } from '@elements/Button'
 import { useState } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { useFileConverter } from './hook/useFileConverter'
 import { ImageViewer } from './ImageViewer'
@@ -36,8 +36,8 @@ export function FilePreview({ files, isSideWindow = false, onDelete }: FilePrevi
             </StyledImageButton>
             {onDelete && (
               <StyledButton
-                accent={Accent.SECONDARY}
                 Icon={Icon.Delete}
+                accent={Accent.SECONDARY}
                 onClick={() => onDelete(thumbnail.index)}
                 size={Size.SMALL}
               />

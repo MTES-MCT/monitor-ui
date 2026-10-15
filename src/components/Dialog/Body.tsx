@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 export const Body = styled.div<{
   $color?: string
@@ -12,7 +12,7 @@ export const Body = styled.div<{
   padding: 24px 24px 0px 24px;
 
   > p {
-    color: ${p => (p.$color ? p.$color : p.theme.color.gunMetal)};
+    color: ${p => p.$color ?? p.theme.color.gunMetal};
     padding-top: 2px;
   }
 `
