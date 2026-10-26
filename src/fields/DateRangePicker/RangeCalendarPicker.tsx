@@ -110,7 +110,6 @@ export const RangeCalendarPicker = forwardRef<HTMLDivElement, RangeCalendarPicke
           if (typeof ref === 'function') {
             ref(element)
           } else if (ref) {
-            // eslint-disable-next-line no-param-reassign
             ref.current = element
           }
         }}

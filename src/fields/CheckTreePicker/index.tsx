@@ -182,12 +182,9 @@ export function CheckTreePicker({
 
       const searchResults = localCustomSearch.find(nextQuery)
       const foundValues = searchResults.map(option => option[valueKey] as string | number)
-      let foundOptions: TreeOption[] = []
-      if (withAllChildrenInResults) {
-        foundOptions = getSearchResultsTree(foundValues, optionsWithIds, childrenKey, valueKey, labelKey)
-      } else {
-        foundOptions = fromRsuiteValue(foundValues, optionsWithIds, false, childrenKey, valueKey, labelKey) ?? []
-      }
+      const foundOptions: TreeOption[] = withAllChildrenInResults
+        ? getSearchResultsTree(foundValues, optionsWithIds, childrenKey, valueKey, labelKey)
+        : (fromRsuiteValue(foundValues, optionsWithIds, false, childrenKey, valueKey, labelKey) ?? [])
 
       const optionsResult = foundOptions
         .map(item => {

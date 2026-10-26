@@ -43,7 +43,7 @@ export function findElementBySelector<T extends HTMLElement = HTMLElement>(
 
   let foundElement
   let foundElementIndex = 0
-  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+
   Cypress.$(selector).each((_index, element) => {
     if (!foundElement) {
       if (foundElementIndex < index) {
@@ -56,7 +56,6 @@ export function findElementBySelector<T extends HTMLElement = HTMLElement>(
     }
   })
   if (!foundElement && fallbackSelector) {
-    // eslint-disable-next-line no-console
     console.warn(`Using fallback selector: "${fallbackSelector}".`)
 
     const foundElementByFallbackSelector = Cypress.$(fallbackSelector)

@@ -44,7 +44,6 @@ export function DMDCoordinatesInput({
         .map(coordinate => coordinate.replace(/[°′. ]/g, ''))
         .join('')
 
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setValue(nextValue)
     } else {
       setValue('')
@@ -54,9 +53,8 @@ export function DMDCoordinatesInput({
   function completeCoordinates(mask) {
     setError('')
 
-    // eslint-disable-next-line no-underscore-dangle
     const latitude = mask._unmaskedValue.substring(0, 8)
-    // eslint-disable-next-line no-underscore-dangle
+
     const longitude = mask._unmaskedValue.substring(8, mask._unmaskedValue.length)
     const NS = latitude[latitude.length - 1].toUpperCase()
     if (!['N', 'S'].includes(NS)) {

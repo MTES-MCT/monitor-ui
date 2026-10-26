@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies, sort-keys-fix/sort-keys-fix, @typescript-eslint/naming-convention */
+/* eslint-disable sort-keys-fix/sort-keys-fix, @typescript-eslint/naming-convention */
 import react from '@vitejs/plugin-react'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
@@ -12,6 +12,7 @@ const externals = [
   ...Object.keys(pkg.peerDependencies ?? {}),
   ...Object.keys(pkg.dependencies ?? {}),
   'rsuite/locales/fr_FR',
+  'react-dom',
   'react/jsx-runtime'
 ]
 

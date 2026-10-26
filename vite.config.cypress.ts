@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies, sort-keys-fix/sort-keys-fix, @typescript-eslint/naming-convention */
+/* eslint-disable sort-keys-fix/sort-keys-fix, @typescript-eslint/naming-convention */
 
 import react from '@vitejs/plugin-react'
 import { fileURLToPath } from 'node:url'

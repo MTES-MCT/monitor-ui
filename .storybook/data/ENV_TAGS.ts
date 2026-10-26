@@ -1,7 +1,5 @@
 export const ENV_TAGS = (childrenKey: string = 'children', labelKey = 'label', valueKey = 'value') => [
   {
-    [labelKey]: 'Pollution marine',
-    [valueKey]: 'pollution_marine',
     [childrenKey]: [
       { [labelKey]: 'Déchets plastiques', [valueKey]: 'dechets_plastiques' },
       { [labelKey]: 'Marées noires', [valueKey]: 'marees_noires' },
@@ -11,11 +9,11 @@ export const ENV_TAGS = (childrenKey: string = 'children', labelKey = 'label', v
       { [labelKey]: 'Contamination radioactive', [valueKey]: 'contamination_radioactive' },
       { [labelKey]: 'Pollution sonore sous-marine', [valueKey]: 'pollution_sonore' },
       { [labelKey]: 'Eutrophisation', [valueKey]: 'eutrophisation' }
-    ]
+    ],
+    [labelKey]: 'Pollution marine',
+    [valueKey]: 'pollution_marine'
   },
   {
-    [labelKey]: 'Biodiversité marine',
-    [valueKey]: 'biodiversite_marine',
     [childrenKey]: [
       { [labelKey]: 'Protection des coraux', [valueKey]: 'protection_coraux' },
       { [labelKey]: 'Espèces en danger', [valueKey]: 'especes_en_danger' },
@@ -25,11 +23,11 @@ export const ENV_TAGS = (childrenKey: string = 'children', labelKey = 'label', v
       { [labelKey]: 'Récifs artificiels', [valueKey]: 'recifs_artificiels' },
       { [labelKey]: 'Herbiers marins', [valueKey]: 'herbiers_marins' },
       { [labelKey]: 'Migrations animales marines', [valueKey]: 'migrations_animales' }
-    ]
+    ],
+    [labelKey]: 'Biodiversité marine',
+    [valueKey]: 'biodiversite_marine'
   },
   {
-    [labelKey]: 'Changement climatique et océan',
-    [valueKey]: 'changement_climatique_ocean',
     [childrenKey]: [
       { [labelKey]: 'Acidification des océans', [valueKey]: 'acidification_oceans' },
       { [labelKey]: 'Réchauffement des eaux', [valueKey]: 'rechauffement_eaux' },
@@ -39,11 +37,11 @@ export const ENV_TAGS = (childrenKey: string = 'children', labelKey = 'label', v
       { [labelKey]: 'Changements de courants marins', [valueKey]: 'changements_courants' },
       { [labelKey]: 'Perturbation des cycles de reproduction', [valueKey]: 'perturbation_reproduction' },
       { [labelKey]: 'Émissions de gaz à effet de serre marins', [valueKey]: 'emissions_gaz_marins' }
-    ]
+    ],
+    [labelKey]: 'Changement climatique et océan',
+    [valueKey]: 'changement_climatique_ocean'
   },
   {
-    [labelKey]: 'Activités humaines et océan',
-    [valueKey]: 'activites_humaines_ocean',
     [childrenKey]: [
       { [labelKey]: 'Tourisme responsable', [valueKey]: 'tourisme_responsable' },
       { [labelKey]: 'Énergies marines renouvelables', [valueKey]: 'energies_marines' },
@@ -53,21 +51,21 @@ export const ENV_TAGS = (childrenKey: string = 'children', labelKey = 'label', v
       { [labelKey]: 'Réglementation des eaux internationales', [valueKey]: 'reglementation_eaux' },
       { [labelKey]: 'Protection des zones marines', [valueKey]: 'protection_zones_marines' },
       { [labelKey]: 'Gestion des ressources marines', [valueKey]: 'gestion_ressources_marines' }
-    ]
+    ],
+    [labelKey]: 'Activités humaines et océan',
+    [valueKey]: 'activites_humaines_ocean'
   },
   {
-    [labelKey]: 'Technologies et innovations marines',
-    [valueKey]: 'technologies_innovations_marines',
     [childrenKey]: [
       { [labelKey]: 'Robotique sous-marine', [valueKey]: 'robotique_sous_marine' },
       { [labelKey]: 'Cartographie des fonds marins', [valueKey]: 'cartographie_fonds_marins' },
       { [labelKey]: 'Biotechnologies marines', [valueKey]: 'biotechnologies_marines' },
       { [labelKey]: 'Surveillance des océans', [valueKey]: 'surveillance_oceans' }
-    ]
+    ],
+    [labelKey]: 'Technologies et innovations marines',
+    [valueKey]: 'technologies_innovations_marines'
   },
   {
-    [labelKey]: 'Rejet',
-    [valueKey]: 'rejet',
     [childrenKey]: [
       { [labelKey]: 'Autre rejet', [valueKey]: 'autre_rejet' },
       { [labelKey]: 'Avitaillement, soutage, transbordement', [valueKey]: 'avitaillement_soutage_transbordement' },
@@ -76,11 +74,11 @@ export const ENV_TAGS = (childrenKey: string = 'children', labelKey = 'label', v
       { [labelKey]: 'Jet de déchet (macro déchet)', [valueKey]: 'jet_de_déchet_(macro_déchet)' },
       { [labelKey]: "Rejet d'hydrocarbure", [valueKey]: 'rejet_d_hydrocarbure' },
       { [labelKey]: 'Rejets atmosphérique', [valueKey]: 'rejets_atmosphérique' }
-    ]
+    ],
+    [labelKey]: 'Rejet',
+    [valueKey]: 'rejet'
   },
   {
-    [labelKey]: 'Travaux en milieu marin',
-    [valueKey]: 'travaux_en_milieu_marin',
     [childrenKey]: [
       { [labelKey]: 'Autres travaux en mer', [valueKey]: 'autres_travaux_en_mer' },
       { [labelKey]: 'Chantier marin', [valueKey]: 'chantier_marin' },
@@ -89,7 +87,9 @@ export const ENV_TAGS = (childrenKey: string = 'children', labelKey = 'label', v
       { [labelKey]: 'Dragage', [valueKey]: 'dragage' },
       { [labelKey]: 'Extraction de granulats ', [valueKey]: 'extraction_de_granulats ' },
       { [labelKey]: 'Travaux réglementés par AMP', [valueKey]: 'travaux_réglementés_par_AMP' }
-    ]
+    ],
+    [labelKey]: 'Travaux en milieu marin',
+    [valueKey]: 'travaux_en_milieu_marin'
   },
   {
     [labelKey]: 'Éducation et sensibilisation',

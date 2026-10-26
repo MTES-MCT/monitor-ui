@@ -12,27 +12,75 @@ export function generateLargeTreeOptions(
   itemsPerSubcategory: number = 3
 ): TreeOption[] {
   const CATEGORY_PREFIXES = [
-    'Réglementation', 'Contrôle', 'Surveillance', 'Protection', 'Gestion',
-    'Inspection', 'Conservation', 'Exploitation', 'Navigation', 'Sécurité',
-    'Transport', 'Environnement', 'Biodiversité', 'Pollution', 'Prévention',
-    'Recherche', 'Formation', 'Équipement', 'Infrastructure', 'Communication',
-    'Coordination', 'Planification', 'Observation', 'Intervention', 'Analyse',
-    'Évaluation', 'Certification', 'Normalisation', 'Documentation', 'Signalement'
+    'Réglementation',
+    'Contrôle',
+    'Surveillance',
+    'Protection',
+    'Gestion',
+    'Inspection',
+    'Conservation',
+    'Exploitation',
+    'Navigation',
+    'Sécurité',
+    'Transport',
+    'Environnement',
+    'Biodiversité',
+    'Pollution',
+    'Prévention',
+    'Recherche',
+    'Formation',
+    'Équipement',
+    'Infrastructure',
+    'Communication',
+    'Coordination',
+    'Planification',
+    'Observation',
+    'Intervention',
+    'Analyse',
+    'Évaluation',
+    'Certification',
+    'Normalisation',
+    'Documentation',
+    'Signalement'
   ]
 
   const CATEGORY_SUFFIXES = [
-    'maritime', 'côtière', 'portuaire', 'hauturière', 'littorale',
-    'sous-marine', 'fluviale', 'estuarienne', 'insulaire', 'pélagique',
-    'benthique', 'halieutique', 'aquacole', 'océanique', 'lagunaire'
+    'maritime',
+    'côtière',
+    'portuaire',
+    'hauturière',
+    'littorale',
+    'sous-marine',
+    'fluviale',
+    'estuarienne',
+    'insulaire',
+    'pélagique',
+    'benthique',
+    'halieutique',
+    'aquacole',
+    'océanique',
+    'lagunaire'
   ]
 
   const SUBCATEGORY_THEMES = [
-    'Obligations déclaratives', 'Mesures techniques', 'Contrôle opérationnel',
-    'Suivi des captures', 'Marquage et identification', 'Zones réglementées',
-    'Périodes autorisées', 'Engins conformes', 'Documentation requise',
-    'Système de surveillance', 'Traçabilité', 'Certification',
-    'Débarquement', 'Transbordement', 'Quotas et limites',
-    'Espèces protégées', 'Tailles minimales', 'Rejets obligatoires'
+    'Obligations déclaratives',
+    'Mesures techniques',
+    'Contrôle opérationnel',
+    'Suivi des captures',
+    'Marquage et identification',
+    'Zones réglementées',
+    'Périodes autorisées',
+    'Engins conformes',
+    'Documentation requise',
+    'Système de surveillance',
+    'Traçabilité',
+    'Certification',
+    'Débarquement',
+    'Transbordement',
+    'Quotas et limites',
+    'Espèces protégées',
+    'Tailles minimales',
+    'Rejets obligatoires'
   ]
 
   const categories: TreeOption[] = []

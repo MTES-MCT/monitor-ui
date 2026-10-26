@@ -108,11 +108,9 @@ export class NewWindow extends PureComponent<NewWindowProps, NewWindowState> {
     if (showPrompt) {
       event.preventDefault()
 
-      // eslint-disable-next-line no-param-reassign, no-return-assign
       return (event.returnValue = 'blocked')
     }
 
-    // eslint-disable-next-line no-return-assign, no-param-reassign
     return null
   }
 
@@ -135,13 +133,12 @@ export class NewWindow extends PureComponent<NewWindowProps, NewWindowState> {
       features.left = window.top.outerWidth / 2 + window.top.screenX - (features.width as number) / 2
       features.top = window.top.outerHeight / 2 + window.top.screenY - (features.height as number) / 2
     } else if (center === 'screen') {
-      // eslint-disable-next-line no-nested-ternary
       const width = window.innerWidth
         ? window.innerWidth
         : document.documentElement.clientWidth
           ? document.documentElement.clientWidth
           : window.screen.width
-      // eslint-disable-next-line no-nested-ternary
+
       const height = window.innerHeight
         ? window.innerHeight
         : document.documentElement.clientHeight
@@ -278,7 +275,7 @@ function onCopyStyles(source: Document, target: Document | undefined): void {
     } catch (err) {
       // An error here most likely happens when trying to access stylesheets from other domains,
       // which is a CORS violation and should be ignored.
-      // eslint-disable-next-line no-console
+
       console.error(err)
 
       return

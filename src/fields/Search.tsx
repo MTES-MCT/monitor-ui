@@ -278,7 +278,6 @@ const Separator = styled.div<{
   $size: Size
 }>`
   color: ${p =>
-    // eslint-disable-next-line no-nested-ternary
     p.$isTransparent ? (p.$isLight ? p.theme.color.charcoal : p.theme.color.lightGray) : p.theme.color.charcoal};
   cursor: default;
   font-size: ${p => (p.$size === Size.LARGE ? 20 : 14)}px;

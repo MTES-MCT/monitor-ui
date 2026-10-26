@@ -48,7 +48,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
   name,
   onChange,
   options,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
+
   readOnly = false,
   style,
   value

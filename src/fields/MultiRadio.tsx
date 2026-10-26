@@ -58,7 +58,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   onChange,
   options,
   optionValueKey,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
+
   readOnly = false,
   renderMenuItem,
   style,

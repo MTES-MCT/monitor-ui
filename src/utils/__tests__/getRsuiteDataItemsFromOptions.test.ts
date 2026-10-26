@@ -1,5 +1,3 @@
-/* eslint-disable sort-keys-fix/sort-keys-fix */
-
 import { describe, expect, it } from '@jest/globals'
 
 import { getRsuiteDataItemsFromOptions } from '../getRsuiteDataItemsFromOptions'

@@ -16,7 +16,6 @@ export function waitForLastRequest(
       return callback(interception.response)
     }
 
-    // eslint-disable-next-line no-console
     cy.log('Intercepted request', JSON.stringify(interception.request))
 
     return cy.waitForLastRequest(alias, partialRequest, maxRequests, level + 1, callback)

@@ -78,7 +78,7 @@ export function generateStoryDecorator({
         {!isNewWindowOpen && (
           <OuterBox style={{}}>
             <InnerBox style={innerBoxStyle}>
-              {/*@ts-ignore*/}
+              {/* @ts-expect-error -- Story props are not typed by Storybook */}
               <Story />
             </InnerBox>
           </OuterBox>
@@ -127,7 +127,7 @@ export function generateStoryDecorator({
 
         {withNewWindowButton && isNewWindowOpen && (
           <NewWindow features={{ height: 600, width: 800 }} onUnload={() => setIsNewWindowOpen(false)}>
-            <NewWindowStoryWrapper ref={newWindowRef} innerBoxStyle={innerBoxStyle} Story={Story} storyArgs={args} />
+            <NewWindowStoryWrapper Story={Story} innerBoxStyle={innerBoxStyle} ref={newWindowRef} storyArgs={args} />
           </NewWindow>
         )}
       </>
@@ -181,7 +181,7 @@ const NewWindowStoryWrapper = forwardRef(NewWindowStoryWrapperWithRef)
 function NewWindowStory({ Story, storyArgs }: Readonly<{ Story: StoryFn; storyArgs: StrictArgs }>) {
   const { newWindowContainerRef } = useNewWindow()
 
-  // @ts-ignore
+  // @ts-expect-error -- Story props are not typed by Storybook
   return <Story args={{ ...storyArgs, baseContainer: newWindowContainerRef.current }} />
 }
 

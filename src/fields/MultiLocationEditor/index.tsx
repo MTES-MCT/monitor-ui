@@ -171,7 +171,6 @@ export function MultiLocationEditor({
       </Controls>
       <>
         {locations.map((zone, index) => (
-          // eslint-disable-next-line react/no-array-index-key
           <Row key={`zone-${index}`}>
             <LocationBox
               $hasError={hasError}
@@ -183,7 +182,7 @@ export function MultiLocationEditor({
               {zone[labelPropName]}
 
               {/* TODO Add `Accent.LINK` accent in @mtes-mct/monitor-ui and use it here. */}
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+              {}
               <Link onClick={() => centerLocation(zone)}>
                 <SelectRectangle />
                 <span>Centrer sur la carte</span>

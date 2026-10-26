@@ -76,9 +76,7 @@ const StyledRsuiteRadio = styled(RsuiteRadio)<CommonChoiceFieldStyleProps>`
 
     > label {
       /* TODO Check that with Adeline. */
-      color: ${p =>
-        // eslint-disable-next-line no-nested-ternary
-        (p.$isDisabled ?? p.$isReadOnly) ? p.theme.color.lightGray : p.theme.color.gunMetal};
+      color: ${p => ((p.$isDisabled ?? p.$isReadOnly) ? p.theme.color.lightGray : p.theme.color.gunMetal)};
       font-size: 13px;
       font-weight: 500;
       line-height: 1;

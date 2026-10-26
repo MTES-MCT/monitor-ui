@@ -15,7 +15,6 @@ const args: DataTableProps<FakeBasicTableDataItem> = {
   data: FAKE_BASIC_TABLE_DATA_WITH_SUBROWS,
   initialSorting: [
     {
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       desc: false,
       id: 'id'
     }

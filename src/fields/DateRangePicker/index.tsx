@@ -149,7 +149,7 @@ export function DateRangePicker({
   minutesRange = 15,
   name,
   onChange,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
+
   readOnly = false,
   shouldDisableDate,
   style,

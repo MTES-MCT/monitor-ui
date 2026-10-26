@@ -1,7 +1,7 @@
 import { fromPairs } from 'lodash-es'
 
-import { getArrayFromEnum } from './utils/getArrayFromEnum'
 import { Accent, Icon, Level, Size, TagBullet } from '../src'
+import { getArrayFromEnum } from './utils/getArrayFromEnum'
 
 import type { Meta } from '@storybook/react-vite'
 
@@ -56,11 +56,11 @@ const ARG_TYPE_TYPED: Meta['argTypes'] = {
     }
   },
   NO_CONTROL_INPUT: {
-    type: 'function' as 'function'
+    type: 'function' as const
   },
   OPTIONAL_ACCENT: {
     control: 'radio',
-    // eslint-disable-next-line object-shorthand
+
     mappings: { undefined: undefined },
     options: [...ACCENTS_AS_ARRAY, undefined],
     table: {
@@ -75,22 +75,13 @@ const ARG_TYPE_TYPED: Meta['argTypes'] = {
         summary: 'Document | HTMLDivElement | null | undefined'
       }
     },
-    type: 'function' as 'function'
+    type: 'function' as const
   },
   OPTIONAL_BOOLEAN: {
     control: 'boolean',
     table: {
       type: {
         summary: 'boolean | undefined'
-      }
-    }
-  },
-  OPTIONAL_UPLOAD_MODE: {
-    control: 'radio',
-    options: ['IMAGES', 'DOCUMENTS', 'FILES'],
-    table: {
-      type: {
-        summary: 'UploadMode | undefined'
       }
     }
   },
@@ -118,7 +109,7 @@ const ARG_TYPE_TYPED: Meta['argTypes'] = {
     },
     mapping: {
       ...ICONS_AS_MAPPING,
-      // eslint-disable-next-line object-shorthand
+
       undefined: undefined
     },
     options: [...ICONS_AS_ARRAY, undefined],
@@ -130,7 +121,7 @@ const ARG_TYPE_TYPED: Meta['argTypes'] = {
   },
   OPTIONAL_LEVEL: {
     control: 'radio',
-    // eslint-disable-next-line object-shorthand
+
     mappings: { undefined: undefined },
     options: [...LEVELS_AS_ARRAY, undefined],
     table: {
@@ -153,7 +144,7 @@ const ARG_TYPE_TYPED: Meta['argTypes'] = {
         summary: 'number | undefined'
       }
     },
-    type: 'function' as 'function'
+    type: 'function' as const
   },
   OPTIONAL_OPTION_VALUE: {
     control: 'radio',
@@ -169,7 +160,7 @@ const ARG_TYPE_TYPED: Meta['argTypes'] = {
         summary: 'keyof OptionValue | undefined'
       }
     },
-    type: 'function' as 'function'
+    type: 'function' as const
   },
   OPTIONAL_OPTION_VALUES: {
     table: {
@@ -188,7 +179,7 @@ const ARG_TYPE_TYPED: Meta['argTypes'] = {
   },
   OPTIONAL_SIZE: {
     control: 'radio',
-    // eslint-disable-next-line object-shorthand
+
     mappings: { undefined: undefined },
     options: [...SIZES_AS_ARRAY, undefined],
     table: {
@@ -207,12 +198,21 @@ const ARG_TYPE_TYPED: Meta['argTypes'] = {
   },
   OPTIONAL_TAG_BULLET: {
     control: 'radio',
-    // eslint-disable-next-line object-shorthand
+
     mappings: { undefined: undefined },
     options: [...TAG_BULLETS_AS_ARRAY, undefined],
     table: {
       type: {
         summary: 'TagBullet | undefined'
+      }
+    }
+  },
+  OPTIONAL_UPLOAD_MODE: {
+    control: 'radio',
+    options: ['IMAGES', 'DOCUMENTS', 'FILES'],
+    table: {
+      type: {
+        summary: 'UploadMode | undefined'
       }
     }
   },

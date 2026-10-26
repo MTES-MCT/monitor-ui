@@ -58,7 +58,6 @@ export function findElementByText<T extends HTMLElement = HTMLElement>(
     }
   })
   if (!foundElement && fallbackSelector) {
-    // eslint-disable-next-line no-console
     console.warn(`Using fallback selector: "${fallbackSelector}".`)
 
     const foundElementByFallbackSelector = Cypress.$(fallbackSelector)

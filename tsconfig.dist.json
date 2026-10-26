@@ -16,7 +16,7 @@
     "src/cypress/*",
     "stories/*",
     "storybook-static/*",
-    ".eslintrc.cjs",
+    "eslint.config.cjs",
     "**/*.test.ts"
   ]
 }

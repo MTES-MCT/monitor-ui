@@ -133,7 +133,6 @@ function TimeInputWithRef(
 
   const handleHourInput = useCallback(
     (nextValue: string) => {
-      // eslint-disable-next-line no-nested-ternary
       const nextRangedTimePickerFilter = nextValue.length ? new RegExp(`^${nextValue}`) : /.*/
 
       setTimePickerFilter(nextRangedTimePickerFilter)

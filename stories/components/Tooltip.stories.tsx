@@ -1,5 +1,4 @@
 // TODO Migrate this story to the new Storybook structure. Example: stories/components/Banner.stories.tsx.
-/* eslint-disable react-hooks/rules-of-hooks */
 
 import { Icon } from '@constants'
 import { THEME } from '@theme'
