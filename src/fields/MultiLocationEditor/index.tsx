@@ -171,6 +171,7 @@ export function MultiLocationEditor({
       </Controls>
       <>
         {locations.map((zone, index) => (
+          // eslint-disable-next-line react/no-array-index-key
           <Row key={`zone-${index}`}>
             <LocationBox
               $hasError={hasError}

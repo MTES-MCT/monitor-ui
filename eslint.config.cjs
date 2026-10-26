@@ -19,7 +19,7 @@ const compat = new FlatCompat({
   recommendedConfig: js.configs.recommended,
   allConfig: js.configs.all
 })
-const path = require('path')
+const path = require('node:path')
 
 const BOOLEAN_CAMEL_PREFIXES = [
   ...['are', 'can', 'did', 'is', 'had', 'has', 'must', 'should', 'was', 'will', 'with', 'without'],
@@ -201,6 +201,7 @@ module.exports = import('eslint-plugin-mocha').then(({ default: mocha }) =>
 
         'no-null/no-null': 'error',
         'prettier/prettier': 'error',
+        'react/no-array-index-key': 'error',
         'react/jsx-no-useless-fragment': 'off',
         'react/jsx-props-no-spreading': 'off',
         'react/jsx-sort-props': 'error',

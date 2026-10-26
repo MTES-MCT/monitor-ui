@@ -50,6 +50,7 @@ export function WithLoader() {
       <tbody>
         {isLoading &&
           emptyRows.map((_, index) => (
+            // eslint-disable-next-line react/no-array-index-key
             <SimpleTable.BodyTr key={`row-${index}`}>
               <SimpleTable.Td $isLoading />
               <SimpleTable.Td $isLoading />
