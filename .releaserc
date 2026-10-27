@@ -16,6 +16,10 @@
       {
         "releaseRules": [
           {
+            "breaking": true,
+            "release": "major"
+          },
+          {
             "type": "build",
             "scope": "deps",
             "release": "patch"
