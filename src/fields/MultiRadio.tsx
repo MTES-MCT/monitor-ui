@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import { eq } from 'lodash-es'
 import { type CSSProperties, type ReactNode, type SyntheticEvent, useCallback, useId, useMemo } from 'react'
 import { RadioGroup as RsuiteRadioGroup } from 'rsuite'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Radio } from './Radio'
 import { FieldError } from '../elements/FieldError'
@@ -58,7 +58,7 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
   onChange,
   options,
   optionValueKey,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
+
   readOnly = false,
   renderMenuItem,
   style,
@@ -106,20 +106,20 @@ export function MultiRadio<OptionValue extends OptionValueType = string>({
       style={style}
     >
       <StyledRsuiteRadioGroup
-        key={key}
         $isInline={isInline}
+        key={key}
         name={name}
         onChange={handleChange}
         value={selectedRsuiteValue ?? ''}
       >
         {rsuiteData.map(rsuiteDataItem => (
           <Radio
-            key={rsuiteDataItem.value}
             checked={value !== undefined && eq(rsuiteDataItem.optionValue, value)}
             disabled={!!rsuiteDataItem.isDisabled || disabled}
             hasError={hasError}
             isLight={isLight}
             isTransparent={isTransparent}
+            key={rsuiteDataItem.value}
             labelPosition={labelPosition}
             name={name}
             readOnly={readOnly}

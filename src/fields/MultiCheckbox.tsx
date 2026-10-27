@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import { isEqual } from 'lodash-es'
 import { type CSSProperties, useCallback, useId, useMemo } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Checkbox } from './Checkbox'
 import { FieldError } from '../elements/FieldError'
@@ -48,7 +48,7 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
   name,
   onChange,
   options,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
+
   readOnly = false,
   style,
   value
@@ -87,15 +87,15 @@ export function MultiCheckbox<OptionValue extends OptionValueType = string>({
       legend={label}
       style={style}
     >
-      <CheckboxesBox key={key} $isInline={isInline}>
+      <CheckboxesBox $isInline={isInline} key={key}>
         {options.map((option, index) => (
           <Checkbox
-            key={JSON.stringify(option.value)}
             checked={!!value?.includes(option.value)}
             disabled={!!option.isDisabled || disabled}
             hasError={hasError}
             isLight={isLight}
             isTransparent={isTransparent}
+            key={JSON.stringify(option.value)}
             label={option.label}
             name={`${name}${index}`}
             onChange={(isChecked: boolean = false) => handleChange(option.value, isChecked)}

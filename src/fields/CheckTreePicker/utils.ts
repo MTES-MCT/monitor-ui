@@ -34,11 +34,9 @@ export function getOptionsWithLazyChildren(
 function getHash(str: string) {
   let hash = 0
   for (let i = 0; i < str.length; i += 1) {
-    // eslint-disable-next-line no-bitwise
     hash = (hash ^ str.charCodeAt(i)) * 16777619
   }
 
-  // eslint-disable-next-line no-bitwise
   return hash >>> 0
 }
 

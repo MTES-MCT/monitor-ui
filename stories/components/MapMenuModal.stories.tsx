@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Accent, Button, Icon } from '../../src'
@@ -7,7 +7,7 @@ import { MapMenuDialog } from '../../src/components/MapMenuDialog'
 import type { Meta } from '@storybook/react-vite'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-const meta: Meta<{}> = {
+const meta: Meta = {
   title: 'Components/MapMenuDialog',
   component: MapMenuDialog as any,
 
@@ -29,7 +29,7 @@ export function _MapMenuDialog() {
           <MapMenuDialog.Header>
             <MapMenuDialog.CloseButton Icon={Icon.Close} />
             <MapMenuDialog.Title>Two buttons</MapMenuDialog.Title>
-            <MapMenuDialog.VisibilityButton accent={Accent.SECONDARY} Icon={Icon.Display} />
+            <MapMenuDialog.VisibilityButton Icon={Icon.Display} accent={Accent.SECONDARY} />
           </MapMenuDialog.Header>
           <MapMenuDialog.Body>
             <div>
@@ -59,7 +59,7 @@ export function _MapMenuDialog() {
             <Button Icon={Icon.Plus} isFullWidth>
               Ajouter une nouvelle mission
             </Button>
-            <Button accent={Accent.SECONDARY} Icon={Icon.Expand} isFullWidth>
+            <Button Icon={Icon.Expand} accent={Accent.SECONDARY} isFullWidth>
               Voir la vue détaillée des missions
             </Button>
           </MapMenuDialog.Footer>
@@ -69,7 +69,7 @@ export function _MapMenuDialog() {
           <MapMenuDialog.Header>
             <MapMenuDialog.CloseButton Icon={Icon.Close} />
             <MapMenuDialog.Title>One button</MapMenuDialog.Title>
-            <MapMenuDialog.VisibilityButton accent={Accent.SECONDARY} Icon={Icon.Display} />
+            <MapMenuDialog.VisibilityButton Icon={Icon.Display} accent={Accent.SECONDARY} />
           </MapMenuDialog.Header>
           <MapMenuDialog.Body>
             <div>
@@ -108,14 +108,14 @@ export function _MapMenuDialog() {
           <MapMenuDialog.Header>
             <MapMenuDialog.CloseButton Icon={Icon.Close} />
             <MapMenuDialog.Title>With buttons only</MapMenuDialog.Title>
-            <MapMenuDialog.VisibilityButton accent={Accent.SECONDARY} Icon={Icon.Display} />
+            <MapMenuDialog.VisibilityButton Icon={Icon.Display} accent={Accent.SECONDARY} />
           </MapMenuDialog.Header>
           <MapMenuDialog.Body>
             <StyledButtonsContainer>
               <Button Icon={Icon.Plus} isFullWidth>
                 Ajouter une nouvelle mission
               </Button>
-              <Button accent={Accent.SECONDARY} Icon={Icon.Expand} isFullWidth>
+              <Button Icon={Icon.Expand} accent={Accent.SECONDARY} isFullWidth>
                 Voir la vue détaillée des missions
               </Button>
             </StyledButtonsContainer>
@@ -126,7 +126,7 @@ export function _MapMenuDialog() {
           <MapMenuDialog.Header>
             <MapMenuDialog.CloseButton Icon={Icon.Close} />
             <MapMenuDialog.Title>A way too long title that cannot fit</MapMenuDialog.Title>
-            <MapMenuDialog.VisibilityButton accent={Accent.SECONDARY} Icon={Icon.Display} />
+            <MapMenuDialog.VisibilityButton Icon={Icon.Display} accent={Accent.SECONDARY} />
           </MapMenuDialog.Header>
         </MapMenuDialog.Container>
       </Row>

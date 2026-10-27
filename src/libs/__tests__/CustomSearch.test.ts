@@ -10,12 +10,11 @@ function shuffle<T = any>(array: T[]): T[] {
   let t
   let i
   while (m) {
-    // eslint-disable-next-line no-plusplus
     i = Math.floor(Math.random() * m--)
     t = clonedArray[m]
-    // eslint-disable-next-line no-param-reassign
+
     clonedArray[m] = clonedArray[i] as T
-    // eslint-disable-next-line no-param-reassign
+
     clonedArray[i] = t
   }
 

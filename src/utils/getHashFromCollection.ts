@@ -1,5 +1,3 @@
-/* eslint-disable no-bitwise */
-
 // We use the growing `json-stringify-deterministic` library rather than the `json-stable-stringify` one because:
 // https://www.npmjs.com/package/json-stringify-deterministic#json-stringify-deterministic
 import jsonStringifyDeterministic from 'json-stringify-deterministic'

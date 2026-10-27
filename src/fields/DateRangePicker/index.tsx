@@ -22,7 +22,7 @@ import { usePressEscapeEffect } from '@hooks/usePressEscapeEffect'
 import classnames from 'classnames'
 import { isEqual } from 'lodash-es'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import { DateInput } from './DateInput'
 import { RangeCalendarPicker } from './RangeCalendarPicker'
@@ -52,7 +52,6 @@ import { normalizeString } from '../../utils/normalizeString'
 
 import type { DateAsStringRange, DateRange, PartialDateAsStringRange, PartialDateRange } from '../../types/definitions'
 import type { CommonFieldStyleProps } from 'fields/shared/types'
-// @ts-ignore
 import type { JSX, HTMLAttributes } from 'react'
 import type { DisabledDateFunction } from 'rsuite/esm/DateRangePicker/types'
 import type { Promisable } from 'type-fest'
@@ -150,7 +149,7 @@ export function DateRangePicker({
   minutesRange = 15,
   name,
   onChange,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
+
   readOnly = false,
   shouldDisableDate,
   style,
@@ -313,9 +312,7 @@ export function DateRangePicker({
 
         if (!withTime || (withTime && withFullDayDefaults) || (withTime && selectedStartTimeTupleRef.current)) {
           // we update the selected start datetime
-          const startUtcTimeTuple: TimeTuple = selectedStartTimeTupleRef.current
-            ? selectedStartTimeTupleRef.current
-            : ['00', '00']
+          const startUtcTimeTuple: TimeTuple = selectedStartTimeTupleRef.current ?? ['00', '00']
           const nextStartDateAsDayjs = getDayjsFromUtcDateAndTimeTuple(nextDateTuple, startUtcTimeTuple)
 
           selectedStartTimeTupleRef.current = startUtcTimeTuple
@@ -333,9 +330,7 @@ export function DateRangePicker({
 
         if (!withTime || (withTime && withFullDayDefaults) || (withTime && selectedEndTimeTupleRef.current)) {
           // we update the selected end datetime
-          const endTimeTuple = (
-            selectedEndTimeTupleRef.current ? selectedEndTimeTupleRef.current : ['23', '59']
-          ) as TimeTuple
+          const endTimeTuple = (selectedEndTimeTupleRef.current ?? ['23', '59']) as TimeTuple
           const nextEndDateAsDayjs = getDayjsFromUtcDateAndTimeTuple(nextDateTuple, endTimeTuple, true)
 
           selectedEndTimeTupleRef.current = endTimeTuple
@@ -523,7 +518,6 @@ export function DateRangePicker({
       >
         <Field>
           <DateInput
-            ref={startDateInputRef}
             baseContainer={baseContainer ?? undefined}
             disabled={disabled}
             isCompact={isCompact}
@@ -540,6 +534,7 @@ export function DateRangePicker({
             onInput={callOnChangeUndefinedIfInputsAreEmpty}
             onNext={handleStartDateInputNext}
             readOnly={readOnly}
+            ref={startDateInputRef}
             value={selectedStartDateTupleRef.current}
           />
         </Field>
@@ -547,7 +542,6 @@ export function DateRangePicker({
         {withTime && (
           <Field $isTimeField>
             <TimeInput
-              ref={startTimeInputRef}
               baseContainer={baseContainer ?? undefined}
               disabled={disabled}
               isCompact={isCompact}
@@ -563,6 +557,7 @@ export function DateRangePicker({
               onNext={() => endDateInputRef.current?.focus()}
               onPrevious={() => startDateInputRef.current?.focus(true)}
               readOnly={readOnly}
+              ref={startTimeInputRef}
               value={selectedStartTimeTupleRef.current}
             />
           </Field>
@@ -570,7 +565,6 @@ export function DateRangePicker({
 
         <Field $isEndDateField>
           <DateInput
-            ref={endDateInputRef}
             baseContainer={baseContainer ?? undefined}
             disabled={disabled}
             isCompact={isCompact}
@@ -589,6 +583,7 @@ export function DateRangePicker({
             onNext={handleEndDateInputNext}
             onPrevious={handleEndDateInputPrevious}
             readOnly={readOnly}
+            ref={endDateInputRef}
             value={selectedEndDateTupleRef.current}
           />
         </Field>
@@ -596,7 +591,6 @@ export function DateRangePicker({
         {withTime && (
           <Field $isTimeField>
             <TimeInput
-              ref={endTimeInputRef}
               baseContainer={baseContainer ?? undefined}
               disabled={disabled}
               isCompact={isCompact}
@@ -611,6 +605,7 @@ export function DateRangePicker({
               onInput={callOnChangeUndefinedIfInputsAreEmpty}
               onPrevious={() => endDateInputRef.current?.focus(true)}
               readOnly={readOnly}
+              ref={endTimeInputRef}
               value={selectedEndTimeTupleRef.current}
             />
           </Field>
@@ -620,13 +615,13 @@ export function DateRangePicker({
       {!isErrorMessageHidden && hasError && <FieldError>{controlledError}</FieldError>}
 
       <RangeCalendarPicker
-        key={JSON.stringify(rangeCalendarPickerDefaultValue)}
-        ref={rangeCalendarPickerRef}
         defaultValue={rangeCalendarPickerDefaultValue}
         hasSingleCalendar={hasSingleCalendar}
         isHistorical={isHistorical}
         isOpen={isRangeCalendarPickerOpen}
+        key={JSON.stringify(rangeCalendarPickerDefaultValue)}
         onChange={handleRangeCalendarPickerChange}
+        ref={rangeCalendarPickerRef}
         shouldDisableDate={shouldDisableDate}
       />
     </Fieldset>

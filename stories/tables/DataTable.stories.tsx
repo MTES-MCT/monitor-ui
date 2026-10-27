@@ -14,12 +14,10 @@ const args: DataTableProps<FakeBasicTableDataItem> = {
   data: FAKE_BASIC_TABLE_DATA,
   initialSorting: [
     {
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       desc: false,
       id: 'lastName'
     }
   ],
-  tableOptions: undefined,
   withoutHead: false
 }
 

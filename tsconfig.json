@@ -61,7 +61,6 @@
     "e2e/*",
     "scripts/*",
     "storybook-static/*",
-    ".eslintrc.cjs"
-    //    "vite.config.ts"
+    "eslint.config.cjs"
   ]
 }

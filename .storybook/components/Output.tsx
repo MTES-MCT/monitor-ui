@@ -1,5 +1,5 @@
 import { useMemo, type HTMLAttributes } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 export type OutputProps = HTMLAttributes<HTMLDivElement> & {
   label?: string

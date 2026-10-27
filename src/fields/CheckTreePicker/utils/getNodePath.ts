@@ -18,7 +18,6 @@ export function getNodePath(
   const path: TreeOption[] = []
 
   const findNodeWithPath = (nodes: TreeOption[]): boolean => {
-    // eslint-disable-next-line no-restricted-syntax
     for (const node of nodes) {
       path.push(node)
 

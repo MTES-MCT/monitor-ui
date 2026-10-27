@@ -20,19 +20,17 @@ export function findElementByText<T extends HTMLElement = HTMLElement>(
   if (inElement) {
     let foundElement
     let foundElementIndex = 0
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     Cypress.$(inElement)
       .find(selector)
-      // eslint-disable-next-line func-names
-      .each(function (this: HTMLElement) {
-        if (!foundElement && Cypress.$(this).text().trim() === trimmedText) {
+      .each((_index, element: HTMLElement) => {
+        if (!foundElement && Cypress.$(element).text().trim() === trimmedText) {
           if (foundElementIndex < index) {
             foundElementIndex += 1
 
             return
           }
 
-          foundElement = this
+          foundElement = element
         }
       })
     if (!foundElement && fallbackSelector) {
@@ -48,20 +46,18 @@ export function findElementByText<T extends HTMLElement = HTMLElement>(
 
   let foundElement
   let foundElementIndex = 0
-  // eslint-disable-next-line func-names, @typescript-eslint/no-unused-expressions
-  Cypress.$(selector).each(function () {
-    if (!foundElement && Cypress.$(this).text().trim() === trimmedText) {
+  Cypress.$(selector).each((_index, element) => {
+    if (!foundElement && Cypress.$(element).text().trim() === trimmedText) {
       if (foundElementIndex < index) {
         foundElementIndex += 1
 
         return
       }
 
-      foundElement = this
+      foundElement = element
     }
   })
   if (!foundElement && fallbackSelector) {
-    // eslint-disable-next-line no-console
     console.warn(`Using fallback selector: "${fallbackSelector}".`)
 
     const foundElementByFallbackSelector = Cypress.$(fallbackSelector)

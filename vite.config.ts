@@ -1,9 +1,9 @@
-/* eslint-disable import/no-extraneous-dependencies, sort-keys-fix/sort-keys-fix, @typescript-eslint/naming-convention */
+/* eslint-disable sort-keys-fix/sort-keys-fix, @typescript-eslint/naming-convention */
 import react from '@vitejs/plugin-react'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import { defineConfig } from 'vite'
-import analyzer from 'vite-bundle-analyzer'
+import { analyzer } from 'vite-bundle-analyzer'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 // Read deps/peerDeps to externalize them (avoid bundling into the library)
@@ -12,6 +12,7 @@ const externals = [
   ...Object.keys(pkg.peerDependencies ?? {}),
   ...Object.keys(pkg.dependencies ?? {}),
   'rsuite/locales/fr_FR',
+  'react-dom',
   'react/jsx-runtime'
 ]
 

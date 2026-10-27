@@ -83,7 +83,7 @@ const meta: Meta<MultiRadioProps> = {
       options: [...FAKE_STRING_OPTIONS_AS_LABELS, undefined],
       mapping: {
         ...FAKE_STRING_OPTIONS_AS_MAPPING,
-        // eslint-disable-next-line object-shorthand
+
         undefined: undefined
       }
     }
@@ -144,8 +144,8 @@ export function _MultiRadio(props: MultiRadioProps) {
           label="Multiradio with icons"
           name="myMultiRadioWithIcons"
           onChange={nextOptionValue => setOutputValueWithIcons(nextOptionValue)}
-          options={OPTIONS_WITH_ICONS}
           optionValueKey="value"
+          options={OPTIONS_WITH_ICONS}
           renderMenuItem={(label, value) => (
             <>
               <value.Icon />
@@ -177,8 +177,8 @@ export function _MultiRadio(props: MultiRadioProps) {
           label="Multiradio inline with icons"
           name="myMultiRadioInlineWithIcons"
           onChange={nextOptionValue => setOutputValueInlineWithIcons(nextOptionValue)}
-          options={OPTIONS_WITH_ICONS}
           optionValueKey="value"
+          options={OPTIONS_WITH_ICONS}
           renderMenuItem={(label, value) => (
             <>
               <value.Icon />

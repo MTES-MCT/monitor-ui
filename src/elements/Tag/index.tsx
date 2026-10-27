@@ -2,7 +2,7 @@ import { Accent } from '@constants'
 import { THEME } from '@theme'
 import classnames from 'classnames'
 import { type FunctionComponent, type HTMLAttributes, useMemo } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import type { IconProps } from '@types_/definitions'
 
@@ -94,7 +94,7 @@ const Box = styled.span<{
   }};
   border: ${p => (p.$borderColor ? `1px solid ${p.$borderColor}` : 'none')};
   border-radius: 25px;
-  color: ${p => (p.$color ? p.$color : p.theme.color.gunMetal)};
+  color: ${p => p.$color ?? p.theme.color.gunMetal};
   display: inline-flex;
   font-size: 13px;
   height: 22px;

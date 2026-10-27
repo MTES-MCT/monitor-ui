@@ -3,7 +3,7 @@ import { THEME } from '@theme'
 import { type IconProps } from '@types_/definitions'
 import classnames from 'classnames'
 import { type ButtonHTMLAttributes, type FunctionComponent, type ReactNode } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 type BaseLinkButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: string | ReactNode

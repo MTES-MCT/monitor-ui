@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import type { LabelHTMLAttributes } from 'react'
 
@@ -13,7 +13,6 @@ export const Label = styled.label.attrs<LabelProps, LabelProps>(props => ({
   className: classnames('Element-Label', props.className)
 }))`
   color: ${p =>
-    // eslint-disable-next-line no-nested-ternary
     p.$isDisabled ? p.theme.color.lightGray : p.$hasError ? p.theme.color.maximumRed : p.theme.color.slateGray};
   display: block;
   font-size: 13px;

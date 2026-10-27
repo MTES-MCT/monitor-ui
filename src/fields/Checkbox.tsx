@@ -2,7 +2,7 @@ import { useKey } from '@hooks/useKey'
 import classnames from 'classnames'
 import React, { type CSSProperties, useCallback, useMemo } from 'react'
 import { Checkbox as RsuiteCheckbox } from 'rsuite'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { getChoiceFieldBackgroundColorFactoryForState, getChoiceFieldBorderColorFactoryForState } from './shared/utils'
 import { Field } from '../elements/Field'
@@ -82,7 +82,6 @@ export function Checkbox({
   return (
     <Field className={controlledClassName} style={style}>
       <StyledRsuiteCheckbox
-        key={key}
         $hasError={hasControlledError}
         $isChecked={checked || indeterminate}
         $isDisabled={disabled}
@@ -94,6 +93,7 @@ export function Checkbox({
         disabled={disabled}
         id={name}
         indeterminate={indeterminate}
+        key={key}
         name={name}
         onChange={handleChange}
         readOnly={readOnly}
@@ -121,9 +121,7 @@ export const StyledRsuiteCheckbox = styled(RsuiteCheckbox)<CommonChoiceFieldStyl
     ${$p => ($p.$labelPosition === 'right' ? 'padding-left: 24px;' : 'padding-right: 24px;')}
     > label {
       /* TODO Check that with Adeline. */
-      color: ${p =>
-        // eslint-disable-next-line no-nested-ternary
-        (p.$isDisabled ?? p.$isReadOnly) ? p.theme.color.lightGray : p.theme.color.gunMetal};
+      color: ${p => ((p.$isDisabled ?? p.$isReadOnly) ? p.theme.color.lightGray : p.theme.color.gunMetal)};
       font-size: 13px;
       font-weight: 500;
       line-height: 1;

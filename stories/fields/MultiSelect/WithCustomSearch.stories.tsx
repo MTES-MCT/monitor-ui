@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 
 import { Output } from '../../../.storybook/components/Output'
 import SPECIES from '../../../.storybook/data/species.json'
@@ -53,28 +53,32 @@ const meta: Meta<MultiSelectProps<Specy>> = {
 export default meta
 
 export function WithCustomSearch(props: MultiSelectProps<Specy>) {
-  const optionsRef = useRef(
+  const [options] = useState(() =>
     (SPECIES as Specy[]).map(specy => ({
       label: `${specy.code} - ${specy.name}`,
       value: specy
     }))
   )
-  const customSearchRef = useRef(
-    new CustomSearch(
-      optionsRef.current,
-      [
-        {
-          name: 'value.code',
-          weight: 0.9
-        },
-        {
-          name: 'value.name',
-          weight: 0.1
-        }
-      ],
-      { isStrict: true }
-    )
+
+  const [customSearch] = useState(
+    () =>
+      new CustomSearch(
+        options,
+        [
+          {
+            name: 'value.code',
+            weight: 0.9
+          },
+          {
+            name: 'value.name',
+            weight: 0.1
+          }
+        ],
+        { isStrict: false }
+      )
   )
+
+  // Removed useRef for options and customSearch as they are now managed by useState
 
   const [outputValue, setOutputValue] = useState<Specy[] | undefined | '∅'>('∅')
 
@@ -84,9 +88,9 @@ export function WithCustomSearch(props: MultiSelectProps<Specy>) {
     <>
       <MultiSelect
         {...props}
-        customSearch={customSearchRef.current}
+        customSearch={customSearch}
         onChange={controlledOnChange}
-        options={optionsRef.current}
+        options={options}
         value={controlledValue}
       />
       <div>

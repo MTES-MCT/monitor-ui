@@ -68,27 +68,26 @@ export const CalendarPicker = forwardRef<HTMLDivElement, CalendarPickerProps>(
 
     return (
       <StyledRsuiteCalendarBox
+        $isRightAligned={isRightAligned}
+        $isTop={isTop}
+        className="Field-DatePicker__CalendarPicker"
+        onClick={stopMouseEventPropagation}
         ref={element => {
           boxRef.current = element
           if (typeof ref === 'function') {
             ref(element)
           } else if (ref) {
-            // eslint-disable-next-line no-param-reassign
             ref.current = element
           }
         }}
-        $isRightAligned={isRightAligned}
-        $isTop={isTop}
-        className="Field-DatePicker__CalendarPicker"
-        onClick={stopMouseEventPropagation}
       >
         {boxRef.current && (
           <RsuiteDatePicker
             container={boxRef.current}
             format="yyyy-MM-dd"
             locale={RSUITE_CALENDAR_LOCALE}
-            oneTap
             onSelect={handleSelect}
+            oneTap
             open={isOpen}
             ranges={[]}
             // eslint-disable-next-line no-null/no-null
@@ -100,3 +99,5 @@ export const CalendarPicker = forwardRef<HTMLDivElement, CalendarPickerProps>(
     )
   }
 )
+
+CalendarPicker.displayName = 'CalendarPicker'

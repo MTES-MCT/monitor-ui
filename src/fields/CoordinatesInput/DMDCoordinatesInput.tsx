@@ -4,7 +4,7 @@ import { isNumeric } from '@utils/isNumeric'
 import { useEffect, useState } from 'react'
 import { dmsToDecimal } from 'react-coordinate-input'
 import { IMaskInput } from 'react-imask'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import type { Coordinates } from '@types_/definitions'
 
@@ -53,9 +53,8 @@ export function DMDCoordinatesInput({
   function completeCoordinates(mask) {
     setError('')
 
-    // eslint-disable-next-line no-underscore-dangle
     const latitude = mask._unmaskedValue.substring(0, 8)
-    // eslint-disable-next-line no-underscore-dangle
+
     const longitude = mask._unmaskedValue.substring(8, mask._unmaskedValue.length)
     const NS = latitude[latitude.length - 1].toUpperCase()
     if (!['N', 'S'].includes(NS)) {
@@ -106,7 +105,6 @@ export function DMDCoordinatesInput({
         lazy={false}
         mask="00° 00.000′ a 000° 00.000′ a"
         name={name}
-        // @ts-ignore
         onAccept={(_, mask) => setValue(mask.value)}
         onComplete={(_, mask) => completeCoordinates(mask)}
         placeholder="__° __.___′ _ ___° __.___′"

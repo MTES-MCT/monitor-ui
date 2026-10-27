@@ -55,7 +55,6 @@ export const LinkInput = forwardRef<HTMLInputElement, LinkInputProps>(
           {label}
         </Label>
         <StyledIMaskInput
-          ref={ref}
           $hasError={!!error}
           $isDisabled={disabled}
           $isLight={isLight}
@@ -76,6 +75,7 @@ export const LinkInput = forwardRef<HTMLInputElement, LinkInputProps>(
             onChange(nextValue || undefined)
           }}
           overwrite={false}
+          ref={ref}
           type="text"
           unmask={false}
           value={value}
@@ -86,3 +86,5 @@ export const LinkInput = forwardRef<HTMLInputElement, LinkInputProps>(
     )
   }
 )
+
+LinkInput.displayName = 'LinkInput'

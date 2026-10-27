@@ -1,10 +1,34 @@
 // TODO Migrate this story to the new Storybook structure. Example: stories/components/Banner.stories.tsx.
 /* eslint-disable react-hooks/rules-of-hooks */
 
-import { flexRender, getCoreRowModel, getSortedRowModel, type SortingState, useReactTable } from '@tanstack/react-table'
+import {
+  columnResizingFeature,
+  columnSizingFeature,
+  columnVisibilityFeature,
+  createExpandedRowModel,
+  createSortedRowModel,
+  rowExpandingFeature,
+  rowSelectionFeature,
+  rowSortingFeature,
+  tableFeatures,
+  type SortingState,
+  useTable,
+  flexRender
+} from '@tanstack/react-table'
 import { notUndefined, useVirtualizer } from '@tanstack/react-virtual'
 import { useCallback, useMemo, useRef, useState } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
+
+export const dataTableFeatures = tableFeatures({
+  columnResizingFeature,
+  columnSizingFeature,
+  columnVisibilityFeature,
+  expandedRowModel: createExpandedRowModel(),
+  rowExpandingFeature,
+  rowSelectionFeature,
+  rowSortingFeature,
+  sortedRowModel: createSortedRowModel()
+})
 
 import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDecorator'
 import { Accent, Dropdown, Icon, IconButton, THEME, TableWithSelectableRows, Tag } from '../../src'
@@ -92,7 +116,7 @@ const fakeData2 = Array(5).fill({
 const data = [...fakeData1, ...fakeData2]
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-const meta: Meta<{}> = {
+const meta: Meta = {
   title: 'Tables/TableWithSelectableRows',
 
   decorators: [generateStoryDecorator()]
@@ -104,13 +128,13 @@ export default meta
 const ButtonsGroupRow = ({ id, onSelect }) => (
   <ButtonsGroup>
     {/* eslint-disable-next-line no-console */}
-    <IconButton accent={Accent.TERTIARY} Icon={Icon.Duplicate} onClick={() => console.log(id)} />
+    <IconButton Icon={Icon.Duplicate} accent={Accent.TERTIARY} onClick={() => console.log(id)} />
     {/* eslint-disable-next-line no-console */}
-    <IconButton accent={Accent.TERTIARY} Icon={Icon.Edit} onClick={() => console.log(id)} />
+    <IconButton Icon={Icon.Edit} accent={Accent.TERTIARY} onClick={() => console.log(id)} />
 
-    <Dropdown accent={Accent.SECONDARY} Icon={Icon.More} onSelect={onSelect}>
-      <Dropdown.Item accent={Accent.SECONDARY} eventKey="ARCHIVE" Icon={Icon.Archive} />
-      <Dropdown.Item accent={Accent.SECONDARY} eventKey="DELETE" Icon={Icon.Delete} />
+    <Dropdown Icon={Icon.More} accent={Accent.SECONDARY} onSelect={onSelect}>
+      <Dropdown.Item Icon={Icon.Archive} accent={Accent.SECONDARY} eventKey="ARCHIVE" />
+      <Dropdown.Item Icon={Icon.Delete} accent={Accent.SECONDARY} eventKey="DELETE" />
     </Dropdown>
   </ButtonsGroup>
 )
@@ -227,7 +251,7 @@ export function _TableWithSelectableRows() {
       {
         accessorFn: row => row.missionId,
         cell: () => (
-          <Tag backgroundColor={THEME.color.mediumSeaGreen} color={THEME.color.white} Icon={Link}>
+          <Tag Icon={Link} backgroundColor={THEME.color.mediumSeaGreen} color={THEME.color.white}>
             Mission
           </Tag>
         ),
@@ -240,8 +264,8 @@ export function _TableWithSelectableRows() {
         accessorFn: row => row.geom,
         cell: () => (
           <Tag
-            backgroundColor={THEME.color.gainsboro}
             Icon={Icon.CircleFilled}
+            backgroundColor={THEME.color.gainsboro}
             iconColor={THEME.color.goldenPoppy}
             withCircleIcon
           >
@@ -257,8 +281,8 @@ export function _TableWithSelectableRows() {
         accessorFn: row => row.geom,
         cell: info => (
           <IconButton
-            accent={Accent.TERTIARY}
             Icon={Icon.FocusZones}
+            accent={Accent.TERTIARY}
             isCompact
             // eslint-disable-next-line no-console
             onClick={() => console.log(info.getValue())}
@@ -281,14 +305,13 @@ export function _TableWithSelectableRows() {
     []
   )
 
-  const table = useReactTable({
+  const table = useTable({
     columns,
     data,
     enableColumnResizing: false,
     enableRowSelection: true,
     enableSortingRemoval: false,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
+    features: dataTableFeatures,
     onRowSelectionChange: rowId => {
       setRowSelection(rowId)
     },
@@ -338,7 +361,7 @@ export function _TableWithSelectableRows() {
   return (
     <>
       <div>
-        <IconButton accent={Accent.SECONDARY} Icon={Icon.Archive} onClick={archiveReportings} />
+        <IconButton Icon={Icon.Archive} accent={Accent.SECONDARY} onClick={archiveReportings} />
       </div>
       <div ref={tableContainerRef} style={{ width: 1776 }}>
         <TableWithSelectableRows.Table $withRowCheckbox>
@@ -346,7 +369,7 @@ export function _TableWithSelectableRows() {
             {table.getHeaderGroups().map(headerGroup => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
-                  <TableWithSelectableRows.Th key={header.id} $width={header.column.getSize()}>
+                  <TableWithSelectableRows.Th $width={header.column.getSize()} key={header.id}>
                     {header.id === 'select' && flexRender(header.column.columnDef.header, header.getContext())}
                     {header.id !== 'select' && !header.isPlaceholder && (
                       <TableWithSelectableRows.SortContainer
@@ -377,17 +400,17 @@ export function _TableWithSelectableRows() {
 
               return (
                 <TableWithSelectableRows.BodyTr
-                  key={virtualRow.key}
-                  ref={rowVirtualizer.measureElement} // measure dynamic row height
                   $isHighlighted={index % 2 === 0}
                   data-cy="reporting-row"
                   data-index={virtualRow.index} // needed for dynamic row height measurement
+                  key={virtualRow.key}
+                  ref={rowVirtualizer.measureElement} // measure dynamic row height
                 >
                   {row?.getVisibleCells().map(cell => (
                     <TableWithSelectableRows.Td
-                      key={cell.id}
                       $hasRightBorder={!!(cell.column.id === 'geom')}
                       $isCenter={!!(cell.column.id === 'geom' || cell.column.id === 'id')}
+                      key={cell.id}
                     >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableWithSelectableRows.Td>

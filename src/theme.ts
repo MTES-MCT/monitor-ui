@@ -1,4 +1,4 @@
-/* eslint-disable sort-keys-fix/sort-keys-fix, typescript-sort-keys/interface */
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 
 import type { PartialDeep } from 'type-fest'
 

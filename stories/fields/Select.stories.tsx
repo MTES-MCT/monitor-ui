@@ -44,7 +44,7 @@ const meta: Meta<SelectProps> = {
       options: [...FAKE_STRING_OPTIONS_AS_LABELS, undefined],
       mapping: {
         ...FAKE_STRING_OPTIONS_AS_MAPPING,
-        // eslint-disable-next-line object-shorthand
+
         undefined: undefined
       }
     }

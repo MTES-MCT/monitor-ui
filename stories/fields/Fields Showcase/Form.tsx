@@ -27,7 +27,7 @@ export function Form({ children }: { children: ReactNode }) {
         </Button>
       </div>
 
-      <Formik key={JSON.stringify(initialValues)} initialValues={initialValues} onSubmit={noop}>
+      <Formik initialValues={initialValues} key={JSON.stringify(initialValues)} onSubmit={noop}>
         <>{children}</>
       </Formik>
     </>

@@ -1,5 +1,4 @@
 // TODO Migrate this story to the new Storybook structure. Example: stories/components/Banner.stories.tsx.
-/* eslint-disable react-hooks/rules-of-hooks */
 
 import { Icon } from '@constants'
 import { THEME } from '@theme'
@@ -10,7 +9,7 @@ import { generateStoryDecorator } from '../../.storybook/utils/generateStoryDeco
 import type { Meta } from '@storybook/react-vite'
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-const meta: Meta<{}> = {
+const meta: Meta = {
   title: 'Components/Tooltip',
   component: Tooltip,
 
@@ -27,7 +26,7 @@ export function _Tooltip() {
     <div style={{ height: '500px' }}>
       <Tooltip>Hi ! I&apos;m a tooltip</Tooltip>
       <Tooltip Icon={Icon.AttentionFilled}>Hi ! I&apos;m a tooltip without another icon</Tooltip>
-      <Tooltip color={THEME.color.maximumRed} Icon={Icon.Fishery}>
+      <Tooltip Icon={Icon.Fishery} color={THEME.color.maximumRed}>
         Hi ! I&apos;m a tooltip without another icon and another color
       </Tooltip>
     </div>

@@ -1,7 +1,16 @@
 // TODO Migrate this story to the new Storybook structure. Example: stories/components/Banner.stories.tsx.
 /* eslint-disable react-hooks/rules-of-hooks */
 
-import { flexRender, getCoreRowModel, getSortedRowModel, type SortingState, useReactTable } from '@tanstack/react-table'
+import {
+  flexRender,
+  columnVisibilityFeature,
+  columnSizingFeature,
+  rowSortingFeature,
+  createSortedRowModel,
+  type SortingState,
+  useTable,
+  tableFeatures
+} from '@tanstack/react-table'
 import { notUndefined, useVirtualizer } from '@tanstack/react-virtual'
 import { useCallback, useMemo, useRef, useState } from 'react'
 
@@ -108,7 +117,7 @@ const fakeData2 = Array(100).fill({
 const data = [...fakeData1, ...fakeData2]
 
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-const meta: Meta<{}> = {
+const meta: Meta = {
   title: 'Tables/SimpleTable',
 
   decorators: [generateStoryDecorator()]
@@ -117,6 +126,12 @@ const meta: Meta<{}> = {
 
 export default meta
 
+const dataTableFeatures = tableFeatures({
+  columnSizingFeature,
+  columnVisibilityFeature,
+  rowSortingFeature,
+  sortedRowModel: createSortedRowModel()
+})
 export function _SimpleTable() {
   const [sorting, setSorting] = useState<SortingState>([{ desc: false, id: 'dateDebut' }])
 
@@ -208,8 +223,8 @@ export function _SimpleTable() {
         accessorFn: row => row.geom,
         cell: info => (
           <IconButton
-            accent={Accent.SECONDARY}
             Icon={Icon.FocusZones}
+            accent={Accent.SECONDARY}
             // eslint-disable-next-line no-console
             onClick={() => console.log(info.getValue())}
             size={Size.SMALL}
@@ -239,12 +254,11 @@ export function _SimpleTable() {
     []
   )
 
-  const table = useReactTable({
+  const table = useTable({
     columns,
     data,
     enableSortingRemoval: false,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
+    features: dataTableFeatures,
     onSortingChange: setSorting,
     state: {
       sorting
@@ -323,20 +337,18 @@ export function _SimpleTable() {
 
             return (
               <SimpleTable.BodyTr
+                data-index={virtualRow.index} // needed for dynamic row height measurement
                 key={virtualRow.key}
                 ref={rowVirtualizer.measureElement} // measure dynamic row height
-                data-index={virtualRow.index} // needed for dynamic row height measurement
               >
                 {row?.getVisibleCells().map(cell => (
                   <SimpleTable.Td
-                    {...{
-                      $isCenter: !!(cell.column.id === 'geom' || cell.column.id === 'edit'),
-                      key: cell.id,
-                      style: {
-                        maxWidth: cell.column.getSize(),
-                        minWidth: cell.column.getSize(),
-                        width: cell.column.getSize()
-                      }
+                    $isCenter={!!(cell.column.id === 'geom' || cell.column.id === 'edit')}
+                    key={cell.id}
+                    style={{
+                      maxWidth: cell.column.getSize(),
+                      minWidth: cell.column.getSize(),
+                      width: cell.column.getSize()
                     }}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

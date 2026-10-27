@@ -1,7 +1,7 @@
 import { Accent, Icon, Size } from '@constants'
 import { IconButton } from '@elements/IconButton'
 import { THEME } from '@theme'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import type { FileApi } from './types'
 
@@ -49,9 +49,9 @@ export function FileList({ files, onDelete }: FileListProps) {
             <FileSize>{humanFileSize(file.size)}</FileSize>
           </FileInformation>
           <IconButton
+            Icon={Icon.Close}
             accent={Accent.TERTIARY}
             color={THEME.color.slateGray}
-            Icon={Icon.Close}
             onClick={() => onDelete(file.index)}
             size={Size.SMALL}
             style={{ marginLeft: 'auto' }}

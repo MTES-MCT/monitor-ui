@@ -3,7 +3,7 @@ import { useNewWindow } from '@hooks/useNewWindow'
 import { THEME } from '@theme'
 import { type FunctionComponent, type ReactNode, useId, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import type { IconProps } from '@types_/definitions'
 
