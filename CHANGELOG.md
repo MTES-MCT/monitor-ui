@@ -1,3 +1,7 @@
+## 24.62.0 (2026-10-29)
+
+* feat(entities): add cellPhone in controlUnitContact entity ([c20c9bc](https://github.com/MTES-MCT/monitor-ui/commit/c20c9bc))
+
 ## [24.61.0](https://github.com/MTES-MCT/monitor-ui/compare/v24.60.2...v24.61.0) (2026-10-13)
 
 ### Features
