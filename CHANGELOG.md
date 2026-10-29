@@ -1,3 +1,8 @@
+## 24.63.0 (2026-10-29)
+
+* feat(entities): add role in controlUnitContact entity ([0252c5b](https://github.com/MTES-MCT/monitor-ui/commit/0252c5b))
+* ci(release): 24.62.0 ([fef3495](https://github.com/MTES-MCT/monitor-ui/commit/fef3495))
+
 ## 24.62.0 (2026-10-29)
 
 * feat(entities): add cellPhone in controlUnitContact entity ([c20c9bc](https://github.com/MTES-MCT/monitor-ui/commit/c20c9bc))
