@@ -26,6 +26,7 @@ export namespace ControlUnit {
   }
 
   export interface ControlUnitContact {
+    cellPhone: string | undefined
     controlUnit: ControlUnitData
     controlUnitId: number
     email: string | undefined
