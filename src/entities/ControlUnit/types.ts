@@ -35,6 +35,7 @@ export namespace ControlUnit {
     isSmsSubscriptionContact: boolean
     name: string
     phone: string | undefined
+    role: string | undefined
   }
 
   export interface ControlUnitResource {
