@@ -1,0 +1,19 @@
+
+import { IconGallery, IconItem } from '@storybook/addon-docs/blocks';
+
+import { DocumentationBox } from '../.storybook/components/DocumentationBox'
+import { COUNTRIES, CountryFlag } from '../src'
+
+# Flags
+
+Country flags, rendered with `<CountryFlag code="FRA" />` (or `code="FR"`), keyed by ISO 3166-1 alpha-3 code.
+
+<DocumentationBox>
+  <IconGallery>
+    {COUNTRIES.map(country => (
+      <IconItem key={country.iso3} name={country.iso3}>
+        <CountryFlag code={country.iso3} size={24} />
+      </IconItem>
+    ))}
+  </IconGallery>
+</DocumentationBox>
