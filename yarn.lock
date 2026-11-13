@@ -2807,6 +2807,7 @@ __metadata:
     lint-staged: "npm:15.5.1"
     lodash-es: "npm:4.18.1"
     ol: "npm:10.9.0"
+    playwright: "npm:1.60.0"
     postcss: "npm:8.5.15"
     prettier: "npm:3.8.3"
     prop-types: "npm:15.8.1"
@@ -14543,7 +14544,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright@npm:^1.14.0":
+"playwright@npm:1.60.0, playwright@npm:^1.14.0":
   version: 1.60.0
   resolution: "playwright@npm:1.60.0"
   dependencies:

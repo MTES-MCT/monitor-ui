@@ -120,6 +120,23 @@ yarn icons
 
 to generate React components from the SVG icons.
 
+### Updating flags
+
+1. Copy the new SVG flags in `scripts/flags` folder (named after their ISO 3166-1 alpha-3 code, e.g. `FRA.svg`)
+2. Install the headless Chromium used to render them (only needed once):
+
+```sh
+yarn playwright install --only-shell chromium
+```
+
+3. Run
+
+```sh
+yarn flags
+```
+
+to render the SVG flags to small WebP images (48px high) and generate React components embedding them.
+
 ### Updating caniuse browserlist
 
 We
