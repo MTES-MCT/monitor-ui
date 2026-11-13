@@ -31,6 +31,7 @@ export { FileUploader } from './components/FileUploader/FileUploader'
 export { FileList } from './components/FileUploader/FileList'
 export { FilePreview } from './components/FileUploader/FilePreview'
 export { ImageViewer } from './components/FileUploader/ImageViewer'
+export { CountryFlag, type CountryFlagProps } from './components/CountryFlag'
 
 export { AccentInsensitiveHighlight } from './elements/AccentInsensitiveHighlight'
 export { Button } from './elements/Button'
@@ -124,6 +125,7 @@ export { getControlUnitResourceCategoryFromType } from './entities/ControlUnit/u
 export type { DepartmentArea } from './entities/DepartmentArea'
 export { Mission } from './entities/Mission'
 export type { Station } from './entities/Station'
+export { COUNTRIES, type Country } from './entities/Country'
 
 /* -----------------------------------------------------------------------------
   Hooks
