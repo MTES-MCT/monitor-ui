@@ -1,3 +1,8 @@
+## <small>24.63.1 (2026-11-23)</small>
+
+* fix(fields): checkTreePicker - don't display delete button in renderValue when readOnly or disabled  ([10f42bd](https://github.com/MTES-MCT/monitor-ui/commit/10f42bd))
+* ci(release): 24.63.0 ([a8561a3](https://github.com/MTES-MCT/monitor-ui/commit/a8561a3))
+
 ## 24.63.0 (2026-10-29)
 
 * feat(entities): add role in controlUnitContact entity ([0252c5b](https://github.com/MTES-MCT/monitor-ui/commit/0252c5b))
