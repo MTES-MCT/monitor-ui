@@ -401,22 +401,24 @@ export function CheckTreePicker({
                   {option[labelKey] as string}
                   {isParent && ' (Tout)'}
                 </SelectedOptionLabel>
-                <StyledButton
-                  $isLight={isLight || isTransparent}
-                  accent={Accent.TERTIARY}
-                  Icon={Icon.Close}
-                  onClick={e => {
-                    removeOptions(
-                      isParent
-                        ? (option[childrenKey] as TreeOption[]).flatMap(child => child[valueKey] as string | number)
-                        : [option[valueKey] as string | number],
-                      e
-                    )
-                  }}
-                  size={Size.SMALL}
-                  tabIndex={0}
-                  title={`Retirer ${option[labelKey]}`}
-                />
+                {!disabled && !readOnly && (
+                  <StyledButton
+                    $isLight={isLight || isTransparent}
+                    accent={Accent.TERTIARY}
+                    Icon={Icon.Close}
+                    onClick={e => {
+                      removeOptions(
+                        isParent
+                          ? (option[childrenKey] as TreeOption[]).flatMap(child => child[valueKey] as string | number)
+                          : [option[valueKey] as string | number],
+                        e
+                      )
+                    }}
+                    size={Size.SMALL}
+                    tabIndex={0}
+                    title={`Retirer ${option[labelKey]}`}
+                  />
+                )}
               </SelectedOptionContainer>
             )
           })}
@@ -425,6 +427,7 @@ export function CheckTreePicker({
     )
   }, [
     childrenKey,
+    disabled,
     isLight,
     isSelect,
     isTransparent,
@@ -435,7 +438,8 @@ export function CheckTreePicker({
     renderedValue,
     rsuiteValue,
     shouldShowLabels,
-    valueKey
+    valueKey,
+    readOnly
   ])
 
   return (
