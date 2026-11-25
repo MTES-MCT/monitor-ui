@@ -31,6 +31,7 @@ export { FileUploader } from './components/FileUploader/FileUploader'
 export { FileList } from './components/FileUploader/FileList'
 export { FilePreview } from './components/FileUploader/FilePreview'
 export { ImageViewer } from './components/FileUploader/ImageViewer'
+export { NoResult } from './components/NoResult'
 
 export { AccentInsensitiveHighlight } from './elements/AccentInsensitiveHighlight'
 export { Button } from './elements/Button'
