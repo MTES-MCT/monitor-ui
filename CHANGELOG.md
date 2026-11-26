@@ -1,3 +1,8 @@
+## 24.65.0 (2026-11-26)
+
+* feat(components): add country flag ([1bb33f2](https://github.com/MTES-MCT/monitor-ui/commit/1bb33f2))
+* ci(release): 24.64.0 ([937e835](https://github.com/MTES-MCT/monitor-ui/commit/937e835))
+
 ## 24.64.0 (2026-11-25)
 
 * ci(release): 24.63.1 ([7c4d66a](https://github.com/MTES-MCT/monitor-ui/commit/7c4d66a))
