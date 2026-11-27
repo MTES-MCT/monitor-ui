@@ -1,3 +1,8 @@
+## 24.66.0 (2026-11-27)
+
+* feat(icons): add history icon ([36aca93](https://github.com/MTES-MCT/monitor-ui/commit/36aca93))
+* ci(release): 24.65.0 ([183090b](https://github.com/MTES-MCT/monitor-ui/commit/183090b))
+
 ## 24.65.0 (2026-11-26)
 
 * feat(components): add country flag ([1bb33f2](https://github.com/MTES-MCT/monitor-ui/commit/1bb33f2))
